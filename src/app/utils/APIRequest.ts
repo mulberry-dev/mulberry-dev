@@ -1,5 +1,10 @@
 import axios from "axios";
-import { errorNotify, successNotify, warnNotify } from "../utils/toast";
+import {
+  notifyError,
+  notifyWarn,
+  notifySuccess,
+  notifyInfo,
+} from "../utils/toast";
 
 const statusSuccess = [201, 202, 203];
 const statusAlertSuccess = [301, 302, 303];
@@ -13,7 +18,7 @@ APIRequest.interceptors.request.use(
   },
   async (error) => {
     console.error("Request Error: ", error.message);
-    errorNotify("Error de conectividad");
+    notifyError("Error de conectividad");
   }
 );
 
@@ -24,10 +29,10 @@ APIRequest.interceptors.response.use(
     if (typeof message === "string") {
       let oneStatus = status ?? statusCode;
       if (statusSuccess.indexOf(+oneStatus) >= 0) {
-        successNotify(message);
+        notifySuccess(message);
       }
       if (statusAlertSuccess.indexOf(+oneStatus) >= 0) {
-        warnNotify(message);
+        notifyWarn(message);
       }
     }
     return data;
@@ -35,7 +40,7 @@ APIRequest.interceptors.response.use(
   async (error) => {
     console.error("Response Error: ", error);
     if (error.message === "Network Error" && !error.response) {
-      errorNotify("Se perdió la conexión con el servidor");
+      notifyError("Se perdió la conexión con el servidor");
       return;
     }
 
@@ -45,25 +50,25 @@ APIRequest.interceptors.response.use(
 
     if (status === 404) {
       if (data?.message) {
-        errorNotify("No se encontró el servicio");
+        notifyError("No se encontró el servicio");
       }
       return;
     } else if (status >= 500) {
-      errorNotify("Ocurrió un error durante la solicitud");
+      notifyError("Ocurrió un error durante la solicitud");
     }
 
     if (data && typeof data?.message === "string") {
-      errorNotify(data.message);
+      notifyError(data.message);
       return;
     }
 
     if (data && typeof data?.detail === "string") {
-      errorNotify(data.detail);
+      notifyError(data.detail);
       return;
     }
 
     if (status === 500) {
-      errorNotify("Error en el servidor");
+      notifyError("Error en el servidor");
     }
   }
 );

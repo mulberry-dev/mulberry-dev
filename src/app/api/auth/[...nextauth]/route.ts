@@ -35,8 +35,6 @@ const handler = NextAuth({
 
         if (!passwordMatch) throw new Error("Invalid Password");
 
-        console.log(userFound);
-
         return userFound;
       },
     }),

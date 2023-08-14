@@ -8,23 +8,12 @@ import { useRouter } from "next/navigation";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { notifyWarn, notifySuccess } from "../utils/toast";
 
 const LoginPage = ({ onLogin }: any) => {
   const [error, setError] = useState("");
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
-
-  const notify = (message: string) =>
-    toast.warn(`${message}`, {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const onChange = () => {
     setShowPass(true);
@@ -41,11 +30,12 @@ const LoginPage = ({ onLogin }: any) => {
       redirect: false,
     });
 
-    if (res?.error) return notify(res.error as string);
+    if (res?.error) return notifyWarn(res.error as string);
 
-    if (res?.ok) return router.push("/dashboard/profile");
-
-    console.log(res);
+    if (res?.ok) {
+      notifySuccess("Login Success");
+      return router.push("/dashboard/profile");
+    }
   };
 
   return (
@@ -86,8 +76,6 @@ const LoginPage = ({ onLogin }: any) => {
           {error && <div className=" text-white p-2 ">{error}</div>}
         </form>
       </div>
-
-      <ToastContainer />
     </section>
   );
 };

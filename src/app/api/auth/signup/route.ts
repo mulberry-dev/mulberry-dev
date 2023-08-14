@@ -51,7 +51,6 @@ export const POST = async (request: Request) => {
       id: savedUser.email,
     });
   } catch (error) {
-    console.log("error", error);
     if (error instanceof Error) {
       return NextResponse.json(
         {
@@ -63,6 +62,5 @@ export const POST = async (request: Request) => {
       );
     }
   }
-
   return NextResponse.json({ message: "signup" });
 };

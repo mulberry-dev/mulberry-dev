@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { notifyInfo, notifySuccess } from "@/app/utils/toast";
 
 function Navigation() {
   const pathname = usePathname();
@@ -64,7 +65,13 @@ function Navigation() {
       id: 3,
       name: "SignOut",
       path: "",
-      onClick: () => signOut(),
+      onClick: () => {
+        notifySuccess("Logout Success");
+        notifyInfo("Come back soon");
+        setTimeout(() => {
+          return signOut();
+        }, 1500);
+      },
     },
   ];
 

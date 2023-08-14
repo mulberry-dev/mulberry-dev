@@ -5,26 +5,12 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { notifySuccess, notifyWarn } from "../utils/toast";
 
 const SignUpForm = ({ onLogin }: any) => {
-  const [error, setError] = useState();
   const [showPass, setShowPass] = useState(true);
   const router = useRouter();
-
-  const notify = (message: string) =>
-    toast.warn(`${message}`, {
-      position: "bottom-right",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const onChange = () => {
     setShowPass(false);
@@ -47,11 +33,16 @@ const SignUpForm = ({ onLogin }: any) => {
         redirect: false,
       });
 
-      if (res?.ok) return router.push("/dashboard/profile");
+      if (res?.ok) {
+        notifySuccess("Signup Success");
+        notifySuccess("Login Success");
+        setTimeout(() => {
+          return router.push("/dashboard/profile");
+        }, 500);
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
-        /* setError(error.response?.data.message); */
-        notify(error.response?.data.message);
+        notifyWarn(error.response?.data.message);
       }
     }
   };
@@ -105,7 +96,7 @@ const SignUpForm = ({ onLogin }: any) => {
         </form>
         {/*  {error && <div className=" text-white p-2 ">{error}</div>} */}
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </section>
   );
 };

@@ -4,6 +4,7 @@ import "@/styles/css/styles.css";
 import Navigation from "@/components/navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css";
+import { ToastContainer } from "react-toastify";
 
 import Particles from "@/components/particles";
 import { useEffect } from "react";
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
         </Providers>
         <Particles />
+        <ToastContainer />
       </body>
     </html>
   );
