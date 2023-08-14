@@ -1,0 +1,142 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* animation: fadeInUp 1s; */
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.2);
+    margin-top: 70px;
+    margin-bottom: 40px;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: 9;
+
+    @media (min-width: 768px) {
+        max-width: 900px;
+        padding: 50px;
+    }
+
+    h2 {
+        margin-top: 0px !important;
+        font-size: 35px !important;
+
+        @media (min-width: 768px) {
+            font-size: 50px !important;
+        }
+    }
+
+    p {
+        color: white;
+        margin-bottom: 0px;
+    }
+}
+
+
+.project-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9;
+    max-width: 700px;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+
+    .project-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 50%;
+        padding: 20px;
+
+
+        .project-thumbnail {
+            width: 300px;
+            padding: 15px;
+            border-radius: 25px;
+        }
+
+        .project-card {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+
+
+
+
+            h3 {
+                color: white;
+            }
+
+
+            p {
+                color: white;
+            }
+
+            .tech-box {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+
+                .techContaine {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                }
+
+                /* div {
+
+                    img {
+                        width: 50px;
+                        padding: 5px;
+
+
+                    }
+                } */
+
+
+                .button-box {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                    margin-top: 20px;
+
+                    img {
+                        width: 21px;
+                    }
+
+                    a {
+                        margin: 0;
+                        width: 100px;
+                        margin-right: 10px;
+                    }
+                }
+
+            }
+
+
+        }
+    }
+
+
+}
+
+.smallest {
+    width: 50px !important;
+}

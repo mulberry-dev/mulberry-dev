@@ -1,0 +1,53 @@
+/** Keyframes **/
+
+@keyframes menubarside {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 69.5px;
+  }
+}
+
+@keyframes menuitem {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+
+// form
+
+/* @keyframes fadeInUp {
+  from {
+    transform: translateY(10px);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+} */

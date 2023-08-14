@@ -1,0 +1,13 @@
+.profile-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.103);
+    border-radius: 10px;
+    box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
+    -webkit-box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}

@@ -1,0 +1,74 @@
+/** Body **/
+
+
+
+/* :root {
+    overflow: clip;
+
+
+
+} */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: hsla(185, 64%, 51%, 1);
+
+    background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
+
+    /* 
+    background: hsla(177, 87%, 79%, 1);
+
+    background: linear-gradient(90deg, hsla(177, 87%, 79%, 1) 0%, hsla(235, 89%, 70%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(177, 87%, 79%, 1) 0%, hsla(235, 89%, 70%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(177, 87%, 79%, 1) 0%, hsla(235, 89%, 70%, 1) 100%); */
+
+
+    background-attachment: fixed;
+    font-family: 'Poppins', monospace, sans-serif;
+    font-size: 20px;
+    color: white;
+
+}
+
+
+
+
+.fadeInUp-animation {
+    animation: fadeInUp .5s;
+}
+
+.swal2-popup {
+    background-color: rgba(255, 255, 255, 0.315);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    h2 {
+        margin-top: 0px !important;
+    }
+
+    .swal2-html-container {
+        color: white;
+    }
+}
+
+
+h2 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    color: white !important;
+    font-size: 60px !important;
+    margin-top: 70px !important;
+
+    @media (min-height: 1400px) {
+        margin-top: 35px !important;
+    }
+}

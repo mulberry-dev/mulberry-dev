@@ -1,0 +1,23 @@
+/* Base */
+@import "./base/_reset";
+@import "./base/_body";
+@import "./base/_variables";
+@import "./base/_keyframes";
+@import "./base/_fonts";
+@import "./base/_mixins";
+
+/* Componentes */
+@import "./components/_sections";
+@import "./components/_navegation";
+@import "./components/_buttons";
+@import "./components/_pageMain";
+@import "./components/_TrackID";
+@import "./components/_wallpaper";
+@import "./components/_about";
+@import "./components/education";
+@import "./components/_skills";
+@import "./components/_portfolio";
+@import "./components/_login";
+@import "./components/_projectDetail";
+@import "./components/_404";
+@import "./components/_profile";
