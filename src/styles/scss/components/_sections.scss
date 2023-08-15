@@ -1,56 +1,14 @@
  section {
-   min-height: 100vh;
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
+   min-height: calc(100vh - #{50px});
  }
 
  .section-404 {
-   min-height: 100vh;
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
  }
-
- //  #index {
- //    background: #6407b6;
- //    background: -webkit-linear-gradient(to top, #1f005e, #8E2DE2);
- //    background: linear-gradient(to top, #1f005e, #8E2DE2);
-
- //  }
-
- //  #about {
- //    background: #8E2DE2;
- //    background: -webkit-linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
- //    background: linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
- //    background-attachment: fixed;
- //  }
-
-
- //  #certificate {
- //    background: #8E2DE2;
- //    background: -webkit-linear-gradient(to top, #001d24, #c471ed, #f64f59);
- //    background: linear-gradient(to top, #001d24, #c471ed, #f64f59);
- //    background-attachment: fixed;
-
- //  }
-
- //  #skills {
- //    background-color: #0093E9;
- //    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-
- //  }
-
- //  #portfolio {
- //    background: #00d2ff;
- //    background: -webkit-linear-gradient(to bottom, #001a3e, #00d2ff);
- //    background: linear-gradient(to top, #001a3e, #00d2ff);
-
- //  }
-
-
- //  #contacto {
- //    /*    background-image: linear-gradient(111.4deg, rgba(7, 7, 9, 1) 6.5%, rgba(27, 24, 113, 1) 93.2%); */
- //  }

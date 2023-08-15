@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  notifyError,
-  notifyWarn,
-  notifySuccess,
-  notifyInfo,
-} from "../utils/toast";
+import { notifyError, notifyWarn, notifySuccess, notifyInfo } from "./toast";
 
 const statusSuccess = [201, 202, 203];
 const statusAlertSuccess = [301, 302, 303];

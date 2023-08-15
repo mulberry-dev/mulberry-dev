@@ -1,4 +1,4 @@
-import { APIRequest } from "@/app/utils/APIRequest";
+import { APIRequest } from "@/utils/APIRequest";
 
 export const APIService = {
   peticiones: {

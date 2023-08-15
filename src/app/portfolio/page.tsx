@@ -61,7 +61,7 @@ const Portfolio = () => {
   return (
     <>
       <section id="portfolio">
-        <div className="d-flex justify-content-center flex-column align-items-center animate__animated animate__fadeIn z-3 position-absolute p-5 rounded-3">
+        <div className="portfolio_container animate__animated animate__fadeIn">
           <h2>Portfolio</h2>
           <p className="hover-me">Hover the cubes</p>
           <div className="projects-container">
@@ -74,6 +74,7 @@ const Portfolio = () => {
                   <Image
                     src={project.img}
                     alt={`${project.img}-image`}
+                    className="project-image"
                     width={135}
                     height={120}
                   />

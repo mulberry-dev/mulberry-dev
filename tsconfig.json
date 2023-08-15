@@ -30,7 +30,7 @@
     ".next/types/**/*.ts",
     "src/app/components/particles.tsx",
     "src/app/404.js",
-    "src/app/utils/404.js"
+    "src/utils/404.js"
   ],
   "exclude": ["node_modules"]
 }

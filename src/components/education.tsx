@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* import Image from "next/image";
 import Link from "next/link";
 
 const certificates = [
@@ -44,12 +44,7 @@ function EducationModule() {
         <div className="certificates-container animate__animated animate__fadeIn">
           {certificates.map((e) => (
             <div key={e.id} className="certificate-item">
-              <Image
-                src={e.url}
-                height={200}
-                width={300}
-                alt={`alt-${e.id}`}
-              ></Image>
+              <Image src={e.url} height={200} width={300} alt={`alt-${e.id}`} />
             </div>
           ))}
         </div>
@@ -61,4 +56,4 @@ function EducationModule() {
   );
 }
 
-export default EducationModule;
+export default EducationModule; */

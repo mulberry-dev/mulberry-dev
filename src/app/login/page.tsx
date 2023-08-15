@@ -1,14 +1,10 @@
 "use client";
 
-/* import { mostrarContrasena } from "@/app/utils/alerts"; */
-import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { notifySuccess, notifyWarn } from "@/utils/toast";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { notifyWarn, notifySuccess } from "../utils/toast";
+import { FormEvent, useState } from "react";
 
 const LoginPage = ({ onLogin }: any) => {
   const [error, setError] = useState("");
@@ -40,7 +36,7 @@ const LoginPage = ({ onLogin }: any) => {
 
   return (
     <section>
-      <div className="d-flex justify-content-center align-items-center animate__animated animate__fadeIn z-3 position-absolute p-5 rounded-3">
+      <div className="generic_container  animate__animated animate__fadeIn">
         <form onSubmit={handdleSubmit}>
           <h2>Login</h2>
           <Image

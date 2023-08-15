@@ -115,10 +115,10 @@ const skills = [
 function Skills() {
   return (
     <section id="skills">
-      <div className="d-flex justify-content-center align-items-center animate__animated animate__fadeIn z-3 position-absolute p-5 rounded-3 flex-column">
+      <div className="skills_container animate__animated animate__fadeIn">
         <h2 className="h2">Skills</h2>
         <p className="hover-me">Hover the cubes</p>
-        <div className="skills-container">
+        <div className="cubes_container">
           {skills.map((skill) => (
             <div
               key={skill.id}

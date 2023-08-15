@@ -4,24 +4,16 @@ const IndexPage = async () => {
   return (
     <>
       <section id="index">
-        <div className="colorTitle ">
-          <h2 className="rainbow_bg animate__animated animate__fadeInUp">
-            Hi!, Iam Santiago{" "}
-          </h2>
+        <div className="mainPage-container animate__animated animate__fadeInUp">
+          <h1 className="color_title rainbow_bg"> Hi!, Iam Santiago</h1>
+          <p className="full_stack_title">
+            <span> &lt; </span>Full Stack Developer<span> /&gt; </span>
+          </p>
+          <p className="javascript_title">Java Script</p>
+          <Link className="button-generic" href="/about">
+            About
+          </Link>
         </div>
-        <h1 className="animate__animated animate__fadeInUp">
-          <span> &lt; </span>Full-stack developer<span> /&gt; </span>
-        </h1>
-        <p className="JS-title animate__animated animate__fadeInUp">
-          Java Script
-        </p>
-
-        <Link
-          className="button-generic animate__animated animate__fadeInUp"
-          href="/about"
-        >
-          About
-        </Link>
       </section>
     </>
   );

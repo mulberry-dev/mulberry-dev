@@ -1,3 +1,14 @@
+.generic_container {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    z-index: 99;
+}
+
 .signup-box {
     display: grid;
     place-items: center;
@@ -45,8 +56,7 @@ form {
     box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
     -webkit-box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
     -moz-box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
+
 
 
     h2 {

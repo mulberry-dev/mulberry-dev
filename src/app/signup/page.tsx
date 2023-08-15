@@ -5,8 +5,7 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import "react-toastify/dist/ReactToastify.css";
-import { notifySuccess, notifyWarn } from "../utils/toast";
+import { notifySuccess, notifyWarn } from "../../utils/toast";
 
 const SignUpForm = ({ onLogin }: any) => {
   const [showPass, setShowPass] = useState(true);
@@ -49,7 +48,7 @@ const SignUpForm = ({ onLogin }: any) => {
 
   return (
     <section>
-      <div className="d-flex justify-content-center align-items-center animate__animated animate__fadeIn z-3 position-absolute p-5 rounded-3">
+      <div className="generic_container animate__animated animate__fadeIn">
         <form onSubmit={handdleSubmit}>
           <h2>Sign Up</h2>
           <Image

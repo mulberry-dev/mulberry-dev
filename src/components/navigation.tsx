@@ -1,12 +1,12 @@
 "use client";
 
+import { notifyInfo, notifySuccess } from "@/utils/toast";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
-import { notifyInfo, notifySuccess } from "@/app/utils/toast";
 
-function Navigation() {
+const Navigation = () => {
   const pathname = usePathname();
 
   const session = useSession();
@@ -77,7 +77,7 @@ function Navigation() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed menu">
         <div className="container-fluid justify-content-end">
           <div
             className="menu-activador "
@@ -95,7 +95,10 @@ function Navigation() {
               <span className="menu-activador-linea"></span>
             </label>
           </div>
-          <div className="collapse navbar-collapse justify-content-center">
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               <li>
                 <div className="logo-container">
@@ -110,12 +113,15 @@ function Navigation() {
               </li>
             </ul>
           </div>
-          <div className="collapse navbar-collapse justify-content-center">
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               {links.map((link) => (
                 <li
                   key={link.id}
-                  className="nav-item d-flex justify-content-center"
+                  className="nav-item d-flex justify-content-center "
                 >
                   <Link
                     className={
@@ -130,7 +136,10 @@ function Navigation() {
               ))}
             </ul>
           </div>
-          <div className="collapse navbar-collapse justify-content-center">
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               {session.status === "unauthenticated" ? (
                 <>
@@ -182,6 +191,6 @@ function Navigation() {
       </nav>
     </>
   );
-}
+};
 
 export default Navigation;

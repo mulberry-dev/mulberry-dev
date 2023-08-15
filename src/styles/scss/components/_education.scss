@@ -1,107 +1,25 @@
 /** Education **/
 
-.certificates-container {
+.certificates_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  transition: all .5s ease 1;
+  flex-direction: column;
   position: inherit;
-  z-index: 999;
-
-  .certificate-item {
-    /*       width: 100px;
-      height: 100px; */
-    background-color: rgba(0, 0, 0, 0.205);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    transition: all .5s ease;
-    position: initial;
-    z-index: 999;
-
-
-
-    img {
-
-      width: 300px;
-      transition: all .5s ease;
-      position: initial;
-      z-index: 999;
-
-
-      /*    &:hover {
-        transition: all .5s ease;
-        transform: scale(2);
-      } */
-    }
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.containerSlide {
-  border-radius: 15px;
-  width: 95%;
   z-index: 99;
-}
+  max-width: 550px;
 
-@media (min-width: 600px) {
-  .containerSlide {
-    max-width: 700px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .containerSlide {
-    max-width: 700px;
-  }
-}
-
-
-@keyframes wipe-enter-vertical {
-  0% {
-    transform: scale(0, 0);
+  @media (min-width: 768px) {
+    max-width: 546px;
   }
 
-  50% {
-    transform: scale(0.01, 1);
+  .certificate_image {
+    border-radius: 15px;
+    padding: 10px;
   }
+
 }
 
-.certificado {
-  border-radius: 5px;
+.control-arrow {
+  background: rgba(0, 0, 0, 0) !important;
 }

@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <>
       <section id="contacto">
-        <div className="d-flex justify-content-center align-items-center animate__animated animate__fadeIn z-3  p-5 rounded-3">
+        <div className="contact_container animate__animated animate__fadeIn">
           <Link
             href="https://www.linkedin.com/in/santidev/"
             className="link-top"
