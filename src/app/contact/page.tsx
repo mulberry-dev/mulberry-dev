@@ -16,6 +16,7 @@ const Contact = () => {
               alt="Linkedin logo animate__animated animate__rubberBand"
               width={50}
               height={50}
+              className="animate__animated animate__jackInTheBox"
               title="Linkedin"
             />
           </Link>
