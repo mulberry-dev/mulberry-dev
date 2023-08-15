@@ -5,7 +5,7 @@
     padding: 5px;
     text-decoration: none;
     color: whitesmoke;
-    font-family: "Poppins", sans-serif;
+    font-family: monospace;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.2);
     font-weight: 400;
@@ -33,7 +33,7 @@
     border-radius: 6px;
     display: flex;
     cursor: pointer;
-    font-family: Arial;
+    font-family: monospace;
     font-size: 15px;
     font-weight: bold;
     padding: 6px 24px;
@@ -42,6 +42,7 @@
     text-shadow: 0px 1px 0px #86ae47;
     color: white;
     justify-content: center;
+
 
     a {
         color: white;
@@ -65,7 +66,7 @@
     position: absolute;
     bottom: 100px;
     font-family: monospace;
-    color: #9b9d9e;
+
 }
 
 .education {

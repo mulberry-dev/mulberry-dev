@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 const certificates = [
   {
@@ -61,6 +62,9 @@ export default class NextJsCarousel extends Component {
               </div>
             ))}
           </Carousel>
+          <Link className="button-generic" href="/skills">
+            Skills
+          </Link>
         </div>
       </section>
     );

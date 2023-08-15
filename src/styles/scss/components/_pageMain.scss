@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 99;
 }
 
 .color_title {
@@ -59,7 +60,7 @@
     font-family: monospace;
 
 
-    &:hover span {
+    &:hover {
       color: orange;
       filter: drop-shadow(0 0 50px orange);
     }
