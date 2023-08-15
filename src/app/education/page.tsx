@@ -46,23 +46,97 @@ export default class NextJsCarousel extends Component {
     return (
       <section>
         <div className="certificates_container animate__animated animate__fadeIn">
-          <h2>Certifications</h2>
-          <Carousel>
-            {certificates.map((certificate) => (
-              <div key={certificate.id}>
-                <Image
-                  src={certificate.url}
-                  alt={`${certificate.id}-image`}
-                  width={800}
-                  height={500}
-                  className="certificate_image"
-                  style={{ objectFit: "contain" }}
-                  loading="lazy"
-                />
+          <h2 className="h2">Certificates</h2>
+          <div className="containerSlide">
+            <div
+              id="carouselExampleDark"
+              className="carousel carousel-light slide"
+              data-bs-ride="carousel"
+            >
+              <div className="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleDark"
+                  data-bs-slide-to="0"
+                  className="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleDark"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleDark"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                ></button>
               </div>
-            ))}
-          </Carousel>
-          <Link className="button-generic" href="/skills">
+              <div className="carousel-inner">
+                <div className="carousel-item active" data-bs-interval="2000">
+                  <Image
+                    src="https://i.ibb.co/4jPJSMd/carrera-De-Desarrollo-Full-Stack-INGTop10.png"
+                    className="d-block w-100 certificado"
+                    alt="carreraDesarrolloDeAplicacione-certificado"
+                    width={600}
+                    height={550}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <div className="carousel-caption d-none d-md-block"></div>
+                </div>
+                <div className="carousel-item" data-bs-interval="2000">
+                  <Image
+                    src="https://i.ibb.co/zN2mLnJ/carrera-Desarrollo-Front-End-ing.png"
+                    className="d-block w-100 certificado"
+                    alt="carreraFullStack-certificado"
+                    width={600}
+                    height={550}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <div className="carousel-caption d-none d-md-block"></div>
+                </div>
+                <div className="carousel-item" data-bs-interval="2000">
+                  <Image
+                    src="https://i.ibb.co/GtXjbtc/636bccb78ae889000efd915d-ing.png"
+                    className="d-block w-100 certificado"
+                    alt="carreraDesarrolloFront-certificado"
+                    width={600}
+                    height={550}
+                    style={{ objectFit: "contain" }}
+                  />
+                  <div className="carousel-caption d-none d-md-block"></div>
+                </div>
+              </div>
+              <button
+                className="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button
+                className="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide="next"
+              >
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span className="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <Link className="button-generic education" href="/skills">
             Skills
           </Link>
         </div>

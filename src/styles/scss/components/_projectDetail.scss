@@ -19,6 +19,8 @@
     position: relative;
     z-index: 9;
 
+    .go_back {}
+
     @media (min-width: 768px) {
         max-width: 900px;
         padding: 50px;
@@ -36,6 +38,8 @@
     p {
         color: white;
         margin-bottom: 0px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 100;
     }
 }
 
@@ -62,9 +66,7 @@
 
 
         .project-thumbnail {
-            width: 300px;
-            padding: 15px;
-            border-radius: 25px;
+            border-radius: 20px;
         }
 
         .project-card {
@@ -78,11 +80,17 @@
 
             h3 {
                 color: white;
+                font-size: 13px;
+                padding-top: 5px;
+
             }
 
 
             p {
                 color: white;
+                padding: 22px;
+                font-weight: 200;
+                font-family: 'Lato', sans-serif;
             }
 
             .tech-box {
@@ -97,17 +105,27 @@
                     justify-content: center;
                     align-items: center;
                     flex-direction: row;
+                    flex-wrap: wrap;
+
+
+
+
                 }
 
-                /* div {
 
-                    img {
-                        width: 50px;
+                div {
+                    .tech_ico {
+
                         padding: 5px;
+                        object-fit: contain;
+                        transition: all .2s ease;
 
-
+                        &:hover {
+                            transform: scale(1.5);
+                        }
                     }
-                } */
+                }
+
 
 
                 .button-box {
@@ -119,6 +137,7 @@
 
                     img {
                         width: 21px;
+
                     }
 
                     a {

@@ -31,6 +31,10 @@
     max-width: 550px;
   }
 
+  @media (min-width: 1024px) {
+    max-width: 768px;
+  }
+
 
   .skill-item {
     display: flex;
@@ -43,7 +47,7 @@
     text-align: center;
     font-size: 16px;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.5);
     -webkit-backdrop-filter: blur(3px) !important;
     backdrop-filter: blur(3px) !important;
     cursor: pointer;
@@ -78,8 +82,7 @@
     position: absolute;
     transition: all ease-in-out 0.2s;
     opacity: 0;
-    -webkit-backdrop-filter: blur(3px) !important;
-    backdrop-filter: blur(3px) !important;
+
     border-radius: 10px;
     font-family: 'Poppins', monospace, sans-serif;
 
@@ -87,14 +90,13 @@
     &:active,
     &:hover {
       opacity: 1;
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+      border-radius: 250px;
+      transform: scale(1.35);
+      -webkit-backdrop-filter: blur(1px) !important;
+      backdrop-filter: blur(1px) !important;
 
-      .imageContainer {
-        width: 100px !important;
-
-      }
     }
+
 
     progress[value] {
       display: flex;

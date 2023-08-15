@@ -79,16 +79,14 @@ const Portfolio = () => {
                     height={120}
                   />
                 </figure>
-                <div className="project-hover-card">
+                <div
+                  className="project-hover-card"
+                  onClick={() => {
+                    router.push(`/portfolio/${project.id}`);
+                  }}
+                >
                   <p>{project.name}</p>
-                  <div
-                    className="boton"
-                    onClick={() => {
-                      router.push(`/portfolio/${project.id}`);
-                    }}
-                  >
-                    Details
-                  </div>
+                  <div className="boton">Details</div>
                 </div>
               </div>
             ))}

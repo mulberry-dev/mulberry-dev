@@ -14,10 +14,10 @@ const About = () => {
             title="Santi Avatar"
           />
           <p className="about_text">
-            Hi! i´m Santiago , 31 years old , born in México City, programmer
-            who loves code and technology, taste for UX & UI design, constantly
-            focused on learning new technologies, comitted to developing
-            specialized and scalable technology in new projects.
+            Hi! I´m Santiago, programmer who loves code and technology, taste
+            for UX & UI design, constantly focused on learning new technologies,
+            comitted to developing specialized and scalable technology in new
+            projects.
           </p>
           <Link className="button-generic" href="/education">
             Education

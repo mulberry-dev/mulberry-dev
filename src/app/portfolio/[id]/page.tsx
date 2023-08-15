@@ -5,8 +5,8 @@ const projects = [
   {
     id: 0,
     name: "eCommerce",
-    img: "https://thisissanti.dev/src/img/Screenshot%202023-04-06%20083531.png",
-    description: "e-commerce made with node.js, DAOS Factory, Login, passport",
+    img: "https://i.ibb.co/4FW5BKJ/Thumbnail-e-Commerce-Backend.webp",
+    description: "E-commerce made with node.js, DAOS Factory, Login, passport.",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -22,7 +22,7 @@ const projects = [
   {
     id: 1,
     name: "Pokedex",
-    img: "https://thisissanti.dev/src/img/ScreenshotPokedex.webp",
+    img: "https://i.ibb.co/N7vn7HN/Thumbnail-Screenshot-Pokedex.webp",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -48,7 +48,7 @@ const projects = [
   {
     id: 3,
     name: "Live Chat App",
-    img: "https://thisissanti.dev/src/img/Screenshot%202023-04-06%20083531.png",
+    img: "https://i.ibb.co/DGGCjmV/Thumbnail-Chat-App.webp",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -113,22 +113,25 @@ const projectDetails = async ({ params }: any) => {
                 className="project-thumbnail"
                 src={`${project?.img}`}
                 alt="imagen"
-                width={300}
-                height={280}
+                width={250}
+                height={220}
+                /* style={{ objectFit: "contain", borderRadius: "10px" }} */
               />
             </div>
             <div className="project-row">
               <div className="project-card">
                 <div className="tech-box">
-                  <p>Made with:</p>
                   <p>{project?.description}</p>
                   <div className="techContainer">
+                    <h3>Used technology:</h3>
                     {project?.tech.map((e) => (
                       <Image
                         key={`${project.id}`}
                         src={e}
-                        width={50}
-                        height={45}
+                        width={40}
+                        height={40}
+                        className="tech_ico"
+                        style={{ objectFit: "contain" }}
                         alt="thumbnail"
                       />
                     ))}
@@ -138,13 +141,14 @@ const projectDetails = async ({ params }: any) => {
                       <Image
                         src="https://i.ibb.co/cFn92Y6/7etpgol5vni7a29jfbecupgimi.png"
                         alt="go-back"
-                        width={50}
-                        height={50}
+                        className="go_back"
+                        width={40}
+                        height={40}
                         title="Go back"
                       />
                     </Link>
                     <Link
-                      className="boton"
+                      className="button-generic"
                       href={`${project?.url}`}
                       title={`Go to ${project?.name} site`}
                     >
