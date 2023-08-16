@@ -10,6 +10,8 @@ import "@/styles/css/styles.css";
 
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
+import Info from "@/components/info";
+import Footer from "@/components/footer";
 export default function RootLayout({
   children,
 }: {
@@ -35,6 +37,7 @@ export default function RootLayout({
         </Providers>
         <Particles />
         <ToastContainer />
+        <Footer />
       </body>
     </html>
   );

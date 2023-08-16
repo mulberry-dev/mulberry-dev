@@ -1,5 +1,6 @@
 "use client";
 
+import { alertInfo } from "@/utils/alerts";
 import { notifyInfo, notifySuccess } from "@/utils/toast";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -99,9 +100,9 @@ const Navigation = () => {
             className="collapse navbar-collapse justify-content-center"
             id="navbarNav"
           >
-            <ul className="navbar-nav">
+            <ul className="navbar-nav" onClick={() => alertInfo("info")}>
               <li>
-                <div className="logo-container">
+                <div className="logo_container">
                   <Image
                     src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
                     width={30}

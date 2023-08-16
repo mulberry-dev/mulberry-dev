@@ -1,21 +1,16 @@
-/* import Swal from "sweetalert2"; */
+import Swal from "sweetalert2";
 
-/* export function mostrarContrasena(params: string) {
+export function alertInfo(params: string) {
   if (params) {
     Swal.fire({
       icon: "info",
-      title: params ? ` Password revealed` : "Oops...",
-      text: params ? ` Your password is ${params}` : " No pass yet!",
+      title:
+        "This site is a web application developed with <br/> Next.js React framework",
+      text: "Version: 13.4.13",
+      focusConfirm: false,
+      confirmButtonText: "Great!",
+      confirmButtonAriaLabel: "Thumbs up, great!",
+      confirmButtonColor: "#3fc3ee",
     });
   }
-} */
-
-/* export function mostrarContrasena() {
-  var tipo = document.getElementById("password");
-  if (tipo?.type == "password") {
-    tipo.type = "text";
-  } else {
-    tipo.type = "password";
-  }
 }
- */

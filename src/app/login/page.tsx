@@ -53,10 +53,10 @@ const LoginPage = ({ onLogin }: any) => {
               name="password"
               className="m-1"
               required
-              type={showPass ? "text" : "password"}
+              type={!showPass ? "text" : "password"}
               id="password"
             />
-            <button className="btn" type="button" onClick={() => onChange}>
+            {/*             <button className="btn" type="button" onClick={() => onChange}>
               <Image
                 src="https://cdn-icons-png.flaticon.com/512/6642/6642206.png"
                 className="eye"
@@ -64,7 +64,7 @@ const LoginPage = ({ onLogin }: any) => {
                 height={25}
                 alt="eye"
               />{" "}
-            </button>
+            </button> */}
           </div>
           <button className="button-generic m-2" type="submit">
             Log In

@@ -20,7 +20,7 @@ const projects = [
   },
   {
     id: 2,
-    name: "Abrazodelarbol.com",
+    name: "Abrazodelarbol",
     img: "https://i.ibb.co/hsT0RM6/www-abrazodelarbol-com.webp",
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
     url: "https://abrazodelarbol.com",
@@ -63,10 +63,16 @@ const Portfolio = () => {
       <section id="portfolio">
         <div className="portfolio_container animate__animated animate__fadeIn">
           <h2>Portfolio</h2>
-          <p className="hover-me">Hover the cubes</p>
+          <p className="hover-me">Click for details</p>
           <div className="projects-container">
             {projects?.map((project) => (
-              <div key={project.id} className={`project-item`}>
+              <div
+                key={project.id}
+                className={`project-item`}
+                onClick={() => {
+                  router.push(`/portfolio/${project.id}`);
+                }}
+              >
                 <div className="preject-header">
                   <h3>{project.name}</h3>
                 </div>
@@ -79,21 +85,24 @@ const Portfolio = () => {
                     height={120}
                   />
                 </figure>
-                <div
-                  className="project-hover-card"
-                  onClick={() => {
-                    router.push(`/portfolio/${project.id}`);
-                  }}
-                >
-                  <p>{project.name}</p>
-                  <div className="boton">Details</div>
-                </div>
               </div>
             ))}
           </div>
-          <Link className="button-generic" href="/contact">
-            Go contact
-          </Link>
+          <div className="buttons_container">
+            <Link className="button smallest " href={"/skills"}>
+              <Image
+                src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+                alt="go-back"
+                className="go_back"
+                width={40}
+                height={40}
+                title="Go back"
+              />
+            </Link>
+            <Link className="button-generic" href="/contact">
+              Contact
+            </Link>
+          </div>
         </div>
       </section>
     </>

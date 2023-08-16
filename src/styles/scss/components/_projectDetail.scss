@@ -15,11 +15,10 @@
     padding: 30px;
     border-radius: 10px;
     backdrop-filter: blur(2px);
-    font-family: 'Poppins', sans-serif;
     position: relative;
     z-index: 9;
 
-    .go_back {}
+
 
     @media (min-width: 768px) {
         max-width: 900px;
@@ -38,8 +37,7 @@
     p {
         color: white;
         margin-bottom: 0px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 100;
+        font-weight: 600;
     }
 }
 
@@ -90,7 +88,6 @@
                 color: white;
                 padding: 22px;
                 font-weight: 200;
-                font-family: 'Lato', sans-serif;
             }
 
             .tech-box {

@@ -20,7 +20,7 @@
 }
 
 .project-item {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     display: flex;
     width: 170px;
@@ -35,6 +35,11 @@
     margin: 5px;
     z-index: 99;
 
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: all .3s ease;
+    }
+
 
     .preject-header {
 
@@ -43,7 +48,6 @@
             font-size: 16px;
             text-shadow: none;
             display: flex;
-            font-family: 'Poppins', monospace, sans-serif;
             font-weight: 300;
             flex-direction: column;
             padding: 10px;
@@ -60,102 +64,11 @@
             border-radius: 10px;
             padding: 2px;
 
-            &:hover {
-                transform: scale(1.1);
-            }
-
-        }
-    }
-
-
-
-}
-
-figure.project-image {
-    display: flex;
-    justify-content: center;
-}
-
-.project-hover-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 170px;
-    height: 170px;
-    position: absolute;
-    transition: all ease-in-out 0.3s;
-    opacity: 0;
-    border-radius: 10px;
-    position: absolute;
-    z-index: 99;
-    font-family: 'Poppins', monospace, sans-serif;
-    font-weight: 300;
-
-
-
-
-    &:active,
-    &:hover {
-        opacity: 1;
-        -webkit-backdrop-filter: blur(3px);
-        backdrop-filter: blur(3px)
-    }
-
-    p {
-        text-align: center;
-        color: white;
-        font-weight: 500;
-        font-size: 18px;
-
-    }
-
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-
-
-        li {
-            text-align: center;
-            color: white;
-            font-size: 15px;
-            padding: 5px;
 
 
         }
     }
 
-    .boton {
-        box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-        background: linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
-        background-color: #b8e356;
-        border-radius: 6px;
-        border: 1px solid #83c41a;
-        display: flex;
-        cursor: pointer;
-        color: fffff;
-        font-family: Arial;
-        font-size: 15px;
-        font-weight: bold;
-        padding: 6px 24px;
-        text-decoration: none;
-        text-shadow: 0px 1px 0px #86ae47;
-    }
 
-    .boton:hover {
-        background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
-        background-color: #a5cc52;
-        color: rgb(255, 255, 255) !important;
 
-    }
-
-    .boton:active {
-        position: relative;
-        top: 1px;
-    }
 }

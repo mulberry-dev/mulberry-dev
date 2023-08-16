@@ -1,9 +1,9 @@
 /* Base */
+@import "./base/fonts";
 @import "./base/_reset";
 @import "./base/_body";
 @import "./base/_variables";
 @import "./base/_keyframes";
-@import "./base/_fonts";
 @import "./base/_mixins";
 
 /* Componentes */
@@ -21,4 +21,5 @@
 @import "./components/_projectDetail";
 @import "./components/_404";
 @import "./components/_profile";
-@import "./components/_contact"
+@import "./components/_contact";
+@import "./components/_footer";

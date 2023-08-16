@@ -5,7 +5,7 @@ const IndexPage = async () => {
     <>
       <section id="index">
         <div className="mainPage-container animate__animated animate__fadeIn">
-          <h1 className="color_title rainbow_bg"> Hi! I am Santiago</h1>
+          <h1 className="color_title rainbow_bg"> Hi! I am Santiago.</h1>
           <p className="full_stack_title">
             <span> &lt; </span>Full Stack Developer<span> /&gt; </span>
           </p>

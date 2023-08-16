@@ -21,9 +21,21 @@ const Contact = () => {
             />
           </Link>
 
-          <Link href="/" className="button-generic back-home">
-            🔙 Home
-          </Link>
+          <div className="buttons_container  back-home">
+            <Link className="button smallest " href={"/portfolio"}>
+              <Image
+                src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+                alt="go-back"
+                className="go_back"
+                width={40}
+                height={40}
+                title="Back portfolio"
+              />
+            </Link>
+            <Link href="/" className="button-generic transition">
+              Home
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -96,7 +96,10 @@ export default class NextJsCarousel extends Component {
                     height={550}
                     style={{ objectFit: "contain" }}
                   />
-                  <div className="carousel-caption d-none d-md-block"></div>
+                  {/*                   <div className="carousel-caption d-none d-md-block">
+                    <h5>React Frontend Developer</h5>
+                    <p>Career</p>
+                  </div> */}
                 </div>
                 <div className="carousel-item" data-bs-interval="2000">
                   <Image
@@ -136,9 +139,21 @@ export default class NextJsCarousel extends Component {
               </button>
             </div>
           </div>
-          <Link className="button-generic education" href="/skills">
-            Skills
-          </Link>
+          <div className="buttons_container">
+            <Link className="button smallest " href={"/about"}>
+              <Image
+                src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+                alt="go-back"
+                className="go_back"
+                width={40}
+                height={40}
+                title="Go back"
+              />
+            </Link>
+            <Link className="button-generic" href="/skills">
+              Skills
+            </Link>
+          </div>
         </div>
       </section>
     );

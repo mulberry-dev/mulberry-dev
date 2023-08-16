@@ -136,10 +136,11 @@ const projectDetails = async ({ params }: any) => {
                       />
                     ))}
                   </div>
-                  <div className="button-box">
+
+                  <div className="buttons_container">
                     <Link className="button smallest " href={"/portfolio"}>
                       <Image
-                        src="https://i.ibb.co/cFn92Y6/7etpgol5vni7a29jfbecupgimi.png"
+                        src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
                         alt="go-back"
                         className="go_back"
                         width={40}

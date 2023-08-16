@@ -117,7 +117,7 @@ function Skills() {
     <section id="skills">
       <div className="skills_container animate__animated animate__fadeIn">
         <h2 className="h2">Skills</h2>
-        <p className="hover-me">Hover the cubes</p>
+        <p className="hover-me">Click the cubes</p>
         <div className="cubes_container">
           {skills.map((skill) => (
             <div
@@ -138,12 +138,21 @@ function Skills() {
             </div>
           ))}
         </div>
-        <Link
-          href="/portfolio"
-          className="button-generic transition menuitem-13"
-        >
-          Portfolio
-        </Link>
+        <div className="buttons_container  menuitem-13">
+          <Link className="button smallest " href={"/education"}>
+            <Image
+              src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+              alt="go-back"
+              className="go_back"
+              width={40}
+              height={40}
+              title="Go back"
+            />
+          </Link>
+          <Link href="/portfolio" className="button-generic transition">
+            Portfolio
+          </Link>
+        </div>
       </div>
     </section>
   );

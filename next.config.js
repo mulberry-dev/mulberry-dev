@@ -24,6 +24,7 @@ const nextConfig = {
       "tecno-tienda.netlify.app",
       "naturatours.com.mx",
       "santiagomorera.github.io",
+      "cdn.shopify.com",
     ],
   },
 };

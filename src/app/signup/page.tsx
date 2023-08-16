@@ -78,7 +78,7 @@ const SignUpForm = ({ onLogin }: any) => {
               className="m-1"
             />
 
-            <button className="btn" type="button" onClick={() => onChange}>
+            {/*            <button className="btn" type="button" onClick={() => onChange}>
               <Image
                 src="https://cdn-icons-png.flaticon.com/512/6642/6642206.png"
                 className="eye"
@@ -86,16 +86,14 @@ const SignUpForm = ({ onLogin }: any) => {
                 height={25}
                 alt="eye"
               />{" "}
-            </button>
+            </button> */}
           </div>
 
-          <button className="button-generic m-2" type="submit">
+          <button className="button-generic m-3" type="submit">
             Sign Up
           </button>
         </form>
-        {/*  {error && <div className=" text-white p-2 ">{error}</div>} */}
       </div>
-      {/* <ToastContainer /> */}
     </section>
   );
 };
