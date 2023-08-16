@@ -13,7 +13,7 @@ const SignUpForm = ({ onLogin }: any) => {
   const router = useRouter();
 
   const onChange = () => {
-    setShowPass(false);
+    setShowPass(!showPass);
   };
 
   const handdleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -79,15 +79,16 @@ const SignUpForm = ({ onLogin }: any) => {
               className="m-1"
             />
 
-            {/*            <button className="btn" type="button" onClick={() => onChange}>
+            <div onClick={onChange}>
               <Image
                 src="https://cdn-icons-png.flaticon.com/512/6642/6642206.png"
                 className="eye"
                 width={25}
                 height={25}
                 alt="eye"
-              />{" "}
-            </button> */}
+                onClick={() => onChange}
+              />
+            </div>
           </div>
 
           <button className="button-generic m-3" type="submit">

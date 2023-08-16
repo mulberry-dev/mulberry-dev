@@ -6,9 +6,11 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Navigation = () => {
   const pathname = usePathname();
+  const router = useRouter();
 
   const session = useSession();
 
@@ -67,10 +69,13 @@ const Navigation = () => {
       name: "SignOut",
       path: "",
       onClick: () => {
-        notifyInfo("Come back soon");
+        notifyInfo("Come Back Soon 👋");
+
         setTimeout(() => {
           return signOut();
-        }, 1500);
+        }, 500);
+
+        return;
       },
     },
   ];

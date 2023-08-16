@@ -13,11 +13,11 @@ const LoginPage = ({ onLogin }: any) => {
   const router = useRouter();
 
   const onChange = () => {
-    setShowPass(true);
+    setShowPass(!showPass);
   };
 
   const handdleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    notifyInfo("Loading...");
+    notifyInfo("Loading... ⏳");
     e.preventDefault();
     const body = new FormData(e.currentTarget);
 
@@ -31,7 +31,7 @@ const LoginPage = ({ onLogin }: any) => {
     if (res?.error) return notifyWarn(res.error as string);
 
     if (res?.ok) {
-      notifySuccess("Login Success");
+      /* notifySuccess("Login Success"); */
       router.push("/dashboard/profile");
       return;
     }
@@ -59,15 +59,16 @@ const LoginPage = ({ onLogin }: any) => {
               type={showPass ? "text" : "password"}
               id="password"
             />
-            {/*             <button className="btn" type="button" onClick={() => onChange}>
+            <div onClick={onChange}>
               <Image
                 src="https://cdn-icons-png.flaticon.com/512/6642/6642206.png"
                 className="eye"
                 width={25}
                 height={25}
                 alt="eye"
-              />{" "}
-            </button> */}
+                onClick={() => onChange}
+              />
+            </div>
           </div>
           <button className="button-generic m-2" type="submit">
             Log In
