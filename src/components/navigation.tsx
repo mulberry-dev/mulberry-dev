@@ -67,7 +67,6 @@ const Navigation = () => {
       name: "SignOut",
       path: "",
       onClick: () => {
-        notifySuccess("Logout Success");
         notifyInfo("Come back soon");
         setTimeout(() => {
           return signOut();

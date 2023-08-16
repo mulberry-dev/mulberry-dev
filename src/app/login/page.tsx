@@ -32,7 +32,8 @@ const LoginPage = ({ onLogin }: any) => {
 
     if (res?.ok) {
       notifySuccess("Login Success");
-      return router.push("/dashboard/profile");
+      router.push("/dashboard/profile");
+      return;
     }
   };
 
