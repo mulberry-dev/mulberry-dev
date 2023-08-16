@@ -1,5 +1,5 @@
 /* Base */
-@import "./base/fonts";
+@import "./base/_fonts";
 @import "./base/_reset";
 @import "./base/_body";
 @import "./base/_variables";
@@ -14,7 +14,7 @@
 @import "./components/_TrackID";
 @import "./components/_wallpaper";
 @import "./components/_about";
-@import "./components/education";
+@import "./components/_education";
 @import "./components/_skills";
 @import "./components/_portfolio";
 @import "./components/_login";

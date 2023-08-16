@@ -9,7 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import Footer from "@/components/footer";
-import Tracker from "@/components/tracker";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 export default function RootLayout({
@@ -38,7 +37,6 @@ export default function RootLayout({
         <Particles />
         <ToastContainer />
         <Footer />
-        <Tracker />
       </body>
     </html>
   );

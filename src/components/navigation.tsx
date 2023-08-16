@@ -100,17 +100,19 @@ const Navigation = () => {
             className="collapse navbar-collapse justify-content-center"
             id="navbarNav"
           >
-            <ul className="navbar-nav" onClick={() => alertInfo("info")}>
+            <ul className="navbar-nav">
               <li>
-                <div className="logo_container">
-                  <Image
-                    src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
-                    width={30}
-                    height={30}
-                    alt={"Logo"}
-                  />
-                  <p>ThisIsSanti.dev</p>
-                </div>
+                <Link href="/">
+                  <div className="logo_container">
+                    <Image
+                      src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                      width={30}
+                      height={30}
+                      alt={"Logo"}
+                    />
+                    <p>ThisIsSanti.dev</p>
+                  </div>
+                </Link>
               </li>
             </ul>
           </div>

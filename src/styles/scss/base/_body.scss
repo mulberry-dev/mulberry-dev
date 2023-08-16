@@ -19,6 +19,16 @@ body {
     color: white;
 }
 
+.tracker {
+    width: 100px;
+    height: 100px;
+
+    script {
+        opacity: 0;
+        display: none;
+    }
+}
+
 h2 {
     font-weight: 800 !important;
     color: white !important;
