@@ -1,6 +1,6 @@
 "use client";
 
-import { notifySuccess, notifyWarn } from "@/utils/toast";
+import { notifyInfo, notifySuccess, notifyWarn } from "@/utils/toast";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,7 @@ const LoginPage = ({ onLogin }: any) => {
   };
 
   const handdleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    notifyInfo("Loading...");
     e.preventDefault();
     const body = new FormData(e.currentTarget);
 
@@ -54,7 +55,7 @@ const LoginPage = ({ onLogin }: any) => {
               name="password"
               className="m-1"
               required
-              type={!showPass ? "text" : "password"}
+              type={showPass ? "text" : "password"}
               id="password"
             />
             {/*             <button className="btn" type="button" onClick={() => onChange}>
