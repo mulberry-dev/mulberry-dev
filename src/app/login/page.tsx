@@ -3,6 +3,7 @@
 import { notifySuccess, notifyWarn } from "@/utils/toast";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
@@ -71,6 +72,12 @@ const LoginPage = ({ onLogin }: any) => {
           </button>
           {error && <div className=" text-white p-2 ">{error}</div>}
         </form>
+        <div className="register_link_container">
+          <p>Don´t you have an account yet? </p>
+          <Link className="register_link" href={"/signup"}>
+            Signup
+          </Link>
+        </div>
       </div>
     </section>
   );

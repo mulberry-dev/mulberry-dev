@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { notifySuccess, notifyWarn } from "../../utils/toast";
+import Link from "next/link";
 
 const SignUpForm = ({ onLogin }: any) => {
   const [showPass, setShowPass] = useState(true);
@@ -93,6 +94,12 @@ const SignUpForm = ({ onLogin }: any) => {
             Sign Up
           </button>
         </form>
+        <div className="register_link_container">
+          <p>Do you already have an account!</p>
+          <Link className="register_link" href={"/login"}>
+            Login
+          </Link>
+        </div>
       </div>
     </section>
   );

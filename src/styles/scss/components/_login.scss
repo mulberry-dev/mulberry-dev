@@ -9,6 +9,29 @@
     z-index: 99;
 }
 
+.register_link_container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 13px;
+
+    p {
+        color: whitesmoke;
+        margin: 0px !important;
+    }
+
+    .register_link {
+        color: whitesmoke;
+        text-decoration: none;
+
+        &:hover {
+            color: turquoise
+        }
+    }
+}
+
 .signup-box {
     display: grid;
     place-items: center;
