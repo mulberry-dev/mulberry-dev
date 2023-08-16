@@ -5,7 +5,7 @@ export function alertInfo(params: string) {
     Swal.fire({
       icon: "info",
       title:
-        "This site is a web application developed with <br/> Next.js React framework",
+        "App developed with <br/> Next.js, React front-end development web framework",
       text: "Version: 13.4.13",
       focusConfirm: false,
       confirmButtonText: "Great!",
