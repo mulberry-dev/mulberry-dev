@@ -14,7 +14,8 @@
     max-width: 400px;
     padding: 30px;
     border-radius: 10px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     position: relative;
     z-index: 9;
 
@@ -59,7 +60,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 50%;
+        width: 100%;
         padding: 20px;
 
 
@@ -69,8 +70,8 @@
 
         .project-card {
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
 
 
@@ -78,8 +79,10 @@
 
             h3 {
                 color: white;
-                font-size: 13px;
+                font-size: 14px;
                 padding-top: 5px;
+                text-align: center;
+                font-weight: 400;
 
             }
 
@@ -90,24 +93,20 @@
                 font-weight: 200;
             }
 
+
+
             .tech-box {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
 
-
-                .techContaine {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-
-
-
-
+                .tech_container {
+                    padding: 10px;
                 }
+
+
+
 
 
                 div {

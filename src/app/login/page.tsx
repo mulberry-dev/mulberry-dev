@@ -31,9 +31,7 @@ const LoginPage = ({ onLogin }: any) => {
     if (res?.error) return notifyWarn(res.error as string);
 
     if (res?.ok) {
-      /* notifySuccess("Login Success"); */
-      router.push("/dashboard/profile");
-      return;
+      return router.push("/dashboard/profile");
     }
   };
 

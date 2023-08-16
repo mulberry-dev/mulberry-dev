@@ -53,6 +53,18 @@ const projects = [
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
     url: "https://santiagomorera.github.io/proyectoJS/#index",
   },
+  {
+    id: 7,
+    name: "Invitación ",
+    description: "Wedding invitation with google form.",
+    img: "https://i.ibb.co/3fpgptn/invitacion-thumbnail.png",
+    tech: [
+      "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
+      "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+      "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
+    ],
+    url: "https://santiagomorera.github.io/proyectoJS/#index",
+  },
 ];
 
 const Portfolio = () => {

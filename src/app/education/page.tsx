@@ -46,7 +46,9 @@ export default class NextJsCarousel extends Component {
     return (
       <section>
         <div className="certificates_container animate__animated animate__fadeIn">
-          <h2 className="h2">Certificates</h2>
+          <h2 className="h2" style={{ marginBottom: "-50px" }}>
+            Certificates
+          </h2>
           <div className="certificates_container">
             <div
               id="carouselExampleDark"

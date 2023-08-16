@@ -23,6 +23,8 @@ const projects = [
     id: 1,
     name: "Pokedex",
     img: "https://i.ibb.co/N7vn7HN/Thumbnail-Screenshot-Pokedex.webp",
+    description:
+      "Pokedex application made with node.js with auth2.0 pasport login.",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -36,11 +38,13 @@ const projects = [
   {
     id: 2,
     name: "Abrazo del Arbol",
+    description: "Landing page.",
     img: "https://i.ibb.co/hsT0RM6/www-abrazodelarbol-com.webp",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
-      "https://logos-world.net/wp-content/uploads/2023/02/JavaScript-Logo.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
+      "https://www.pngall.com/wp-content/uploads/13/Mongodb-PNG-Image-HD.png",
       "https://sass-lang.com/assets/img/logos/logo.svg",
     ],
     url: "https://abrazodelarbol.com",
@@ -49,15 +53,19 @@ const projects = [
     id: 3,
     name: "Live Chat App",
     img: "https://i.ibb.co/DGGCjmV/Thumbnail-Chat-App.webp",
+    description: "Live chat app made with Socket.io and node.js.",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+      "https://socket.io/images/logo.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
     ],
     url: "https://live-chat-app3.glitch.me/",
   },
   {
     id: 4,
     name: "Tecno tienda",
+    description: "E-commerce made with react and firebase.",
     img: "https://i.ibb.co/BzLW7D1/tecnotienda.png",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/250px-React.svg.png",
@@ -70,6 +78,7 @@ const projects = [
   {
     id: 5,
     name: "Naturatours",
+    description: "Tours page made with Wordpress CMS.",
     img: "https://i.ibb.co/V9y1RRg/naturatours.webp",
     tech: ["https://cdn-icons-png.flaticon.com/512/174/174881.png"],
     url: "https://naturatours.com.mx/",
@@ -78,9 +87,12 @@ const projects = [
     id: 6,
     name: "eCommerce Js",
     img: "https://i.ibb.co/Bc0xLhH/santi-iztli-github-io-proyecto-JS-copia.webp",
+    description: "E-commerce made with JavaScript",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
+      "https://www.pngall.com/wp-content/uploads/13/Mongodb-PNG-Image-HD.png",
       "https://sass-lang.com/assets/img/logos/logo.svg",
     ],
     url: "https://santiagomorera.github.io/proyectoJS/#index",
@@ -88,13 +100,15 @@ const projects = [
   {
     id: 7,
     name: "Invitación ",
+    description: "Wedding invitation with google form.",
     img: "https://i.ibb.co/3fpgptn/invitacion-thumbnail.png",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
-      "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
+      "https://sass-lang.com/assets/img/logos/logo.svg",
     ],
-    url: "https://santiagomorera.github.io/proyectoJS/#index",
+    url: "https://santiagomorera.github.io/DeliaYSantiagoInvi/",
   },
 ];
 
@@ -121,9 +135,10 @@ const projectDetails = async ({ params }: any) => {
             <div className="project-row">
               <div className="project-card">
                 <div className="tech-box">
+                  <h3>Description:</h3>
                   <p>{project?.description}</p>
-                  <div className="techContainer">
-                    <h3>Used technology:</h3>
+                  <h3>Used technology:</h3>
+                  <div className="tech_container">
                     {project?.tech.map((e) => (
                       <Image
                         key={`${project.id}`}
