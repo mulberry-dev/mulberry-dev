@@ -121,22 +121,30 @@ const Navigation = () => {
             id="navbarNav"
           >
             <ul className="navbar-nav">
-              {links.map((link) => (
-                <li
-                  key={link.id}
-                  className="nav-item d-flex justify-content-center "
-                >
-                  <Link
-                    className={
-                      pathname === link.path ? "nav-link activo" : "nav-link "
-                    }
-                    aria-current="page"
-                    href={link.path}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {session.status === "unauthenticated" ? (
+                <>
+                  {links.map((link) => (
+                    <li
+                      key={link.id}
+                      className="nav-item d-flex justify-content-center "
+                    >
+                      <Link
+                        className={
+                          pathname === link.path
+                            ? "nav-link activo"
+                            : "nav-link "
+                        }
+                        aria-current="page"
+                        href={link.path}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <> </>
+              )}
             </ul>
           </div>
           <div
