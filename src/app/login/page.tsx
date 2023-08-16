@@ -1,14 +1,13 @@
 "use client";
 
-import { notifyInfo, notifySuccess, notifyWarn } from "@/utils/toast";
+import { notifyInfo, notifyWarn } from "@/utils/toast";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
-const LoginPage = ({ onLogin }: any) => {
-  const [error, setError] = useState("");
+const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
 
@@ -71,7 +70,6 @@ const LoginPage = ({ onLogin }: any) => {
           <button className="button-generic m-2" type="submit">
             Log In
           </button>
-          {error && <div className=" text-white p-2 ">{error}</div>}
         </form>
         <div className="register_link_container">
           <p>Don´t you have an account yet? </p>

@@ -14,9 +14,6 @@ const About = () => {
             title="Santi Avatar"
             className="santi_avatar"
           />
-          {/*       <p className="about_text">
-            Scuba diver, animal trainer & programmer{" "}
-          </p> */}
           {
             <p className="about_text">
               Programmer who loves code and technology, taste for UX & UI

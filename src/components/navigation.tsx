@@ -106,17 +106,31 @@ const Navigation = () => {
           >
             <ul className="navbar-nav">
               <li>
-                <Link href="/">
-                  <div className="logo_container">
-                    <Image
-                      src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
-                      width={30}
-                      height={30}
-                      alt={"Logo"}
-                    />
-                    <p>ThisIsSanti.dev</p>
-                  </div>
-                </Link>
+                {session.status === "authenticated" ? (
+                  <>
+                    <div className="logo_container">
+                      <Image
+                        src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                        width={30}
+                        height={30}
+                        alt={"Logo"}
+                      />
+                      <p>ThisIsSanti.dev</p>
+                    </div>
+                  </>
+                ) : (
+                  <Link href="/" style={{ textDecoration: "none" }}>
+                    <div className="logo_container">
+                      <Image
+                        src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                        width={30}
+                        height={30}
+                        alt={"Logo"}
+                      />
+                      <p>ThisIsSanti.dev</p>
+                    </div>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

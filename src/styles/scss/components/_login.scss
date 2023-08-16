@@ -122,13 +122,6 @@ input {
 }
 
 
-
-// input::placeholder {
-//     font-weight: bold;
-//     opacity: 0.5;
-//     color: red;
-// }
-
 input:focus {
     outline: none !important;
     border: 2px solid orange;

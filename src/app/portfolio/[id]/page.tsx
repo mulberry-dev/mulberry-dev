@@ -129,7 +129,6 @@ const projectDetails = async ({ params }: any) => {
                 alt="imagen"
                 width={250}
                 height={220}
-                /* style={{ objectFit: "contain", borderRadius: "10px" }} */
               />
             </div>
             <div className="project-row">

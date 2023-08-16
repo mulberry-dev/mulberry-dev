@@ -18,6 +18,14 @@
     padding: 10px;
   }
 
+  h2 {
+    margin-bottom: -100px !important;
+
+    @media (min-width: 435px) {
+      margin-bottom: -50px !important;
+    }
+  }
+
 }
 
 .control-arrow {

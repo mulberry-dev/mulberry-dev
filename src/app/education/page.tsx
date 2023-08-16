@@ -1,10 +1,9 @@
 "use client";
 
-import React, { Component } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import { Component } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const certificates = [
   {
@@ -46,9 +45,7 @@ export default class NextJsCarousel extends Component {
     return (
       <section>
         <div className="certificates_container animate__animated animate__fadeIn">
-          <h2 className="h2" style={{ marginBottom: "-50px" }}>
-            Certificates
-          </h2>
+          <h2 className="h2">Certificates</h2>
           <div className="certificates_container">
             <div
               id="carouselExampleDark"
@@ -98,10 +95,6 @@ export default class NextJsCarousel extends Component {
                     height={550}
                     style={{ objectFit: "contain" }}
                   />
-                  {/*                   <div className="carousel-caption d-none d-md-block">
-                    <h5>React Frontend Developer</h5>
-                    <p>Career</p>
-                  </div> */}
                 </div>
                 <div className="carousel-item" data-bs-interval="2000">
                   <Image

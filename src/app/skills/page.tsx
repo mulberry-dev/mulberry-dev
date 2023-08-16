@@ -33,7 +33,7 @@ const skills = [
     name: "TypeScript",
     imageSrc:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
-    experience: 4,
+    experience: 2,
     unite: "Years",
     progress: 60,
   },
@@ -146,6 +146,7 @@ function Skills() {
               className="go_back"
               width={40}
               height={40}
+              style={{ objectFit: "contain" }}
               title="Go back"
             />
           </Link>

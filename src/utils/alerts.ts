@@ -4,7 +4,8 @@ export function alertInfo(params: string) {
   if (params) {
     Swal.fire({
       icon: "info",
-      title: "App developed with: <br/> Next.js",
+      title:
+        "App developed with: <br/> <span>Next.js, TypeScript & MongoDB<span/>",
       text: "Version: 13.4.13",
       focusConfirm: false,
       confirmButtonText: "Great!",

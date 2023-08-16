@@ -14,7 +14,7 @@ nav {
   font-family: monospace;
 
   a {
-    text-decoration: none;
+
 
     &:hover {
       color: turquoise !important;
@@ -29,7 +29,7 @@ nav {
 }
 
 .activo {
-  border-bottom: 1px solid turquoise;
+  border-bottom: 1px solid turquoise !important;
   color: turquoise !important;
   padding: 5px;
   transition: all .3s ease;
@@ -43,6 +43,7 @@ nav {
   align-items: center;
   flex-direction: row;
   cursor: pointer;
+  text-decoration: none;
 
 
   img {
@@ -55,13 +56,6 @@ nav {
 
   }
 }
-
-
-
-
-
-
-
 
 
 /* Menu hamburgesa */
