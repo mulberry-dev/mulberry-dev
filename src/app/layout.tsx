@@ -3,15 +3,15 @@
 import Navigation from "@/components/navigation";
 import Particles from "@/components/particles";
 import Providers from "@/components/providers";
-import "react-toastify/dist/ReactToastify.css";
+import "@/styles/css/styles.css";
 import "animate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "@/styles/css/styles.css";
+import "react-toastify/dist/ReactToastify.css";
 
+import Footer from "@/components/footer";
+import Tracker from "@/components/tracker";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import Info from "@/components/info";
-import Footer from "@/components/footer";
 export default function RootLayout({
   children,
 }: {
@@ -38,6 +38,7 @@ export default function RootLayout({
         <Particles />
         <ToastContainer />
         <Footer />
+        <Tracker />
       </body>
     </html>
   );
