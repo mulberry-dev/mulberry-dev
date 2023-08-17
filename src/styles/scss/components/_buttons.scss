@@ -4,6 +4,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+
+.buttons_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     max-width: 300px;
     margin: 25px 0px 25px 0px;
@@ -50,38 +58,9 @@
     }
 }
 
-.boton {
-    box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-    background: linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
-    background-color: #b8e356;
-    border-radius: 25px;
-    display: flex;
-    cursor: pointer;
-    font-size: 15px;
-    padding: 6px 24px;
-    text-decoration: none;
-    text-align: center;
-    text-shadow: 0px 1px 0px #86ae47;
-    font-weight: 100;
-    color: whitesmoke;
-    justify-content: center;
-
-    &:hover {
-        background: linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
-        background-color: #a5cc52;
-        color: rgb(255, 255, 255) !important;
-    }
-
-    &:active {
-
-        position: relative;
-        top: 1px;
-
-    }
-}
 
 
-.back-home {
+/* .back-home {
     position: absolute;
     bottom: 100px;
 }
@@ -95,4 +74,4 @@
         position: initial;
         z-index: 999;
     }
-}
+} */

@@ -1,9 +1,9 @@
 .contact_container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    margin-top: 70px;
-    position: initial;
+    margin-top: 65px;
+    min-height: 90vh;
     z-index: 99;
 }
