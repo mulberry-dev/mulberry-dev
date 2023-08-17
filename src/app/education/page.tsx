@@ -134,7 +134,7 @@ export default class NextJsCarousel extends Component {
               </button>
             </div>
           </div>
-          <div className="buttons_container">
+          <div className="buttons_container" style={{ marginTop: "-40px" }}>
             <Link className="button smallest " href={"/about"}>
               <Image
                 src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"

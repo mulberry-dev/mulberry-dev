@@ -5,7 +5,7 @@ const projects = [
   {
     id: 0,
     name: "eCommerce",
-    img: "https://i.ibb.co/4FW5BKJ/Thumbnail-e-Commerce-Backend.webp",
+    img: "https://i.ibb.co/Qr8Ws5H/e-Commerce.gif",
     description: "E-commerce made with node.js, DAOS Factory, Login, passport.",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
@@ -129,6 +129,7 @@ const projectDetails = async ({ params }: any) => {
                 alt="imagen"
                 width={250}
                 height={220}
+                style={{ objectFit: "contain", width: "115%" }}
               />
             </div>
             <div className="project-row">

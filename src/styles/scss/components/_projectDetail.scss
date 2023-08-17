@@ -9,10 +9,10 @@
     /* animation: fadeInUp 1s; */
     flex-direction: column;
     background: rgba(0, 0, 0, 0.2);
-    margin-top: 70px;
+    margin-top: 60px;
     margin-bottom: 40px;
     max-width: 400px;
-    padding: 30px;
+    padding: 20px 30px 0px 30px;
     border-radius: 10px;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -23,7 +23,7 @@
 
     @media (min-width: 768px) {
         max-width: 900px;
-        padding: 50px;
+        padding: 25px 40px;
     }
 
     h2 {
@@ -37,7 +37,7 @@
 
     p {
         color: white;
-        margin-bottom: 0px;
+        margin-bottom: 10px;
         font-weight: 600;
     }
 }
@@ -61,7 +61,7 @@
         align-items: center;
         flex-direction: column;
         width: 100%;
-        padding: 20px;
+        padding: 0px 15px 0px 15px;
 
 
         .project-thumbnail {
@@ -80,7 +80,7 @@
             h3 {
                 color: white;
                 font-size: 14px;
-                padding-top: 5px;
+                padding-top: 20px;
                 text-align: center;
                 font-weight: 400;
 

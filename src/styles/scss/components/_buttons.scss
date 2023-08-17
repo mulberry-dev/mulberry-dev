@@ -6,13 +6,16 @@
     align-items: center;
     flex-direction: row;
     max-width: 300px;
-    margin: 25px 0px 50px 0px;
+    margin: 25px 0px 25px 0px;
 }
 
 .go_back {
+    position: relative;
+    top: 1px;
     opacity: .6;
     transform: rotate(180deg) scale(.9);
     transition: .2s ease-in-out;
+    z-index: 999;
 
     &:hover {
         opacity: .8;
