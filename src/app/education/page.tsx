@@ -40,9 +40,9 @@ const certificates = [
   },
 ];
 
-export default class NextJsCarousel extends Component {
-  render() {
-    return (
+const Education = () => {
+  return (
+    <>
       <section>
         <div className="certificates_container animate__animated animate__fadeIn">
           <h2 className="h2">Certificates</h2>
@@ -151,6 +151,8 @@ export default class NextJsCarousel extends Component {
           </div>
         </div>
       </section>
-    );
-  }
-}
+    </>
+  );
+};
+
+export default Education;

@@ -6,13 +6,17 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Navigation = () => {
   const pathname = usePathname();
-  const router = useRouter();
-
   const session = useSession();
+
+  const [toggle, setToggle] = useState(false);
+
+  const toggleNavbar = () => {
+    setToggle(!toggle);
+  };
 
   const links = [
     {
@@ -60,12 +64,12 @@ const Navigation = () => {
   ];
   const linksAuthenticated = [
     {
-      id: 4,
+      id: 0,
       name: "Profile",
       path: "/dashboard/profile",
     },
     {
-      id: 3,
+      id: 1,
       name: "SignOut",
       path: "",
       onClick: () => {
@@ -90,7 +94,7 @@ const Navigation = () => {
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
-            aria-expanded="false"
+            aria-expanded={toggle ? "true" : "false"}
             aria-label="Toggle navigation"
           >
             <input type="checkbox" id="lanzador" />
@@ -101,12 +105,28 @@ const Navigation = () => {
             </label>
           </div>
           <div
-            className="collapse navbar-collapse justify-content-center"
+            className={`collapse navbar-collapse justify-content-center ${
+              toggle ? "show" : " "
+            } `}
             id="navbarNav"
           >
             <ul className="navbar-nav">
               <li>
-                {session.status === "authenticated" ? (
+                {session.status === "unauthenticated" ? (
+                  <>
+                    <Link href="/" style={{ textDecoration: "none" }}>
+                      <div className="logo_container">
+                        <Image
+                          src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                          width={30}
+                          height={30}
+                          alt={"Logo"}
+                        />
+                        <p onClick={toggleNavbar}>ThisIsSanti.dev</p>
+                      </div>
+                    </Link>
+                  </>
+                ) : (
                   <>
                     <div className="logo_container">
                       <Image
@@ -115,31 +135,24 @@ const Navigation = () => {
                         height={30}
                         alt={"Logo"}
                       />
-                      <p>ThisIsSanti.dev</p>
+                      <p onClick={toggleNavbar}>ThisIsSanti.dev</p>
                     </div>
                   </>
-                ) : (
-                  <Link href="/" style={{ textDecoration: "none" }}>
-                    <div className="logo_container">
-                      <Image
-                        src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
-                        width={30}
-                        height={30}
-                        alt={"Logo"}
-                      />
-                      <p>ThisIsSanti.dev</p>
-                    </div>
-                  </Link>
                 )}
               </li>
             </ul>
           </div>
+
           <div
-            className="collapse navbar-collapse justify-content-center"
+            className={`collapse navbar-collapse justify-content-center ${
+              toggle ? "show" : " "
+            } `}
             id="navbarNav"
           >
             <ul className="navbar-nav">
-              {session.status === "unauthenticated" ? (
+              {session.status === "authenticated" ? (
+                <></>
+              ) : (
                 <>
                   {links.map((link) => (
                     <li
@@ -160,38 +173,17 @@ const Navigation = () => {
                     </li>
                   ))}
                 </>
-              ) : (
-                <> </>
               )}
             </ul>
           </div>
           <div
-            className="collapse navbar-collapse justify-content-center"
+            className={`collapse navbar-collapse justify-content-center ${
+              toggle ? "show" : " "
+            } `}
             id="navbarNav"
           >
             <ul className="navbar-nav">
-              {session.status === "unauthenticated" ? (
-                <>
-                  {linksAuth.map((link) => (
-                    <li
-                      key={link.id}
-                      className="nav-item d-flex justify-content-center"
-                    >
-                      <Link
-                        className={
-                          pathname === link.path
-                            ? "nav-link activo"
-                            : "nav-link "
-                        }
-                        aria-current="page"
-                        href={link.path}
-                      >
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </>
-              ) : (
+              {session.status === "authenticated" ? (
                 <>
                   {linksAuthenticated.map((link) => (
                     <li
@@ -207,6 +199,27 @@ const Navigation = () => {
                         aria-current="page"
                         href={link.path}
                         onClick={link.onClick}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {linksAuth.map((link) => (
+                    <li
+                      key={link.id}
+                      className="nav-item d-flex justify-content-center"
+                    >
+                      <Link
+                        className={
+                          pathname === link.path
+                            ? "nav-link activo"
+                            : "nav-link "
+                        }
+                        aria-current="page"
+                        href={link.path}
                       >
                         {link.name}
                       </Link>
