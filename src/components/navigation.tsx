@@ -1,21 +1,19 @@
 "use client";
 
-import { alertInfo } from "@/utils/alerts";
-import { notifyInfo, notifySuccess } from "@/utils/toast";
+import { notifyInfo } from "@/utils/toast";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 const Navigation = () => {
   const pathname = usePathname();
   const session = useSession();
 
-  const [toggle, setToggle] = useState(false);
-
   const toggleNavbar = () => {
-    setToggle(!toggle);
+    if (window.innerWidth < 990) {
+      document.getElementById("lanzador")?.click();
+    }
   };
 
   const links = [
@@ -67,6 +65,7 @@ const Navigation = () => {
       id: 0,
       name: "Profile",
       path: "/dashboard/profile",
+      onClick: toggleNavbar,
     },
     {
       id: 1,
@@ -74,6 +73,7 @@ const Navigation = () => {
       path: "",
       onClick: () => {
         notifyInfo("Come Back Soon 👋");
+        toggleNavbar();
 
         setTimeout(() => {
           return signOut();
@@ -94,7 +94,7 @@ const Navigation = () => {
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
-            aria-expanded={toggle ? "true" : "false"}
+            aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <input type="checkbox" id="lanzador" />
@@ -105,28 +105,12 @@ const Navigation = () => {
             </label>
           </div>
           <div
-            className={`collapse navbar-collapse justify-content-center ${
-              toggle ? "show" : " "
-            } `}
+            className={`collapse navbar-collapse justify-content-center`}
             id="navbarNav"
           >
             <ul className="navbar-nav">
               <li>
-                {session.status === "unauthenticated" ? (
-                  <>
-                    <Link href="/" style={{ textDecoration: "none" }}>
-                      <div className="logo_container">
-                        <Image
-                          src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
-                          width={30}
-                          height={30}
-                          alt={"Logo"}
-                        />
-                        <p onClick={toggleNavbar}>ThisIsSanti.dev</p>
-                      </div>
-                    </Link>
-                  </>
-                ) : (
+                {session.status === "authenticated" ? (
                   <>
                     <div className="logo_container">
                       <Image
@@ -135,18 +119,32 @@ const Navigation = () => {
                         height={30}
                         alt={"Logo"}
                       />
-                      <p onClick={toggleNavbar}>ThisIsSanti.dev</p>
+                      <p>ThisIsSanti.dev</p>
                     </div>
                   </>
+                ) : (
+                  <Link
+                    href="/"
+                    style={{ textDecoration: "none" }}
+                    onClick={toggleNavbar}
+                  >
+                    <div className="logo_container">
+                      <Image
+                        src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                        width={30}
+                        height={30}
+                        alt={"Logo"}
+                      />
+                      <p>ThisIsSanti.dev</p>
+                    </div>
+                  </Link>
                 )}
               </li>
             </ul>
           </div>
 
           <div
-            className={`collapse navbar-collapse justify-content-center ${
-              toggle ? "show" : " "
-            } `}
+            className={`collapse navbar-collapse justify-content-center`}
             id="navbarNav"
           >
             <ul className="navbar-nav">
@@ -154,6 +152,7 @@ const Navigation = () => {
                 <></>
               ) : (
                 <>
+                  {" "}
                   {links.map((link) => (
                     <li
                       key={link.id}
@@ -167,6 +166,7 @@ const Navigation = () => {
                         }
                         aria-current="page"
                         href={link.path}
+                        onClick={toggleNavbar}
                       >
                         {link.name}
                       </Link>
@@ -177,9 +177,7 @@ const Navigation = () => {
             </ul>
           </div>
           <div
-            className={`collapse navbar-collapse justify-content-center ${
-              toggle ? "show" : " "
-            } `}
+            className={`collapse navbar-collapse justify-content-center`}
             id="navbarNav"
           >
             <ul className="navbar-nav">
@@ -220,6 +218,7 @@ const Navigation = () => {
                         }
                         aria-current="page"
                         href={link.path}
+                        onClick={toggleNavbar}
                       >
                         {link.name}
                       </Link>
