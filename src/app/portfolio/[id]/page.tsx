@@ -5,7 +5,7 @@ const projects = [
   {
     id: 0,
     name: "eCommerce",
-    img: "https://i.ibb.co/Qr8Ws5H/e-Commerce.gif",
+    img: "https://i.ibb.co/Lhv4tPJ/e-Commerce-2-1.gif",
     description: "E-commerce made with node.js, DAOS Factory, Login, passport.",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
@@ -22,7 +22,7 @@ const projects = [
   {
     id: 1,
     name: "Pokedex",
-    img: "https://i.ibb.co/N7vn7HN/Thumbnail-Screenshot-Pokedex.webp",
+    img: "https://i.ibb.co/HXMQK6Q/pokedex-1.gif",
     description:
       "Pokedex application made with node.js with auth2.0 pasport login.",
     tech: [
@@ -39,7 +39,7 @@ const projects = [
     id: 2,
     name: "Abrazo del Arbol",
     description: "Landing page.",
-    img: "https://i.ibb.co/hsT0RM6/www-abrazodelarbol-com.webp",
+    img: "https://i.ibb.co/WnMX3Qn/abrazo3-min.gif",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -52,7 +52,7 @@ const projects = [
   {
     id: 3,
     name: "Live Chat App",
-    img: "https://i.ibb.co/DGGCjmV/Thumbnail-Chat-App.webp",
+    img: "https://i.ibb.co/L5pr9MG/Chat-1.gif",
     description: "Live chat app made with Socket.io and node.js.",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
@@ -66,7 +66,7 @@ const projects = [
     id: 4,
     name: "Tecno tienda",
     description: "E-commerce made with react and firebase.",
-    img: "https://i.ibb.co/BzLW7D1/tecnotienda.png",
+    img: "https://i.ibb.co/prHSLxk/tecnotienda-1.gif",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/250px-React.svg.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
@@ -79,14 +79,14 @@ const projects = [
     id: 5,
     name: "Naturatours",
     description: "Tours page made with Wordpress CMS.",
-    img: "https://i.ibb.co/V9y1RRg/naturatours.webp",
+    img: "https://i.ibb.co/nwqJX5m/Natura-Tours-1.gif",
     tech: ["https://cdn-icons-png.flaticon.com/512/174/174881.png"],
     url: "https://naturatours.com.mx/",
   },
   {
     id: 6,
     name: "eCommerce Js",
-    img: "https://i.ibb.co/Bc0xLhH/santi-iztli-github-io-proyecto-JS-copia.webp",
+    img: "https://i.ibb.co/Kxr5y0T/ecjs-min.gif",
     description: "E-commerce made with JavaScript",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
@@ -101,7 +101,7 @@ const projects = [
     id: 7,
     name: "Invitación ",
     description: "Wedding invitation with google form.",
-    img: "https://i.ibb.co/3fpgptn/invitacion-thumbnail.png",
+    img: "https://i.ibb.co/1vmVzt2/Invitacion2-1.gif",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -128,7 +128,7 @@ const projectDetails = async ({ params }: any) => {
                 src={`${project?.img}`}
                 alt="imagen"
                 width={250}
-                height={220}
+                height={250}
                 style={{ objectFit: "contain", width: "115%" }}
               />
             </div>
