@@ -90,6 +90,7 @@ const Navigation = () => {
         <div className="container-fluid justify-content-end">
           <div
             className="menu-activador "
+            /* type="button" */
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
@@ -104,7 +105,7 @@ const Navigation = () => {
             </label>
           </div>
           <div
-            className="collapse navbar-collapse justify-content-around"
+            className={`collapse navbar-collapse justify-content-center`}
             id="navbarNav"
           >
             <ul className="navbar-nav">
@@ -140,6 +141,12 @@ const Navigation = () => {
                 )}
               </li>
             </ul>
+          </div>
+
+          <div
+            className={`collapse navbar-collapse justify-content-center`}
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               {session.status === "authenticated" ? (
                 <></>
@@ -168,6 +175,11 @@ const Navigation = () => {
                 </>
               )}
             </ul>
+          </div>
+          <div
+            className={`collapse navbar-collapse justify-content-center`}
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               {session.status === "authenticated" ? (
                 <>
