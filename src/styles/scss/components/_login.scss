@@ -6,6 +6,12 @@
     flex-direction: column;
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
+
+}
+
+.blur {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     z-index: 99;
 }
 

@@ -25,6 +25,7 @@ const nextConfig = {
       "naturatours.com.mx",
       "santiagomorera.github.io",
       "cdn.shopify.com",
+      "avatars.githubusercontent.com",
     ],
   },
 };

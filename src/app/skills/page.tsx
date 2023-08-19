@@ -122,7 +122,7 @@ function Skills() {
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className={`skill-item transition menuitem-${skill.id}`}
+              className={`skill-item transition menuitem-${skill.id} blur`}
             >
               <div className="imageContainer">
                 <Image src={skill.imageSrc} alt={`${skill.name}-image`} fill />

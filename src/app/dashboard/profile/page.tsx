@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const Profile = () => {
   const { data: session, status } = useSession();
@@ -8,16 +9,22 @@ const Profile = () => {
   return (
     <>
       <section>
-        <div className="generic_container ">
+        <div className="profile_container blur">
           <h2>Profile</h2>
-          <div className="profile-card px-4 border-radius-xl ">
-            <h3>Session</h3>
-            <p>Email: {session?.user?.email}</p>
-            <p>Password: *******</p>
+          <div className="profile-card">
             <div>
-              <p>Status: {status}</p>
+              <Image
+                src={"	https://cdn-icons-png.flaticon.com/512/3385/3385324.png"}
+                alt="avatar"
+                width={100}
+                height={100}
+              />
             </div>
             <div>
+              <h3>Session</h3>
+              <p>Email: {session?.user?.email}</p>
+              <p>Password: *******</p>
+              <p>Status: {status}</p>
               <p>Expires: {session?.expires}</p>
             </div>
           </div>

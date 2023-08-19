@@ -49,7 +49,7 @@ const SignUpForm = ({ onLogin }: any) => {
 
   return (
     <section>
-      <div className="generic_container animate__animated animate__fadeIn">
+      <div className="generic_container animate__animated animate__fadeIn blur">
         <form onSubmit={handdleSubmit}>
           <h2>Sign Up</h2>
           <Image

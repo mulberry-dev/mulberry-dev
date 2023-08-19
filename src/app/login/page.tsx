@@ -36,7 +36,7 @@ const LoginPage = () => {
 
   return (
     <section>
-      <div className="generic_container  animate__animated animate__fadeIn">
+      <div className="generic_container  animate__animated animate__fadeIn blur">
         <form onSubmit={handdleSubmit}>
           <h2>Login</h2>
           <Image
