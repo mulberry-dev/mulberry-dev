@@ -119,7 +119,7 @@ const skills = [
     style: { width: "120%" },
     progress: 40,
   },
-  {
+  /* {
     id: 14,
     name: "Learning...",
     imageSrc: "https://cdn-icons-png.flaticon.com/512/3256/3256571.png",
@@ -127,7 +127,7 @@ const skills = [
     unite: "Years",
     style: { width: "120%" },
     progress: 50,
-  },
+  }, */
 ];
 
 function Skills() {
