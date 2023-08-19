@@ -9,7 +9,7 @@ const Profile = () => {
   return (
     <>
       <section>
-        <div className="profile_container blur">
+        <div className="profile_container blur ">
           <h2>Profile</h2>
           <div className="profile-card">
             <div>
