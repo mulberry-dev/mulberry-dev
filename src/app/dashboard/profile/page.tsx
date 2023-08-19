@@ -14,7 +14,7 @@ const Profile = () => {
           <div className="profile-card">
             <div>
               <Image
-                src={"	https://cdn-icons-png.flaticon.com/512/3385/3385324.png"}
+                src={"https://cdn-icons-png.flaticon.com/512/3385/3385324.png"}
                 alt="avatar"
                 width={100}
                 height={100}
