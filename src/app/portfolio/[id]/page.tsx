@@ -7,7 +7,7 @@ const projects = [
     name: "eCommerce",
     img: "https://i.ibb.co/Lhv4tPJ/e-Commerce-2-1.gif",
     description:
-      "E-commerce made with node.js, DAOS Factory, MongoDB, Auth2.0 & Redis.",
+      "eCommerce (with Chat) developed with Node.js (Layered Architecture), Socket.io, DAOS Factory (Multiple DB), MongoDB, Winston Logger, Nodemailer, Twilio, OAuth 2.0, Passport & Redis. ",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -18,6 +18,9 @@ const projects = [
       "https://sass-lang.com/assets/img/logos/logo.svg",
       "https://static.cdnlogo.com/logos/p/79/passport.svg",
       "https://avatars.githubusercontent.com/u/1529926?s=200&v=4",
+      "https://nodemailer.com/nm_logo_200x136.png",
+      "https://i.ibb.co/4SBhGSn/pngwing-com.png",
+      "https://socket.io/images/logo.svg",
     ],
     url: "https://ecommerce-backend-43495.fly.dev/",
   },
@@ -26,7 +29,7 @@ const projects = [
     name: "Pokedex",
     img: "https://i.ibb.co/HXMQK6Q/pokedex-1.gif",
     description:
-      "Pokedex application made with node.js with auth2.0 pasport login.",
+      "Pokedex app, developed with Node.js, Winston Logger, Nodemailer, OAuth 2.0, Passport & Redis.",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -56,7 +59,7 @@ const projects = [
     id: 3,
     name: "Live Chat App",
     img: "https://i.ibb.co/L5pr9MG/Chat-1.gif",
-    description: "Live chat app made with Socket.io and node.js.",
+    description: "Live chat app developed with Socket.io and Node.js.",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -67,21 +70,23 @@ const projects = [
   },
   {
     id: 4,
-    name: "Tecno tienda",
-    description: "E-commerce made with react and firebase.",
+    name: "Tecno Shop",
+    description:
+      "Ecommerce developed with React.js, Firebase DB besides product categories and stock in database.",
     img: "https://i.ibb.co/prHSLxk/tecnotienda-1.gif",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/250px-React.svg.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
       "https://sass-lang.com/assets/img/logos/logo.svg",
+      "https://i.ibb.co/LCqHmyX/pngwing-com-1.png",
     ],
     url: "https://tecno-tienda.netlify.app/",
   },
   {
     id: 5,
     name: "Naturatours",
-    description: "Tour agency page made with WordPress CMS.",
+    description: "Tour agency page developed with WordPress CMS.",
     img: "https://i.ibb.co/nwqJX5m/Natura-Tours-1.gif",
     tech: ["https://cdn-icons-png.flaticon.com/512/174/174881.png"],
     url: "https://naturatours.com.mx/",
@@ -90,7 +95,8 @@ const projects = [
     id: 6,
     name: "eCommerce Js",
     img: "https://i.ibb.co/Kxr5y0T/ecjs-min.gif",
-    description: "E-commerce made with JavaScript Vanilla",
+    description:
+      "eCommerce developed with JavaScript Vanilla, dark mode theme.",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -102,8 +108,8 @@ const projects = [
   },
   {
     id: 7,
-    name: "Invitación ",
-    description: "Wedding invitation with google form.",
+    name: "Invitation",
+    description: "Wedding invitation with Google Form.",
     img: "https://i.ibb.co/1vmVzt2/Invitacion2-1.gif",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
@@ -132,7 +138,7 @@ const projectDetails = async ({ params }: any) => {
                 alt="imagen"
                 width={250}
                 height={250}
-                style={{ objectFit: "contain", width: "115%" }}
+                style={{ objectFit: "contain", width: "115%", height: "115%" }}
               />
             </div>
             <div className="project-row">

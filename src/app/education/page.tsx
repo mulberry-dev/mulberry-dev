@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Component } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const certificates = [
+/* const certificates = [
   {
     id: 1,
     url: "https://i.ibb.co/4jPJSMd/carrera-De-Desarrollo-Full-Stack-INGTop10.png",
@@ -39,7 +37,7 @@ const certificates = [
     url: "https://i.ibb.co/GtXjbtc/636bccb78ae889000efd915d-ing.png",
   },
 ];
-
+ */
 const Education = () => {
   return (
     <>

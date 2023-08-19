@@ -110,6 +110,15 @@ const skills = [
     unite: "Years",
     progress: 90,
   },
+  {
+    id: 13,
+    name: "TailwindCSS",
+    imageSrc: "https://i.ibb.co/BcX67yK/Tailwind-CSS.webp",
+    experience: 3,
+    unite: "Months",
+    style: { width: "120%" },
+    progress: 40,
+  },
 ];
 
 function Skills() {
@@ -124,9 +133,13 @@ function Skills() {
               key={skill.id}
               className={`skill-item transition menuitem-${skill.id} blur`}
             >
-              <div className="imageContainer">
-                <Image src={skill.imageSrc} alt={`${skill.name}-image`} fill />
-              </div>
+              <Image
+                src={skill.imageSrc}
+                alt={`${skill.name}-image`}
+                width={90}
+                height={90}
+                style={{ objectFit: "contain" }}
+              />
               <p>{skill.name}</p>
               <div className="skill-hover-card">
                 <label htmlFor="skill">
