@@ -12,6 +12,7 @@ nav {
   position: fixed;
   transition: all .3s ease;
   font-family: monospace;
+  color: $linkColor;
 
   a {
 
@@ -23,9 +24,12 @@ nav {
   }
 }
 
+.navbar {
+  border-radius: 0px 0px 10px 10px !important;
+}
+
 .nav-item {
   transition: all .3s ease;
-
 }
 
 .activo {

@@ -84,12 +84,14 @@ const Navigation = () => {
     },
   ];
 
+  
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed menu">
         <div className="container-fluid justify-content-end">
           <div
-            className="menu-activador "
+            className="menu-activador"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
@@ -168,13 +170,13 @@ const Navigation = () => {
                 </>
               )}
             </ul>
-            <ul className="navbar-nav">
+            <ul className="navbar-nav flex-row justify-content-center">
               {session.status === "authenticated" ? (
                 <>
                   {linksAuthenticated.map((link) => (
                     <li
                       key={link.id}
-                      className="nav-item d-flex justify-content-center"
+                      className="nav-item d-flex justify-content-center p-1"
                     >
                       <Link
                         className={
@@ -196,7 +198,7 @@ const Navigation = () => {
                   {linksAuth.map((link) => (
                     <li
                       key={link.id}
-                      className="nav-item d-flex justify-content-center"
+                      className="nav-item d-flex justify-content-center p-1"
                     >
                       <Link
                         className={
