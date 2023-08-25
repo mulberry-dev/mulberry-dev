@@ -34,7 +34,7 @@ const projects = [
   },
   {
     id: 4,
-    name: "Tecno tienda",
+    name: "Tecno Shop",
     img: "https://i.ibb.co/BzLW7D1/tecnotienda.png",
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
     url: "https://tecno-tienda.netlify.app/",
@@ -55,7 +55,7 @@ const projects = [
   },
   {
     id: 7,
-    name: "Invitación ",
+    name: "Invitation",
     description: "Wedding invitation with google form.",
     img: "https://i.ibb.co/3fpgptn/invitacion-thumbnail.png",
     tech: [

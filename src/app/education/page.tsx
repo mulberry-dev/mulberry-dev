@@ -73,7 +73,7 @@ const Education = () => {
                 ></button>
               </div>
               <div className="carousel-inner">
-                <div className="carousel-item active" data-bs-interval="2000">
+                <div className="carousel-item active" data-bs-interval="4000">
                   <Image
                     src="https://i.ibb.co/4jPJSMd/carrera-De-Desarrollo-Full-Stack-INGTop10.png"
                     className="d-block w-100 certificado"
@@ -84,7 +84,7 @@ const Education = () => {
                   />
                   <div className="carousel-caption d-none d-md-block"></div>
                 </div>
-                <div className="carousel-item" data-bs-interval="2000">
+                <div className="carousel-item" data-bs-interval="4000">
                   <Image
                     src="https://i.ibb.co/zN2mLnJ/carrera-Desarrollo-Front-End-ing.png"
                     className="d-block w-100 certificado"
@@ -94,7 +94,7 @@ const Education = () => {
                     style={{ objectFit: "contain" }}
                   />
                 </div>
-                <div className="carousel-item" data-bs-interval="2000">
+                <div className="carousel-item" data-bs-interval="4000">
                   <Image
                     src="https://i.ibb.co/GtXjbtc/636bccb78ae889000efd915d-ing.png"
                     className="d-block w-100 certificado"
