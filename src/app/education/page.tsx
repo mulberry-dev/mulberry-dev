@@ -79,7 +79,9 @@ const Education = () => {
                         className="d-block w-100 certificado"
                         width={600}
                         height={550}
-                        style={{ objectFit: "contain" }}
+                        placeholder="blur"
+                        blurDataURL={certificate.url}
+                        loading="lazy"
                       />
                     </div>
                   );
