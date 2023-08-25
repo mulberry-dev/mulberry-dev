@@ -4,17 +4,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
-
-.buttons_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: row;
     max-width: 300px;
-    margin: 25px 0px 25px 0px;
+    margin: 25px 0px 25px 0px !important;
 }
 
 .go_back {
@@ -57,21 +49,3 @@
         text-decoration: none;
     }
 }
-
-
-
-/* .back-home {
-    position: absolute;
-    bottom: 100px;
-}
-
-.link-top {
-    position: absolute;
-    z-index: 999;
-
-    img {
-
-        position: initial;
-        z-index: 999;
-    }
-} */

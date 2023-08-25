@@ -168,7 +168,7 @@ function Skills() {
               className="go_back"
               width={40}
               height={40}
-              style={{ objectFit: "contain" }}
+              /* style={{ objectFit: "contain" }} */
               title="Go back"
             />
           </Link>
