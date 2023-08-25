@@ -26,28 +26,22 @@
 @keyframes fadeInUp {
   from {
     transform: translateY(100px);
-    opacity: 0;
-    filter: blur(10px)
   }
 
   to {
     transform: translateY(0);
-    opacity: 1;
-    filter: blur(0px)
+
   }
 }
 
 @-webkit-keyframes fadeInUp {
   from {
     transform: translateY(100px);
-    opacity: 0;
-    filter: blur(10px)
+
   }
 
   to {
     transform: translateY(0);
-    opacity: 1;
-    filter: blur(0px)
   }
 
 }
