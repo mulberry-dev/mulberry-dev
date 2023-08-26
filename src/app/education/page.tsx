@@ -77,11 +77,8 @@ const Education = () => {
                         src={certificate.url}
                         alt={certificate.url}
                         className="d-block w-100 certificado"
-                        width={600}
-                        height={550}
-                        placeholder="blur"
-                        blurDataURL={certificate.url}
-                        loading="lazy"
+                        width={718}
+                        height={600}
                       />
                     </div>
                   );
