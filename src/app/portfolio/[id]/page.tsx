@@ -119,6 +119,19 @@ const projects = [
     ],
     url: "https://santiagomorera.github.io/DeliaYSantiagoInvi/",
   },
+  /*   {
+    id: 8,
+    name: "Account Statement Generator",
+    description: "Account Statement Generator",
+    img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
+    tech: [
+      "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
+      "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
+      "https://sass-lang.com/assets/img/logos/logo.svg",
+    ],
+    url: "https://santiagomorera.github.io/DeliaYSantiagoInvi/",
+  }, */
 ];
 
 const projectDetails = async ({ params }: any) => {

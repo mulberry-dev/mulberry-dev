@@ -65,6 +65,18 @@ const projects = [
     ],
     url: "https://santiagomorera.github.io/proyectoJS/#index",
   },
+  /*   {
+    id: 8,
+    name: "Statement Generator",
+    description: "Account Statement Generator",
+    img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
+    tech: [
+      "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
+      "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+      "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
+    ],
+    url: "#",
+  }, */
 ];
 
 const Portfolio = () => {
