@@ -1,7 +1,8 @@
-/* "use client"; */
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const skills = [
   {
@@ -176,12 +177,67 @@ const skills = [
   }, */
 ];
 
+const dataBases = [
+  {
+    id: 0,
+    name: "MongoDB",
+    imageSrc: "https://cdn-icons-png.flaticon.com/512/1051/1051277.png",
+    experience: 5,
+    unite: "Years",
+    progress: 85,
+  },
+  {
+    id: 1,
+    name: "PostgreSQL",
+    imageSrc: "https://cdn-icons-png.flaticon.com/512/732/732190.png",
+    experience: 5,
+    unite: "Years",
+    progress: 85,
+  },
+  {
+    id: 2,
+    name: "MySQL",
+    imageSrc: "https://cdn-icons-png.flaticon.com/512/5968/5968292.png",
+    experience: 4,
+    unite: "Years",
+    progress: 60,
+  },
+  {
+    id: 3,
+    name: "SQLite",
+    imageSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+    experience: 2,
+    unite: "Years",
+    progress: 60,
+  },
+];
+
 function Skills() {
+  const [selected, setSelected] = useState("");
+
+  const onChange = (e: any) => {
+    console.log(e.target.innerText);
+    /* setSelected(); */
+  };
+
   return (
     <section id="skills">
       <div className="skills_container animate__animated animate__fadeIn">
         <h2 className="h2">Skills</h2>
+        {/* <div className="d-flex ">
+          <button className="button-generic" onClick={onChange}>
+            Languajes
+          </button>
+          <button className="button-generic" onClick={onChange}>
+            DataBases
+          </button>
+          <button className="button-generic" onClick={onChange}>
+            UI
+          </button>
+        </div> */}
         <p className="hover-me">Click the cubes</p>
+
         <div className="cubes_container">
           {skills.map((skill) => (
             <div
