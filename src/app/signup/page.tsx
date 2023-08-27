@@ -53,7 +53,7 @@ const SignUpForm = ({ onLogin }: any) => {
         <form onSubmit={handdleSubmit}>
           <h2>Sign Up</h2>
           <Image
-            src="https://cdn-icons-png.flaticon.com/512/6799/6799093.png"
+            src="/images/Icons/SignUp.webp"
             className="arrow"
             alt="image"
             width={100}
@@ -81,7 +81,7 @@ const SignUpForm = ({ onLogin }: any) => {
 
             <div onClick={onChange}>
               <Image
-                src="https://cdn-icons-png.flaticon.com/512/6642/6642206.png"
+                src="/images/Icons/Eye.webp"
                 className="eye"
                 width={25}
                 height={25}

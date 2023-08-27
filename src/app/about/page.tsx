@@ -7,7 +7,7 @@ const About = () => {
       <section id="about">
         <div className="about_wrapper animate__animated animate__fadeIn">
           <Image
-            src="https://i.ibb.co/8sW46Qz/Avatar-Santi.webp"
+            src="/images/Icons/AvatarSanti.webp"
             alt="Santi Avatar"
             width={150}
             height={150}
@@ -24,7 +24,7 @@ const About = () => {
           <div className="buttons_container">
             <Link className="button smallest " href={"/"}>
               <Image
-                src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+                src="/images/Icons/arrow-right-rounded.svg"
                 alt="go-back"
                 className="go_back"
                 width={40}

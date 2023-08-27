@@ -6,35 +6,35 @@ import Link from "next/link";
 const certificates = [
   {
     id: 0,
-    url: "https://i.ibb.co/JthtvHF/Carrera-Desarrollo-Full-Stack.webp",
+    url: "/images/Certificates/CarreraDesarrolloDeAplicaciones.webp",
   },
   {
     id: 1,
-    url: "https://i.ibb.co/vvr5Xtb/Carrera-Desarrollo-Front-End.webp",
+    url: "/images/Certificates/CarreraDesarrolloFrontEnd.webp",
   },
   {
     id: 2,
-    url: "https://i.ibb.co/vmqp5Dm/Carrera-Desarrollo-De-Aplicaciones.webp",
+    url: "/images/Certificates/CarreraDesarrolloDeAplicaciones.webp",
   },
   {
     id: 3,
-    url: "https://i.ibb.co/9q4fpXJ/Programacion-Backend.webp",
+    url: "/images/Certificates/ProgramacionBackend.webp",
   },
   {
     id: 4,
-    url: "https://i.ibb.co/KqHS32t/ReactJs.webp",
+    url: "/images/Certificates/ReactJs.webp",
   },
   {
     id: 5,
-    url: "https://i.ibb.co/tzSDNKf/Java-Script.webp",
+    url: "/images/Certificates/JavaScript.webp",
   },
   {
     id: 6,
-    url: "https://i.ibb.co/mS0Gc0V/Desarrollo-Web.webp",
+    url: "/images/Certificates/DesarrolloWeb.webp",
   },
   {
     id: 7,
-    url: "https://i.ibb.co/FYwGzJy/Ciberseguridad.webp",
+    url: "/images/Certificates/Ciberseguridad.webp",
   },
 ];
 
@@ -113,7 +113,7 @@ const Education = () => {
           <div className="buttons_container" style={{ marginTop: "-40px" }}>
             <Link className="button smallest " href={"/about"}>
               <Image
-                src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+                src="/images/Icons/arrow-right-rounded.svg"
                 alt="go-back"
                 className="go_back"
                 width={40}

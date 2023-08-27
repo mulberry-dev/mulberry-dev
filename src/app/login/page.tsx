@@ -40,7 +40,7 @@ const LoginPage = () => {
         <form onSubmit={handdleSubmit}>
           <h2>Login</h2>
           <Image
-            src="https://cdn-icons-png.flaticon.com/512/8043/8043665.png"
+            src="/images/Icons/Login.webp"
             className="arrow"
             width={100}
             height={100}

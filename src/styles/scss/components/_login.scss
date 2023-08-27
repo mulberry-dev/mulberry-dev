@@ -9,6 +9,23 @@
 
 }
 
+.eye {
+
+    img {
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
 .blur {
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);

@@ -5,7 +5,7 @@ const Info = () => {
   return (
     <>
       <Image
-        src={"https://cdn-icons-png.flaticon.com/512/1040/1040263.png"}
+        src={"/images/Icons/Info.webp"}
         alt={"info"}
         width={30}
         height={30}

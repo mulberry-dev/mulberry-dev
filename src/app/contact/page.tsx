@@ -9,7 +9,7 @@ const Contact = () => {
           <div> </div>
           <Link href="https://www.linkedin.com/in/santidev/" target="_black">
             <Image
-              src="https://cdn-icons-png.flaticon.com/512/1384/1384072.png"
+              src="/public/images/Icons/tech/LinkedIn.webp"
               alt="Linkedin logo animate__animated animate__rubberBand"
               width={50}
               height={50}
@@ -21,7 +21,7 @@ const Contact = () => {
           <div className="buttons_container">
             <Link className="button smallest " href={"/portfolio"}>
               <Image
-                src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+                src="/images/Icons/arrow-right-rounded.svg"
                 alt="go-back"
                 className="go_back"
                 width={40}

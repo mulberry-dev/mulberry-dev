@@ -84,8 +84,6 @@ const Navigation = () => {
     },
   ];
 
-  
-
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed menu">
@@ -115,7 +113,7 @@ const Navigation = () => {
                   <>
                     <div className="logo_container">
                       <Image
-                        src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                        src="/images/Icons/MouseArrow.webp"
                         width={30}
                         height={30}
                         alt={"Logo"}
@@ -131,7 +129,7 @@ const Navigation = () => {
                   >
                     <div className="logo_container">
                       <Image
-                        src="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
+                        src="/images/Icons/MouseArrow.webp"
                         width={30}
                         height={30}
                         alt={"Logo"}

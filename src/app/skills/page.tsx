@@ -8,7 +8,7 @@ const skills = [
   {
     id: 0,
     name: "HTML5",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/1051/1051277.png",
+    imageSrc: "/images/Icons/tech/HTML.webp",
     experience: 5,
     unite: "Years",
     progress: 85,
@@ -16,7 +16,7 @@ const skills = [
   {
     id: 1,
     name: "CSS3",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/732/732190.png",
+    imageSrc: "/images/Icons/tech/CSS3.webp",
     experience: 5,
     unite: "Years",
     progress: 85,
@@ -24,7 +24,7 @@ const skills = [
   {
     id: 2,
     name: "JavaScript",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/5968/5968292.png",
+    imageSrc: "/images/Icons/tech/JavaScript.webp",
     experience: 4,
     unite: "Years",
     progress: 60,
@@ -32,8 +32,7 @@ const skills = [
   {
     id: 3,
     name: "TypeScript",
-    imageSrc:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+    imageSrc: "/images/Icons/tech/TypeScript.webp",
     experience: 2,
     unite: "Years",
     progress: 60,
@@ -41,7 +40,7 @@ const skills = [
   {
     id: 4,
     name: "React",
-    imageSrc: "https://i.ibb.co/KNdfSTf/Ico-react.webp",
+    imageSrc: "/images/Icons/tech/Ico-react.webp",
     experience: 2,
     unite: "Years",
     progress: 65,
@@ -49,7 +48,7 @@ const skills = [
   {
     id: 5,
     name: "Next.js",
-    imageSrc: "https://i.ibb.co/7Q5cn92/Ico-next.webp",
+    imageSrc: "/images/Icons/tech/NextJs.webp",
     experience: 2,
     unite: "Years",
     progress: 65,
@@ -57,7 +56,7 @@ const skills = [
   {
     id: 6,
     name: "Node.js",
-    imageSrc: "https://i.ibb.co/yXMPR8H/Ico-nodejs.webp",
+    imageSrc: "/images/Icons/tech/node.webp",
     experience: 2,
     unite: "Years",
     progress: 75,
@@ -65,8 +64,7 @@ const skills = [
   {
     id: 7,
     name: "Nest.js",
-    imageSrc:
-      "https://d33wubrfki0l68.cloudfront.net/49c2be6f2607b5c12dd27f8ecc8521723447975d/f05c5/logo-small.cbbeba89.svg",
+    imageSrc: "/images/Icons/tech/nest.svg",
     experience: 2,
     unite: "Years",
     progress: 65,
@@ -74,7 +72,7 @@ const skills = [
   {
     id: 8,
     name: "React Native",
-    imageSrc: "https://i.ibb.co/KNdfSTf/Ico-react.webp",
+    imageSrc: "/images/Icons/tech/Ico-react.webp",
     experience: 1,
     unite: "Years",
     progress: 40,
@@ -82,7 +80,7 @@ const skills = [
   {
     id: 9,
     name: "Bootstrap",
-    imageSrc: "https://i.ibb.co/ccgvtwm/Ico-bootstrap.webp",
+    imageSrc: "/images/Icons/tech/Bootstrap.webp",
     experience: 2,
     unite: "Years",
     progress: 65,
@@ -90,7 +88,7 @@ const skills = [
   {
     id: 10,
     name: "Redux",
-    imageSrc: "https://i.ibb.co/WtSQCgn/Ico-Redux.webp",
+    imageSrc: "/images/Icons/tech/Redux.webp",
     experience: 1,
     unite: "Year",
     progress: 50,
@@ -98,7 +96,7 @@ const skills = [
   {
     id: 11,
     name: "Sass",
-    imageSrc: "https://i.ibb.co/m4tMJmK/Ico-sass.webp",
+    imageSrc: "/images/Icons/tech/Sass.svg",
     experience: 3,
     unite: "Years",
     progress: 90,
@@ -106,7 +104,7 @@ const skills = [
   {
     id: 12,
     name: "Material UI",
-    imageSrc: "https://i.ibb.co/3RfrK69/Ico-MUI.webp",
+    imageSrc: "/images/Icons/tech/MUI.webp",
     experience: 3,
     unite: "Years",
     progress: 90,
@@ -114,7 +112,7 @@ const skills = [
   {
     id: 13,
     name: "TailwindCSS",
-    imageSrc: "https://i.ibb.co/BcX67yK/Tailwind-CSS.webp",
+    imageSrc: "/images/Icons/tech/Tailwind-CSS.webp",
     experience: 3,
     unite: "Months",
     style: { width: "120%" },
@@ -123,7 +121,7 @@ const skills = [
   {
     id: 14,
     name: "WordPress",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/174/174881.png",
+    imageSrc: "/images/Icons/tech/WordPress.webp",
     experience: 3,
     unite: "Years",
     style: { width: "120%" },
@@ -132,7 +130,7 @@ const skills = [
   {
     id: 15,
     name: "C#",
-    imageSrc: "https://static.cdnlogo.com/logos/c/27/c.svg",
+    imageSrc: "/images/Icons/tech/C.svg",
     experience: 3,
     unite: "Months",
     style: { width: "120%" },
@@ -141,8 +139,7 @@ const skills = [
   {
     id: 16,
     name: ".NET Core",
-    imageSrc:
-      "https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg",
+    imageSrc: "/images/Icons/tech/NET_Core_Logo.svg",
     experience: 3,
     unite: "Months",
     style: { width: "120%" },
@@ -151,7 +148,7 @@ const skills = [
   {
     id: 17,
     name: "Java",
-    imageSrc: "https://www.svgrepo.com/show/184143/java.svg",
+    imageSrc: "/images/Icons/tech/java.svg",
     experience: 3,
     unite: "Months",
     style: { width: "120%" },
@@ -160,7 +157,7 @@ const skills = [
   {
     id: 18,
     name: "Spring",
-    imageSrc: "https://www.svgrepo.com/show/376350/spring.svg",
+    imageSrc: "/images/Icons/tech/spring.svg",
     experience: 3,
     unite: "Months",
     style: { width: "120%" },
@@ -181,7 +178,7 @@ const dataBases = [
   {
     id: 0,
     name: "MongoDB",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/1051/1051277.png",
+    imageSrc: "/images/Icons/tech/MongoDb.webp",
     experience: 5,
     unite: "Years",
     progress: 85,
@@ -265,7 +262,7 @@ function Skills() {
         <div className="buttons_container  menuitem-13">
           <Link className="button smallest " href={"/education"}>
             <Image
-              src="https://cdn.shopify.com/s/files/1/0343/2824/8459/files/arrow-right-rounded.svg"
+              src="/images/Icons/arrow-right-rounded.svg"
               alt="go-back"
               className="go_back"
               width={40}
