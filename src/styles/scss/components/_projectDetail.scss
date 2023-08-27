@@ -60,12 +60,13 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 100%;
+        /* width: 100%; */
         padding: 0px 15px 0px 15px;
 
 
         .project-thumbnail {
-            border-radius: 20px;
+            border-radius: 10px;
+            /* object-fit: contain; */
         }
 
         .project-card {
