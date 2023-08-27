@@ -10,7 +10,7 @@ const projects = [
     description:
       "eCommerce (with Chat) developed with Node.js (Layered Architecture), Socket.io, DAOS Factory (Multiple DB), MongoDB, Winston Logger, Nodemailer, Twilio, OAuth 2.0, Passport & Redis. ",
     tech: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
+      "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",

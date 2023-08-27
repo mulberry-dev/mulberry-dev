@@ -9,7 +9,7 @@ const Contact = () => {
           <div> </div>
           <Link href="https://www.linkedin.com/in/santidev/" target="_black">
             <Image
-              src="/public/images/Icons/tech/LinkedIn.webp"
+              src="/images/Icons/tech/LinkedIn.webp"
               alt="Linkedin logo animate__animated animate__rubberBand"
               width={50}
               height={50}
