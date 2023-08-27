@@ -150,6 +150,7 @@ const projectDetails = async ({ params }: any) => {
                 className="project-thumbnail"
                 src={`${project?.img}`}
                 alt={`${project?.name}-img`}
+                priority={true}
                 width={300}
                 height={250}
                 /*  style={{ objectFit: "contain" }} */

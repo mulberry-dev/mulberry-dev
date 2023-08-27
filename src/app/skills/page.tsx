@@ -64,7 +64,7 @@ const skills = [
   {
     id: 7,
     name: "Nest.js",
-    imageSrc: "/images/Icons/tech/nest.svg",
+    imageSrc: "/images/Icons/tech/Nest.svg",
     experience: 2,
     unite: "Years",
     progress: 65,
@@ -130,7 +130,7 @@ const skills = [
   {
     id: 15,
     name: "C#",
-    imageSrc: "/images/Icons/tech/C.svg",
+    imageSrc: "/images/Icons/tech/c.svg",
     experience: 3,
     unite: "Months",
     style: { width: "120%" },
