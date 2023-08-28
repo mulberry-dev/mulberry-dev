@@ -115,7 +115,7 @@ const projects = [
     id: 7,
     name: "Invitation",
     description: "Wedding invitation with Google Form.",
-    img: "/images/Webp/invitation.webp",
+    img: "/images/Webp/Invitation.webp",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
