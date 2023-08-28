@@ -182,7 +182,9 @@ const projectDetails = async ({ params }: any) => {
                 /* onLoadingComplete={(image) =>
                   image.classList.remove("opacity-0")
                 } */
-                onLoadingComplete={(img) => loaded(img)}
+                onLoadingComplete={(image) =>
+                  image.classList.remove("opacity-0")
+                }
                 src={`${project?.img}`}
                 alt={`${project?.name}-img`}
                 placeholder={"blur"}

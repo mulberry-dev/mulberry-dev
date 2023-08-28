@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +14,8 @@ const About = () => {
             width={150}
             height={150}
             title="Santi Avatar"
-            className="santi_avatar"
+            className="santi_avatar transition-opacity opacity-0 duration-2s"
+            onLoadingComplete={(image) => image.classList.remove("opacity-0")}
           />
           {
             <p className="about_text">
