@@ -76,7 +76,10 @@ const Education = () => {
                       <Image
                         src={certificate.url}
                         alt={certificate.url}
-                        className="d-block w-100 certificado"
+                        className="d-block w-100 certificado transition-opacity opacity-0 duration-2s"
+                        onLoadingComplete={(image) =>
+                          image.classList.remove("opacity-0")
+                        }
                         width={718}
                         height={600}
                       />

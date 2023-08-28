@@ -247,6 +247,10 @@ function Skills() {
                 width={90}
                 height={90}
                 style={{ objectFit: "contain" }}
+                /* className="transition-opacity opacity-0 duration-1s"
+                onLoadingComplete={(image) =>
+                  image.classList.remove("opacity-0")
+                } */
               />
               <p>{skill.name}</p>
               <div className="skill-hover-card">
