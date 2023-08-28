@@ -146,12 +146,10 @@ const projectDetails = async ({ params }: any) => {
   useEffect(() => {
     return () => {
       const previewImage = document.getElementById("previewProject");
-
       /*   window?.addEventListener("load", function () {
         var element = document.getElementById("loader");
         element!.style.display = "none !important";
       }); */
-
       window.addEventListener("load", function () {
         var element = document.getElementById("loader");
         element!.style.display = "none";
