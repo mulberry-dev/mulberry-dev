@@ -1,5 +1,9 @@
+"use client";
+
+/* import "@/utils/preload"; */
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -136,7 +140,29 @@ const projects = [
 ];
 
 const projectDetails = async ({ params }: any) => {
+  const [load, setLoaded] = useState(true);
   const project = projects.find((project) => project.id == params.id);
+
+  useEffect(() => {
+    return () => {
+      const previewImage = document.getElementById("previewProject");
+
+      /*   window?.addEventListener("load", function () {
+        var element = document.getElementById("loader");
+        element!.style.display = "none !important";
+      }); */
+
+      window.addEventListener("load", function () {
+        var element = document.getElementById("loader");
+        element!.style.display = "none";
+      });
+    };
+  }, []);
+
+  const loaded = (img: any) => {
+    img.classList.remove("opacity-0");
+    /* setLoaded(!load); */
+  };
 
   return (
     <>
@@ -146,14 +172,28 @@ const projectDetails = async ({ params }: any) => {
           <p className="details">Details</p>
           <div className="project-detail-container">
             <div className="project-row">
+              {/* <Image
+                src={`/images/Icons/loader.gif`}
+                alt="loader"
+                width={100}
+                height={100}
+                id={"loader"}
+              /> */}
+
               <Image
-                className="project-thumbnail"
+                className="project-thumbnail transition-opacity opacity-0 duration-2s"
+                /* onLoadingComplete={(image) =>
+                  image.classList.remove("opacity-0")
+                } */
+                onLoadingComplete={(img) => loaded(img)}
                 src={`${project?.img}`}
                 alt={`${project?.name}-img`}
+                placeholder={"blur"}
+                blurDataURL={"data:image/webp..."}
                 priority={true}
                 width={300}
                 height={250}
-                /*  style={{ objectFit: "contain" }} */
+                id={"previewProject"}
               />
             </div>
             <div className="project-row">
