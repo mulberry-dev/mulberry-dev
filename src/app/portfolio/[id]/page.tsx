@@ -3,7 +3,7 @@
 /* import "@/utils/preload"; */
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react"; */
 
 const projects = [
   {
@@ -140,26 +140,25 @@ const projects = [
 ];
 
 const projectDetails = async ({ params }: any) => {
-  const [load, setLoaded] = useState(true);
+  /*  const [load, setLoaded] = useState(true); */
   const project = projects.find((project) => project.id == params.id);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     return () => {
       const previewImage = document.getElementById("previewProject");
-      /*   window?.addEventListener("load", function () {
+        window?.addEventListener("load", function () {
         var element = document.getElementById("loader");
         element!.style.display = "none !important";
-      }); */
+      });
       window.addEventListener("load", function () {
         var element = document.getElementById("loader");
         element!.style.display = "none";
       });
     };
   }, []);
-
+*/
   const loaded = (img: any) => {
     img.classList.remove("opacity-0");
-    /* setLoaded(!load); */
   };
 
   return (
