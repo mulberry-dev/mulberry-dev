@@ -36,7 +36,7 @@ const projects = [
     description:
       "Pokedex app, developed with Node.js, Winston Logger, Nodemailer, OAuth 2.0, Passport & Redis.",
     tech: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
+      "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -69,7 +69,7 @@ const projects = [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
       "https://socket.io/images/logo.svg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png",
+      "/images/Icons/tech/node.webp",
     ],
     url: "https://live-chat-app3.glitch.me/",
   },
