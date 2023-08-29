@@ -8,11 +8,9 @@ import "animate.css";
 /* import "bootstrap/dist/css/bootstrap.min.css"; */
 /* import "react-toastify/dist/ReactToastify.css"; */
 import Script from "next/script";
-
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Info from "@/components/info";
-
 import { Analytics } from "@vercel/analytics/react";
 export default function RootLayout({
   children,
