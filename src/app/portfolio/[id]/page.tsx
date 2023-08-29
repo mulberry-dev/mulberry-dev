@@ -173,15 +173,22 @@ const projectDetails = async ({ params }: any) => {
           <p className="details">Details</p>
           <div className="project-detail-container">
             <div className="project-row">
+              {
+                <Image
+                  src={`/images/svg-loaders/grid.svg`}
+                  alt="loader"
+                  width={300}
+                  height={250}
+                  id={"loader"}
+                  style={{
+                    position: "absolute",
+                    opacity: ".5",
+                    transform: "scale(.6)",
+                  }}
+                />
+              }
               <Image
-                src={`/images/svg-loaders/rings.svg`}
-                alt="loader"
-                width={300}
-                height={250}
-                id={"loader"}
-              />
-              <Image
-                className="project-thumbnail display-none transition-opacity duration-2s opacity-0"
+                className="project-thumbnail transition-opacity duration-2s opacity-0"
                 /* onLoadingComplete={(image) =>
                   image.classList.remove("opacity-0")
                 } */

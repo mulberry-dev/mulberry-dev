@@ -104,7 +104,7 @@ const Portfolio = () => {
                   <Image
                     src={project.img}
                     alt={`${project.img}-image`}
-                    className="project-image transition-opacity opacity-0 duration-2s"
+                    className="project-image transition-opacity opacity-0 duration-1s"
                     onLoadingComplete={(image) =>
                       image.classList.remove("opacity-0")
                     }

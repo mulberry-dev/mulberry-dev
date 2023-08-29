@@ -161,7 +161,7 @@
 }
 
 .transition-opacity {
-    transition: all .2s ease;
+    transition: opacity .2s ease;
 }
 
 .opacity-0 {
@@ -169,11 +169,11 @@
 }
 
 .duration-2s {
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .duration-1s {
-    transition-duration: .1s;
+    transition-duration: .3s;
 }
 
 .display-none {
