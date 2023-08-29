@@ -182,7 +182,7 @@ const projectDetails = async ({ params }: any) => {
               />
 
               <Image
-                className="project-thumbnail transition-opacity opacity-0 duration-2s display-none"
+                className="project-thumbnail display-none transition-opacity duration-2s opacity-0"
                 /* onLoadingComplete={(image) =>
                   image.classList.remove("opacity-0")
                 } */
