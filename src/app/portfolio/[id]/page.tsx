@@ -174,13 +174,12 @@ const projectDetails = async ({ params }: any) => {
           <div className="project-detail-container">
             <div className="project-row">
               <Image
-                src={`https://samherbert.net/svg-loaders/svg-loaders/rings.svg`}
+                src={`/images/svg-loaders/rings.svg`}
                 alt="loader"
                 width={300}
                 height={250}
                 id={"loader"}
               />
-
               <Image
                 className="project-thumbnail display-none transition-opacity duration-2s opacity-0"
                 /* onLoadingComplete={(image) =>
