@@ -1,5 +1,6 @@
 "use client";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import { notifyInfo } from "@/utils/toast";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";

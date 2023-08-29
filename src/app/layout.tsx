@@ -5,8 +5,8 @@ import Particles from "@/components/particles";
 import Providers from "@/components/providers";
 import "@/styles/css/styles.css";
 import "animate.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-toastify/dist/ReactToastify.css";
+/* import "bootstrap/dist/css/bootstrap.min.css"; */
+/* import "react-toastify/dist/ReactToastify.css"; */
 import Script from "next/script";
 
 import { useEffect } from "react";
