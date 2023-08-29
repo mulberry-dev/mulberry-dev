@@ -22,6 +22,7 @@ const nextConfig = {
       "tailwindcss.com",
       "nodemailer.com",
       "static-00.iconduck.com",
+      "samherbert.net"
     ],
   },
 };

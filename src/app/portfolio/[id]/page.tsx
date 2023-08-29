@@ -157,7 +157,11 @@ const projectDetails = async ({ params }: any) => {
     };
   }, []);
 */
+
   const loaded = (img: any) => {
+    const previewImage = document.getElementById("loader");
+    previewImage?.classList.add("display-none");
+    img.classList.remove("display-none");
     img.classList.remove("opacity-0");
   };
 
@@ -169,22 +173,20 @@ const projectDetails = async ({ params }: any) => {
           <p className="details">Details</p>
           <div className="project-detail-container">
             <div className="project-row">
-              {/* <Image
-                src={`/images/Icons/loader.gif`}
+              <Image
+                src={`https://samherbert.net/svg-loaders/svg-loaders/rings.svg`}
                 alt="loader"
-                width={100}
-                height={100}
+                width={300}
+                height={250}
                 id={"loader"}
-              /> */}
+              />
 
               <Image
-                className="project-thumbnail transition-opacity opacity-0 duration-2s"
+                className="project-thumbnail transition-opacity opacity-0 duration-2s display-none"
                 /* onLoadingComplete={(image) =>
                   image.classList.remove("opacity-0")
                 } */
-                onLoadingComplete={(image) =>
-                  image.classList.remove("opacity-0")
-                }
+                onLoadingComplete={(image) => loaded(image)}
                 src={`${project?.img}`}
                 alt={`${project?.name}-img`}
                 placeholder={"blur"}
