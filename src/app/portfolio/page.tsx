@@ -91,7 +91,7 @@ const Portfolio = () => {
           <div className="projects-container">
             {projects?.map((project) => (
               <div
-                key={project.id}
+                key={`${project.id}-${project.name}`}
                 className={`project-item`}
                 onClick={() => {
                   router.push(`/portfolio/${project.id}`);
