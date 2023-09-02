@@ -49,8 +49,8 @@
     margin: 5px;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    -webkit-backdrop-filter: blur(3px) !important;
     backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
     width: 120px;
 
     p {
