@@ -105,7 +105,7 @@ const projects = [
     name: "eCommerce Js",
     img: "/images/Webp/eCommerceJs.webp",
     description:
-      "This is a web page developed with Vanilla JavaScript, it is an eCommerce that allows you to add the products you want to buy to the cart, as well as finalize the purchase, it has a dark/light theme, it was the final project of a JavaScript course. (2022)",
+      "This is a web page developed with Vanilla JavaScript, it is an eCommerce that allows you to add the products to the cart, as well as finalize the purchase, it has a dark/light theme, it was the final project of a JavaScript course. (2022)",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -119,7 +119,7 @@ const projects = [
     id: 7,
     name: "Invitation",
     description:
-      "This is an invitation for a wedding where guests can confirm attendance, as well as know all the details of the event. (2023)",
+      "This is an invitation for a wedding, where guests can confirm attendance, as well as know all the details of the event. (2023)",
     img: "/images/Webp/Invitation.webp",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",

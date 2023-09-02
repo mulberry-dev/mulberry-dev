@@ -6,20 +6,24 @@ const Contact = () => {
     <>
       <section id="contacto">
         <div className="contact_container animate__animated animate__fadeIn">
-          <div> </div>
-          <Link href="https://www.linkedin.com/in/santidev/" target="_black">
+          <div>{""}</div>
+          <Link
+            href="https://www.linkedin.com/in/santidev/"
+            className="transition"
+            target="_black"
+          >
             <Image
               src="/images/Icons/tech/LinkedIn.webp"
-              alt="Linkedin logo animate__animated animate__rubberBand"
-              width={50}
-              height={50}
-              className="linkedin animate__animated animate__jackInTheBox"
+              alt="Linkedin"
+              width={70}
+              height={70}
+              className="linkedin animate__animated animate__zoomInDown"
               title="Linkedin"
             />
           </Link>
 
           <div className="buttons_container">
-            <Link className="button smallest " href={"/portfolio"}>
+            <Link className="button smallest" href={"/portfolio"}>
               <Image
                 src="/images/Icons/arrow-right-rounded.svg"
                 alt="go-back"
