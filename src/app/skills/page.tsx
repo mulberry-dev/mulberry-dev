@@ -74,7 +74,7 @@ const skills = [
     name: "React Native",
     imageSrc: "/images/Icons/tech/Ico-react.webp",
     experience: 1,
-    unite: "Years",
+    unite: "Year",
     progress: 40,
   },
   {
@@ -163,15 +163,14 @@ const skills = [
     style: { width: "120%" },
     progress: 5,
   },
-  /* {
-    id: 14,
-    name: "Learning...",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/3256/3256571.png",
-    experience: 31,
+  {
+    id: 19,
+    name: "PostgresSQL",
+    imageSrc: "https://cdn-icons-png.flaticon.com/512/5968/5968342.png",
+    experience: 2,
     unite: "Years",
-    style: { width: "120%" },
-    progress: 50,
-  }, */
+    progress: 65,
+  },
 ];
 
 const dataBases = [
