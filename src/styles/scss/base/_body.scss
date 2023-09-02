@@ -6,19 +6,14 @@ html {
 }
 
 body {
+    transition: backgroud .5s ease;
     background: hsla(185, 64%, 51%, 1);
 
-    background: linear-gradient(90deg,
-            hsl(185deg 100% 38.31%) 0%,
-            hsl(277deg 100% 16.82%) 100%);
+    background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
 
-    background: -moz-linear-gradient(90deg,
-            hsl(185deg 100% 38.31%) 0%,
-            hsl(277deg 100% 16.82%) 100%);
+    background: -moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
 
-    background: -webkit-linear-gradient(90deg,
-            hsl(185deg 100% 38.31%) 0%,
-            hsl(277deg 100% 16.82%) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
 
     background-attachment: fixed;
     font-family: 'Poppins', monospace, sans-serif;
