@@ -96,7 +96,7 @@ const SignUpForm = ({ onLogin }: any) => {
           </button>
         </form>
         <div className="register_link_container">
-          <p>Do you already have an account!</p>
+          <p>Do you already have an account?</p>
           <Link className="register_link" href={"/login"}>
             Login
           </Link>

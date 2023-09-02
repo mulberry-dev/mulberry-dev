@@ -3,15 +3,13 @@
 import Navigation from "@/components/navigation";
 import Particles from "@/components/particles";
 import Providers from "@/components/providers";
-import "@/styles/css/styles.css";
 import "animate.css";
-/* import "bootstrap/dist/css/bootstrap.min.css"; */
-/* import "react-toastify/dist/ReactToastify.css"; */
 import Script from "next/script";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Info from "@/components/info";
 import { Analytics } from "@vercel/analytics/react";
+import "@/styles/css/styles.css";
 export default function RootLayout({
   children,
 }: {
