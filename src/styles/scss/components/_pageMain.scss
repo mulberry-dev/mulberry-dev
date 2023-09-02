@@ -50,24 +50,26 @@
   @media (min-width: 1024px) {
     font-size: 50px;
   }
+}
 
-  .full_stack_title:hover span {
-    font-family: monospace;
-    color: #11ffbd;
-    filter: drop-shadow(0 0 50px turquoise);
-    font-weight: bolder;
-    transition: all 0.1s linear;
-    -webkit-transition: all 0.1s linear;
-    -moz-transition: all 0.1s linear;
-    -ms-transition: all 0.1s linear;
-    -o-transition: all 0.1s linear;
+.full_stack_title span {
+  font-family: monospace;
+  color: #11ffbd;
+  filter: drop-shadow(0 0 50px turquoise);
+  font-weight: bolder;
+  transition: all 0.1s linear;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  -ms-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
 
 
-    &:hover {
-      color: orange;
-      filter: drop-shadow(0 0 50px orange);
-    }
-  }
+
+}
+
+.full_stack_title:hover  span{
+  color: orange;
+  filter: drop-shadow(0px 0px 20px orange);
 }
 
 .javascript_title {
@@ -78,14 +80,22 @@
   font-weight: 0;
   font-weight: 300;
   margin-bottom: 50px;
-  transition: all 1s linear;
-  animation: abajo .7s 1 backwards linear .5s;
+  transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: abajo .7s 1 backwards linear .8s;
 
   @media (min-width: 768px) {
     font-size: 20px;
   }
+
+  &:hover{
+    color: rgb(255, 251, 0);
+    cursor: pointer;
+    filter: drop-shadow(0px 0px 20px orange);
+  }
 }
 
+
+
 .button_animation {
-  animation: abajo .7s 1 backwards linear .7s;
+  animation: abajo .7s 1 backwards linear .9s;
 }
