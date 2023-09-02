@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
       <section id="about">
-        <div className="about_wrapper animate__animated animate__fadeIn">
+        <div className="about_wrapper square-animation animate__animated animate__fadeIn">
           <Image
             src="/images/Icons/AvatarSanti.webp"
             alt="Santi Avatar"

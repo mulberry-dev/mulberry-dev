@@ -17,43 +17,33 @@ const Navigation = () => {
     }
   };
 
-  function cambiarEstilosBody() {
+/*   function cambiarEstilosBody() {
     document.body.style.background =
-      "#0f0c29"; /* Fallback para navegadores antiguos */
+      "#0f0c29"; 
     document.body.style.background =
-      "-webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29)"; /* Chrome 10-25, Safari 5.1-6 */
+      "-webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29)";
     document.body.style.background =
-      "linear-gradient(to right, #24243e, #302b63, #0f0c29)"; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      "linear-gradient(to right, #24243e, #302b63, #0f0c29)";
   }
 
   function cambiarEstilosBodyOld() {
-    // Obtenemos una referencia al elemento body
-    const body = document.body;
-
-    // Cambiamos los estilos del body
-    body.style.backgroundColor = "hsla(185, 64%, 51%, 1)";
-    body.style.backgroundImage =
+    document.body.style.backgroundColor = "hsla(185, 64%, 51%, 1)";
+    document.body.style.backgroundImage =
       "linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%)";
-
-    // Para navegadores específicos
-    body.style.backgroundImage =
+    document.body.style.backgroundImage =
       "-moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%)";
-    body.style.backgroundImage =
+    document.body.style.backgroundImage =
       "-webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%)";
   }
 
   function cambiarEstilosBodyHome() {
-    // Obtenemos una referencia al elemento body
-    var body = document.body;
-
-    // Cambiamos los estilos del body
-    body.style.background = "#8E2DE2"; /* Fallback para navegadores antiguos */
-    body.style.background =
-      "-webkit-linear-gradient(to bottom, #4A00E0, #8E2DE2)"; /* Chrome 10-25, Safari 5.1-6 */
-    body.style.background =
-      "linear-gradient(to bottom, #4A00E0, #8E2DE2)"; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-
+    document.body.style.background = "#8E2DE2";
+    document.body.style.background =
+      "-webkit-linear-gradient(to bottom, #4A00E0, #8E2DE2)";
+    document.body.style.background =
+      "linear-gradient(to bottom, #4A00E0, #8E2DE2)"; 
+  } */
+/* 
   if (pathname === "/contact") {
     cambiarEstilosBody();
   } else if (pathname === "/") {
@@ -61,10 +51,7 @@ const Navigation = () => {
   } else {
     cambiarEstilosBodyOld();
   }
-
-  // Llama a la función para cambiar los estilos del body cuando lo necesites
-
-  // Llama a la función para cambiar los estilos del body cuando lo desees.
+ */
 
   const links = [
     {

@@ -175,3 +175,153 @@
 .menuitem-21 {
   animation: menuitem .7s 1 backwards cubic-bezier(.34, 1.6, .42, .82) 1.1s;
 }
+
+/** Keyframes **/
+
+@keyframes menubarside {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 69.5px;
+  }
+}
+
+@keyframes menuitem {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes izquierda {
+  from {
+    transform: translatex(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translatex(0);
+    opacity: 1;
+  }
+}
+
+@keyframes derecha {
+  from {
+    transform: translatex(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translatex(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes abajo {
+  from {
+    transform: translatey(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translatey(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes arriba {
+  from {
+    transform: translatey(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translatey(0px);
+    opacity: 1;
+  }
+}
+
+// form
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+}
+
+.wave {
+  animation-name: wave-animation;
+  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;
+  /* Change to speed up or slow down */
+  animation-iteration-count: infinite;
+  /* Never stop waving :) */
+  transform-origin: 70% 70%;
+  /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+/* wave */
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0.0deg)
+  }
+
+  10% {
+    transform: rotate(14.0deg)
+  }
+
+  /* The following five values can be played with to make the waving more or less extreme */
+  20% {
+    transform: rotate(-8.0deg)
+  }
+
+  30% {
+    transform: rotate(14.0deg)
+  }
+
+  40% {
+    transform: rotate(-4.0deg)
+  }
+
+  50% {
+    transform: rotate(10.0deg)
+  }
+
+  60% {
+    transform: rotate(0.0deg)
+  }
+
+  /* Reset for the last half to pause */
+  100% {
+    transform: rotate(0.0deg)
+  }
+}

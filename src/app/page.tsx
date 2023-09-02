@@ -10,7 +10,7 @@ const IndexPage = async () => {
             <span> &lt; </span>Full Stack Developer<span> /&gt; </span>
           </p>
           <p className="javascript_title">Java Script</p>
-          <Link className="button-generic" href="/about">
+          <Link className="button-generic button_animation" href="/about">
             About
           </Link>
         </div>

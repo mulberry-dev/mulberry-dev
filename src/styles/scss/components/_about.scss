@@ -39,3 +39,19 @@
         margin-top: 0px;
     }
 }
+
+/* keyframes wipe-enter */
+
+@keyframes wipe-enter {
+    0% {
+        transform: scale(0, 0);
+    }
+
+    50% {
+        transform: scale(1, .01);
+    }
+}
+
+.square-animation {
+    animation: wipe-enter .8s 1;
+}
