@@ -17,7 +17,7 @@ const Contact = () => {
               alt="Linkedin"
               width={70}
               height={70}
-              className="linkedin animate__animated animate__zoomInDown"
+              className="linkedin animate__animated animate__tada"
               title="Linkedin"
             />
           </Link>
