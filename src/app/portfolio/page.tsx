@@ -65,7 +65,7 @@ const projects = [
     ],
     url: "https://santiagomorera.github.io/proyectoJS/#index",
   },
-  /*   {
+  /* {
     id: 8,
     name: "Statement Generator",
     description: "Account Statement Generator",

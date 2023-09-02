@@ -12,7 +12,7 @@ const projects = [
     img: "/images/Webp/eCommerce.webp",
     /* img: "https://i.ibb.co/SnL2zkp/ezgif-com-gif-to-webp.webp", */
     description:
-      "eCommerce (with Chat) developed with Node.js (Layered Architecture), Socket.io, DAOS Factory (Multiple DB), MongoDB, Winston Logger, Nodemailer, Twilio, OAuth 2.0, Passport & Redis. (2023)",
+      "This application is an eCommerce that contains a chat, it allows you to add products to the shopping cart as well as delete them, it has a login and authentication, when you register you will receive an email, you can access your profile and see your data, if you complete a purchase, you will receive an email with the purchased products. (2023)",
     tech: [
       "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -34,7 +34,7 @@ const projects = [
     name: "Pokedex",
     img: "/images/Webp/Pokedex.webp",
     description:
-      "Pokedex app, developed with Node.js, Winston Logger, Nodemailer, OAuth 2.0, Passport & Redis. (2023)",
+      "This application allows you to see a list of 1000 pokemons and add your favorite pokemons to a list as well as eliminate them, you can search for any pokemon and see all its characteristics, it has login and authentication. (2023)",
     tech: [
       "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -50,9 +50,11 @@ const projects = [
   {
     id: 2,
     name: "Abrazo del Arbol",
-    description: "Landing page of a tai chi school. (2023)",
+    description:
+      "This web page is a landing page developed in Vanilla JavaScript, for a martial arts school, it allows you to make purchases of courses through Mercado Pago. (2023)",
     img: "/images/Webp/AbrazoDelArbol.webp",
     tech: [
+      "/images/Icons/MercadoPago.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
@@ -64,7 +66,8 @@ const projects = [
     id: 3,
     name: "Live Chat App",
     img: "/images/Webp/LiveChatApp.webp",
-    description: "Live chat app developed with Socket.io and Node.js. (2023)",
+    description:
+      "This application allows you to select a chat room, chat with the people who are inside the room, it will show you the time of the messages, when you decide you can leave the room and return to the home page. (2023)",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -77,7 +80,7 @@ const projects = [
     id: 4,
     name: "Tecno Shop",
     description:
-      "Ecommerce developed with React.js, Firebase DB besides product categories and stock in database.",
+      "This application is a computer ecommerce developed in React.js, where you can choose a category of products, add them to a shopping cart as well as delete them, at the end of the purchase, the stock of the available product decreases.",
     img: "/images/Webp/TecnoShop.webp",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/250px-React.svg.png",
@@ -91,7 +94,8 @@ const projects = [
   {
     id: 5,
     name: "Naturatours",
-    description: "Tour agency page developed with WordPress CMS.(2020)",
+    description:
+      "This website was developed with the CMS WordPress, for a tour agency in Puerto Vallarta, a landing page that allows you to publicize your products as well as make reservations and close sales. (2020)",
     img: "https://i.ibb.co/VTrr8C7/Natura-Tours.webp",
     tech: ["https://cdn-icons-png.flaticon.com/512/174/174881.png"],
     url: "https://naturatours.com.mx/",
@@ -101,7 +105,7 @@ const projects = [
     name: "eCommerce Js",
     img: "/images/Webp/eCommerceJs.webp",
     description:
-      "eCommerce developed with JavaScript Vanilla, dark mode theme. (2022)",
+      "This is a web page developed with Vanilla JavaScript, it is an eCommerce that allows you to add the products you want to buy to the cart, as well as finalize the purchase, it has a dark/light theme, it was the final project of a JavaScript course. (2022)",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
@@ -114,7 +118,8 @@ const projects = [
   {
     id: 7,
     name: "Invitation",
-    description: "Wedding invitation with Google Form. (2023)",
+    description:
+      "This is an invitation for a wedding where guests can confirm attendance, as well as know all the details of the event. (2023)",
     img: "/images/Webp/Invitation.webp",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
@@ -124,7 +129,7 @@ const projects = [
     ],
     url: "https://santiagomorera.github.io/DeliaYSantiagoInvi/",
   },
-  /*   {
+  {
     id: 8,
     name: "Account Statement Generator",
     description: "Account Statement Generator",
@@ -136,7 +141,7 @@ const projects = [
       "https://sass-lang.com/assets/img/logos/logo.svg",
     ],
     url: "#",
-  }, */
+  },
 ];
 
 const projectDetails = async ({ params }: any) => {
