@@ -54,6 +54,7 @@ const SignUpForm = ({ onLogin }: any) => {
           <h2>Sign Up</h2>
           <Image
             src="/images/Icons/SignUp.webp"
+            priority={true}
             className="arrow"
             alt="image"
             width={100}

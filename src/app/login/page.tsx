@@ -42,6 +42,7 @@ const LoginPage = () => {
           <Image
             src="/images/Icons/Login.webp"
             className="arrow"
+            priority={true}
             width={100}
             height={100}
             alt={"Image"}
