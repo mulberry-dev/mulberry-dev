@@ -51,7 +51,7 @@ const projects = [
     id: 2,
     name: "Abrazo del Arbol",
     description:
-      "This web page is a landing page developed in Vanilla JavaScript, for a martial arts school, it allows you to make purchases of courses through Mercado Pago. (2023)",
+      "Landing page developed in Vanilla JavaScript, for a martial arts school, it allows you to make purchases of courses and products through Mercado Pago. (2023)",
     img: "/images/Webp/AbrazoDelArbol.webp",
     tech: [
       "/images/Icons/MercadoPago.png",
@@ -67,7 +67,7 @@ const projects = [
     name: "Live Chat App",
     img: "/images/Webp/LiveChatApp.webp",
     description:
-      "This application allows you to select a chat room, chat with the people who are inside the room, it will show you the time of the messages, when you decide you can leave the room and return to the home page. (2023)",
+      "Select a chat room, chat with the people who are inside the room, it will show you the time of the messages, when you decide you can leave the room and return to the home page, developed in Node.js. (2023)",
     tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
