@@ -11,6 +11,7 @@ const About = () => {
           <Image
             src="/images/Icons/AvatarSanti.webp"
             alt="Santi Avatar"
+            priority={true}
             width={150}
             height={150}
             title="Santi Avatar"

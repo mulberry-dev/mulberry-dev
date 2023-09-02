@@ -120,6 +120,7 @@ const Portfolio = () => {
               <Image
                 src="/images/Icons/arrow-right-rounded.svg"
                 alt="go-back"
+                priority={true}
                 className="go_back"
                 width={40}
                 height={40}

@@ -244,6 +244,7 @@ function Skills() {
                 src={skill.imageSrc}
                 alt={`${skill.name}-image`}
                 width={90}
+                priority={true}
                 height={90}
                 style={{ objectFit: "contain" }}
                 /* className="transition-opacity opacity-0 duration-1s"

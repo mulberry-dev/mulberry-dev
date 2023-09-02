@@ -15,6 +15,7 @@ const Contact = () => {
             <Image
               src="/images/Icons/tech/LinkedIn.webp"
               alt="Linkedin"
+              priority={true}
               width={70}
               height={70}
               className="linkedin animate__animated animate__tada"
