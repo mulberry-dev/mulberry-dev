@@ -12,7 +12,7 @@ const projects = [
     img: "/images/Webp/eCommerce.webp",
     /* img: "https://i.ibb.co/SnL2zkp/ezgif-com-gif-to-webp.webp", */
     description:
-      "This application is an eCommerce that contains a chat, developed in node, it allows you to add products to the shopping cart as well as delete them, it has a login and authentication, when you register you will receive an email, you can access your profile and see your data, if you complete a purchase, you will receive an email with the purchased products. (2023)",
+      "eCommerce that contains a chat, developed in Node.js, it allows you to add products to the shopping cart as well as delete them, it has a login and authentication, when you register you will receive an email, you can access your profile and see your data, if you complete a purchase, you will receive an email with the purchased products. (2023)",
     tech: [
       "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
@@ -34,7 +34,7 @@ const projects = [
     name: "Pokedex",
     img: "/images/Webp/Pokedex.webp",
     description:
-      "This application allows you to see a list of 1000 pokemons and add your favorite pokemons to a list as well as eliminate them, you can search for any pokemon and see all its characteristics, it has login and authentication. (2023)",
+      "This Node.js application allows you to see a list of 1000 Pokemons and add your favorite pokemons to a list as well as eliminate them, you can search for any Pokemon and see all its characteristics, it has login and authentication. (2023)",
     tech: [
       "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
