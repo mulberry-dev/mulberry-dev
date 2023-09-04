@@ -6,7 +6,7 @@ import Link from "next/link";
 const certificates = [
   {
     id: 0,
-    url: "/images/Certificates/CarreraDesarrolloDeAplicaciones.webp",
+    url: "/images/Certificates/CarreraDesarrolloFullStack.webp",
   },
   {
     id: 1,
