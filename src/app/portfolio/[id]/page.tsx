@@ -12,10 +12,11 @@ const projects = [
     img: "/images/Webp/eCommerce.webp",
     /* img: "https://i.ibb.co/SnL2zkp/ezgif-com-gif-to-webp.webp", */
     description:
-      "eCommerce that contains a chat, developed in Node.js, it allows you to add products to the shopping cart as well as delete them, it has a login and authentication, when you register you will receive an email, you can access your profile and see your data, if you complete a purchase, you will receive an email with the purchased products. (2023)",
+      "eCommerce that contains a chat, developed in Node.js, it allows you to add products to the shopping cart as well as delete them, it has a login and authentication, when you register you will receive an email, you can access your profile and see your data, if you complete a purchase, you will receive an email with the purchased products. Testing with Mocha. (2023)",
     tech: [
       "/images/Icons/tech/node.webp",
       "https://handlebarsjs.com/images/handlebars_logo.png",
+      "/images/Icons/tech/mocha.svg",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
