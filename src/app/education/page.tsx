@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const certificates = [
   {
@@ -39,6 +40,9 @@ const certificates = [
 ];
 
 const Education = () => {
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | Education';
+  }, []);
   return (
     <>
       <section>

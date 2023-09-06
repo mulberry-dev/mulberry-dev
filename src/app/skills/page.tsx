@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const skills = [
   {
@@ -209,13 +209,17 @@ const dataBases = [
   },
 ];
 
-function Skills() {
+const Skills = () => {
   const [selected, setSelected] = useState("");
 
   const onChange = (e: any) => {
     console.log(e.target.innerText);
     /* setSelected(); */
   };
+
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | Skills';
+  }, []);
 
   return (
     <section id="skills">

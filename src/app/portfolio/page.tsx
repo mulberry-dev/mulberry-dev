@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const projects = [
   {
@@ -81,6 +82,10 @@ const projects = [
 
 const Portfolio = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | Portfolio';
+  }, []);
 
   return (
     <>

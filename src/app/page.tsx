@@ -1,6 +1,13 @@
-import Link from "next/link";
+"use client";
 
-const IndexPage = async () => {
+import Link from "next/link";
+import { useEffect } from "react";
+
+const IndexPage =  () => {
+
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | Home';
+  }, []);
   return (
     <>
       <section id="index">

@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | Contact';
+  }, []);
   return (
     <>
       <section id="contacto">

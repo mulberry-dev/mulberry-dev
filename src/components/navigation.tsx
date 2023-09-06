@@ -6,6 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -16,6 +17,8 @@ const Navigation = () => {
       document.getElementById("lanzador")?.click();
     }
   };
+
+
 
 /*   function cambiarEstilosBody() {
     document.body.style.background =

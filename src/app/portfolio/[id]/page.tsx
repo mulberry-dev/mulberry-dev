@@ -3,6 +3,7 @@
 /* import "@/utils/preload"; */
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 /* import { useEffect, useState } from "react"; */
 
 const projects = [
@@ -145,9 +146,16 @@ const projects = [
   },
 ];
 
-const projectDetails = async ({ params }: any) => {
+const ProjectDetails = ({ params }: any) => {
   /*  const [load, setLoaded] = useState(true); */
   const project = projects.find((project) => project.id == params.id);
+
+
+  useEffect(() => {
+    document.title = `ThisIsSanti.dev | ${project?.name}`;
+  }, [project?.name]);
+
+
 
   /*  useEffect(() => {
     return () => {
@@ -254,4 +262,4 @@ const projectDetails = async ({ params }: any) => {
   );
 };
 
-export default projectDetails;
+export default ProjectDetails;
