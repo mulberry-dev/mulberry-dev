@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { links, linksAuth } from "@/data/navegation";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -18,88 +18,6 @@ const Navigation = () => {
     }
   };
 
-
-
-/*   function cambiarEstilosBody() {
-    document.body.style.background =
-      "#0f0c29"; 
-    document.body.style.background =
-      "-webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29)";
-    document.body.style.background =
-      "linear-gradient(to right, #24243e, #302b63, #0f0c29)";
-  }
-
-  function cambiarEstilosBodyOld() {
-    document.body.style.backgroundColor = "hsla(185, 64%, 51%, 1)";
-    document.body.style.backgroundImage =
-      "linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%)";
-    document.body.style.backgroundImage =
-      "-moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%)";
-    document.body.style.backgroundImage =
-      "-webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%)";
-  }
-
-  function cambiarEstilosBodyHome() {
-    document.body.style.background = "#8E2DE2";
-    document.body.style.background =
-      "-webkit-linear-gradient(to bottom, #4A00E0, #8E2DE2)";
-    document.body.style.background =
-      "linear-gradient(to bottom, #4A00E0, #8E2DE2)"; 
-  } */
-/* 
-  if (pathname === "/contact") {
-    cambiarEstilosBody();
-  } else if (pathname === "/") {
-    cambiarEstilosBodyHome();
-  } else {
-    cambiarEstilosBodyOld();
-  }
- */
-
-  const links = [
-    {
-      id: 1,
-      name: "Home",
-      path: "/",
-    },
-    {
-      id: 2,
-      name: "About",
-      path: "/about",
-    },
-    {
-      id: 3,
-      name: "Education",
-      path: "/education",
-    },
-    {
-      id: 4,
-      name: "Skills",
-      path: "/skills",
-    },
-    {
-      id: 5,
-      name: "Portfolio",
-      path: "/portfolio",
-    },
-    {
-      id: 6,
-      name: "Contact",
-      path: "/contact",
-    },
-  ];
-  const linksAuth = [
-    {
-      id: 1,
-      name: "Login",
-      path: "/login",
-    },
-    {
-      id: 2,
-      name: "SignUp",
-      path: "/signup",
-    },
-  ];
   const linksAuthenticated = [
     {
       id: 0,

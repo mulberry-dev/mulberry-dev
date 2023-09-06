@@ -28,7 +28,6 @@ const Contact = () => {
               title="Linkedin"
             />
           </Link>
-
           <div className="buttons_container">
             <Link className="button smallest" href={"/portfolio"}>
               <Image
