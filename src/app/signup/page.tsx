@@ -2,7 +2,7 @@
 
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { notifySuccess, notifyWarn } from "../../utils/toast";
@@ -11,6 +11,10 @@ import Link from "next/link";
 const SignUpForm = ({ onLogin }: any) => {
   const [showPass, setShowPass] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | SignUp';
+  }, []);
 
   const onChange = () => {
     setShowPass(!showPass);

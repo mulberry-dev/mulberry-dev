@@ -5,11 +5,15 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    document.title = 'ThisIsSanti.dev | Login';
+  }, []);
 
   const onChange = () => {
     setShowPass(!showPass);
