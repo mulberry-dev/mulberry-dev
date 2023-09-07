@@ -60,6 +60,13 @@ export const projectsPortfolio = [
       ],
       url: "https://santiagomorera.github.io/proyectoJS/#index",
     },
+    {
+      id: 8,
+      name: "Mi Blog",
+      description: "Blog with admin panel.",
+      img: "/images/thumbnails/MiBlog.png",
+      url: "https://my-blog-1tqhl98hy-santi-iztli.vercel.app/",
+    },
     /* {
       id: 8,
       name: "Statement Generator",

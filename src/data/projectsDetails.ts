@@ -124,6 +124,16 @@ export const projectsDetails = [
     },
     {
       id: 8,
+      name: "Mi Blog",
+      description: "Blog developed in Next.js, with a small admin panel where you can add or delete your posts, it has a login and authentication. (2023)",
+      img: "/images/thumbnails/MiBlog.png",
+      tech: [
+        "/images/Icons/tech/NextJs.webp"
+      ],
+      url: "#",
+    },
+    /* {
+      id: 8,
       name: "Account Statement Generator",
       description: "Account Statement Generator",
       img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
@@ -134,5 +144,5 @@ export const projectsDetails = [
         "https://sass-lang.com/assets/img/logos/logo.svg",
       ],
       url: "#",
-    },
+    }, */
   ];
