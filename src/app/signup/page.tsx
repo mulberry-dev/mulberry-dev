@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { notifySuccess, notifyWarn } from "../../utils/toast";
 import Link from "next/link";
 
-const SignUpForm = ({ onLogin }: any) => {
+const SignUpForm = () => {
   const [showPass, setShowPass] = useState(true);
   const router = useRouter();
 
