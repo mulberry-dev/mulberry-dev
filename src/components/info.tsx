@@ -8,6 +8,7 @@ const Info = () => {
         src={"/images/Icons/Info.webp"}
         alt={"info"}
         width={30}
+        quality={100}
         height={30}
         style={{ objectFit: "contain" }}
         className="info_icon"

@@ -24,6 +24,7 @@ const Contact = () => {
               priority={true}
               width={70}
               height={70}
+              quality={100}
               className="linkedin animate__animated animate__tada"
               title="Linkedin"
             />
