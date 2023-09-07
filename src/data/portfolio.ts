@@ -7,18 +7,38 @@ export const projectsPortfolio = [
       url: "https://ecommerce-backend-43495.fly.dev/",
     },
     {
-      id: 1,
-      name: "Pokedex",
-      img: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
-      tech: ["Node.js", "React.js", "HTML", "CSS3"],
-      url: "https://pokedex-santi-dev.fly.dev/",
+      id: 8,
+      name: "Mi Blog",
+      description: "Blog with admin panel.",
+      img: "/images/thumbnails/MiBlog.png",
+      url: "https://my-blog-1tqhl98hy-santi-iztli.vercel.app/",
     },
+
     {
       id: 2,
       name: "Abrazodelarbol",
       img: "/images/thumbnails/www-abrazodelarbol-com.webp",
       tech: ["Node.js", "React.js", "HTML", "CSS3"],
       url: "https://abrazodelarbol.com",
+    },
+    {
+      id: 5,
+      name: "Naturatours",
+      img: "/images/thumbnails/Thumbnail-naturatours.webp",
+      tech: ["WordPress"],
+      url: "https://naturatours.com.mx/",
+    },
+    {
+      id: 7,
+      name: "Invitation",
+      description: "Wedding invitation with google form.",
+      img: "/images/thumbnails/invitacion-thumbnail.webp",
+      tech: [
+        "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
+        "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+        "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
+      ],
+      url: "https://santiagomorera.github.io/proyectoJS/#index",
     },
     {
       id: 3,
@@ -35,13 +55,6 @@ export const projectsPortfolio = [
       url: "https://tecno-tienda.netlify.app/",
     },
     {
-      id: 5,
-      name: "Naturatours",
-      img: "/images/thumbnails/Thumbnail-naturatours.webp",
-      tech: ["WordPress"],
-      url: "https://naturatours.com.mx/",
-    },
-    {
       id: 6,
       name: "eCommerce Js",
       img: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",
@@ -49,24 +62,13 @@ export const projectsPortfolio = [
       url: "https://santiagomorera.github.io/proyectoJS/#index",
     },
     {
-      id: 7,
-      name: "Invitation",
-      description: "Wedding invitation with google form.",
-      img: "/images/thumbnails/invitacion-thumbnail.webp",
-      tech: [
-        "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
-        "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
-        "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
-      ],
-      url: "https://santiagomorera.github.io/proyectoJS/#index",
+      id: 1,
+      name: "Pokedex",
+      img: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
+      tech: ["Node.js", "React.js", "HTML", "CSS3"],
+      url: "https://pokedex-santi-dev.fly.dev/",
     },
-    {
-      id: 8,
-      name: "Mi Blog",
-      description: "Blog with admin panel.",
-      img: "/images/thumbnails/MiBlog.png",
-      url: "https://my-blog-1tqhl98hy-santi-iztli.vercel.app/",
-    },
+
     /* {
       id: 8,
       name: "Statement Generator",

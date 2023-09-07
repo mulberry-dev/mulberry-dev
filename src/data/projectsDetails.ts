@@ -125,12 +125,14 @@ export const projectsDetails = [
     {
       id: 8,
       name: "Mi Blog",
-      description: "Blog developed in Next.js, with a small admin panel where you can add or delete your posts, it has a login and authentication. (2023)",
+      description: "Blog developed in Next.js, with admin panel where you can add or delete your posts, it has a login and authentication. Offline Mode with Local Storage. (2023)",
       img: "/images/thumbnails/MiBlog.png",
+
       tech: [
-        "/images/Icons/tech/NextJs.webp"
+        "/images/Icons/tech/NextJs.webp",
+        "/images/Icons/mongodb-icon-1.svg"
       ],
-      url: "#",
+      url: "https://my-blog-1tqhl98hy-santi-iztli.vercel.app/",
     },
     /* {
       id: 8,
