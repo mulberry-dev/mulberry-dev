@@ -48,7 +48,6 @@ const ProjectDetails = ({ params }: any) => {
                 src={`${project?.img}`}
                 alt={`${project?.name}-img`}
                 placeholder={"blur"}
-                quality={100}
                 blurDataURL={"data:image/webp..."}
                 priority={true}
                 width={300}
