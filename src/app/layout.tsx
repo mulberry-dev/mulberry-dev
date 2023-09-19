@@ -21,9 +21,9 @@ export default function RootLayout({
     require("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
   return (
-    <html lang="en">
+    <html lang='en'>
       <head>
-        <Head/>
+        <Head />
       </head>
       <body>
         <Providers>
@@ -34,7 +34,7 @@ export default function RootLayout({
         <Particles />
         <ToastContainer />
         <Info />
-        <TraceIP />
+        {/* <TraceIP /> */}
       </body>
     </html>
   );
