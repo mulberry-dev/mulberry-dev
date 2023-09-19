@@ -22,9 +22,6 @@
     "tailwindcss": "^3.3.3",
     "typescript": "5.2.2"
   },
-  "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0"
-  },
   "name": "this-is-santi-dev-frontend",
   "private": true,
   "scripts": {
