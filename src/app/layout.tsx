@@ -34,7 +34,7 @@ export default function RootLayout({
         <Particles />
         <ToastContainer />
         <Info />
-        <TraceIP />
+        {/* <TraceIP /> */}
       </body>
     </html>
   );
