@@ -1,40 +1,40 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
-import { certificates } from "@/data/certificates";
+import Image from "next/image"
+import Link from "next/link"
+import { useEffect } from "react"
+import { certificates } from "@/data/certificates"
 
 const Education = () => {
   useEffect(() => {
-    document.title = 'ThisIsSanti.dev | Education';
-  }, []);
-  
+    document.title = "ThisIsSanti.dev | Education"
+  }, [])
+
   return (
     <>
       <section>
-        <div className="certificates_container animate__animated animate__fadeIn">
-          <h2 className="h2">Certificates</h2>
-          <div className="certificates_container">
+        <div className='certificates_container animate__animated animate__fadeIn'>
+          <h2 className='h2'>Certificates</h2>
+          <div className='certificates_container'>
             <div
-              id="carouselExampleIndicators"
-              className="carousel slide"
-              data-bs-ride="carousel"
+              id='carouselExampleIndicators'
+              className='carousel slide'
+              data-bs-ride='carousel'
             >
-              <div className="carousel-indicators">
+              <div className='carousel-indicators'>
                 {certificates.map((certificate, index) => {
                   return (
                     <button
                       key={index}
-                      type="button"
-                      data-bs-target="#carouselExampleIndicators"
+                      type='button'
+                      data-bs-target='#carouselExampleIndicators'
                       data-bs-slide-to={index}
                       className={index === 0 ? "active" : ""}
                     ></button>
-                  );
+                  )
                 })}
               </div>
-              <div className="carousel-inner">
+              <div className='carousel-inner'>
                 {certificates.map((certificate, index) => {
                   return (
                     <div
@@ -42,13 +42,13 @@ const Education = () => {
                       className={
                         index === 0 ? "carousel-item active" : "carousel-item"
                       }
-                      data-bs-interval="4000"
+                      data-bs-interval='4000'
                     >
                       <Image
                         src={certificate.url}
                         alt={certificate.url}
                         priority={true}
-                        className="d-block w-100 certificado transition-opacity opacity-0 duration-2s"
+                        className='d-block w-100 certificado transition-opacity opacity-0 duration-2s'
                         onLoadingComplete={(image) =>
                           image.classList.remove("opacity-0")
                         }
@@ -56,54 +56,54 @@ const Education = () => {
                         height={600}
                       />
                     </div>
-                  );
+                  )
                 })}
               </div>
               <button
-                className="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev"
+                className='carousel-control-prev'
+                type='button'
+                data-bs-target='#carouselExampleIndicators'
+                data-bs-slide='prev'
               >
                 <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
+                  className='carousel-control-prev-icon'
+                  aria-hidden='true'
                 ></span>
-                <span className="visually-hidden">Previous</span>
+                <span className='visually-hidden'>Previous</span>
               </button>
               <button
-                className="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next"
+                className='carousel-control-next'
+                type='button'
+                data-bs-target='#carouselExampleIndicators'
+                data-bs-slide='next'
               >
                 <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
+                  className='carousel-control-next-icon'
+                  aria-hidden='true'
                 ></span>
-                <span className="visually-hidden">Next</span>
+                <span className='visually-hidden'>Next</span>
               </button>
             </div>
           </div>
-          <div className="buttons_container" style={{ marginTop: "-40px" }}>
-            <Link className="button smallest " href={"/about"}>
+          <div className='buttons_container' style={{ marginTop: "-40px" }}>
+            <Link className='button smallest ' href={"/about"}>
               <Image
-                src="/images/Icons/arrow-right-rounded.svg"
-                alt="go-back"
-                className="go_back"
+                src='/images/Icons/arrow-right-rounded.svg'
+                alt='go-back'
+                className='go_back'
                 width={40}
                 height={40}
-                title="Go back"
+                title='Go back'
               />
             </Link>
-            <Link className="button-generic" href="/skills">
+            <Link className='button-generic' href='/skills'>
               Skills
             </Link>
           </div>
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Education;
+export default Education

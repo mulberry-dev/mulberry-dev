@@ -1,4 +1,3 @@
-
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -80,43 +79,43 @@ const nextConfig = {
         protocol: "https",
         hostname: "d33wubrfki0l68.cloudfront.net",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "cdn.shopify.com",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "tailwindcss.com",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "nodemailer.com",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "static-00.iconduck.com",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "samherbert.net",
         port: "",
-        pathname: "/account123/**",
+        pathname: "/**",
       },
     ],
   },
