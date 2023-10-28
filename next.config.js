@@ -1,30 +1,125 @@
-/** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "icons-png.flaticon.com",
-      "cdn-icons-png.flaticon.com",
-      "upload.wikimedia.org",
-      "w7.pngwing.com",
-      "i.ibb.co",
-      "thisissanti.dev",
-      "handlebarsjs.com",
-      "www.pngall.com",
-      "upload.wikimedia.org",
-      "sass-lang.com",
-      "static.cdnlogo.com",
-      "logos-world.net",
-      "www.freepnglogos.com",
-      "d33wubrfki0l68.cloudfront.net",
-      "cdn.shopify.com",
-      "avatars.githubusercontent.com",
-      "tailwindcss.com",
-      "nodemailer.com",
-      "static-00.iconduck.com",
-      "samherbert.net"
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "icons-png.flaticon.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn-icons-png.flaticon.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "w7.pngwing.com",
+        port: "",
+        pathname: "/**",
+      },
+      { protocol: "https", hostname: "i.ibb.co", port: "", pathname: "/**" },
+      {
+        protocol: "https",
+        hostname: "thisissanti.dev",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "handlebarsjs.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.pngall.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "sass-lang.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "static.cdnlogo.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "logos-world.net",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.freepnglogos.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "d33wubrfki0l68.cloudfront.net",
+        port: "",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        port: "",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tailwindcss.com",
+        port: "",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "nodemailer.com",
+        port: "",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "static-00.iconduck.com",
+        port: "",
+        pathname: "/account123/**",
+      },
+      {
+        protocol: "https",
+        hostname: "samherbert.net",
+        port: "",
+        pathname: "/account123/**",
+      },
     ],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
