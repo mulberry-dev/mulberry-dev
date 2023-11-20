@@ -5,7 +5,7 @@ export function alertInfo(params: string) {
     Swal.fire({
       icon: "info",
       title: "App developed with: <br/> <span>Next.js<span/>",
-      text: "Version: 14",
+      text: "Last update: Nov 14th 2023",
       focusConfirm: false,
       confirmButtonText: "Great!",
       confirmButtonAriaLabel: "Thumbs up, great!",
