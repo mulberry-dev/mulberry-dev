@@ -5,7 +5,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/HTML.webp",
     experience: 6,
     unite: "Years",
-    progress: 85,
+    progress: 90,
   },
   {
     id: 1,
@@ -13,7 +13,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/CSS3.webp",
     experience: 6,
     unite: "Years",
-    progress: 85,
+    progress: 90,
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/JavaScript.webp",
     experience: 4,
     unite: "Years",
-    progress: 60,
+    progress: 80,
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/TypeScript.webp",
     experience: 2,
     unite: "Years",
-    progress: 60,
+    progress: 75,
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/Ico-react.webp",
     experience: 3,
     unite: "Years",
-    progress: 65,
+    progress: 80,
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/NextJs.webp",
     experience: 2,
     unite: "Years",
-    progress: 65,
+    progress: 80,
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/node.webp",
     experience: 3,
     unite: "Years",
-    progress: 75,
+    progress: 90,
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/Nest.svg",
     experience: 2,
     unite: "Years",
-    progress: 65,
+    progress: 80,
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/Ico-react.webp",
     experience: 2,
     unite: "Year",
-    progress: 40,
+    progress: 60,
   },
   {
     id: 9,
@@ -77,7 +77,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/Bootstrap.webp",
     experience: 3,
     unite: "Years",
-    progress: 65,
+    progress: 80,
   },
   {
     id: 10,
@@ -85,7 +85,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/Redux.webp",
     experience: 2,
     unite: "Year",
-    progress: 50,
+    progress: 75,
   },
   {
     id: 11,
@@ -101,7 +101,7 @@ export const skills = [
     imageSrc: "/images/Icons/tech/MUI.webp",
     experience: 2,
     unite: "Years",
-    progress: 60,
+    progress: 90,
   },
   {
     id: 13,
@@ -110,7 +110,7 @@ export const skills = [
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
-    progress: 40,
+    progress: 70,
   },
   {
     id: 14,
@@ -119,7 +119,7 @@ export const skills = [
     experience: 5,
     unite: "Years",
     style: { width: "120%" },
-    progress: 75,
+    progress: 80,
   },
   {
     id: 15,
@@ -128,7 +128,7 @@ export const skills = [
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
-    progress: 10,
+    progress: 30,
   },
   {
     id: 16,
@@ -137,7 +137,7 @@ export const skills = [
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
-    progress: 10,
+    progress: 30,
   },
   {
     id: 17,
@@ -146,7 +146,7 @@ export const skills = [
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
-    progress: 5,
+    progress: 30,
   },
   {
     id: 18,
@@ -155,7 +155,7 @@ export const skills = [
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
-    progress: 5,
+    progress: 50,
   },
   {
     id: 19,
@@ -163,6 +163,6 @@ export const skills = [
     imageSrc: "https://cdn-icons-png.flaticon.com/512/5968/5968342.png",
     experience: 2,
     unite: "Years",
-    progress: 65,
+    progress: 75,
   },
 ]
