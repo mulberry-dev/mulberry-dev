@@ -84,13 +84,22 @@ const ProjectDetails = ({ params }: any) => {
                         title='Go back'
                       />
                     </Link>
-                    <Link
-                      className='button-generic'
-                      href={`${project?.url}`}
-                      title={`Go to ${project?.name} site`}
-                    >
-                      Visit
-                    </Link>
+                    {project?.url === null ? (
+                      <div
+                        className='button-generic'
+                        title={`Deploy unavailable`}
+                      >
+                        Deploy unavailable
+                      </div>
+                    ) : (
+                      <Link
+                        className='button-generic'
+                        href={`${project?.url}`}
+                        title={`Go to ${project?.name} site`}
+                      >
+                        Visit
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

@@ -132,7 +132,7 @@ export const projectsDetails = [
         "/images/Icons/tech/NextJs.webp",
         "/images/Icons/mongodb-icon-1.svg"
       ],
-      url: "https://my-blog-1tqhl98hy-santi-iztli.vercel.app/",
+      url: null,
     },
     /* {
       id: 8,
