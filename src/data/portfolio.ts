@@ -11,7 +11,7 @@ export const projectsPortfolio = [
       name: "Mi Blog",
       description: "Blog with admin panel.",
       img: "/images/thumbnails/MiBlog.png",
-      url: "https://my-blog-1tqhl98hy-santi-iztli.vercel.app/",
+      url: null,
     },
 
     {
