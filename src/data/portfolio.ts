@@ -28,7 +28,7 @@ export const projectsPortfolio = [
       tech: ["WordPress"],
       url: "https://naturatours.com.mx/",
     },
-    {
+    /* {
       id: 7,
       name: "Invitation",
       description: "Wedding invitation with google form.",
@@ -39,7 +39,7 @@ export const projectsPortfolio = [
         "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
       ],
       url: "https://santiagomorera.github.io/proyectoJS/#index",
-    },
+    }, */
     {
       id: 3,
       name: "Live Chat App",

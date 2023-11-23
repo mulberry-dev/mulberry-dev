@@ -108,7 +108,7 @@ export const projectsDetails = [
       ],
       url: "https://santiagomorera.github.io/proyectoJS/#index",
     },
-    {
+    /* {
       id: 7,
       name: "Invitation",
       description:
@@ -121,7 +121,7 @@ export const projectsDetails = [
         "https://sass-lang.com/assets/img/logos/logo.svg",
       ],
       url: "https://santiagomorera.github.io/DeliaYSantiagoInvi/",
-    },
+    }, */
     {
       id: 8,
       name: "Mi Blog",
