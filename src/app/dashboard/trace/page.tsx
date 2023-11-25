@@ -1,15 +1,15 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
+/* import { useEffect, useState } from "react"
+import Image from "next/image" */
 
 const CountryPrinter = () => {
-  const [currentCountry, setCurrentCountry] = useState<string | null>(null)
+  /*   const [currentCountry, setCurrentCountry] = useState<string | null>(null)
   const [countryFlag, setCountryFlag] = useState<string | null>(null)
   const [publicIp, setPublicIp] = useState<string | null>(null)
-  const [localIp, setLocalIp] = useState<string | null>(null)
+  const [localIp, setLocalIp] = useState<string | null>(null) */
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const obtenerUbicacion = () => {
       console.log("Obteniendo ubicación...")
       if ("geolocation" in navigator) {
@@ -25,8 +25,6 @@ const CountryPrinter = () => {
               .then((data) => {
                 const pais = data.address.country
                 setCurrentCountry(pais)
-
-                // Fetch country flag based on country code
                 fetch(`https://restcountries.com/v3.1/name/${pais}`)
                   .then((response) => response.json())
                   .then((data) => {
@@ -86,12 +84,11 @@ const CountryPrinter = () => {
     obtenerDetallesNavegador()
     obtenerIpPublica()
     obtenerIpLocal()
-  }, []) // Empty dependency array ensures that this effect runs once, similar to componentDidMount
-
+  }, [])  */
   return (
     <section>
       <h2>Detalles:</h2>
-      {currentCountry && (
+      {/* {currentCountry && (
         <p>
           País actual: {currentCountry}{" "}
           {countryFlag && (
@@ -110,7 +107,7 @@ const CountryPrinter = () => {
       <p>Plataforma del sistema: {window?.navigator.platform}</p>
       <p>User Agent: {window?.navigator.userAgent}</p>
       {publicIp && <p>IP Pública: {publicIp}</p>}
-      {localIp && <p>IP Local: {localIp}</p>}
+      {localIp && <p>IP Local: {localIp}</p>} */}
     </section>
   )
 }
