@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import { notifyInfo } from "@/utils/toast";
-import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { links, linksAuth } from "@/data/navegation";
+import "bootstrap/dist/css/bootstrap.min.css"
+import { notifyInfo } from "@/utils/toast"
+import { signOut, useSession } from "next-auth/react"
+import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { links, linksAuth } from "@/data/navegation"
 
 const Navigation = () => {
-  const pathname = usePathname();
-  const session = useSession();
+  const pathname = usePathname()
+  const session = useSession()
 
   const toggleNavbar = () => {
     if (window.innerWidth < 990) {
-      document.getElementById("lanzador")?.click();
+      document.getElementById("lanzador")?.click()
     }
-  };
+  }
 
   const linksAuthenticated = [
     {
@@ -27,51 +27,57 @@ const Navigation = () => {
     },
     {
       id: 1,
+      name: "Trace",
+      path: "/dashboard/trace",
+      onClick: toggleNavbar,
+    },
+    {
+      id: 2,
       name: "SignOut",
       path: "",
       onClick: () => {
-        notifyInfo("Come Back Soon 👋");
-        toggleNavbar();
+        notifyInfo("Come Back Soon 👋")
+        toggleNavbar()
 
         setTimeout(() => {
-          return signOut();
-        }, 500);
+          return signOut()
+        }, 500)
 
-        return;
+        return
       },
     },
-  ];
+  ]
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed menu">
-        <div className="container-fluid justify-content-end">
+      <nav className='navbar navbar-expand-lg navbar-dark bg-dark position-fixed menu'>
+        <div className='container-fluid justify-content-end'>
           <div
-            className="menu-activador"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            className='menu-activador'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarNav'
+            aria-controls='navbarNav'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
           >
-            <input type="checkbox" id="lanzador" />
-            <label htmlFor="lanzador">
-              <span className="menu-activador-linea"></span>
-              <span className="menu-activador-linea"></span>
-              <span className="menu-activador-linea"></span>
+            <input type='checkbox' id='lanzador' />
+            <label htmlFor='lanzador'>
+              <span className='menu-activador-linea'></span>
+              <span className='menu-activador-linea'></span>
+              <span className='menu-activador-linea'></span>
             </label>
           </div>
           <div
-            className="collapse navbar-collapse justify-content-around"
-            id="navbarNav"
+            className='collapse navbar-collapse justify-content-around'
+            id='navbarNav'
           >
-            <ul className="navbar-nav">
+            <ul className='navbar-nav'>
               <li>
                 {session.status === "authenticated" ? (
                   <>
-                    <div className="logo_container">
+                    <div className='logo_container'>
                       <Image
-                        src="/images/Icons/MouseArrow.webp"
+                        src='/images/Icons/MouseArrow.webp'
                         width={30}
                         height={30}
                         alt={"Logo"}
@@ -81,13 +87,13 @@ const Navigation = () => {
                   </>
                 ) : (
                   <Link
-                    href="/"
+                    href='/'
                     style={{ textDecoration: "none" }}
                     onClick={toggleNavbar}
                   >
-                    <div className="logo_container">
+                    <div className='logo_container'>
                       <Image
-                        src="/images/Icons/MouseArrow.webp"
+                        src='/images/Icons/MouseArrow.webp'
                         width={30}
                         height={30}
                         alt={"Logo"}
@@ -98,7 +104,7 @@ const Navigation = () => {
                 )}
               </li>
             </ul>
-            <ul className="navbar-nav">
+            <ul className='navbar-nav'>
               {session.status === "authenticated" ? (
                 <></>
               ) : (
@@ -107,7 +113,7 @@ const Navigation = () => {
                   {links.map((link) => (
                     <li
                       key={link.id}
-                      className="nav-item d-flex justify-content-center "
+                      className='nav-item d-flex justify-content-center '
                     >
                       <Link
                         className={
@@ -115,7 +121,7 @@ const Navigation = () => {
                             ? "nav-link activo"
                             : "nav-link "
                         }
-                        aria-current="page"
+                        aria-current='page'
                         href={link.path}
                         onClick={toggleNavbar}
                       >
@@ -126,13 +132,13 @@ const Navigation = () => {
                 </>
               )}
             </ul>
-            <ul className="navbar-nav flex-row justify-content-center">
+            <ul className='navbar-nav flex-row justify-content-center'>
               {session.status === "authenticated" ? (
                 <>
                   {linksAuthenticated.map((link) => (
                     <li
                       key={link.id}
-                      className="nav-item d-flex justify-content-center p-1"
+                      className='nav-item d-flex justify-content-center p-1'
                     >
                       <Link
                         className={
@@ -140,7 +146,7 @@ const Navigation = () => {
                             ? "nav-link activo"
                             : "nav-link "
                         }
-                        aria-current="page"
+                        aria-current='page'
                         href={link.path}
                         onClick={link.onClick}
                       >
@@ -154,7 +160,7 @@ const Navigation = () => {
                   {linksAuth.map((link) => (
                     <li
                       key={link.id}
-                      className="nav-item d-flex justify-content-center p-1"
+                      className='nav-item d-flex justify-content-center p-1'
                     >
                       <Link
                         className={
@@ -162,7 +168,7 @@ const Navigation = () => {
                             ? "nav-link activo"
                             : "nav-link "
                         }
-                        aria-current="page"
+                        aria-current='page'
                         href={link.path}
                         onClick={toggleNavbar}
                       >
@@ -177,7 +183,7 @@ const Navigation = () => {
         </div>
       </nav>
     </>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation
