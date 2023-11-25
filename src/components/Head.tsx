@@ -1,5 +1,3 @@
-
-
 const Head = () => {
   return (
     <>
@@ -32,17 +30,8 @@ const Head = () => {
         property='og:image'
         content='https://i.ibb.co/BwtSfMG/Captura-de-pantalla-2023-09-24-161329.png'
       />
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9LF1M7WSF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-N9LF1M7WSF');
-</script>
     </>
-  );
+  )
 }
 
 export default Head

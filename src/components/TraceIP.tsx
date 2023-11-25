@@ -1,10 +1,10 @@
-// components/GoogleTag.js
+/* 
 import Head from "next/head"
 import Script from "next/script"
 
 const GoogleTag = () => (
   <Head>
-    {/* Google tag (gtag.js) */}
+
     <script
       async
       src='https://www.googletagmanager.com/gtag/js?id=G-HP85BC1BKY'
@@ -20,4 +20,4 @@ const GoogleTag = () => (
   </Head>
 )
 
-export default GoogleTag
+export default GoogleTag */
