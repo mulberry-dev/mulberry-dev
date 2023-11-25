@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 const CountryPrinter = () => {
   const [currentCountry, setCurrentCountry] = useState<string | null>(null)
@@ -53,13 +54,7 @@ const CountryPrinter = () => {
     }
 
     const obtenerDetallesNavegador = () => {
-      const navegador = window.navigator
-      console.log("Detalles del navegador:")
-      console.log("Nombre del navegador:", navegador.appName)
-      console.log("Versión del navegador:", navegador.appVersion)
-      console.log("Idioma preferido:", navegador.language)
-      console.log("Plataforma del sistema:", navegador.platform)
-      console.log("User Agent:", navegador.userAgent)
+      const navegador = window?.navigator
     }
 
     const obtenerIpPublica = () => {
@@ -68,7 +63,6 @@ const CountryPrinter = () => {
         .then((data) => {
           const ip = data.ip
           setPublicIp(ip)
-          console.log("IP Pública:", ip)
         })
         .catch((error) => {
           console.error("Error al obtener la IP pública:", error.message)
@@ -101,7 +95,12 @@ const CountryPrinter = () => {
         <p>
           País actual: {currentCountry}{" "}
           {countryFlag && (
-            <img src={countryFlag} alt={`${currentCountry} flag`} />
+            <Image
+              src={countryFlag}
+              width={30}
+              height={30}
+              alt={`${currentCountry} flag`}
+            />
           )}
         </p>
       )}
