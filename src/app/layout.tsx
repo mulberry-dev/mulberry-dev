@@ -1,7 +1,6 @@
 "use client"
 
 import Head from "@/components/Head"
-import TraceIP from "@/components/TraceIP"
 import Info from "@/components/info"
 import Navigation from "@/components/navigation"
 import Particles from "@/components/particles"
