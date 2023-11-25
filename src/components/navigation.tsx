@@ -25,12 +25,12 @@ const Navigation = () => {
       path: "/dashboard/profile",
       onClick: toggleNavbar,
     },
-    {
+    /* {
       id: 1,
       name: "Trace",
       path: "/dashboard/trace",
       onClick: toggleNavbar,
-    },
+    }, */
     {
       id: 2,
       name: "SignOut",
