@@ -13,11 +13,11 @@ const About = () => {
       <section id='about'>
         <div className='about_wrapper square-animation animate__animated animate__fadeIn'>
           <Image
-            src='/images/Icons/AvatarSanti.webp'
+            src='/images/Icons/avatar-santi-git.svg'
             alt='Santi Avatar'
             priority={true}
-            width={150}
-            height={150}
+            width={250}
+            height={250}
             quality={100}
             title='Santi Avatar'
             className='santi_avatar transition-opacity opacity-0 duration-2s'
@@ -25,9 +25,10 @@ const About = () => {
           />
           {
             <p className='about_text'>
-              Programmer who loves code and technology, taste for UX & UI
-              design, constantly focused on learning new technologies, comitted
-              to developing specialized and scalable technology in new projects.
+              Programmer who loves coding and technology, with a penchant for UX
+              & UI design. Constantly focused on learning new technologies,
+              committed to developing specialized and scalable technology in new
+              projects.
             </p>
           }
           <div className='buttons_container'>
