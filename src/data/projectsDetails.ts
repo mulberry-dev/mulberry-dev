@@ -73,7 +73,8 @@ export const projectsDetails = [
     id: 4,
     name: "Tecno Shop",
     description:
-"This application is a computer e-commerce platform developed in React.js. Users can select a category of products, add items to a shopping cart, and remove them. Upon completing a purchase, the available product stock decreases.",    img: "/images/Webp/TecnoShop.webp",
+      "This application is a computer e-commerce platform developed in React.js. Users can select a category of products, add items to a shopping cart, and remove them. Upon completing a purchase, the available product stock decreases.",
+    img: "/images/Webp/TecnoShop.webp",
     tech: [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/250px-React.svg.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
@@ -87,7 +88,8 @@ export const projectsDetails = [
     id: 5,
     name: "Naturatours",
     description:
-"This website was developed using the CMS WordPress for a tour agency in Puerto Vallarta. It features a landing page that allows you to showcase products, make reservations, and complete sales. (2020)",    img: "https://i.ibb.co/VTrr8C7/Natura-Tours.webp",
+      "This website was developed using the CMS WordPress for a tour agency in Puerto Vallarta. It features a landing page that allows you to showcase products, make reservations, and complete sales. (2020)",
+    img: "https://i.ibb.co/VTrr8C7/Natura-Tours.webp",
     tech: ["https://cdn-icons-png.flaticon.com/512/536/536493.png"],
     url: "https://naturatours.com.mx/",
   },
@@ -96,7 +98,8 @@ export const projectsDetails = [
     name: "eCommerce Js",
     img: "/images/Webp/eCommerceJs.webp",
     description:
-"This web page, developed with Vanilla JavaScript, is an eCommerce platform that enables users to add products to the cart and complete purchases. It includes a dark/light theme and served as the final project for a JavaScript course. (2022)",    tech: [
+      "This web page, developed with Vanilla JavaScript, is an eCommerce platform that enables users to add products to the cart and complete purchases. It includes a dark/light theme and served as the final project for a JavaScript course. (2022)",
+    tech: [
       "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
       "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
@@ -132,17 +135,17 @@ export const projectsDetails = [
     ],
     url: null,
   },
-  /* {
-      id: 8,
-      name: "Account Statement Generator",
-      description: "Account Statement Generator",
-      img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
-      tech: [
-        "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
-        "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
-        "https://sass-lang.com/assets/img/logos/logo.svg",
-      ],
-      url: "#",
-    }, */
+  {
+    id: 8,
+    name: "Account Statement Generator",
+    description: "Account Statement Generator",
+    img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
+    tech: [
+      "https://cdn-icons-png.flaticon.com/512/5968/5968267.png",
+      "https://cdn-icons-png.flaticon.com/512/5968/5968242.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902",
+      "https://sass-lang.com/assets/img/logos/logo.svg",
+    ],
+    url: null,
+  },
 ]

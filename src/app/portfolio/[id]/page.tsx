@@ -87,9 +87,9 @@ const ProjectDetails = ({ params }: any) => {
                     {project?.url === null ? (
                       <div
                         className='button-generic'
-                        title={`Deploy unavailable`}
+                        title={`Private deployment`}
                       >
-                        Deploy unavailable
+                        Private deployment
                       </div>
                     ) : (
                       <Link
