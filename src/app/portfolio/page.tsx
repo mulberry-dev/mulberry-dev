@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { projectsPortfolio as projects } from "@/data/portfolio";
+import { data as projects } from "@/data/projects";
 
 const Portfolio = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const Portfolio = () => {
           <div className="projects-container">
             {projects?.map((project) => (
               <div
-                key={`${project.id}-${project.name}`}
+                key={`${project.name}`}
                 className={`project-item`}
                 onClick={() => {
                   router.push(`/portfolio/${project.id}`);
@@ -33,8 +33,8 @@ const Portfolio = () => {
                 </div>
                 <figure className="project-image">
                   <Image
-                    src={project.img}
-                    alt={`${project.img}-image`}
+                    src={project.thumbnail}
+                    alt={`${project.thumbnail}-image`}
                     className="project-image transition-opacity duration-1s"
     
                     width={135}

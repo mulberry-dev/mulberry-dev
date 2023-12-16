@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect } from "react"
-import { projectsDetails as projects } from "@/data/projectsDetails"
+import { data as projects } from "@/data/projects"
 
 const ProjectDetails = ({ params }: any) => {
   const project = projects.find((project) => project.id == params.id)
@@ -63,7 +63,7 @@ const ProjectDetails = ({ params }: any) => {
                   <div className='tech_container'>
                     {project?.tech.map((e) => (
                       <Image
-                        key={`${project.id}-${project.name}`}
+                        key={`${project.id}`}
                         src={e}
                         width={40}
                         height={40}
