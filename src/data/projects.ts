@@ -1,7 +1,7 @@
 export const data = [
   {
     id: 0,
-    name: "Abrazo del Arbol",
+    name: "Tree Hug",
     description:
       "A landing page developed in Vanilla JavaScript for a martial arts school. It facilitates course and product purchases through Mercado Pago. (2023)",
     img: "/images/Webp/AbrazoDelArbol.webp",
