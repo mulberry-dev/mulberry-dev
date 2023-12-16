@@ -68,8 +68,7 @@ export const projectsPortfolio = [
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
     url: "https://pokedex-santi-dev.fly.dev/",
   },
-
-  {
+  /*   {
     id: 9,
     name: "Afore App",
     description: "Account Statement Generator",
@@ -80,5 +79,5 @@ export const projectsPortfolio = [
       "https://www.freepnglogos.com/uploads/javascript-png/png-javascript-badge-picture-8.png",
     ],
     url: "#",
-  },
+  }, */
 ]

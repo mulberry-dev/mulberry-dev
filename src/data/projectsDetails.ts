@@ -135,7 +135,7 @@ export const projectsDetails = [
     ],
     url: null,
   },
-  {
+  /* {
     id: 9,
     name: "Account Statement Generator",
     description: "Account Statement Generator",
@@ -147,5 +147,5 @@ export const projectsDetails = [
       "https://sass-lang.com/assets/img/logos/logo.svg",
     ],
     url: null,
-  },
+  }, */
 ]
