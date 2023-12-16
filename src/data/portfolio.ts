@@ -70,8 +70,8 @@ export const projectsPortfolio = [
   },
 
   {
-    id: 8,
-    name: "Statement Generator",
+    id: 9,
+    name: "Afore App",
     description: "Account Statement Generator",
     img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
     tech: [

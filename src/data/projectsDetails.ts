@@ -136,7 +136,7 @@ export const projectsDetails = [
     url: null,
   },
   {
-    id: 8,
+    id: 9,
     name: "Account Statement Generator",
     description: "Account Statement Generator",
     img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
