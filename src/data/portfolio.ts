@@ -4,7 +4,7 @@ export const projectsPortfolio = [
     name: "eCommerce",
     img: "/images/thumbnails/Thumbnail-e-Commerce-Backend.webp",
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
-    url: "https://ecommerce-backend-43495.fly.dev/",
+    url: null,
   },
   {
     id: 8,
@@ -59,14 +59,14 @@ export const projectsPortfolio = [
     name: "eCommerce Js",
     img: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
-    url: "https://santiagomorera.github.io/proyectoJS/#index",
+    url: null,
   },
   {
     id: 1,
     name: "Pokedex",
     img: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
     tech: ["Node.js", "React.js", "HTML", "CSS3"],
-    url: "https://pokedex-santi-dev.fly.dev/",
+    url: null,
   },
   /*   {
     id: 9,
