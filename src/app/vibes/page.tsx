@@ -3,6 +3,7 @@
 const page = () => {
   return (
     <section>
+      <h2>Vibes Test</h2>
       <div className='vibration-container'>
         <div onClick={() => navigator.vibrate(100)}>Vibrate 100</div>
         <div onClick={() => navigator.vibrate(200)}>Vibrate 200</div>
