@@ -1,3 +1,3 @@
-const vibrar = () => { 
-    navigator.vibrate(200)
+const vibrar = () => {
+  navigator.vibrate(200)
 }

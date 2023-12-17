@@ -32,11 +32,7 @@ const About = () => {
             </p>
           }
           <div className='buttons_container'>
-            <Link
-              className='button smallest '
-              onClick={() => navigator.vibrate(200)}
-              href={"/"}
-            >
+            <Link className='button smallest ' href={"/"}>
               <Image
                 src='/images/Icons/arrow-right-rounded.svg'
                 alt='go-back'
@@ -46,11 +42,7 @@ const About = () => {
                 title='Go back'
               />
             </Link>
-            <Link
-              className='button-generic'
-              onClick={() => navigator.vibrate(300)}
-              href='/education'
-            >
+            <Link className='button-generic' href='/education'>
               Education
             </Link>
           </div>

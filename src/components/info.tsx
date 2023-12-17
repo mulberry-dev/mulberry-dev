@@ -12,10 +12,7 @@ const Info = () => {
         height={30}
         className='info_icon'
         title='Site info'
-        onClick={() => {
-          navigator.vibrate(200)
-          alertInfo("info")
-        }}
+        onClick={() => alertInfo("info")}
       ></Image>
     </>
   )
