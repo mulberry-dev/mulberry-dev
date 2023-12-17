@@ -59,6 +59,7 @@ const Navigation = () => {
             aria-controls='navbarNav'
             aria-expanded='false'
             aria-label='Toggle navigation'
+            onClick={() => navigator.vibrate(200)}
           >
             <input type='checkbox' id='lanzador' />
             <label htmlFor='lanzador'>

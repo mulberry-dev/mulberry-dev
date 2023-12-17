@@ -1,5 +1,5 @@
-import { alertInfo } from "@/utils/alerts";
-import Image from "next/image";
+import { alertInfo } from "@/utils/alerts"
+import Image from "next/image"
 
 const Info = () => {
   return (
@@ -10,12 +10,15 @@ const Info = () => {
         width={30}
         quality={100}
         height={30}
-        className="info_icon"
-        title="Site info"
-        onClick={() => alertInfo("info")}
+        className='info_icon'
+        title='Site info'
+        onClick={() => {
+          navigator.vibrate(200)
+          alertInfo("info")
+        }}
       ></Image>
     </>
-  );
-};
+  )
+}
 
-export default Info;
+export default Info
