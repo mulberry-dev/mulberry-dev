@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import "@/utils/theme-toggle"
+//import "@/utils/theme-toggle"
 import { onClick } from "@/utils/theme-toggle"
 
 const ThemeIcon = () => {

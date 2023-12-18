@@ -8,7 +8,7 @@ export const onClick = () => {
   setPreference()
 }
 
-const getColorPreference = () => {
+/* const getColorPreference = () => {
   if (localStorage.getItem(storageKey)) return localStorage.getItem(storageKey)
   else
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -48,3 +48,4 @@ window
     theme.value = isDark ? "dark" : "light"
     setPreference()
   })
+ */
