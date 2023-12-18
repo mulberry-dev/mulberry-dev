@@ -6,10 +6,12 @@
 
     &:hover {
         transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
-        transform: scale(1.2);
+        transform: scale(1.05);
         cursor: pointer;
     }
 }
+
+
 
 .swal2-popup {
     background-color: rgba(255, 255, 255, 0.315) !important;

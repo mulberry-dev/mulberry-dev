@@ -1,24 +1,33 @@
 /** Body **/
 
+$color1: hsla(185, 64%, 51%, 1);
+$color2: hsla(277, 74%, 24%, 1);
+
+$porcentaje: 0%;
+
 
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    transition: backgroud .5s ease;
-    background: hsla(185, 64%, 51%, 1);
 
+    transition: background 300ms ease;
     background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
-
     background: -moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
-
     background: -webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
-
     background-attachment: fixed;
     font-family: 'Poppins', monospace, sans-serif;
     color: white;
 
+    &.dark {
+        background: darken($color1, 10%);
+        background: linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
+        background: -moz-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
+        background: -webkit-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
+        background: -webkit-linear-gradient(90deg, rgb(23, 91, 97) 0%, rgb(54, 12, 79) 100%);
+        background-attachment: fixed;
+    }
 }
 
 .tracker {
@@ -36,6 +45,7 @@ h2 {
     color: white !important;
     font-size: 40px !important;
     margin-top: 70px !important;
+    transition-duration: 150ms;
 
     @media (min-width: 768px) {
         font-size: 55px !important;
@@ -46,4 +56,5 @@ h2 {
         font-size: 60px !important;
         /*   margin-top: 35px !important; */
     }
+
 }

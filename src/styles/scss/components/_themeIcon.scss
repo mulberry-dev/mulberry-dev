@@ -1,0 +1,13 @@
+.theme-icon {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 999;
+    cursor: pointer;
+    display: none;
+
+    &:active {
+        transform: scale(1.1);
+    }
+
+}

@@ -6,11 +6,13 @@ import Navigation from "@/components/navigation"
 import Particles from "@/components/particles"
 import Providers from "@/components/providers"
 import "@/styles/scss/styles.scss"
+import "@/styles/css/index.css"
 import { Analytics } from "@vercel/analytics/react"
 import "animate.css"
 import { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
 import Script from "next/script"
+import ThemeIcon from "@/components/ThemeIcon"
 
 export default function RootLayout({
   children,
@@ -37,7 +39,7 @@ export default function RootLayout({
       `}
         </script>
       </head>
-      <body>
+      <body className='dark'>
         <Providers>
           <Navigation />
           {children}
@@ -46,6 +48,7 @@ export default function RootLayout({
         <Particles />
         <ToastContainer />
         <Info />
+        <ThemeIcon />
         {/* <TraceIP /> */}
       </body>
     </html>

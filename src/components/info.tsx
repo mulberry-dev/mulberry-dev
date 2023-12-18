@@ -5,12 +5,11 @@ const Info = () => {
   return (
     <>
       <Image
-        src={"/images/Icons/Info.webp"}
+        src={"/images/Icons/informacion.png"}
         alt={"info"}
-        width={30}
-        quality={100}
-        height={30}
-        className='info_icon'
+        width={40}
+        height={40}
+        className='info_icon rueda'
         title='Site info'
         onClick={() => alertInfo("info")}
       ></Image>

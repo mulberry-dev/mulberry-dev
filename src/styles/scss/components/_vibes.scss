@@ -1,0 +1,32 @@
+.vibration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: initial !important;
+    z-index: 99 !important;
+
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        box-shadow: 3px 2px 6px 1px rgba(0, 0, 0, 0);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+        animation: wipe-enter .8s 1;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+
+        }
+
+        ;
+    }
+}
