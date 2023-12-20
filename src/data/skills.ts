@@ -106,7 +106,7 @@ export const skills = [
   {
     id: 13,
     name: "TailwindCSS",
-    imageSrc: "/images/Icons/tech/Tailwind-CSS.webp",
+    imageSrc: "/images/Icons/svg/Tailwind.svg",
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
