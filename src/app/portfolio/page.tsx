@@ -15,28 +15,27 @@ const Portfolio = () => {
 
   return (
     <>
-      <section id="portfolio">
-        <div className="portfolio_container animate__animated animate__fadeIn">
+      <section id='portfolio'>
+        <div className='portfolio_container animate__animated animate__fadeIn'>
           <h2>Portfolio</h2>
-          <p className="hover-me">Click for details</p>
-          <div className="projects-container">
+          <p className='hover-me'>Click for details</p>
+          <div className='projects-container'>
             {projects?.map((project) => (
               <div
                 key={`${project.name}`}
-                className={`project-item`}
+                className={`project-item transition menuitem-${project.id}`}
                 onClick={() => {
-                  router.push(`/portfolio/${project.id}`);
+                  router.push(`/portfolio/${project.id}`)
                 }}
               >
-                <div className="preject-header">
+                <div className='preject-header'>
                   <h3>{project.name}</h3>
                 </div>
-                <figure className="project-image">
+                <figure className='project-image'>
                   <Image
                     src={project.thumbnail}
                     alt={`${project.thumbnail}-image`}
-                    className="project-image transition-opacity duration-1s"
-    
+                    className='project-image transition-opacity duration-1s'
                     width={135}
                     height={120}
                   />
@@ -44,26 +43,26 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
-          <div className="buttons_container">
-            <Link className="button smallest " href={"/skills"}>
+          <div className='buttons_container'>
+            <Link className='button smallest ' href={"/skills"}>
               <Image
-                src="/images/Icons/arrow-right-rounded.svg"
-                alt="go-back"
+                src='/images/Icons/arrow-right-rounded.svg'
+                alt='go-back'
                 priority={true}
-                className="go_back"
+                className='go_back'
                 width={40}
                 height={40}
-                title="Go back"
+                title='Go back'
               />
             </Link>
-            <Link className="button-generic" href="/contact">
+            <Link className='button-generic' href='/contact'>
               Contact
             </Link>
           </div>
         </div>
       </section>
     </>
-  );
+  )
 };
 
 export default Portfolio;

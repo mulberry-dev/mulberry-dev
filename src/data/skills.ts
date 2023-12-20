@@ -2,7 +2,7 @@ export const skills = [
   {
     id: 0,
     name: "HTML5",
-    imageSrc: "/images/Icons/tech/HTML.webp",
+    imageSrc: "/images/Icons/svg/HTML5.svg",
     experience: 6,
     unite: "Years",
     progress: 90,
@@ -10,7 +10,7 @@ export const skills = [
   {
     id: 1,
     name: "CSS3",
-    imageSrc: "/images/Icons/tech/CSS3.webp",
+    imageSrc: "/images/Icons/svg/CSS3.svg",
     experience: 6,
     unite: "Years",
     progress: 90,
@@ -18,7 +18,7 @@ export const skills = [
   {
     id: 2,
     name: "JavaScript",
-    imageSrc: "/images/Icons/tech/JavaScript.webp",
+    imageSrc: "/images/Icons/svg/JavaScript.svg",
     experience: 4,
     unite: "Years",
     progress: 80,
@@ -26,7 +26,7 @@ export const skills = [
   {
     id: 3,
     name: "TypeScript",
-    imageSrc: "/images/Icons/tech/TypeScript.webp",
+    imageSrc: "/images/Icons/svg/TypeScript.svg",
     experience: 2,
     unite: "Years",
     progress: 75,
@@ -34,7 +34,7 @@ export const skills = [
   {
     id: 4,
     name: "React",
-    imageSrc: "/images/Icons/tech/Ico-react.webp",
+    imageSrc: "/images/Icons/svg/react.svg",
     experience: 3,
     unite: "Years",
     progress: 80,
@@ -42,7 +42,7 @@ export const skills = [
   {
     id: 5,
     name: "Next.js",
-    imageSrc: "/images/Icons/tech/NextJs.webp",
+    imageSrc: "/images/Icons/svg/next-js.svg",
     experience: 2,
     unite: "Years",
     progress: 80,
@@ -50,7 +50,7 @@ export const skills = [
   {
     id: 6,
     name: "Node.js",
-    imageSrc: "/images/Icons/tech/node.webp",
+    imageSrc: "/images/Icons/svg/node.svg",
     experience: 3,
     unite: "Years",
     progress: 90,
@@ -58,7 +58,7 @@ export const skills = [
   {
     id: 7,
     name: "Nest.js",
-    imageSrc: "/images/Icons/tech/Nest.svg",
+    imageSrc: "/images/Icons/svg/NestJS.svg",
     experience: 2,
     unite: "Years",
     progress: 80,
@@ -66,7 +66,7 @@ export const skills = [
   {
     id: 8,
     name: "React Native",
-    imageSrc: "/images/Icons/tech/Ico-react.webp",
+    imageSrc: "/images/Icons/svg/react.svg",
     experience: 2,
     unite: "Year",
     progress: 60,
@@ -74,7 +74,7 @@ export const skills = [
   {
     id: 9,
     name: "Bootstrap",
-    imageSrc: "/images/Icons/tech/Bootstrap.webp",
+    imageSrc: "/images/Icons/svg/bootstrap.svg",
     experience: 3,
     unite: "Years",
     progress: 80,
@@ -115,7 +115,7 @@ export const skills = [
   {
     id: 14,
     name: "WordPress",
-    imageSrc: "/images/Icons/tech/WordPress.webp",
+    imageSrc: "/images/Icons/svg/WordPress.svg",
     experience: 5,
     unite: "Years",
     style: { width: "120%" },
@@ -133,7 +133,7 @@ export const skills = [
   {
     id: 16,
     name: ".NET Core",
-    imageSrc: "/images/Icons/tech/NET_Core_Logo.svg",
+    imageSrc: "/images/Icons/svg/NET_Core_Logo.svg",
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
@@ -142,7 +142,7 @@ export const skills = [
   {
     id: 17,
     name: "Java",
-    imageSrc: "/images/Icons/tech/java.svg",
+    imageSrc: "/images/Icons/svg/java.svg",
     experience: 6,
     unite: "Months",
     style: { width: "120%" },
@@ -151,7 +151,7 @@ export const skills = [
   {
     id: 18,
     name: "AWS",
-    imageSrc: "/images/Icons/tech/aws.png",
+    imageSrc: "/images/Icons/svg/aws.svg",
     experience: 2,
     unite: "Years",
     style: { width: "120%" },
@@ -160,7 +160,7 @@ export const skills = [
   {
     id: 19,
     name: "PostgresSQL",
-    imageSrc: "https://cdn-icons-png.flaticon.com/512/5968/5968342.png",
+    imageSrc: "/images/Icons/svg/Postgresql.svg",
     experience: 2,
     unite: "Years",
     progress: 75,
