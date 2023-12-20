@@ -26,7 +26,7 @@ export const skills = [
   {
     id: 3,
     name: "TypeScript",
-    imageSrc: "/images/Icons/svg/TypeScript.svg",
+    imageSrc: "/images/Icons/svg/Typescript.svg",
     experience: 2,
     unite: "Years",
     progress: 75,
@@ -82,7 +82,7 @@ export const skills = [
   {
     id: 10,
     name: "Redux",
-    imageSrc: "/images/Icons/tech/Redux.webp",
+    imageSrc: "/images/Icons/svg/redux.svg",
     experience: 2,
     unite: "Year",
     progress: 75,
