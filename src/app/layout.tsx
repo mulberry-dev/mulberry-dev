@@ -11,7 +11,6 @@ import { Analytics } from "@vercel/analytics/react"
 import "animate.css"
 import { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
-import Script from "next/script"
 import ThemeIcon from "@/components/ThemeIcon"
 
 export default function RootLayout({
@@ -26,18 +25,6 @@ export default function RootLayout({
     <html lang='en'>
       <head>
         <Head />
-        <Script
-          async
-          src='https://www.googletagmanager.com/gtag/js?id=G-HP85BC1BKY'
-        ></Script>
-        <script>
-          {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HP85BC1BKY');
-      `}
-        </script>
       </head>
       <body className='dark'>
         <Providers>
