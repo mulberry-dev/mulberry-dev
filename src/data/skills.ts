@@ -98,7 +98,7 @@ export const skills = [
   {
     id: 12,
     name: "Material UI",
-    imageSrc: "/images/Icons/tech/MUI.webp",
+    imageSrc: "/images/Icons/svg/mui.svg",
     experience: 2,
     unite: "Years",
     progress: 90,
