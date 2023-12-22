@@ -6,6 +6,7 @@
   align-items: center;
   flex-direction: column;
   z-index: 99;
+  animation: fadeIn .2s ease-in-out;
 }
 
 .color_title {
@@ -16,7 +17,7 @@
   font-size: 35px;
   font-family: 'Poppins', monospace, sans-serif !important;
   font-weight: 900;
-  animation: izquierda .9s 1 backwards linear 0.2s;
+  //animation: izquierda .9s 1 backwards linear 0.2s;
   transition: all 0.5s;
 
   @media (min-width: 768px) {
@@ -41,7 +42,7 @@
   text-align: center;
   color: white;
   font-weight: 300;
-  animation: derecha .7s 1 backwards linear 0.3s;
+  //animation: derecha .7s 1 backwards linear 0.3s;
 
   @media (min-width: 768px) {
     font-size: 40px;
@@ -98,5 +99,5 @@
 
 
 .button_animation {
-  animation: abajo .7s 1 backwards linear .9s;
+  //animation: abajo .7s 1 backwards linear .9s;
 }
