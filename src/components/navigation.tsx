@@ -78,9 +78,10 @@ const Navigation = () => {
                   <>
                     <div className='logo_container'>
                       <Image
-                        src='/images/Icons/MouseArrow.webp'
+                        src='https://cdn-icons-png.flaticon.com/512/7914/7914802.png'
                         width={30}
                         height={30}
+                        quality={100}
                         alt={"Logo"}
                       />
                       <p>ThisIsSanti.dev</p>

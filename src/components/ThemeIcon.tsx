@@ -6,13 +6,13 @@ import "@/styles/css/index.css"
 const ThemeIcon = () => {
   const storageKey = "theme-preference"
 
-  const onClick = () => {
+  /*   const onClick = () => {
     document.body.classList.toggle("dark")
     // flip current value
     //theme.value = theme.value === "light" ? "dark" : "light"
 
     setPreference()
-  }
+  } */
 
   /*   const getColorPreference = () => {
     if (localStorage.getItem(storageKey))
