@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import { useSession } from "next-auth/react"
+import Image from "next/image"
 
 const Profile = () => {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession()
 
   return (
     <>
       <section>
-        <div className="profile_container blur ">
+        <div className='profile_container blur '>
           <h2>Profile</h2>
-          <div className="profile-card">
+          <div className='profile-card'>
             <div>
               <Image
                 src={"/images/Icons/GenericAvatar.webp"}
-                alt="avatar"
+                alt='avatar'
                 width={100}
                 height={100}
               />
@@ -23,15 +23,14 @@ const Profile = () => {
             <div>
               <h3>Session</h3>
               <p>Email: {session?.user?.email}</p>
-              <p>Password: *******</p>
-              <p>Status: {status}</p>
-              <p>Expires: {session?.expires}</p>
+              <p>Status: {`✅ ${status}`}</p>
+              <p>Sesion expires: {session?.expires}</p>
             </div>
           </div>
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

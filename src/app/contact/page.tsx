@@ -19,7 +19,7 @@ const Contact = () => {
             target='_black'
           >
             <Image
-              src='/images/Icons/tech/LinkedIn.webp'
+              src='/images/Icons/svg/linkedin.png'
               alt='Linkedin'
               priority={true}
               width={70}
