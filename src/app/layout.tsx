@@ -6,7 +6,6 @@ import Navigation from "@/components/navigation"
 import Particles from "@/components/particles"
 import Providers from "@/components/providers"
 import "@/styles/scss/styles.scss"
-import "@/styles/css/index.css"
 import { Analytics } from "@vercel/analytics/react"
 import "animate.css"
 import { useEffect } from "react"
@@ -27,7 +26,7 @@ export default function RootLayout({
       <head>
         <Head />
       </head>
-      <body className='dark'>
+      <body /* className='dark' */>
         <Providers>
           <Navigation />
           {children}
