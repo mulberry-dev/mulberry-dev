@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { data as projects } from "@/data/projects";
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+import { data as projects } from "@/data/projects"
 
 const Portfolio = () => {
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
-    document.title = 'ThisIsSanti.dev | Portfolio';
-  }, []);
+    document.title = "ThisIsSanti.dev | Portfolio"
+  }, [])
 
   return (
     <>
@@ -23,7 +23,7 @@ const Portfolio = () => {
             {projects?.map((project) => (
               <div
                 key={`${project.name}`}
-                className={`project-item transition menuitem-${project.id}`}
+                className={`project-item`}
                 onClick={() => {
                   router.push(`/portfolio/${project.id}`)
                 }}
@@ -36,8 +36,8 @@ const Portfolio = () => {
                     src={project.thumbnail}
                     alt={`${project.thumbnail}-image`}
                     className='project-image transition-opacity duration-1s'
-                    width={135}
-                    height={120}
+                    width={150}
+                    height={135}
                   />
                 </figure>
               </div>
@@ -63,6 +63,6 @@ const Portfolio = () => {
       </section>
     </>
   )
-};
+}
 
-export default Portfolio;
+export default Portfolio

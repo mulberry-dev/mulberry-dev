@@ -24,6 +24,7 @@
   max-width: 350px;
   transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
   padding: 10px;
+  gap: 10px;
 
   @media (min-width: 768px) {
     max-width: 550px;
@@ -53,7 +54,7 @@
     -webkit-backdrop-filter: blur(3px) !important;
     width: 120px;
 
-    img{
+    img {
       filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.3));
     }
 
