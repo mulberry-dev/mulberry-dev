@@ -14,7 +14,7 @@ const ThemeIcon = () => {
     setPreference()
   }
 
-  const getColorPreference = () => {
+  /*   const getColorPreference = () => {
     if (localStorage.getItem(storageKey))
       return localStorage.getItem(storageKey)
     else
@@ -38,10 +38,10 @@ const ThemeIcon = () => {
 
   const theme = {
     value: getColorPreference(),
-  }
+  } */
 
   // set early so no page flashes / CSS is made aware
-  reflectPreference()
+  /*   reflectPreference()
 
   useEffect(() => {
     reflectPreference()
@@ -53,7 +53,7 @@ const ThemeIcon = () => {
         setPreference()
       })
   })
-
+ */
   // sync with system changes
 
   return (
