@@ -14,7 +14,7 @@ const Skills = () => {
     <section id='skills'>
       <div className='skills_container animate__animated animate__fadeIn'>
         <h2 className='h2'>Skills</h2>
-        <p className='hover-me'>Click the cubes</p>
+        <p className='hover-me'>Move the mouse over the cubes.</p>
 
         <div className='cubes_container'>
           {skills.map((skill) => (

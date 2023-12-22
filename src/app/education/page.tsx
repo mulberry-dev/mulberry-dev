@@ -14,7 +14,7 @@ const Education = () => {
     <>
       <section>
         <div className='certificates_container animate__animated animate__fadeIn'>
-          <h2 className='h2'>Certificates</h2>
+          <h2 className='h2'>8 Certificates</h2>
           <div className='certificates_container'>
             <div
               id='carouselExampleIndicators'
