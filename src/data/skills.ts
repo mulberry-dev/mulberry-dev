@@ -68,7 +68,7 @@ export const skills = [
     name: "React Native",
     imageSrc: "/images/Icons/svg/react.svg",
     experience: 2,
-    unite: "Year",
+    unite: "Years",
     progress: 60,
   },
   {
