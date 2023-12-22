@@ -42,7 +42,7 @@ const Education = () => {
                       className={
                         index === 0 ? "carousel-item active" : "carousel-item"
                       }
-                      data-bs-interval='4000'
+                      data-bs-interval='3000'
                     >
                       <Image
                         src={certificate.url}
