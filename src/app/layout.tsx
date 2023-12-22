@@ -12,6 +12,7 @@ import "animate.css"
 import { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
 import ThemeIcon from "@/components/ThemeIcon"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function RootLayout({
   children,
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Info />
         <ThemeIcon />
         {/* <TraceIP /> */}
+        <SpeedInsights />
       </body>
     </html>
   )
