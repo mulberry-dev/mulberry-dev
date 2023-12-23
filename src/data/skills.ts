@@ -165,4 +165,13 @@ export const skills = [
     style: { width: "120%" },
     progress: 50,
   },
+  {
+    id: 19,
+    name: "Docker",
+    imageSrc: "/images/Icons/svg/docker.svg",
+    experience: 1,
+    unite: "Year",
+    style: { width: "120%" },
+    progress: 50,
+  },
 ]
