@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react"
 import "animate.css"
 import { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
-import ThemeIcon from "@/components/ThemeIcon"
+//import ThemeIcon from "@/components/ThemeIcon"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
         <Particles />
         <ToastContainer />
         <Info />
-        <ThemeIcon />
+        {/* <ThemeIcon /> */}
         {/* <TraceIP /> */}
         <SpeedInsights />
       </body>
