@@ -77,7 +77,7 @@
     width: 120px;
     height: 120px;
     position: absolute;
-    transition: all ease-in-out 0.1s;
+    transition: all ease-in-out 200ms;
     border-radius: 10px;
     //  transition-duration: .3s;
     opacity: 0;
@@ -86,8 +86,8 @@
     &:active,
     &:hover {
       opacity: 1;
-      border-radius: 10px;
-      //transform: scale(1.1);
+      scale: 1.1;
+      transition-duration: 200ms;
       -webkit-backdrop-filter: blur(2px) !important;
       backdrop-filter: blur(2px) !important;
 
