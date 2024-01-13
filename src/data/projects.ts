@@ -14,6 +14,7 @@ export const data = [
     ],
     url: "https://oneriddle.github.io/LandingPage/index.html",
     thumbnail: "/images/thumbnails/www-abrazodelarbol-com.webp",
+    github: "https://github.com/oneriddle/LandingPage",
   },
   {
     id: 1,
@@ -28,6 +29,7 @@ export const data = [
     ],
     url: "https://my-blog-santi-iztli.vercel.app/",
     thumbnail: "/images/thumbnails/MiBlog.png",
+    github: "https://github.com/oneriddle/My-Blog",
   },
 
   {
@@ -45,6 +47,7 @@ export const data = [
     ],
     url: "https://tecno-tienda.netlify.app/",
     thumbnail: "/images/thumbnails/tecnotienda.webp",
+    github: "https://github.com/oneriddle/tecno-tienda",
   },
   {
     id: 3,
@@ -71,6 +74,7 @@ export const data = [
     ],
     url: "https://oneriddle.github.io/proyectoJS/",
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",
+    github: "https://github.com/oneriddle/proyectoJS",
   },
   /* {
     id: 5,
@@ -116,6 +120,7 @@ export const data = [
     ],
     url: "https://live-chat-app3.glitch.me/",
     thumbnail: "/images/thumbnails/Thumbnail-Chat-App.webp",
+    github: "https://github.com/oneriddle/LiveChat",
   },
   {
     id: 8,
@@ -140,6 +145,7 @@ export const data = [
     ],
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-Backend.webp",
     url: "https://ecommerce-backend-43495.fly.dev",
+    github: "https://github.com/oneriddle/eCommerce",
   },
   {
     id: 9,
@@ -159,5 +165,6 @@ export const data = [
     ],
     url: "https://pokedex-santi-dev.fly.dev",
     thumbnail: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
+    github: "https://github.com/oneriddle/pokedex",
   },
 ]

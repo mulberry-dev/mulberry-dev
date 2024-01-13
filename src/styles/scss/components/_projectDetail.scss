@@ -3,10 +3,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     background: rgba(0, 0, 0, 0.2);
     margin-top: 60px;
     margin-bottom: 40px;
@@ -61,13 +57,11 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        /* width: 100%; */
         padding: 0px 15px 0px 15px;
 
 
         .project-thumbnail {
             border-radius: 10px;
-            /* object-fit: contain; */
         }
 
         .project-card {
@@ -154,10 +148,6 @@
 
 }
 
-.smallest {
-    width: 50px !important;
-}
-
 .transition-opacity {
     transition: opacity .2s ease;
 }
@@ -176,4 +166,10 @@
 
 .display-none {
     display: none;
+}
+
+.github-icon{
+    &:hover{
+        scale: 1.1;
+    }
 }
