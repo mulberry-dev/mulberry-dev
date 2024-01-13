@@ -157,7 +157,7 @@ export const data = [
       "https://static.cdnlogo.com/logos/p/79/passport.svg",
       "https://avatars.githubusercontent.com/u/1529926?s=200&v=4",
     ],
-    url: "https://pokedex-santi-dev.fly.dev",
+    url: null,
     thumbnail: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
   },
 ]
