@@ -99,7 +99,7 @@ const ProjectDetails = ({ params }: any) => {
                       Visit
                     </Link>
                   )}
-                  {project?.github === undefined ? undefined : (
+                  {/* {project?.github === undefined ? undefined : (
                     <Link
                       href={`${project?.github}`}
                       title={`Go to ${project?.name} Github`}
@@ -113,7 +113,7 @@ const ProjectDetails = ({ params }: any) => {
                         title={`Go to Github ${project?.name} repository`}
                       />
                     </Link>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
