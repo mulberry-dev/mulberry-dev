@@ -41,7 +41,7 @@ const Skills = () => {
             </div>
           ))}
         </div>
-        <div className='buttons_container  menuitem-13'>
+        <div className='buttons_container  menuitem-21'>
           <Link className='button smallest ' href={"/education"}>
             <Image
               src='/images/Icons/arrow-right-rounded.svg'

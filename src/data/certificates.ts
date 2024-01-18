@@ -21,14 +21,18 @@ export const certificates = [
     },
     {
       id: 5,
-      url: "/images/Certificates/JavaScript.webp",
+      url: "/images/Certificates/Ingles.webp",
     },
     {
       id: 6,
-      url: "/images/Certificates/DesarrolloWeb.webp",
+      url: "/images/Certificates/JavaScript.webp",
     },
     {
       id: 7,
+      url: "/images/Certificates/DesarrolloWeb.webp",
+    },
+    {
+      id: 8,
       url: "/images/Certificates/Ciberseguridad.webp",
     },
   ];
