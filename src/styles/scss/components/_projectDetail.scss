@@ -84,6 +84,7 @@
                 color: white;
                 padding: 5px;
                 font-weight: 200;
+                text-align: justify;
             }
 
 
@@ -168,8 +169,8 @@
     display: none;
 }
 
-.github-icon{
-    &:hover{
+.github-icon {
+    &:hover {
         scale: 1.1;
     }
 }
