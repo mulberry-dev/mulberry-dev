@@ -63,7 +63,8 @@ const ProjectDetails = ({ params }: any) => {
                   {project?.tech.map((e) => (
                     <Image
                       key={`${project.id}`}
-                      src={e}
+                      src={e?.icon}
+                      title={e?.tech}
                       width={40}
                       height={40}
                       className='tech_ico'

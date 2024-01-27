@@ -11,8 +11,8 @@ export const links = [
     },
     {
       id: 3,
-      name: "Education",
-      path: "/education",
+      name: "Portfolio",
+      path: "/portfolio",
     },
     {
       id: 4,
@@ -21,8 +21,8 @@ export const links = [
     },
     {
       id: 5,
-      name: "Portfolio",
-      path: "/portfolio",
+      name: "Certifications",
+      path: "/certifications",
     },
     {
       id: 6,

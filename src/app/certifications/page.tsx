@@ -13,7 +13,7 @@ const Education = () => {
   return (
     <section>
       <div className='certificates_container animate__animated animate__fadeIn'>
-        <h2 className='h2'>9 Certificates</h2>
+        <h2 className='h2'>9 Certifications</h2>
         <div className='certificates_container'>
           <div
             id='carouselExampleIndicators'
@@ -85,7 +85,7 @@ const Education = () => {
           </div>
         </div>
         <div className='buttons_container' style={{ marginTop: "-40px" }}>
-          <Link className='button smallest ' href={"/about"}>
+          <Link className='button smallest ' href={"/skills"}>
             <Image
               src='/images/Icons/arrow-right-rounded.svg'
               alt='go-back'
@@ -95,8 +95,8 @@ const Education = () => {
               title='Go back'
             />
           </Link>
-          <Link className='button-generic' href='/skills'>
-            Skills
+          <Link className='button-generic' href='/contact'>
+            Contact
           </Link>
         </div>
       </div>

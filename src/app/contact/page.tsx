@@ -30,7 +30,7 @@ const Contact = () => {
             />
           </Link>
           <div className='buttons_container'>
-            <Link className='button smallest' href={"/portfolio"}>
+            <Link className='button smallest' href={"/certifications"}>
               <Image
                 src='/images/Icons/arrow-right-rounded.svg'
                 alt='go-back'

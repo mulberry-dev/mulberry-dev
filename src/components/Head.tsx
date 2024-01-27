@@ -17,7 +17,7 @@ const Head = () => {
         name='keywords'
         content='Developer, web, wordpress, app, ecommerce, SEO, ux,ui, css, JavaScript, Santiago, Morera, dev, Full Stack, Node.js, React.js, Next.js, Nest.js, TypeScript'
       />
-      <meta name='copyright' content='© 2006 MDC'></meta>
+      <meta name='copyright' content='© 20024 MDC'></meta>
       {/* OpenGraph */}
       <meta property='og:type' content='Portfolio' />
       <meta property='og:title' content='Web Developer' />

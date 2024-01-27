@@ -44,7 +44,7 @@ const Portfolio = () => {
             ))}
           </div>
           <div className='buttons_container'>
-            <Link className='button smallest ' href={"/skills"}>
+            <Link className='button smallest ' href={"/about"}>
               <Image
                 src='/images/Icons/arrow-right-rounded.svg'
                 alt='go-back'
@@ -55,8 +55,8 @@ const Portfolio = () => {
                 title='Go back'
               />
             </Link>
-            <Link className='button-generic' href='/contact'>
-              Contact
+            <Link className='button-generic' href='/skills'>
+              Skills
             </Link>
           </div>
         </div>

@@ -26,9 +26,9 @@ const About = () => {
           {
             <p className='about_text'>
               Programmer who loves coding and technology, with a penchant for UX
-              & UI design. Constantly focused on learning new technologies,
-              committed to developing specialized and scalable technology in new
-              projects.
+              & UI design. React expert, Node backend lover, Constantly focused
+              on learning new technologies, committed to developing specialized
+              and scalable technology in new projects.
             </p>
           }
           <div className='buttons_container'>
@@ -42,8 +42,8 @@ const About = () => {
                 title='Go back'
               />
             </Link>
-            <Link className='button-generic' href='/education'>
-              Education
+            <Link className='button-generic' href='/portfolio'>
+              Portfolio
             </Link>
           </div>
         </div>

@@ -42,19 +42,18 @@ const Skills = () => {
           ))}
         </div>
         <div className='buttons_container  menuitem-21'>
-          <Link className='button smallest ' href={"/education"}>
+          <Link className='button smallest ' href={"/portfolio"}>
             <Image
               src='/images/Icons/arrow-right-rounded.svg'
               alt='go-back'
               className='go_back'
               width={40}
               height={40}
-              /* style={{ objectFit: "contain" }} */
               title='Go back'
             />
           </Link>
-          <Link href='/portfolio' className='button-generic transition'>
-            Portfolio
+          <Link href='/certifications' className='button-generic transition'>
+            Certifications
           </Link>
         </div>
       </div>
