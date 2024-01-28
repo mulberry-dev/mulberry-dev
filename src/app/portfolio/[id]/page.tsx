@@ -53,7 +53,7 @@ const ProjectDetails = ({ params }: any) => {
               height={250}
               id={"previewProject"}
             />
-            <h3>Used technology:</h3>
+            <h3>Technology stack:</h3>
             <div className='tech_container'>
               {project?.tech.map((e) => (
                 <Tooltip
