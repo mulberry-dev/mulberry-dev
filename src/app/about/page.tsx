@@ -22,12 +22,7 @@ const About = () => {
             title='Santi Avatar'
             className='santi_avatar transition-opacity opacity-0 duration-2s'
             onLoadingComplete={(image) => image.classList.remove("opacity-0")}
-          />
-          {
-            <p className='about_text'>
-              I'm a programmer who has a deep love for coding and technology. My passion extends to UX & UI design, and I consider myself an expert in Frontend and a devoted enthusiast of Backend. I'm always immersed in learning new technologies, driven by my commitment to developing specialized and scalable technology for new projects.
-            </p>
-          }
+          /><p className='about_text'>I'm a programmer who has a deep love for coding and technology. My passion extends to UX & UI design, and I consider myself an expert in Frontend and a devoted enthusiast of Backend. I'm always immersed in learning new technologies, driven by my commitment to developing specialized and scalable technology for new projects.</p>
           <div className='buttons_container'>
             <Link className='button smallest ' href={"/"}>
               <Image
