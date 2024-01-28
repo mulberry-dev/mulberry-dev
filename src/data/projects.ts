@@ -156,6 +156,10 @@ export const data = [
         icon: "/images/Icons/svg/Sass.svg",
       },
       {
+        tech: "Bootstrap",
+        icon: "/images/Icons/svg/bootstrap.svg",
+      },
+      {
         tech: "CSS3",
         icon: "/images/Icons/svg/CSS3.svg",
       },
