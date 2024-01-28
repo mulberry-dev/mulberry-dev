@@ -3,12 +3,12 @@ export const data = [
     id: "ElectronicBilling",
     name: "Electronic Billing",
     description:
-      "This application features a Next.js-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, build in AWS. (2024)",
+      "This application features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, build in AWS. (2024)",
     img: "/images/Webp/FacturacionElectronica.webp",
     tech: [
       {
-        tech: "Next.js",
-        icon: "/images/Icons/svg/Next.svg",
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg",
       },
       {
         tech: "Node.js",
@@ -51,8 +51,8 @@ export const data = [
     img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
     tech: [
       {
-        tech: "React.js",
-        icon: "/images/Icons/svg/react.svg",
+        tech: "Next.js",
+        icon: "/images/Icons/svg/Next.js.svg",
       },
       {
         tech: "Nest.js",
