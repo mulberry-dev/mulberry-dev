@@ -93,7 +93,7 @@ export const data = [
     tech: [
       {
         tech: "Next.js",
-        icon: "/images/Icons/svg/next.js.svg",
+        icon: "/images/Icons/svg/Next.js.svg",
       },
       {
         tech: "MongoDB",
