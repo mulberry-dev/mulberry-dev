@@ -34,6 +34,10 @@ export const data = [
         tech: "Ant Design",
         icon: "/images/Icons/svg/ant.svg",
       },
+ {
+        tech: "Docker",
+        icon: "/images/Icons/svg/docker.svg",
+      }
     ],
     url: null,
     thumbnail: "/images/thumbnails/Thumbnail-PIFE.webp",
