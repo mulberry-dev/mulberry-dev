@@ -30,6 +30,10 @@ export const data = [
         tech: "Passport",
         icon: "/images/Icons/svg/passport.svg",
       },
+       {
+        tech: "Ant Design",
+        icon: "/images/Icons/svg/ant.svg",
+      },
     ],
     url: null,
     thumbnail: "/images/thumbnails/Thumbnail-PIFE.webp",
