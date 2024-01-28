@@ -3,7 +3,7 @@ export const data = [
     id: "ElectronicBilling",
     name: "Electronic Billing",
     description:
-      "This application features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. Passport is employed for additional authentication functionalities. The application serves as an invoice issuance platform, seamlessly connected to the SAT API for efficient data exchange and compliance with tax regulations, build in AWS. (2024)",
+      "This application features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, build in AWS. (2024)",
     img: "/images/Webp/FacturacionElectronica.webp",
     tech: [
       {
