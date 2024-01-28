@@ -10,7 +10,7 @@ const ProjectDetails = ({ params }: any) => {
   const project = projects.find((project) => project.id == params.id)
 
   useEffect(() => {
-    document.title = `ThisIsSanti.dev | ${project?.name}`
+    document.title = `${project?.name}  | ThisIsSanti.dev`
   }, [project?.name])
 
   const loaded = (img: any) => {

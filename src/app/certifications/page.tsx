@@ -7,7 +7,7 @@ import { certificates } from "@/data/certificates"
 
 const Education = () => {
   useEffect(() => {
-    document.title = "ThisIsSanti.dev | Education"
+    document.title = "Certifications | ThisIsSanti.dev"
   }, [])
 
   return (

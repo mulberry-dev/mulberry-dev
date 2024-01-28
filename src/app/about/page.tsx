@@ -6,7 +6,7 @@ import { useEffect } from "react"
 
 const About = () => {
   useEffect(() => {
-    document.title = "ThisIsSanti.dev | About"
+    document.title = "About | ThisIsSanti.dev"
   }, [])
   return (
     <>

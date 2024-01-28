@@ -10,7 +10,7 @@ const Portfolio = () => {
   const router = useRouter()
 
   useEffect(() => {
-    document.title = "ThisIsSanti.dev | Portfolio"
+    document.title = "Portfolio | ThisIsSanti.dev"
   }, [])
 
   return (

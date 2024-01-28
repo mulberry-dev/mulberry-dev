@@ -12,7 +12,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    document.title = 'ThisIsSanti.dev | Login';
+    document.title = "Login | ThisIsSanti.dev"
   }, []);
 
   const onChange = () => {

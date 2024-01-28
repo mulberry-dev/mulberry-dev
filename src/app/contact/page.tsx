@@ -6,7 +6,7 @@ import { useEffect } from "react"
 
 const Contact = () => {
   useEffect(() => {
-    document.title = "ThisIsSanti.dev | Contact"
+    document.title = "Contact | ThisIsSanti.dev"
   }, [])
   return (
     <>

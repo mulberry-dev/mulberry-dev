@@ -65,7 +65,12 @@
     .project-image {
         img {
             border-radius: 10px;
-            padding: 2px;
+            padding: 1px;
+            //filter: sepia(20%);
+
+            &:hover {
+                filter: none;
+            }
         }
     }
 

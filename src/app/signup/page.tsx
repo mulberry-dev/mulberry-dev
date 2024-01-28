@@ -13,7 +13,7 @@ const SignUpForm = () => {
   const router = useRouter();
 
   useEffect(() => {
-    document.title = 'ThisIsSanti.dev | SignUp';
+    document.title = "SignUp | ThisIsSanti.dev"
   }, []);
 
   const onChange = () => {

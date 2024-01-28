@@ -5,7 +5,7 @@ import { useEffect } from "react"
 
 const IndexPage = () => {
   useEffect(() => {
-    document.title = "ThisIsSanti.dev | Home"
+    document.title = "Home | ThisIsSanti.dev"
   }, [])
   return (
     <>
