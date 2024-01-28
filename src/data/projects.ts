@@ -47,7 +47,7 @@ export const data = [
     id: "eBilling",
     name: "eBilling",
     description:
-      "This application is designed to generate financial statements, featuring a user interface developed in React using Material UI. The robust backend is powered by over 10 microservices developed with Nest.js, a Node.js framework. Authentication is seamlessly handled through Passport and OKTA integration. The entire system is hosted on Google Cloud Services, with data stored in a PostgreSQL database.",
+      "This application is designed to generate financial statements, featuring a user interface developed in Next.js using Material UI. The robust backend is powered by over 10 microservices developed with Nest.js, a Node.js framework. Authentication is seamlessly handled through Passport and OKTA integration. The entire system is hosted on Google Cloud Services, with data stored in a PostgreSQL database.",
     img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
     tech: [
       {
@@ -93,7 +93,7 @@ export const data = [
     tech: [
       {
         tech: "Next.js",
-        icon: "/images/Icons/svg/next-js.svg",
+        icon: "/images/Icons/svg/next.js.svg",
       },
       {
         tech: "MongoDB",
@@ -255,7 +255,7 @@ export const data = [
         tech: "CSS3",
         icon: "/images/Icons/svg/CSS3.svg",
       },
-{
+      {
         tech: "Bootstrap",
         icon: "/images/Icons/svg/bootstrap.svg",
       },
@@ -266,11 +266,7 @@ export const data = [
       {
         tech: "JavaScript",
         icon: "/images/Icons/svg/JavaScript.svg",
-      },
-      {
-        tech: "MongoDB",
-        icon: "/images/Icons/svg/mongo.svg",
-      },
+      }
     ],
     url: "https://oneriddle.github.io/proyectoJS/",
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",

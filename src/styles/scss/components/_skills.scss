@@ -25,7 +25,7 @@
   max-width: 350px;
   transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
   padding: 10px;
-  gap: 10px;
+  gap: 12px;
 
   @media (min-width: 768px) {
     max-width: 550px;
@@ -48,7 +48,7 @@
     font-size: 16px;
     height: 120px;
     justify-content: center;
-    margin: 5px;
+    //margin: 5px;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
     backdrop-filter: blur(3px) !important;
