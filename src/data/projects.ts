@@ -251,6 +251,10 @@ export const data = [
         tech: "CSS3",
         icon: "/images/Icons/svg/CSS3.svg",
       },
+{
+        tech: "Bootstrap",
+        icon: "/images/Icons/svg/bootstrap.svg",
+      },
       {
         tech: "Sass",
         icon: "/images/Icons/svg/Sass.svg",
@@ -349,6 +353,10 @@ export const data = [
       {
         tech: "Mocha testing",
         icon: "/images/Icons/svg/mocha.svg",
+      },
+{
+        tech: "Bootstrap",
+        icon: "/images/Icons/svg/bootstrap.svg",
       },
       {
         tech: "HTML5",
