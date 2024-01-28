@@ -23,6 +23,7 @@ const Portfolio = () => {
             {projects?.map((project) => (
               <div
                 key={`${project.name}`}
+                title={`Go to ${project.name}`}
                 className={`project-item`}
                 onClick={() => {
                   router.push(`/portfolio/${project.id}`)
