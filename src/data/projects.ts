@@ -296,7 +296,7 @@ export const data = [
     tech: [
       {
         tech: "Node.js",
-        icon: "/images/Icons/svg/Node.svg",
+        icon: "/images/Icons/svg/node.svg",
       },
       {
         tech: "Socket.io",
