@@ -26,7 +26,7 @@ const About = () => {
           {
             <p className='about_text'>
               I am a programmer who has a deep love for coding and technology. My
-              passion extends to UX & UI design, and I consider myself an expert
+              passion extends to UX & UI design, I consider myself an expert
               in Frontend and a devoted enthusiast of Backend. I am always
               immersed in learning new technologies, driven by my commitment to
               developing specialized and scalable technology for new projects.
