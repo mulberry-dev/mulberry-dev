@@ -177,6 +177,14 @@ export const skills = [
     progress: 90,
   },
   {
+    id: 22,
+    name: "Jira",
+    imageSrc: "/images/Icons/svg/Jira.svg",
+    experience: 1,
+    unite: "Year",
+    progress: 50,
+  },
+  {
     id: 23,
     name: "Photoshop",
     imageSrc: "/images/Icons/svg/psd.svg",
