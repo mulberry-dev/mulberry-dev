@@ -16,7 +16,7 @@ export const data = [
       },
       {
         tech: "Okta",
-        icon: "/images/Icons/svg/Okta_logo.svg",
+        icon: "/images/Icons/svg/okta.svg",
       },
       {
         tech: "Amazon Web Services",
@@ -52,7 +52,7 @@ export const data = [
       },
       {
         tech: "Okta",
-        icon: "/images/Icons/svg/Okta_logo.svg",
+        icon: "/images/Icons/svg/okta.svg",
       },
       {
         tech: "Passport",
@@ -126,10 +126,6 @@ export const data = [
       {
         tech: "Redis",
         icon: "/images/Icons/svg/redis.svg",
-      },
-      {
-        tech: "Okta",
-        icon: "/images/Icons/svg/Okta_logo.svg",
       },
       {
         tech: "Passport",
