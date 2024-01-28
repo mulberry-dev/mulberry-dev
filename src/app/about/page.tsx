@@ -25,10 +25,7 @@ const About = () => {
           />
           {
             <p className='about_text'>
-              Programmer who loves coding and technology, with a passion for UX
-              & UI design. React expert, Node backend lover, constantly
-              focused on learning new technologies, committed to developing
-              specialized and scalable technology for new projects.
+              I'm a programmer who has a deep love for coding and technology. My passion extends to UX & UI design, and I consider myself an expert in Frontend and a devoted enthusiast of Backend. I'm always immersed in learning new technologies, driven by my commitment to developing specialized and scalable technology for new projects.
             </p>
           }
           <div className='buttons_container'>
