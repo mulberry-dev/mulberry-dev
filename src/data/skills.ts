@@ -18,7 +18,7 @@ export const skills = [
   {
     id: 3,
     name: "Next.js",
-    imageSrc: "/images/Icons/svg/next-js.svg",
+    imageSrc: "/images/Icons/svg/Next.js.svg",
     experience: 2,
     unite: "Years",
     progress: 80,
