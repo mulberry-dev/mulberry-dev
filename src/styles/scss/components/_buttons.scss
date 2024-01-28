@@ -27,11 +27,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 7px;
+    padding: 8px;
+    min-width: 200px;
     text-decoration: none;
     color: whitesmoke;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.25);
     font-weight: 300;
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     border-radius: 50px;
