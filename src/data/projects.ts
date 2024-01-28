@@ -19,6 +19,10 @@ export const data = [
         icon: "/images/Icons/svg/okta.svg",
       },
       {
+        tech: "Redux",
+        icon: "/images/Icons/svg/redux.svg",
+      },
+      {
         tech: "Amazon Web Services",
         icon: "/images/Icons/svg/aws.svg",
       },

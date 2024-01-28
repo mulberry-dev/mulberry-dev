@@ -11,7 +11,7 @@ export const skills = [
     id: 2,
     name: "Node.js",
     imageSrc: "/images/Icons/svg/node.svg",
-    experience: 4,
+    experience: 3,
     unite: "Years",
     progress: 90,
   },
@@ -63,7 +63,6 @@ export const skills = [
     unite: "Years",
     progress: 50,
   },
-
   {
     id: 9,
     name: "Jenkins",
@@ -76,7 +75,7 @@ export const skills = [
     id: 10,
     name: "MongoDB",
     imageSrc: "/images/Icons/svg/mongo.svg",
-    experience: 4,
+    experience: 3,
     unite: "Years",
     progress: 80,
   },
@@ -84,7 +83,7 @@ export const skills = [
     id: 11,
     name: "SQL",
     imageSrc: "/images/Icons/svg/sql.svg",
-    experience: 4,
+    experience: 3,
     unite: "Years",
     progress: 80,
   },
@@ -92,7 +91,7 @@ export const skills = [
     id: 12,
     name: "Firebase",
     imageSrc: "/images/Icons/svg/firebase.svg",
-    experience: 4,
+    experience: 3,
     unite: "Years",
     progress: 80,
   },
@@ -106,6 +105,14 @@ export const skills = [
   },
   {
     id: 14,
+    name: "Redux",
+    imageSrc: "/images/Icons/svg/redux.svg",
+    experience: 4,
+    unite: "Years",
+    progress: 80,
+  },
+  {
+    id: 15,
     name: "Bootstrap",
     imageSrc: "/images/Icons/svg/bootstrap.svg",
     experience: 5,
@@ -113,7 +120,7 @@ export const skills = [
     progress: 80,
   },
   {
-    id: 15,
+    id: 16,
     name: "Sass",
     imageSrc: "/images/Icons/tech/Sass.svg",
     experience: 6,
@@ -121,7 +128,7 @@ export const skills = [
     progress: 90,
   },
   {
-    id: 16,
+    id: 17,
     name: "Material UI",
     imageSrc: "/images/Icons/svg/mui.svg",
     experience: 3,
@@ -129,7 +136,7 @@ export const skills = [
     progress: 90,
   },
   {
-    id: 17,
+    id: 18,
     name: "TailwindCSS",
     imageSrc: "/images/Icons/svg/Tailwind.svg",
     experience: 6,
@@ -137,7 +144,7 @@ export const skills = [
     progress: 70,
   },
   {
-    id: 18,
+    id: 19,
     name: "And Design",
     imageSrc: "/images/Icons/svg/ant.svg",
     experience: 6,
@@ -145,7 +152,7 @@ export const skills = [
     progress: 70,
   },
   {
-    id: 19,
+    id: 20,
     name: "WordPress",
     imageSrc: "/images/Icons/svg/WordPress.svg",
     experience: 6,
@@ -153,15 +160,15 @@ export const skills = [
     progress: 80,
   },
   {
-    id: 20,
+    id: 21,
     name: "Java",
     imageSrc: "/images/Icons/svg/java.svg",
-    experience: 6,
-    unite: "Months",
+    experience: 2,
+    unite: "Years",
     progress: 30,
   },
   {
-    id: 21,
+    id: 22,
     name: "Docker",
     imageSrc: "/images/Icons/svg/docker.svg",
     experience: 1,
@@ -169,7 +176,7 @@ export const skills = [
     progress: 50,
   },
   {
-    id: 22,
+    id: 23,
     name: "HTML5",
     imageSrc: "/images/Icons/svg/HTML5.svg",
     experience: 6,
@@ -177,7 +184,7 @@ export const skills = [
     progress: 90,
   },
   {
-    id: 22,
+    id: 24,
     name: "Jira",
     imageSrc: "/images/Icons/svg/jira.svg",
     experience: 1,
@@ -185,7 +192,7 @@ export const skills = [
     progress: 50,
   },
   {
-    id: 23,
+    id: 25,
     name: "Photoshop",
     imageSrc: "/images/Icons/svg/psd.svg",
     experience: 15,
@@ -193,7 +200,7 @@ export const skills = [
     progress: 90,
   },
   {
-    id: 24,
+    id: 26,
     name: "Premiere Pro",
     imageSrc: "/images/Icons/svg/ppro.svg",
     experience: 6,
@@ -201,7 +208,7 @@ export const skills = [
     progress: 85,
   },
   {
-    id: 25,
+    id: 27,
     name: "Kali Linux",
     imageSrc: "/images/Icons/svg/kali.svg",
     experience: 2,
@@ -209,7 +216,7 @@ export const skills = [
     progress: 60,
   },
   {
-    id: 26,
+    id: 28,
     name: "Windows",
     imageSrc: "/images/Icons/svg/windows.svg",
     experience: 21,
@@ -217,7 +224,7 @@ export const skills = [
     progress: 80,
   },
   {
-    id: 27,
+    id: 29,
     name: "Mac OS",
     imageSrc: "/images/Icons/svg/apple.svg",
     experience: 3,

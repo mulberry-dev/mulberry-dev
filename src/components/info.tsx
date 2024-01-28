@@ -5,7 +5,7 @@ const Info = () => {
   return (
     <>
       <Image
-        src={"/images/Icons/informacion.png"}
+        src={"/images/Icons/informacion.svg"}
         alt={"info"}
         width={40}
         height={40}
