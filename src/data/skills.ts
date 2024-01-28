@@ -179,7 +179,7 @@ export const skills = [
   {
     id: 22,
     name: "Jira",
-    imageSrc: "/images/Icons/svg/Jira.svg",
+    imageSrc: "/images/Icons/svg/jira.svg",
     experience: 1,
     unite: "Year",
     progress: 50,
