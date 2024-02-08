@@ -8,44 +8,44 @@ export const data = [
     tech: [
       {
         tech: "React.js",
-        icon: "/images/Icons/svg/react.svg",
+        icon: "/images/Icons/svg/react.svg"
       },
       {
         tech: "Node.js",
-        icon: "/images/Icons/svg/node.svg",
+        icon: "/images/Icons/svg/node.svg"
       },
       {
         tech: "Okta",
-        icon: "/images/Icons/svg/okta.svg",
+        icon: "/images/Icons/svg/okta.svg"
       },
       {
         tech: "Redux",
-        icon: "/images/Icons/svg/redux.svg",
+        icon: "/images/Icons/svg/redux.svg"
       },
       {
         tech: "Amazon Web Services",
-        icon: "/images/Icons/svg/aws.svg",
+        icon: "/images/Icons/svg/aws.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
+        icon: "/images/Icons/svg/Sass.svg"
       },
       {
         tech: "Passport",
-        icon: "/images/Icons/svg/passport.svg",
+        icon: "/images/Icons/svg/passport.svg"
       },
-       {
+      {
         tech: "Ant Design",
-        icon: "/images/Icons/svg/ant.svg",
+        icon: "/images/Icons/svg/ant.svg"
       },
- {
+      {
         tech: "Docker",
-        icon: "/images/Icons/svg/docker.svg",
+        icon: "/images/Icons/svg/docker.svg"
       }
     ],
     url: null,
     thumbnail: "/images/thumbnails/Thumbnail-PIFE.webp",
-    github: null,
+    github: null
   },
   {
     id: "eBilling",
@@ -56,36 +56,36 @@ export const data = [
     tech: [
       {
         tech: "Next.js",
-        icon: "/images/Icons/svg/Next.js.svg",
+        icon: "/images/Icons/svg/Next.js.svg"
       },
       {
         tech: "Nest.js",
-        icon: "/images/Icons/svg/Nest.svg",
+        icon: "/images/Icons/svg/Nest.svg"
       },
       {
         tech: "Okta",
-        icon: "/images/Icons/svg/okta.svg",
+        icon: "/images/Icons/svg/okta.svg"
       },
       {
         tech: "Passport",
-        icon: "/images/Icons/svg/passport.svg",
+        icon: "/images/Icons/svg/passport.svg"
       },
       {
         tech: "Materia UI",
-        icon: "/images/Icons/svg/mui.svg",
+        icon: "/images/Icons/svg/mui.svg"
       },
       {
         tech: "Google Cloud Services",
-        icon: "/images/Icons/svg/google-cloud.svg",
+        icon: "/images/Icons/svg/google-cloud.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
-      },
+        icon: "/images/Icons/svg/Sass.svg"
+      }
     ],
     url: null,
     thumbnail:
-      "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
+      "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png"
   },
   {
     id: "MiBlog",
@@ -97,20 +97,20 @@ export const data = [
     tech: [
       {
         tech: "Next.js",
-        icon: "/images/Icons/svg/Next.js.svg",
+        icon: "/images/Icons/svg/Next.js.svg"
       },
       {
         tech: "MongoDB",
-        icon: "/images/Icons/svg/mongo.svg",
+        icon: "/images/Icons/svg/mongo.svg"
       },
       {
         tech: "SQL",
-        icon: "/images/Icons/svg/sql.svg",
-      },
+        icon: "/images/Icons/svg/sql.svg"
+      }
     ],
     url: "https://my-blog-santi-iztli.vercel.app/",
     thumbnail: "/images/thumbnails/MiBlog.png",
-    github: "https://github.com/oneriddle/My-Blog",
+    github: "https://github.com/oneriddle/My-Blog"
   },
   {
     id: "eCommerce",
@@ -121,60 +121,60 @@ export const data = [
     tech: [
       {
         tech: "Node.js",
-        icon: "/images/Icons/svg/node.svg",
+        icon: "/images/Icons/svg/node.svg"
       },
       {
         tech: "Handlebars",
-        icon: "/images/Icons/svg/handlebars.svg",
+        icon: "/images/Icons/svg/handlebars.svg"
       },
       {
         tech: "Socket.io",
-        icon: "/images/Icons/svg/socket-io.svg",
+        icon: "/images/Icons/svg/socket-io.svg"
       },
       {
         tech: "MongoDB",
-        icon: "/images/Icons/svg/mongo.svg",
+        icon: "/images/Icons/svg/mongo.svg"
       },
       {
         tech: "Redis",
-        icon: "/images/Icons/svg/redis.svg",
+        icon: "/images/Icons/svg/redis.svg"
       },
       {
         tech: "Passport",
-        icon: "/images/Icons/svg/passport.svg",
+        icon: "/images/Icons/svg/passport.svg"
       },
       {
         tech: "Node Mailer",
-        icon: "https://nodemailer.com/nm_logo_200x136.png",
+        icon: "https://nodemailer.com/nm_logo_200x136.png"
       },
       {
         tech: "Mocha testing",
-        icon: "/images/Icons/svg/mocha.svg",
+        icon: "/images/Icons/svg/mocha.svg"
       },
       {
         tech: "Twilio",
-        icon: "/images/Icons/svg/twilio.svg",
+        icon: "/images/Icons/svg/twilio.svg"
       },
       {
         tech: "HTML5",
-        icon: "/images/Icons/svg/HTML5.svg",
+        icon: "/images/Icons/svg/HTML5.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
+        icon: "/images/Icons/svg/Sass.svg"
       },
       {
         tech: "Bootstrap",
-        icon: "/images/Icons/svg/bootstrap.svg",
+        icon: "/images/Icons/svg/bootstrap.svg"
       },
       {
         tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg",
-      },
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
     ],
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-Backend.webp",
     url: "https://ecommerce-backend-43495.fly.dev",
-    github: "https://github.com/oneriddle/eCommerce",
+    github: "https://github.com/oneriddle/eCommerce"
   },
   {
     id: "TreeHug",
@@ -185,28 +185,28 @@ export const data = [
     tech: [
       {
         tech: "Mercado pago",
-        icon: "/images/Icons/svg/mercado-pago.svg",
+        icon: "/images/Icons/svg/mercado-pago.svg"
       },
       {
         tech: "HTML5",
-        icon: "/images/Icons/svg/HTML5.svg",
+        icon: "/images/Icons/svg/HTML5.svg"
       },
       {
         tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg",
+        icon: "/images/Icons/svg/CSS3.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
+        icon: "/images/Icons/svg/Sass.svg"
       },
       {
         tech: "JavaScript",
-        icon: "/images/Icons/svg/JavaScript.svg",
-      },
+        icon: "/images/Icons/svg/JavaScript.svg"
+      }
     ],
     url: "https://oneriddle.github.io/LandingPage/index.html",
     thumbnail: "/images/thumbnails/www-abrazodelarbol-com.webp",
-    github: "https://github.com/oneriddle/LandingPage",
+    github: "https://github.com/oneriddle/LandingPage"
   },
   {
     id: "TecnoShop",
@@ -217,32 +217,32 @@ export const data = [
     tech: [
       {
         tech: "React.js",
-        icon: "/images/Icons/svg/react.svg",
+        icon: "/images/Icons/svg/react.svg"
       },
       {
         tech: "HTML5",
-        icon: "/images/Icons/svg/HTML5.svg",
+        icon: "/images/Icons/svg/HTML5.svg"
       },
       {
         tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg",
+        icon: "/images/Icons/svg/CSS3.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
+        icon: "/images/Icons/svg/Sass.svg"
       },
       {
         tech: "JavaScript",
-        icon: "/images/Icons/svg/JavaScript.svg",
+        icon: "/images/Icons/svg/JavaScript.svg"
       },
       {
         tech: "Firebase",
-        icon: "/images/Icons/svg/firebase.svg",
-      },
+        icon: "/images/Icons/svg/firebase.svg"
+      }
     ],
-    url: "https://tecno-tienda.netlify.app/",
+    url: "https://tech-shop-tau.vercel.app",
     thumbnail: "/images/thumbnails/tecnotienda.webp",
-    github: "https://github.com/oneriddle/tecno-tienda",
+    github: "https://github.com/oneriddle/tecno-tienda"
   },
   {
     id: "eCommerceJs",
@@ -253,28 +253,28 @@ export const data = [
     tech: [
       {
         tech: "HTML5",
-        icon: "/images/Icons/svg/HTML5.svg",
+        icon: "/images/Icons/svg/HTML5.svg"
       },
       {
         tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg",
+        icon: "/images/Icons/svg/CSS3.svg"
       },
       {
         tech: "Bootstrap",
-        icon: "/images/Icons/svg/bootstrap.svg",
+        icon: "/images/Icons/svg/bootstrap.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
+        icon: "/images/Icons/svg/Sass.svg"
       },
       {
         tech: "JavaScript",
-        icon: "/images/Icons/svg/JavaScript.svg",
+        icon: "/images/Icons/svg/JavaScript.svg"
       }
     ],
     url: "https://oneriddle.github.io/proyectoJS/",
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",
-    github: "https://github.com/oneriddle/proyectoJS",
+    github: "https://github.com/oneriddle/proyectoJS"
   },
   /* {
     id: 5,
@@ -300,24 +300,24 @@ export const data = [
     tech: [
       {
         tech: "Node.js",
-        icon: "/images/Icons/svg/node.svg",
+        icon: "/images/Icons/svg/node.svg"
       },
       {
         tech: "Socket.io",
-        icon: "/images/Icons/svg/socket-io.svg",
+        icon: "/images/Icons/svg/socket-io.svg"
       },
       {
         tech: "HTML5",
-        icon: "/images/Icons/svg/HTML5.svg",
+        icon: "/images/Icons/svg/HTML5.svg"
       },
       {
         tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg",
-      },
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
     ],
     url: "https://live-chat-app3.glitch.me/",
     thumbnail: "/images/thumbnails/Thumbnail-Chat-App.webp",
-    github: "https://github.com/oneriddle/LiveChat",
+    github: "https://github.com/oneriddle/LiveChat"
   },
   {
     id: "Pokedex",
@@ -328,56 +328,56 @@ export const data = [
     tech: [
       {
         tech: "Node.js",
-        icon: "/images/Icons/svg/node.svg",
+        icon: "/images/Icons/svg/node.svg"
       },
       {
         tech: "Handlebars",
-        icon: "/images/Icons/svg/handlebars.svg",
+        icon: "/images/Icons/svg/handlebars.svg"
       },
       {
         tech: "Socket.io",
-        icon: "/images/Icons/svg/socket-io.svg",
+        icon: "/images/Icons/svg/socket-io.svg"
       },
       {
         tech: "MongoDB",
-        icon: "/images/Icons/svg/mongo.svg",
+        icon: "/images/Icons/svg/mongo.svg"
       },
       {
         tech: "Redis",
-        icon: "/images/Icons/svg/redis.svg",
+        icon: "/images/Icons/svg/redis.svg"
       },
       {
         tech: "Passport",
-        icon: "/images/Icons/svg/passport.svg",
+        icon: "/images/Icons/svg/passport.svg"
       },
       {
         tech: "Node Mailer",
-        icon: "https://nodemailer.com/nm_logo_200x136.png",
+        icon: "https://nodemailer.com/nm_logo_200x136.png"
       },
       {
         tech: "Mocha testing",
-        icon: "/images/Icons/svg/mocha.svg",
+        icon: "/images/Icons/svg/mocha.svg"
       },
-{
+      {
         tech: "Bootstrap",
-        icon: "/images/Icons/svg/bootstrap.svg",
+        icon: "/images/Icons/svg/bootstrap.svg"
       },
       {
         tech: "HTML5",
-        icon: "/images/Icons/svg/HTML5.svg",
+        icon: "/images/Icons/svg/HTML5.svg"
       },
       {
         tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg",
+        icon: "/images/Icons/svg/Sass.svg"
       },
       {
         tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg",
-      },
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
     ],
     url: "https://pokedex-santi-dev.fly.dev",
     thumbnail: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
-    github: "https://github.com/oneriddle/pokedex",
+    github: "https://github.com/oneriddle/pokedex"
   },
   {
     id: "Naturatours",
@@ -388,14 +388,14 @@ export const data = [
     tech: [
       {
         tech: "WordPress",
-        icon: "/images/Icons/svg/WordPress.svg",
+        icon: "/images/Icons/svg/WordPress.svg"
       },
       {
         tech: "Gutenberg",
-        icon: "/images/Icons/svg/gutenberg.svg",
-      },
+        icon: "/images/Icons/svg/gutenberg.svg"
+      }
     ],
     url: null,
-    thumbnail: "/images/thumbnails/Thumbnail-naturatours.webp",
-  },
+    thumbnail: "/images/thumbnails/Thumbnail-naturatours.webp"
+  }
 ]
