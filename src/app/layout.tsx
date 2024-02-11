@@ -12,9 +12,10 @@ import { useEffect } from "react"
 import { ToastContainer } from "react-toastify"
 //import ThemeIcon from "@/components/ThemeIcon"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import GoogleAnalytics from "@/components/GoogleAnalytics"
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
@@ -26,6 +27,7 @@ export default function RootLayout({
       <head>
         <Head />
       </head>
+      <GoogleAnalytics />
       <body /* className='dark' */>
         <Providers>
           <Navigation />
@@ -36,7 +38,6 @@ export default function RootLayout({
         <ToastContainer />
         <Info />
         {/* <ThemeIcon /> */}
-        {/* <TraceIP /> */}
         <SpeedInsights />
       </body>
     </html>

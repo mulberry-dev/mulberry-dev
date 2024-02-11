@@ -43,8 +43,8 @@ const About = () => {
                 title='Go back'
               />
             </Link>
-            <Link className='button-generic' href='/portfolio'>
-              Portfolio
+            <Link className='button-generic' href='/skills'>
+              Skills
             </Link>
           </div>
         </div>

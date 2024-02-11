@@ -1,6 +1,6 @@
 import Swal from "sweetalert2"
 
-const lastUpdate = "January 28, 2024"
+const lastUpdate = "February 11, 2024"
 
 export function alertInfo(params: string) {
   if (params) {
@@ -11,7 +11,7 @@ export function alertInfo(params: string) {
       focusConfirm: false,
       confirmButtonText: "Great!",
       confirmButtonAriaLabel: "Thumbs up, great!",
-      confirmButtonColor: "#3fc3ee",
+      confirmButtonColor: "#3fc3ee"
     })
   }
 }

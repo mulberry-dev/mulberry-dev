@@ -85,7 +85,7 @@ const Education = () => {
           </div>
         </div>
         <div className='buttons_container' style={{ marginTop: "-40px" }}>
-          <Link className='button smallest ' href={"/skills"}>
+          <Link className='button smallest ' href={"/portfolio"}>
             <Image
               src='/images/Icons/arrow-right-rounded.svg'
               alt='go-back'

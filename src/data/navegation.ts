@@ -11,13 +11,13 @@ export const links = [
     },
     {
       id: 3,
-      name: "Portfolio",
-      path: "/portfolio",
+      name: "Skills",
+      path: "/skills",
     },
     {
       id: 4,
-      name: "Skills",
-      path: "/skills",
+      name: "Portfolio",
+      path: "/portfolio",
     },
     {
       id: 5,

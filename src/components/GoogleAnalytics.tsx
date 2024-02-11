@@ -1,14 +1,11 @@
-/* 
-import Head from "next/head"
 import Script from "next/script"
 
 const GoogleTag = () => (
-  <Head>
-
-    <script
+  <>
+    <Script
       async
       src='https://www.googletagmanager.com/gtag/js?id=G-HP85BC1BKY'
-    ></script>
+    ></Script>
     <script>
       {`
         window.dataLayer = window.dataLayer || [];
@@ -17,7 +14,7 @@ const GoogleTag = () => (
         gtag('config', 'G-HP85BC1BKY');
       `}
     </script>
-  </Head>
+  </>
 )
 
-export default GoogleTag */
+export default GoogleTag

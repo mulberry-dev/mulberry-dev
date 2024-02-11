@@ -42,7 +42,7 @@ const Skills = () => {
           ))}
         </div>
         <div className='buttons_container  menuitem-30'>
-          <Link className='button smallest ' href={"/portfolio"}>
+          <Link className='button smallest ' href={"/about"}>
             <Image
               src='/images/Icons/arrow-right-rounded.svg'
               alt='go-back'
@@ -52,8 +52,8 @@ const Skills = () => {
               title='Go back'
             />
           </Link>
-          <Link href='/certifications' className='button-generic transition'>
-            Certifications
+          <Link href='/portfolio' className='button-generic transition'>
+            Portfolio
           </Link>
         </div>
       </div>
