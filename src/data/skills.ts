@@ -209,14 +209,22 @@ export const skills = [
   },
   {
     id: 27,
+    name: "Ubuntu",
+    imageSrc: "/images/Icons/svg/ubuntu.svg",
+    experience: 2,
+    unite: "Years",
+    progress: 50,
+  },
+  {
+    id: 28,
     name: "Kali Linux",
     imageSrc: "/images/Icons/svg/kali.svg",
     experience: 2,
     unite: "Years",
-    progress: 60,
+    progress: 40,
   },
   {
-    id: 28,
+    id: 29,
     name: "Windows",
     imageSrc: "/images/Icons/svg/windows.svg",
     experience: 21,
@@ -224,7 +232,7 @@ export const skills = [
     progress: 80,
   },
   {
-    id: 29,
+    id: 30,
     name: "Mac OS",
     imageSrc: "/images/Icons/svg/apple.svg",
     experience: 3,
