@@ -43,8 +43,8 @@ export const data = [
         icon: "/images/Icons/svg/docker.svg"
       }
     ],
-    url: null,
     thumbnail: "/images/thumbnails/Thumbnail-PIFE.webp",
+    url: null,
     github: null
   },
   {
@@ -83,9 +83,9 @@ export const data = [
         icon: "/images/Icons/svg/Sass.svg"
       }
     ],
-    url: null,
     thumbnail:
-      "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png"
+      "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
+    url: null
   },
   {
     id: "MiBlog",
@@ -173,8 +173,8 @@ export const data = [
       }
     ],
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-Backend.webp",
-    url: "https://ecommerce-backend-43495.fly.dev",
-    github: "https://github.com/oneriddle/eCommerce"
+    url: "https://ecommerce-backend.fly.dev",
+    github: null
   },
   {
     id: "TreeHug",
@@ -204,9 +204,9 @@ export const data = [
         icon: "/images/Icons/svg/JavaScript.svg"
       }
     ],
-    url: "https://oneriddle.github.io/LandingPage/index.html",
+    url: "landing-page-pi-lemon.vercel.app",
     thumbnail: "/images/thumbnails/www-abrazodelarbol-com.webp",
-    github: "https://github.com/oneriddle/LandingPage"
+    github: null
   },
   {
     id: "TecnoShop",
@@ -242,7 +242,7 @@ export const data = [
     ],
     url: "https://tech-shop-tau.vercel.app",
     thumbnail: "/images/thumbnails/tecnotienda.webp",
-    github: "https://github.com/oneriddle/tecno-tienda"
+    github: null
   },
   {
     id: "eCommerceJs",
@@ -272,9 +272,9 @@ export const data = [
         icon: "/images/Icons/svg/JavaScript.svg"
       }
     ],
-    url: "https://oneriddle.github.io/proyectoJS/",
+    url: "proyecto-js-mu.vercel.app",
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",
-    github: "https://github.com/oneriddle/proyectoJS"
+    github: null
   },
   /* {
     id: 5,
@@ -375,9 +375,9 @@ export const data = [
         icon: "/images/Icons/svg/CSS3.svg"
       }
     ],
-    url: "https://pokedex-santi-dev.fly.dev",
+    url: "https://pokedex-719.fly.dev",
     thumbnail: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
-    github: "https://github.com/oneriddle/pokedex"
+    github: null
   },
   {
     id: "Naturatours",
