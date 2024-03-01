@@ -173,7 +173,7 @@ export const data = [
       }
     ],
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-Backend.webp",
-    url: "https://ecommerce-backend.fly.dev",
+    url: null,
     github: null
   },
   {
