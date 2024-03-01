@@ -204,7 +204,7 @@ export const data = [
         icon: "/images/Icons/svg/JavaScript.svg"
       }
     ],
-    url: "landing-page-pi-lemon.vercel.app",
+    url: "https://landing-page-pi-lemon.vercel.app",
     thumbnail: "/images/thumbnails/www-abrazodelarbol-com.webp",
     github: null
   },
@@ -272,7 +272,7 @@ export const data = [
         icon: "/images/Icons/svg/JavaScript.svg"
       }
     ],
-    url: "proyecto-js-mu.vercel.app",
+    url: "https://proyecto-js-mu.vercel.app",
     thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-JS.webp",
     github: null
   },
