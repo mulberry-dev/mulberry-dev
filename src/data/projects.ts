@@ -315,7 +315,7 @@ export const data = [
         icon: "/images/Icons/svg/CSS3.svg"
       }
     ],
-    url: "https://live-chat-app3.glitch.me/",
+    url: "https://livechat-by-santi-dev.fly.dev",
     thumbnail: "/images/thumbnails/Thumbnail-Chat-App.webp",
     github: "https://github.com/oneriddle/LiveChat"
   },
