@@ -37,7 +37,7 @@ const ProjectDetails = ({ params }: any) => {
                   position: "absolute",
                   opacity: ".5",
                   transform: "scale(.6)",
-                  marginBottom: "140px",
+                  marginBottom: "140px"
                 }}
               />
             }
@@ -49,8 +49,9 @@ const ProjectDetails = ({ params }: any) => {
               placeholder={"blur"}
               blurDataURL={"data:image/webp..."}
               priority={true}
-              width={300}
-              height={250}
+              quality={100}
+              width={project?.width || 300}
+              height={project?.height || 250}
               id={"previewProject"}
             />
             <h3>Technology stack:</h3>

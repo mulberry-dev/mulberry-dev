@@ -1,5 +1,55 @@
 export const data = [
   {
+    id: "SsoSamlOkta",
+    name: "SSO SAML Okta API",
+    description:
+      "I designed and developed an authentication and Single Sign-On (SSO) Security Assertion Markup Language (SAML) API from the ground up using Node.js with TypeScript. The implementation includes seamless integration with OKTA, a leading identity management platform. This custom API facilitates secure and efficient user authentication, allowing seamless access to multiple applications through a unified sign-on process. The use of TypeScript ensures a robust and maintainable codebase. (2023)",
+    img: "/images/thumbnails/saml.png",
+    tech: [
+      {
+        tech: "Node.js",
+        icon: "/images/Icons/svg/node.svg"
+      },
+      {
+        tech: "Okta",
+        icon: "/images/Icons/svg/okta.svg"
+      },
+      {
+        tech: "Amazon Web Services",
+        icon: "/images/Icons/svg/aws.svg"
+      },
+      {
+        tech: "Passport",
+        icon: "/images/Icons/svg/passport.svg"
+      }
+    ],
+    url: null,
+    thumbnail: "/images/thumbnails/Okta.png",
+    width: 330,
+    height: 220
+  },
+  {
+    id: "ManagerProxy",
+    name: "Proxy Manager API",
+    description:
+      "I built a Manager Proxy API from scratch that consumed data from 8 microservices hosted on the private AWS domain. The primary purpose of this API was to enable access to the microservices from a public network without the need for a VPN. By orchestrating communication between the private microservices and the public network, the Manager Proxy API enhances security and ensures seamless data retrieval without compromising the integrity of the private domain. This solution optimizes accessibility while maintaining a secure and efficient data exchange between the private AWS domain and the external public network. (2023)",
+    img: "/images/thumbnails/proxy.png",
+    tech: [
+      {
+        tech: "Node.js",
+        icon: "/images/Icons/svg/node.svg"
+      },
+      {
+        tech: "Amazon Web Services",
+        icon: "/images/Icons/svg/aws.svg"
+      }
+    ],
+    url: null,
+    thumbnail: "/images/thumbnails/Nginx.png",
+    width: 330,
+    height: 220
+  },
+  {
     id: "ElectronicBilling",
     name: "Electronic Billing",
     description:
@@ -397,32 +447,5 @@ export const data = [
     ],
     url: null,
     thumbnail: "/images/thumbnails/Thumbnail-naturatours.webp"
-  },
-  {
-    id: "SSOsamlOkta",
-    name: "SSO SAML Okta API",
-    description:
-      "I designed and developed an authentication API and Single Sign-On (SSO) Security Assertion Markup Language (SAML) API from the ground up using Node.js with TypeScript. (2023)",
-    img: "/images/thumbnails/saml.png",
-    tech: [
-      {
-        tech: "Node.js",
-        icon: "/images/Icons/svg/node.svg"
-      },
-      {
-        tech: "Okta",
-        icon: "/images/Icons/svg/okta.svg"
-      },
-      {
-        tech: "Amazon Web Services",
-        icon: "/images/Icons/svg/aws.svg"
-      },
-      {
-        tech: "Passport",
-        icon: "/images/Icons/svg/passport.svg"
-      }
-    ],
-    url: null,
-    thumbnail: "/images/thumbnails/Okta.png"
   }
 ]
