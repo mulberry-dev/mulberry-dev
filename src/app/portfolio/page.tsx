@@ -37,8 +37,8 @@ const Portfolio = () => {
                     src={project.thumbnail}
                     alt={`${project.thumbnail}-image`}
                     className='project-image transition-opacity duration-1s'
-                    width={150}
-                    height={135}
+                    width={160}
+                    height={145}
                   />
                 </figure>
               </div>

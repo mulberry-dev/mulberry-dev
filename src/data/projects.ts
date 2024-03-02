@@ -11,6 +11,10 @@ export const data = [
         icon: "/images/Icons/svg/node.svg"
       },
       {
+        tech: "TypeScript",
+        icon: "/images/Icons/svg/Typescript.svg"
+      },
+      {
         tech: "Okta",
         icon: "/images/Icons/svg/okta.svg"
       },
@@ -40,14 +44,18 @@ export const data = [
         icon: "/images/Icons/svg/node.svg"
       },
       {
+        tech: "TypeScript",
+        icon: "/images/Icons/svg/Typescript.svg"
+      },
+      {
         tech: "Amazon Web Services",
         icon: "/images/Icons/svg/aws.svg"
       }
     ],
     url: null,
     thumbnail: "/images/thumbnails/Nginx.png",
-    width: 330,
-    height: 220
+    width: 340,
+    height: 190
   },
   {
     id: "ElectronicBilling",
@@ -113,6 +121,10 @@ export const data = [
         icon: "/images/Icons/svg/Nest.svg"
       },
       {
+        tech: "TypeScript",
+        icon: "/images/Icons/svg/Typescript.svg"
+      },
+      {
         tech: "Okta",
         icon: "/images/Icons/svg/okta.svg"
       },
@@ -148,6 +160,10 @@ export const data = [
       {
         tech: "Next.js",
         icon: "/images/Icons/svg/Next.js.svg"
+      },
+      {
+        tech: "TypeScript",
+        icon: "/images/Icons/svg/Typescript.svg"
       },
       {
         tech: "MongoDB",
