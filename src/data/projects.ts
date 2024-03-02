@@ -397,5 +397,32 @@ export const data = [
     ],
     url: null,
     thumbnail: "/images/thumbnails/Thumbnail-naturatours.webp"
+  },
+  {
+    id: "SSOsamlOkta",
+    name: "SSO SAML Okta API",
+    description:
+      "I designed and developed an authentication API and Single Sign-On (SSO) Security Assertion Markup Language (SAML) API from the ground up using Node.js with TypeScript. (2023)",
+    img: "/images/thumbnails/saml.png",
+    tech: [
+      {
+        tech: "Node.js",
+        icon: "/images/Icons/svg/node.svg"
+      },
+      {
+        tech: "Okta",
+        icon: "/images/Icons/svg/okta.svg"
+      },
+      {
+        tech: "Amazon Web Services",
+        icon: "/images/Icons/svg/aws.svg"
+      },
+      {
+        tech: "Passport",
+        icon: "/images/Icons/svg/passport.svg"
+      }
+    ],
+    url: null,
+    thumbnail: "/images/thumbnails/Okta.png"
   }
 ]
