@@ -1,6 +1,6 @@
 import Swal from "sweetalert2"
 
-const lastUpdate = "February 29, 2024"
+const lastUpdate = "March 13, 2024"
 
 export function alertInfo(params: string) {
   if (params) {
