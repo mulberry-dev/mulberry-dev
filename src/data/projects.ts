@@ -441,7 +441,7 @@ export const data = [
         icon: "/images/Icons/svg/CSS3.svg"
       }
     ],
-    url: "https://pokedex-719.fly.dev",
+    url: null,
     thumbnail: "/images/thumbnails/Thumbnail-Screenshot-Pokedex.webp",
     github: null
   },
