@@ -51,8 +51,8 @@
     //margin: 5px;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    backdrop-filter: blur(3px) !important;
-    -webkit-backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     width: 120px;
 
     img {
@@ -88,8 +88,8 @@
       opacity: 1;
       scale: 1.1;
       transition-duration: 200ms;
-      -webkit-backdrop-filter: blur(2px) !important;
-      backdrop-filter: blur(2px) !important;
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
 
     }
 
