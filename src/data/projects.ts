@@ -29,8 +29,8 @@ export const data = [
     ],
     url: null,
     thumbnail: "/images/thumbnails/Okta.png",
-    width: 330,
-    height: 180
+    width: 340,
+    height: 170
   },
   {
     id: "ManagerProxy",
@@ -55,7 +55,7 @@ export const data = [
     url: null,
     thumbnail: "/images/thumbnails/Nginx.png",
     width: 340,
-    height: 170
+    height: 150
   },
   {
     id: "ElectronicBilling",
