@@ -29,7 +29,7 @@ export const data = [
     ],
     url: null,
     thumbnail: "/images/thumbnails/Okta.png",
-    width: 340,
+    width: 330,
     height: 170
   },
   {
