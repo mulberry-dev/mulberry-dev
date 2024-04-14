@@ -21,7 +21,7 @@ const About = () => {
             quality={100}
             title='Santi Avatar'
             className='santi_avatar transition-opacity opacity-0 duration-2s'
-            onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+            onLoad={(image) => image.currentTarget.classList.remove("opacity-0")}
           />
           {
             <p className='about_text'>
