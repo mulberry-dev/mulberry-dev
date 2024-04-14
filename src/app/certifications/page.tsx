@@ -48,8 +48,8 @@ const Education = () => {
                       alt={certificate.url}
                       priority={true}
                       className='d-block w-100 certificado transition-opacity opacity-0 duration-2s'
-                      onLoadingComplete={(image) =>
-                        image.classList.remove("opacity-0")
+                      onLoad={(image) =>
+                        image.currentTarget.classList.remove("opacity-0")
                       }
                       width={718}
                       height={550}

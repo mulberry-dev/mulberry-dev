@@ -52,6 +52,7 @@ export const POST = async (request: Request) => {
     });
   } catch (error) {
     if (error instanceof Error) {
+      console.log(error.message)
       return NextResponse.json(
         {
           message: error.message,

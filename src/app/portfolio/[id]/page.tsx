@@ -16,8 +16,8 @@ const ProjectDetails = ({ params }: any) => {
   const loaded = (img: any) => {
     const previewImage = document.getElementById("loader")
     previewImage?.classList.add("display-none")
-    img.classList.remove("display-none")
-    img.classList.remove("opacity-0")
+    img.currentTarget.classList.remove("display-none")
+    img.currentTarget.classList.remove("opacity-0")
   }
 
   return (
@@ -43,7 +43,7 @@ const ProjectDetails = ({ params }: any) => {
             }
             <Image
               className='project-thumbnail transition-opacity duration-2s opacity-0'
-              onLoadingComplete={(image) => loaded(image)}
+              onLoad={(image) => loaded(image)}
               src={`${project?.img}`}
               alt={`${project?.name}-img`}
               placeholder={"blur"}
@@ -56,9 +56,9 @@ const ProjectDetails = ({ params }: any) => {
             />
             <h3>Technology stack:</h3>
             <div className='tech_container'>
-              {project?.tech.map((e) => (
+              {project?.tech.map((e, index) => (
                 <Tooltip
-                  key={`${project.id}`}
+                  key={`${index}-key`}
                   title={e?.tech}
                   placement='bottom'
                   trigger='hover'
