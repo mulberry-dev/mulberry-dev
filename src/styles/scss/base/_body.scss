@@ -12,7 +12,7 @@ html {
 
 body {
 
-    transition: background 300ms ease;
+    transition: background-image 500ms  ease-in-out; ;
     background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
     background: -moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
     background: -webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
@@ -28,6 +28,53 @@ body {
         background: -webkit-linear-gradient(90deg, rgb(23, 91, 97) 0%, rgb(54, 12, 79) 100%);
         background-attachment: fixed;
     }
+
+    /* &.home{
+        background: #6407b6;
+        background: -webkit-linear-gradient(to top, #1f005e, #8E2DE2);
+        background: linear-gradient(to top, #1f005e, #8E2DE2);   
+        background-attachment: fixed;  
+    
+    } */
+
+    &.about{
+        background: #8E2DE2;
+        background: -webkit-linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
+        background: linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
+        background-attachment: fixed;   
+    }
+
+    // &.skills{
+    //     background: #2ac6ed;
+    //     background: -webkit-linear-gradient(to bottom, #2ac6ed, #18143c);
+    //     background: linear-gradient(to bottom, #2ac6ed, #18143c);
+    //     background-attachment: fixed;
+    // }
+
+    &.portfolio{
+        background: #00d2ff;
+        background: -webkit-linear-gradient(to bottom, #001a3e, #00d2ff);
+        background: linear-gradient(to top, #001a3e, #00d2ff);
+        background-attachment: fixed;
+    }
+
+    // &.certifications{
+    //     background: #6441A5;
+    //     background: -webkit-linear-gradient(#0f0c29, #302b63, #000000);
+    //     background: linear-gradient(#0f0c29, #302b63, #000000);
+    //     background-attachment: fixed;
+        
+    // }
+
+    &.contact{
+        background: #0f0c29;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-attachment: fixed;
+    }
+
+
+
 }
 
 .tracker {

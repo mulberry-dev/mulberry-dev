@@ -4,9 +4,17 @@ import Link from "next/link"
 import { useEffect } from "react"
 
 const IndexPage = () => {
+
   useEffect(() => {
     document.title = "Home | ThisIsSanti.dev"
+
+    document.body.classList.add('home');
+  
+    return () => {
+      document.body.classList.remove('home');
+    };
   }, [])
+  
   return (
     <>
       <section id='index'>

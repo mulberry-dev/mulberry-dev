@@ -8,6 +8,12 @@ import { useEffect } from "react"
 const Skills = () => {
   useEffect(() => {
     document.title = "Skills | ThisIsSanti.dev"
+
+    document.body.classList.add('skills');
+  
+    return () => {
+      document.body.classList.remove('skills');
+    };
   }, [])
 
   return (

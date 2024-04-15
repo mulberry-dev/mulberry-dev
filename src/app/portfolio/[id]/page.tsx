@@ -11,6 +11,12 @@ const ProjectDetails = ({ params }: any) => {
 
   useEffect(() => {
     document.title = `${project?.name}  | ThisIsSanti.dev`
+
+    document.body.classList.add('portfolio');
+  
+    return () => {
+      document.body.classList.remove('portfolio');
+    };
   }, [project?.name])
 
   const loaded = (img: any) => {

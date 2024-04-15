@@ -7,13 +7,20 @@ import { useEffect } from "react"
 const About = () => {
   useEffect(() => {
     document.title = "About | ThisIsSanti.dev"
+
+    document.body.classList.add('about');
+  
+    return () => {
+      document.body.classList.remove('about');
+    };
   }, [])
   return (
     <>
       <section id='about'>
-        <div className='about_wrapper square-animation animate__animated animate__fadeIn'>
+        <div className='about_wrapper square-animation animate__animated'>
           <Image
             src='/images/Icons/avatar-santi-git.svg'
+            //src='/images/Icons/AvatarSanti.webp'
             alt='Santi Avatar'
             priority={true}
             width={250}
@@ -24,7 +31,7 @@ const About = () => {
             onLoad={(image) => image.currentTarget.classList.remove("opacity-0")}
           />
           {
-            <p className='about_text'>
+            <p className='about_text animate__fadeIn'>
               I am a programmer who has a deep love for coding and technology. My
               passion extends to UX & UI design, I consider myself an expert
               in Frontend and a devoted enthusiast of Backend. I am always

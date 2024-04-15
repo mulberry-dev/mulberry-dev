@@ -11,6 +11,12 @@ const Portfolio = () => {
 
   useEffect(() => {
     document.title = "Portfolio | ThisIsSanti.dev"
+
+    document.body.classList.add('portfolio');
+  
+    return () => {
+      document.body.classList.remove('portfolio');
+    };
   }, [])
 
   return (

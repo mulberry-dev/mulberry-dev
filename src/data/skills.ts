@@ -161,11 +161,11 @@ export const skills = [
   },
   {
     id: 21,
-    name: "Java",
-    imageSrc: "/images/Icons/svg/java.svg",
-    experience: 2,
-    unite: "Years",
-    progress: 30,
+    name: "PHP",
+    imageSrc: "/images/Icons/svg/PHP.svg",
+    experience: 1,
+    unite: "Year",
+    progress: 50,
   },
   {
     id: 22,

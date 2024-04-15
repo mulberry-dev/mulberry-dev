@@ -2,8 +2,16 @@ import Link from "next/link"
 
 import "@/styles/scss/styles.scss"
 import Image from "next/image"
+import { useEffect } from "react"
+
+
 
 export default function NotFound() {
+
+
+
+
+
   return (
     <>
       <section>

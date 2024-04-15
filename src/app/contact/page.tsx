@@ -7,6 +7,12 @@ import { useEffect } from "react"
 const Contact = () => {
   useEffect(() => {
     document.title = "Contact | ThisIsSanti.dev"
+
+    document.body.classList.add('contact');
+  
+    return () => {
+      document.body.classList.remove('contact');
+    };
   }, [])
   return (
     <>
@@ -25,7 +31,7 @@ const Contact = () => {
               width={70}
               height={70}
               quality={100}
-              className='linkedin animate__animated animate__tada'
+              className='linkedin animate__animated animate__fadeInUp'
               title='Linkedin'
             />
           </Link>

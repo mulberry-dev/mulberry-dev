@@ -8,13 +8,19 @@ import { certificates } from "@/data/certificates"
 const Education = () => {
   useEffect(() => {
     document.title = "Certifications | ThisIsSanti.dev"
+
+    document.body.classList.add('certifications');
+  
+    return () => {
+      document.body.classList.remove('certifications');
+    };
   }, [])
 
   return (
     <section>
-      <div className='certificates_container animate__animated animate__fadeIn'>
+      <div className='certificates_container animate__animated animate__fadeIn '>
         <h2 className='h2'>9 Certifications</h2>
-        <div className='certificates_container'>
+        <div className='certificates_container square-animation-vertical'>
           <div
             id='carouselExampleIndicators'
             className='carousel slide'
@@ -51,8 +57,8 @@ const Education = () => {
                       onLoad={(image) =>
                         image.currentTarget.classList.remove("opacity-0")
                       }
-                      width={718}
-                      height={550}
+                      width={790}
+                      height={605}
                     />
                   </div>
                 )
