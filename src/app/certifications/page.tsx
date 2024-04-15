@@ -57,8 +57,8 @@ const Education = () => {
                       onLoad={(image) =>
                         image.currentTarget.classList.remove("opacity-0")
                       }
-                      width={790}
-                      height={605}
+                      width={718}
+                      height={550}
                     />
                   </div>
                 )
