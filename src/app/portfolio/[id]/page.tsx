@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useEffect } from "react"
 import { data as projects } from "@/data/projects"
 import { Tooltip } from "antd"
+import {PrivateDeployment} from "@/utils/alerts"
 
 const ProjectDetails = ({ params }: any) => {
   const project = projects.find((project) => project.id == params.id)
@@ -102,6 +103,7 @@ const ProjectDetails = ({ params }: any) => {
                     <div
                       className='button-generic'
                       title={`Private deployment`}
+                      onClick={() => PrivateDeployment(project?.name)}
                     >
                       Private deployment
                     </div>
