@@ -1,9 +1,16 @@
 /** Body **/
 
-$color1: hsla(185, 64%, 51%, 1);
-$color2: hsla(277, 74%, 24%, 1);
+$color1: rgb(50, 197, 210);
+$color2: rgb(72, 16, 106);
 
-$porcentaje: 0%;
+$porcentaje: 40%;
+
+$color1: #8E2DE2;
+$color2: #12c2e9;
+$color3: #c471ed;
+$color4: #f64f59;
+$darkenPercentage: 40%;
+$darkenPercen: 10%;
 
 
 html {
@@ -11,8 +18,7 @@ html {
 }
 
 body {
-
-    transition: background-image 500ms  ease-in-out; ;
+    transition: background-color 0.3s ease;
     background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
     background: -moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
     background: -webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
@@ -21,11 +27,10 @@ body {
     color: white;
 
     &.dark {
-        background: darken($color1, 10%);
+        background: darken($color1, $porcentaje);
         background: linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
         background: -moz-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
         background: -webkit-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-        background: -webkit-linear-gradient(90deg, rgb(23, 91, 97) 0%, rgb(54, 12, 79) 100%);
         background-attachment: fixed;
     }
 
@@ -37,40 +42,57 @@ body {
     
     } */
 
-    &.about{
+                                &.about {
         background: #8E2DE2;
         background: -webkit-linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
         background: linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
-        background-attachment: fixed;   
+        background-attachment: fixed;
+&.dark {
+        background: darken($color1, $darkenPercentage);
+
+
+        background: linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
+        background: -moz-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
+        background: -webkit-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
+        background: -webkit-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
+        background: -webkit-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
+        background-attachment: fixed;
+    }
     }
 
-    // &.skills{
-    //     background: #2ac6ed;
-    //     background: -webkit-linear-gradient(to bottom, #2ac6ed, #18143c);
-    //     background: linear-gradient(to bottom, #2ac6ed, #18143c);
-    //     background-attachment: fixed;
-    // }
 
-    &.portfolio{
+                                &.portfolio {
         background: #00d2ff;
         background: -webkit-linear-gradient(to bottom, #001a3e, #00d2ff);
         background: linear-gradient(to top, #001a3e, #00d2ff);
         background-attachment: fixed;
+&.dark {
+
+        background: darken(#00d2ff, $darkenPercentage);
+
+        background: linear-gradient(to bottom,
+                darken(#001a3e, $darkenPercentage),
+                darken(#00d2ff, $darkenPercentage));
+        background: -webkit-linear-gradient(to bottom,
+                darken(#001a3e, $darkenPercentage),
+                darken(#00d2ff, $darkenPercentage));
+        background-attachment: fixed;
+    }
     }
 
-    // &.certifications{
-    //     background: #6441A5;
-    //     background: -webkit-linear-gradient(#0f0c29, #302b63, #000000);
-    //     background: linear-gradient(#0f0c29, #302b63, #000000);
-    //     background-attachment: fixed;
-        
-    // }
+&.contact {
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
 
-    &.contact{
-        background: #0f0c29;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background-attachment: fixed;
+    &.dark {
+            background: #0f0c29;
+            background: -webkit-linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
+
+    background: linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
         background-attachment: fixed;
+
     }
 
 
@@ -106,4 +128,5 @@ h2 {
         /*   margin-top: 35px !important; */
     }
 
+}
 }

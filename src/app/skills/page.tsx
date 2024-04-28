@@ -18,7 +18,7 @@ const Skills = () => {
 
   return (
     <section id='skills'>
-      <div className='skills_container animate__animated animate__fadeIn'>
+      <div className='skills_container animate__animated animate__fadeIn blur'>
         <h2 className='h2'>Skills</h2>
         <p className='hover-me'>Move the mouse over the cubes.</p>
 
@@ -26,7 +26,7 @@ const Skills = () => {
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className={`skill-item transition menuitem-${skill.id} blur`}
+              className={`skill-item transition menuitem-${skill.id}`}
             >
               <Image
                 src={skill.imageSrc}

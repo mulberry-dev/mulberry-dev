@@ -23,6 +23,7 @@
 }
 
 .project-item {
+    transition: background-color .3s cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     display: flex;
@@ -36,6 +37,10 @@
     box-shadow: 3px 2px 6px 1px #0000000e;
     z-index: 99;
     box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.8);
+
+    body.dark & {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
 
     @media (min-width: 390px) {
         width: 175px;

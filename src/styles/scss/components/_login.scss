@@ -28,8 +28,8 @@
 }
 
 .blur {
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     z-index: 99;
 }
 
@@ -103,6 +103,11 @@ form {
     box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
     -webkit-box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
     -moz-box-shadow: 8px 8px 8px -4px rgba(0, 0, 0, 0.44);
+    transition: background-color 0.3s ease;
+
+        body.dark & {
+                background-color: rgba(255, 255, 255, 0.15);
+            }
 
 
 

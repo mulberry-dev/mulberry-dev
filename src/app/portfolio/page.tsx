@@ -22,10 +22,10 @@ const Portfolio = () => {
   return (
     <>
       <section id='portfolio'>
-        <div className='portfolio_container animate__animated animate__fadeIn'>
+        <div className='portfolio_container animate__animated animate__fadeIn blur'>
           <h2>Portfolio</h2>
           <p className='hover-me'>Click for details</p>
-          <div className='projects-container'>
+          <div className='projects-container '>
             {projects?.map((project) => (
               <div
                 key={`${project.name}`}
