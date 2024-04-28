@@ -1,7 +1,7 @@
 .theme-icon {
     position: fixed;
-    left: 10px;
-        bottom: 30px;
+    left: 0px;
+        top: -3px;
     z-index: 999;
     cursor: pointer;
     // display: none;
@@ -33,14 +33,14 @@
 .icon--moon {
     transition-delay: 200ms;
 
-    color: #ffffff;
+    color: #d6d6d6e3;
     filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
 }
 
 
 .icon--sun {
     transform: scale(0);
-    color: #ffffff;
+    color: #b2b2b2;
     filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
 }
 

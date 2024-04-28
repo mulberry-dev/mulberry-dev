@@ -20,7 +20,7 @@ const About = () => {
         <div className='about_wrapper square-animation animate__animated'>
           <Image
             src='/images/Icons/avatar-santi-git.svg'
-            //src='/images/Icons/AvatarSanti.webp'
+            //src='/images/Icons/AvatarSanti.webp'  
             alt='Santi Avatar'
             priority={true}
             width={250}
