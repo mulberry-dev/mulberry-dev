@@ -13,6 +13,14 @@ $darkenPercentage: 30%;
 $darkenPercen: 10%;
 
 
+@mixin mybackground {
+    background: darken($color1, $porcentaje);
+    background: linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
+    background: -moz-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
+    background: -webkit-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
+    background-attachment: fixed;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -34,99 +42,77 @@ body {
         background-attachment: fixed;
     }
 
-    /* &.home{
-        background: #6407b6;
-        background: -webkit-linear-gradient(to top, #1f005e, #8E2DE2);
-        background: linear-gradient(to top, #1f005e, #8E2DE2);   
-        background-attachment: fixed;  
-    
-    } */
-
-                                &.about {
+    &.about {
         background: #8E2DE2;
         background: -webkit-linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
         background: linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
         background-attachment: fixed;
-&.dark {
-        background: darken($color1, $darkenPercentage);
 
-
-        background: linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
-        background: -moz-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
-        background: -webkit-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
-        background: -webkit-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
-        background: -webkit-linear-gradient(90deg, darken($color2, $darkenPercentage), darken($color3, $darkenPercentage), darken($color4, $darkenPercentage));
-        background-attachment: fixed;
-    }
+        &.dark {
+            @include mybackground()
+        }
     }
 
 
-                                &.portfolio {
+    &.portfolio {
         background: #00d2ff;
         background: -webkit-linear-gradient(to bottom, #001a3e, #00d2ff);
         background: linear-gradient(to top, #001a3e, #00d2ff);
         background-attachment: fixed;
-&.dark {
 
-        background: darken(#00d2ff, $darkenPercentage);
+        &.dark {
+            @include mybackground()
+        }
+    }
 
-        background: linear-gradient(to bottom,
-                darken(#001a3e, $darkenPercentage),
-                darken(#00d2ff, $darkenPercentage));
-        background: -webkit-linear-gradient(to bottom,
-                darken(#001a3e, $darkenPercentage),
-                darken(#00d2ff, $darkenPercentage));
+    &.contact {
+        background: #0f0c29;
+        background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+
+        background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
         background-attachment: fixed;
-    }
-    }
 
-&.contact {
-    background: #0f0c29;
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
-
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-    background-attachment: fixed;
-    &.dark {
+        &.dark {
             background: #0f0c29;
             background: -webkit-linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
 
-    background: linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
-        background-attachment: fixed;
+            background: linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
+            background-attachment: fixed;
+
+        }
+
+
 
     }
 
+    .tracker {
+        width: 100px;
+        height: 100px;
 
-
-}
-
-.tracker {
-    width: 100px;
-    height: 100px;
-
-    script {
-        opacity: 0;
-        display: none;
-    }
-}
-
-h2 {
-    font-weight: 800 !important;
-    color: white !important;
-    font-size: 40px !important;
-    margin-top: 70px !important;
-    transition-duration: 150ms;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-    margin-bottom: 20px;
-
-    @media (min-width: 768px) {
-        font-size: 55px !important;
-        /*   margin-top: 35px !important; */
+        script {
+            opacity: 0;
+            display: none;
+        }
     }
 
-    @media (min-width: 1024px) {
-        font-size: 60px !important;
-        /*   margin-top: 35px !important; */
-    }
+    h2 {
+        font-weight: 800 !important;
+        color: white !important;
+        font-size: 40px !important;
+        margin-top: 70px !important;
+        transition-duration: 150ms;
+        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+        margin-bottom: 20px;
 
-}
+        @media (min-width: 768px) {
+            font-size: 55px !important;
+            /*   margin-top: 35px !important; */
+        }
+
+        @media (min-width: 1024px) {
+            font-size: 60px !important;
+            /*   margin-top: 35px !important; */
+        }
+
+    }
 }

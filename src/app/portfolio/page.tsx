@@ -22,7 +22,7 @@ const Portfolio = () => {
   return (
     <>
       <section id='portfolio'>
-        <div className='portfolio_container animate__animated animate__fadeIn blur'>
+        <div className='portfolio_container animate__animated animate__fadeIn'>
           <h2>Portfolio</h2>
           <p className='hover-me'>Click for details</p>
           <div className='projects-container '>

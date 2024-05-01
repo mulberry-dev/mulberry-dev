@@ -18,7 +18,7 @@ const Skills = () => {
 
   return (
     <section id='skills'>
-      <div className='skills_container animate__animated animate__fadeIn blur'>
+      <div className='skills_container animate__animated animate__fadeIn'>
         <h2 className='h2'>Skills</h2>
         <p className='hover-me'>Move the mouse over the cubes.</p>
 
