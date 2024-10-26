@@ -25,6 +25,40 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Estilo para todo el scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Ancho del scrollbar */
+    background-color: #f0f0f0;
+    /* Color de fondo (gris claro) */
+}
+
+/* Estilo para el track o fondo del scrollbar */
+::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
+    /* Color del track en un gris claro */
+}
+
+/* Estilo para la "thumb" (la parte que se mueve) */
+::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    /* Color de la thumb en un gris medio */
+    border-radius: 4px;
+    /* Bordes redondeados */
+}
+
+/* Estilo para la thumb al hacer hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #808080;
+    /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo para la thumb cuando está activa */
+::-webkit-scrollbar-thumb:active {
+    background-color: #606060;
+    /* Color aún más oscuro cuando está activa */
+}
+
 body {
     transition: background-color 0.3s ease;
     background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
