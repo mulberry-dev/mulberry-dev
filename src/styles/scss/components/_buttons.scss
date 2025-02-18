@@ -48,10 +48,10 @@
   -webkit-backdrop-filter: blur(2px);
   z-index: 99;
 
-  body.dark & {
+/*   body.dark & {
     background-color: rgba(0, 0, 0, 0.4);
     color: black;
-  }
+  } */
 
   &:hover {
     cursor: pointer;
