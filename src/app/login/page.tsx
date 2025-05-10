@@ -5,19 +5,12 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import PageTitle from "@/components/PageTitle";
 
 const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    document.title = "Login | ThisIsSanti.dev"
-  }, []);
-
-  const onChange = () => {
-    setShowPass(!showPass);
-  };
 
   const handdleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     notifyInfo("Loading... ⏳");
@@ -27,20 +20,17 @@ const LoginPage = () => {
     const res = await signIn("credentials", {
       email: body.get("email"),
       password: body.get("password"),
-
       redirect: false,
     });
 
     if (res?.error) return notifyWarn(res.error as string);
-
-    if (res?.ok) {
-      return router.push("/dashboard/profile");
-    }
+    if (res?.ok) return router.push("/dashboard/profile");
   };
 
   return (
     <section>
-      <div className='generic_container  animate__animated animate__fadeIn blur'>
+      <PageTitle title="Login" bodyClass="login" />
+      <div className='generic_container animate__animated animate__fadeIn blur'>
         <form onSubmit={handdleSubmit}>
           <h2>Login</h2>
           <Image
@@ -49,7 +39,7 @@ const LoginPage = () => {
             priority={true}
             width={100}
             height={100}
-            alt={"Image"}
+            alt="Login icon"
           />
           <input autoComplete="username" className='m-1' placeholder='Email' name='email' required />
           <div className='password-row'>
@@ -62,14 +52,13 @@ const LoginPage = () => {
               type={showPass ? "text" : "password"}
               id='password'
             />
-            <div onClick={onChange}>
+            <div onClick={() => setShowPass(!showPass)}>
               <Image
                 src='https://cdn-icons-png.flaticon.com/512/6642/6642206.png'
                 className='eye'
                 width={25}
                 height={25}
-                alt='eye'
-                onClick={() => onChange}
+                alt='Show password'
               />
             </div>
           </div>
@@ -79,7 +68,7 @@ const LoginPage = () => {
         </form>
         <div className='register_link_container'>
           <p>Don´t you have an account yet? </p>
-          <Link className='register_link' href={"/signup"}>
+          <Link className='register_link' href="/signup">
             Signup
           </Link>
         </div>

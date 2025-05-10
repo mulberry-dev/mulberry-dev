@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
-import { useEffect } from "react"
+import PageTitle from "@/components/PageTitle"
+import NavigationButtons from "@/components/NavigationButtons"
 
 const AvatarImage = ({ src, className }: { src: string; className: string }) =>
   <Image
@@ -18,14 +18,9 @@ const AvatarImage = ({ src, className }: { src: string; className: string }) =>
   />
 
 const About = () => {
-  useEffect(() => {
-    document.title = "About | ThisIsSanti.dev"
-    document.body.classList.add("about")
-    return () => document.body.classList.remove("about")
-  }, [])
-
   return (
     <section id="about">
+      <PageTitle title="About" bodyClass="about" />
       <div className="about_wrapper square-animation animate__animated">
         <AvatarImage
           src="/images/Webp/santi-light-theme.webp"
@@ -42,21 +37,7 @@ const About = () => {
           learning new technologies, driven by my commitment to developing
           specialized and scalable technology for new projects.
         </p>
-        <div className="buttons_container">
-          <Link className="button smallest" href={"/"}>
-            <Image
-              src="/images/Icons/arrow-right-rounded.svg"
-              alt="go-back"
-              className="go_back"
-              width={40}
-              height={40}
-              title="Go back"
-            />
-          </Link>
-          <Link className="button-generic" href="/skills">
-            Skills
-          </Link>
-        </div>
+        <NavigationButtons backLink="/" nextLink="/skills" nextText="Skills" />
       </div>
     </section>
   )
