@@ -57,7 +57,7 @@ const ProjectDetails = ({ params }: any) => {
             <Image
               className='project-thumbnail transition-opacity duration-2s opacity-0'
               onLoad={loaded}
-              src={project?.img}
+              src={project?.img || ""}
               alt={`${project?.name}-img`}
               placeholder="blur"
               blurDataURL="data:image/webp..."
@@ -102,7 +102,7 @@ const ProjectDetails = ({ params }: any) => {
                   ) : (
                     <Link
                       className='button-generic'
-                      href={project?.url}
+                      href={project?.url || ""}
                       title={`Go to ${project?.name} site`}
                     >
                       Visit
