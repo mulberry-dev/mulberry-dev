@@ -31,9 +31,26 @@
         padding: 20px;
     }
 
-    .santi_avatar {
+    .santi_avatar_light_theme {
         filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
-        //border-bottom: solid #a59c97 1px;
+        border-radius: 10PX;
+        display: flex;
+        animation: fadeIn 0.2s ease-in;
+
+        body.dark & {
+            display: none;
+        }
+    }
+
+    .santi_avatar_dark_theme {
+        display: none;
+
+        body.dark & {
+            display: flex;
+            filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5));
+            border-radius: 10PX;
+            animation: fadeIn 0.2s ease-in;
+        }
     }
 
 }
@@ -58,4 +75,13 @@
 
 .square-animation {
     animation: wipe-enter .8s 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
