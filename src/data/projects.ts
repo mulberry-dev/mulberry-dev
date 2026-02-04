@@ -1,5 +1,43 @@
 export const data = [
   {
+    id: "SalonTarget",
+    name: "SalonTarget",
+    description:
+      "I contribute to the ongoing modernization of SalonTarget's all-in-one salon and spa management platform. I help migrate legacy systems from PHP and Node.js to a modern stack using React, Apollo GraphQL, and TypeORM, enhancing performance and maintainability. I also support the integration of a new payment processor with banking terminals to streamline checkout and improve the user experience for salon staff and clients. (2025-2026)",
+    img: "/images/Webp/by-design.png",
+    tech: [
+      {
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg"
+      },
+      {
+        tech: "Apollo GraphQL",
+        icon: "/images/Icons/svg/grapql.svg"
+      },
+      {
+        tech: "TypeORM",
+        icon: "/images/Icons/svg/typeorm-seeklogo.svg"
+      },
+      {
+        tech: "Node.js",
+        icon: "/images/Icons/svg/node.svg"
+      },
+      {
+        tech: "TypeScript",
+        icon: "/images/Icons/svg/Typescript.svg"
+      },
+      {
+        tech: "Material UI",
+        icon: "/images/Icons/svg/mui.svg"
+      }
+    ],
+    url: "https://salontarget.com/",
+    thumbnail: "/images/Webp/by-design.png",
+    github: null,
+        width: 320,
+    height: 320
+  },
+  {
     id: "SsoSamlOkta",
     name: "SSO SAML Okta API",
     description:
@@ -59,9 +97,9 @@ export const data = [
   },
   {
     id: "ElectronicBilling",
-    name: "Electronic Billing",
+    name: "Electronic Billing GS",
     description:
-      "This application features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, build in AWS. (2024)",
+      "This application, developed for Grupo Salinas, features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, built in AWS. (2024)",
     img: "/images/Webp/FacturacionElectronica.webp",
     tech: [
       {
@@ -107,7 +145,7 @@ export const data = [
   },
   {
     id: "eBilling",
-    name: "eBilling",
+    name: " Profuturo eBilling",
     description:
       "This application is designed to generate financial statements, featuring a user interface developed in Next.js using Material UI. The robust backend is powered by over 10 microservices developed with Nest.js, a Node.js framework. Authentication is seamlessly handled through Passport and OKTA integration. The entire system is hosted on Google Cloud Services, with data stored in a PostgreSQL database.",
     img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
@@ -174,7 +212,7 @@ export const data = [
         icon: "/images/Icons/svg/sql.svg"
       }
     ],
-    url: "https://my-blog-santi-iztli.vercel.app/",
+    url: null,
     thumbnail: "/images/thumbnails/MiBlog.png",
     github: "https://github.com/oneriddle/My-Blog"
   },
