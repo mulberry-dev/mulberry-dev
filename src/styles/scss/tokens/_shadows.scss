@@ -1,0 +1,11 @@
+$glow-teal: 0 0 32px rgba(45, 212, 191, 0.28);
+$glow-purple: 0 0 40px rgba(168, 85, 247, 0.28);
+$ease-out: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+:root {
+  --glow-teal: #{$glow-teal};
+  --glow-purple: #{$glow-purple};
+  --ease-out: #{$ease-out};
+  --duration-fast: 150ms;
+  --duration: 250ms;
+}

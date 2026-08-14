@@ -1,0 +1,63 @@
+$canvas: #0b1120;
+$canvas-deep: #0a0b10;
+$surface: #151c2c;
+$surface-glass: rgba(21, 28, 44, 0.42);
+$border: rgba(255, 255, 255, 0.1);
+$teal: #2dd4bf;
+$teal-hover: #5eead4;
+$purple: #a855f7;
+$purple-deep: #8e2de2;
+$cyan: #12c2e9;
+$cyan-bright: #00d2ff;
+$text: #ffffff;
+$text-muted: #94a3b8;
+$text-dim: #64748b;
+$focus: #2dd4bf;
+
+$light-canvas: #f4f7fb;
+$light-surface: rgba(255, 255, 255, 0.48);
+$light-border: rgba(15, 23, 42, 0.1);
+$light-text: #0f172a;
+$light-muted: #475569;
+$glass-blur: 5px;
+
+:root {
+  --color-canvas: #{$canvas};
+  --color-canvas-deep: #{$canvas-deep};
+  --color-surface: #{$surface};
+  --color-surface-glass: #{$surface-glass};
+  --color-border: #{$border};
+  --color-teal: #{$teal};
+  --color-teal-hover: #{$teal-hover};
+  --color-purple: #{$purple};
+  --color-purple-deep: #{$purple-deep};
+  --color-cyan: #{$cyan};
+  --color-text: #{$text};
+  --color-text-muted: #{$text-muted};
+  --color-text-dim: #{$text-dim};
+  --color-focus: #{$focus};
+  --gradient-brand: linear-gradient(90deg, #{$teal} 0%, #{$purple} 100%);
+  --nebula-teal: rgba(45, 212, 191, 0.16);
+  --nebula-purple: rgba(168, 85, 247, 0.18);
+  --particle-color: rgba(255, 255, 255, 0.55);
+  --glass-blur: #{$glass-blur};
+}
+
+@mixin glass-blur {
+  -webkit-backdrop-filter: blur(#{$glass-blur});
+  backdrop-filter: blur(#{$glass-blur});
+}
+
+body:not(.dark) {
+  --color-canvas: #{$light-canvas};
+  --color-canvas-deep: #e8eef6;
+  --color-surface: #ffffff;
+  --color-surface-glass: #{$light-surface};
+  --color-border: #{$light-border};
+  --color-text: #{$light-text};
+  --color-text-muted: #{$light-muted};
+  --color-text-dim: #64748b;
+  --nebula-teal: rgba(45, 212, 191, 0.1);
+  --nebula-purple: rgba(168, 85, 247, 0.1);
+  --particle-color: rgba(15, 23, 42, 0.28);
+}

@@ -1,3 +1,5 @@
+"use client"
+
 import { alertInfo } from "@/utils/alerts"
 import Image from "next/image"
 

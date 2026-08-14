@@ -1,197 +1,132 @@
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.2);
-    margin-top: 60px;
-    margin-bottom: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
-    max-width: 95%;
-    padding: 20px 30px 0px 30px;
-    border-radius: 10px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    position: relative;
-    z-index: 9;
-    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.6);
-
-        body.dark & {
-                background-color: rgba(255, 255, 255, 0.1);
-            }
-
-
-
-    @media (min-width: 768px) {
-        max-width: 900px;
-        padding: 25px 40px;
-    }
-
-    h2 {
-        margin-top: 0px !important;
-        font-size: 35px !important;
-        text-align: center;
-
-        @media (min-width: 768px) {
-            font-size: 50px !important;
-        }
-    }
-
-    p {
-        color: white;
-        margin-bottom: 10px;
-        font-weight: 300;
-    }
+.project-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
 }
 
-
-.project-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9;
-    gap: 10px;
-    max-width: 700px;
-    margin: 10;
-
-    @media (min-width: 768px) {
-        flex-direction: row;
-        gap: 30px;
-    }
-
-    .project-row {
-        display: flex;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 0px 15px 0px 15px;
-        gap: 15px;
-
-        .tech_container {
-            display: flex;
-            gap: 7px 10px;
-            width: 300px;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 5px;
-            margin-bottom: 5px;
-
-            img {
-                transition-duration: 150ms;
-                margin: 2px;
-                filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
-
-                &:hover {
-                    transform: scale(1.5);
-                    margin: 2px;
-                    cursor: pointer;
-                }
-            }
-        }
-
-
-        .project-thumbnail {
-            border-radius: 10px;
-            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        h3 {
-            color: white;
-            font-size: 16px;
-            padding-top: 10px;
-            text-align: center;
-            font-weight: 400;
-
-        }
-
-        .project-card {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-
-            h3 {
-                color: white;
-                font-size: 14px;
-                padding-top: 20px;
-                text-align: center;
-                font-weight: 400;
-
-            }
-
-
-            p {
-                color: white;
-                padding: 5px;
-                font-weight: 200;
-                text-align: justify;
-            }
-
-
-
-            .tech-box {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-
-
-
-
-                .button-box {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: row;
-                    margin-top: 20px;
-
-                    img {
-                        width: 21px;
-
-                    }
-
-                    a {
-                        margin: 0;
-                        width: 100px;
-                        margin-right: 10px;
-                    }
-                }
-
-            }
-
-
-        }
-    }
-
-
+.project-back {
+  color: var(--color-teal);
+  text-decoration: none;
+  font-weight: 600;
+  width: fit-content;
+  animation: projectFade 0.4s var(--ease-out) both;
 }
 
-.transition-opacity {
-    transition: opacity .2s ease;
+.project-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
 }
 
-.opacity-0 {
+.project-hero > div:first-child {
+  animation: projectFromLeft 0.55s var(--ease-out) 60ms both;
+}
+
+.project-hero h1 {
+  margin: var(--space-4) 0;
+  font-size: var(--text-h1);
+}
+
+.project-hero p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.project-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.project-hero__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glow-purple);
+  animation: projectImage 0.6s var(--ease-out) 120ms both;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.project-tech > * {
+  animation: projectPop 0.4s cubic-bezier(0.34, 1.25, 0.42, 1) both;
+}
+
+@for $i from 1 through 12 {
+  .project-tech > *:nth-child(#{$i}) {
+    animation-delay: #{200ms + ($i - 1) * 40}ms;
+  }
+}
+
+.project-page .ui-cta-banner {
+  animation: projectFade 0.5s var(--ease-out) 280ms both;
+}
+
+@media (max-width: 1023px) {
+  .project-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes projectFade {
+  from {
     opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-.duration-2s {
-    transition-duration: .5s;
+@keyframes projectFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.duration-1s {
-    transition-duration: .3s;
+@keyframes projectImage {
+  from {
+    opacity: 0;
+    transform: translateX(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 
-.display-none {
-    display: none;
+@keyframes projectPop {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.github-icon {
-    &:hover {
-        scale: 1.1;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .project-back,
+  .project-hero > div:first-child,
+  .project-hero__image,
+  .project-tech > *,
+  .project-page .ui-cta-banner {
+    animation: none;
+  }
 }

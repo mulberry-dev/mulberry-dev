@@ -1,90 +1,127 @@
-/** Education **/
-
-.certificates_container {
+.certs-page {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  z-index: 99;
-  max-width: 550px;
-  padding: 3px;
-
-
-  @media (min-width: 1441px) {
-    max-width: 718px;
-  }
-
-  h2 {
-    margin-bottom: -80px !important;
-
-    @media (min-width: 500px) {
-      margin-bottom: -60px !important;
-    }
-
-    @media (min-width: 768px) {
-      margin-bottom: -30px !important;
-    }
-
-    @media (min-width: 1441px) {
-      margin-bottom: 20px !important;
-    }
-  }
-
-  .buttons_container {
-    margin-top: -110px !important;
-
-    @media (min-width: 500px) {
-      margin: -25px 0px 25px 0px !important;
-    }
-
-    @media (min-width: 768px) {
-      margin: -30px 0px 25px 0px !important;
-    }
-
-    @media (min-width: 1441px) {
-      margin: 25px 0px 25px 0px !important;
-    }
-  }
-
+  gap: var(--space-6);
 }
 
-.certificado {
-  border-radius: 10px !important;
-  object-fit: contain;
-  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
-
+.certs-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  text-align: center;
 }
 
-.square-animation-vertical {
-  animation: wipe-enter-vertical 1s 1;
+.certs-metrics > div {
+  animation: metricFade 0.45s var(--ease-out) both;
 }
 
-/* keyframes wipe-enter */
-
-@keyframes wipe-enter-vertical {
-  0% {
-    transform: scale(0, 0);
-  }
-
-  50% {
-    transform: scale(0.01, 1);
+@for $i from 1 through 3 {
+  .certs-metrics > div:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 80}ms;
   }
 }
 
+.certs-metrics strong {
+  display: block;
+  font-size: 1.75rem;
+}
 
-.carousel-indicators {
-  margin-bottom: 140px !important;
+.certs-metrics span {
+  color: var(--color-text-muted);
+}
 
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
 
-  @media (min-width: 500px) {
-    margin-bottom: 100px !important;
+.certs-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  overflow: hidden;
+  animation: certZoom 0.45s var(--ease-out) both;
+  transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+@for $i from 1 through 12 {
+  .certs-grid .certs-card:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 50}ms;
+  }
+}
+
+.certs-card:hover {
+  transform: scale(1.02);
+  border-color: var(--color-teal);
+}
+
+.certs-card__image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  transition: transform 0.4s ease;
+}
+
+.certs-card:hover .certs-card__image {
+  transform: scale(1.04);
+}
+
+.certs-card h3 {
+  margin: 0;
+}
+
+.certs-page .ui-cta-banner {
+  animation: metricFade 0.5s var(--ease-out) 200ms both;
+}
+
+@media (max-width: 1023px) {
+  .certs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .certs-grid,
+  .certs-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes metricFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
 
-  // @media (min-width: 768px) {
-  //   margin-bottom: 80px !important;
-  // }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  @media (min-width: 1441px) {
-    margin-bottom: 48px !important;
+@keyframes certZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certs-metrics > div,
+  .certs-card {
+    animation: none;
+  }
+
+  .certs-card:hover,
+  .certs-card:hover .certs-card__image {
+    transform: none;
   }
 }

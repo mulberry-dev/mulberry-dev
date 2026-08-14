@@ -1,51 +1,111 @@
 "use client"
 
-import { skills } from "@/data/skills"
-import Image from "next/image"
+import Card from "@/components/ui/Card"
+import Container from "@/components/ui/Container"
+import CtaBanner from "@/components/ui/CtaBanner"
+import IconBox from "@/components/ui/IconBox"
 import PageTitle from "@/components/PageTitle"
-import NavigationButtons from "@/components/NavigationButtons"
+import SectionHeader from "@/components/ui/SectionHeader"
+import { certificates } from "@/data/certificates"
+import { data as projects } from "@/data/projects"
+import { Skill, SkillCategory, skills } from "@/data/skills"
+import Image from "next/image"
 
-const SkillItem = ({ skill }: { skill: any }) =>
-  <div key={skill.id} className={`skill-item transition menuitem-${skill.id}`}>
-    <Image
-      src={skill.imageSrc}
-      alt={`${skill.name}-image`}
-      width={90}
-      priority={true}
-      height={90}
-      style={{ objectFit: "contain" }}
-    />
-    <p>
-      {skill.name}
-    </p>
-    <div className="skill-hover-card">
-      <label htmlFor="skill">
-        {skill.experience} {skill.unite}
-      </label>
-      <progress id="file" max="100" value={skill.progress} />
-      <label htmlFor="skill">
-        {skill.progress}%
-      </label>
+const groups: { id: SkillCategory; title: string; size: "large" | "small" }[] = [
+  { id: "frontend", title: "Frontend Development", size: "large" },
+  { id: "backend", title: "Backend Development", size: "large" },
+  { id: "databases", title: "Databases", size: "small" },
+  { id: "devops", title: "DevOps & Cloud", size: "small" },
+  { id: "tools", title: "Tools & Workflow", size: "small" }
+]
+
+const SkillCard = ({
+  title,
+  items,
+  size
+}: {
+  title: string
+  items: Skill[]
+  size: "large" | "small"
+}) =>
+  <Card className={`skill-card skill-card--${size}`}>
+    <h3>{title}</h3>
+    <div className="skill-card__grid">
+      {items.map(skill =>
+        <div
+          key={skill.id}
+          className="skill-tile"
+          tabIndex={0}
+          title={`${skill.experience} ${skill.unite} · ${skill.progress}%`}
+        >
+          <Image src={skill.imageSrc} alt="" width={36} height={36} />
+          <span>{skill.name}</span>
+          <div className="skill-bar" aria-hidden="true">
+            {Array.from({ length: 10 }).map((_, index) =>
+              <i
+                key={index}
+                className={index < Math.round(skill.progress / 10) ? "is-filled" : ""}
+              />
+            )}
+          </div>
+          <div className="skill-tile__hover">
+            <strong>{skill.experience} {skill.unite}</strong>
+            <span>{skill.progress}%</span>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
+  </Card>
 
 const Skills = () => {
   return (
-    <section id="skills">
-      <PageTitle title="Skills" bodyClass="skills" />
-      <div className="skills_container animate__animated animate__fadeIn">
-        <h2 className="h2">Skills</h2>
-        <p className="hover-me">Move the mouse over the cubes.</p>
-
-        <div className="cubes_container">
-          {skills.map(skill => <SkillItem key={skill.id} skill={skill} />)}
-        </div>
-        <NavigationButtons
-          backLink="/about"
-          nextLink="/portfolio"
-          nextText="Portfolio"
+    <section id="skills" className="page-fade">
+      <PageTitle title="Skills" />
+      <Container className="skills-page">
+        <SectionHeader
+          badge="My skills"
+          title="Technologies"
+          gradientText="I work with"
+          subtitle="I am always immersed in learning new technologies, driven by my commitment to developing specialized and scalable technology for new projects."
         />
-      </div>
+
+        <div className="skills-overview">
+          <h2>Skills overview</h2>
+          <div className="skills-overview__grid">
+            {groups.map(group =>
+              <SkillCard
+                key={group.id}
+                title={group.title}
+                size={group.size}
+                items={skills.filter(skill => skill.category === group.id)}
+              />
+            )}
+          </div>
+        </div>
+
+        <div className="skills-stats">
+          <div>
+            <strong>{projects.length}</strong>
+            <span>Projects</span>
+          </div>
+          <div>
+            <strong>{certificates.length}</strong>
+            <span>Certifications</span>
+          </div>
+          <div>
+            <strong>{skills.length}</strong>
+            <span>Skills</span>
+          </div>
+        </div>
+
+        <CtaBanner
+          icon={<IconBox round>#</IconBox>}
+          title="Want to see this in action?"
+          subtitle="Explore the projects where these technologies were used."
+          actionHref="/portfolio"
+          actionLabel="View my work →"
+        />
+      </Container>
     </section>
   )
 }

@@ -1,159 +1,75 @@
-/** Body **/
-
-$color1: rgb(50, 197, 210);
-$color2: rgb(72, 16, 106);
-
-$porcentaje: 30%;
-
-$color1: #8E2DE2;
-$color2: #12c2e9;
-$color3: #c471ed;
-$color4: #f64f59;
-$darkenPercentage: 30%;
-$darkenPercen: 10%;
-
-
-@mixin mybackground {
-    background: darken($color1, $porcentaje);
-    background: linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-    background: -moz-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-    background: -webkit-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-    background-attachment: fixed;
-}
+@import "../tokens/_index";
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  min-height: 100%;
 }
 
-/* Modo Claro */
-
-/* Estilo para todo el scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
-    background-color: #f0f0f0;
-    /* Color de fondo (gris claro) */
+  width: 8px;
+  background-color: var(--color-canvas-deep);
 }
 
-/* Estilo para el track o fondo del scrollbar */
 ::-webkit-scrollbar-track {
-    background-color: #e0e0e0;
-    /* Color del track en un gris claro */
-    
+  background-color: var(--color-canvas);
 }
 
-/* Estilo para la "thumb" (la parte que se mueve) */
 ::-webkit-scrollbar-thumb {
-    background-color: #a0a0a0;
-    /* Color de la thumb en un gris medio */
-    border-radius: 4px;
-
+  background-color: var(--color-text-dim);
+  border-radius: 4px;
 }
-
-/* Estilo para la thumb al hacer hover */
-::-webkit-scrollbar-thumb:hover {
-    background-color: #808080;
-    /* Color más oscuro al pasar el mouse */
-}
-
-/* Estilo para la thumb cuando está activa */
-::-webkit-scrollbar-thumb:active {
-    background-color: #606060;
-    /* Color aún más oscuro cuando está activa */
-}
-
-/* Modo Oscuro */
-
-
 
 body {
-    
-    transition: background-color 0.3s ease;
-    background: linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(185, 64%, 51%, 1) 0%, hsla(277, 74%, 24%, 1) 100%);
-    background-attachment: fixed;
-    font-family: 'Poppins', monospace, sans-serif;
-    color: white;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 15% 10%, var(--nebula-purple), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 90% 20%, var(--nebula-teal), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 70% 90%, var(--nebula-purple), transparent 55%);
+  background-attachment: fixed;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 
-    &.dark {
-        background: darken($color1, $porcentaje);
-        background: linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-        background: -moz-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-        background: -webkit-linear-gradient(90deg, darken($color1, $porcentaje) 0%, darken($color2, $porcentaje) 100%);
-        background-attachment: fixed;
-    }
+  h2 {
+    font-weight: 800;
+    color: var(--color-text);
+    font-size: var(--text-h1);
+    margin-top: 0;
+    text-shadow: none;
+  }
+}
 
-    &.about {
-        background: #8E2DE2;
-        background: -webkit-linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
-        background: linear-gradient(to top, #12c2e9, #c471ed, #f64f59);
-        background-attachment: fixed;
+body:not(.dark) {
+  background-color: var(--color-canvas);
+}
 
-        &.dark {
-            @include mybackground()
-        }
-    }
+.site-shell {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  flex: 1 0 auto;
+  width: 100%;
+}
 
+.site-shell > .site-nav,
+.site-shell > main {
+  grid-row: 1;
+  grid-column: 1;
+}
 
-    &.portfolio {
-        background: #00d2ff;
-        background: -webkit-linear-gradient(to bottom, #001a3e, #00d2ff);
-        background: linear-gradient(to top, #001a3e, #00d2ff);
-        background-attachment: fixed;
+.site-shell > main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
 
-        &.dark {
-            @include mybackground()
-        }
-    }
-
-    &.contact {
-        background: #0f0c29;
-        background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
-
-        background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
-        background-attachment: fixed;
-
-        &.dark {
-            background: #0f0c29;
-            background: -webkit-linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
-
-            background: linear-gradient(to right, darken(#24243e, $darkenPercen), darken(#302b63, $darkenPercen), darken(#0f0c29, $darkenPercen));
-            background-attachment: fixed;
-
-        }
-
-
-
-    }
-
-    .tracker {
-        width: 100px;
-        height: 100px;
-
-        script {
-            opacity: 0;
-            display: none;
-        }
-    }
-
-    h2 {
-        font-weight: 800 !important;
-        color: white !important;
-        font-size: 40px !important;
-        margin-top: 70px !important;
-        transition-duration: 150ms;
-        text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-        margin-bottom: 20px;
-
-        @media (min-width: 768px) {
-            font-size: 55px !important;
-            /*   margin-top: 35px !important; */
-        }
-
-        @media (min-width: 1024px) {
-            font-size: 60px !important;
-            /*   margin-top: 35px !important; */
-        }
-
-    }
+.site-shell > .site-footer {
+  grid-row: 2;
+  grid-column: 1;
 }

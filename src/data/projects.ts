@@ -1,7 +1,10 @@
+export type ProjectCategory = "web" | "api" | "ecommerce"
+
 export const data = [
   {
     id: "SalonTarget",
     name: "SalonTarget",
+    category: "web",
     description:
       "I contribute to the ongoing modernization of SalonTarget's all-in-one salon and spa management platform. I help migrate legacy systems from PHP and Node.js to a modern stack using React, Apollo GraphQL, and TypeORM, enhancing performance and maintainability. I also support the integration of a new payment processor with banking terminals to streamline checkout and improve the user experience for salon staff and clients. (2025-2026)",
     img: "/images/Webp/by-design.png",
@@ -40,6 +43,7 @@ export const data = [
   {
     id: "SsoSamlOkta",
     name: "SSO SAML Okta API",
+    category: "api",
     description:
       "I designed and developed an authentication and Single Sign-On (SSO) Security Assertion Markup Language (SAML) API from the ground up using Node.js with TypeScript. The implementation includes seamless integration with OKTA, a leading identity management platform. This custom API facilitates secure and efficient user authentication, allowing seamless access to multiple applications through a unified sign-on process. The use of TypeScript ensures a robust and maintainable codebase. (2023)",
     img: "/images/thumbnails/saml.png",
@@ -73,6 +77,7 @@ export const data = [
   {
     id: "ManagerProxy",
     name: "Proxy Manager API",
+    category: "api",
     description:
       "I built a Manager Proxy API from scratch that consumed data from 8 microservices hosted on the private AWS domain. The primary purpose of this API was to enable access to the microservices from a public network without the need for a VPN. By orchestrating communication between the private microservices and the public network, the Manager Proxy API enhances security and ensures seamless data retrieval without compromising the integrity of the private domain. This solution optimizes accessibility while maintaining a secure and efficient data exchange between the private AWS domain and the external public network. (2023)",
     img: "/images/thumbnails/proxy.png",
@@ -98,6 +103,7 @@ export const data = [
   {
     id: "ElectronicBilling",
     name: "Electronic Billing GS",
+    category: "api",
     description:
       "This application, developed for Grupo Salinas, features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, built in AWS. (2024)",
     img: "/images/Webp/FacturacionElectronica.webp",
@@ -146,6 +152,7 @@ export const data = [
   {
     id: "eBilling",
     name: " Profuturo eBilling",
+    category: "api",
     description:
       "This application is designed to generate financial statements, featuring a user interface developed in Next.js using Material UI. The robust backend is powered by over 10 microservices developed with Nest.js, a Node.js framework. Authentication is seamlessly handled through Passport and OKTA integration. The entire system is hosted on Google Cloud Services, with data stored in a PostgreSQL database.",
     img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
@@ -190,6 +197,7 @@ export const data = [
   {
     id: "MiBlog",
     name: "Mi Blog",
+    category: "web",
     description:
       "A blog developed in Next.js includes an admin panel that allows users to add or delete posts. The platform features a login and authentication system and supports an Offline Mode with Local Storage. (2023)",
     img: "/images/thumbnails/MiBlog.png",
@@ -219,6 +227,7 @@ export const data = [
   {
     id: "eCommerce",
     name: "eCommerce",
+    category: "ecommerce",
     img: "/images/Webp/eCommerce.webp",
     description:
       "An eCommerce platform, developed in Node.js, features a chat functionality. It enables users to add and delete products from the shopping cart, incorporates a login and authentication system, and sends a confirmation email upon registration. Users can access their profiles, view personal data, and upon completing a purchase, receive an email containing details of the purchased products. The platform is tested using Mocha. (2023)",
@@ -283,6 +292,7 @@ export const data = [
   {
     id: "TreeHug",
     name: "Tree Hug",
+    category: "web",
     description:
       "A landing page developed in Vanilla JavaScript for a martial arts school. It facilitates course and product purchases through Mercado Pago. (2023)",
     img: "/images/Webp/AbrazoDelArbol.webp",
@@ -315,6 +325,7 @@ export const data = [
   {
     id: "TecnoShop",
     name: "Tecno Shop",
+    category: "ecommerce",
     description:
       "This application is a computer e-commerce platform developed in React.js. Users can select a category of products, add items to a shopping cart, and remove them. Upon completing a purchase, the available product stock decreases.",
     img: "/images/Webp/TecnoShop.webp",
@@ -351,6 +362,7 @@ export const data = [
   {
     id: "eCommerceJs",
     name: "eCommerce Js",
+    category: "ecommerce",
     img: "/images/Webp/eCommerceJs.webp",
     description:
       "This web page, developed with Vanilla JavaScript, is an eCommerce platform that enables users to add products to the cart and complete purchases. It includes a dark/light theme and served as the final project for a JavaScript course. (2022)",
@@ -398,6 +410,7 @@ export const data = [
   {
     id: "LiveChatApp",
     name: "Live Chat App",
+    category: "web",
     img: "/images/Webp/LiveChatApp.webp",
     description:
       "Choose a chat room, engage in conversations with participants inside, and view message timestamps. When ready, you can exit the room and return to the home page. Developed in Node.js. (2023)",
@@ -426,6 +439,7 @@ export const data = [
   {
     id: "Pokedex",
     name: "Pokedex",
+    category: "web",
     img: "/images/Webp/Pokedex.webp",
     description:
       "This Node.js application enables users to view a list of 1000 Pokémon, add their favorite Pokémon to a list, and remove them. Users can search for any Pokémon and access all its characteristics. The application includes a login and authentication feature. (2023)",
@@ -486,6 +500,7 @@ export const data = [
   {
     id: "Naturatours",
     name: "Naturatours",
+    category: "web",
     description:
       "This website was developed using the CMS WordPress for a tour agency in Puerto Vallarta. It features a landing page that allows you to showcase products, make reservations, and complete sales. (2020)",
     img: "https://i.ibb.co/VTrr8C7/Natura-Tours.webp",

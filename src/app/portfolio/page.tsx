@@ -1,57 +1,91 @@
 "use client"
 
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { data as projects } from "@/data/projects"
+import Card from "@/components/ui/Card"
+import Container from "@/components/ui/Container"
+import CtaBanner from "@/components/ui/CtaBanner"
+import FilterPills from "@/components/ui/FilterPills"
+import IconBox from "@/components/ui/IconBox"
 import PageTitle from "@/components/PageTitle"
-import NavigationButtons from "@/components/NavigationButtons"
+import SectionHeader from "@/components/ui/SectionHeader"
+import TechBadge from "@/components/ui/TechBadge"
+import { data as projects } from "@/data/projects"
+import Image from "next/image"
+import Link from "next/link"
+import { useMemo, useState } from "react"
 
-const ProjectItem = ({ project, onClick }: { project: any; onClick: () => void }) => (
-  <div
-    key={project.name}
-    title={`Go to ${project.name}`}
-    className='project-item'
-    onClick={onClick}
-  >
-    <div className='preject-header'>
-      <h3>{project.name}</h3>
-    </div>
-    <figure className='project-image'>
-      <Image
-        src={project.thumbnail}
-        alt={`${project.thumbnail}-image`}
-        className='project-image transition-opacity duration-1s'
-        width={145}
-        height={135}
-      />
-    </figure>
-  </div>
-)
+const filters = [
+  { id: "all", label: "All" },
+  { id: "web", label: "Web Applications" },
+  { id: "api", label: "APIs & Backend" },
+  { id: "ecommerce", label: "eCommerce" }
+]
 
 const Portfolio = () => {
-  const router = useRouter()
+  const [active, setActive] = useState("all")
+
+  const visible = useMemo(
+    () =>
+      projects.filter(project =>
+        active === "all" ? true : project.category === active
+      ),
+    [active]
+  )
 
   return (
-    <section id='portfolio'>
-      <PageTitle title="Portfolio" bodyClass="portfolio" />
-      <div className='portfolio_container animate__animated animate__fadeIn'>
-        <h2>Portfolio</h2>
-        <p className='hover-me'>Click for details</p>
-        <div className='projects-container'>
-          {projects?.map((project) => (
-            <ProjectItem
-              key={project.name}
-              project={project}
-              onClick={() => router.push(`/portfolio/${project.id}`)}
-            />
-          ))}
-        </div>
-        <NavigationButtons 
-          backLink="/skills"
-          nextLink="/certifications"
-          nextText="Certifications"
+    <section id="portfolio" className="page-fade">
+      <PageTitle title="Portfolio" />
+      <Container className="portfolio-page">
+        <SectionHeader
+          align="center"
+          title="Portfolio"
+          subtitle="A selection of projects where I've solved real problems and delivered impactful solutions."
         />
-      </div>
+        <FilterPills options={filters} active={active} onChange={setActive} />
+        <div className="portfolio-grid" key={active}>
+          {visible.map(project =>
+            <Link
+              key={String(project.id)}
+              href={`/portfolio/${project.id}`}
+              className="portfolio-card-link"
+            >
+              <Card className="portfolio-card">
+                <div className="portfolio-card__media">
+                  <Image
+                    src={project.thumbnail}
+                    alt={project.name}
+                    width={400}
+                    height={220}
+                    className="portfolio-card__image"
+                  />
+                </div>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <div className="portfolio-card__tech">
+                  {project.tech.slice(0, 4).map(tech =>
+                    typeof tech === "string" ? (
+                      <TechBadge key={tech} name={tech} />
+                    ) : (
+                      <TechBadge
+                        key={tech.tech}
+                        name={tech.tech}
+                        icon={tech.icon}
+                      />
+                    )
+                  )}
+                </div>
+                <span className="portfolio-card__cta">View case study →</span>
+              </Card>
+            </Link>
+          )}
+        </div>
+        <CtaBanner
+          icon={<IconBox round>↑</IconBox>}
+          title="Have a project in mind?"
+          subtitle="Let's work together to build something great."
+          actionHref="/contact"
+          actionLabel="Let's talk →"
+        />
+      </Container>
     </section>
   )
 }

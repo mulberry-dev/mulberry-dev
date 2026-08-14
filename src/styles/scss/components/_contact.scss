@@ -1,14 +1,132 @@
-.contact_container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 65px;
-    min-height: 90vh;
-    z-index: 99;
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
 }
 
-.linkedin {
-    filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
-    animation: fadeInUp 1s;
+.contact-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.contact-hero .ui-section-header {
+  animation: contactFade 0.5s var(--ease-out) both;
+}
+
+.contact-graphic {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  font-size: 5rem;
+  color: var(--color-teal);
+  animation: graphicPop 0.6s cubic-bezier(0.34, 1.25, 0.42, 1) 100ms both;
+}
+
+.contact-graphic__glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--nebula-teal), transparent 70%);
+  box-shadow: var(--glow-purple);
+}
+
+.contact-graphic span {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  animation: panelUp 0.5s var(--ease-out) 160ms both;
+}
+
+.contact-row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  margin-top: var(--space-4);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.contact-row:hover {
+  transform: translateX(4px);
+}
+
+.contact-row p,
+.contact-row span,
+.contact-panel__cta p {
+  margin: 4px 0 0;
+  color: var(--color-text-muted);
+}
+
+.contact-panel__cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.contact-page .ui-cta-banner {
+  animation: contactFade 0.5s var(--ease-out) 280ms both;
+}
+
+@media (max-width: 1023px) {
+  .contact-hero,
+  .contact-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes contactFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes graphicPop {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes panelUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero .ui-section-header,
+  .contact-graphic,
+  .contact-panel,
+  .contact-page .ui-cta-banner {
+    animation: none;
+  }
+
+  .contact-row:hover {
+    transform: none;
+  }
 }

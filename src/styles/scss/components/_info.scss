@@ -1,53 +1,49 @@
-.info_icon {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 999;
-    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
-
-    body.dark & {
-        filter: grayscale(25%)
-    }
-
-
-    &:hover {
-        transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
-        transform: scale(1.05);
-        cursor: pointer;
-    }
+.theme-icon {
+  cursor: pointer;
 }
 
+.info_icon {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: var(--z-fab);
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  filter: none;
 
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
 
 .swal2-popup {
-    background-color: rgba(255, 255, 255, 0.315) !important;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(20px);
-    font-family: 'Poppins', monospace, sans-serif !important;
-    border-radius: 15px;
+  background-color: var(--color-surface-glass) !important;
+  @include glass-blur;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-sans) !important;
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
 
-    h2 {
-        font-weight: 500 !important;
-        margin-top: 0px !important;
-        font-size: 17px !important;
-        text-align: center !important;
+  h2 {
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    font-size: 1.125rem !important;
+    color: var(--color-text) !important;
+  }
 
-        span {
-            margin-top: 20px !important;
-            padding-top: 10px !important;
-            font-weight: 200 !important;
-        }
+  .swal2-html-container {
+    color: var(--color-text-muted);
+    font-family: var(--font-sans) !important;
+    font-size: 0.9375rem;
+  }
 
-    }
-
-    .swal2-html-container {
-        color: white;
-        font-family: 'Poppins', monospace, sans-serif !important;
-        font-size: 15px;
-    }
-
-    .swal2-confirm {
-        border-radius: 25px;
-    }
-
+  .swal2-confirm {
+    border-radius: var(--radius-pill) !important;
+    background: var(--color-teal) !important;
+    color: #041016 !important;
+  }
 }

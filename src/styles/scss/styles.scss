@@ -1,10 +1,14 @@
+/* Tokens */
+@import "./tokens/_index";
+
 /* Base */
 @import "./base/_reset";
 @import "./base/_body";
 @import "./base/_fonts";
 @import "./base/_keyframes";
 
-/* Componentes */
+/* Components */
+@import "./components/_ui";
 @import "./components/_wallpaper";
 @import "./components/_sections";
 @import "./components/_navegation";
@@ -17,7 +21,6 @@
 @import "./components/_projectDetail";
 @import "./components/_contact";
 @import "./components/_login";
-@import "./components/_profile";
 @import "./components/_info";
 @import "./components/_themeIcon";
 @import "./components/_vibes";

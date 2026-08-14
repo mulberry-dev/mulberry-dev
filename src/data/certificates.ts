@@ -1,38 +1,56 @@
 export const certificates = [
-    {
-      id: 0,
-      url: "/images/Certificates/CarreraDesarrolloFullStack.webp",
-    },
-    {
-      id: 1,
-      url: "/images/Certificates/CarreraDesarrolloFrontEnd.webp",
-    },
-    {
-      id: 2,
-      url: "/images/Certificates/CarreraDesarrolloDeAplicaciones.webp",
-    },
-    {
-      id: 3,
-      url: "/images/Certificates/ProgramacionBackend.webp",
-    },
-    {
-      id: 4,
-      url: "/images/Certificates/ReactJs.webp",
-    },
-    {
-      id: 5,
-      url: "/images/Certificates/Ingles.webp",
-    },
-    {
-      id: 6,
-      url: "/images/Certificates/JavaScript.webp",
-    },
-    {
-      id: 7,
-      url: "/images/Certificates/DesarrolloWeb.webp",
-    },
-    {
-      id: 8,
-      url: "/images/Certificates/Ciberseguridad.webp",
-    },
-  ];
+  {
+    id: 0,
+    url: "/images/Certificates/CarreraDesarrolloFullStack.webp",
+    title: "Full Stack Development Career",
+    category: "development"
+  },
+  {
+    id: 1,
+    url: "/images/Certificates/CarreraDesarrolloFrontEnd.webp",
+    title: "Front End Development Career",
+    category: "development"
+  },
+  {
+    id: 2,
+    url: "/images/Certificates/CarreraDesarrolloDeAplicaciones.webp",
+    title: "Application Development Career",
+    category: "development"
+  },
+  {
+    id: 3,
+    url: "/images/Certificates/ProgramacionBackend.webp",
+    title: "Backend Programming",
+    category: "development"
+  },
+  {
+    id: 4,
+    url: "/images/Certificates/ReactJs.webp",
+    title: "React.js",
+    category: "development"
+  },
+  {
+    id: 5,
+    url: "/images/Certificates/Ingles.webp",
+    title: "English",
+    category: "other"
+  },
+  {
+    id: 6,
+    url: "/images/Certificates/JavaScript.webp",
+    title: "JavaScript",
+    category: "development"
+  },
+  {
+    id: 7,
+    url: "/images/Certificates/DesarrolloWeb.webp",
+    title: "Web Development",
+    category: "development"
+  },
+  {
+    id: 8,
+    url: "/images/Certificates/Ciberseguridad.webp",
+    title: "Cybersecurity",
+    category: "security"
+  }
+]

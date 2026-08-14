@@ -1,100 +1,118 @@
-/**  Portfolio **/
-
-.portfolio_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 99;
-    border-radius: 100%;
+.portfolio-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
-.projects-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    max-width: 800px;
-    z-index: 9;
-    gap: 12px;
-    margin: 20px 10px;
-    animation: fadeIn .3s ease-in-out;
-
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
 }
 
-.project-item {
-    transition: background-color .3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    display: flex;
-    width: 170px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-    box-shadow: 3px 2px 6px 1px #0000000e;
-    z-index: 99;
-    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.8);
+.portfolio-card-link {
+  text-decoration: none;
+  color: inherit;
+  animation: fadeRise 0.45s var(--ease-out) both;
+}
 
-    body.dark & {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
+@for $i from 1 through 12 {
+  .portfolio-card-link:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 55}ms;
+  }
+}
 
-    @media (min-width: 390px) {
-        width: 175px;
-    }
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  height: 100%;
+  @include glass-blur;
+  transition: border-color 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s ease;
+}
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
-        transition: all .3s ease;
-    }
+.portfolio-card:hover {
+  border-color: var(--color-teal);
+  transform: translateY(-3px);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.28);
+}
 
-    &:hover .project-image img {
-        //box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
-        transition: all 300ms ease;
-        transform: scale(1.05);
-    }
+.portfolio-card__media {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
 
+.portfolio-card__image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease;
+}
 
+.portfolio-card:hover .portfolio-card__image {
+  transform: scale(1.05);
+}
 
+.portfolio-card h3 {
+  margin: 0;
+}
 
-    .preject-header {
+.portfolio-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-        h3 {
-            color: #ffffff;
-            font-size: 16px;
-            text-shadow: none;
-            display: flex;
-            font-weight: 300;
-            flex-direction: column;
-            padding: 10px;
-            margin: 0;
-            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+.portfolio-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
-        }
-    }
+.portfolio-card__cta {
+  margin-top: auto;
+  color: var(--color-teal);
+  font-weight: 600;
+}
 
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    .project-image {
+@media (max-width: 1023px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
-        img {
-            border-radius: 10px;
-            padding: 1px;
+@media (max-width: 767px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card-link {
+    animation: none;
+  }
 
-            &:hover {
-                transition: all .5s ease;
-                transform: scale(1.05);
-
-            }
-        }
-    }
-
-
-
+  .portfolio-card:hover,
+  .portfolio-card:hover .portfolio-card__image {
+    transform: none;
+  }
 }

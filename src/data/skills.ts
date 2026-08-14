@@ -1,5 +1,21 @@
-export const skills = [
-  // ========== CORE SKILLS ==========
+export type SkillCategory =
+  | "frontend"
+  | "backend"
+  | "databases"
+  | "devops"
+  | "tools"
+
+export type Skill = {
+  id: number
+  name: string
+  imageSrc: string
+  experience: number
+  unite: string
+  progress: number
+  category: SkillCategory
+}
+
+export const skills: Skill[] = [
   {
     id: 1,
     name: "React",
@@ -7,9 +23,8 @@ export const skills = [
     experience: 5,
     unite: "Years",
     progress: 90,
+    category: "frontend"
   },
-
-  // ========== FRONTEND ==========
   {
     id: 3,
     name: "Redux",
@@ -17,6 +32,7 @@ export const skills = [
     experience: 5,
     unite: "Years",
     progress: 90,
+    category: "frontend"
   },
   {
     id: 4,
@@ -25,6 +41,7 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 80,
+    category: "frontend"
   },
   {
     id: 5,
@@ -33,6 +50,7 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 70,
+    category: "frontend"
   },
   {
     id: 6,
@@ -41,6 +59,7 @@ export const skills = [
     experience: 5,
     unite: "Years",
     progress: 80,
+    category: "frontend"
   },
   {
     id: 7,
@@ -49,6 +68,7 @@ export const skills = [
     experience: 6,
     unite: "Years",
     progress: 95,
+    category: "frontend"
   },
   {
     id: 8,
@@ -57,6 +77,7 @@ export const skills = [
     experience: 6,
     unite: "Years",
     progress: 95,
+    category: "frontend"
   },
   {
     id: 9,
@@ -65,6 +86,7 @@ export const skills = [
     experience: 6,
     unite: "Years",
     progress: 95,
+    category: "frontend"
   },
   {
     id: 10,
@@ -73,6 +95,7 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 90,
+    category: "frontend"
   },
   {
     id: 11,
@@ -81,6 +104,7 @@ export const skills = [
     experience: 1,
     unite: "Year",
     progress: 70,
+    category: "frontend"
   },
   {
     id: 12,
@@ -89,6 +113,7 @@ export const skills = [
     experience: 5,
     unite: "Years",
     progress: 80,
+    category: "frontend"
   },
   {
     id: 13,
@@ -97,6 +122,7 @@ export const skills = [
     experience: 1,
     unite: "Year",
     progress: 75,
+    category: "frontend"
   },
   {
     id: 14,
@@ -105,9 +131,8 @@ export const skills = [
     experience: 1,
     unite: "Year",
     progress: 50,
+    category: "frontend"
   },
-
-  // ========== BACKEND ==========
   {
     id: 16,
     name: "Apollo GraphQL",
@@ -115,6 +140,7 @@ export const skills = [
     experience: 2,
     unite: "Years",
     progress: 70,
+    category: "backend"
   },
   {
     id: 17,
@@ -123,6 +149,7 @@ export const skills = [
     experience: 2,
     unite: "Years",
     progress: 60,
+    category: "backend"
   },
   {
     id: 18,
@@ -131,9 +158,8 @@ export const skills = [
     experience: 2,
     unite: "Years",
     progress: 50,
+    category: "backend"
   },
-
-  // ========== DATABASES ==========
   {
     id: 19,
     name: "MongoDB",
@@ -141,6 +167,7 @@ export const skills = [
     experience: 4,
     unite: "Years",
     progress: 80,
+    category: "databases"
   },
   {
     id: 20,
@@ -149,6 +176,7 @@ export const skills = [
     experience: 4,
     unite: "Years",
     progress: 70,
+    category: "databases"
   },
   {
     id: 21,
@@ -157,9 +185,8 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 80,
+    category: "databases"
   },
-
-  // ========== DEVOPS & CLOUD ==========
   {
     id: 22,
     name: "Git - Github",
@@ -167,6 +194,7 @@ export const skills = [
     experience: 5,
     unite: "Years",
     progress: 80,
+    category: "devops"
   },
   {
     id: 23,
@@ -175,6 +203,7 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 60,
+    category: "devops"
   },
   {
     id: 24,
@@ -183,6 +212,7 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 60,
+    category: "devops"
   },
   {
     id: 25,
@@ -191,6 +221,7 @@ export const skills = [
     experience: 2,
     unite: "Years",
     progress: 35,
+    category: "devops"
   },
   {
     id: 26,
@@ -199,9 +230,8 @@ export const skills = [
     experience: 3,
     unite: "Years",
     progress: 40,
+    category: "devops"
   },
-
-  // ========== TOOLS & OTHERS ==========
   {
     id: 27,
     name: "WordPress",
@@ -209,6 +239,7 @@ export const skills = [
     experience: 6,
     unite: "Years",
     progress: 80,
+    category: "tools"
   },
   {
     id: 28,
@@ -217,6 +248,7 @@ export const skills = [
     experience: 1,
     unite: "Year",
     progress: 50,
+    category: "tools"
   },
   {
     id: 29,
@@ -225,6 +257,7 @@ export const skills = [
     experience: 15,
     unite: "Years",
     progress: 90,
+    category: "tools"
   },
   {
     id: 30,
@@ -233,5 +266,6 @@ export const skills = [
     experience: 6,
     unite: "Years",
     progress: 85,
-  },
+    category: "tools"
+  }
 ]

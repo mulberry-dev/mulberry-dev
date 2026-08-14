@@ -1,18 +1,16 @@
 /* Config */
-$color-particle: rgba(255, 255, 255, 0.9); 
-$spacing: 2560px;
-$time-1: 60s;
-$time-2: 120s;
-$time-3: 180s;
-$time-4: 200s;
+$spacing: 1400px;
+$field-x: 2400;
+$field-y: 1400;
+$time-1: 80s;
+$time-2: 140s;
 
-/* mixins */
 @function particles($max) {
-  $val: 0px 0px $color-particle;
+  $val: 0px 0px var(--particle-color);
 
   @for $i from 1 through $max {
     $val: #{$val},
-    random(3560)+px random(2560)+px $color-particle;
+      random($field-x) + px random($field-y) + px var(--particle-color);
   }
 
   @return $val;
@@ -23,24 +21,26 @@ $time-4: 200s;
   border-radius: 50%;
 }
 
-/* Styles */
-
-.page-bg,
-.animation-wrapper {
+.particles-layer {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: 5s fadeInUp backwards cubic-bezier(0.075, 0.82, 0.165, 1);
-  //display: none;
+  inset: 0;
+  z-index: var(--z-bg);
+  pointer-events: none;
+  overflow: hidden;
+  clip-path: inset(0);
+  contain: paint;
 }
 
-.page-bg {
-  background-blend-mode: screen;
-  background-size: cover;
-  filter: grayscale(100%);
-  z-index: -1;
+.animation-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .particle,
@@ -56,64 +56,43 @@ $time-4: 200s;
 
 .particle-1 {
   animation: animParticle $time-1 linear infinite;
-  @include particles(1000);
+  @include particles(520);
   height: 2px;
   width: 2px;
 }
 
 .particle-1:after {
-  @include particles(900);
+  @include particles(460);
   height: 2px;
   width: 2px;
 }
 
 .particle-2 {
   animation: animParticle $time-2 linear infinite;
-  @include particles(800);
+  @include particles(380);
   height: 2px;
   width: 2px;
 }
 
 .particle-2:after {
-  @include particles(500);
+  @include particles(300);
   height: 3px;
   width: 3px;
-}
-
-.particle-3:after {
-  @include particles(1100);
-  height: 3px;
-  width: 3px;
-  border-radius: 50%;
-}
-
-.particle-4 {
-  animation: animParticle $time-4 linear infinite;
-  @include particles(1200);
-  height: 1px;
-  width: 1px;
-}
-
-.particle-4:after {
-  @include particles(700);
-  height: 1px;
-  width: 1px;
 }
 
 @keyframes animParticle {
   from {
-    transform: translateY(0px);
-    opacity: 1;
-   
-
-
+    transform: translateY(0);
   }
 
   to {
     transform: translateY($spacing * -1);
-    opacity: .5;
-    
+  }
+}
 
+@media (prefers-reduced-motion: reduce) {
+  .particles-layer {
+    display: none;
   }
 }
 

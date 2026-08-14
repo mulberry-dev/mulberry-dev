@@ -1,65 +1,17 @@
-/* Buttons */
-
 .buttons_container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  max-width: 300px;
-  margin: 25px 0px 25px 0px !important;
-  gap: 15px;
+  gap: var(--space-4);
 }
 
 .go_back {
-  position: relative;
-  top: 1px;
-  opacity: 0.6;
+  opacity: 0.7;
   transform: rotate(180deg) scale(0.9);
-    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  z-index: 999;
-
-  body.dark & {
-    //filter: invert(1);
-    opacity: .7;
-    //filter: drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.6));
-  }
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-
-.button-generic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  min-width: 200px;
-  text-decoration: none;
-  color: whitesmoke;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  font-weight: 300;
-  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  border-radius: 50px;
-  width: 160px;
-  font-family: "Poppins", monospace;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  z-index: 99;
-
-/*   body.dark & {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: black;
-  } */
+  transition: opacity var(--duration) var(--ease-out);
 
   &:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    text-decoration: none;
-    body.dark & {
-      background-color: rgba(255, 255, 255, 0.25);
-    }
+    opacity: 1;
   }
 }

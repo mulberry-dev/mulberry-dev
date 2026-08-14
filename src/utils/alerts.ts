@@ -12,7 +12,7 @@ export function alertInfo(params: string) {
       focusConfirm: false,
       confirmButtonText: "Great!",
       confirmButtonAriaLabel: "Thumbs up, great!",
-      confirmButtonColor: "#3fc3ee"
+      confirmButtonColor: "#2dd4bf"
     })
   }
 }
@@ -25,7 +25,7 @@ export function PrivateDeployment(params: string) {
       focusConfirm: false,
       confirmButtonText: "Great!",
       confirmButtonAriaLabel: "Thumbs up, great!",
-      confirmButtonColor: "#3fc3ee"
+      confirmButtonColor: "#2dd4bf"
     })
   }
 }

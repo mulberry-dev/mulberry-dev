@@ -2,7 +2,7 @@
 
 const page = () => {
   return (
-    <section>
+    <section className="page-fade">
       <h2>Vibes Test</h2>
       <div className='vibration-container'>
         <div onClick={() => navigator.vibrate(100)}>Vibrate 100</div>

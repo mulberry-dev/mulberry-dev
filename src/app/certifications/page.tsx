@@ -1,93 +1,84 @@
 "use client"
 
-import Image from "next/image"
-import { certificates } from "@/data/certificates"
+import Card from "@/components/ui/Card"
+import Container from "@/components/ui/Container"
+import CtaBanner from "@/components/ui/CtaBanner"
+import FilterPills from "@/components/ui/FilterPills"
+import IconBox from "@/components/ui/IconBox"
 import PageTitle from "@/components/PageTitle"
-import NavigationButtons from "@/components/NavigationButtons"
+import SectionHeader from "@/components/ui/SectionHeader"
+import { certificates } from "@/data/certificates"
+import { data as projects } from "@/data/projects"
+import { skills } from "@/data/skills"
+import Image from "next/image"
+import { useMemo, useState } from "react"
 
-const CertificateItem = ({
-  certificate,
-  index
-}: {
-  certificate: any
-  index: number
-}) =>
-  <div
-    key={index}
-    className={index === 0 ? "carousel-item active" : "carousel-item"}
-    data-bs-interval="3000"
-  >
-    <Image
-      src={certificate.url}
-      alt={certificate.url}
-      priority={true}
-      className="d-block w-100 certificado transition-opacity opacity-0 duration-2s"
-      onLoad={image => image.currentTarget.classList.remove("opacity-0")}
-      width={718}
-      height={550}
-    />
-  </div>
+const filters = [
+  { id: "all", label: "All" },
+  { id: "development", label: "Development" },
+  { id: "security", label: "Security" },
+  { id: "other", label: "Other" }
+]
 
-const Education = () => {
+const Certifications = () => {
+  const [active, setActive] = useState("all")
+  const visible = useMemo(
+    () =>
+      certificates.filter(item =>
+        active === "all" ? true : item.category === active
+      ),
+    [active]
+  )
+
   return (
-    <section>
-      <PageTitle title="Certifications" bodyClass="certifications" />
-      <div className="certificates_container animate__animated animate__fadeIn">
-        <h2 className="h2">9 Certifications</h2>
-        <div className="certificates_container square-animation-vertical">
-          <div
-            id="carouselExampleIndicators"
-            className="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div className="carousel-indicators">
-              {certificates.map((_, index) =>
-                <button
-                  key={index}
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators"
-                  data-bs-slide-to={index}
-                  className={index === 0 ? "active" : ""}
-                />
-              )}
-            </div>
-            <div className="carousel-inner">
-              {certificates.map((certificate, index) =>
-                <CertificateItem
-                  key={index}
-                  certificate={certificate}
-                  index={index}
-                />
-              )}
-            </div>
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="prev"
-            >
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="next"
-            >
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="visually-hidden">Next</span>
-            </button>
+    <section className="page-fade">
+      <PageTitle title="Certifications" />
+      <Container className="certs-page">
+        <SectionHeader
+          align="center"
+          title="Certifications"
+          subtitle="Continuously learning and validating my knowledge to deliver better solutions."
+        />
+        <div className="certs-metrics">
+          <div>
+            <strong>{certificates.length}</strong>
+            <span>Certifications</span>
+          </div>
+          <div>
+            <strong>{projects.length}</strong>
+            <span>Projects</span>
+          </div>
+          <div>
+            <strong>{skills.length}</strong>
+            <span>Skills</span>
           </div>
         </div>
-        <NavigationButtons
-          backLink="/portfolio"
-          nextLink="/contact"
-          nextText="Contact"
+        <FilterPills options={filters} active={active} onChange={setActive} />
+        <div className="certs-grid" key={active}>
+          {visible.map(certificate =>
+            <Card key={certificate.id} className="certs-card">
+              <Image
+                src={certificate.url}
+                alt={certificate.title}
+                width={640}
+                height={420}
+                className="certs-card__image"
+              />
+              <span className="ui-badge">{certificate.category}</span>
+              <h3>{certificate.title}</h3>
+            </Card>
+          )}
+        </div>
+        <CtaBanner
+          icon={<IconBox round>→</IconBox>}
+          title="Always learning"
+          subtitle="See the technologies I use every day."
+          actionHref="/skills"
+          actionLabel="View my skills →"
         />
-      </div>
+      </Container>
     </section>
   )
 }
 
-export default Education
+export default Certifications

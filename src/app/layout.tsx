@@ -1,43 +1,58 @@
-"use client"
-
 import Head from "@/components/Head"
 import Info from "@/components/info"
+import Footer from "@/components/layout/Footer"
 import Navigation from "@/components/navigation"
 import Particles from "@/components/particles"
-import Providers from "@/components/providers"
+import { SITE_NAME, SITE_URL } from "@/data/site"
 import "@/styles/scss/styles.scss"
-import { Analytics } from "@vercel/analytics/react"
-import "animate.css"
-import { useEffect } from "react"
-import { ToastContainer } from "react-toastify"
-import ThemeIcon from "@/components/ThemeIcon"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { GoogleAnalytics } from "@next/third-parties/google"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: {
+    default: `${SITE_NAME} | Web Programmer`,
+    template: `%s | ${SITE_NAME}`
+  },
+  description:
+    "Programmer who loves code and technology, committed to developing specialized and scalable technology in new projects.",
+  keywords: [
+    "Developer",
+    "Full Stack",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js"
+  ],
+  openGraph: {
+    title: SITE_NAME,
+    description: "Full Stack Developer JavaScript/TypeScript",
+    url: SITE_URL,
+    type: "website"
+  }
+}
 
 export default function RootLayout({
   children
 }: {
   children: React.ReactNode
 }) {
-  useEffect(() => {
-    require("bootstrap/dist/js/bootstrap.bundle.min.js")
-  }, [])
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
         <Head />
       </head>
-      <GoogleAnalytics gaId='G-HP85BC1BKY' />
-      <body /* className='dark' */>
-        <Providers>
-          <Navigation />
-          {children}
-          <Analytics />
-        </Providers>
+      <GoogleAnalytics gaId="G-HP85BC1BKY" />
+      <body className="dark">
         <Particles />
-        <ToastContainer />
+        <div className="site-shell">
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+        </div>
+        <Analytics />
         <Info />
-         <ThemeIcon /> 
         <SpeedInsights />
       </body>
     </html>

@@ -1,117 +1,218 @@
-/**  Skills**/
-.hover-me {
-  color: white;
-  font-weight: 300;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-
-}
-
-.skills_container {
+.skills-page {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  position: initial !important;
-  z-index: 99 !important;
-  border-radius: 100%;
-
+  gap: var(--space-7);
 }
 
+.skills-overview h2 {
+  margin-bottom: var(--space-5);
+}
 
-.cubes_container {
+.skills-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.skills-overview__grid > * {
+  animation: fadeRise 0.5s var(--ease-out) both;
+}
+
+@for $i from 1 through 5 {
+  .skills-overview__grid > *:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 70}ms;
+  }
+}
+
+.skill-card {
+  padding: var(--space-5);
+}
+
+.skill-card h3 {
+  margin: 0 0 var(--space-4);
+}
+
+.skill-card--large {
+  @include glass-blur;
+}
+
+.skill-card--small {
+  grid-column: span 1;
+}
+
+.skill-card__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: var(--space-3);
+}
+
+.skill-tile {
+  position: relative;
+  overflow: hidden;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  max-width: 350px;
-  transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-  padding: 10px;
-  gap: 12px;
+  gap: 8px;
+  padding: 10px 6px;
+  border-radius: var(--radius-md);
+  background: rgba(11, 17, 32, 0.45);
+  @include glass-blur;
+  border: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  animation: riseIn 0.55s cubic-bezier(0.34, 1.25, 0.42, 1) both;
+  transition: transform 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+}
 
-  @media (min-width: 768px) {
-    max-width: 550px;
+@for $i from 1 through 16 {
+  .skill-card__grid .skill-tile:nth-child(#{$i}) {
+    animation-delay: #{60ms + ($i - 1) * 40}ms;
   }
+}
 
-  @media (min-width: 1024px) {
-    max-width: 925px;
+.skill-tile:hover,
+.skill-tile:focus-visible {
+  z-index: 2;
+  transform: scale(1.05);
+  border-color: var(--color-teal);
+  outline: none;
+}
+
+.skill-tile img {
+  object-fit: contain;
+}
+
+.skill-bar {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+}
+
+.skill-bar i {
+  flex: 1;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(148, 163, 184, 0.25);
+}
+
+.skill-bar i.is-filled {
+  background: var(--color-teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: barFill 0.35s var(--ease-out) forwards;
+}
+
+.skill-tile__hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: color-mix(in srgb, var(--color-canvas) 82%, transparent);
+  @include glass-blur;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.skill-tile:hover .skill-tile__hover,
+.skill-tile:focus-visible .skill-tile__hover {
+  opacity: 1;
+}
+
+.skill-tile__hover strong {
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.skill-tile__hover span {
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+.skills-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(90deg, rgba(142, 45, 226, 0.28), rgba(18, 194, 233, 0.18));
+  @include glass-blur;
+  border: 1px solid var(--color-border);
+  text-align: center;
+  animation: fadeRise 0.55s var(--ease-out) 0.2s both;
+}
+
+.skills-stats strong {
+  display: block;
+  font-size: 2rem;
+}
+
+.skills-stats span {
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 1023px) {
+  .skills-overview__grid {
+    grid-template-columns: 1fr;
   }
+}
 
-
-  .skill-item {
-    align-items: center;
-    background-color: hsl(0% 0% 0% / 60%);
-    border-radius: 10px;
-    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    height: 120px;
-    justify-content: center;
-    //margin: 5px;
-    text-align: center;
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    width: 120px;
-
-        body.dark & {
-            background-color: rgba(255, 255, 255, 0.15);
-          }
-
-    p {
-      font-weight: 300;
-      margin-bottom: 2px;
-    }
-
+@media (max-width: 767px) {
+  .skills-stats {
+    grid-template-columns: 1fr;
   }
+}
 
-
-
-  .skill-hover-card {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 120px;
-    height: 120px;
-    position: absolute;
-    transition: all ease-in-out 200ms;
-    border-radius: 10px;
-    -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
+@keyframes fadeRise {
+  from {
     opacity: 0;
-    
-
-
-    &:active,
-    &:hover {
-      opacity: 1;
-      scale: 1.1;
-      transition-duration: 200ms;
-
-    }
-
-
-    progress[value] {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 80%;
-      height: 20px;
-    }
-
-    label {
-      padding-right: 10px;
-      font-size: 16px;
-      font-weight: 500;
-    }
+    transform: translateY(12px);
   }
 
-  img {
-    width: 100px;
-    padding: 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes barFill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-overview__grid > *,
+  .skill-tile,
+  .skills-stats,
+  .skill-bar i.is-filled {
+    animation: none;
+  }
+
+  .skill-bar i.is-filled {
+    transform: none;
+  }
+
+  .skill-tile:hover,
+  .skill-tile:focus-visible {
+    transform: none;
   }
 }

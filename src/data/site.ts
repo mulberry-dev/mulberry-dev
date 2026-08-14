@@ -1,0 +1,5 @@
+export const SITE_NAME = "Mulberry Software.dev"
+export const SITE_SHORT = "Mulberry Software"
+export const SITE_URL = "https://thisissanti.dev"
+export const LINKEDIN_URL = "https://www.linkedin.com/in/santidev/"
+export const COPYRIGHT_NAME = "Mulberry Software"

@@ -1,55 +1,61 @@
 .theme-icon {
-    position: fixed;
-    left: 2px;
-        top: -1.5px;
-    z-index: 999;
-    cursor: pointer;
-    // display: none;
-    
-    }
-    
-    .toggle {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        //box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.1);
-        line-height: 1;
-    }
-    
-    .input {
-    display: none;
+  position: static;
+  z-index: auto;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.icon {
-    grid-column: 1 / 1;
-    grid-row: 1 / 1;
-    transition: transform 500ms;
-
+.theme-icon .toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  line-height: 1;
 }
 
-$themeIconColor: #919395;
-
-.icon--moon {
-    transition-delay: 200ms;
-
-    color: $themeIconColor;
-    filter: drop-shadow(0px 0px 3px rgba(30, 30, 30, 0.9));
+.theme-icon .input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.icon--sun {
-    transform: scale(0);
-    color: $themeIconColor;
-    filter: drop-shadow(0px 0px 3px rgba(30, 30, 30, 0.9));
+.theme-icon .icon {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  transition: transform 500ms;
 }
 
-#switch:checked+.icon--moon {
-    transform: rotate(360deg) scale(0);
+.theme-icon .icon--moon {
+  transition-delay: 200ms;
+  color: #475569;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
 }
 
-#switch:checked~.icon--sun {
-    transition-delay: 200ms;
-    transform: scale(1) rotate(360deg);
+.theme-icon .icon--sun {
+  transform: scale(0);
+  color: #ddd;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.theme-icon .input:checked + .icon--moon {
+  transform: rotate(360deg) scale(0);
+}
+
+.theme-icon .input:checked ~ .icon--sun {
+  transition-delay: 200ms;
+  transform: scale(1) rotate(360deg);
+}
+
+.theme-icon:focus-within {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 50%;
 }
