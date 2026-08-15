@@ -33,7 +33,7 @@ export const certificates = [
     id: 5,
     url: "/images/Certificates/Ingles.webp",
     title: "English",
-    category: "other"
+    category: "english"
   },
   {
     id: 6,

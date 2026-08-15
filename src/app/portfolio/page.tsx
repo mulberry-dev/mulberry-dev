@@ -2,9 +2,8 @@
 
 import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"
-import CtaBanner from "@/components/ui/CtaBanner"
 import FilterPills from "@/components/ui/FilterPills"
-import IconBox from "@/components/ui/IconBox"
+import PageCta from "@/components/ui/PageCta"
 import PageTitle from "@/components/PageTitle"
 import SectionHeader from "@/components/ui/SectionHeader"
 import TechBadge from "@/components/ui/TechBadge"
@@ -16,6 +15,7 @@ import { useMemo, useState } from "react"
 const filters = [
   { id: "all", label: "All" },
   { id: "web", label: "Web Applications" },
+  { id: "landing", label: "Landing Page" },
   { id: "api", label: "APIs & Backend" },
   { id: "ecommerce", label: "eCommerce" }
 ]
@@ -38,7 +38,7 @@ const Portfolio = () => {
         <SectionHeader
           align="center"
           title="Portfolio"
-          subtitle="A selection of projects where I've solved real problems and delivered impactful solutions."
+          subtitle="Selected work that solved real problems and delivered impact."
         />
         <FilterPills options={filters} active={active} onChange={setActive} />
         <div className="portfolio-grid" key={active}>
@@ -78,13 +78,7 @@ const Portfolio = () => {
             </Link>
           )}
         </div>
-        <CtaBanner
-          icon={<IconBox round>↑</IconBox>}
-          title="Have a project in mind?"
-          subtitle="Let's work together to build something great."
-          actionHref="/contact"
-          actionLabel="Let's talk →"
-        />
+        <PageCta />
       </Container>
     </section>
   )

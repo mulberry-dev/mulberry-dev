@@ -1,6 +1,6 @@
 "use client"
 
-import { SITE_NAME } from "@/data/site"
+import { COPYRIGHT_NAME, SITE_NAME } from "@/data/site"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -26,7 +26,7 @@ const Footer = () => {
           <span>{SITE_NAME}</span>
         </Link>
         <p className="site-footer__copy">
-          © {year} Mulberry Software. All rights reserved.
+          © {year} {COPYRIGHT_NAME}. All rights reserved.
         </p>
         <p className="site-footer__note">Built with care and lots of coffee</p>
       </div>

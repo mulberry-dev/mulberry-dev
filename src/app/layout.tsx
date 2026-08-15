@@ -1,5 +1,4 @@
 import Head from "@/components/Head"
-import Info from "@/components/info"
 import Footer from "@/components/layout/Footer"
 import Navigation from "@/components/navigation"
 import Particles from "@/components/particles"
@@ -52,7 +51,6 @@ export default function RootLayout({
           <Footer />
         </div>
         <Analytics />
-        <Info />
         <SpeedInsights />
       </body>
     </html>

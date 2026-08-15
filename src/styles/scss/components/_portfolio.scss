@@ -4,6 +4,16 @@
   gap: var(--space-6);
 }
 
+.portfolio-page .ui-section-header p {
+  max-width: none;
+}
+
+@media (min-width: 640px) {
+  .portfolio-page .ui-section-header p {
+    white-space: nowrap;
+  }
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -7,6 +7,8 @@ const CtaBanner = ({
   subtitle,
   actionHref,
   actionLabel,
+  backHref,
+  backLabel,
   external
 }: {
   icon?: ReactNode
@@ -14,17 +16,26 @@ const CtaBanner = ({
   subtitle: string
   actionHref: string
   actionLabel: string
+  backHref?: string
+  backLabel?: string
   external?: boolean
 }) =>
   <div className="ui-cta-banner">
-    {icon ? <div className="ui-icon-box ui-icon-box--round">{icon}</div> : null}
+    {icon}
     <div className="ui-cta-banner__copy">
       <h2>{title}</h2>
       <p>{subtitle}</p>
     </div>
-    <Button href={actionHref} external={external}>
-      {actionLabel}
-    </Button>
+    <div className="ui-cta-banner__actions">
+      {backHref && backLabel ? (
+        <Button href={backHref} variant="ghost">
+          {backLabel}
+        </Button>
+      ) : null}
+      <Button href={actionHref} external={external}>
+        {actionLabel}
+      </Button>
+    </div>
   </div>
 
 export default CtaBanner

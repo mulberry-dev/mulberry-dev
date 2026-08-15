@@ -1,6 +1,122 @@
-export type ProjectCategory = "web" | "api" | "ecommerce"
+export type ProjectCategory = "web" | "landing" | "api" | "ecommerce"
 
 export const data = [
+  {
+    id: "FuenteDeVidaResidencial",
+    name: "Fuente de Vida Residencial",
+    category: "landing",
+    description:
+      "Marketing website for a residential development in Comitán de Domínguez, Chiapas. The experience presents lots from 1,000 m² with a nature-first brand, bilingual content, an interactive masterplan lightbox, animated stats, and visit-scheduling CTAs designed to convert interest into on-site appointments. (2025)",
+    img: "/images/Webp/fuente-de-vida.webp",
+    tech: [
+      {
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg"
+      },
+      {
+        tech: "Material UI",
+        icon: "/images/Icons/svg/mui.svg"
+      },
+      {
+        tech: "JavaScript",
+        icon: "/images/Icons/svg/JavaScript.svg"
+      },
+      {
+        tech: "CSS3",
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
+    ],
+    url: "https://fuente-de-vida-residencial.vercel.app/",
+    thumbnail: "/images/thumbnails/fuente-de-vida.webp",
+    github: null
+  },
+  {
+    id: "MulberryMarketing",
+    name: "Mulberry Marketing",
+    category: "web",
+    description:
+      "Boutique agency site that unifies strategy, creativity, and technology. It includes service deep-dives (social, content, ads, UX/UI, custom web, and e-commerce), case studies with measurable outcomes, resource content, and a conversion-focused contact flow with a 3D brand moment in the hero. (2025)",
+    img: "/images/Webp/mulberry-marketing.webp",
+    tech: [
+      {
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg"
+      },
+      {
+        tech: "Sass",
+        icon: "/images/Icons/svg/Sass.svg"
+      },
+      {
+        tech: "JavaScript",
+        icon: "/images/Icons/svg/JavaScript.svg"
+      },
+      {
+        tech: "CSS3",
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
+    ],
+    url: "https://mulberry-marketing.vercel.app/",
+    thumbnail: "/images/thumbnails/mulberry-marketing.webp",
+    github: null
+  },
+  {
+    id: "CeciliaRodriguez",
+    name: "Cecilia Rodriguez",
+    category: "landing",
+    description:
+      "Digital business card and landing page for an eXp Realty México agent in CDMX. One-tap actions for call, WhatsApp, email, and contact saving, plus clear buy/sell/rent paths and trust signals for international-backed transactions. Built as a fast, mobile-first presentation site. (2025)",
+    img: "/images/Webp/cecilia-rodriguez.webp",
+    tech: [
+      {
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg"
+      },
+      {
+        tech: "JavaScript",
+        icon: "/images/Icons/svg/JavaScript.svg"
+      },
+      {
+        tech: "HTML5",
+        icon: "/images/Icons/svg/HTML5.svg"
+      },
+      {
+        tech: "CSS3",
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
+    ],
+    url: "https://cecilia-rodriguez.vercel.app/",
+    thumbnail: "/images/thumbnails/cecilia-rodriguez.webp",
+    github: null
+  },
+  {
+    id: "MulberryDrone",
+    name: "Mulberry Drone",
+    category: "web",
+    description:
+      "Portfolio site for certified aerial photography and videography in CDMX. It showcases 4K cinematic work, commercial services for marketing and inspections, a photo gallery, and WhatsApp-first contact so clients can brief a shoot quickly. (2025)",
+    img: "/images/Webp/mulberry-drone.webp",
+    tech: [
+      {
+        tech: "Next.js",
+        icon: "/images/Icons/svg/Next.js.svg"
+      },
+      {
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg"
+      },
+      {
+        tech: "JavaScript",
+        icon: "/images/Icons/svg/JavaScript.svg"
+      },
+      {
+        tech: "CSS3",
+        icon: "/images/Icons/svg/CSS3.svg"
+      }
+    ],
+    url: "https://mulberry-drone.vercel.app/",
+    thumbnail: "/images/thumbnails/mulberry-drone.webp",
+    github: null
+  },
   {
     id: "SalonTarget",
     name: "SalonTarget",
@@ -150,51 +266,6 @@ export const data = [
     github: null
   },
   {
-    id: "eBilling",
-    name: " Profuturo eBilling",
-    category: "api",
-    description:
-      "This application is designed to generate financial statements, featuring a user interface developed in Next.js using Material UI. The robust backend is powered by over 10 microservices developed with Nest.js, a Node.js framework. Authentication is seamlessly handled through Passport and OKTA integration. The entire system is hosted on Google Cloud Services, with data stored in a PostgreSQL database.",
-    img: "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
-    tech: [
-      {
-        tech: "Next.js",
-        icon: "/images/Icons/svg/Next.js.svg"
-      },
-      {
-        tech: "Nest.js",
-        icon: "/images/Icons/svg/Nest.svg"
-      },
-      {
-        tech: "TypeScript",
-        icon: "/images/Icons/svg/Typescript.svg"
-      },
-      {
-        tech: "Okta",
-        icon: "/images/Icons/svg/okta.svg"
-      },
-      {
-        tech: "Passport",
-        icon: "/images/Icons/svg/passport.svg"
-      },
-      {
-        tech: "Materia UI",
-        icon: "/images/Icons/svg/mui.svg"
-      },
-      {
-        tech: "Google Cloud Services",
-        icon: "/images/Icons/svg/google-cloud.svg"
-      },
-      {
-        tech: "Sass",
-        icon: "/images/Icons/svg/Sass.svg"
-      }
-    ],
-    thumbnail:
-      "https://i.ibb.co/jDS8QD4/Captura-de-pantalla-2023-08-21-163247.png",
-    url: null
-  },
-  {
     id: "MiBlog",
     name: "Mi Blog",
     category: "web",
@@ -292,7 +363,7 @@ export const data = [
   {
     id: "TreeHug",
     name: "Tree Hug",
-    category: "web",
+    category: "landing",
     description:
       "A landing page developed in Vanilla JavaScript for a martial arts school. It facilitates course and product purchases through Mercado Pago. (2023)",
     img: "/images/Webp/AbrazoDelArbol.webp",
@@ -500,7 +571,7 @@ export const data = [
   {
     id: "Naturatours",
     name: "Naturatours",
-    category: "web",
+    category: "landing",
     description:
       "This website was developed using the CMS WordPress for a tour agency in Puerto Vallarta. It features a landing page that allows you to showcase products, make reservations, and complete sales. (2020)",
     img: "https://i.ibb.co/VTrr8C7/Natura-Tours.webp",

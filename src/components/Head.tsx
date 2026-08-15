@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL } from "@/data/site"
+import { COPYRIGHT_NAME, SITE_NAME, SITE_URL } from "@/data/site"
 
 const Head = () => {
   return (
@@ -17,7 +17,7 @@ const Head = () => {
         name="keywords"
         content="Developer, web, wordpress, app, ecommerce, SEO, ux,ui, css, JavaScript, Santiago, Morera, dev, Full Stack, Node.js, React.js, Next.js, Nest.js, TypeScript"
       />
-      <meta name="copyright" content="Mulberry Software" />
+      <meta name="copyright" content={COPYRIGHT_NAME} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={SITE_NAME} />
       <meta

@@ -2,8 +2,7 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
-import CtaBanner from "@/components/ui/CtaBanner"
-import IconBox from "@/components/ui/IconBox"
+import PageCta from "@/components/ui/PageCta"
 import PageTitle from "@/components/PageTitle"
 import TechBadge from "@/components/ui/TechBadge"
 import { data as projects } from "@/data/projects"
@@ -14,6 +13,7 @@ import { useParams } from "next/navigation"
 
 const categoryLabel: Record<string, string> = {
   web: "Web Application",
+  landing: "Landing Page",
   api: "APIs & Backend",
   ecommerce: "eCommerce"
 }
@@ -94,13 +94,7 @@ const ProjectDetails = () => {
           </div>
         </div>
 
-        <CtaBanner
-          icon={<IconBox round>↑</IconBox>}
-          title="Like this project?"
-          subtitle="Let's talk about how a similar approach could work for you."
-          actionHref="/contact"
-          actionLabel="Let's talk →"
-        />
+        <PageCta />
       </Container>
     </section>
   )

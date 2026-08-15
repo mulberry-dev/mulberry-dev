@@ -9,6 +9,7 @@ type ButtonProps = {
   href?: string
   className?: string
   external?: boolean
+  loading?: boolean
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button = ({
@@ -17,10 +18,19 @@ const Button = ({
   href,
   className = "",
   external,
+  loading = false,
+  disabled,
   type = "button",
   ...props
 }: ButtonProps) => {
-  const classes = `ui-button ui-button--${variant} ${className}`.trim()
+  const classes = [
+    "ui-button",
+    `ui-button--${variant}`,
+    loading ? "ui-button--loading" : "",
+    className
+  ]
+    .filter(Boolean)
+    .join(" ")
 
   if (href) {
     if (external) {
@@ -39,8 +49,15 @@ const Button = ({
   }
 
   return (
-    <button className={classes} type={type} {...props}>
-      {children}
+    <button
+      className={classes}
+      type={type}
+      disabled={disabled || loading}
+      aria-busy={loading || undefined}
+      {...props}
+    >
+      {loading ? <span className="ui-button__spinner" aria-hidden="true" /> : null}
+      <span className="ui-button__label">{children}</span>
     </button>
   )
 }

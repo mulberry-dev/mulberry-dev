@@ -4,6 +4,7 @@ export type SkillCategory =
   | "databases"
   | "devops"
   | "tools"
+  | "ai"
 
 export type Skill = {
   id: number
@@ -134,6 +135,42 @@ export const skills: Skill[] = [
     category: "frontend"
   },
   {
+    id: 31,
+    name: "Node",
+    imageSrc: "/images/Icons/svg/node.svg",
+    experience: 5,
+    unite: "Years",
+    progress: 85,
+    category: "backend"
+  },
+  {
+    id: 32,
+    name: "Express",
+    imageSrc: "/images/Icons/svg/express.svg",
+    experience: 4,
+    unite: "Years",
+    progress: 80,
+    category: "backend"
+  },
+  {
+    id: 33,
+    name: "Passport",
+    imageSrc: "/images/Icons/svg/passport.svg",
+    experience: 3,
+    unite: "Years",
+    progress: 70,
+    category: "backend"
+  },
+  {
+    id: 38,
+    name: "SAML",
+    imageSrc: "/images/Icons/svg/saml.svg",
+    experience: 2,
+    unite: "Years",
+    progress: 65,
+    category: "backend"
+  },
+  {
     id: 16,
     name: "Apollo GraphQL",
     imageSrc: "/images/Icons/svg/grapql.svg",
@@ -161,21 +198,21 @@ export const skills: Skill[] = [
     category: "backend"
   },
   {
-    id: 19,
-    name: "MongoDB",
-    imageSrc: "/images/Icons/svg/mongo.svg",
-    experience: 4,
-    unite: "Years",
-    progress: 80,
-    category: "databases"
-  },
-  {
     id: 20,
     name: "SQL",
     imageSrc: "/images/Icons/svg/sql.svg",
     experience: 4,
     unite: "Years",
     progress: 70,
+    category: "databases"
+  },
+  {
+    id: 19,
+    name: "MongoDB",
+    imageSrc: "/images/Icons/svg/mongo.svg",
+    experience: 4,
+    unite: "Years",
+    progress: 80,
     category: "databases"
   },
   {
@@ -267,5 +304,131 @@ export const skills: Skill[] = [
     unite: "Years",
     progress: 85,
     category: "tools"
+  },
+  {
+    id: 34,
+    name: "Slack",
+    imageSrc: "/images/Icons/svg/slack.svg",
+    experience: 3,
+    unite: "Years",
+    progress: 75,
+    category: "tools"
+  },
+  {
+    id: 35,
+    name: "Cursor",
+    imageSrc: "/images/Icons/svg/cursor.svg",
+    experience: 1,
+    unite: "Year",
+    progress: 80,
+    category: "tools"
+  },
+  {
+    id: 36,
+    name: "Windsurf",
+    imageSrc: "/images/Icons/svg/windsurf.svg",
+    experience: 1,
+    unite: "Year",
+    progress: 55,
+    category: "tools"
+  },
+  {
+    id: 37,
+    name: "Visual Studio",
+    imageSrc: "/images/Icons/svg/visual-studio.svg",
+    experience: 4,
+    unite: "Years",
+    progress: 65,
+    category: "tools"
+  },
+  {
+    id: 39,
+    name: "Cursor Grok 4.6",
+    imageSrc: "/images/Icons/svg/grok.svg",
+    experience: 3,
+    unite: "Days",
+    progress: 90,
+    category: "ai"
+  },
+  {
+    id: 40,
+    name: "Composer 2.5",
+    imageSrc: "/images/Icons/svg/composer.svg",
+    experience: 2,
+    unite: "Months",
+    progress: 85,
+    category: "ai"
+  },
+  {
+    id: 41,
+    name: "Opus 5",
+    imageSrc: "/images/Icons/svg/anthropic.svg",
+    experience: 3,
+    unite: "Weeks",
+    progress: 80,
+    category: "ai"
+  },
+  {
+    id: 42,
+    name: "GPT-5.6 Sol",
+    imageSrc: "/images/Icons/svg/openai.svg",
+    experience: 1,
+    unite: "Month",
+    progress: 80,
+    category: "ai"
+  },
+  {
+    id: 43,
+    name: "GPT-5.5",
+    imageSrc: "/images/Icons/svg/openai.svg",
+    experience: 3,
+    unite: "Months",
+    progress: 85,
+    category: "ai"
+  },
+  {
+    id: 44,
+    name: "Fable 5",
+    imageSrc: "/images/Icons/svg/anthropic.svg",
+    experience: 2,
+    unite: "Months",
+    progress: 80,
+    category: "ai"
+  },
+  {
+    id: 45,
+    name: "Cursor Grok 4.5",
+    imageSrc: "/images/Icons/svg/grok.svg",
+    experience: 1,
+    unite: "Month",
+    progress: 75,
+    category: "ai"
+  },
+  {
+    id: 46,
+    name: "GPT-5.6 Terra",
+    imageSrc: "/images/Icons/svg/openai.svg",
+    experience: 1,
+    unite: "Month",
+    progress: 75,
+    category: "ai"
+  },
+  {
+    id: 47,
+    name: "Sonnet 5",
+    imageSrc: "/images/Icons/svg/anthropic.svg",
+    experience: 1,
+    unite: "Month",
+    progress: 80,
+    category: "ai"
+  },
+  {
+    id: 48,
+    name: "Kimi K3",
+    imageSrc: "/images/Icons/svg/kimi.svg",
+    experience: 1,
+    unite: "Month",
+    progress: 70,
+    category: "ai"
   }
 ]

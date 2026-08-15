@@ -1,5 +1,7 @@
 "use client"
 
+import { CategoryIcon } from "@/components/ui/CategoryIcon"
+
 export type FilterOption = {
   id: string
   label: string
@@ -21,9 +23,10 @@ const FilterPills = ({
         type="button"
         role="tab"
         aria-selected={active === option.id}
-        className={`ui-filter-pill${active === option.id ? " is-active" : ""}`}
+        className={`ui-filter-pill ui-filter-pill--${option.id}${active === option.id ? " is-active" : ""}`}
         onClick={() => onChange(option.id)}
       >
+        <CategoryIcon variant={option.id} />
         {option.label}
       </button>
     )}

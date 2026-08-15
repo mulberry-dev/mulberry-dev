@@ -2,24 +2,6 @@
   cursor: pointer;
 }
 
-.info_icon {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: var(--z-fab);
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  border-radius: 50%;
-  background: var(--color-teal);
-  filter: none;
-
-  &:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-}
-
 .swal2-popup {
   background-color: var(--color-surface-glass) !important;
   @include glass-blur;

@@ -8,6 +8,10 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
+let hasLeftHome = false
+
+export const didLeaveHome = () => hasLeftHome
+
 const isActivePath = (pathname: string, path: string) => {
   if (path === "/") {
     return pathname === "/"
@@ -21,6 +25,10 @@ const Navigation = () => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
+    if (pathname !== "/") {
+      hasLeftHome = true
+    }
+
     setOpen(false)
   }, [pathname])
 
@@ -32,7 +40,7 @@ const Navigation = () => {
   }, [open])
 
   return (
-    <header className="site-nav">
+    <>
       <svg className="site-nav__filters" aria-hidden="true" focusable="false">
         <defs>
           <filter
@@ -49,12 +57,13 @@ const Navigation = () => {
               numOctaves="2"
               seed="4"
               stitchTiles="stitch"
-              result="waves"
+              result="noise"
             />
+            <feGaussianBlur in="noise" stdDeviation="0.7" result="waves" />
             <feDisplacementMap
               in="SourceGraphic"
               in2="waves"
-              scale="16"
+              scale="18"
               xChannelSelector="R"
               yChannelSelector="G"
             />
@@ -86,8 +95,10 @@ const Navigation = () => {
         </defs>
       </svg>
 
-      <div className="site-nav__stage">
-        <div className="site-nav__lens" aria-hidden="true" />
+      <div className="site-nav__lens" aria-hidden="true" />
+
+      <header className="site-nav">
+        <div className="site-nav__chrome" aria-hidden="true" />
         <div className="site-nav__inner">
           <div className="site-nav__brand">
             <Link href="/" className="site-nav__logo">
@@ -128,8 +139,8 @@ const Navigation = () => {
             </button>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   )
 }
 

@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
 import PageTitle from "@/components/PageTitle"
 import TechMarquee from "@/components/TechMarquee"
+import { didLeaveHome } from "@/components/navigation"
 import { LINKEDIN_URL } from "@/data/site"
 import Image from "next/image"
 import Link from "next/link"
@@ -25,7 +26,6 @@ const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
 const HOME_CHROME_NAV_MS = 620
 
-let homeIntroPlayed = false
 let homeChromeRevealed = false
 
 type HomeChromePhase = "wait" | "nav" | "shown"
@@ -91,33 +91,27 @@ const setOrbitRate = (node: HTMLDivElement, rate: number) => {
 }
 
 const IndexPage = () => {
-  const [runIntro] = useState(() => !homeIntroPlayed)
-  const [introComplete, setIntroComplete] = useState(homeIntroPlayed)
+  const [introComplete, setIntroComplete] = useState(false)
   const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() =>
-    homeChromeRevealed ? "shown" : "wait"
+    homeChromeRevealed || didLeaveHome() ? "shown" : "wait"
   )
 
   useEffect(() => {
-    if (!runIntro) {
-      return
-    }
-
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      homeIntroPlayed = true
       setIntroComplete(true)
       return
     }
 
     const timeoutId = window.setTimeout(() => {
-      homeIntroPlayed = true
       setIntroComplete(true)
     }, INTRO_COMPLETE_MS)
 
     return () => window.clearTimeout(timeoutId)
-  }, [runIntro])
+  }, [])
 
   useEffect(() => {
-    if (homeChromeRevealed) {
+    if (homeChromeRevealed || didLeaveHome()) {
+      homeChromeRevealed = true
       setChromePhase("shown")
       return
     }
@@ -204,8 +198,8 @@ const IndexPage = () => {
   }, [chromePhase])
 
   const introClass = [
-    runIntro ? "home-intro" : "",
-    runIntro && introComplete ? "is-complete" : "",
+    "home-intro",
+    introComplete ? "is-complete" : "",
     chromeClassName(chromePhase)
   ]
     .filter(Boolean)

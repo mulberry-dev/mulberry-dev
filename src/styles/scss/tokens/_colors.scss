@@ -13,6 +13,7 @@ $text: #ffffff;
 $text-muted: #94a3b8;
 $text-dim: #64748b;
 $focus: #2dd4bf;
+$signal: #84ff78;
 
 $light-canvas: #f4f7fb;
 $light-surface: rgba(255, 255, 255, 0.48);
@@ -36,6 +37,7 @@ $glass-blur: 5px;
   --color-text-muted: #{$text-muted};
   --color-text-dim: #{$text-dim};
   --color-focus: #{$focus};
+  --color-signal: #{$signal};
   --gradient-brand: linear-gradient(90deg, #{$teal} 0%, #{$purple} 100%);
   --nebula-teal: rgba(45, 212, 191, 0.16);
   --nebula-purple: rgba(168, 85, 247, 0.18);
