@@ -60,10 +60,10 @@ const SkillCard = ({
 const Skills = () => {
   return (
     <section id="skills" className="page-fade">
-      <PageTitle title="Skills" />
+      <PageTitle title="What I Do" />
       <Container className="skills-page">
         <SectionHeader
-          badge="My skills"
+          badge="What I do"
           title="Technologies"
           gradientText="I work with"
           subtitle="I am always immersed in learning new technologies, driven by my commitment to developing specialized and scalable technology for new projects."

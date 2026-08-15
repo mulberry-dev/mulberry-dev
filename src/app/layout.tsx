@@ -46,8 +46,8 @@ export default function RootLayout({
       <GoogleAnalytics gaId="G-HP85BC1BKY" />
       <body className="dark">
         <Particles />
+        <Navigation />
         <div className="site-shell">
-          <Navigation />
           <main>{children}</main>
           <Footer />
         </div>

@@ -6,12 +6,12 @@ export const links = [
   },
   {
     id: 2,
-    name: "About",
+    name: "About Me",
     path: "/about",
   },
   {
     id: 3,
-    name: "Skills",
+    name: "What I Do",
     path: "/skills",
   },
   {

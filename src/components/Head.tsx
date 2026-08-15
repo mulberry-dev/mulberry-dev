@@ -8,7 +8,7 @@ const Head = () => {
         href="https://cdn-icons-png.flaticon.com/512/7914/7914802.png"
         type="image"
       />
-      <title>{SITE_NAME} | Web Programmer</title>
+      <title>{`${SITE_NAME} | Web Programmer`}</title>
       <meta
         name="description"
         content="Programmer who loves code and technology, committed to developing specialized and scalable technology in new projects."
