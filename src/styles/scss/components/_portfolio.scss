@@ -23,13 +23,6 @@
 .portfolio-card-link {
   text-decoration: none;
   color: inherit;
-  animation: fadeRise 0.45s var(--ease-out) both;
-}
-
-@for $i from 1 through 12 {
-  .portfolio-card-link:nth-child(#{$i}) {
-    animation-delay: #{($i - 1) * 55}ms;
-  }
 }
 
 .portfolio-card {

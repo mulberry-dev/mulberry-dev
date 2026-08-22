@@ -7,6 +7,7 @@ import CountUp from "@/components/ui/CountUp"
 import FilterPills from "@/components/ui/FilterPills"
 import Lightbox, { LightboxOrigin } from "@/components/ui/Lightbox"
 import PageCta from "@/components/ui/PageCta"
+import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import PageTitle from "@/components/PageTitle"
 import SectionHeader from "@/components/ui/SectionHeader"
 import { certificates } from "@/data/certificates"
@@ -81,14 +82,18 @@ const Certifications = () => {
   }
 
   return (
-    <section className="page-fade">
+    <section>
       <PageTitle title="Certifications" />
       <Container className="certs-page">
-        <SectionHeader
-          align="center"
-          title="Certifications"
-          subtitle="Continuously learning and validating my knowledge to deliver better solutions."
-        />
+        <RevealGroup mode="fold" stagger={56}>
+          <Reveal type="heading">
+            <SectionHeader
+              align="center"
+              title="Certifications"
+              subtitle="Continuously learning and validating my knowledge to deliver better solutions."
+            />
+          </Reveal>
+          <Reveal type="hero">
         <div className="certs-metrics">
           <div>
             <strong>
@@ -109,11 +114,15 @@ const Certifications = () => {
             <span>Tools in daily use</span>
           </div>
         </div>
-        <FilterPills options={filters} active={active} onChange={setActive} />
-        <div className="certs-grid" key={active}>
+          </Reveal>
+          <Reveal type="text">
+            <FilterPills options={filters} active={active} onChange={setActive} />
+          </Reveal>
+        </RevealGroup>
+        <RevealGroup className="certs-grid" mode="auto" stagger={40} key={active}>
           {visible.map(certificate =>
+            <Reveal key={certificate.id} type="card">
             <Card
-              key={certificate.id}
               className={`certs-card${viewer?.id === certificate.id ? " is-expanded" : ""}`}
             >
               <button
@@ -142,8 +151,9 @@ const Certifications = () => {
                 <h3>{certificate.title}</h3>
               </button>
             </Card>
+            </Reveal>
           )}
-        </div>
+        </RevealGroup>
         <PageCta />
       </Container>
       {openCertificate && viewer ? (

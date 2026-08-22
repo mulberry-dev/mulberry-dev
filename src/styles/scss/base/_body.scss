@@ -3,6 +3,14 @@
 html {
   scroll-behavior: smooth;
   min-height: 100%;
+  width: 100%;
+  overflow-x: clip;
+  scrollbar-gutter: stable;
+}
+
+html,
+body {
+  max-width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -23,6 +31,7 @@ body {
   isolation: isolate;
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100dvh;
   background-color: var(--color-canvas);
   background-image:
@@ -55,6 +64,8 @@ body:not(.dark) {
   grid-template-rows: 1fr auto;
   flex: 1 0 auto;
   width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .site-shell > main {

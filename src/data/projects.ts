@@ -61,7 +61,7 @@ export const data = [
   },
   {
     id: "CeciliaRodriguez",
-    name: "Cecilia Rodriguez",
+    name: "Digital Business Card & Landing Page",
     category: "landing",
     description:
       "Digital business card and landing page for an eXp Realty México agent in CDMX. One-tap actions for call, WhatsApp, email, and contact saving, plus clear buy/sell/rent paths and trust signals for international-backed transactions. Built as a fast, mobile-first presentation site. (2025)",
@@ -91,7 +91,7 @@ export const data = [
   {
     id: "MulberryDrone",
     name: "Mulberry Drone",
-    category: "web",
+    category: "landing",
     description:
       "Portfolio site for certified aerial photography and videography in CDMX. It showcases 4K cinematic work, commercial services for marketing and inspections, a photo gallery, and WhatsApp-first contact so clients can brief a shoot quickly. (2025)",
     img: "/images/Webp/mulberry-drone.webp",
@@ -123,7 +123,7 @@ export const data = [
     category: "web",
     description:
       "I contribute to the ongoing modernization of SalonTarget's all-in-one salon and spa management platform. I help migrate legacy systems from PHP and Node.js to a modern stack using React, Apollo GraphQL, and TypeORM, enhancing performance and maintainability. I also support the integration of a new payment processor with banking terminals to streamline checkout and improve the user experience for salon staff and clients. (2025-2026)",
-    img: "/images/Webp/by-design.png",
+    img: "/images/Webp/salon-target.webp",
     tech: [
       {
         tech: "React.js",
@@ -151,10 +151,8 @@ export const data = [
       }
     ],
     url: "https://salontarget.com/",
-    thumbnail: "/images/Webp/by-design.png",
-    github: null,
-        width: 320,
-    height: 320
+    thumbnail: "/images/thumbnails/salon-target.webp",
+    github: null
   },
   {
     id: "SsoSamlOkta",
@@ -162,7 +160,7 @@ export const data = [
     category: "api",
     description:
       "I designed and developed an authentication and Single Sign-On (SSO) Security Assertion Markup Language (SAML) API from the ground up using Node.js with TypeScript. The implementation includes seamless integration with OKTA, a leading identity management platform. This custom API facilitates secure and efficient user authentication, allowing seamless access to multiple applications through a unified sign-on process. The use of TypeScript ensures a robust and maintainable codebase. (2023)",
-    img: "/images/thumbnails/saml.png",
+    img: "/images/thumbnails/sso-saml-okta.png",
     tech: [
       {
         tech: "Node.js",
@@ -186,9 +184,9 @@ export const data = [
       }
     ],
     url: null,
-    thumbnail: "/images/thumbnails/Okta.png",
-    width: 330,
-    height: 170
+    thumbnail: "/images/thumbnails/auth0-okta.png",
+    width: 1024,
+    height: 561
   },
   {
     id: "ManagerProxy",
@@ -196,7 +194,7 @@ export const data = [
     category: "api",
     description:
       "I built a Manager Proxy API from scratch that consumed data from 8 microservices hosted on the private AWS domain. The primary purpose of this API was to enable access to the microservices from a public network without the need for a VPN. By orchestrating communication between the private microservices and the public network, the Manager Proxy API enhances security and ensures seamless data retrieval without compromising the integrity of the private domain. This solution optimizes accessibility while maintaining a secure and efficient data exchange between the private AWS domain and the external public network. (2023)",
-    img: "/images/thumbnails/proxy.png",
+    img: "/images/thumbnails/proxy-manager-aws.png",
     tech: [
       {
         tech: "Node.js",
@@ -212,9 +210,9 @@ export const data = [
       }
     ],
     url: null,
-    thumbnail: "/images/thumbnails/Nginx.png",
-    width: 340,
-    height: 150
+    thumbnail: "/images/thumbnails/proxy-manager-api.png",
+    width: 1024,
+    height: 682
   },
   {
     id: "ElectronicBilling",
@@ -271,7 +269,7 @@ export const data = [
     category: "web",
     description:
       "A blog developed in Next.js includes an admin panel that allows users to add or delete posts. The platform features a login and authentication system and supports an Offline Mode with Local Storage. (2023)",
-    img: "/images/thumbnails/MiBlog.png",
+    img: "/images/Webp/mi-blog.webp",
 
     tech: [
       {
@@ -292,14 +290,14 @@ export const data = [
       }
     ],
     url: null,
-    thumbnail: "/images/thumbnails/MiBlog.png",
+    thumbnail: "/images/thumbnails/mi-blog.webp",
     github: "https://github.com/oneriddle/My-Blog"
   },
   {
     id: "eCommerce",
     name: "eCommerce",
     category: "ecommerce",
-    img: "/images/Webp/eCommerce.webp",
+    img: "/images/thumbnails/ecommerce-backend.png",
     description:
       "An eCommerce platform, developed in Node.js, features a chat functionality. It enables users to add and delete products from the shopping cart, incorporates a login and authentication system, and sends a confirmation email upon registration. Users can access their profiles, view personal data, and upon completing a purchase, receive an email containing details of the purchased products. The platform is tested using Mocha. (2023)",
     tech: [
@@ -356,9 +354,11 @@ export const data = [
         icon: "/images/Icons/svg/CSS3.svg"
       }
     ],
-    thumbnail: "/images/thumbnails/Thumbnail-e-Commerce-Backend.webp",
+    thumbnail: "/images/thumbnails/ecommerce-backend.png",
     url: null,
-    github: null
+    github: null,
+    width: 1024,
+    height: 682
   },
   {
     id: "TreeHug",

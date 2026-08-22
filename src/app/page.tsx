@@ -4,10 +4,17 @@ import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
 import PageTitle from "@/components/PageTitle"
 import TechMarquee from "@/components/TechMarquee"
-import { didLeaveHome } from "@/components/navigation"
+import { useParticles } from "@/components/particles"
+import {
+  didLeaveHome,
+  isHomeChromeRevealed,
+  markHomeChromeRevealed,
+  shouldRevealHomeChrome
+} from "@/lib/siteSession"
 import { LINKEDIN_URL } from "@/data/site"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   Children,
   cloneElement,
@@ -25,8 +32,6 @@ const ABOUT_SHORT =
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
 const HOME_CHROME_NAV_MS = 620
-
-let homeChromeRevealed = false
 
 type HomeChromePhase = "wait" | "nav" | "shown"
 
@@ -91,27 +96,38 @@ const setOrbitRate = (node: HTMLDivElement, rate: number) => {
 }
 
 const IndexPage = () => {
+  const pathname = usePathname()
+  const { contentReady, reducedMotion } = useParticles()
+  const [isFirstHome] = useState(() => !didLeaveHome())
   const [introComplete, setIntroComplete] = useState(false)
   const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() =>
-    homeChromeRevealed || didLeaveHome() ? "shown" : "wait"
+    shouldRevealHomeChrome() ? "shown" : "wait"
   )
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!contentReady) {
+      return
+    }
+
+    if (reducedMotion) {
       setIntroComplete(true)
       return
     }
 
     const timeoutId = window.setTimeout(() => {
       setIntroComplete(true)
-    }, INTRO_COMPLETE_MS)
+    }, isFirstHome ? INTRO_COMPLETE_MS : 720)
 
     return () => window.clearTimeout(timeoutId)
-  }, [])
+  }, [contentReady, isFirstHome, reducedMotion])
 
   useEffect(() => {
-    if (homeChromeRevealed || didLeaveHome()) {
-      homeChromeRevealed = true
+    if (pathname !== "/") {
+      return
+    }
+
+    if (shouldRevealHomeChrome()) {
+      markHomeChromeRevealed()
       setChromePhase("shown")
       return
     }
@@ -121,7 +137,7 @@ const IndexPage = () => {
     ).matches
 
     if (window.scrollY > 1) {
-      homeChromeRevealed = true
+      markHomeChromeRevealed()
       setChromePhase("shown")
       return
     }
@@ -158,11 +174,11 @@ const IndexPage = () => {
     }
 
     const revealChrome = () => {
-      if (homeChromeRevealed) {
+      if (isHomeChromeRevealed()) {
         return
       }
 
-      homeChromeRevealed = true
+      markHomeChromeRevealed()
       window.removeEventListener("wheel", onFirstScroll)
       window.removeEventListener("touchmove", onFirstScroll)
       window.removeEventListener("scroll", onFirstScroll)
@@ -183,7 +199,7 @@ const IndexPage = () => {
       window.removeEventListener("scroll", onFirstScroll)
       window.removeEventListener("keydown", onFirstKeyScroll)
     }
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     if (chromePhase !== "nav") {
@@ -199,6 +215,8 @@ const IndexPage = () => {
 
   const introClass = [
     "home-intro",
+    isFirstHome ? "" : "is-return",
+    contentReady ? "is-reveal-ready" : "is-reveal-wait",
     introComplete ? "is-complete" : "",
     chromeClassName(chromePhase)
   ]
@@ -217,12 +235,12 @@ const IndexPage = () => {
                 <span className="gradient-text home-hero__name">Santiago</span>
               </span>
             </h1>
-            <p className="home-hero__role" aria-label="< Full Stack Developer />">
+            <p className="home-hero__role" aria-label="< Senior Full Stack Engineer />">
               <span aria-hidden="true">
                 <RevealChars delay={0.34}>
                   <span className="home-hero__bracket">&lt;</span>{" "}
-                  <span className="home-hero__teal">Full Stack</span>{" "}
-                  <span className="home-hero__purple">Developer</span>{" "}
+                  <span className="home-hero__teal">Senior Full Stack</span>{" "}
+                  <span className="home-hero__purple">Engineer</span>{" "}
                   <span className="home-hero__bracket">/&gt;</span>
                 </RevealChars>
               </span>
@@ -237,44 +255,44 @@ const IndexPage = () => {
           </div>
 
           <div className="home-hero__visual">
-            <div className="home-orbit-stage">
-              <div
-                className="home-orbit"
-                aria-hidden="true"
-                onPointerEnter={(event) =>
-                  setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
-                }
-                onPointerLeave={(event) => setOrbitRate(event.currentTarget, 1)}
-              />
+            <div
+              className="home-orbit"
+              aria-hidden="true"
+              onPointerEnter={(event) =>
+                setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
+              }
+              onPointerLeave={(event) => setOrbitRate(event.currentTarget, 1)}
+            >
+              <span className="home-orbit__node" />
             </div>
-            <div className="home-orbit-stage home-orbit-stage--inner">
-              <div
-                className="home-orbit home-orbit--inner"
-                aria-hidden="true"
-                onPointerEnter={(event) =>
-                  setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
-                }
-                onPointerLeave={(event) => setOrbitRate(event.currentTarget, 1)}
-              />
+            <div
+              className="home-orbit home-orbit--inner"
+              aria-hidden="true"
+              onPointerEnter={(event) =>
+                setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
+              }
+              onPointerLeave={(event) => setOrbitRate(event.currentTarget, 1)}
+            >
+              <span className="home-orbit__node home-orbit__node--purple" />
             </div>
-            <div className="home-hero__portrait">
-              <Image
-                src="/images/Webp/santi-dark-theme.webp"
-                alt="Santiago"
-                width={320}
-                height={320}
-                priority
-                className="home-avatar home-avatar--dark"
-              />
-              <Image
-                src="/images/Webp/santi-light-theme.webp"
-                alt="Santiago"
-                width={320}
-                height={320}
-                priority
-                className="home-avatar home-avatar--light"
-              />
-            </div>
+            <Image
+              src="/images/Webp/santi-dark-theme.webp"
+              alt="Santiago"
+              width={960}
+              height={960}
+              unoptimized
+              priority
+              className="home-avatar home-avatar--dark"
+            />
+            <Image
+              src="/images/Webp/santi-light-theme.webp"
+              alt="Santiago"
+              width={960}
+              height={960}
+              unoptimized
+              priority
+              className="home-avatar home-avatar--light"
+            />
             <Link
               href={LINKEDIN_URL}
               target="_blank"

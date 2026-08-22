@@ -1,60 +1,105 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import {
+  applySiteTheme,
+  persistSiteTheme,
+  readStoredTheme,
+  type SiteTheme
+} from "@/lib/theme"
 import { Tooltip } from "antd"
+import { useEffect, useState } from "react"
 
-const STORAGE_KEY = "theme-preference"
+const AquaIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="26"
+    height="26"
+    aria-hidden="true"
+  >
+    <path
+      fill="currentColor"
+      d="M12 3.1C9.1 6.9 6.6 10.2 6.6 13.4a5.4 5.4 0 0 0 10.8 0C17.4 10.2 14.9 6.9 12 3.1Z"
+    />
+    <path
+      fill="#c5d65c"
+      d="M17.7 5.2 18.4 7l1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z"
+    />
+  </svg>
+)
+
+const OriginalIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="26"
+    height="26"
+    aria-hidden="true"
+  >
+    <path
+      fill="currentColor"
+      d="M12 3.1 13.3 8l5 .9-3.9 3.1 1.3 4.9L12 14.3 8.3 16.9 9.6 12 5.7 8.9l5-.9L12 3.1Z"
+    />
+    <path
+      fill="#2dd4bf"
+      d="M18.2 13.1 18.8 15.4 21.1 16l-2.3.6-.6 2.3-.6-2.3-2.3-.6 2.3-.6.6-2.3Z"
+    />
+  </svg>
+)
 
 const ThemeIcon = () => {
-  const [isDark, setIsDark] = useState(true)
+  const [theme, setTheme] = useState<SiteTheme>("aqua")
+  const [ready, setReady] = useState(false)
+  const isAqua = theme === "aqua"
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    const next = stored === "light" ? "light" : "dark"
-    document.body.classList.toggle("dark", next === "dark")
-    setIsDark(next === "dark")
+    const next = readStoredTheme()
+    applySiteTheme(next)
+    persistSiteTheme(next)
+    setTheme(next)
+
+    const frame = window.requestAnimationFrame(() => {
+      document.documentElement.classList.add("theme-accent-ready")
+      setReady(true)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
   }, [])
 
   const onChange = () => {
-    const next = isDark ? "light" : "dark"
-    document.body.classList.toggle("dark", next === "dark")
-    localStorage.setItem(STORAGE_KEY, next)
-    setIsDark(next === "dark")
+    const next: SiteTheme = isAqua ? "original" : "aqua"
+    applySiteTheme(next)
+    persistSiteTheme(next)
+    setTheme(next)
   }
 
   return (
     <Tooltip
-      title={`${isDark ? "Light" : "Dark"} theme`}
+      title={isAqua ? "Original accents" : "Aqua accents"}
       placement="bottom"
       trigger="hover"
     >
       <label
-        className="theme-toggle theme-icon"
+        className={`theme-toggle theme-icon${ready ? " is-ready" : ""}`}
         htmlFor="switch"
-        title="Toggle theme"
-        aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+        title="Toggle accent theme"
+        aria-label={
+          isAqua ? "Switch to original accent theme" : "Switch to aqua accent theme"
+        }
       >
         <span className="toggle">
           <input
             type="checkbox"
             className="input"
-            checked={isDark}
+            checked={isAqua}
             id="switch"
             onChange={onChange}
           />
-          <span className="icon icon--moon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-              <path
-                fillRule="evenodd"
-                d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <span className="icon icon--aqua">
+            <AquaIcon />
           </span>
-          <span className="icon icon--sun">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-              <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-            </svg>
+          <span className="icon icon--classic">
+            <OriginalIcon />
           </span>
         </span>
       </label>

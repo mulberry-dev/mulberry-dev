@@ -33,23 +33,31 @@
   transition: transform 500ms;
 }
 
-.theme-icon .icon--moon {
+.theme-icon:not(.is-ready) .icon {
+  transition: none;
+}
+
+.theme-icon .icon svg {
+  display: block;
+}
+
+.theme-icon .icon--aqua {
   transition-delay: 200ms;
-  color: #475569;
-  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+  color: var(--color-teal);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-teal) 35%, transparent));
 }
 
-.theme-icon .icon--sun {
+.theme-icon .icon--classic {
   transform: scale(0);
-  color: #ddd;
-  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+  color: #a855f7;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, #a855f7 42%, transparent));
 }
 
-.theme-icon .input:checked + .icon--moon {
+html.theme-original .theme-icon .icon--aqua {
   transform: rotate(360deg) scale(0);
 }
 
-.theme-icon .input:checked ~ .icon--sun {
+html.theme-original .theme-icon .icon--classic {
   transition-delay: 200ms;
   transform: scale(1) rotate(360deg);
 }
@@ -58,4 +66,12 @@
   outline: 2px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-icon .icon,
+  .theme-icon .icon--aqua,
+  html.theme-original .theme-icon .icon--classic {
+    transition: none;
+  }
 }

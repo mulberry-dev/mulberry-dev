@@ -1,0 +1,299 @@
+import { ReactElement, SVGProps } from "react"
+
+export type SiteIconName =
+  | "product"
+  | "frontend"
+  | "backend"
+  | "detail"
+  | "design"
+  | "user"
+  | "craft"
+  | "clarity"
+  | "care"
+  | "code"
+  | "bolt"
+  | "interface"
+  | "systems"
+  | "connect"
+  | "modernize"
+  | "idea"
+  | "legacy"
+  | "speed"
+  | "thinking"
+  | "system"
+  | "performance"
+  | "maintain"
+  | "cube"
+  | "shield"
+  | "database"
+  | "rocket"
+  | "swap"
+  | "gauge"
+  | "puzzle"
+  | "cursor"
+  | "compass"
+  | "mail"
+  | "linkedin"
+  | "github"
+  | "calendar"
+  | "leaf"
+  | "globe"
+  | "devices"
+
+const iconProps: SVGProps<SVGSVGElement> = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true
+}
+
+const ICONS: Record<SiteIconName, ReactElement> = {
+  product: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="8" r="3.2" />
+      <path d="M5.5 19.2c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5" />
+    </svg>
+  ),
+  frontend: (
+    <svg {...iconProps}>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 8.5h18" />
+      <path d="M7 14h4M7 16.5h7" />
+    </svg>
+  ),
+  backend: (
+    <svg {...iconProps}>
+      <rect x="4" y="3.5" width="16" height="4.5" rx="1" />
+      <rect x="4" y="9.75" width="16" height="4.5" rx="1" />
+      <rect x="4" y="16" width="16" height="4.5" rx="1" />
+    </svg>
+  ),
+  detail: (
+    <svg {...iconProps}>
+      <path d="M12 3.5 14.2 9l5.8.4-4.4 3.8 1.4 5.8L12 16.2 6.9 19l1.4-5.8L4 9.4 9.8 9Z" />
+    </svg>
+  ),
+  design: (
+    <svg {...iconProps}>
+      <path d="M13.5 4.2 19.8 10.5 10 20.3H3.7v-6.3Z" />
+      <path d="M12.2 5.5 18.5 11.8" />
+    </svg>
+  ),
+  user: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="8" r="3.2" />
+      <path d="M5.5 19.2c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5" />
+    </svg>
+  ),
+  craft: (
+    <svg {...iconProps}>
+      <path d="M4 20 14.5 9.5" />
+      <path d="M12.8 7.8c1.6-1.6 4.4-1.4 5.7.4 1.2 1.6.8 4.1-.8 5.6L16 15.5" />
+      <path d="M8.5 15.2 4 20" />
+    </svg>
+  ),
+  clarity: (
+    <svg {...iconProps}>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="M16 16.5 20.2 20.7" />
+    </svg>
+  ),
+  care: (
+    <svg {...iconProps}>
+      <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10Z" />
+    </svg>
+  ),
+  code: (
+    <svg {...iconProps}>
+      <path d="M8.2 7.2 3.8 12l4.4 4.8" />
+      <path d="M15.8 7.2 20.2 12l-4.4 4.8" />
+    </svg>
+  ),
+  bolt: (
+    <svg {...iconProps}>
+      <path d="M13 3 5.5 13.5H12L11 21l7.5-10.5H12L13 3Z" />
+    </svg>
+  ),
+  interface: (
+    <svg {...iconProps}>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 8.5h18" />
+    </svg>
+  ),
+  systems: (
+    <svg {...iconProps}>
+      <rect x="4" y="3.5" width="16" height="4.5" rx="1" />
+      <rect x="4" y="9.75" width="16" height="4.5" rx="1" />
+      <rect x="4" y="16" width="16" height="4.5" rx="1" />
+    </svg>
+  ),
+  connect: (
+    <svg {...iconProps}>
+      <circle cx="6" cy="12" r="2.25" />
+      <circle cx="18" cy="6" r="2.25" />
+      <circle cx="18" cy="18" r="2.25" />
+      <path d="M8.1 10.7l5.8-3.4" />
+      <path d="M8.1 13.3l5.8 3.4" />
+    </svg>
+  ),
+  modernize: (
+    <svg {...iconProps}>
+      <path d="M3.5 16.5 8 11l3.5 3.5 4.5-7 4.5 3" />
+    </svg>
+  ),
+  idea: (
+    <svg {...iconProps}>
+      <path d="M9 18h6M10 21h4" />
+      <path d="M12 3a6 6 0 0 0-3.5 10.8c.6.5 1 1.2 1.1 2h4.8c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3Z" />
+    </svg>
+  ),
+  legacy: (
+    <svg {...iconProps}>
+      <path d="M4 19h16" />
+      <rect x="6" y="8" width="5" height="11" rx="1" />
+      <rect x="13" y="4" width="5" height="15" rx="1" />
+    </svg>
+  ),
+  speed: (
+    <svg {...iconProps}>
+      <path d="M5 19 13 4h2L9 14h6L7.5 20H5Z" />
+    </svg>
+  ),
+  thinking: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="11" r="6" />
+      <path d="M12 17v3M9.5 21h5" />
+      <path d="M10 10.5h.01M12 10.5h.01M14 10.5h.01" />
+    </svg>
+  ),
+  system: (
+    <svg {...iconProps}>
+      <rect x="3" y="3" width="7" height="7" rx="1.4" />
+      <rect x="14" y="3" width="7" height="7" rx="1.4" />
+      <rect x="8.5" y="14" width="7" height="7" rx="1.4" />
+      <path d="M6.5 10v1.5A2.5 2.5 0 0 0 9 14M17.5 10v1.5A2.5 2.5 0 0 1 15 14" />
+    </svg>
+  ),
+  performance: (
+    <svg {...iconProps}>
+      <path d="M4 16.5 9 11l3.2 3.2L20 7" />
+      <path d="M14.5 7H20v5.5" />
+    </svg>
+  ),
+  maintain: (
+    <svg {...iconProps}>
+      <path d="M12 21a8.5 8.5 0 1 0-8.2-10.7" />
+      <path d="M3.5 5.5v5h5" />
+    </svg>
+  ),
+  cube: (
+    <svg {...iconProps}>
+      <path d="M12 3.2 20 7.6v8.8L12 20.8 4 16.4V7.6L12 3.2Z" />
+      <path d="M12 20.8V12" />
+      <path d="M20 7.6 12 12 4 7.6" />
+    </svg>
+  ),
+  shield: (
+    <svg {...iconProps}>
+      <path d="M12 3.2 5 6.2v5.4c0 4.1 2.9 6.8 7 8.2 4.1-1.4 7-4.1 7-8.2V6.2L12 3.2Z" />
+    </svg>
+  ),
+  database: (
+    <svg {...iconProps}>
+      <ellipse cx="12" cy="6" rx="7" ry="2.4" />
+      <path d="M5 6v4.2c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4V6" />
+      <path d="M5 10.2v4.2c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4v-4.2" />
+    </svg>
+  ),
+  rocket: (
+    <svg {...iconProps}>
+      <path d="M14.5 9.5 19 5M14.5 9.5c1.8 3.8 1.4 7.2.2 9.8-2.6-1.2-6-1.6-9.8-.2 1.8-3.6 4.4-6.8 9.6-9.6Z" />
+      <path d="M9.2 14.8 5 19" />
+      <circle cx="15.2" cy="8.8" r="1.1" />
+    </svg>
+  ),
+  swap: (
+    <svg {...iconProps}>
+      <path d="M7 8h12M16 5l3 3-3 3" />
+      <path d="M17 16H5M8 13l-3 3 3 3" />
+    </svg>
+  ),
+  gauge: (
+    <svg {...iconProps}>
+      <path d="M5.2 16.2a8 8 0 1 1 13.6 0" />
+      <path d="M12 13.5 16.2 8.8" />
+      <circle cx="12" cy="13.5" r="1.1" />
+    </svg>
+  ),
+  puzzle: (
+    <svg {...iconProps}>
+      <path d="M10 3.5h4v2.1a1.7 1.7 0 1 0 1.7 1.7H18.5v4h-2.1a1.7 1.7 0 1 0-1.7 1.7V16H10v-2.3A1.7 1.7 0 1 0 8.3 12H5.5V8H7.8A1.7 1.7 0 1 0 10 6.3V3.5Z" />
+    </svg>
+  ),
+  cursor: (
+    <svg {...iconProps}>
+      <path d="M5.2 4.2 18.5 12l-6.4 1.4 2.6 6.6-2.9 1.1-2.6-6.5-4 3.2Z" />
+    </svg>
+  ),
+  compass: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="m15.8 8.2-2.2 6.6-6.6 2.2 2.2-6.6 6.6-2.2Z" />
+      <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  mail: (
+    <svg {...iconProps}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M4 7l8 6 8-6" />
+    </svg>
+  ),
+  linkedin: (
+    <svg {...iconProps}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
+      <path d="M8 10.5V17" />
+      <path d="M8 7.5h.01" />
+      <path d="M12 17v-4.2a2.3 2.3 0 0 1 4.4.6V17" />
+    </svg>
+  ),
+  github: (
+    <svg {...iconProps}>
+      <path d="M9 19c-4.3 1.4-4.3-2.1-6-2.5" />
+      <path d="M15 22v-3.9a3.2 3.2 0 0 0-.9-2.5c3-.3 6.1-1.5 6.1-6.6A5 5 0 0 0 19 5.2 4.6 4.6 0 0 0 18.9 2S17.7 1.7 15 3.6a11.2 11.2 0 0 0-6 0C6.3 1.7 5.1 2 5.1 2A4.6 4.6 0 0 0 5 5.2 5 5 0 0 0 3.8 9c0 5.1 3.1 6.3 6.1 6.6a3.2 3.2 0 0 0-.9 2.5V22" />
+    </svg>
+  ),
+  calendar: (
+    <svg {...iconProps}>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
+      <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </svg>
+  ),
+  leaf: (
+    <svg {...iconProps}>
+      <path d="M5 14c3.8-7.4 9.2-9.2 14.5-9.5-1.2 6.4-4.4 12.4-11.8 13.2C5.2 18 4.2 16 5 14Z" />
+      <path d="M8.2 15.2 16.5 7.4" />
+    </svg>
+  ),
+  globe: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M3.6 12h16.8M12 3.6c-2.4 2.6-3.6 5.4-3.6 8.4s1.2 5.8 3.6 8.4M12 3.6c2.4 2.6 3.6 5.4 3.6 8.4s-1.2 5.8-3.6 8.4" />
+    </svg>
+  ),
+  devices: (
+    <svg {...iconProps}>
+      <rect x="2.5" y="4.5" width="13" height="10" rx="1.4" />
+      <path d="M7 16.2h4" />
+      <rect x="14.2" y="9.2" width="7.3" height="10.3" rx="1.4" />
+    </svg>
+  )
+}
+
+const SiteIcon = ({ name }: { name: SiteIconName }) => ICONS[name]
+
+export default SiteIcon

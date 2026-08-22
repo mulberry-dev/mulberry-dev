@@ -9,7 +9,9 @@ export function PrivateDeployment(params: string) {
       focusConfirm: false,
       confirmButtonText: "Great!",
       confirmButtonAriaLabel: "Thumbs up, great!",
-      confirmButtonColor: "#2dd4bf"
+      confirmButtonColor:
+        getComputedStyle(document.body).getPropertyValue("--color-teal").trim() ||
+        "#2dd4bf"
     })
   }
 }

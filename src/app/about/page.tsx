@@ -2,146 +2,139 @@
 
 import Badge from "@/components/ui/Badge"
 import Container from "@/components/ui/Container"
+import FeatureCard from "@/components/ui/FeatureCard"
 import PageCta from "@/components/ui/PageCta"
+import Reveal, { RevealGroup } from "@/components/ui/Reveal"
+import SectionKicker from "@/components/ui/SectionKicker"
+import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
+import Timeline from "@/components/ui/Timeline"
 import PageTitle from "@/components/PageTitle"
-import { ABOUT_INTRO, HOW_I_WORK, VALUES } from "@/data/about"
+import {
+  ABOUT_INTRO,
+  ABOUT_TAGS,
+  IDENTITY,
+  JOURNEY,
+  PRINCIPLES
+} from "@/data/about"
 import Image from "next/image"
-import { ReactNode, useEffect, useRef, useState } from "react"
-
-const Reveal = ({
-  children,
-  className = ""
-}: {
-  children: ReactNode
-  className?: string
-}) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [enabled, setEnabled] = useState(false)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const node = ref.current
-    if (!node) {
-      return
-    }
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true)
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting)
-      },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
-    )
-
-    observer.observe(node)
-    setEnabled(true)
-
-    return () => observer.disconnect()
-  }, [])
-
-  const stateClass = [
-    enabled ? "is-enabled" : "",
-    visible ? "is-visible" : ""
-  ]
-    .filter(Boolean)
-    .join(" ")
-
-  return (
-    <div ref={ref} className={`about-reveal ${stateClass} ${className}`.trim()}>
-      {children}
-    </div>
-  )
-}
-
-const SectionKicker = ({
-  kicker,
-  title
-}: {
-  kicker: string
-  title: string
-}) => (
-  <header className="about-kicker">
-    <p>{kicker}</p>
-    <h2>{title}</h2>
-  </header>
-)
 
 const About = () => {
   return (
-    <section id="about" className="page-fade">
+    <section id="about">
       <PageTitle title="About Me" />
       <Container className="about-page">
         <div className="about-intro">
-          <div className="about-intro__copy">
-            <Badge>{ABOUT_INTRO.badge}</Badge>
-            <h1>
+          <RevealGroup className="about-intro__copy" mode="fold" stagger={56}>
+            <Reveal type="eyebrow">
+              <Badge>{ABOUT_INTRO.badge}</Badge>
+            </Reveal>
+            <Reveal type="heading" as="h1">
               {ABOUT_INTRO.greeting}{" "}
               <span className="gradient-text">{ABOUT_INTRO.name}</span>
-            </h1>
-            <p className="about-intro__role">
-              <span className="about-intro__bracket">&lt;</span>{" "}
-              <span className="about-intro__teal">Full Stack</span>{" "}
-              <span className="about-intro__purple">Developer</span>{" "}
-              <span className="about-intro__bracket">/&gt;</span>
-            </p>
-            <p className="about-intro__body">{ABOUT_INTRO.body}</p>
-            <p className="about-intro__aside">{ABOUT_INTRO.aside}</p>
-          </div>
+            </Reveal>
+            <Reveal type="text" as="p" className="about-intro__role">
+              {ABOUT_INTRO.role}
+            </Reveal>
+            <Reveal type="text" as="p" className="about-intro__body">
+              {ABOUT_INTRO.body}
+            </Reveal>
+            <Reveal type="text" as="ul" className="about-intro__tags">
+              {ABOUT_TAGS.map((tag) => (
+                <li key={tag.label}>
+                  {"imageSrc" in tag && tag.imageSrc ? (
+                    <Image src={tag.imageSrc} alt="" width={14} height={14} />
+                  ) : (
+                    <SiteIcon name={tag.icon as SiteIconName} />
+                  )}
+                  {tag.label}
+                </li>
+              ))}
+            </Reveal>
+          </RevealGroup>
 
-          <div className="about-portrait">
-            <div className="about-portrait__ring" aria-hidden="true" />
+          <Reveal type="image" className="about-portrait" mode="fold" delay={40}>
+            <div className="about-portrait__ring" aria-hidden="true">
+              <span className="about-portrait__node" />
+            </div>
             <div
               className="about-portrait__ring about-portrait__ring--inner"
               aria-hidden="true"
-            />
+            >
+              <span className="about-portrait__node about-portrait__node--purple" />
+            </div>
             <Image
               src="/images/Webp/santi-dark-theme.webp"
               alt="Santiago"
-              width={400}
-              height={400}
+              width={960}
+              height={960}
+              unoptimized
               priority
               className="about-portrait__img about-portrait__img--dark"
             />
             <Image
               src="/images/Webp/santi-light-theme.webp"
               alt="Santiago"
-              width={400}
-              height={400}
+              width={960}
+              height={960}
+              unoptimized
               priority
               className="about-portrait__img about-portrait__img--light"
             />
-          </div>
+            <p className="about-portrait__chip">
+              <span className="about-portrait__chip-icon" aria-hidden="true">
+                <SiteIcon name="bolt" />
+              </span>
+              {ABOUT_INTRO.chip}
+            </p>
+          </Reveal>
         </div>
 
-        <Reveal className="about-values">
-          <SectionKicker kicker="How I think" title="What I protect in the work" />
-          <ul className="about-values__list">
-            {VALUES.map((item) => (
-              <li key={item.title}>
-                <p className="about-values__title">{item.title}</p>
-                <p className="about-values__label">{item.label}</p>
-                <p className="about-values__text">{item.text}</p>
-              </li>
+        <RevealGroup mode="scroll" stagger={48}>
+          <Reveal type="heading">
+            <SectionKicker kicker="Who I am" title="More than code" />
+          </Reveal>
+          <div className="feature-grid">
+            {IDENTITY.map((item) => (
+              <Reveal key={item.title} type="card">
+                <FeatureCard
+                  icon={item.icon}
+                  title={item.title}
+                  text={item.text}
+                />
+              </Reveal>
             ))}
-          </ul>
+          </div>
+        </RevealGroup>
+
+        <Reveal type="heading" mode="scroll">
+          <SectionKicker
+            kicker="My journey"
+            title="From curiosity to building products"
+          />
+          <Timeline items={JOURNEY} />
         </Reveal>
 
-        <Reveal className="about-process">
-          <SectionKicker kicker="How I work" title="A calm path from problem to product" />
-          <ol className="about-process__list">
-            {HOW_I_WORK.map((item) => (
-              <li key={item.step}>
-                <span className="about-process__step">{item.step}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </li>
+        <RevealGroup mode="scroll" stagger={48}>
+          <Reveal type="heading">
+            <SectionKicker
+              kicker="How I think"
+              title="Principles that guide my work"
+            />
+          </Reveal>
+          <div className="feature-grid">
+            {PRINCIPLES.map((item) => (
+              <Reveal key={item.title} type="card">
+                <FeatureCard
+                  variant="principle"
+                  icon={item.icon}
+                  title={item.title}
+                  text={item.text}
+                  index={item.step}
+                />
+              </Reveal>
             ))}
-          </ol>
-        </Reveal>
+          </div>
+        </RevealGroup>
 
         <PageCta />
       </Container>

@@ -4,6 +4,7 @@ import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
 import PageCta from "@/components/ui/PageCta"
+import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import PageTitle from "@/components/PageTitle"
 import SectionHeader from "@/components/ui/SectionHeader"
 import TechBadge from "@/components/ui/TechBadge"
@@ -32,19 +33,25 @@ const Portfolio = () => {
   )
 
   return (
-    <section id="portfolio" className="page-fade">
-      <PageTitle title="Portfolio" />
+    <section id="portfolio">
+      <PageTitle title="My Work" />
       <Container className="portfolio-page">
-        <SectionHeader
-          align="center"
-          title="Portfolio"
-          subtitle="Selected work that solved real problems and delivered impact."
-        />
-        <FilterPills options={filters} active={active} onChange={setActive} />
-        <div className="portfolio-grid" key={active}>
+        <RevealGroup mode="fold" stagger={56}>
+          <Reveal type="heading">
+            <SectionHeader
+              align="center"
+              title="My Work"
+              subtitle="Selected work that solved real problems and delivered impact."
+            />
+          </Reveal>
+          <Reveal type="text">
+            <FilterPills options={filters} active={active} onChange={setActive} />
+          </Reveal>
+        </RevealGroup>
+        <RevealGroup className="portfolio-grid" mode="auto" stagger={40} key={active}>
           {visible.map(project =>
+            <Reveal key={String(project.id)} type="card">
             <Link
-              key={String(project.id)}
               href={`/portfolio/${project.id}`}
               className="portfolio-card-link"
             >
@@ -76,8 +83,9 @@ const Portfolio = () => {
                 <span className="portfolio-card__cta">View case study →</span>
               </Card>
             </Link>
+            </Reveal>
           )}
-        </div>
+        </RevealGroup>
         <PageCta />
       </Container>
     </section>

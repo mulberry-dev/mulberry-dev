@@ -71,6 +71,52 @@ export const CategoryIcon = ({ variant }: { variant?: string }) => {
     )
   }
 
+  if (variant === "web") {
+    return (
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M6.2 4.2 2.4 8l3.8 3.8M9.8 4.2 13.6 8l-3.8 3.8"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    )
+  }
+
+  if (variant === "api") {
+    return (
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <rect x="2.4" y="2.6" width="11.2" height="3.4" rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <rect x="2.4" y="7.3" width="11.2" height="3.4" rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <rect x="2.4" y="12" width="11.2" height="1.6" rx="0.7" fill="none" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    )
+  }
+
+  if (variant === "ecommerce") {
+    return (
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M4.2 5.2h7.6l-.7 6.4H4.9L4.2 5.2Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6.2 5.1V4.2a1.8 1.8 0 0 1 3.6 0v.9"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
+      </svg>
+    )
+  }
+
   if (variant === "english") {
     return (
       <svg viewBox="0 0 16 16" aria-hidden="true">

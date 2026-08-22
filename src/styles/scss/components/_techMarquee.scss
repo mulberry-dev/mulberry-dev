@@ -9,6 +9,8 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
+  overflow-x: clip;
+  contain: paint;
   padding-block: var(--space-5);
   isolation: isolate;
   background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
@@ -65,11 +67,15 @@
 .tech-marquee__row {
   width: 100%;
   overflow: hidden;
+  overflow-x: clip;
+  contain: paint;
 }
 
 .tech-marquee__track {
   display: flex;
   width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
   animation: tech-marquee-left var(--marquee-duration) linear infinite;
 }
 

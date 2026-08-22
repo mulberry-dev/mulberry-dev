@@ -1,8 +1,10 @@
 import Head from "@/components/Head"
 import Footer from "@/components/layout/Footer"
 import Navigation from "@/components/navigation"
-import Particles from "@/components/particles"
+import PageTransition from "@/components/PageTransition"
+import { ParticlesProvider } from "@/components/particles"
 import { SITE_NAME, SITE_URL } from "@/data/site"
+import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
 import "@/styles/scss/styles.scss"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/next"
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: SITE_NAME,
-    description: "Full Stack Developer JavaScript/TypeScript",
+    description: "Senior Full Stack Engineer specialized in JavaScript/TypeScript",
     url: SITE_URL,
     type: "website"
   }
@@ -38,18 +40,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
         <Head />
       </head>
       <GoogleAnalytics gaId="G-HP85BC1BKY" />
-      <body className="dark">
-        <Particles />
-        <Navigation />
-        <div className="site-shell">
-          <main>{children}</main>
-          <Footer />
-        </div>
+      <body className="dark" suppressHydrationWarning>
+        <ParticlesProvider>
+          <Navigation />
+          <div className="site-shell">
+            <PageTransition>
+              <main>{children}</main>
+              <Footer />
+            </PageTransition>
+          </div>
+        </ParticlesProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -22,7 +22,7 @@ const Head = () => {
       <meta property="og:title" content={SITE_NAME} />
       <meta
         property="og:description"
-        content="Full Stack Developer JavaScript/TypeScript"
+        content="Senior Full Stack Engineer JavaScript/TypeScript"
       />
       <meta property="og:url" content={SITE_URL} />
       <meta

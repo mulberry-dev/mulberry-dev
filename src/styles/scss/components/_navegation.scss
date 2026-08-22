@@ -1,3 +1,17 @@
+body.nav-intro-done .site-nav__link {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+body.nav-intro-done:has(#index.home-chrome-nav) .site-nav,
+body.nav-intro-done:has(#index.home-chrome-nav) .site-nav__lens {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
 .site-nav,
 .site-nav__lens {
   position: fixed;
@@ -30,8 +44,9 @@
   z-index: calc(var(--z-nav) + 1);
   min-height: calc(var(--nav-height) - 10px);
   padding: 0;
-  background: transparent;
+  background: #0000007a;
   border: 0;
+  backdrop-filter: blur(1px);
   pointer-events: none;
   box-shadow: 0 10px 28px color-mix(in srgb, #000 16%, transparent);
 }

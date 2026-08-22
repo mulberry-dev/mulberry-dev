@@ -1,0 +1,86 @@
+.reveal {
+  --reveal-y: 14px;
+  --reveal-scale: 1;
+  --reveal-duration: 0.58s;
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y), 0) scale(var(--reveal-scale));
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--reveal-duration) var(--ease-out) var(--reveal-delay),
+    transform var(--reveal-duration) var(--ease-out) var(--reveal-delay);
+}
+
+.reveal--page {
+  --reveal-y: 8px;
+  --reveal-duration: 0.5s;
+}
+
+.reveal--hero {
+  --reveal-y: 18px;
+  --reveal-duration: 0.66s;
+}
+
+.reveal--eyebrow {
+  --reveal-y: 10px;
+  --reveal-duration: 0.5s;
+}
+
+.reveal--heading {
+  --reveal-y: 16px;
+  --reveal-duration: 0.62s;
+}
+
+.reveal--text {
+  --reveal-y: 12px;
+  --reveal-duration: 0.56s;
+}
+
+.reveal--button {
+  --reveal-y: 10px;
+  --reveal-scale: 0.98;
+  --reveal-duration: 0.5s;
+}
+
+.reveal--card {
+  --reveal-y: 14px;
+  --reveal-scale: 0.985;
+  --reveal-duration: 0.55s;
+}
+
+.reveal--image {
+  --reveal-y: 14px;
+  --reveal-scale: 0.98;
+  --reveal-duration: 0.68s;
+}
+
+.reveal--nav {
+  --reveal-y: 6px;
+  --reveal-duration: 0.45s;
+}
+
+.reveal--decorative {
+  --reveal-y: 8px;
+  --reveal-duration: 0.7s;
+}
+
+.feature-grid > .reveal,
+.portfolio-grid > .reveal,
+.certs-grid > .reveal,
+.contact-options > .reveal {
+  min-width: 0;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

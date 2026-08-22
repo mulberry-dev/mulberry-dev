@@ -16,7 +16,7 @@ export const links = [
   },
   {
     id: 4,
-    name: "Portfolio",
+    name: "My Work",
     path: "/portfolio",
   },
   {

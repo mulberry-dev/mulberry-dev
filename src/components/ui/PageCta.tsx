@@ -1,7 +1,7 @@
 "use client"
 
 import CtaBanner from "@/components/ui/CtaBanner"
-import IconBox from "@/components/ui/IconBox"
+import Reveal from "@/components/ui/Reveal"
 import { getContextualCta } from "@/data/pageCta"
 import { usePathname } from "next/navigation"
 
@@ -14,15 +14,15 @@ const PageCta = () => {
   }
 
   return (
-    <CtaBanner
-      icon={<IconBox round>→</IconBox>}
-      title={cta.title}
-      subtitle={cta.subtitle}
-      actionHref={cta.actionHref}
-      actionLabel={cta.actionLabel}
-      backHref={cta.backHref}
-      backLabel={cta.backLabel}
-    />
+    <Reveal type="nav" mode="scroll">
+      <CtaBanner
+        backHref={cta.backHref}
+        backName={cta.backName}
+        actionHref={cta.nextHref}
+        nextName={cta.nextName}
+        featured
+      />
+    </Reveal>
   )
 }
 

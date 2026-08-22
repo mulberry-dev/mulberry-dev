@@ -3,14 +3,11 @@
 import ThemeIcon from "@/components/ThemeIcon"
 import { SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
+import { markLeftHome, shouldPlayNavIntro } from "@/lib/siteSession"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-
-let hasLeftHome = false
-
-export const didLeaveHome = () => hasLeftHome
 
 const isActivePath = (pathname: string, path: string) => {
   if (path === "/") {
@@ -24,13 +21,32 @@ const Navigation = () => {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
+  if (pathname !== "/") {
+    markLeftHome()
+  }
+
+  const [playNavIntro] = useState(() => shouldPlayNavIntro())
+
   useEffect(() => {
     if (pathname !== "/") {
-      hasLeftHome = true
+      document.body.classList.add("nav-intro-done")
     }
 
     setOpen(false)
   }, [pathname])
+
+  useEffect(() => {
+    if (!playNavIntro) {
+      document.body.classList.add("nav-intro-done")
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      document.body.classList.add("nav-intro-done")
+    }, 1850)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [playNavIntro])
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -45,9 +61,9 @@ const Navigation = () => {
         <defs>
           <filter
             id="siteNavRefract"
-            x="-8%"
+            x="0%"
             y="-55%"
-            width="116%"
+            width="100%"
             height="210%"
             colorInterpolationFilters="sRGB"
           >
@@ -70,9 +86,9 @@ const Navigation = () => {
           </filter>
           <filter
             id="siteNavRefractSoft"
-            x="-5%"
+            x="0%"
             y="-35%"
-            width="110%"
+            width="100%"
             height="170%"
             colorInterpolationFilters="sRGB"
           >
@@ -117,7 +133,7 @@ const Navigation = () => {
               <Link
                 key={link.id}
                 href={link.path}
-                className={`site-nav__link menuitem-${index}${isActivePath(pathname, link.path) ? " is-active" : ""}`}
+                className={`site-nav__link${playNavIntro ? ` menuitem-${index}` : ""}${isActivePath(pathname, link.path) ? " is-active" : ""}`}
               >
                 {link.name}
               </Link>
