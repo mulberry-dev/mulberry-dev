@@ -24,6 +24,7 @@ export type RevealType =
   | "image"
   | "nav"
   | "decorative"
+  | "chip"
 
 export type RevealMode = "auto" | "fold" | "scroll"
 

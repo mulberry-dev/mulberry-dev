@@ -68,6 +68,12 @@
   --reveal-duration: 0.7s;
 }
 
+.reveal--chip {
+  --reveal-y: 6px;
+  --reveal-scale: 0.985;
+  --reveal-duration: 0.42s;
+}
+
 .feature-grid > .reveal,
 .portfolio-grid > .reveal,
 .certs-grid > .reveal,

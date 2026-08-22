@@ -1,5 +1,6 @@
 "use client"
 
+import Reveal from "@/components/ui/Reveal"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
 import { findSkillImage } from "@/data/whatIDo"
 import Image from "next/image"
@@ -9,14 +10,14 @@ const TechItem = ({ name }: { name: string }) => {
   const imageSrc = findSkillImage(name)
 
   return (
-    <li>
+    <Reveal as="li" type="chip">
       {imageSrc ? (
         <Image src={imageSrc} alt="" width={14} height={14} />
       ) : (
         <span className="tech-category__dot" aria-hidden="true" />
       )}
       {name}
-    </li>
+    </Reveal>
   )
 }
 

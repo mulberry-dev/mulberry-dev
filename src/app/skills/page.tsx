@@ -98,8 +98,10 @@ const Skills = () => {
           </div>
         </RevealGroup>
 
-        <Reveal type="heading" mode="scroll">
-          <SectionKicker kicker="Tech stack" title="The tools I use" />
+        <RevealGroup mode="scroll" stagger={38}>
+          <Reveal type="heading">
+            <SectionKicker kicker="Tech stack" title="The tools I use" />
+          </Reveal>
           <div className="tech-map">
             {TECH_CATEGORIES.map((group) => (
               <TechCategory
@@ -111,7 +113,7 @@ const Skills = () => {
               />
             ))}
           </div>
-        </Reveal>
+        </RevealGroup>
 
         <Reveal type="heading" mode="scroll">
           <SectionKicker kicker="How I add value" title="More than code" />
