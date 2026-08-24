@@ -2,6 +2,7 @@
 
 import { useParticles } from "@/components/particles"
 import {
+  applyIncomingScroll,
   clearSlideNavigation,
   consumePendingSlide,
   peekPendingSlide,
@@ -74,7 +75,6 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     const token = ++generationRef.current
     const view = viewRef.current
     const html = document.documentElement
-    const anchor = peekScrollAnchor()
     let incoming: Animation | null = null
     let outgoing: Animation | null = null
 
@@ -105,6 +105,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     }
 
     if (slide?.frame && view) {
+      applyIncomingScroll(pathname)
       apiRef.current.releaseContent()
       setViewState("normal")
       document.body.classList.remove("particles-route-transition")
@@ -173,6 +174,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
       consumePendingSlide()?.frame.remove()
       apiRef.current.releaseContent()
       setViewState("normal")
+      applyIncomingScroll(pathname)
       unlock()
       return
     }
@@ -189,11 +191,19 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     setViewState("normal")
     document.body.classList.remove("particles-route-transition")
     apiRef.current.releaseContent()
+    const placed = applyIncomingScroll(pathname)
 
-    if (anchor === "end") {
-      settleSectionScroll(-1)
-    } else {
-      settleSectionScroll(1)
+    if (placed === "start") {
+      const pinTop = () => {
+        if (token !== generationRef.current) {
+          return
+        }
+
+        settleSectionScroll(1)
+      }
+
+      pinTop()
+      requestAnimationFrame(pinTop)
     }
 
     if (apiRef.current.canTransition) {

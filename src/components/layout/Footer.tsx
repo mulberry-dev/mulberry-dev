@@ -9,7 +9,7 @@ const Footer = () => {
   const pathname = usePathname()
   const year = new Date().getFullYear()
 
-  if (pathname === "/") {
+  if (pathname !== "/contact") {
     return null
   }
 

@@ -64,7 +64,12 @@ const CtaBanner = ({
             aria-label={backName ? `Previous: ${backName}` : "Previous"}
           >
             <NavChevron direction="prev" />
-            Previous
+            <span>
+              <span className="ui-cta-banner__dir-label">Previous</span>
+              {backName ? (
+                <span className="ui-cta-banner__dir-name">{backName}</span>
+              ) : null}
+            </span>
           </Link>
         ) : null}
         {actionHref ? (
@@ -73,7 +78,12 @@ const CtaBanner = ({
             href={actionHref}
             aria-label={nextName ? `Next: ${nextName}` : "Next"}
           >
-            Next
+            <span>
+              <span className="ui-cta-banner__dir-label">Next</span>
+              {nextName ? (
+                <span className="ui-cta-banner__dir-name">{nextName}</span>
+              ) : null}
+            </span>
             <NavChevron direction="next" />
           </Link>
         ) : null}

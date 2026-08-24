@@ -31,6 +31,7 @@ export type SiteIconName =
   | "gauge"
   | "puzzle"
   | "cursor"
+  | "star"
   | "compass"
   | "mail"
   | "linkedin"
@@ -237,7 +238,12 @@ const ICONS: Record<SiteIconName, ReactElement> = {
   ),
   cursor: (
     <svg {...iconProps}>
-      <path d="M5.2 4.2 18.5 12l-6.4 1.4 2.6 6.6-2.9 1.1-2.6-6.5-4 3.2Z" />
+      <path d="M8.15 5.2 16.55 13.85l-3.85.55 2.2 5.15-2.05.85-2.2-5.2-3.4 2.55Z" />
+    </svg>
+  ),
+  star: (
+    <svg {...iconProps}>
+      <path d="M12 3.4 14.08 9.12 20.2 9.52 15.58 13.42 17.12 19.5 12 16.28 6.88 19.5 8.42 13.42 3.8 9.52 9.92 9.12Z" />
     </svg>
   ),
   compass: (

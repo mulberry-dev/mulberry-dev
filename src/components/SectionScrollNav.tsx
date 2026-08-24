@@ -2,12 +2,16 @@
 
 import {
   SECTION_PATHS,
+  announceSection,
   getNeighborPath,
   getSectionIndex,
   goToSection,
   isSectionNavLocked,
   isSectionPath,
-  registerSectionPush
+  markHistoryPop,
+  rememberScroll,
+  registerSectionPush,
+  settleSectionScroll
 } from "@/lib/sectionNav"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"
@@ -107,6 +111,24 @@ const SectionScrollNav = () => {
 
     return () => registerSectionPush(() => undefined)
   }, [router])
+
+  useEffect(() => {
+    const previous = window.history.scrollRestoration
+    window.history.scrollRestoration = "manual"
+
+    const onPopState = () => {
+      markHistoryPop()
+    }
+
+    window.addEventListener("popstate", onPopState)
+    window.addEventListener("scroll", rememberScroll, { passive: true })
+
+    return () => {
+      window.history.scrollRestoration = previous
+      window.removeEventListener("popstate", onPopState)
+      window.removeEventListener("scroll", rememberScroll)
+    }
+  }, [])
 
   useEffect(() => {
     if (!isSectionPath(pathname)) {
@@ -347,8 +369,7 @@ const SectionScrollNav = () => {
         event.metaKey ||
         event.ctrlKey ||
         event.shiftKey ||
-        event.altKey ||
-        isSectionNavLocked()
+        event.altKey
       ) {
         return
       }
@@ -360,8 +381,7 @@ const SectionScrollNav = () => {
       if (
         !anchor ||
         anchor.hasAttribute("download") ||
-        anchor.getAttribute("target") === "_blank" ||
-        anchor.closest(".site-nav")
+        anchor.getAttribute("target") === "_blank"
       ) {
         return
       }
@@ -380,15 +400,38 @@ const SectionScrollNav = () => {
 
       const from = getSectionIndex(window.location.pathname)
       const to = getSectionIndex(url.pathname)
+      const fromNav = Boolean(anchor.closest(".site-nav"))
 
-      if (from < 0 || to < 0 || from === to) {
+      if (from < 0 || to < 0) {
+        return
+      }
+
+      if (isSectionNavLocked() && !fromNav) {
+        return
+      }
+
+      if (from === to) {
+        if (!fromNav) {
+          return
+        }
+
+        event.preventDefault()
+        announceSection(url.pathname)
+        settleSectionScroll(1)
         return
       }
 
       event.preventDefault()
       const direction = (to > from ? 1 : -1) as 1 | -1
       const mode = Math.abs(to - from) === 1 ? "slide" : "jump"
-      goToSection(`${url.pathname}${url.search}${url.hash}`, direction, mode)
+      const href = `${url.pathname}${url.search}${url.hash}`
+
+      if (fromNav) {
+        goToSection(href, direction, mode, { fromTop: true, force: true })
+        return
+      }
+
+      goToSection(href, direction, mode)
     }
 
     const onChromeRevealed = () => {

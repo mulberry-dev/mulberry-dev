@@ -153,8 +153,9 @@ body:has(#contact) {
 .contact-graphic__mark {
   position: relative;
   z-index: 1;
-  width: 210px;
+  width: 220px;
   height: auto;
+  overflow: visible;
   animation: contactFloat 5.6s ease-in-out infinite;
 }
 
@@ -179,8 +180,14 @@ body:has(#contact) {
   stroke: var(--color-teal);
 }
 
+.contact-graphic__user-disc {
+  fill: color-mix(in srgb, var(--color-surface-glass) 88%, transparent);
+  stroke: color-mix(in srgb, var(--color-purple) 68%, var(--color-cyan));
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-purple) 32%, transparent));
+}
+
 .contact-graphic__user {
-  stroke: color-mix(in srgb, var(--color-purple) 70%, var(--color-text));
+  stroke: color-mix(in srgb, var(--color-purple) 52%, var(--color-text));
 }
 
 .contact-options__header {
@@ -428,7 +435,7 @@ body:has(#contact) {
   }
 
   .contact-graphic__mark {
-    width: 168px;
+    width: 176px;
   }
 }
 
@@ -470,7 +477,7 @@ body:has(#contact) {
   }
 
   .contact-graphic__mark {
-    width: 148px;
+    width: 156px;
   }
 
   .contact-options {

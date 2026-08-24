@@ -78,6 +78,10 @@ body:not(.dark) {
   overflow-x: clip;
 }
 
+html.is-pinning-scroll {
+  scroll-behavior: auto !important;
+}
+
 html.is-section-sliding,
 html.is-section-sliding body {
   overflow: hidden;

@@ -77,9 +77,7 @@
 .problem-card__icon svg,
 .value-rows__icon svg,
 .journey-timeline__node svg,
-.tech-category__icon svg,
-.skills-intro__trait-icon svg,
-.orbit-graphic__core svg {
+.tech-category__icon svg {
   width: 20px;
   height: 20px;
 }
@@ -613,8 +611,11 @@
 }
 
 .orbit-graphic__core svg {
-  width: 28px;
-  height: 28px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+  transform: translate(0.5px, 0.25px);
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-purple) 70%, transparent));
 }
 

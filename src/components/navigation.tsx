@@ -4,13 +4,26 @@ import ThemeIcon from "@/components/ThemeIcon"
 import { SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
+import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import { markLeftHome, shouldPlayNavIntro } from "@/lib/siteSession"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type TransitionEvent } from "react"
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type TransitionEvent
+} from "react"
 
 type MenuPhase = "closed" | "open" | "closing"
+
+const MOBILE_INDICATOR_DELAY_MS = 420
+const INDICATOR_HEIGHT = 2
 
 const isActivePath = (pathname: string, path: string) => {
   if (path === "/") {
@@ -19,6 +32,9 @@ const isActivePath = (pathname: string, path: string) => {
 
   return pathname === path || pathname.startsWith(`${path}/`)
 }
+
+const prefersReducedMotion = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
 const Navigation = () => {
   const pathname = usePathname()
@@ -35,7 +51,16 @@ const Navigation = () => {
 
   const [playNavIntro, setPlayNavIntro] = useState(false)
   const [isCompact, setIsCompact] = useState(false)
+  const [activePath, setActivePath] = useState(pathname)
+  const [indicatorReady, setIndicatorReady] = useState(false)
+  const [mobileLinksSettled, setMobileLinksSettled] = useState(false)
   const menuOpen = menu !== "closed"
+  const indicatorRef = useRef<HTMLSpanElement>(null)
+  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
+  const skipIndicatorMotionRef = useRef(true)
+  const indicatorReadyRef = useRef(false)
+  const holdMenuRef = useRef(false)
+  const holdMenuTimerRef = useRef(0)
 
   useEffect(() => {
     if (shouldPlayNavIntro()) {
@@ -45,7 +70,10 @@ const Navigation = () => {
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1023px)")
-    const sync = () => setIsCompact(media.matches)
+    const sync = () => {
+      skipIndicatorMotionRef.current = true
+      setIsCompact(media.matches)
+    }
     sync()
     media.addEventListener("change", sync)
     return () => media.removeEventListener("change", sync)
@@ -72,8 +100,29 @@ const Navigation = () => {
   }, [isCompact, menu])
 
   useEffect(() => {
+    setActivePath(pathname)
+  }, [pathname])
+
+  useEffect(() => {
+    const onSectionChange = (event: Event) => {
+      const path = (event as CustomEvent<{ path?: string }>).detail?.path
+
+      if (path) {
+        setActivePath(path)
+      }
+    }
+
+    window.addEventListener(SECTION_CHANGE_EVENT, onSectionChange)
+    return () => window.removeEventListener(SECTION_CHANGE_EVENT, onSectionChange)
+  }, [])
+
+  useEffect(() => {
     if (pathname !== "/") {
       document.body.classList.add("nav-intro-done")
+    }
+
+    if (holdMenuRef.current) {
+      return
     }
 
     setMenu((current) => (current === "open" ? "closing" : current))
@@ -201,6 +250,119 @@ const Navigation = () => {
     }
   }
 
+  const showIndicator = !isCompact || (menu === "open" && mobileLinksSettled)
+
+  useEffect(() => {
+    if (!isCompact || menu !== "open") {
+      setMobileLinksSettled(false)
+      return
+    }
+
+    if (prefersReducedMotion()) {
+      setMobileLinksSettled(true)
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setMobileLinksSettled(true)
+    }, MOBILE_INDICATOR_DELAY_MS)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [isCompact, menu])
+
+  const placeIndicator = useCallback((animate: boolean) => {
+    const nav = navRef.current
+    const indicator = indicatorRef.current
+
+    if (!nav || !indicator) {
+      return
+    }
+
+    if (!showIndicator) {
+      skipIndicatorMotionRef.current = true
+
+      if (indicatorReadyRef.current) {
+        indicatorReadyRef.current = false
+        setIndicatorReady(false)
+      }
+
+      return
+    }
+
+    const activeIndex = links.findIndex((link) => isActivePath(activePath, link.path))
+    const activeLink = activeIndex >= 0 ? linkRefs.current[activeIndex] : null
+
+    if (!activeLink) {
+      if (indicatorReadyRef.current) {
+        indicatorReadyRef.current = false
+        setIndicatorReady(false)
+      }
+      return
+    }
+
+    const navRect = nav.getBoundingClientRect()
+    const linkRect = activeLink.getBoundingClientRect()
+    const x = linkRect.left - navRect.left
+    const y = linkRect.bottom - navRect.top - INDICATOR_HEIGHT
+    const width = linkRect.width
+    const reduced = prefersReducedMotion()
+    const motion =
+      animate &&
+      indicatorReadyRef.current &&
+      !skipIndicatorMotionRef.current &&
+      !reduced
+
+    if (motion) {
+      indicator.style.removeProperty("transition")
+    } else {
+      indicator.style.transition = "none"
+    }
+
+    indicator.style.transform = `translate3d(${x}px, ${y}px, 0)`
+    indicator.style.width = `${width}px`
+
+    if (!motion) {
+      void indicator.offsetWidth
+      indicator.style.removeProperty("transition")
+    }
+
+    skipIndicatorMotionRef.current = false
+
+    if (!indicatorReadyRef.current) {
+      indicatorReadyRef.current = true
+      setIndicatorReady(true)
+    }
+  }, [activePath, showIndicator])
+
+  useLayoutEffect(() => {
+    placeIndicator(true)
+  }, [placeIndicator, activePath, menu, isCompact, playNavIntro])
+
+  useEffect(() => {
+    const nav = navRef.current
+
+    if (!nav) {
+      return
+    }
+
+    const onResize = () => {
+      skipIndicatorMotionRef.current = true
+      placeIndicator(false)
+    }
+
+    window.addEventListener("resize", onResize)
+    nav.addEventListener("scroll", onResize, { passive: true })
+    void document.fonts?.ready.then(() => {
+      skipIndicatorMotionRef.current = true
+      placeIndicator(false)
+    })
+
+    return () => {
+      window.removeEventListener("resize", onResize)
+      nav.removeEventListener("scroll", onResize)
+    }
+  }, [placeIndicator])
+
   const onMenuTransitionEnd = (event: TransitionEvent<HTMLElement>) => {
     if (event.target !== event.currentTarget) {
       return
@@ -305,16 +467,41 @@ const Navigation = () => {
             aria-label="Primary"
             onTransitionEnd={onMenuTransitionEnd}
           >
+            <span
+              ref={indicatorRef}
+              className={`site-nav__indicator${indicatorReady && showIndicator ? " is-ready" : ""}`}
+              aria-hidden="true"
+            />
             {links.map((link, index) =>
               <Link
                 key={link.id}
                 href={link.path}
-                className={`site-nav__link${playNavIntro ? ` menuitem-${index}` : ""}${isActivePath(pathname, link.path) ? " is-active" : ""}`}
+                ref={(node) => {
+                  linkRefs.current[index] = node
+                }}
+                className={`site-nav__link${playNavIntro ? ` menuitem-${index}` : ""}${isActivePath(activePath, link.path) ? " is-active" : ""}`}
                 style={{ "--i": index } as CSSProperties}
+                aria-current={isActivePath(activePath, link.path) ? "page" : undefined}
                 onClick={() => {
-                  if (menu === "open") {
-                    setMenu("closing")
+                  setActivePath(link.path)
+
+                  if (menu !== "open") {
+                    return
                   }
+
+                  const alreadyActive = isActivePath(activePath, link.path)
+
+                  if (alreadyActive || prefersReducedMotion()) {
+                    setMenu("closing")
+                    return
+                  }
+
+                  holdMenuRef.current = true
+                  window.clearTimeout(holdMenuTimerRef.current)
+                  holdMenuTimerRef.current = window.setTimeout(() => {
+                    holdMenuRef.current = false
+                    setMenu("closing")
+                  }, 320)
                 }}
               >
                 {link.name}

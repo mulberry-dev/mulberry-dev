@@ -2,10 +2,19 @@
   --container: min(1360px, calc(100% - 48px));
   display: flex;
   flex-direction: column;
-  gap: clamp(1.5rem, 2.6vw, 2.25rem);
+  justify-content: space-around;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 0;
+}
+
+.project-page > * {
+  flex: 0 0 auto;
 }
 
 section:has(.project-page) {
+  flex: 1 1 auto;
+  min-height: 0;
   padding-top: calc(var(--nav-height) + var(--space-5));
   padding-bottom: var(--space-7);
 }
@@ -285,7 +294,6 @@ body:not(.dark) .project-hero__image {
 @media (max-width: 767px) {
   .project-page {
     --container: min(1360px, calc(100% - 32px));
-    gap: var(--space-5);
   }
 
   .project-overview {

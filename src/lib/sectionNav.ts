@@ -1,6 +1,7 @@
 import { links } from "@/data/navegation"
 
 export const SECTION_PATHS = links.map((link) => link.path)
+export const SECTION_CHANGE_EVENT = "site:section-change"
 
 export type SectionDirection = 1 | -1
 
@@ -12,12 +13,20 @@ type SlidePayload = {
 
 type ScrollAnchor = "start" | "end" | "history"
 
+type GoToSectionOptions = {
+  fromTop?: boolean
+  force?: boolean
+}
+
 let viewEl: HTMLElement | null = null
 let pushRoute: ((href: string) => void) | null = null
 let pendingSlide: SlidePayload | null = null
 let pendingAnchor: ScrollAnchor = "history"
 let slideNav = false
 let locked = false
+let historyPop = false
+let memoryLocked = false
+const scrollMemory = new Map<string, number>()
 
 export const isSectionPath = (pathname: string) =>
   SECTION_PATHS.includes(pathname)
@@ -54,6 +63,7 @@ export const wasSlideNavigation = () => slideNav
 export const clearSlideNavigation = () => {
   slideNav = false
   pendingAnchor = "history"
+  memoryLocked = false
   document.documentElement.classList.remove("is-section-sliding")
   delete document.documentElement.dataset.navDir
 }
@@ -66,6 +76,70 @@ export const consumePendingSlide = () => {
   const next = pendingSlide
   pendingSlide = null
   return next
+}
+
+export const rememberScroll = (path = window.location.pathname) => {
+  if (memoryLocked) {
+    return
+  }
+
+  const scroller = document.scrollingElement || document.documentElement
+  scrollMemory.set(path, scroller.scrollTop)
+}
+
+export const lockScrollMemory = () => {
+  memoryLocked = true
+}
+
+export const markHistoryPop = () => {
+  historyPop = true
+}
+
+export const consumeHistoryPop = () => {
+  const next = historyPop
+  historyPop = false
+  return next
+}
+
+const pinScroll = (top: number) => {
+  const html = document.documentElement
+  const scroller = document.scrollingElement || html
+  const previousBehavior = html.style.scrollBehavior
+  html.classList.add("is-pinning-scroll")
+  html.style.scrollBehavior = "auto"
+  scroller.scrollTop = Math.max(0, top)
+  html.style.scrollBehavior = previousBehavior
+  html.classList.remove("is-pinning-scroll")
+}
+
+export const settleSectionScroll = (direction: SectionDirection) => {
+  const scroller = document.scrollingElement || document.documentElement
+
+  if (direction < 0) {
+    pinScroll(Math.max(0, scroller.scrollHeight - scroller.clientHeight))
+    return
+  }
+
+  pinScroll(0)
+}
+
+export const restoreRememberedScroll = (path: string) => {
+  pinScroll(scrollMemory.get(path) ?? 0)
+}
+
+export const applyIncomingScroll = (path: string) => {
+  if (consumeHistoryPop()) {
+    restoreRememberedScroll(path)
+    return "history" as const
+  }
+
+  if (pendingAnchor === "end") {
+    settleSectionScroll(-1)
+    return "end" as const
+  }
+
+  settleSectionScroll(1)
+  return "start" as const
 }
 
 const prefersReducedMotion = () =>
@@ -96,38 +170,53 @@ const captureViewportFrame = () => {
   return frame
 }
 
-export const settleSectionScroll = (direction: SectionDirection) => {
-  const html = document.documentElement
-  const scroller = document.scrollingElement || html
-  const previousBehavior = html.style.scrollBehavior
-  html.style.scrollBehavior = "auto"
+const discardPendingSlide = () => {
+  pendingSlide?.frame.remove()
+  pendingSlide = null
+  slideNav = false
+  document.documentElement.classList.remove("is-section-sliding")
+  delete document.documentElement.dataset.navDir
+}
 
-  if (direction < 0) {
-    scroller.scrollTop = Math.max(0, scroller.scrollHeight - scroller.clientHeight)
-  } else {
-    scroller.scrollTop = 0
-  }
-
-  html.style.scrollBehavior = previousBehavior
+export const announceSection = (href: string) => {
+  window.dispatchEvent(
+    new CustomEvent(SECTION_CHANGE_EVENT, {
+      detail: { path: href.split(/[?#]/)[0] }
+    })
+  )
 }
 
 export const goToSection = (
   href: string,
   direction: SectionDirection,
-  mode: "slide" | "jump"
+  mode: "slide" | "jump",
+  options?: GoToSectionOptions
 ) => {
-  if (locked || !pushRoute || href === window.location.pathname) {
+  if (!pushRoute || href === window.location.pathname) {
     return false
   }
 
+  if (locked && !options?.force) {
+    return false
+  }
+
+  if (options?.force) {
+    discardPendingSlide()
+    locked = false
+    memoryLocked = false
+  }
+
+  rememberScroll()
+  lockScrollMemory()
   locked = true
   const reduced = prefersReducedMotion()
   const shouldSlide = mode === "slide" && !reduced
   const frame = shouldSlide ? captureViewportFrame() : null
+  const fromTop = Boolean(options?.fromTop)
 
   slideNav = Boolean(frame)
   pendingSlide = frame ? { direction, frame, href } : null
-  pendingAnchor = direction < 0 ? "end" : "start"
+  pendingAnchor = fromTop || direction > 0 ? "start" : "end"
 
   if (frame) {
     document.body.appendChild(frame)
@@ -135,6 +224,11 @@ export const goToSection = (
     document.documentElement.classList.add("is-section-sliding")
   }
 
+  if (fromTop) {
+    settleSectionScroll(1)
+  }
+
+  announceSection(href)
   pushRoute(href)
   return true
 }

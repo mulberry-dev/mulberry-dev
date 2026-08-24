@@ -1,5 +1,6 @@
 "use client"
 
+import SiteIcon from "@/components/ui/SiteIcon"
 import {
   applySiteTheme,
   persistSiteTheme,
@@ -8,21 +9,6 @@ import {
 } from "@/lib/theme"
 import { Tooltip } from "antd"
 import { useEffect, useState } from "react"
-
-const ThemeStarIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="36"
-    height="36"
-    aria-hidden="true"
-  >
-    <path
-      fill="currentColor"
-      d="M12 3.1 13.3 8l5 .9-3.9 3.1 1.3 4.9L12 14.3 8.3 16.9 9.6 12 5.7 8.9l5-.9L12 3.1Z"
-    />
-  </svg>
-)
 
 const ThemeIcon = () => {
   const [theme, setTheme] = useState<SiteTheme>("original")
@@ -73,10 +59,10 @@ const ThemeIcon = () => {
             onChange={onChange}
           />
           <span className="icon icon--aqua">
-            <ThemeStarIcon />
+            <SiteIcon name="star" />
           </span>
           <span className="icon icon--classic">
-            <ThemeStarIcon />
+            <SiteIcon name="star" />
           </span>
         </span>
       </label>
