@@ -120,13 +120,17 @@ const SectionScrollNav = () => {
       markHistoryPop()
     }
 
+    const onScroll = () => {
+      rememberScroll()
+    }
+
     window.addEventListener("popstate", onPopState)
-    window.addEventListener("scroll", rememberScroll, { passive: true })
+    window.addEventListener("scroll", onScroll, { passive: true })
 
     return () => {
       window.history.scrollRestoration = previous
       window.removeEventListener("popstate", onPopState)
-      window.removeEventListener("scroll", rememberScroll)
+      window.removeEventListener("scroll", onScroll)
     }
   }, [])
 
