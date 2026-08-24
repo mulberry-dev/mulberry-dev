@@ -118,6 +118,35 @@ export const data = [
     github: null
   },
   {
+    id: "ThisIsSantiOriginal",
+    name: "ThisIsSanti.dev (Original)",
+    category: "landing",
+    description:
+      "Original personal landing and portfolio for ThisIsSanti.dev. A multi-page presentation with Home, About, Skills, Portfolio, Certifications, and Contact, plus Login and SignUp. The hero introduces Santiago as a Full Stack Developer over a purple-to-teal particle sky, with a dark/light theme toggle. (2024)",
+    img: "/images/Webp/thisissanti-original.webp",
+    tech: [
+      {
+        tech: "Next.js",
+        icon: "/images/Icons/svg/Next.js.svg"
+      },
+      {
+        tech: "React.js",
+        icon: "/images/Icons/svg/react.svg"
+      },
+      {
+        tech: "Bootstrap",
+        icon: "/images/Icons/svg/bootstrap.svg"
+      },
+      {
+        tech: "Sass",
+        icon: "/images/Icons/svg/Sass.svg"
+      }
+    ],
+    url: "https://thisissantidev.vercel.app/",
+    thumbnail: "/images/thumbnails/thisissanti-original.webp",
+    github: null
+  },
+  {
     id: "SalonTarget",
     name: "SalonTarget",
     category: "web",

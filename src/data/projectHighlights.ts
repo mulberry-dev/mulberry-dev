@@ -73,6 +73,28 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "Fast presentation site for the field"
     }
   ],
+  ThisIsSantiOriginal: [
+    {
+      icon: "user",
+      title: "Personal brand landing",
+      text: "Hero intro and multi-page portfolio for ThisIsSanti.dev"
+    },
+    {
+      icon: "interface",
+      title: "Full site map",
+      text: "Home, About, Skills, Portfolio, Certifications, and Contact"
+    },
+    {
+      icon: "design",
+      title: "Signature visual",
+      text: "Gradient type, particle sky, and dark/light accents"
+    },
+    {
+      icon: "devices",
+      title: "Live original",
+      text: "Still available as the previous public version"
+    }
+  ],
   MulberryDrone: [
     {
       icon: "cursor",
