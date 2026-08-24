@@ -360,7 +360,8 @@ const SectionScrollNav = () => {
       if (
         !anchor ||
         anchor.hasAttribute("download") ||
-        anchor.getAttribute("target") === "_blank"
+        anchor.getAttribute("target") === "_blank" ||
+        anchor.closest(".site-nav")
       ) {
         return
       }
@@ -385,12 +386,9 @@ const SectionScrollNav = () => {
       }
 
       event.preventDefault()
-      const fromMenu = Boolean(anchor.closest(".site-nav"))
       const direction = (to > from ? 1 : -1) as 1 | -1
-      const mode = !fromMenu && Math.abs(to - from) === 1 ? "slide" : "jump"
-      goToSection(`${url.pathname}${url.search}${url.hash}`, direction, mode, {
-        fromTop: fromMenu
-      })
+      const mode = Math.abs(to - from) === 1 ? "slide" : "jump"
+      goToSection(`${url.pathname}${url.search}${url.hash}`, direction, mode)
     }
 
     const onChromeRevealed = () => {

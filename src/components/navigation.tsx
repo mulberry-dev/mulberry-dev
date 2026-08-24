@@ -33,9 +33,15 @@ const Navigation = () => {
     markLeftHome()
   }
 
-  const [playNavIntro] = useState(() => shouldPlayNavIntro())
+  const [playNavIntro, setPlayNavIntro] = useState(false)
   const [isCompact, setIsCompact] = useState(false)
   const menuOpen = menu !== "closed"
+
+  useEffect(() => {
+    if (shouldPlayNavIntro()) {
+      setPlayNavIntro(true)
+    }
+  }, [])
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1023px)")

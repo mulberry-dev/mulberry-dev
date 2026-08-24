@@ -19,26 +19,6 @@ type ViewState = "normal" | "covered"
 const SLIDE_MS = 800
 const SLIDE_EASE = "cubic-bezier(0.45, 0, 0.1, 1)"
 
-const waitForPaint = () =>
-  new Promise<void>((resolve) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => resolve())
-    })
-  })
-
-const waitForViewReady = async () => {
-  await waitForPaint()
-
-  if (document.fonts?.status === "loading") {
-    await Promise.race([
-      document.fonts.ready,
-      new Promise<void>((resolve) => {
-        window.setTimeout(resolve, 180)
-      })
-    ])
-  }
-}
-
 const finishAnimations = async (animations: Animation[]) => {
   await Promise.all(
     animations.map((animation) => animation.finished.catch(() => undefined))
@@ -78,7 +58,12 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
 
   useLayoutEffect(() => {
     const pathChanged = prevPathRef.current !== pathname
-    const slide = peekPendingSlide()
+    const rawSlide = peekPendingSlide()
+    const slide = rawSlide?.href === pathname ? rawSlide : null
+
+    if (rawSlide && !slide) {
+      consumePendingSlide()?.frame.remove()
+    }
 
     if (!pathChanged && !slide) {
       return
@@ -192,53 +177,37 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
       return
     }
 
-    if (anchor === "start") {
-      settleSectionScroll(1)
-    } else if (anchor === "end") {
+    html.classList.remove("is-section-sliding")
+    delete html.dataset.navDir
+    view?.classList.remove("is-sliding")
+
+    if (view) {
+      view.style.transform = ""
+      view.style.opacity = ""
+    }
+
+    setViewState("normal")
+    document.body.classList.remove("particles-route-transition")
+    apiRef.current.releaseContent()
+
+    if (anchor === "end") {
       settleSectionScroll(-1)
+    } else {
+      settleSectionScroll(1)
     }
 
-    if (!apiRef.current.canTransition) {
-      setViewState("normal")
-      document.body.classList.remove("particles-route-transition")
-      apiRef.current.releaseContent()
-      setSectionNavLocked(false)
-      clearSlideNavigation()
-      return
+    if (apiRef.current.canTransition) {
+      void apiRef.current.beginRouteTransition().then(() => {
+        if (token !== generationRef.current) {
+          return
+        }
+
+        apiRef.current.completeRouteTransition()
+      })
     }
 
-    setViewState("covered")
-    document.body.classList.add("particles-route-transition")
-
-    let cancelled = false
-
-    const run = async () => {
-      await Promise.all([
-        apiRef.current.beginRouteTransition(),
-        waitForViewReady()
-      ])
-
-      if (cancelled || token !== generationRef.current) {
-        return
-      }
-
-      setViewState("normal")
-      document.body.classList.remove("particles-route-transition")
-      apiRef.current.releaseContent()
-      apiRef.current.completeRouteTransition()
-      setSectionNavLocked(false)
-      clearSlideNavigation()
-    }
-
-    void run()
-
-    return () => {
-      cancelled = true
-
-      if (token === generationRef.current) {
-        prevPathRef.current = fromPath
-      }
-    }
+    setSectionNavLocked(false)
+    clearSlideNavigation()
   }, [pathname])
 
   useEffect(() => {

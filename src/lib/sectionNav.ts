@@ -7,6 +7,7 @@ export type SectionDirection = 1 | -1
 type SlidePayload = {
   direction: SectionDirection
   frame: HTMLElement
+  href: string
 }
 
 type ScrollAnchor = "start" | "end" | "history"
@@ -113,8 +114,7 @@ export const settleSectionScroll = (direction: SectionDirection) => {
 export const goToSection = (
   href: string,
   direction: SectionDirection,
-  mode: "slide" | "jump",
-  options?: { fromTop?: boolean }
+  mode: "slide" | "jump"
 ) => {
   if (locked || !pushRoute || href === window.location.pathname) {
     return false
@@ -126,8 +126,8 @@ export const goToSection = (
   const frame = shouldSlide ? captureViewportFrame() : null
 
   slideNav = Boolean(frame)
-  pendingSlide = frame ? { direction, frame } : null
-  pendingAnchor = options?.fromTop || direction > 0 ? "start" : "end"
+  pendingSlide = frame ? { direction, frame, href } : null
+  pendingAnchor = direction < 0 ? "end" : "start"
 
   if (frame) {
     document.body.appendChild(frame)

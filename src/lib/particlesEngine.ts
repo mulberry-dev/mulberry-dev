@@ -335,19 +335,18 @@ export class ParticlesEngine {
   }
 
   beginRouteTransition() {
-    if (this.phase === "idle" || this.phase === "falling" || this.reducedMotion) {
+    if (
+      this.phase === "idle" ||
+      this.phase === "falling" ||
+      this.reducedMotion ||
+      !this.running
+    ) {
       return Promise.resolve()
     }
 
     this.travelAge = 0
     this.setPhase("transitioning")
     this.tweenSpeed(PEAK_SPEED, ACCEL_DURATION, easeInCubic)
-
-    if (this.speedMul >= COVER_SPEED) {
-      return new Promise<void>((resolve) => {
-        this.coverWaiters.push(resolve)
-      })
-    }
 
     return new Promise<void>((resolve) => {
       this.coverWaiters.push(resolve)
@@ -614,6 +613,7 @@ export class ParticlesEngine {
   private stopLoop() {
     this.running = false
     window.cancelAnimationFrame(this.frame)
+    this.flushCoverWaiters()
   }
 
   private tick = (now: number) => {
