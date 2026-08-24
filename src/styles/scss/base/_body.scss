@@ -71,12 +71,10 @@ body:not(.dark) {
 .site-shell > main {
   grid-row: 1;
   grid-column: 1;
-}
-
-.site-shell > main {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  height: 100%;
 }
 
 .site-shell > .site-footer {

@@ -31,7 +31,7 @@ const ABOUT_SHORT =
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
-const HOME_CHROME_NAV_MS = 620
+const HOME_CHROME_NAV_MS = 480
 
 type HomeChromePhase = "wait" | "nav" | "shown"
 

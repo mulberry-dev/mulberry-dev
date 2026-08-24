@@ -30,7 +30,8 @@
 .theme-icon .icon {
   grid-column: 1 / 1;
   grid-row: 1 / 1;
-  transition: transform 500ms;
+  color: var(--color-purple);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-purple) 42%, transparent));
 }
 
 .theme-icon:not(.is-ready) .icon {
@@ -41,37 +42,8 @@
   display: block;
 }
 
-.theme-icon .icon--aqua {
-  transition-delay: 200ms;
-  color: var(--color-teal);
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-teal) 35%, transparent));
-}
-
-.theme-icon .icon--classic {
-  transform: scale(0);
-  color: var(--color-purple);
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-purple) 42%, transparent));
-}
-
-html.theme-original .theme-icon .icon--aqua {
-  transform: rotate(360deg) scale(0);
-}
-
-html.theme-original .theme-icon .icon--classic {
-  transition-delay: 200ms;
-  transform: scale(1) rotate(360deg);
-}
-
 .theme-icon:focus-within {
   outline: 2px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: 50%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-icon .icon,
-  .theme-icon .icon--aqua,
-  html.theme-original .theme-icon .icon--classic {
-    transition: none;
-  }
 }

@@ -1,15 +1,18 @@
 #index {
-  min-height: 100dvh;
-  justify-content: space-between;
-  gap: var(--space-7);
-  padding-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1 1 auto;
+  min-height: 100%;
+  gap: var(--space-5);
+  padding: calc(var(--nav-height) + var(--space-4)) 0 0;
   overflow-x: clip;
   max-width: 100%;
 }
 
 .home-page {
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -257,12 +260,12 @@ body:not(.dark) .home-avatar--light {
 @keyframes homeChromeNav {
   from {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translate3d(0, -18px, 0);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -371,19 +374,24 @@ body:not(.dark) .home-avatar--light {
 }
 
 body:has(#index.home-chrome-wait) .site-nav,
+body:has(#index.home-chrome-wait) .site-nav__lens,
+body:has(#index.home-chrome-nav) .site-nav,
+body:has(#index.home-chrome-nav) .site-nav__lens {
+  transition: none;
+}
+
+body:has(#index.home-chrome-wait) .site-nav,
 body:has(#index.home-chrome-wait) .site-nav__lens {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-100%);
+  transform: translate3d(0, -18px, 0);
 }
 
 body:has(#index.home-chrome-nav) .site-nav,
 body:has(#index.home-chrome-nav) .site-nav__lens {
-  opacity: 0;
   visibility: visible;
-  transform: translateY(-100%);
-  animation: homeChromeNav 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: homeChromeNav 0.48s ease-out both;
 }
 
 body:has(#index.home-chrome-nav) .site-nav {
@@ -437,7 +445,7 @@ body:has(#index.home-chrome-nav) .site-nav__lens {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
-    transform: translateY(-100%) !important;
+    transform: translate3d(0, -18px, 0) !important;
   }
 
   body:has(#index.home-chrome-nav) .site-nav,
@@ -499,7 +507,8 @@ body:has(#index.home-chrome-nav) .site-nav__lens {
 
 @media (max-width: 767px) {
   #index {
-    gap: var(--space-5);
+    gap: var(--space-4);
+    padding-top: calc(var(--nav-height) + var(--space-3));
   }
 
   .home-hero__visual {

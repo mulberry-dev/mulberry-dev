@@ -4,14 +4,6 @@ body.nav-intro-done .site-nav__link {
   transform: none !important;
 }
 
-body.nav-intro-done:has(#index.home-chrome-nav) .site-nav,
-body.nav-intro-done:has(#index.home-chrome-nav) .site-nav__lens {
-  animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
-}
-
 .site-nav,
 .site-nav__lens {
   position: fixed;
@@ -20,6 +12,10 @@ body.nav-intro-done:has(#index.home-chrome-nav) .site-nav__lens {
   right: 16px;
   height: calc(var(--nav-height) - 10px);
   border-radius: var(--radius-pill);
+  transition:
+    transform 0.48s ease-out,
+    opacity 0.4s ease-out,
+    visibility 0.48s ease-out;
 }
 
 .site-nav__filters {
