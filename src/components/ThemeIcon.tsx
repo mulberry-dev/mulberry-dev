@@ -13,8 +13,8 @@ const ThemeStarIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    width="26"
-    height="26"
+    width="36"
+    height="36"
     aria-hidden="true"
   >
     <path
@@ -72,7 +72,10 @@ const ThemeIcon = () => {
             id="switch"
             onChange={onChange}
           />
-          <span className="icon">
+          <span className="icon icon--aqua">
+            <ThemeStarIcon />
+          </span>
+          <span className="icon icon--classic">
             <ThemeStarIcon />
           </span>
         </span>
