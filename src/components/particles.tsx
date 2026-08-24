@@ -117,7 +117,7 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
 
     let frame = 0
 
-    if (localStorage.getItem(STORAGE_KEY) === "on") {
+    if (localStorage.getItem(STORAGE_KEY) !== "off") {
       setEnabled(true)
       setPhase(media.matches ? "active" : "entering")
     } else {

@@ -48,7 +48,7 @@ const OriginalIcon = () => (
 )
 
 const ThemeIcon = () => {
-  const [theme, setTheme] = useState<SiteTheme>("aqua")
+  const [theme, setTheme] = useState<SiteTheme>("original")
   const [ready, setReady] = useState(false)
   const isAqua = theme === "aqua"
 
