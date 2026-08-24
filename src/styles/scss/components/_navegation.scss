@@ -253,6 +253,11 @@ body:not(.dark) .site-nav__chrome {
 }
 
 @media (max-width: 1023px) {
+  body.nav-menu-open .site-nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
   .site-nav,
   .site-nav__lens {
     left: 10px;
@@ -273,8 +278,6 @@ body:not(.dark) .site-nav__chrome {
     min-height: 100vh;
     min-height: 100dvh;
     background: color-mix(in srgb, #000 28%, transparent);
-    -webkit-backdrop-filter: blur(16px) saturate(1.12);
-    backdrop-filter: blur(16px) saturate(1.12);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -306,7 +309,8 @@ body:not(.dark) .site-nav__chrome {
     align-items: center;
     padding: calc(var(--nav-height) + var(--space-4)) var(--space-5) var(--space-6);
     background: color-mix(in srgb, var(--color-canvas) 52%, transparent);
-    @include glass-blur;
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
     gap: 0;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -314,10 +318,8 @@ body:not(.dark) .site-nav__chrome {
     border-radius: 0;
     opacity: 0;
     visibility: hidden;
-    transform: translate3d(0, -10px, 0);
     transition:
       opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
       visibility 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -325,14 +327,12 @@ body:not(.dark) .site-nav__chrome {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translate3d(0, 0, 0);
   }
 
   .site-nav__links.is-closing {
     opacity: 0;
     visibility: visible;
     pointer-events: none;
-    transform: translate3d(0, -8px, 0);
   }
 
   .site-nav__links.is-open .site-nav__link {

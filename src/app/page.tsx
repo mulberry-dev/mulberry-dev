@@ -27,7 +27,7 @@ import {
 } from "react"
 
 const ABOUT_SHORT =
-  "I am a programmer who has a deep love for coding and technology. My passion extends to UX & UI design, I consider myself an expert in Frontend and a devoted enthusiast of Backend."
+  "I build thoughtful digital products across frontend, backend, and everything in between."
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780

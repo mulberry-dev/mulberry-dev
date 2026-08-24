@@ -113,7 +113,8 @@ export const settleSectionScroll = (direction: SectionDirection) => {
 export const goToSection = (
   href: string,
   direction: SectionDirection,
-  mode: "slide" | "jump"
+  mode: "slide" | "jump",
+  options?: { fromTop?: boolean }
 ) => {
   if (locked || !pushRoute || href === window.location.pathname) {
     return false
@@ -126,7 +127,7 @@ export const goToSection = (
 
   slideNav = Boolean(frame)
   pendingSlide = frame ? { direction, frame } : null
-  pendingAnchor = direction < 0 ? "end" : "start"
+  pendingAnchor = options?.fromTop || direction > 0 ? "start" : "end"
 
   if (frame) {
     document.body.appendChild(frame)

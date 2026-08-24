@@ -93,7 +93,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     let incoming: Animation | null = null
     let outgoing: Animation | null = null
 
-    const unlock = (direction?: 1 | -1) => {
+    const unlock = () => {
       if (token !== generationRef.current) {
         return
       }
@@ -107,8 +107,12 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
       html.classList.remove("is-section-sliding")
       delete html.dataset.navDir
 
-      if (direction) {
-        settleSectionScroll(direction)
+      const nextAnchor = peekScrollAnchor()
+
+      if (nextAnchor === "end") {
+        settleSectionScroll(-1)
+      } else if (nextAnchor === "start") {
+        settleSectionScroll(1)
       }
 
       setSectionNavLocked(false)
@@ -126,7 +130,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
       if (reduced) {
         consumePendingSlide()
         slide.frame.remove()
-        unlock(slide.direction)
+        unlock()
         return
       }
 
@@ -164,7 +168,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
         outgoing?.cancel()
         consumePendingSlide()
         slide.frame.remove()
-        unlock(slide.direction)
+        unlock()
       })
 
       return () => {
@@ -184,7 +188,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
       consumePendingSlide()?.frame.remove()
       apiRef.current.releaseContent()
       setViewState("normal")
-      unlock(anchor === "end" ? -1 : 1)
+      unlock()
       return
     }
 

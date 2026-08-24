@@ -1,19 +1,7 @@
 export const ABOUT_INTRO = {
   badge: "About Me",
-  greeting: "Hi, I'm",
-  name: "Santiago",
-  role: "Senior Full Stack Engineer",
-  body: "I came to software through design. I build products that make sense in the first few seconds — and code that still makes sense a year later.",
-  chip: "From design to product"
+  body: "I came to software through design. I think about the person on the other side of the screen first, then about the systems that have to hold up after launch."
 }
-
-export const ABOUT_TAGS = [
-  { label: "Full Stack", icon: "code" as const },
-  { label: "React", imageSrc: "/images/Icons/svg/react.svg" },
-  { label: "Node.js", imageSrc: "/images/Icons/svg/node.svg" },
-  { label: "Product", icon: "product" as const },
-  { label: "UX-minded", icon: "care" as const }
-]
 
 export const IDENTITY = [
   {
