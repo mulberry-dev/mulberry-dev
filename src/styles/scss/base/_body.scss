@@ -124,5 +124,6 @@ html.is-section-sliding .reveal,
 html.is-section-sliding .reveal.is-armed {
   opacity: 1 !important;
   transform: none !important;
+  clip-path: none !important;
   transition: none !important;
 }

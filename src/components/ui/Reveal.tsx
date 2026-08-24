@@ -81,7 +81,8 @@ const Reveal = ({
   delay = 0,
   index,
   className = "",
-  children
+  children,
+  ...props
 }: {
   as?: ElementType
   type?: RevealType
@@ -89,7 +90,8 @@ const Reveal = ({
   delay?: number
   index?: number
   className?: string
-  children: ReactNode
+  children?: ReactNode
+  "aria-hidden"?: boolean | "true" | "false"
 }) => {
   const group = useContext(RevealGroupContext)
   const motion = useMotion()
@@ -148,7 +150,7 @@ const Reveal = ({
           observer.disconnect()
         }
       },
-      { threshold: 0.01, rootMargin: "12% 0px 12% 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
     )
 
     observer.observe(node)
@@ -198,6 +200,7 @@ const Reveal = ({
       ref={ref}
       className={classNames}
       style={{ "--reveal-delay": `${delayMs}ms` } as CSSProperties}
+      {...props}
     >
       {children}
     </Tag>

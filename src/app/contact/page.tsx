@@ -41,18 +41,20 @@ const Contact = () => {
               {CONTACT_INTRO.availability}
             </Reveal>
           </RevealGroup>
-          <Reveal type="decorative" mode="fold" delay={40}>
+          <Reveal type="image" mode="fold" delay={80}>
             <ContactGraphic />
           </Reveal>
         </div>
 
-        <RevealGroup mode="scroll" stagger={48}>
-          <Reveal type="heading">
-            <header className="contact-options__header">
-              <h2>{CONTACT_OPTIONS_COPY.heading}</h2>
-              <p>{CONTACT_OPTIONS_COPY.supporting}</p>
-            </header>
-          </Reveal>
+        <RevealGroup mode="scroll" stagger={52}>
+          <header className="contact-options__header">
+            <Reveal type="heading" as="h2">
+              {CONTACT_OPTIONS_COPY.heading}
+            </Reveal>
+            <Reveal type="text" as="p">
+              {CONTACT_OPTIONS_COPY.supporting}
+            </Reveal>
+          </header>
           <div className="contact-options">
             {CONTACT_OPTIONS.map((option) => (
               <Reveal key={option.id} type="card">
@@ -62,24 +64,24 @@ const Contact = () => {
           </div>
         </RevealGroup>
 
-        <Reveal type="text" mode="scroll">
-          <div className="contact-credibility">
-            <p>{CONTACT_CREDIBILITY_COPY.label}</p>
-            <ul>
-              {CONTACT_TECH.map((tech) => (
-                <li key={tech.name}>
-                  <Image
-                    src={tech.imageSrc}
-                    alt=""
-                    width={18}
-                    height={18}
-                  />
-                  <span>{tech.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+        <RevealGroup className="contact-credibility" mode="scroll" stagger={36}>
+          <Reveal type="text" as="p">
+            {CONTACT_CREDIBILITY_COPY.label}
+          </Reveal>
+          <ul>
+            {CONTACT_TECH.map((tech) => (
+              <Reveal key={tech.name} as="li" type="chip">
+                <Image
+                  src={tech.imageSrc}
+                  alt=""
+                  width={18}
+                  height={18}
+                />
+                <span>{tech.name}</span>
+              </Reveal>
+            ))}
+          </ul>
+        </RevealGroup>
 
         <Reveal type="button" mode="scroll">
           <CtaBanner

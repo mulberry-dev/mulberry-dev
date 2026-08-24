@@ -14,7 +14,7 @@ const PageCta = () => {
   }
 
   return (
-    <Reveal type="nav" mode="scroll">
+    <Reveal type="button" mode="scroll">
       <CtaBanner
         backHref={cta.backHref}
         backName={cta.backName}

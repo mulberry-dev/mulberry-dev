@@ -208,7 +208,7 @@
   transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
 }
 
-.problem-card:nth-child(even) .problem-card__arrow {
+.feature-grid > :nth-child(even) .problem-card__arrow {
   border-color: color-mix(in srgb, var(--color-purple) 40%, var(--color-border));
   color: var(--color-purple);
 }
@@ -427,6 +427,7 @@
 .tech-map.is-hot .tech-category li {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+  transition-delay: calc((var(--cat-i, 0) * 64ms) + (var(--chip-i, 0) * 28ms));
 }
 
 .tech-category li:hover {

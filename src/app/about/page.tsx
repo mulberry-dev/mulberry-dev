@@ -15,7 +15,7 @@ const About = () => {
     <section id="about">
       <PageTitle title="About Me" />
       <Container className="about-page">
-        <RevealGroup className="about-intro" mode="fold" stagger={56}>
+        <RevealGroup className="about-intro" mode="fold" stagger={64}>
           <Reveal type="eyebrow">
             <Badge>{ABOUT_INTRO.badge}</Badge>
           </Reveal>
@@ -26,34 +26,33 @@ const About = () => {
             {ABOUT_INTRO.body}
           </Reveal>
           <Reveal type="decorative" className="about-intro__rule" aria-hidden="true" />
-          <div className="feature-grid">
-            {IDENTITY.map((item) => (
-              <Reveal key={item.title} type="card">
-                <FeatureCard
-                  icon={item.icon}
-                  title={item.title}
-                  text={item.text}
-                />
-              </Reveal>
-            ))}
-          </div>
         </RevealGroup>
 
-        <Reveal type="heading" mode="scroll">
+        <RevealGroup className="feature-grid" mode="auto" stagger={52}>
+          {IDENTITY.map((item) => (
+            <Reveal key={item.title} type="card">
+              <FeatureCard
+                icon={item.icon}
+                title={item.title}
+                text={item.text}
+              />
+            </Reveal>
+          ))}
+        </RevealGroup>
+
+        <RevealGroup mode="scroll" stagger={72}>
           <SectionKicker
             kicker="My journey"
             title="From curiosity to building products"
           />
           <Timeline items={JOURNEY} />
-        </Reveal>
+        </RevealGroup>
 
         <RevealGroup mode="scroll" stagger={48}>
-          <Reveal type="heading">
-            <SectionKicker
-              kicker="How I think"
-              title="Principles that guide my work"
-            />
-          </Reveal>
+          <SectionKicker
+            kicker="How I think"
+            title="Principles that guide my work"
+          />
           <div className="feature-grid">
             {PRINCIPLES.map((item) => (
               <Reveal key={item.title} type="card">

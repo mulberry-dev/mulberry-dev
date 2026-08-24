@@ -85,43 +85,45 @@ const Certifications = () => {
     <section>
       <PageTitle title="Certifications" />
       <Container className="certs-page">
-        <RevealGroup mode="fold" stagger={56}>
-          <Reveal type="heading">
-            <SectionHeader
-              align="center"
-              title="Certifications"
-              subtitle="Continuously learning and validating my knowledge to deliver better solutions."
-            />
-          </Reveal>
-          <Reveal type="hero">
-        <div className="certs-metrics">
-          <div>
-            <strong>
-              <CountUp value={certificates.length} duration={2000} delay={60} />
-            </strong>
-            <span>Certifications</span>
+        <RevealGroup mode="fold" stagger={64}>
+          <SectionHeader
+            align="center"
+            title="Certifications"
+            subtitle="Continuously learning and validating my knowledge to deliver better solutions."
+          />
+          <div className="certs-metrics">
+            <Reveal type="chip">
+              <div>
+                <strong>
+                  <CountUp value={certificates.length} duration={2000} delay={60} />
+                </strong>
+                <span>Certifications</span>
+              </div>
+            </Reveal>
+            <Reveal type="chip">
+              <div>
+                <strong>
+                  <CountUp value={projects.length} duration={2000} delay={180} />
+                </strong>
+                <span>Projects shipped</span>
+              </div>
+            </Reveal>
+            <Reveal type="chip">
+              <div>
+                <strong>
+                  <CountUp value={skills.length} duration={2000} delay={300} />
+                </strong>
+                <span>Tools in daily use</span>
+              </div>
+            </Reveal>
           </div>
-          <div>
-            <strong>
-              <CountUp value={projects.length} duration={2000} delay={180} />
-            </strong>
-            <span>Projects shipped</span>
-          </div>
-          <div>
-            <strong>
-              <CountUp value={skills.length} duration={2000} delay={300} />
-            </strong>
-            <span>Tools in daily use</span>
-          </div>
-        </div>
-          </Reveal>
-          <Reveal type="text">
+          <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
           </Reveal>
         </RevealGroup>
-        <RevealGroup className="certs-grid" mode="auto" stagger={40} key={active}>
+        <RevealGroup className="certs-grid" mode="auto" stagger={52} key={active}>
           {visible.map(certificate =>
-            <Reveal key={certificate.id} type="card">
+            <Reveal key={certificate.id} type="image">
             <Card
               className={`certs-card${viewer?.id === certificate.id ? " is-expanded" : ""}`}
             >

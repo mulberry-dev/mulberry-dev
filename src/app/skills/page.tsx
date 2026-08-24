@@ -63,13 +63,14 @@ const TechMap = () => {
       ref={ref}
       className={`tech-map${hot && contentReady ? " is-hot" : ""}`}
     >
-      {TECH_CATEGORIES.map((group) => (
+      {TECH_CATEGORIES.map((group, index) => (
         <TechCategory
           key={group.title}
           icon={group.icon}
           title={group.title}
           items={group.items}
           extra={group.extra}
+          index={index}
         />
       ))}
     </div>
@@ -93,9 +94,9 @@ const Skills = () => {
             <Reveal type="text" as="p">
               {WHAT_I_DO_INTRO.subtitle}
             </Reveal>
-            <Reveal type="text" as="ul" className="skills-intro__traits">
+            <ul className="skills-intro__traits">
               {BUILD_TRAITS.map((trait) => (
-                <li key={trait.title}>
+                <Reveal key={trait.title} as="li" type="chip">
                   <span className="skills-intro__trait-icon" aria-hidden="true">
                     <SiteIcon name={trait.icon} />
                   </span>
@@ -103,19 +104,17 @@ const Skills = () => {
                     <strong>{trait.title}</strong>
                     {trait.text}
                   </span>
-                </li>
+                </Reveal>
               ))}
-            </Reveal>
+            </ul>
           </RevealGroup>
-          <Reveal type="decorative" mode="fold" delay={40}>
+          <Reveal type="image" mode="fold" delay={80}>
             <OrbitGraphic />
           </Reveal>
         </div>
 
-        <RevealGroup mode="scroll" stagger={0}>
-          <Reveal type="heading">
-            <SectionKicker kicker="What I build" title="Core capabilities" />
-          </Reveal>
+        <RevealGroup mode="scroll" stagger={48}>
+          <SectionKicker kicker="What I build" title="Core capabilities" />
           <div className="feature-grid">
             {CAPABILITIES.map((item) => (
               <Reveal key={item.title} type="card">
@@ -130,13 +129,11 @@ const Skills = () => {
           </div>
         </RevealGroup>
 
-        <RevealGroup mode="scroll" stagger={0}>
-          <Reveal type="heading">
-            <SectionKicker
-              kicker="Problems I solve"
-              title="Turning problems into products"
-            />
-          </Reveal>
+        <RevealGroup mode="scroll" stagger={48}>
+          <SectionKicker
+            kicker="Problems I solve"
+            title="Turning problems into products"
+          />
           <div className="feature-grid">
             {PROBLEMS.map((item) => (
               <Reveal key={item.title} type="card">
@@ -155,16 +152,18 @@ const Skills = () => {
           </div>
         </RevealGroup>
 
-        <Reveal type="heading" mode="scroll">
+        <RevealGroup mode="scroll" stagger={56}>
           <SectionKicker kicker="Tech stack" title="The tools I use" />
-        </Reveal>
-        <TechMap />
+          <Reveal type="card">
+            <TechMap />
+          </Reveal>
+        </RevealGroup>
 
-        <Reveal type="heading" mode="scroll">
+        <RevealGroup mode="scroll" stagger={64}>
           <SectionKicker kicker="How I add value" title="More than code" />
           <ul className="value-rows">
             {VALUE_BLOCKS.map((item) => (
-              <li key={item.title}>
+              <Reveal key={item.title} as="li" type="card">
                 <span className="value-rows__icon">
                   <SiteIcon name={item.icon} />
                 </span>
@@ -172,10 +171,10 @@ const Skills = () => {
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ul>
-        </Reveal>
+        </RevealGroup>
 
         <PageCta />
       </Container>

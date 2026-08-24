@@ -3,13 +3,13 @@
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
 import { findSkillImage } from "@/data/whatIDo"
 import Image from "next/image"
-import { useId, useState } from "react"
+import { useId, useState, type CSSProperties } from "react"
 
-const TechItem = ({ name }: { name: string }) => {
+const TechItem = ({ name, index = 0 }: { name: string; index?: number }) => {
   const imageSrc = findSkillImage(name)
 
   return (
-    <li>
+    <li style={{ "--chip-i": index } as CSSProperties}>
       {imageSrc ? (
         <Image
           src={imageSrc}
@@ -27,10 +27,10 @@ const TechItem = ({ name }: { name: string }) => {
   )
 }
 
-const TechList = ({ items }: { items: string[] }) => (
+const TechList = ({ items, offset = 0 }: { items: string[]; offset?: number }) => (
   <ul>
-    {items.map((item) => (
-      <TechItem key={item} name={item} />
+    {items.map((item, index) => (
+      <TechItem key={item} name={item} index={offset + index} />
     ))}
   </ul>
 )
@@ -39,19 +39,24 @@ const TechCategory = ({
   icon,
   title,
   items,
-  extra = []
+  extra = [],
+  index = 0
 }: {
   icon: SiteIconName
   title: string
   items: string[]
   extra?: string[]
+  index?: number
 }) => {
   const extraId = useId()
   const [open, setOpen] = useState(false)
   const hasExtra = extra.length > 0
 
   return (
-    <article className={`tech-category${open ? " is-open" : ""}`}>
+    <article
+      className={`tech-category${open ? " is-open" : ""}`}
+      style={{ "--cat-i": index } as CSSProperties}
+    >
       <h3>
         <span className="tech-category__icon">
           <SiteIcon name={icon} />
@@ -68,7 +73,7 @@ const TechCategory = ({
             aria-labelledby={`${extraId}-trigger`}
           >
             <div className="tech-category__extra-inner">
-              <TechList items={extra} />
+              <TechList items={extra} offset={items.length} />
             </div>
           </div>
         ) : null}

@@ -1,3 +1,7 @@
+"use client"
+
+import Reveal from "@/components/ui/Reveal"
+
 const SectionKicker = ({
   kicker,
   title
@@ -6,8 +10,12 @@ const SectionKicker = ({
   title: string
 }) => (
   <header className="section-kicker">
-    <p>{kicker}</p>
-    <h2>{title}</h2>
+    <Reveal type="eyebrow" as="p">
+      {kicker}
+    </Reveal>
+    <Reveal type="heading" as="h2">
+      {title}
+    </Reveal>
   </header>
 )
 

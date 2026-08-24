@@ -36,21 +36,19 @@ const Portfolio = () => {
     <section id="portfolio">
       <PageTitle title="My Work" />
       <Container className="portfolio-page">
-        <RevealGroup mode="fold" stagger={56}>
-          <Reveal type="heading">
-            <SectionHeader
-              align="center"
-              title="My Work"
-              subtitle="Selected work that solved real problems and delivered impact."
-            />
-          </Reveal>
-          <Reveal type="text">
+        <RevealGroup mode="fold" stagger={64}>
+          <SectionHeader
+            align="center"
+            title="My Work"
+            subtitle="Selected work that solved real problems and delivered impact."
+          />
+          <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
           </Reveal>
         </RevealGroup>
-        <RevealGroup className="portfolio-grid" mode="auto" stagger={40} key={active}>
+        <RevealGroup className="portfolio-grid" mode="auto" stagger={56} key={active}>
           {visible.map(project =>
-            <Reveal key={String(project.id)} type="card">
+            <Reveal key={String(project.id)} type="image">
             <Link
               href={`/portfolio/${project.id}`}
               className="portfolio-card-link"

@@ -1,4 +1,7 @@
+"use client"
+
 import Badge from "@/components/ui/Badge"
+import Reveal from "@/components/ui/Reveal"
 
 const SectionHeader = ({
   badge,
@@ -21,12 +24,25 @@ const SectionHeader = ({
     <header
       className={`ui-section-header${align === "center" ? " ui-section-header--center" : ""}`}
     >
-      {badge ? <Badge>{badge}</Badge> : null}
-      <Heading>
+      {badge ? (
+        <Reveal type="eyebrow">
+          <Badge>{badge}</Badge>
+        </Reveal>
+      ) : null}
+      <Reveal type="heading" as={Heading}>
         {title}
-        {gradientText ? <> <span className="gradient-text">{gradientText}</span></> : null}
-      </Heading>
-      {subtitle ? <p>{subtitle}</p> : null}
+        {gradientText ? (
+          <>
+            {" "}
+            <span className="gradient-text">{gradientText}</span>
+          </>
+        ) : null}
+      </Reveal>
+      {subtitle ? (
+        <Reveal type="text" as="p">
+          {subtitle}
+        </Reveal>
+      ) : null}
     </header>
   )
 }
