@@ -49,8 +49,8 @@
 
 .theme-icon .icon--classic {
   transform: scale(0);
-  color: #a855f7;
-  filter: drop-shadow(0 0 6px color-mix(in srgb, #a855f7 42%, transparent));
+  color: var(--color-purple);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-purple) 42%, transparent));
 }
 
 html.theme-original .theme-icon .icon--aqua {

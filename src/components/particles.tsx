@@ -19,6 +19,15 @@ import {
 
 const STORAGE_KEY = "particles-preference"
 
+const readEmberPreference = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    return stored !== "original" && stored !== "on"
+  } catch {
+    return true
+  }
+}
+
 type ParticlesContextValue = {
   enabled: boolean
   phase: ParticlePhase
@@ -115,22 +124,11 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     syncMotion()
     media.addEventListener("change", syncMotion)
 
-    let frame = 0
-
-    if (localStorage.getItem(STORAGE_KEY) !== "off") {
-      setEnabled(true)
-      setPhase(media.matches ? "active" : "entering")
-    } else {
-      frame = window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(releaseContent)
-      })
-    }
+    const ember = readEmberPreference()
+    setEnabled(!ember)
+    setPhase(media.matches ? "active" : "entering")
 
     return () => {
-      if (frame) {
-        window.cancelAnimationFrame(frame)
-      }
-
       engine.setPhaseListener(null)
       engine.setContentRevealListener(null)
       media.removeEventListener("change", syncMotion)
@@ -145,13 +143,12 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     prevPathRef.current = pathname
 
     if (
-      enabled &&
       !reducedMotion &&
       (phase === "entering" || phase === "active" || phase === "transitioning")
     ) {
       holdContent()
     }
-  }, [enabled, holdContent, pathname, phase, reducedMotion])
+  }, [holdContent, pathname, phase, reducedMotion])
 
   useLayoutEffect(() => {
     const canvas = canvasRef.current
@@ -161,6 +158,7 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     }
 
     engine.mount(canvas)
+    engine.setEmberMode(readEmberPreference(), true)
 
     if (engine.getPhase() === "idle") {
       if (reducedMotion) {
@@ -175,29 +173,21 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
 
   const toggle = useCallback(() => {
     if (phase === "falling") {
-      localStorage.setItem(STORAGE_KEY, "on")
+      localStorage.setItem(STORAGE_KEY, "original")
       setEnabled(true)
       engine.cancelFallAndResume()
       engine.setEmberMode(false)
       return
     }
 
-    if (enabled) {
-      localStorage.setItem(STORAGE_KEY, "off")
-      setEnabled(false)
-      engine.setEmberMode(true)
-      return
+    const nextEnabled = !enabled
+    localStorage.setItem(STORAGE_KEY, nextEnabled ? "original" : "ember")
+    setEnabled(nextEnabled)
+    engine.setEmberMode(!nextEnabled)
+
+    if (phase === "idle") {
+      setPhase(reducedMotion ? "active" : "entering")
     }
-
-    localStorage.setItem(STORAGE_KEY, "on")
-    setEnabled(true)
-
-    if (phase !== "idle") {
-      engine.setEmberMode(false)
-      return
-    }
-
-    setPhase(reducedMotion ? "active" : "entering")
   }, [enabled, engine, phase, reducedMotion])
 
   const beginRouteTransition = useCallback(
@@ -211,7 +201,6 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
   )
 
   const canTransition =
-    enabled &&
     !reducedMotion &&
     (phase === "entering" || phase === "active" || phase === "transitioning")
 
@@ -242,12 +231,10 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     ]
   )
 
-  const emberMode = layerMounted && !enabled
+  const emberMode = !enabled
   const label = emberMode
     ? "Switch to original particles"
-    : enabled
-      ? "Switch to ember particles"
-      : "Show original particles"
+    : "Switch to ember particles"
 
   const toggleClassName = [
     "particles-toggle",

@@ -56,35 +56,57 @@ const ENTER_REVEAL_AT = 0.48
 const DPR_CAP = 2
 const EMBER_DURATION = 1.08
 const EMBER_LAG = 0.22
-const EMBER_SPRITE_SIZE = 48
+const EMBER_SPRITE_SIZE = 64
 
-type EmberStop = { inner: string; mid: string; outer: string }
+type EmberStop = {
+  core: string
+  inner: string
+  mid: string
+  rim: string
+  halo: string
+  coreRadius: number
+}
 
 const EMBER_STOPS: EmberStop[] = [
   {
-    inner: "rgba(255, 168, 82, 1)",
-    mid: "rgba(214, 64, 16, 0.7)",
-    outer: "rgba(138, 28, 8, 0)"
+    core: "rgba(168, 42, 18, 1)",
+    inner: "rgba(132, 28, 12, 0.92)",
+    mid: "rgba(96, 18, 8, 0.42)",
+    rim: "rgba(68, 12, 6, 0.14)",
+    halo: "rgba(48, 8, 4, 0)",
+    coreRadius: 0.07
   },
   {
-    inner: "rgba(255, 146, 48, 1)",
-    mid: "rgba(255, 92, 18, 0.72)",
-    outer: "rgba(176, 36, 8, 0)"
+    core: "rgba(214, 62, 18, 1)",
+    inner: "rgba(176, 40, 12, 0.9)",
+    mid: "rgba(132, 28, 8, 0.46)",
+    rim: "rgba(92, 16, 6, 0.16)",
+    halo: "rgba(58, 10, 4, 0)",
+    coreRadius: 0.08
   },
   {
-    inner: "rgba(255, 186, 78, 1)",
-    mid: "rgba(255, 122, 28, 0.7)",
-    outer: "rgba(196, 58, 10, 0)"
+    core: "rgba(242, 118, 36, 1)",
+    inner: "rgba(214, 72, 18, 0.9)",
+    mid: "rgba(168, 42, 12, 0.48)",
+    rim: "rgba(112, 22, 8, 0.16)",
+    halo: "rgba(72, 12, 4, 0)",
+    coreRadius: 0.09
   },
   {
-    inner: "rgba(255, 220, 118, 1)",
-    mid: "rgba(255, 158, 42, 0.68)",
-    outer: "rgba(220, 82, 16, 0)"
+    core: "rgba(255, 196, 96, 1)",
+    inner: "rgba(242, 132, 38, 0.88)",
+    mid: "rgba(196, 64, 16, 0.46)",
+    rim: "rgba(132, 28, 8, 0.15)",
+    halo: "rgba(88, 16, 6, 0)",
+    coreRadius: 0.1
   },
   {
-    inner: "rgba(255, 248, 214, 1)",
-    mid: "rgba(255, 196, 86, 0.62)",
-    outer: "rgba(255, 110, 28, 0)"
+    core: "rgba(255, 244, 214, 1)",
+    inner: "rgba(255, 188, 78, 0.9)",
+    mid: "rgba(232, 102, 28, 0.48)",
+    rim: "rgba(156, 36, 10, 0.16)",
+    halo: "rgba(96, 18, 6, 0)",
+    coreRadius: 0.11
   }
 ]
 
@@ -120,8 +142,8 @@ const pickEmberLook = () => {
 
   return {
     emberSprite: sprite,
-    emberHeat: clamp(heat + (Math.random() - 0.5) * 0.08, 0.08, 1),
-    emberScale: 0.82 + Math.random() * 0.46,
+    emberHeat: clamp(heat + (Math.random() - 0.5) * 0.1, 0.08, 1),
+    emberScale: 0.68 + Math.random() * 0.72,
     emberLag: Math.random() * EMBER_LAG
   }
 }
@@ -237,10 +259,10 @@ export class ParticlesEngine {
     this.setPhase("entering")
   }
 
-  setEmberMode(on: boolean) {
+  setEmberMode(on: boolean, immediate = false) {
     const to = on ? 1 : 0
 
-    if (this.reducedMotion) {
+    if (immediate || this.reducedMotion) {
       this.emberTween = null
       this.emberMix = to
       return
@@ -495,13 +517,32 @@ export class ParticlesEngine {
 
     const center = size * 0.5
     const gradient = ctx.createRadialGradient(center, center, 0, center, center, center)
-    gradient.addColorStop(0, stop.inner)
-    gradient.addColorStop(0.22, stop.inner)
-    gradient.addColorStop(0.4, stop.mid)
-    gradient.addColorStop(0.66, stop.outer.replace(", 0)", ", 0.16)"))
-    gradient.addColorStop(1, stop.outer)
+    gradient.addColorStop(0, stop.core)
+    gradient.addColorStop(0.1, stop.core)
+    gradient.addColorStop(0.2, stop.inner)
+    gradient.addColorStop(0.38, stop.mid)
+    gradient.addColorStop(0.62, stop.rim)
+    gradient.addColorStop(1, stop.halo)
     ctx.fillStyle = gradient
     ctx.fillRect(0, 0, size, size)
+
+    const core = ctx.createRadialGradient(
+      center,
+      center,
+      0,
+      center,
+      center,
+      size * stop.coreRadius
+    )
+    core.addColorStop(0, stop.core)
+    core.addColorStop(0.55, stop.inner)
+    core.addColorStop(1, "rgba(0, 0, 0, 0)")
+    ctx.globalCompositeOperation = "lighter"
+    ctx.fillStyle = core
+    ctx.beginPath()
+    ctx.arc(center, center, size * stop.coreRadius, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.globalCompositeOperation = "source-over"
 
     return canvas
   }
@@ -817,7 +858,8 @@ export class ParticlesEngine {
       ctx.globalCompositeOperation = "lighter"
     }
 
-    const baseAlpha = this.darkTheme ? 0.4 : 0.52
+    const baseAlpha = this.darkTheme ? 0.56 : 0.6
+    const time = this.time
 
     for (const particle of this.particles) {
       if (particle.gone) {
@@ -836,23 +878,44 @@ export class ParticlesEngine {
         continue
       }
 
+      const heat = particle.emberHeat
+      const pulse =
+        heat > 0.62
+          ? 1 +
+            (0.05 + heat * 0.08) *
+              Math.sin(time * particle.wobbleFreq * 0.42 + particle.wobblePhase)
+          : 1
+
       const alpha =
         particle.alpha *
         baseAlpha *
-        (0.58 + particle.emberHeat * 0.55) *
+        (0.62 + heat * 0.7) *
         mix *
-        (1 + coverage * 0.12)
+        pulse *
+        (1 + coverage * 0.1)
 
       if (alpha <= 0.01) {
         continue
       }
 
       const dim =
-        particle.size * (2.7 + particle.emberHeat * 1.7) * particle.emberScale
-      const half = dim * 0.5
+        particle.size * (3.05 + heat * 1.85) * particle.emberScale
+      const speed = particle.baseSpeed * this.speedMul * this.enterBoost
+      const stretch =
+        this.phase === "transitioning"
+          ? 1 + coverage * Math.min(3.4, speed / 170)
+          : 1
+      const width = dim / (1 + coverage * 0.42)
+      const height = dim * stretch
 
-      ctx.globalAlpha = clamp(alpha, 0, 0.9)
-      ctx.drawImage(sprite, particle.x - half, particle.y - half, dim, dim)
+      ctx.globalAlpha = clamp(alpha, 0, 0.96)
+      ctx.drawImage(
+        sprite,
+        particle.x - width * 0.5,
+        particle.y - height * 0.5,
+        width,
+        height
+      )
     }
 
     ctx.globalCompositeOperation = prev

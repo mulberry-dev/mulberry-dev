@@ -96,6 +96,7 @@ const Reveal = ({
   const ref = useRef<HTMLElement | null>(null)
   const [inView, setInView] = useState(false)
   const [entered, setEntered] = useState(false)
+  const [armed, setArmed] = useState(false)
   const assignedIndex = useRef<number | null>(index ?? null)
 
   if (assignedIndex.current === null) {
@@ -108,6 +109,11 @@ const Reveal = ({
   const contentReady = motion?.contentReady ?? true
   const reducedMotion = motion?.reducedMotion ?? false
   const delayMs = delay + resolvedIndex * stagger
+
+  useLayoutEffect(() => {
+    const arm = window.requestAnimationFrame(() => setArmed(true))
+    return () => window.cancelAnimationFrame(arm)
+  }, [])
 
   useLayoutEffect(() => {
     const node = ref.current
@@ -128,7 +134,7 @@ const Reveal = ({
 
     const isNearFold = () => {
       const rect = node.getBoundingClientRect()
-      return rect.top < window.innerHeight * 0.9 && rect.bottom > 0
+      return rect.top < window.innerHeight * 0.92 && rect.bottom > 0
     }
 
     if (resolvedMode === "auto" && isNearFold()) {
@@ -139,9 +145,10 @@ const Reveal = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true)
+          observer.disconnect()
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.01, rootMargin: "12% 0px 12% 0px" }
     )
 
     observer.observe(node)
@@ -159,20 +166,27 @@ const Reveal = ({
       return
     }
 
-    if (!inView) {
+    if (!inView || !armed) {
       return
     }
 
-    const frame = window.requestAnimationFrame(() => {
-      setEntered(true)
+    let inner = 0
+    const outer = window.requestAnimationFrame(() => {
+      inner = window.requestAnimationFrame(() => {
+        setEntered(true)
+      })
     })
 
-    return () => window.cancelAnimationFrame(frame)
-  }, [contentReady, inView, reducedMotion])
+    return () => {
+      window.cancelAnimationFrame(outer)
+      window.cancelAnimationFrame(inner)
+    }
+  }, [armed, contentReady, inView, reducedMotion])
 
   const classNames = [
     "reveal",
     `reveal--${type}`,
+    armed ? "is-armed" : "",
     entered ? "is-visible" : "",
     className
   ]

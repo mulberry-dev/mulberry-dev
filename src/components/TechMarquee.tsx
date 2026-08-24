@@ -36,7 +36,11 @@ const setRowPlaybackRate = (row: HTMLElement, rate: number) => {
 const ChipSet = ({ items, hidden = false }: { items: Skill[]; hidden?: boolean }) => (
   <ul className="tech-marquee__set" aria-hidden={hidden || undefined}>
     {items.map((skill, index) => (
-      <li key={`${skill.id}-${index}`} className="tech-marquee__chip">
+      <li
+        key={`${skill.id}-${index}`}
+        className="tech-marquee__chip"
+        style={{ "--chip-i": index } as CSSProperties}
+      >
         <Image
           src={skill.imageSrc}
           alt=""
@@ -71,7 +75,12 @@ const TechMarquee = () => {
         <div
           key={DIRECTIONS[index] + index}
           className={`tech-marquee__row tech-marquee__row--${DIRECTIONS[index]}`}
-          style={{ "--marquee-duration": DURATIONS[index] } as CSSProperties}
+          style={
+            {
+              "--marquee-duration": DURATIONS[index],
+              "--row-i": index
+            } as CSSProperties
+          }
           onMouseEnter={handleRowEnter}
           onMouseLeave={handleRowLeave}
         >

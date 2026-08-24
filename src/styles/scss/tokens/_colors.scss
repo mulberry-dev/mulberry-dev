@@ -115,7 +115,7 @@ $lime-signal: #d2e56b;
   color-scheme: dark;
 }
 
-html.theme-original body {
+html.theme-original {
   --color-teal: #{$teal};
   --color-teal-hover: #{$teal-hover};
   --color-purple: #{$purple};
@@ -126,9 +126,10 @@ html.theme-original body {
   --nebula-teal: rgba(45, 212, 191, 0.16);
   --nebula-purple: rgba(168, 85, 247, 0.18);
   --particle-color: rgba(255, 255, 255, 0.55);
+  --gradient-brand: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
 }
 
-html.theme-accent-ready body {
+html.theme-accent-ready {
   transition:
     --color-teal var(--theme-accent-duration) var(--theme-accent-ease),
     --color-teal-hover var(--theme-accent-duration) var(--theme-accent-ease),
@@ -139,7 +140,11 @@ html.theme-accent-ready body {
     --color-signal var(--theme-accent-duration) var(--theme-accent-ease),
     --nebula-teal var(--theme-accent-duration) var(--theme-accent-ease),
     --nebula-purple var(--theme-accent-duration) var(--theme-accent-ease),
-    --particle-color var(--theme-accent-duration) var(--theme-accent-ease),
+    --particle-color var(--theme-accent-duration) var(--theme-accent-ease);
+}
+
+html.theme-accent-ready body {
+  transition:
     background-color 0.3s ease,
     color 0.3s ease;
 }
@@ -149,6 +154,7 @@ html.theme-accent-ready body {
     --theme-accent-duration: 0ms;
   }
 
+  html.theme-accent-ready,
   html.theme-accent-ready body {
     transition: none;
   }
@@ -168,7 +174,7 @@ body:not(.dark) {
   --color-text: #{$light-text};
   --color-text-muted: #{$light-muted};
   --color-text-dim: #64748b;
-  --nebula-teal: rgba(45, 212, 191, 0.1);
-  --nebula-purple: rgba(168, 85, 247, 0.1);
+  --nebula-teal: color-mix(in srgb, var(--color-teal) 10%, transparent);
+  --nebula-purple: color-mix(in srgb, var(--color-purple) 10%, transparent);
   --particle-color: rgba(15, 23, 42, 0.28);
 }

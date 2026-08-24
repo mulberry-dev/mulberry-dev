@@ -4,7 +4,7 @@
 }
 
 .gradient-text {
-  background: var(--gradient-brand);
+  background-image: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

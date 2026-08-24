@@ -10,6 +10,8 @@ import SectionKicker from "@/components/ui/SectionKicker"
 import SiteIcon from "@/components/ui/SiteIcon"
 import TechCategory from "@/components/ui/TechCategory"
 import PageTitle from "@/components/PageTitle"
+import { useMotion } from "@/components/particles"
+import { useLayoutEffect, useRef, useState } from "react"
 import {
   BUILD_TRAITS,
   CAPABILITIES,
@@ -18,6 +20,61 @@ import {
   VALUE_BLOCKS,
   WHAT_I_DO_INTRO
 } from "@/data/whatIDo"
+
+const TechMap = () => {
+  const motion = useMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const [hot, setHot] = useState(false)
+  const contentReady = motion?.contentReady ?? true
+  const reducedMotion = motion?.reducedMotion ?? false
+
+  useLayoutEffect(() => {
+    const node = ref.current
+
+    if (!node) {
+      return
+    }
+
+    if (reducedMotion) {
+      setHot(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return
+        }
+
+        observer.disconnect()
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => setHot(true))
+        })
+      },
+      { threshold: 0.08, rootMargin: "16% 0px" }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [reducedMotion])
+
+  return (
+    <div
+      ref={ref}
+      className={`tech-map${hot && contentReady ? " is-hot" : ""}`}
+    >
+      {TECH_CATEGORIES.map((group) => (
+        <TechCategory
+          key={group.title}
+          icon={group.icon}
+          title={group.title}
+          items={group.items}
+          extra={group.extra}
+        />
+      ))}
+    </div>
+  )
+}
 
 const Skills = () => {
   return (
@@ -55,7 +112,7 @@ const Skills = () => {
           </Reveal>
         </div>
 
-        <RevealGroup mode="scroll" stagger={48}>
+        <RevealGroup mode="scroll" stagger={0}>
           <Reveal type="heading">
             <SectionKicker kicker="What I build" title="Core capabilities" />
           </Reveal>
@@ -73,7 +130,7 @@ const Skills = () => {
           </div>
         </RevealGroup>
 
-        <RevealGroup mode="scroll" stagger={48}>
+        <RevealGroup mode="scroll" stagger={0}>
           <Reveal type="heading">
             <SectionKicker
               kicker="Problems I solve"
@@ -98,22 +155,10 @@ const Skills = () => {
           </div>
         </RevealGroup>
 
-        <RevealGroup mode="scroll" stagger={38}>
-          <Reveal type="heading">
-            <SectionKicker kicker="Tech stack" title="The tools I use" />
-          </Reveal>
-          <div className="tech-map">
-            {TECH_CATEGORIES.map((group) => (
-              <TechCategory
-                key={group.title}
-                icon={group.icon}
-                title={group.title}
-                items={group.items}
-                extra={group.extra}
-              />
-            ))}
-          </div>
-        </RevealGroup>
+        <Reveal type="heading" mode="scroll">
+          <SectionKicker kicker="Tech stack" title="The tools I use" />
+        </Reveal>
+        <TechMap />
 
         <Reveal type="heading" mode="scroll">
           <SectionKicker kicker="How I add value" title="More than code" />
