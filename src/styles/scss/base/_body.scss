@@ -3,8 +3,10 @@
 html {
   scroll-behavior: smooth;
   min-height: 100%;
+  min-height: 100dvh;
   width: 100%;
   overflow-x: clip;
+  overscroll-behavior-y: contain;
   scrollbar-gutter: stable;
 }
 
@@ -32,13 +34,10 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   min-height: 100dvh;
   background-color: var(--color-canvas);
-  background-image:
-    radial-gradient(ellipse 70% 50% at 15% 10%, var(--nebula-purple), transparent 55%),
-    radial-gradient(ellipse 60% 45% at 90% 20%, var(--nebula-teal), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 70% 90%, var(--nebula-purple), transparent 55%);
-  background-attachment: fixed;
   font-family: var(--font-sans);
   color: var(--color-text);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -56,28 +55,74 @@ body:not(.dark) {
   background-color: var(--color-canvas);
 }
 
+.site-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 15% 10%, var(--nebula-purple), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 90% 20%, var(--nebula-teal), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 70% 90%, var(--nebula-purple), transparent 55%);
+}
+
 .site-shell {
   position: relative;
   z-index: var(--z-content);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
 }
 
-.site-shell > main {
-  grid-row: 1;
-  grid-column: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  height: 100%;
+html.is-section-sliding,
+html.is-section-sliding body {
+  overflow: hidden;
+  scroll-behavior: auto !important;
 }
 
-.site-shell > .site-footer {
-  grid-row: 2;
-  grid-column: 1;
+html.is-section-sliding .page-transition-view {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+html.is-section-sliding .page-transition-view > main {
+  height: auto;
+  min-height: 0;
+  flex: 1 0 auto;
+}
+
+html[data-nav-dir="down"].is-section-sliding .page-transition-view {
+  top: 0;
+  bottom: auto;
+  transform: translate3d(0, 100vh, 0);
+}
+
+html[data-nav-dir="up"].is-section-sliding .page-transition-view {
+  top: auto;
+  bottom: 0;
+  transform: translate3d(0, -100vh, 0);
+}
+
+html.is-section-sliding .reveal,
+html.is-section-sliding .reveal.is-armed {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }

@@ -220,10 +220,12 @@ body:not(.dark) .home-avatar--light {
 
 @keyframes homeNameWrite {
   from {
+    -webkit-clip-path: inset(0 100% -0.28em 0);
     clip-path: inset(0 100% -0.28em 0);
   }
 
   to {
+    -webkit-clip-path: inset(0 0 -0.28em 0);
     clip-path: inset(0 0 -0.28em 0);
   }
 }

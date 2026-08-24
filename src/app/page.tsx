@@ -184,6 +184,7 @@ const IndexPage = () => {
       window.removeEventListener("scroll", onFirstScroll)
       window.removeEventListener("keydown", onFirstKeyScroll)
       setChromePhase(reducedMotion ? "shown" : "nav")
+      window.dispatchEvent(new Event("site:home-chrome-revealed"))
     }
 
     const scrollListener: AddEventListenerOptions = { passive: true }

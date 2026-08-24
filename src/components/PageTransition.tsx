@@ -1,10 +1,23 @@
 "use client"
 
 import { useParticles } from "@/components/particles"
+import {
+  clearSlideNavigation,
+  consumePendingSlide,
+  peekPendingSlide,
+  peekScrollAnchor,
+  registerSectionView,
+  setSectionNavLocked,
+  settleSectionScroll,
+  wasSlideNavigation
+} from "@/lib/sectionNav"
 import { usePathname } from "next/navigation"
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
 
 type ViewState = "normal" | "covered"
+
+const SLIDE_MS = 800
+const SLIDE_EASE = "cubic-bezier(0.45, 0, 0.1, 1)"
 
 const waitForPaint = () =>
   new Promise<void>((resolve) => {
@@ -26,6 +39,12 @@ const waitForViewReady = async () => {
   }
 }
 
+const finishAnimations = async (animations: Animation[]) => {
+  await Promise.all(
+    animations.map((animation) => animation.finished.catch(() => undefined))
+  )
+}
+
 const PageTransition = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()
   const {
@@ -35,6 +54,7 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     releaseContent
   } = useParticles()
   const [viewState, setViewState] = useState<ViewState>("normal")
+  const viewRef = useRef<HTMLDivElement | null>(null)
   const prevPathRef = useRef(pathname)
   const generationRef = useRef(0)
   const apiRef = useRef({
@@ -51,21 +71,138 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     releaseContent
   }
 
+  const setViewNode = (node: HTMLDivElement | null) => {
+    viewRef.current = node
+    registerSectionView(node)
+  }
+
   useLayoutEffect(() => {
-    if (prevPathRef.current === pathname) {
+    const pathChanged = prevPathRef.current !== pathname
+    const slide = peekPendingSlide()
+
+    if (!pathChanged && !slide) {
       return
     }
 
+    const fromPath = prevPathRef.current
     prevPathRef.current = pathname
+    const token = ++generationRef.current
+    const view = viewRef.current
+    const html = document.documentElement
+    const anchor = peekScrollAnchor()
+    let incoming: Animation | null = null
+    let outgoing: Animation | null = null
+
+    const unlock = (direction?: 1 | -1) => {
+      if (token !== generationRef.current) {
+        return
+      }
+
+      view?.classList.remove("is-sliding")
+      if (view) {
+        view.style.transform = ""
+        view.style.opacity = ""
+      }
+
+      html.classList.remove("is-section-sliding")
+      delete html.dataset.navDir
+
+      if (direction) {
+        settleSectionScroll(direction)
+      }
+
+      setSectionNavLocked(false)
+      clearSlideNavigation()
+    }
+
+    if (slide?.frame && view) {
+      apiRef.current.releaseContent()
+      setViewState("normal")
+      document.body.classList.remove("particles-route-transition")
+      view.classList.add("is-sliding")
+
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+      if (reduced) {
+        consumePendingSlide()
+        slide.frame.remove()
+        unlock(slide.direction)
+        return
+      }
+
+      if (!slide.frame.isConnected) {
+        document.body.appendChild(slide.frame)
+      }
+
+      incoming = view.animate(
+        [{ transform: "translate3d(0, 0, 0)" }],
+        { duration: SLIDE_MS, easing: SLIDE_EASE, fill: "forwards" }
+      )
+      outgoing = slide.frame.animate(
+        [
+          { transform: "translate3d(0, 0, 0)" },
+          {
+            transform: `translate3d(0, ${slide.direction > 0 ? "-100vh" : "100vh"}, 0)`
+          }
+        ],
+        { duration: SLIDE_MS, easing: SLIDE_EASE, fill: "forwards" }
+      )
+
+      void finishAnimations([incoming, outgoing]).then(() => {
+        if (token !== generationRef.current) {
+          return
+        }
+
+        try {
+          incoming?.commitStyles()
+          outgoing?.commitStyles()
+        } catch {
+          // Safari versions without commitStyles stay on fill: forwards
+        }
+
+        incoming?.cancel()
+        outgoing?.cancel()
+        consumePendingSlide()
+        slide.frame.remove()
+        unlock(slide.direction)
+      })
+
+      return () => {
+        incoming?.cancel()
+        outgoing?.cancel()
+        view.style.transform = ""
+        view.style.opacity = ""
+        view.classList.remove("is-sliding")
+
+        if (token === generationRef.current) {
+          prevPathRef.current = fromPath
+        }
+      }
+    }
+
+    if (wasSlideNavigation()) {
+      consumePendingSlide()?.frame.remove()
+      apiRef.current.releaseContent()
+      setViewState("normal")
+      unlock(anchor === "end" ? -1 : 1)
+      return
+    }
+
+    if (anchor === "start") {
+      settleSectionScroll(1)
+    } else if (anchor === "end") {
+      settleSectionScroll(-1)
+    }
 
     if (!apiRef.current.canTransition) {
       setViewState("normal")
       document.body.classList.remove("particles-route-transition")
       apiRef.current.releaseContent()
+      setSectionNavLocked(false)
+      clearSlideNavigation()
       return
     }
 
-    const token = ++generationRef.current
     setViewState("covered")
     document.body.classList.add("particles-route-transition")
 
@@ -85,12 +222,18 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
       document.body.classList.remove("particles-route-transition")
       apiRef.current.releaseContent()
       apiRef.current.completeRouteTransition()
+      setSectionNavLocked(false)
+      clearSlideNavigation()
     }
 
     void run()
 
     return () => {
       cancelled = true
+
+      if (token === generationRef.current) {
+        prevPathRef.current = fromPath
+      }
     }
   }, [pathname])
 
@@ -102,17 +245,28 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     generationRef.current += 1
     setViewState("normal")
     document.body.classList.remove("particles-route-transition")
+    document.documentElement.classList.remove("is-section-sliding")
+    delete document.documentElement.dataset.navDir
+    setSectionNavLocked(false)
   }, [canTransition])
 
   useEffect(
     () => () => {
       document.body.classList.remove("particles-route-transition")
+      document.documentElement.classList.remove("is-section-sliding")
+      delete document.documentElement.dataset.navDir
+      registerSectionView(null)
     },
     []
   )
 
   return (
-    <div className={`page-transition-view is-${viewState}`}>{children}</div>
+    <div
+      ref={setViewNode}
+      className={`page-transition-view is-${viewState}`}
+    >
+      {children}
+    </div>
   )
 }
 

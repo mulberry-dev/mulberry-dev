@@ -156,6 +156,7 @@
   line-height: 1;
   white-space: nowrap;
   user-select: none;
+  -webkit-user-select: none;
   opacity: 0;
   animation: tech-chip-in var(--chip-in-duration) var(--chip-in-ease) both;
   animation-delay: calc(

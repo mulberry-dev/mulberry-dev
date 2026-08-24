@@ -4,6 +4,7 @@ import {
   ParticlesEngine,
   type ParticlePhase
 } from "@/lib/particlesEngine"
+import { wasSlideNavigation } from "@/lib/sectionNav"
 import { Tooltip } from "antd"
 import { usePathname } from "next/navigation"
 import {
@@ -142,13 +143,18 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
 
     prevPathRef.current = pathname
 
+    if (wasSlideNavigation()) {
+      releaseContent()
+      return
+    }
+
     if (
       !reducedMotion &&
       (phase === "entering" || phase === "active" || phase === "transitioning")
     ) {
       holdContent()
     }
-  }, [holdContent, pathname, phase, reducedMotion])
+  }, [holdContent, pathname, phase, reducedMotion, releaseContent])
 
   useLayoutEffect(() => {
     const canvas = canvasRef.current
