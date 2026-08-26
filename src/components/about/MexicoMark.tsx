@@ -17,11 +17,11 @@ const MexicoMark = () => (
         </defs>
         <path
           className="about-mx__land"
-          d="M46 20 C42 46 38 74 36 98 C35 112 42 116 48 100 C52 84 54 58 56 40 C57 28 54 20 46 20 Z"
+          d="M48 18 C44 48 40 78 38 104 C37 118 46 120 52 102 C56 84 58 54 60 36 C61 26 56 18 48 18 Z"
         />
         <path
           className="about-mx__land"
-          d="M70 34 L94 24 L128 26 L156 42 L168 62 L160 80 L198 66 L240 74 L230 92 L196 90 L170 108 L154 148 L138 156 L130 126 L112 106 L90 104 L78 118 L70 98 L66 72 L68 48 Z"
+          d="M72 32 L96 22 L132 24 L158 40 L172 58 L164 78 L204 64 L244 72 L236 88 L200 88 L176 106 L160 146 L142 158 L132 126 L114 104 L92 102 L80 118 L70 96 L64 70 L68 46 Z"
         />
         <circle className="about-mx__city-dot" cx="132" cy="112" r="4.2" />
         <circle className="about-mx__city-ring" cx="132" cy="112" r="10" />
