@@ -1,81 +1,59 @@
 export const ABOUT_INTRO = {
   badge: "About Me",
-  body: "I came to software through design. I think about the person on the other side of the screen first, then about the systems that have to hold up after launch."
-}
+  identity: "Mexican developer.",
+  frontendLine: "I build what you see",
+  backendLine: "and what makes it work.",
+  body: "I came to software through design. I still start with the person on the other side of the screen — then I build the system that has to hold after launch."
+} as const
 
-export const IDENTITY = [
-  {
-    icon: "cube",
-    title: "Product minded",
-    text: "I think about the experience, not just the implementation."
-  },
-  {
-    icon: "frontend",
-    title: "Frontend focused",
-    text: "Interfaces should be intentional, fast, and easy to use."
-  },
-  {
-    icon: "backend",
-    title: "Backend reliable",
-    text: "Systems should be maintainable, and ready to grow."
-  },
-  {
-    icon: "detail",
-    title: "Detail oriented",
-    text: "I care about the small things that make a big difference."
-  }
-] as const
+export const ABOUT_ORIGIN = {
+  code: "MX",
+  city: "Mexico City",
+  coords: "19.43°N  99.13°W",
+  caption: "Building from Mexico."
+} as const
 
-export const JOURNEY = [
-  {
-    step: "01",
-    icon: "design",
-    title: "Design & curiosity",
-    text: "Years of visual work taught me to notice what people feel before they can name it."
+export const ABOUT_CRAFT = {
+  heading: "One practice. Both worlds.",
+  lede: "I enjoy the interface and the architecture. The work is connecting them until the product feels inevitable.",
+  frontend: {
+    kicker: "Frontend",
+    title: "The experience",
+    text: "Interfaces, motion, and the part people actually feel."
   },
-  {
-    step: "02",
-    icon: "code",
-    title: "Frontend developer",
-    text: "I learned to build the screens people actually live in."
+  backend: {
+    kicker: "Backend",
+    title: "The foundation",
+    text: "APIs, architecture, and the logic that keeps it honest."
   },
-  {
-    step: "03",
-    icon: "backend",
-    title: "Full-stack developer",
-    text: "I added the systems behind those screens so the product could ship complete."
-  },
-  {
-    step: "04",
-    icon: "product",
-    title: "Product engineer",
-    text: "Today I hold design, frontend, and backend as one job: finishing the work."
-  }
-] as const
+  join: "Connected"
+} as const
 
-export const PRINCIPLES = [
-  {
-    step: "01",
-    icon: "user",
-    title: "Start with the person",
-    text: "If a feature does not help the person using it, it stays out of the way."
-  },
-  {
-    step: "02",
-    icon: "craft",
-    title: "Design is part of the build",
-    text: "Layout, type, and motion are how the product works."
-  },
-  {
-    step: "03",
-    icon: "clarity",
-    title: "Clarity over cleverness",
-    text: "If a screen or a piece of code needs a tour, it is not finished."
-  },
-  {
-    step: "04",
-    icon: "care",
-    title: "Leave it in good hands",
-    text: "I care whether the product can still move after launch."
-  }
-] as const
+export const ABOUT_PATH = {
+  kicker: "The path",
+  title: "Design taught me to see. Code taught me to finish.",
+  items: [
+    {
+      step: "01",
+      title: "Started in design",
+      text: "Years of visual work taught me to notice what people feel before they can name it."
+    },
+    {
+      step: "02",
+      title: "Learned the interface",
+      text: "I learned to build the screens people actually live in."
+    },
+    {
+      step: "03",
+      title: "Built the system",
+      text: "I added the architecture behind those screens so the product could ship complete."
+    },
+    {
+      step: "04",
+      title: "Now I hold both",
+      text: "Frontend and backend as one craft: something that looks right because it works right."
+    }
+  ]
+} as const
+
+export const ABOUT_SIGN = "santiago  ·  mexico  ·  interface ↔ system"
