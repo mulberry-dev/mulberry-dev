@@ -1,8 +1,6 @@
 import Head from "@/components/Head"
-import Footer from "@/components/layout/Footer"
 import Navigation from "@/components/navigation"
-import PageTransition from "@/components/PageTransition"
-import SectionScrollNav from "@/components/SectionScrollNav"
+import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
 import { SITE_NAME, SITE_URL } from "@/data/site"
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
@@ -59,12 +57,8 @@ export default function RootLayout({
         <div className="site-atmosphere" aria-hidden="true" />
         <ParticlesProvider>
           <Navigation />
-          <SectionScrollNav />
           <div className="site-shell">
-            <PageTransition>
-              <main>{children}</main>
-              <Footer />
-            </PageTransition>
+            <SiteShell>{children}</SiteShell>
           </div>
         </ParticlesProvider>
         <Analytics />

@@ -449,7 +449,7 @@ const Navigation = () => {
         <div className="site-nav__chrome" aria-hidden="true" />
         <div className="site-nav__inner">
           <div className="site-nav__brand">
-            <Link href="/" className="site-nav__logo">
+            <Link href="/" className="site-nav__logo" scroll={false}>
               <Image
                 src="/images/Icons/MouseArrow.webp"
                 width={28}
@@ -476,6 +476,7 @@ const Navigation = () => {
               <Link
                 key={link.id}
                 href={link.path}
+                scroll={false}
                 ref={(node) => {
                   linkRefs.current[index] = node
                 }}

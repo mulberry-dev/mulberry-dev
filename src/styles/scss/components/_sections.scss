@@ -6,6 +6,43 @@ main > section {
   padding: calc(var(--nav-height) + var(--space-6)) 0 var(--space-8);
 }
 
+.site-experience {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.site-experience:not(.is-aligned) {
+  visibility: hidden;
+}
+
+.site-experience > section {
+  flex: 0 0 auto;
+  scroll-margin-top: calc(var(--nav-height) + var(--space-3));
+  padding: clamp(4.75rem, 10vw, 8.5rem) 0;
+}
+
+.site-experience > section + section {
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 42%, transparent);
+}
+
+.site-experience > #index {
+  scroll-margin-top: 0;
+  padding: calc(var(--nav-height) + var(--space-4)) 0 0;
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+@media (max-width: 767px) {
+  .site-experience > section {
+    padding: clamp(3.75rem, 14vw, 6.25rem) 0;
+  }
+
+  .site-experience > #index {
+    padding-top: calc(var(--nav-height) + var(--space-3));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
