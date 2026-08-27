@@ -175,6 +175,10 @@
   --reveal-duration: 0.98s;
 }
 
+.about-photo.reveal.is-visible {
+  transform: none;
+}
+
 .about-portrait {
   position: relative;
   display: grid;
