@@ -80,7 +80,12 @@ const Certifications = () => {
   }
 
   return (
-    <section id="certifications" data-section-path="/certifications">
+    <section
+      id="certifications"
+      data-section-path="/certifications"
+      aria-label="Certifications"
+      tabIndex={-1}
+    >
       <Container className="certs-page">
         <RevealGroup mode="auto" stagger={64}>
           <SectionHeader
@@ -143,6 +148,9 @@ const Certifications = () => {
                   alt={certificate.title}
                   width={640}
                   height={420}
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                  loading="lazy"
+                  decoding="async"
                   className="certs-card__image"
                 />
                 <Badge variant={certificate.category}>

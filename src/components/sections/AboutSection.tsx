@@ -95,13 +95,36 @@ const About = () => {
       setActive(current)
     }
 
+    let frame = 0
+    const schedule = () => {
+      if (frame) {
+        return
+      }
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0
+        update()
+      })
+    }
+
     update()
-    window.addEventListener("scroll", update, { passive: true })
-    window.addEventListener("resize", update)
+
+    const observer = new IntersectionObserver(schedule, {
+      root: null,
+      rootMargin: "-22% 0px -52% 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    })
+
+    nodes.forEach((node) => observer.observe(node))
+    window.addEventListener("resize", schedule)
 
     return () => {
-      window.removeEventListener("scroll", update)
-      window.removeEventListener("resize", update)
+      observer.disconnect()
+      window.removeEventListener("resize", schedule)
+
+      if (frame) {
+        window.cancelAnimationFrame(frame)
+      }
     }
   }, [])
 
@@ -121,7 +144,12 @@ const About = () => {
   }
 
   return (
-    <section id="about" data-section-path="/about">
+    <section
+      id="about"
+      data-section-path="/about"
+      aria-label="About Me"
+      tabIndex={-1}
+    >
       <Container className="about-page">
         <div className="about-terminal">
           <nav className="about-rail" aria-label="On this page">

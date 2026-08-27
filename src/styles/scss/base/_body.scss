@@ -68,6 +68,29 @@ body:not(.dark) {
     radial-gradient(ellipse 50% 40% at 70% 90%, var(--nebula-purple), transparent 55%);
 }
 
+.skip-link {
+  position: absolute;
+  z-index: calc(var(--z-nav) + 20);
+  top: 12px;
+  left: 12px;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface, var(--color-canvas));
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+#site-main:focus {
+  outline: none;
+}
+
 .site-shell {
   position: relative;
   z-index: var(--z-content);

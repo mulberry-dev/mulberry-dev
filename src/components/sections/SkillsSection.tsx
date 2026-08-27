@@ -77,7 +77,12 @@ const TechMap = () => {
 
 const Skills = () => {
   return (
-    <section id="skills" data-section-path="/skills">
+    <section
+      id="skills"
+      data-section-path="/skills"
+      aria-label="What I Do"
+      tabIndex={-1}
+    >
       <Container className="skills-page">
         <div className="skills-intro">
           <RevealGroup className="skills-intro__copy" mode="auto" stagger={56}>

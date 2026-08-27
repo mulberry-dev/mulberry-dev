@@ -23,6 +23,8 @@ const Footer = () => {
             width={22}
             height={22}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <span>{SITE_NAME}</span>
         </Link>

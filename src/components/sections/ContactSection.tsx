@@ -20,7 +20,12 @@ import Image from "next/image"
 
 const Contact = () => {
   return (
-    <section id="contact" data-section-path="/contact">
+    <section
+      id="contact"
+      data-section-path="/contact"
+      aria-label="Contact"
+      tabIndex={-1}
+    >
       <Container className="contact-page">
         <div className="contact-hero">
           <RevealGroup className="contact-hero__copy" mode="auto" stagger={56}>
@@ -74,6 +79,8 @@ const Contact = () => {
                   alt=""
                   width={18}
                   height={18}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <span>{tech.name}</span>
               </Reveal>

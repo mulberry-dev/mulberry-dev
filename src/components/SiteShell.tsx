@@ -15,14 +15,14 @@ const SiteShell = ({ children }: { children: ReactNode }) => {
     <PageTransition>
       {onSite ? (
         <>
-          <main className="site-main">
+          <main id="site-main" className="site-main" tabIndex={-1}>
             <SiteExperience />
           </main>
           <Footer />
         </>
       ) : (
         <>
-          <main>{children}</main>
+          <main id="site-main" tabIndex={-1}>{children}</main>
           <Footer />
         </>
       )}

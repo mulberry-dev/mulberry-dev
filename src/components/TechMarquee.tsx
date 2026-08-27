@@ -33,7 +33,15 @@ const setRowPlaybackRate = (row: HTMLElement, rate: number) => {
   })
 }
 
-const ChipSet = ({ items, hidden = false }: { items: Skill[]; hidden?: boolean }) => (
+const ChipSet = ({
+  items,
+  hidden = false,
+  eager = false
+}: {
+  items: Skill[]
+  hidden?: boolean
+  eager?: boolean
+}) => (
   <ul className="tech-marquee__set" aria-hidden={hidden || undefined}>
     {items.map((skill, index) => (
       <li
@@ -46,6 +54,8 @@ const ChipSet = ({ items, hidden = false }: { items: Skill[]; hidden?: boolean }
           alt=""
           width={18}
           height={18}
+          loading={eager && index < 8 ? "eager" : "lazy"}
+          decoding="async"
           className="tech-marquee__icon"
         />
         <span>{skill.name}</span>
@@ -85,7 +95,7 @@ const TechMarquee = () => {
           onMouseLeave={handleRowLeave}
         >
           <div className="tech-marquee__track">
-            <ChipSet items={items} />
+            <ChipSet items={items} eager={index === 0} />
             <ChipSet items={items} hidden />
           </div>
         </div>

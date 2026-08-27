@@ -1,5 +1,8 @@
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    optimizePackageImports: ["antd"]
+  },
   images: {
     remotePatterns: [
       {
