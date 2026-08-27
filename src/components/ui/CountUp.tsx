@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
 
@@ -15,9 +15,29 @@ const CountUp = ({
 }) => {
   const [display, setDisplay] = useState(0)
   const [active, setActive] = useState(false)
+  const ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    setActive(true)
+    const node = ref.current
+
+    if (!node) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return
+        }
+
+        setActive(true)
+        observer.disconnect()
+      },
+      { threshold: 0.35, rootMargin: "0px 0px -8% 0px" }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
   }, [value])
 
   useEffect(() => {
@@ -52,6 +72,7 @@ const CountUp = ({
 
   return (
     <span
+      ref={ref}
       className={`count-up${active ? " is-active" : ""}`}
       aria-label={String(value)}
     >
