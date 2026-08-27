@@ -40,6 +40,7 @@ export type SiteIconName =
   | "leaf"
   | "globe"
   | "devices"
+  | "pin"
 
 const iconProps: SVGProps<SVGSVGElement> = {
   width: 22,
@@ -296,6 +297,12 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <rect x="2.5" y="4.5" width="13" height="10" rx="1.4" />
       <path d="M7 16.2h4" />
       <rect x="14.2" y="9.2" width="7.3" height="10.3" rx="1.4" />
+    </svg>
+  ),
+  pin: (
+    <svg {...iconProps}>
+      <path d="M12 21s6.5-5.2 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.8 12 21 12 21Z" />
+      <circle cx="12" cy="10.5" r="2.2" />
     </svg>
   )
 }

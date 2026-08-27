@@ -360,62 +360,6 @@ body:not(.dark) .ui-tech-badge {
   box-shadow: var(--glow-teal);
 }
 
-.ui-cta-banner--featured {
-  gap: var(--space-4);
-  padding: var(--space-3) var(--space-5);
-  background: transparent;
-  box-shadow: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-.ui-cta-banner__dir {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: 36px;
-  padding: var(--space-1) 0;
-  border: 0;
-  background: none;
-  color: var(--color-text-dim);
-  font-family: var(--font-sans);
-  font-size: var(--text-caption);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1;
-  text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.ui-cta-banner__dir--next {
-  margin-left: auto;
-}
-
-.ui-cta-banner__dir svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  transition: transform var(--duration-fast) var(--ease-out);
-}
-
-.ui-cta-banner__dir:hover {
-  color: var(--color-text-muted);
-}
-
-.ui-cta-banner__dir--prev:hover svg {
-  transform: translateX(-3px);
-}
-
-.ui-cta-banner__dir--next:hover svg {
-  transform: translateX(3px);
-}
-
-.ui-cta-banner__dir:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
-
 .ui-icon-box svg {
   width: 22px;
   height: 22px;
@@ -431,23 +375,6 @@ body:not(.dark) .ui-tech-badge {
   .ui-cta-banner__actions {
     width: 100%;
     justify-content: flex-start;
-  }
-
-  .ui-cta-banner--featured {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ui-cta-banner__dir,
-  .ui-cta-banner__dir svg {
-    transition: none;
-  }
-
-  .ui-cta-banner__dir--prev:hover svg,
-  .ui-cta-banner__dir--next:hover svg {
-    transform: none;
   }
 }
 

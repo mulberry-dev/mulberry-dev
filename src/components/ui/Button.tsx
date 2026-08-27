@@ -42,7 +42,7 @@ const Button = ({
     }
 
     return (
-      <Link className={classes} href={href}>
+      <Link className={classes} href={href} scroll={false}>
         {children}
       </Link>
     )

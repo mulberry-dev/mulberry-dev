@@ -1,12 +1,13 @@
 @import "../tokens/_index";
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scroll-padding-top: calc(var(--nav-height) + var(--space-3));
   min-height: 100%;
   min-height: 100dvh;
   width: 100%;
   overflow-x: clip;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: auto;
   scrollbar-gutter: stable;
 }
 
@@ -80,54 +81,4 @@ body:not(.dark) {
 
 html.is-pinning-scroll {
   scroll-behavior: auto !important;
-}
-
-html.is-section-sliding,
-html.is-section-sliding body {
-  overflow: hidden;
-  scroll-behavior: auto !important;
-}
-
-html.is-section-sliding .page-transition-view {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 41;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-  min-height: 100dvh;
-  overflow: hidden;
-  pointer-events: none;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-html.is-section-sliding .page-transition-view > main {
-  height: auto;
-  min-height: 0;
-  flex: 1 0 auto;
-}
-
-html[data-nav-dir="down"].is-section-sliding .page-transition-view {
-  top: 0;
-  bottom: auto;
-  transform: translate3d(0, 100vh, 0);
-}
-
-html[data-nav-dir="up"].is-section-sliding .page-transition-view {
-  top: auto;
-  bottom: 0;
-  transform: translate3d(0, -100vh, 0);
-}
-
-html.is-section-sliding .reveal,
-html.is-section-sliding .reveal.is-armed {
-  opacity: 1 !important;
-  transform: none !important;
-  clip-path: none !important;
-  transition: none !important;
 }
