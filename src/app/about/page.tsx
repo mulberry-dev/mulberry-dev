@@ -112,6 +112,11 @@ const About = () => {
       behavior: reduced ? "auto" : "smooth",
       block: "start"
     })
+    if (node) {
+      node.classList.remove("is-targeted")
+      void node.offsetWidth
+      node.classList.add("is-targeted")
+    }
     setActive(id)
   }
 

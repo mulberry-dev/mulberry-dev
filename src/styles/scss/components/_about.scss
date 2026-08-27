@@ -643,6 +643,24 @@ body:not(.dark) .about-portrait__img--light {
   scroll-margin-top: calc(var(--nav-height) + 18px);
 }
 
+#about-intro.is-targeted,
+#about-identity.is-targeted,
+#about-frontend.is-targeted,
+#about-backend.is-targeted,
+#about-approach.is-targeted {
+  animation: aboutTarget 0.85s var(--ease-out);
+}
+
+@keyframes aboutTarget {
+  0% {
+    background-color: color-mix(in srgb, var(--color-teal) 9%, transparent);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
 @keyframes aboutBlink {
   50% {
     opacity: 0;
@@ -888,7 +906,12 @@ body:not(.dark) .about-portrait__img--light {
 
 @media (prefers-reduced-motion: reduce) {
   .about-cursor,
-  .about-core__line {
+  .about-core__line,
+  #about-intro.is-targeted,
+  #about-identity.is-targeted,
+  #about-frontend.is-targeted,
+  #about-backend.is-targeted,
+  #about-approach.is-targeted {
     animation: none;
   }
 
