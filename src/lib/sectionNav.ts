@@ -204,9 +204,12 @@ export const readActiveSectionPath = () => {
 
 export const observeActiveSection = (onPath: (path: string) => void) => {
   let frame = 0
+  let unlockTimer = 0
 
   const sync = () => {
     if (isProgrammaticSectionScroll()) {
+      window.clearTimeout(unlockTimer)
+      unlockTimer = window.setTimeout(schedule, 180)
       return
     }
 
@@ -226,8 +229,8 @@ export const observeActiveSection = (onPath: (path: string) => void) => {
 
   const observer = new IntersectionObserver(schedule, {
     root: null,
-    rootMargin: "-10% 0px -72% 0px",
-    threshold: [0, 0.2, 0.4, 0.6, 0.8, 1]
+    rootMargin: "-15% 0px -60% 0px",
+    threshold: [0, 0.25, 0.5, 0.75, 1]
   })
 
   SECTIONS.forEach((section) => {
@@ -238,8 +241,15 @@ export const observeActiveSection = (onPath: (path: string) => void) => {
     }
   })
 
+  window.addEventListener("scroll", schedule, { passive: true })
+  window.addEventListener("resize", schedule)
+  schedule()
+
   return () => {
     observer.disconnect()
+    window.removeEventListener("scroll", schedule)
+    window.removeEventListener("resize", schedule)
+    window.clearTimeout(unlockTimer)
 
     if (frame) {
       window.cancelAnimationFrame(frame)
