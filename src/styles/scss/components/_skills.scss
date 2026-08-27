@@ -268,7 +268,8 @@
   font-family: inherit;
   font-size: 0.78rem;
   line-height: 1.65;
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .skills-stack__json .is-key {

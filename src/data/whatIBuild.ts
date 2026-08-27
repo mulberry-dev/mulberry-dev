@@ -117,13 +117,7 @@ export const BUILD_APPROACH = {
 } as const
 
 export const BUILD_STACK = {
-  command: "cat stack.json",
-  value: {
-    frontend: ["React", "Next.js", "TypeScript", "MUI"],
-    backend: ["Node.js", "GraphQL", "Express"],
-    data: ["PostgreSQL", "MongoDB"],
-    cloud: ["AWS", "Docker"]
-  }
+  command: "cat stack.json"
 } as const
 
 export const ARCH_MAIN = [

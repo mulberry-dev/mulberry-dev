@@ -9,8 +9,6 @@ import {
   markHomeChromeRevealed,
   shouldRevealHomeChrome
 } from "@/lib/siteSession"
-import { LINKEDIN_URL } from "@/data/site"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   Children,
@@ -250,19 +248,10 @@ const IndexPage = () => {
             </p>
             <p className="home-hero__body">{ABOUT_SHORT}</p>
             <div className="home-hero__actions">
-              <Button href="/portfolio">View my work →</Button>
+              {/* <Button href="/portfolio">View my work →</Button> */}
               <Button href="/about" variant="secondary">
                 About me
               </Button>
-              <Link
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="home-social"
-                aria-label="LinkedIn"
-              >
-                in
-              </Link>
             </div>
           </div>
 

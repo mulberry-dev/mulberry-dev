@@ -7,7 +7,6 @@ import ConnectedScene from "@/components/build/ConnectedScene"
 import ModernizeScene from "@/components/build/ModernizeScene"
 import ProductScene from "@/components/build/ProductScene"
 import StackTerminal from "@/components/build/StackTerminal"
-import TechMarquee from "@/components/TechMarquee"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
@@ -275,7 +274,6 @@ const Skills = () => {
           </footer>
         </div>
       </Container>
-      <TechMarquee />
     </section>
   )
 }
