@@ -1,32 +1,141 @@
 "use client"
 
-import AboutSection from "@/components/sections/AboutSection"
-import CertificationsSection from "@/components/sections/CertificationsSection"
-import ContactSection from "@/components/sections/ContactSection"
+import DeferredSection from "@/components/sections/DeferredSection"
 import HomeSection from "@/components/sections/HomeSection"
-import PortfolioSection from "@/components/sections/PortfolioSection"
-import SkillsSection from "@/components/sections/SkillsSection"
 import {
   announceSection,
   applySectionTitle,
-  isProgrammaticSectionScroll,
+  focusSection,
   isSectionPath,
-  readActiveSectionPath,
-  scrollToSection
+  observeActiveSection,
+  prefetchSectionPath,
+  requiredSectionIds,
+  scrollToSection,
+  subscribeSectionPrefetch,
+  waitForSections
 } from "@/lib/sectionNav"
+import dynamic from "next/dynamic"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+
+const DeferredFallback = ({ id, path }: { id: string; path: string }) => (
+  <section
+    id={id}
+    data-section-path={path}
+    className="is-deferred"
+    aria-hidden="true"
+    tabIndex={-1}
+  />
+)
+
+const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), {
+  loading: () => <DeferredFallback id="about" path="/about" />
+})
+
+const SkillsSection = dynamic(() => import("@/components/sections/SkillsSection"), {
+  loading: () => <DeferredFallback id="skills" path="/skills" />
+})
+
+const PortfolioSection = dynamic(
+  () => import("@/components/sections/PortfolioSection"),
+  { loading: () => <DeferredFallback id="portfolio" path="/portfolio" /> }
+)
+
+const CertificationsSection = dynamic(
+  () => import("@/components/sections/CertificationsSection"),
+  { loading: () => <DeferredFallback id="certifications" path="/certifications" /> }
+)
+
+const ContactSection = dynamic(
+  () => import("@/components/sections/ContactSection"),
+  { loading: () => <DeferredFallback id="contact" path="/contact" /> }
+)
+
+const LAZY_SECTIONS = [
+  { id: "about", path: "/about", Component: AboutSection },
+  { id: "skills", path: "/skills", Component: SkillsSection },
+  { id: "portfolio", path: "/portfolio", Component: PortfolioSection },
+  { id: "certifications", path: "/certifications", Component: CertificationsSection },
+  { id: "contact", path: "/contact", Component: ContactSection }
+] as const
+
+const readSectionHref = (anchor: Element) => {
+  if (
+    anchor.hasAttribute("download") ||
+    anchor.getAttribute("target") === "_blank"
+  ) {
+    return null
+  }
+
+  try {
+    const url = new URL(anchor.getAttribute("href") || "", window.location.href)
+
+    if (url.origin !== window.location.origin || url.hash) {
+      return null
+    }
+
+    return isSectionPath(url.pathname) ? url.pathname : null
+  } catch {
+    return null
+  }
+}
 
 const SiteExperience = () => {
   const pathname = usePathname()
   const router = useRouter()
   const ignorePathRef = useRef<string | null>(null)
   const readyRef = useRef(false)
+  const revealTokenRef = useRef(0)
   const activePathRef = useRef(pathname)
   const pathnameRef = useRef(pathname)
   const [aligned, setAligned] = useState(pathname === "/")
+  const [mountedIds, setMountedIds] = useState(
+    () => new Set(requiredSectionIds(pathname))
+  )
+  const mountedKey = Array.from(mountedIds).join("|")
 
   pathnameRef.current = pathname
+
+  const mountThrough = useCallback((path: string) => {
+    const needed = requiredSectionIds(path)
+
+    setMountedIds((current) => {
+      let changed = false
+      const next = new Set(current)
+
+      for (const id of needed) {
+        if (!next.has(id)) {
+          next.add(id)
+          changed = true
+        }
+      }
+
+      return changed ? next : current
+    })
+  }, [])
+
+  const revealPath = useCallback(
+    async (path: string, behavior: ScrollBehavior, moveFocus = false) => {
+      const token = ++revealTokenRef.current
+      mountThrough(path)
+      await waitForSections(requiredSectionIds(path))
+
+      if (token !== revealTokenRef.current) {
+        return false
+      }
+
+      scrollToSection(path, behavior)
+
+      if (moveFocus) {
+        focusSection(path)
+      }
+
+      return true
+    },
+    [mountThrough]
+  )
+
+  useEffect(() => subscribeSectionPrefetch(mountThrough), [mountThrough])
 
   useLayoutEffect(() => {
     const previous = window.history.scrollRestoration
@@ -42,40 +151,51 @@ const SiteExperience = () => {
       return
     }
 
+    let cancelled = false
+
     applySectionTitle(pathname)
     announceSection(pathname)
     activePathRef.current = pathname
 
-    if (!readyRef.current) {
-      readyRef.current = true
+    const run = async () => {
+      if (!readyRef.current) {
+        readyRef.current = true
 
-      if (pathname !== "/") {
-        scrollToSection(pathname, "auto")
-      }
+        if (pathname !== "/") {
+          const scrolled = await revealPath(pathname, "auto", true)
 
-      setAligned(true)
-      return
-    }
+          if (!scrolled) {
+            return
+          }
+        }
 
-    if (ignorePathRef.current) {
-      if (ignorePathRef.current === pathname) {
-        ignorePathRef.current = null
-      }
+        if (!cancelled) {
+          setAligned(true)
+        }
 
-      return
-    }
-
-    scrollToSection(pathname, "smooth")
-  }, [pathname])
-
-  useEffect(() => {
-    const syncFromScroll = () => {
-      if (isProgrammaticSectionScroll()) {
         return
       }
 
-      const nextPath = readActiveSectionPath()
+      if (ignorePathRef.current) {
+        if (ignorePathRef.current === pathname) {
+          ignorePathRef.current = null
+        }
 
+        return
+      }
+
+      await revealPath(pathname, "smooth")
+    }
+
+    void run()
+
+    return () => {
+      cancelled = true
+    }
+  }, [pathname, revealPath])
+
+  useEffect(() => {
+    const syncFromScroll = (nextPath: string) => {
       if (nextPath === activePathRef.current) {
         return
       }
@@ -84,32 +204,12 @@ const SiteExperience = () => {
       ignorePathRef.current = nextPath
       applySectionTitle(nextPath)
       announceSection(nextPath)
+      mountThrough(nextPath)
       router.replace(nextPath, { scroll: false })
     }
 
-    let frame = 0
-    const onScroll = () => {
-      if (frame) {
-        return
-      }
-
-      frame = window.requestAnimationFrame(() => {
-        frame = 0
-        syncFromScroll()
-      })
-    }
-
-    window.addEventListener("scroll", onScroll, { passive: true })
-    syncFromScroll()
-
-    return () => {
-      if (frame) {
-        window.cancelAnimationFrame(frame)
-      }
-
-      window.removeEventListener("scroll", onScroll)
-    }
-  }, [router])
+    return observeActiveSection(syncFromScroll)
+  }, [mountedKey, mountThrough, router])
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
@@ -128,29 +228,13 @@ const SiteExperience = () => {
       const anchor =
         target instanceof Element ? target.closest("a[href]") : null
 
-      if (
-        !anchor ||
-        anchor.hasAttribute("download") ||
-        anchor.getAttribute("target") === "_blank"
-      ) {
+      if (!anchor) {
         return
       }
 
-      let url: URL
+      const nextPath = readSectionHref(anchor)
 
-      try {
-        url = new URL(anchor.getAttribute("href") || "", window.location.href)
-      } catch {
-        return
-      }
-
-      if (url.origin !== window.location.origin) {
-        return
-      }
-
-      const nextPath = url.pathname
-
-      if (!isSectionPath(nextPath) || url.hash) {
+      if (!nextPath) {
         return
       }
 
@@ -158,28 +242,53 @@ const SiteExperience = () => {
       activePathRef.current = nextPath
       applySectionTitle(nextPath)
       announceSection(nextPath)
-      scrollToSection(nextPath, "smooth")
 
-      if (pathnameRef.current === nextPath) {
+      if (pathnameRef.current !== nextPath) {
+        ignorePathRef.current = nextPath
+        router.push(nextPath, { scroll: false })
+      }
+
+      void revealPath(nextPath, "smooth")
+    }
+
+    const onPointerOver = (event: PointerEvent) => {
+      const target = event.target
+      const anchor =
+        target instanceof Element ? target.closest("a[href]") : null
+
+      if (!anchor) {
         return
       }
 
-      ignorePathRef.current = nextPath
-      router.push(nextPath, { scroll: false })
+      const nextPath = readSectionHref(anchor)
+
+      if (nextPath) {
+        prefetchSectionPath(nextPath)
+      }
     }
 
     document.addEventListener("click", onClick, true)
-    return () => document.removeEventListener("click", onClick, true)
-  }, [router])
+    document.addEventListener("pointerover", onPointerOver)
+    return () => {
+      document.removeEventListener("click", onClick, true)
+      document.removeEventListener("pointerover", onPointerOver)
+    }
+  }, [revealPath, router])
 
   return (
     <div className={`site-experience${aligned ? " is-aligned" : ""}`}>
       <HomeSection />
-      <AboutSection />
-      <SkillsSection />
-      <PortfolioSection />
-      <CertificationsSection />
-      <ContactSection />
+      {LAZY_SECTIONS.map(({ id, path, Component }) => (
+        <DeferredSection
+          key={id}
+          id={id}
+          path={path}
+          mounted={mountedIds.has(id)}
+          onApproach={mountThrough}
+        >
+          <Component />
+        </DeferredSection>
+      ))}
     </div>
   )
 }

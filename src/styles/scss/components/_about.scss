@@ -202,6 +202,7 @@
   width: min(100%, 360px);
   height: auto;
   max-height: 430px;
+  aspect-ratio: 1;
   object-fit: cover;
   object-position: center 10%;
 }

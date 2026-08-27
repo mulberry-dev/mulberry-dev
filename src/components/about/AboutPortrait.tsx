@@ -37,14 +37,18 @@ const AboutPortrait = () => (
       width={960}
       height={960}
       unoptimized
+      loading="lazy"
+      decoding="async"
       className="about-portrait__img about-portrait__img--dark"
     />
     <Image
       src="/images/Webp/santi-light-theme.webp"
-      alt="Santiago Morera"
+      alt=""
       width={960}
       height={960}
       unoptimized
+      loading="lazy"
+      decoding="async"
       className="about-portrait__img about-portrait__img--light"
     />
   </div>

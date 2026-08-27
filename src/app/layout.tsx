@@ -54,6 +54,9 @@ export default function RootLayout({
       </head>
       <GoogleAnalytics gaId="G-HP85BC1BKY" />
       <body className="dark" suppressHydrationWarning>
+        <a className="skip-link" href="#site-main">
+          Skip to content
+        </a>
         <div className="site-atmosphere" aria-hidden="true" />
         <ParticlesProvider>
           <Navigation />

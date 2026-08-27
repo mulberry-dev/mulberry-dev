@@ -455,6 +455,7 @@ const Navigation = () => {
                 width={28}
                 height={28}
                 alt=""
+                priority
               />
               <span>{SITE_NAME}</span>
             </Link>

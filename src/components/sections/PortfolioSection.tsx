@@ -31,7 +31,12 @@ const Portfolio = () => {
   )
 
   return (
-    <section id="portfolio" data-section-path="/portfolio">
+    <section
+      id="portfolio"
+      data-section-path="/portfolio"
+      aria-label="My Work"
+      tabIndex={-1}
+    >
       <Container className="portfolio-page">
         <RevealGroup mode="auto" stagger={64}>
           <SectionHeader
@@ -58,6 +63,9 @@ const Portfolio = () => {
                     alt={project.name}
                     width={400}
                     height={220}
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                    loading="lazy"
+                    decoding="async"
                     className="portfolio-card__image"
                   />
                 </div>

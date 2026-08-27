@@ -224,7 +224,13 @@ const IndexPage = () => {
     .join(" ")
 
   return (
-    <section id="index" className={introClass || undefined} data-section-path="/">
+    <section
+      id="index"
+      className={introClass || undefined}
+      data-section-path="/"
+      aria-label="Home"
+      tabIndex={-1}
+    >
       <Container className="home-page">
         <div className="home-hero">
           <div className="home-hero__copy">
@@ -285,11 +291,12 @@ const IndexPage = () => {
             />
             <Image
               src="/images/Webp/santi-light-theme.webp"
-              alt="Santiago"
+              alt=""
               width={960}
               height={960}
               unoptimized
-              priority
+              loading="lazy"
+              decoding="async"
               className="home-avatar home-avatar--light"
             />
             <Link
