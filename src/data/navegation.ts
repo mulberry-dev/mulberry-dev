@@ -11,7 +11,7 @@ export const links = [
   },
   {
     id: 3,
-    name: "What I Do",
+    name: "What I Build",
     path: "/skills",
   },
   {

@@ -8,7 +8,7 @@ export const SECTION_DESCRIPTIONS: Record<string, string> = {
   "/about":
     "Full Stack Developer from Mexico. I build what you see — interfaces people feel — and the systems that make them last.",
   "/skills":
-    "Core capabilities, the problems I solve, and the tools I use to ship thoughtful digital products.",
+    "Product interfaces, the systems behind them, modernization, and the stack I use to ship complete products.",
   "/portfolio":
     "Selected work that solved real problems and delivered impact.",
   "/certifications":

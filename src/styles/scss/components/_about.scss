@@ -27,6 +27,7 @@
 
 .about-chrome,
 .about-identity,
+.about-path,
 .about-bridge,
 .about-approach,
 .about-foot {
@@ -108,14 +109,21 @@
 
 .about-identity {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(210px, 0.86fr) minmax(15.5rem, 0.92fr);
+  grid-template-columns:
+    minmax(0, 0.96fr)
+    minmax(280px, 1.42fr)
+    minmax(14.25rem, 0.78fr);
   align-items: center;
-  gap: clamp(1.25rem, 3vw, 2.35rem);
-  padding-block: clamp(1.6rem, 4vw, 2.6rem);
+  column-gap: clamp(0.7rem, 2.2vw, 1.65rem);
+  row-gap: clamp(1.25rem, 3vw, 2.2rem);
+  padding-block: clamp(1.15rem, 3vw, 1.9rem);
+  overflow-x: clip;
 }
 
 .about-intro,
 .about-meta {
+  position: relative;
+  z-index: 2;
   min-width: 0;
 }
 
@@ -156,88 +164,135 @@
 
 .about-photo {
   justify-self: center;
+  align-self: center;
   width: 100%;
-  max-width: 360px;
+  max-width: min(560px, 42vw);
+  z-index: 1;
 }
 
-.about-photo.reveal,
-.about-photo.reveal.is-armed,
+.about-photo.reveal--image {
+  --reveal-y: 14px;
+  --reveal-scale: 0.986;
+  --reveal-duration: 0.98s;
+}
+
 .about-photo.reveal.is-visible {
   transform: none;
-  backface-visibility: visible;
 }
 
 .about-portrait {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 300px;
-}
-
-.about-portrait::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 62% 70% at 50% 36%,
-    transparent 42%,
-    color-mix(in srgb, var(--color-canvas) 78%, transparent) 100%
-  );
+  width: 100%;
+  min-height: 0;
 }
 
 .about-portrait__map {
   position: absolute;
-  width: 130%;
-  max-width: 440px;
+  top: 7%;
+  left: 50%;
+  z-index: 0;
+  width: 122%;
+  max-width: 640px;
   color: var(--color-teal);
-  opacity: 0.22;
+  opacity: 0.1;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.about-portrait__code {
+  position: absolute;
+  top: 10%;
+  left: 4%;
+  z-index: 2;
+  font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: color-mix(in srgb, var(--color-teal) 78%, white);
+  opacity: 0.42;
   pointer-events: none;
 }
 
 .about-portrait__img {
   position: relative;
   z-index: 1;
-  width: min(100%, 360px);
+  display: block;
+  width: min(100%, 58vh, 540px);
   height: auto;
-  max-height: 430px;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: center 10%;
-}
-
-.about-portrait__img--dark {
-  filter: grayscale(1) contrast(1.22) brightness(0.8);
-  mix-blend-mode: multiply;
+  object-position: center 16%;
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 70%, transparent 100%);
+    radial-gradient(
+      ellipse 72% 76% at 50% 40%,
+      #000 30%,
+      rgba(0, 0, 0, 0.88) 48%,
+      rgba(0, 0, 0, 0.4) 64%,
+      transparent 86%
+    ),
+    linear-gradient(
+      to bottom,
+      #000 58%,
+      rgba(0, 0, 0, 0.55) 78%,
+      transparent 100%
+    );
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 70%, transparent 100%);
+    radial-gradient(
+      ellipse 72% 76% at 50% 40%,
+      #000 30%,
+      rgba(0, 0, 0, 0.88) 48%,
+      rgba(0, 0, 0, 0.4) 64%,
+      transparent 86%
+    ),
+    linear-gradient(
+      to bottom,
+      #000 58%,
+      rgba(0, 0, 0, 0.55) 78%,
+      transparent 100%
+    );
   mask-composite: intersect;
 }
 
-.about-portrait__img--light {
-  display: none;
+body:not(.dark) .about-portrait__map {
+  opacity: 0.06;
 }
 
-body:not(.dark) .about-portrait__img--dark {
-  display: none;
+body:not(.dark) .about-portrait__code {
+  opacity: 0.28;
 }
 
-body:not(.dark) .about-portrait__img--light {
-  display: block;
-  filter: grayscale(0.72) contrast(1.08);
+body:not(.dark) .about-portrait__img {
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 12%, #000 74%, transparent 100%);
+    radial-gradient(
+      ellipse 66% 72% at 50% 38%,
+      #000 28%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.22) 68%,
+      transparent 84%
+    ),
+    linear-gradient(
+      to bottom,
+      #000 62%,
+      rgba(0, 0, 0, 0.4) 82%,
+      transparent 100%
+    );
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 12%, #000 74%, transparent 100%);
+    radial-gradient(
+      ellipse 66% 72% at 50% 38%,
+      #000 28%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.22) 68%,
+      transparent 84%
+    ),
+    linear-gradient(
+      to bottom,
+      #000 62%,
+      rgba(0, 0, 0, 0.4) 82%,
+      transparent 100%
+    );
   mask-composite: intersect;
 }
 
@@ -256,9 +311,25 @@ body:not(.dark) .about-portrait__img--light {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin: 0 0 1.35rem;
+  margin: 0 0 0.45rem;
   color: var(--color-text-muted);
   font-size: 0.8rem;
+}
+
+.about-whoami__origin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  margin: 0 0 1.2rem;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-whoami__origin span:first-child {
+  color: var(--color-teal);
+  font-weight: 700;
 }
 
 .about-whoami__place svg {
@@ -636,8 +707,48 @@ body:not(.dark) .about-portrait__img--light {
   outline-offset: 4px;
 }
 
+.about-path {
+  padding-block: clamp(1.35rem, 3.2vw, 2.15rem);
+  border-top: 1px solid var(--about-line);
+}
+
+.about-log {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-log li {
+  display: grid;
+  grid-template-columns: 2.1rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.about-log__step {
+  color: var(--color-teal);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.about-log strong {
+  display: block;
+  margin-bottom: 0.18rem;
+  color: var(--color-text);
+  font-size: 0.92rem;
+}
+
+.about-log li > span:last-child {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
 #about-intro,
 #about-identity,
+#about-path,
 #about-frontend,
 #about-backend,
 #about-approach {
@@ -646,6 +757,7 @@ body:not(.dark) .about-portrait__img--light {
 
 #about-intro.is-targeted,
 #about-identity.is-targeted,
+#about-path.is-targeted,
 #about-frontend.is-targeted,
 #about-backend.is-targeted,
 #about-approach.is-targeted {
@@ -749,6 +861,14 @@ body:not(.dark) .about-portrait__img--light {
 }
 
 @media (max-width: 1199px) {
+  .about-photo {
+    max-width: min(460px, 34vw);
+  }
+
+  .about-portrait__img {
+    width: min(100%, 50vh, 460px);
+  }
+
   .about-pane__body,
   .about-pane__body--back {
     grid-template-columns: minmax(0, 1fr);
@@ -762,12 +882,21 @@ body:not(.dark) .about-portrait__img--light {
 
 @media (max-width: 1023px) {
   .about-identity {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.9fr);
     align-items: start;
   }
 
   .about-intro {
     grid-column: 1 / -1;
+  }
+
+  .about-photo {
+    max-width: min(420px, 52vw);
+    justify-self: center;
+  }
+
+  .about-portrait__img {
+    width: min(100%, 48vh, 420px);
   }
 
   .about-headline {
@@ -832,6 +961,7 @@ body:not(.dark) .about-portrait__img--light {
 
   .about-chrome,
   .about-identity,
+  .about-path,
   .about-bridge,
   .about-approach,
   .about-foot {
@@ -840,25 +970,31 @@ body:not(.dark) .about-portrait__img--light {
 
   .about-identity {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .about-meta {
-    order: 1;
+    gap: 1.35rem;
   }
 
   .about-intro {
-    order: 2;
+    order: 1;
     grid-column: auto;
+  }
+
+  .about-meta {
+    order: 2;
   }
 
   .about-photo {
     order: 3;
-    max-width: 260px;
+    max-width: 210px;
   }
 
-  .about-portrait {
-    min-height: 220px;
+  .about-portrait__img {
+    width: 100%;
+    object-position: center 18%;
+  }
+
+  .about-portrait__map,
+  .about-portrait__code {
+    display: none;
   }
 
   .about-headline {
@@ -900,6 +1036,14 @@ body:not(.dark) .about-portrait__img--light {
     font-size: 1.45rem;
   }
 
+  .about-photo {
+    max-width: 188px;
+  }
+
+  .about-whoami__origin span:last-child {
+    flex-basis: 100%;
+  }
+
   .about-ritual {
     gap: 0;
   }
@@ -910,6 +1054,7 @@ body:not(.dark) .about-portrait__img--light {
   .about-core__line,
   #about-intro.is-targeted,
   #about-identity.is-targeted,
+  #about-path.is-targeted,
   #about-frontend.is-targeted,
   #about-backend.is-targeted,
   #about-approach.is-targeted {
@@ -919,5 +1064,10 @@ body:not(.dark) .about-portrait__img--light {
   .about-talk,
   .about-rail__label {
     transition: none;
+  }
+
+  .about-photo.reveal--image {
+    --reveal-y: 0;
+    --reveal-scale: 1;
   }
 }
