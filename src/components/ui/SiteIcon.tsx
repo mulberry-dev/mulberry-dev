@@ -41,6 +41,11 @@ export type SiteIconName =
   | "globe"
   | "devices"
   | "pin"
+  | "lock"
+  | "storage"
+  | "bell"
+  | "payment"
+  | "gears"
 
 const iconProps: SVGProps<SVGSVGElement> = {
   width: 22,
@@ -303,6 +308,40 @@ const ICONS: Record<SiteIconName, ReactElement> = {
     <svg {...iconProps}>
       <path d="M12 21s6.5-5.2 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.8 12 21 12 21Z" />
       <circle cx="12" cy="10.5" r="2.2" />
+    </svg>
+  ),
+  lock: (
+    <svg {...iconProps}>
+      <rect x="5" y="11" width="14" height="10" rx="2" />
+      <path d="M8 11V8.2a4 4 0 0 1 8 0V11" />
+    </svg>
+  ),
+  storage: (
+    <svg {...iconProps}>
+      <path d="M4.5 8.5 12 4.5l7.5 4-7.5 4-7.5-4Z" />
+      <path d="M4.5 12.2 12 16.2l7.5-4" />
+      <path d="M4.5 15.8 12 19.8l7.5-4" />
+    </svg>
+  ),
+  bell: (
+    <svg {...iconProps}>
+      <path d="M6.5 16.5V11a5.5 5.5 0 1 1 11 0v5.5L19 18.5H5l1.5-2Z" />
+      <path d="M10 18.5a2 2 0 0 0 4 0" />
+    </svg>
+  ),
+  payment: (
+    <svg {...iconProps}>
+      <rect x="3" y="6" width="18" height="12" rx="2" />
+      <path d="M3 10h18" />
+      <path d="M7 14.5h4" />
+    </svg>
+  ),
+  gears: (
+    <svg {...iconProps}>
+      <circle cx="9" cy="13" r="2.2" />
+      <path d="M9 8.2v1.4M9 16.4v1.4M4.8 10.6l1.2.7M12 14.7l1.2.7M4.8 15.4l1.2-.7M12 11.3l1.2-.7" />
+      <circle cx="16" cy="8.2" r="1.7" />
+      <path d="M16 4.6v1.1M16 10.7v1.1M12.8 6.4l.9.5M18.3 9.5l.9.5M12.8 10l.9-.5M18.3 6.9l.9-.5" />
     </svg>
   )
 }

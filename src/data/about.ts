@@ -28,6 +28,39 @@ export const ABOUT_WHOAMI = {
   location: ABOUT_LOCATION
 } as const
 
+export const ABOUT_ORIGIN = {
+  code: "MX",
+  city: "Mexico City",
+  coords: "19.43°N  99.13°W",
+  caption: "Building from Mexico."
+} as const
+
+export const ABOUT_HISTORY = {
+  command: "git log --oneline",
+  items: [
+    {
+      step: "01",
+      title: "Started in design",
+      text: "Years of visual work taught me to notice what people feel before they can name it."
+    },
+    {
+      step: "02",
+      title: "Learned the interface",
+      text: "I learned to build the screens people actually live in."
+    },
+    {
+      step: "03",
+      title: "Built the system",
+      text: "I added the architecture behind those screens so the product could ship complete."
+    },
+    {
+      step: "04",
+      title: "Now I hold both",
+      text: "Frontend and backend as one craft: something that looks right because it works right."
+    }
+  ]
+} as const
+
 export const ABOUT_PASSIONS: {
   icon: SiteIconName
   label: string
@@ -107,7 +140,8 @@ export const ABOUT_FOOTER = {
 export const ABOUT_SECTIONS = [
   { id: "about-intro", index: "01", label: "INTRO" },
   { id: "about-identity", index: "02", label: "IDENTITY" },
-  { id: "about-frontend", index: "03", label: "FRONTEND" },
-  { id: "about-backend", index: "04", label: "BACKEND" },
-  { id: "about-approach", index: "05", label: "APPROACH" }
+  { id: "about-path", index: "03", label: "PATH" },
+  { id: "about-frontend", index: "04", label: "FRONTEND" },
+  { id: "about-backend", index: "05", label: "BACKEND" },
+  { id: "about-approach", index: "06", label: "APPROACH" }
 ] as const

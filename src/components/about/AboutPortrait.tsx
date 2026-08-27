@@ -1,3 +1,4 @@
+import { ABOUT_ORIGIN } from "@/data/about"
 import Image from "next/image"
 
 const MexicoMap = () => (
@@ -31,25 +32,18 @@ const MexicoMap = () => (
 const AboutPortrait = () => (
   <div className="about-portrait">
     <MexicoMap />
+    <span className="about-portrait__code" aria-hidden="true">
+      {ABOUT_ORIGIN.code}
+    </span>
     <Image
-      src="/images/Webp/santi-dark-theme.webp"
-      alt="Santiago Morera"
-      width={960}
-      height={960}
+      src="/images/Webp/about-me.webp"
+      alt="Santiago Morera, Mexican Full Stack Developer"
+      width={1254}
+      height={1254}
       unoptimized
       loading="lazy"
       decoding="async"
-      className="about-portrait__img about-portrait__img--dark"
-    />
-    <Image
-      src="/images/Webp/santi-light-theme.webp"
-      alt=""
-      width={960}
-      height={960}
-      unoptimized
-      loading="lazy"
-      decoding="async"
-      className="about-portrait__img about-portrait__img--light"
+      className="about-portrait__img"
     />
   </div>
 )

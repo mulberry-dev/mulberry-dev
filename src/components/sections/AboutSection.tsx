@@ -14,8 +14,10 @@ import {
   ABOUT_INITIALS,
   ABOUT_INTRO,
   ABOUT_LOCATION_SHORT,
+  ABOUT_ORIGIN,
   ABOUT_PASSIONS,
   ABOUT_PATH,
+  ABOUT_HISTORY,
   ABOUT_SECTIONS,
   ABOUT_WHOAMI
 } from "@/data/about"
@@ -228,6 +230,11 @@ const About = () => {
                   </span>
                   {ABOUT_WHOAMI.location}
                 </Reveal>
+                <Reveal type="text" as="p" className="about-whoami__origin">
+                  <span>{ABOUT_ORIGIN.code}</span>
+                  <span>{ABOUT_ORIGIN.coords}</span>
+                  <span>{ABOUT_ORIGIN.caption}</span>
+                </Reveal>
               </div>
 
               <div className="about-passions">
@@ -247,6 +254,25 @@ const About = () => {
               </div>
             </RevealGroup>
           </div>
+
+          <RevealGroup className="about-path" mode="scroll" stagger={48}>
+            <div id="about-path" data-about-section="path">
+              <Reveal type="eyebrow">
+                <Prompt command={ABOUT_HISTORY.command} />
+              </Reveal>
+              <ol className="about-log">
+                {ABOUT_HISTORY.items.map((item) => (
+                  <Reveal key={item.step} as="li" type="chip">
+                    <span className="about-log__step">{item.step}</span>
+                    <span>
+                      <strong>{item.title}</strong>
+                      {item.text}
+                    </span>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          </RevealGroup>
 
           <RevealGroup className="about-bridge" mode="scroll" stagger={64}>
             <div id="about-frontend" className="about-pane about-pane--front">
