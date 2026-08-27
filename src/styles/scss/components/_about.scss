@@ -157,7 +157,7 @@
 .about-photo {
   justify-self: center;
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
 }
 
 .about-photo.reveal,
@@ -171,7 +171,7 @@
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 300px;
+  min-height: 340px;
 }
 
 .about-portrait::after {
@@ -181,9 +181,9 @@
   z-index: 2;
   pointer-events: none;
   background: radial-gradient(
-    ellipse 62% 70% at 50% 36%,
-    transparent 42%,
-    color-mix(in srgb, var(--color-canvas) 78%, transparent) 100%
+    ellipse 70% 74% at 50% 38%,
+    transparent 52%,
+    color-mix(in srgb, var(--color-canvas) 42%, transparent) 100%
   );
 }
 
@@ -192,30 +192,28 @@
   width: 130%;
   max-width: 440px;
   color: var(--color-teal);
-  opacity: 0.22;
+  opacity: 0.14;
   pointer-events: none;
 }
 
 .about-portrait__img {
   position: relative;
   z-index: 1;
-  width: min(100%, 360px);
+  width: min(100%, 380px);
   height: auto;
-  max-height: 430px;
+  max-height: 520px;
   object-fit: cover;
-  object-position: center 10%;
+  object-position: center 8%;
 }
 
 .about-portrait__img--dark {
-  filter: grayscale(1) contrast(1.22) brightness(0.8);
-  mix-blend-mode: multiply;
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 70%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 86%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 70%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 86%, transparent 100%);
   mask-composite: intersect;
 }
 
@@ -229,14 +227,13 @@ body:not(.dark) .about-portrait__img--dark {
 
 body:not(.dark) .about-portrait__img--light {
   display: block;
-  filter: grayscale(0.72) contrast(1.08);
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 12%, #000 74%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 88%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 12%, #000 74%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 88%, transparent 100%);
   mask-composite: intersect;
 }
 
@@ -853,11 +850,11 @@ body:not(.dark) .about-portrait__img--light {
 
   .about-photo {
     order: 3;
-    max-width: 260px;
+    max-width: 280px;
   }
 
   .about-portrait {
-    min-height: 220px;
+    min-height: 280px;
   }
 
   .about-headline {

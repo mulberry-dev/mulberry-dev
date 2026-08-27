@@ -32,18 +32,18 @@ const AboutPortrait = () => (
   <div className="about-portrait">
     <MexicoMap />
     <Image
-      src="/images/Webp/santi-dark-theme.webp"
-      alt="Santiago Morera"
-      width={960}
-      height={960}
+      src="/images/Webp/santi-editorial-dark.webp"
+      alt="Santiago Morera, Mexican Full Stack Developer"
+      width={1024}
+      height={1536}
       unoptimized
       className="about-portrait__img about-portrait__img--dark"
     />
     <Image
-      src="/images/Webp/santi-light-theme.webp"
-      alt="Santiago Morera"
-      width={960}
-      height={960}
+      src="/images/Webp/santi-editorial-light.webp"
+      alt="Santiago Morera, Mexican Full Stack Developer"
+      width={1024}
+      height={1536}
       unoptimized
       className="about-portrait__img about-portrait__img--light"
     />
