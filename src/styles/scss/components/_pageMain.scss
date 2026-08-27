@@ -278,9 +278,7 @@ body:not(.dark) .home-avatar--light {
   .home-hero__body,
   .home-hero__actions .ui-button,
   .home-hero__visual,
-  .home-social,
-  .tech-marquee,
-  .tech-marquee__chip {
+  .home-social {
     animation: none !important;
     opacity: 0;
   }
@@ -326,14 +324,6 @@ body:not(.dark) .home-avatar--light {
   .home-social {
     animation: homeFadeRise 0.48s var(--ease-out) 160ms both;
   }
-
-  .tech-marquee {
-    animation: homeFadeRise 0.48s var(--ease-out) 190ms both;
-    --chip-in-base: 260ms;
-    --chip-in-stagger: 56ms;
-    --chip-in-row: 90ms;
-    --chip-in-duration: 0.82s;
-  }
 }
 
 #index.home-intro.is-reveal-ready:not(.is-return) {
@@ -374,14 +364,6 @@ body:not(.dark) .home-avatar--light {
   .home-social {
     animation: homeFadeRise 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.18s both;
   }
-
-  .tech-marquee {
-    animation: homeFadeRise 0.62s cubic-bezier(0.22, 1, 0.36, 1) 1.48s both;
-    --chip-in-base: 1.62s;
-    --chip-in-stagger: 96ms;
-    --chip-in-row: 180ms;
-    --chip-in-duration: 1.14s;
-  }
 }
 
 body:has(#index.home-chrome-wait) .site-nav,
@@ -419,9 +401,7 @@ body:has(#index.home-chrome-nav) .site-nav__lens {
   .home-hero__body,
   .home-hero__actions .ui-button,
   .home-hero__visual,
-  .home-social,
-  .tech-marquee,
-  .tech-marquee__chip {
+  .home-social {
     opacity: 1;
   }
 
@@ -453,9 +433,7 @@ body:has(#index.home-chrome-nav) .site-nav__lens {
     .home-hero__actions,
     .home-hero__actions .ui-button,
     .home-hero__visual,
-    .home-social,
-    .tech-marquee,
-    .tech-marquee__chip {
+    .home-social {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;

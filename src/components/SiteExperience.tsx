@@ -88,6 +88,7 @@ const SiteExperience = () => {
   const revealTokenRef = useRef(0)
   const activePathRef = useRef(pathname)
   const pathnameRef = useRef(pathname)
+  const offSiteRef = useRef(!isSectionPath(pathname))
   const [aligned, setAligned] = useState(pathname === "/")
   const [mountedIds, setMountedIds] = useState(
     () => new Set(requiredSectionIds(pathname))
@@ -148,31 +149,41 @@ const SiteExperience = () => {
 
   useLayoutEffect(() => {
     if (!isSectionPath(pathname)) {
+      offSiteRef.current = true
       return
     }
 
+    const fromOffSite = offSiteRef.current
+    offSiteRef.current = false
     let cancelled = false
 
     applySectionTitle(pathname)
     announceSection(pathname)
     activePathRef.current = pathname
 
+    if (readyRef.current && fromOffSite) {
+      mountThrough(pathname)
+      scrollToSection(pathname, "auto")
+      setAligned(true)
+    }
+
     const run = async () => {
       if (!readyRef.current) {
         readyRef.current = true
 
         if (pathname !== "/") {
-          const scrolled = await revealPath(pathname, "auto", true)
-
-          if (!scrolled) {
-            return
-          }
+          await revealPath(pathname, "auto", true)
         }
 
         if (!cancelled) {
           setAligned(true)
         }
 
+        return
+      }
+
+      if (fromOffSite) {
+        await revealPath(pathname, "auto", true)
         return
       }
 
@@ -192,9 +203,25 @@ const SiteExperience = () => {
     return () => {
       cancelled = true
     }
-  }, [pathname, revealPath])
+  }, [mountThrough, pathname, revealPath])
 
   useEffect(() => {
+    if (aligned) {
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setAligned(true)
+    }, 700)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [aligned])
+
+  useEffect(() => {
+    if (!isSectionPath(pathname)) {
+      return
+    }
+
     const syncFromScroll = (nextPath: string) => {
       if (nextPath === activePathRef.current) {
         return
@@ -209,7 +236,7 @@ const SiteExperience = () => {
     }
 
     return observeActiveSection(syncFromScroll)
-  }, [mountedKey, mountThrough, router])
+  }, [mountedKey, mountThrough, pathname, router])
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {

@@ -144,7 +144,7 @@ const Reveal = ({
     }
 
     const revealIfVisible = () => {
-      if (resolvedMode === "auto" && isNearFold()) {
+      if (isNearFold()) {
         setInView(true)
         return true
       }
@@ -166,9 +166,11 @@ const Reveal = ({
 
     observer.observe(node)
     const retry = window.setTimeout(revealIfVisible, 240)
+    const lateRetry = window.setTimeout(revealIfVisible, 700)
     return () => {
       observer.disconnect()
       window.clearTimeout(retry)
+      window.clearTimeout(lateRetry)
     }
   }, [contentReady, reducedMotion, resolvedMode])
 

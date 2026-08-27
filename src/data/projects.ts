@@ -61,11 +61,13 @@ export const data = [
   },
   {
     id: "CeciliaRodriguez",
-    name: "Digital Business Card & Landing Page",
+    name: "Business Card",
     category: "landing",
     description:
       "Digital business card and landing page for an eXp Realty México agent in CDMX. One-tap actions for call, WhatsApp, email, and contact saving, plus clear buy/sell/rent paths and trust signals for international-backed transactions. Built as a fast, mobile-first presentation site. (2025)",
     img: "/images/Webp/cecilia-rodriguez.webp",
+    width: 1024,
+    height: 640,
     tech: [
       {
         tech: "React.js",

@@ -2,7 +2,6 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
-import TechMarquee from "@/components/TechMarquee"
 import { useParticles } from "@/components/particles"
 import {
   didLeaveHome,
@@ -311,7 +310,6 @@ const IndexPage = () => {
           </div>
         </div>
       </Container>
-      <TechMarquee />
     </section>
   )
 }

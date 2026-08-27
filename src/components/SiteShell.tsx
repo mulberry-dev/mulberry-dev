@@ -13,19 +13,21 @@ const SiteShell = ({ children }: { children: ReactNode }) => {
 
   return (
     <PageTransition>
-      {onSite ? (
-        <>
-          <main id="site-main" className="site-main" tabIndex={-1}>
-            <SiteExperience />
-          </main>
-          <Footer />
-        </>
-      ) : (
-        <>
-          <main id="site-main" tabIndex={-1}>{children}</main>
-          <Footer />
-        </>
+      <main
+        id={onSite ? "site-main" : undefined}
+        className="site-main"
+        tabIndex={onSite ? -1 : undefined}
+        hidden={!onSite}
+        aria-hidden={onSite ? undefined : true}
+      >
+        <SiteExperience />
+      </main>
+      {onSite ? null : (
+        <main id="site-main" tabIndex={-1}>
+          {children}
+        </main>
       )}
+      <Footer />
     </PageTransition>
   )
 }
