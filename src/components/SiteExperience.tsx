@@ -7,6 +7,7 @@ import {
   applySectionTitle,
   focusSection,
   isSectionPath,
+  markProgrammaticSectionScroll,
   observeActiveSection,
   prefetchSectionPath,
   requiredSectionIds,
@@ -117,6 +118,7 @@ const SiteExperience = () => {
   const revealPath = useCallback(
     async (path: string, behavior: ScrollBehavior, moveFocus = false) => {
       const token = ++revealTokenRef.current
+      markProgrammaticSectionScroll(behavior === "smooth" ? 1200 : 500)
       mountThrough(path)
       await waitForSections(requiredSectionIds(path))
 
@@ -195,6 +197,10 @@ const SiteExperience = () => {
   }, [pathname, revealPath])
 
   useEffect(() => {
+    if (!aligned) {
+      return
+    }
+
     const syncFromScroll = (nextPath: string) => {
       if (nextPath === activePathRef.current) {
         return
@@ -209,7 +215,7 @@ const SiteExperience = () => {
     }
 
     return observeActiveSection(syncFromScroll)
-  }, [mountedKey, mountThrough, router])
+  }, [aligned, mountedKey, mountThrough, router])
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
