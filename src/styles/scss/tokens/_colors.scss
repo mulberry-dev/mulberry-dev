@@ -22,71 +22,64 @@ $light-text: #0f172a;
 $light-muted: #475569;
 $glass-blur: 5px;
 
-$aqua: #41c4d1;
-$aqua-hover: #6ed7e0;
-$turquoise: #2aaea8;
-$lime: #c5d65c;
-$lime-deep: #9db33d;
-$lime-signal: #d2e56b;
-
 @property --color-teal {
   syntax: "<color>";
   inherits: true;
-  initial-value: #41c4d1;
+  initial-value: #2dd4bf;
 }
 
 @property --color-teal-hover {
   syntax: "<color>";
   inherits: true;
-  initial-value: #6ed7e0;
+  initial-value: #5eead4;
 }
 
 @property --color-purple {
   syntax: "<color>";
   inherits: true;
-  initial-value: #c5d65c;
+  initial-value: #a855f7;
 }
 
 @property --color-purple-deep {
   syntax: "<color>";
   inherits: true;
-  initial-value: #9db33d;
+  initial-value: #8e2de2;
 }
 
 @property --color-cyan {
   syntax: "<color>";
   inherits: true;
-  initial-value: #2aaea8;
+  initial-value: #12c2e9;
 }
 
 @property --color-focus {
   syntax: "<color>";
   inherits: true;
-  initial-value: #41c4d1;
+  initial-value: #2dd4bf;
 }
 
 @property --color-signal {
   syntax: "<color>";
   inherits: true;
-  initial-value: #d2e56b;
+  initial-value: #84ff78;
 }
 
 @property --nebula-teal {
   syntax: "<color>";
   inherits: true;
-  initial-value: rgba(65, 196, 209, 0.16);
+  initial-value: rgba(45, 212, 191, 0.16);
 }
 
 @property --nebula-purple {
   syntax: "<color>";
   inherits: true;
-  initial-value: rgba(197, 214, 92, 0.12);
+  initial-value: rgba(168, 85, 247, 0.18);
 }
 
 @property --particle-color {
   syntax: "<color>";
   inherits: true;
-  initial-value: rgba(186, 236, 230, 0.55);
+  initial-value: rgba(255, 255, 255, 0.55);
 }
 
 :root {
@@ -95,69 +88,22 @@ $lime-signal: #d2e56b;
   --color-surface: #{$surface};
   --color-surface-glass: #{$surface-glass};
   --color-border: #{$border};
-  --color-teal: #{$aqua};
-  --color-teal-hover: #{$aqua-hover};
-  --color-purple: #{$lime};
-  --color-purple-deep: #{$lime-deep};
-  --color-cyan: #{$turquoise};
-  --color-text: #{$text};
-  --color-text-muted: #{$text-muted};
-  --color-text-dim: #{$text-dim};
-  --color-focus: #{$aqua};
-  --color-signal: #{$lime-signal};
-  --gradient-brand: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
-  --nebula-teal: rgba(65, 196, 209, 0.16);
-  --nebula-purple: rgba(197, 214, 92, 0.12);
-  --particle-color: rgba(186, 236, 230, 0.55);
-  --glass-blur: #{$glass-blur};
-  --theme-accent-duration: 480ms;
-  --theme-accent-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  color-scheme: dark;
-}
-
-html.theme-original {
   --color-teal: #{$teal};
   --color-teal-hover: #{$teal-hover};
   --color-purple: #{$purple};
   --color-purple-deep: #{$purple-deep};
   --color-cyan: #{$cyan};
+  --color-text: #{$text};
+  --color-text-muted: #{$text-muted};
+  --color-text-dim: #{$text-dim};
   --color-focus: #{$focus};
   --color-signal: #{$signal};
+  --gradient-brand: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
   --nebula-teal: rgba(45, 212, 191, 0.16);
   --nebula-purple: rgba(168, 85, 247, 0.18);
   --particle-color: rgba(255, 255, 255, 0.55);
-  --gradient-brand: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
-}
-
-html.theme-accent-ready {
-  transition:
-    --color-teal var(--theme-accent-duration) var(--theme-accent-ease),
-    --color-teal-hover var(--theme-accent-duration) var(--theme-accent-ease),
-    --color-purple var(--theme-accent-duration) var(--theme-accent-ease),
-    --color-purple-deep var(--theme-accent-duration) var(--theme-accent-ease),
-    --color-cyan var(--theme-accent-duration) var(--theme-accent-ease),
-    --color-focus var(--theme-accent-duration) var(--theme-accent-ease),
-    --color-signal var(--theme-accent-duration) var(--theme-accent-ease),
-    --nebula-teal var(--theme-accent-duration) var(--theme-accent-ease),
-    --nebula-purple var(--theme-accent-duration) var(--theme-accent-ease),
-    --particle-color var(--theme-accent-duration) var(--theme-accent-ease);
-}
-
-html.theme-accent-ready body {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --theme-accent-duration: 0ms;
-  }
-
-  html.theme-accent-ready,
-  html.theme-accent-ready body {
-    transition: none;
-  }
+  --glass-blur: #{$glass-blur};
+  color-scheme: dark;
 }
 
 @mixin glass-blur {

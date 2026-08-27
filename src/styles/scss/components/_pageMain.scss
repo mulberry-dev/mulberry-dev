@@ -413,14 +413,27 @@ body:has(#index.home-chrome-nav) .site-nav__lens {
   pointer-events: none;
 }
 
-#index.home-intro.is-complete .home-social {
-  animation: none;
-  opacity: 1;
-  transform: none;
-}
+#index.home-intro.is-complete {
+  .home-hero__char,
+  .home-hero__name,
+  .home-hero__body,
+  .home-hero__actions .ui-button,
+  .home-hero__visual,
+  .home-social,
+  .tech-marquee,
+  .tech-marquee__chip {
+    opacity: 1;
+  }
 
-#index.home-intro.is-complete .home-hero__name {
-  clip-path: none;
+  .home-hero__name {
+    clip-path: none;
+    filter: none;
+  }
+
+  .home-social {
+    animation: none;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

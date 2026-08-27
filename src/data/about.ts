@@ -72,65 +72,6 @@ export const ABOUT_PASSIONS: {
   { icon: "detail", label: "Details that matter" }
 ]
 
-export const ABOUT_FRONTEND = {
-  command: "./frontend",
-  kicker: "HOW IT FEELS",
-  items: [
-    { icon: "interface" as const, label: "UI components" },
-    { icon: "cursor" as const, label: "Interactions" },
-    { icon: "user" as const, label: "UX & accessibility" },
-    { icon: "performance" as const, label: "Performance" }
-  ],
-  context: ["React", "Next.js", "TypeScript"]
-}
-
-export const ABOUT_BACKEND = {
-  command: "./backend",
-  kicker: "HOW IT WORKS",
-  items: [
-    { icon: "systems" as const, label: "APIs" },
-    { icon: "connect" as const, label: "Services" },
-    { icon: "database" as const, label: "Databases" },
-    { icon: "cube" as const, label: "Architecture" },
-    { icon: "thinking" as const, label: "Business logic" }
-  ],
-  context: ["Node.js", "Express", "GraphQL"],
-  snippet: [
-    { tone: "comment", text: "// ship the whole product" },
-    { tone: "kw", text: "const " },
-    { tone: "fn", text: "ship" },
-    { tone: "plain", text: " = " },
-    { tone: "kw", text: "async " },
-    { tone: "plain", text: "(req) => {" }
-  ],
-  snippetLines: [
-    "const data = await service.run(req)",
-    "return db.save(data)"
-  ],
-  flow: ["API", "SERVICE", "DB"]
-}
-
-export const ABOUT_BRIDGE = {
-  overline: "CONNECTING",
-  title: "BOTH WORLDS",
-  label: "FULL STACK"
-} as const
-
-export const ABOUT_APPROACH = {
-  command: "echo my_approach",
-  quote: [
-    "Start with the person.",
-    "Design is part of the build.",
-    "Clarity over cleverness.",
-    "Leave it in good hands."
-  ],
-  ritual: [
-    { icon: "idea" as const, label: "THINK" },
-    { icon: "code" as const, label: "BUILD" },
-    { icon: "rocket" as const, label: "SHIP" }
-  ]
-}
-
 export const ABOUT_FOOTER = {
   question: "ready to build something great?",
   action: "let's talk",
@@ -140,8 +81,5 @@ export const ABOUT_FOOTER = {
 export const ABOUT_SECTIONS = [
   { id: "about-intro", index: "01", label: "INTRO" },
   { id: "about-identity", index: "02", label: "IDENTITY" },
-  { id: "about-path", index: "03", label: "PATH" },
-  { id: "about-frontend", index: "04", label: "FRONTEND" },
-  { id: "about-backend", index: "05", label: "BACKEND" },
-  { id: "about-approach", index: "06", label: "APPROACH" }
+  { id: "about-path", index: "03", label: "PATH" }
 ] as const

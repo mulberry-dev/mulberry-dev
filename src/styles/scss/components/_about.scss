@@ -28,8 +28,6 @@
 .about-chrome,
 .about-identity,
 .about-path,
-.about-bridge,
-.about-approach,
 .about-foot {
   padding-inline: clamp(1rem, 3.2vw, 2.15rem);
 }
@@ -54,8 +52,6 @@
 .about-prompt,
 .about-chrome__place,
 .about-whoami__role,
-.about-pane__kicker,
-.about-pane__context,
 .about-talk {
   margin: 0;
   font-size: 0.75rem;
@@ -74,8 +70,7 @@
 .about-session__colon,
 .about-prompt,
 .about-chrome__place,
-.about-whoami__role,
-.about-pane__context {
+.about-whoami__role {
   color: var(--color-text-muted);
 }
 
@@ -355,9 +350,7 @@ body:not(.dark) .about-portrait__img {
   font-size: 0.86rem;
 }
 
-.about-passions__icon,
-.about-focus__icon,
-.about-ritual__icon {
+.about-passions__icon {
   display: inline-grid;
   place-items: center;
   width: 22px;
@@ -366,307 +359,9 @@ body:not(.dark) .about-portrait__img {
   color: var(--color-teal);
 }
 
-.about-passions__icon svg,
-.about-focus__icon svg,
-.about-ritual__icon svg {
+.about-passions__icon svg {
   width: 15px;
   height: 15px;
-}
-
-.about-bridge {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: stretch;
-  gap: clamp(1rem, 2.4vw, 1.75rem);
-  border-top: 1px solid var(--about-line);
-  border-bottom: 1px solid var(--about-line);
-  padding-block: clamp(1.5rem, 3.5vw, 2.4rem);
-}
-
-.about-pane {
-  min-width: 0;
-}
-
-.about-pane > .reveal {
-  height: 100%;
-}
-
-.about-pane__body {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1rem;
-  align-items: start;
-}
-
-.about-pane__body--back {
-  grid-template-columns: minmax(0, 1fr) auto;
-}
-
-.about-pane__kicker {
-  margin: 0 0 0.7rem;
-  color: var(--color-text-dim);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-}
-
-.about-pane--front .about-pane__kicker,
-.about-pane--front .about-focus__icon {
-  color: var(--color-teal);
-}
-
-.about-pane--back .about-pane__kicker,
-.about-pane--back .about-focus__icon {
-  color: var(--color-purple);
-}
-
-.about-focus {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.about-focus li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.86rem;
-}
-
-.about-pane__context {
-  margin-top: 0.85rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-}
-
-.about-wire,
-.about-code {
-  width: 132px;
-  border: 1px solid var(--about-line);
-  background: color-mix(in srgb, var(--color-canvas) 55%, transparent);
-}
-
-.about-wire {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 8px;
-}
-
-.about-wire__bar {
-  display: flex;
-  gap: 4px;
-}
-
-.about-wire__bar span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-teal) 55%, var(--about-line));
-}
-
-.about-wire__hero {
-  height: 28px;
-  border: 1px solid var(--about-line);
-}
-
-.about-wire__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-
-.about-wire__grid span {
-  height: 18px;
-  border: 1px solid var(--about-line);
-}
-
-.about-code {
-  min-width: 168px;
-  padding: 0;
-}
-
-.about-code__bar {
-  padding: 5px 8px;
-  border-bottom: 1px solid var(--about-line);
-  color: var(--color-text-dim);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-}
-
-.about-code pre {
-  margin: 0;
-  padding: 8px;
-  overflow: hidden;
-  color: var(--color-text-muted);
-  font-family: inherit;
-  font-size: 0.62rem;
-  line-height: 1.45;
-  white-space: pre;
-}
-
-.about-code .is-comment {
-  color: var(--color-text-dim);
-}
-
-.about-code .is-kw {
-  color: var(--color-purple);
-}
-
-.about-code .is-fn {
-  color: var(--color-teal);
-}
-
-.about-flow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-  margin: 0;
-  padding: 6px 8px 8px;
-  border-top: 1px solid var(--about-line);
-  color: var(--color-text-dim);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-}
-
-.about-flow__arrow {
-  margin-inline: 0.25rem;
-  color: var(--color-purple);
-}
-
-.about-core {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 8.5rem;
-  padding: 0.4rem 0.2rem;
-  text-align: center;
-}
-
-.about-core__copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-  color: var(--color-text-dim);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-}
-
-.about-core__mark {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  margin: 0.45rem 0 0.35rem;
-  border: 1px solid color-mix(in srgb, var(--color-teal) 45%, var(--about-line));
-  background: color-mix(in srgb, var(--color-teal) 10%, transparent);
-  color: var(--color-teal);
-  font-size: 0.82rem;
-  letter-spacing: 0;
-}
-
-.about-core__copy strong {
-  color: var(--color-text);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-}
-
-.about-core__line {
-  position: absolute;
-  top: 52%;
-  width: 5.25rem;
-  height: 1px;
-  background-image: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-teal) 70%, transparent) 45%,
-    transparent 0
-  );
-  background-size: 7px 1px;
-  background-repeat: repeat-x;
-  animation: aboutDash 1.15s linear infinite;
-}
-
-.about-core__line--left {
-  right: calc(100% - 6px);
-}
-
-.about-core__line--right {
-  left: calc(100% - 6px);
-}
-
-.about-core__line::before,
-.about-core__line::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-teal);
-}
-
-.about-core__line--left::before,
-.about-core__line--right::after {
-  display: none;
-}
-
-.about-core__line--left::after {
-  right: -2px;
-}
-
-.about-core__line--right::before {
-  left: -2px;
-}
-
-.about-approach {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  align-items: center;
-  padding-block: clamp(1.5rem, 3.4vw, 2.25rem);
-}
-
-.about-quote {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  font-size: clamp(1.02rem, 1.5vw, 1.28rem);
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--color-text);
-}
-
-.about-ritual {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: stretch;
-}
-
-.about-ritual__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  margin: 0;
-  padding: 0.7rem 0.4rem;
-  color: var(--color-text-muted);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-}
-
-.about-ritual__item + .about-ritual__item {
-  border-left: 1px solid var(--about-line);
 }
 
 .about-foot__mark {
@@ -748,19 +443,13 @@ body:not(.dark) .about-portrait__img {
 
 #about-intro,
 #about-identity,
-#about-path,
-#about-frontend,
-#about-backend,
-#about-approach {
+#about-path {
   scroll-margin-top: calc(var(--nav-height) + 18px);
 }
 
 #about-intro.is-targeted,
 #about-identity.is-targeted,
-#about-path.is-targeted,
-#about-frontend.is-targeted,
-#about-backend.is-targeted,
-#about-approach.is-targeted {
+#about-path.is-targeted {
   animation: aboutTarget 0.85s var(--ease-out);
 }
 
@@ -777,12 +466,6 @@ body:not(.dark) .about-portrait__img {
 @keyframes aboutBlink {
   50% {
     opacity: 0;
-  }
-}
-
-@keyframes aboutDash {
-  to {
-    background-position: 7px 0;
   }
 }
 
@@ -868,16 +551,6 @@ body:not(.dark) .about-portrait__img {
   .about-portrait__img {
     width: min(100%, 50vh, 460px);
   }
-
-  .about-pane__body,
-  .about-pane__body--back {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .about-wire,
-  .about-code {
-    display: none;
-  }
 }
 
 @media (max-width: 1023px) {
@@ -902,55 +575,6 @@ body:not(.dark) .about-portrait__img {
   .about-headline {
     font-size: clamp(1.7rem, 5.2vw, 2.6rem);
   }
-
-  .about-bridge {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .about-core {
-    min-height: 7.5rem;
-    padding: 1.1rem 0;
-    order: 2;
-  }
-
-  .about-pane--front {
-    order: 1;
-    padding-bottom: 1rem;
-  }
-
-  .about-pane--back {
-    order: 3;
-    padding-top: 1rem;
-  }
-
-  .about-core__line {
-    width: 1px;
-    height: 2.4rem;
-    background-image: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-teal) 70%, transparent) 45%,
-      transparent 0
-    );
-    background-size: 1px 7px;
-    left: 50%;
-    right: auto;
-  }
-
-  .about-core__line--left {
-    top: -0.15rem;
-    bottom: auto;
-  }
-
-  .about-core__line--right {
-    top: auto;
-    bottom: -0.15rem;
-  }
-
-  .about-approach {
-    grid-template-columns: 1fr;
-    gap: 1.4rem;
-  }
 }
 
 @media (max-width: 767px) {
@@ -962,8 +586,6 @@ body:not(.dark) .about-portrait__img {
   .about-chrome,
   .about-identity,
   .about-path,
-  .about-bridge,
-  .about-approach,
   .about-foot {
     padding-inline: 0.95rem;
   }
@@ -1021,10 +643,6 @@ body:not(.dark) .about-portrait__img {
     justify-content: flex-start;
     text-align: left;
   }
-
-  .about-ritual__item {
-    padding-block: 0.35rem;
-  }
 }
 
 @media (max-width: 479px) {
@@ -1043,21 +661,13 @@ body:not(.dark) .about-portrait__img {
   .about-whoami__origin span:last-child {
     flex-basis: 100%;
   }
-
-  .about-ritual {
-    gap: 0;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .about-cursor,
-  .about-core__line,
   #about-intro.is-targeted,
   #about-identity.is-targeted,
-  #about-path.is-targeted,
-  #about-frontend.is-targeted,
-  #about-backend.is-targeted,
-  #about-approach.is-targeted {
+  #about-path.is-targeted {
     animation: none;
   }
 

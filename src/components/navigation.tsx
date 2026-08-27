@@ -1,6 +1,5 @@
 "use client"
 
-import ThemeIcon from "@/components/ThemeIcon"
 import { SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
@@ -512,7 +511,6 @@ const Navigation = () => {
           </nav>
 
           <div className="site-nav__actions">
-            <ThemeIcon />
             <button
               ref={toggleRef}
               className={`site-nav__toggle${menu === "open" ? " is-open" : ""}`}

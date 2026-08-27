@@ -188,7 +188,7 @@ export class ParticlesEngine {
   private enterBoost = 1
   private enterAge = 0
   private tween: SpeedTween | null = null
-  private emberMix = 0
+  private emberMix = 1
   private emberTween: MixTween | null = null
   private emberSprites: HTMLCanvasElement[] = []
   private darkTheme = true
@@ -196,6 +196,7 @@ export class ParticlesEngine {
   private coverWaiters: Array<() => void> = []
   private contentRevealListener: (() => void) | null = null
   private contentRevealed = false
+  private revealTimer = 0
   private fallDone: (() => void) | null = null
   private phaseListener: PhaseListener | null = null
   private themeObserver: MutationObserver | null = null
@@ -208,6 +209,14 @@ export class ParticlesEngine {
 
   setContentRevealListener(listener: (() => void) | null) {
     this.contentRevealListener = listener
+
+    if (listener && this.contentRevealed) {
+      listener()
+    }
+  }
+
+  hasRevealedContent() {
+    return this.contentRevealed
   }
 
   getPhase() {
@@ -223,7 +232,7 @@ export class ParticlesEngine {
     this.ctx = canvas.getContext("2d", { alpha: true })
 
     if (!this.ctx) {
-      return
+      return false
     }
 
     this.ensureEmberSprites()
@@ -231,6 +240,7 @@ export class ParticlesEngine {
     this.resize()
     this.bindChrome()
     this.startLoop()
+    return true
   }
 
   unmount() {
@@ -257,6 +267,17 @@ export class ParticlesEngine {
     this.enterBoost = 10
     this.enterAge = 0
     this.setPhase("entering")
+    this.scheduleContentReveal(ENTER_REVEAL_AT * 1000)
+  }
+
+  armContentReveal() {
+    if (this.contentRevealed) {
+      this.contentRevealListener?.()
+      return
+    }
+
+    const remaining = Math.max(0, ENTER_REVEAL_AT - this.enterAge) * 1000
+    this.scheduleContentReveal(remaining)
   }
 
   setEmberMode(on: boolean, immediate = false) {
@@ -374,7 +395,32 @@ export class ParticlesEngine {
     this.phaseListener?.(phase)
   }
 
+  private scheduleContentReveal(delayMs: number) {
+    this.clearRevealTimer()
+
+    if (this.contentRevealed) {
+      this.contentRevealListener?.()
+      return
+    }
+
+    this.revealTimer = window.setTimeout(() => {
+      this.revealTimer = 0
+      this.markContentReveal()
+    }, delayMs)
+  }
+
+  private clearRevealTimer() {
+    if (!this.revealTimer) {
+      return
+    }
+
+    window.clearTimeout(this.revealTimer)
+    this.revealTimer = 0
+  }
+
   private markContentReveal() {
+    this.clearRevealTimer()
+
     if (this.contentRevealed) {
       return
     }

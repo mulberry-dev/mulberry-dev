@@ -107,32 +107,12 @@
 }
 
 .skills-headline {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 1.35rem;
-  font-size: clamp(1.7rem, 1.15rem + 2.6vw, 3.35rem);
-  font-weight: 700;
-  line-height: 0.96;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-}
-
-.skills-headline__line {
-  display: block;
-}
-
-.skills-headline__line.is-accent {
-  color: var(--color-teal);
-}
-
-.skills-intro__body {
-  display: flex;
-  flex-direction: column;
   margin: 0;
-  max-width: 28rem;
-  color: var(--color-text-muted);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  max-width: 14em;
+  font-size: clamp(1.55rem, 1.05rem + 2vw, 2.65rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
 .skills-intro__rule {
@@ -198,13 +178,32 @@
   line-height: 1.55;
 }
 
-.skills-copy__tech {
+.skills-copy__items {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin: 1.25rem 0 0;
+  gap: 0.5rem;
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.skills-copy__items li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+}
+
+.skills-copy__items svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-teal);
+  flex-shrink: 0;
+}
+
+.skills-copy__tech {
+  margin: 1.15rem 0 0;
+  padding: 0;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
 }

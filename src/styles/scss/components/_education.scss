@@ -4,62 +4,6 @@
   gap: var(--space-6);
 }
 
-.certs-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
-  padding: var(--space-5);
-  border-radius: var(--radius-xl);
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-purple) 18%, transparent),
-    color-mix(in srgb, var(--color-teal) 12%, transparent)
-  );
-  @include glass-blur;
-  border: 1px solid var(--color-border);
-  text-align: center;
-}
-
-.certs-metrics > .reveal,
-.certs-metrics > .reveal > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--space-2) var(--space-3);
-}
-
-.certs-metrics strong {
-  display: block;
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--color-text);
-}
-
-.count-up {
-  display: inline-block;
-  min-width: 2ch;
-  font-variant-numeric: tabular-nums;
-  opacity: 0.35;
-  transform: translateY(8px);
-  transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out);
-}
-
-.count-up.is-active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.certs-metrics span {
-  display: block;
-  margin-top: var(--space-2);
-  color: var(--color-text-muted);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -245,34 +189,8 @@
 }
 
 @media (max-width: 767px) {
-  .certs-grid,
-  .certs-metrics {
+  .certs-grid {
     grid-template-columns: 1fr;
-  }
-
-  .certs-metrics {
-    gap: 0;
-    padding: var(--space-3) var(--space-4);
-  }
-
-  .certs-metrics > .reveal {
-    padding: var(--space-4) 0;
-  }
-
-  .certs-metrics > .reveal + .reveal {
-    border-top: 1px solid var(--color-border);
-  }
-}
-
-@keyframes metricFade {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -289,18 +207,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .certs-metrics,
-  .certs-metrics > div,
-  .certs-card,
-  .count-up {
+  .certs-card {
     animation: none;
-  }
-
-  .count-up,
-  .count-up.is-active {
-    transform: none;
-    opacity: 1;
-    transition: none;
   }
 
   .certs-card:hover,

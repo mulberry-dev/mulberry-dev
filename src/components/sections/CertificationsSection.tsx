@@ -3,14 +3,11 @@
 import Badge from "@/components/ui/Badge"
 import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"
-import CountUp from "@/components/ui/CountUp"
 import FilterPills from "@/components/ui/FilterPills"
 import Lightbox, { LightboxOrigin } from "@/components/ui/Lightbox"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SectionHeader from "@/components/ui/SectionHeader"
 import { certificates } from "@/data/certificates"
-import { data as projects } from "@/data/projects"
-import { skills } from "@/data/skills"
 import Image from "next/image"
 import { MouseEvent, useCallback, useMemo, useRef, useState } from "react"
 
@@ -94,32 +91,6 @@ const Certifications = () => {
             title="Certifications"
             subtitle="Continuously learning and validating my knowledge to deliver better solutions."
           />
-          <div className="certs-metrics">
-            <Reveal type="chip">
-              <div>
-                <strong>
-                  <CountUp value={certificates.length} duration={2000} delay={60} />
-                </strong>
-                <span>Certifications</span>
-              </div>
-            </Reveal>
-            <Reveal type="chip">
-              <div>
-                <strong>
-                  <CountUp value={projects.length} duration={2000} delay={180} />
-                </strong>
-                <span>Projects shipped</span>
-              </div>
-            </Reveal>
-            <Reveal type="chip">
-              <div>
-                <strong>
-                  <CountUp value={skills.length} duration={2000} delay={300} />
-                </strong>
-                <span>Tools in daily use</span>
-              </div>
-            </Reveal>
-          </div>
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
           </Reveal>

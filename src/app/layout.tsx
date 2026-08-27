@@ -3,7 +3,6 @@ import Navigation from "@/components/navigation"
 import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
 import { SITE_NAME, SITE_URL } from "@/data/site"
-import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
 import "@/styles/scss/styles.scss"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/next"
@@ -54,7 +53,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
         <Head />
       </head>
       <GoogleAnalytics gaId="G-HP85BC1BKY" />

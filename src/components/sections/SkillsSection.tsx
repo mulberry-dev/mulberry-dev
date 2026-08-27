@@ -9,7 +9,7 @@ import ProductScene from "@/components/build/ProductScene"
 import StackTerminal from "@/components/build/StackTerminal"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SiteIcon from "@/components/ui/SiteIcon"
+import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
 import {
   BUILD_APPROACH,
   BUILD_CONNECTED,
@@ -25,14 +25,16 @@ const CopyBlock = ({
   index,
   title,
   kicker,
-  copy,
+  copy = [],
+  items,
   tech,
   stages
 }: {
   index: string
   title: string
   kicker: string
-  copy: readonly string[]
+  copy?: readonly string[]
+  items?: readonly { icon: SiteIconName; label: string }[]
   tech?: readonly string[]
   stages?: typeof BUILD_APPROACH.stages
 }) => (
@@ -53,14 +55,22 @@ const CopyBlock = ({
         ))}
       </Reveal>
     ) : null}
-    {tech ? (
-      <ul className="skills-copy__tech">
-        {tech.map((item) => (
-          <Reveal key={item} as="li" type="chip">
-            {item}
+    {items ? (
+      <ul className="skills-copy__items">
+        {items.map((item) => (
+          <Reveal key={item.label} as="li" type="chip">
+            <span aria-hidden="true">
+              <SiteIcon name={item.icon} />
+            </span>
+            <span>{item.label}</span>
           </Reveal>
         ))}
       </ul>
+    ) : null}
+    {tech ? (
+      <Reveal type="text" as="p" className="skills-copy__tech">
+        {tech.join(" · ")}
+      </Reveal>
     ) : null}
     {stages ? (
       <ol className="skills-copy__stages">
@@ -218,23 +228,7 @@ const Skills = () => {
                 <BuildSession cursor />
               </Reveal>
               <Reveal type="heading" as="h2" className="skills-headline">
-                {BUILD_INTRO.headline.map((line, index) => (
-                  <span
-                    key={line}
-                    className={
-                      index >= BUILD_INTRO.accentFrom
-                        ? "skills-headline__line is-accent"
-                        : "skills-headline__line"
-                    }
-                  >
-                    {line}
-                  </span>
-                ))}
-              </Reveal>
-              <Reveal type="text" as="p" className="skills-intro__body">
-                {BUILD_INTRO.body.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
+                {BUILD_INTRO.headline}
               </Reveal>
               <Reveal
                 type="decorative"
@@ -252,6 +246,10 @@ const Skills = () => {
             <CopyBlock {...BUILD_SYSTEMS} />
           </Capability>
 
+          <Capability id="build-connected" stage={<ConnectedScene />}>
+            <CopyBlock {...BUILD_CONNECTED} />
+          </Capability>
+
           <Capability id="build-modernize" stage={<ModernizeScene />}>
             <CopyBlock
               index={BUILD_MODERNIZATION.index}
@@ -259,10 +257,6 @@ const Skills = () => {
               kicker={BUILD_MODERNIZATION.kicker}
               copy={BUILD_MODERNIZATION.copy}
             />
-          </Capability>
-
-          <Capability id="build-connected" stage={<ConnectedScene />}>
-            <CopyBlock {...BUILD_CONNECTED} />
           </Capability>
 
           <Capability id="build-approach" stage={<ApproachScene />}>

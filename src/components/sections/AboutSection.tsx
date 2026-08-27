@@ -3,13 +3,9 @@
 import AboutPortrait from "@/components/about/AboutPortrait"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
+import SiteIcon from "@/components/ui/SiteIcon"
 import {
-  ABOUT_APPROACH,
-  ABOUT_BACKEND,
-  ABOUT_BRIDGE,
   ABOUT_FOOTER,
-  ABOUT_FRONTEND,
   ABOUT_HOST,
   ABOUT_INITIALS,
   ABOUT_INTRO,
@@ -46,23 +42,6 @@ const SessionPrompt = ({ cursor = false }: { cursor?: boolean }) => (
     <span className="about-session__cash">$</span>
     {cursor ? <span className="about-cursor" aria-hidden="true" /> : null}
   </p>
-)
-
-const FocusList = ({
-  items
-}: {
-  items: { icon: SiteIconName; label: string }[]
-}) => (
-  <ul className="about-focus">
-    {items.map((item) => (
-      <li key={item.label}>
-        <span className="about-focus__icon" aria-hidden="true">
-          <SiteIcon name={item.icon} />
-        </span>
-        <span>{item.label}</span>
-      </li>
-    ))}
-  </ul>
 )
 
 const About = () => {
@@ -272,117 +251,6 @@ const About = () => {
                 ))}
               </ol>
             </div>
-          </RevealGroup>
-
-          <RevealGroup className="about-bridge" mode="scroll" stagger={64}>
-            <div id="about-frontend" className="about-pane about-pane--front">
-              <Reveal type="card">
-              <Prompt command={ABOUT_FRONTEND.command} />
-              <div className="about-pane__body">
-                <div className="about-wire" aria-hidden="true">
-                  <div className="about-wire__bar">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <div className="about-wire__hero" />
-                  <div className="about-wire__grid">
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
-                <div>
-                  <p className="about-pane__kicker">{ABOUT_FRONTEND.kicker}</p>
-                  <FocusList items={ABOUT_FRONTEND.items} />
-                  <p className="about-pane__context">
-                    {ABOUT_FRONTEND.context.join(" · ")}
-                  </p>
-                </div>
-              </div>
-              </Reveal>
-            </div>
-
-            <Reveal type="decorative" className="about-core">
-              <span className="about-core__line about-core__line--left" />
-              <div className="about-core__copy">
-                <span>{ABOUT_BRIDGE.overline}</span>
-                <span>{ABOUT_BRIDGE.title}</span>
-                <span className="about-core__mark">&lt;/&gt;</span>
-                <strong>{ABOUT_BRIDGE.label}</strong>
-              </div>
-              <span className="about-core__line about-core__line--right" />
-            </Reveal>
-
-            <div id="about-backend" className="about-pane about-pane--back">
-              <Reveal type="card">
-              <Prompt command={ABOUT_BACKEND.command} />
-              <div className="about-pane__body about-pane__body--back">
-                <div>
-                  <p className="about-pane__kicker">{ABOUT_BACKEND.kicker}</p>
-                  <FocusList items={ABOUT_BACKEND.items} />
-                  <p className="about-pane__context">
-                    {ABOUT_BACKEND.context.join(" · ")}
-                  </p>
-                </div>
-                <div className="about-code" aria-hidden="true">
-                  <div className="about-code__bar">
-                    <span>service.ts</span>
-                  </div>
-                  <pre>
-                    <code>
-                      <span className="is-comment">
-                        {ABOUT_BACKEND.snippet[0].text}
-                      </span>
-                      {"\n"}
-                      <span className="is-kw">const </span>
-                      <span className="is-fn">ship</span>
-                      {" = "}
-                      <span className="is-kw">async </span>
-                      {"(req) => {\n"}
-                      {"  const data = await service.run(req)\n"}
-                      {"  return db.save(data)\n"}
-                      {"}"}
-                    </code>
-                  </pre>
-                  <p className="about-flow">
-                    {ABOUT_BACKEND.flow.map((step, index) => (
-                      <span key={step}>
-                        {index > 0 ? (
-                          <span className="about-flow__arrow">→</span>
-                        ) : null}
-                        {step}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              </div>
-              </Reveal>
-            </div>
-          </RevealGroup>
-
-          <RevealGroup className="about-approach" mode="scroll" stagger={56}>
-            <div id="about-approach" data-about-section="approach">
-              <Reveal type="eyebrow">
-                <Prompt command={ABOUT_APPROACH.command} cursor />
-              </Reveal>
-              <Reveal type="heading" as="blockquote" className="about-quote">
-                {ABOUT_APPROACH.quote.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
-              </Reveal>
-            </div>
-            <Reveal type="card" className="about-ritual">
-              {ABOUT_APPROACH.ritual.map((item) => (
-                <p key={item.label} className="about-ritual__item">
-                  <span className="about-ritual__icon" aria-hidden="true">
-                    <SiteIcon name={item.icon} />
-                  </span>
-                  <span>{item.label}</span>
-                </p>
-              ))}
-            </Reveal>
           </RevealGroup>
 
           <footer className="about-foot">
