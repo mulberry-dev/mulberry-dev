@@ -1,5 +1,6 @@
 $font-sans: "Poppins", sans-serif;
-$font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Menlo, monospace;
+$font-mono: var(--font-jetbrains, "JetBrains Mono"), ui-monospace, "Cascadia Code",
+  "SFMono-Regular", Menlo, monospace;
 
 $weight-regular: 400;
 $weight-medium: 500;
