@@ -37,7 +37,12 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: "Senior Full Stack Engineer specialized in JavaScript/TypeScript",
     url: SITE_URL,
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "https://i.ibb.co/BwtSfMG/Captura-de-pantalla-2023-09-24-161329.png"
+      }
+    ]
   }
 }
 
