@@ -118,6 +118,11 @@
   will-change: transform;
   backface-visibility: hidden;
   animation: tech-marquee-left var(--marquee-duration) linear infinite;
+  animation-play-state: paused;
+}
+
+.tech-marquee.is-active .tech-marquee__track {
+  animation-play-state: running;
 }
 
 .tech-marquee__row--ltr .tech-marquee__track {
@@ -158,6 +163,9 @@
   user-select: none;
   -webkit-user-select: none;
   opacity: 0;
+}
+
+.tech-marquee.is-revealed .tech-marquee__chip {
   animation: tech-chip-in var(--chip-in-duration) var(--chip-in-ease) both;
   animation-delay: calc(
     var(--chip-in-base) + (var(--row-i, 0) * var(--chip-in-row)) +

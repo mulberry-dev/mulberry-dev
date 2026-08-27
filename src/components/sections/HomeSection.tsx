@@ -10,7 +10,6 @@ import {
   shouldRevealHomeChrome
 } from "@/lib/siteSession"
 import { LINKEDIN_URL } from "@/data/site"
-import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
@@ -255,13 +254,21 @@ const IndexPage = () => {
               <Button href="/about" variant="secondary">
                 About me
               </Button>
+              <Link
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="home-social"
+                aria-label="LinkedIn"
+              >
+                in
+              </Link>
             </div>
           </div>
 
-          <div className="home-hero__visual">
+          <div className="home-hero__visual" aria-hidden="true">
             <div
               className="home-orbit"
-              aria-hidden="true"
               onPointerEnter={(event) =>
                 setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
               }
@@ -271,7 +278,6 @@ const IndexPage = () => {
             </div>
             <div
               className="home-orbit home-orbit--inner"
-              aria-hidden="true"
               onPointerEnter={(event) =>
                 setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
               }
@@ -279,34 +285,6 @@ const IndexPage = () => {
             >
               <span className="home-orbit__node home-orbit__node--purple" />
             </div>
-            <Image
-              src="/images/Webp/santi-dark-theme.webp"
-              alt="Santiago"
-              width={960}
-              height={960}
-              unoptimized
-              priority
-              className="home-avatar home-avatar--dark"
-            />
-            <Image
-              src="/images/Webp/santi-light-theme.webp"
-              alt=""
-              width={960}
-              height={960}
-              unoptimized
-              loading="lazy"
-              decoding="async"
-              className="home-avatar home-avatar--light"
-            />
-            <Link
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="home-social"
-              aria-label="LinkedIn"
-            >
-              in
-            </Link>
           </div>
         </div>
       </Container>

@@ -4,19 +4,12 @@ import ContactCard from "@/components/contact/ContactCard"
 import ContactGraphic from "@/components/contact/ContactGraphic"
 import Badge from "@/components/ui/Badge"
 import Container from "@/components/ui/Container"
-import CtaBanner from "@/components/ui/CtaBanner"
-import IconBox from "@/components/ui/IconBox"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SiteIcon from "@/components/ui/SiteIcon"
 import {
-  CONTACT_CLOSE_CTA,
-  CONTACT_CREDIBILITY_COPY,
   CONTACT_INTRO,
   CONTACT_OPTIONS,
-  CONTACT_OPTIONS_COPY,
-  CONTACT_TECH
+  CONTACT_OPTIONS_COPY
 } from "@/data/contact"
-import Image from "next/image"
 
 const Contact = () => {
   return (
@@ -66,41 +59,6 @@ const Contact = () => {
             ))}
           </div>
         </RevealGroup>
-
-        <RevealGroup className="contact-credibility" mode="scroll" stagger={36}>
-          <Reveal type="text" as="p">
-            {CONTACT_CREDIBILITY_COPY.label}
-          </Reveal>
-          <ul>
-            {CONTACT_TECH.map((tech) => (
-              <Reveal key={tech.name} as="li" type="chip">
-                <Image
-                  src={tech.imageSrc}
-                  alt=""
-                  width={18}
-                  height={18}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>{tech.name}</span>
-              </Reveal>
-            ))}
-          </ul>
-        </RevealGroup>
-
-        <Reveal type="button" mode="scroll">
-          <CtaBanner
-            icon={
-              <IconBox round>
-                <SiteIcon name="cursor" />
-              </IconBox>
-            }
-            title={CONTACT_CLOSE_CTA.title}
-            subtitle={CONTACT_CLOSE_CTA.subtitle}
-            actionHref={CONTACT_CLOSE_CTA.actionHref}
-            actionLabel={CONTACT_CLOSE_CTA.actionLabel}
-          />
-        </Reveal>
       </Container>
     </section>
   )

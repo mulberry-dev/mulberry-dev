@@ -20,6 +20,9 @@ export const SECTIONS: SiteSection[] = links.map((link) => ({
 export const isSectionPath = (pathname: string) =>
   SECTION_PATHS.includes(pathname)
 
+export const isProjectDetailPath = (pathname: string) =>
+  pathname.startsWith("/portfolio/") && pathname !== "/portfolio"
+
 export const getSectionIndex = (pathname: string) =>
   SECTION_PATHS.indexOf(pathname)
 

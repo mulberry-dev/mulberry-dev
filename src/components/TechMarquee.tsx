@@ -2,7 +2,13 @@
 
 import { Skill, skills } from "@/data/skills"
 import Image from "next/image"
-import type { CSSProperties, MouseEvent } from "react"
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent
+} from "react"
 
 const ROW_COUNT = 3
 const MIN_CHIPS_PER_ROW = 20
@@ -63,7 +69,42 @@ const ChipSet = ({
 )
 
 const TechMarquee = () => {
+  const rootRef = useRef<HTMLDivElement>(null)
+  const [revealed, setRevealed] = useState(false)
+  const [active, setActive] = useState(false)
   const rows = buildRows(skills)
+
+  useLayoutEffect(() => {
+    const node = rootRef.current
+
+    if (!node) {
+      return
+    }
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    if (reduced) {
+      setRevealed(true)
+      setActive(false)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true)
+          setActive(true)
+          return
+        }
+
+        setActive(false)
+      },
+      { threshold: 0.18, rootMargin: "0px" }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
 
   const handleRowEnter = (event: MouseEvent<HTMLDivElement>) => {
     setRowPlaybackRate(event.currentTarget, HOVER_PLAYBACK_RATE)
@@ -73,9 +114,18 @@ const TechMarquee = () => {
     setRowPlaybackRate(event.currentTarget, 1)
   }
 
+  const className = [
+    "tech-marquee",
+    revealed ? "is-revealed" : "",
+    active ? "is-active" : ""
+  ]
+    .filter(Boolean)
+    .join(" ")
+
   return (
     <div
-      className="tech-marquee"
+      ref={rootRef}
+      className={className}
       role="img"
       aria-label="Technologies I work with, including React, TypeScript, Next.js, Docker, and more"
     >
