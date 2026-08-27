@@ -78,6 +78,11 @@ const About = () => {
     }
 
     const update = () => {
+      if (window.scrollY < 20) {
+        setActive(ABOUT_SECTIONS[0].id)
+        return
+      }
+
       const marker = window.innerHeight * 0.34
       let current = nodes[0].id
 

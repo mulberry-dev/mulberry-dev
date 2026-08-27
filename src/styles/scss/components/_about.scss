@@ -160,35 +160,63 @@
   max-width: 360px;
 }
 
+.about-photo.reveal,
+.about-photo.reveal.is-armed,
+.about-photo.reveal.is-visible {
+  transform: none;
+  backface-visibility: visible;
+}
+
 .about-portrait {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 280px;
+  min-height: 300px;
+}
+
+.about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 62% 70% at 50% 36%,
+    transparent 42%,
+    color-mix(in srgb, var(--color-canvas) 78%, transparent) 100%
+  );
 }
 
 .about-portrait__map {
   position: absolute;
-  width: 124%;
-  max-width: 420px;
+  width: 130%;
+  max-width: 440px;
   color: var(--color-teal);
-  opacity: 0.16;
+  opacity: 0.22;
   pointer-events: none;
 }
 
 .about-portrait__img {
   position: relative;
   z-index: 1;
-  width: min(100%, 340px);
+  width: min(100%, 360px);
   height: auto;
-  object-fit: contain;
+  max-height: 430px;
+  object-fit: cover;
+  object-position: center 10%;
 }
 
 .about-portrait__img--dark {
-  filter: grayscale(1) contrast(1.14) brightness(0.86);
+  filter: grayscale(1) contrast(1.22) brightness(0.8);
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 66% 72% at 50% 36%, #000 38%, transparent 76%);
-  mask-image: radial-gradient(ellipse 66% 72% at 50% 36%, #000 38%, transparent 76%);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 70%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 70%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .about-portrait__img--light {
@@ -201,9 +229,15 @@ body:not(.dark) .about-portrait__img--dark {
 
 body:not(.dark) .about-portrait__img--light {
   display: block;
-  filter: grayscale(0.7) contrast(1.06);
-  -webkit-mask-image: radial-gradient(ellipse 68% 74% at 50% 38%, #000 42%, transparent 78%);
-  mask-image: radial-gradient(ellipse 68% 74% at 50% 38%, #000 42%, transparent 78%);
+  filter: grayscale(0.72) contrast(1.08);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 12%, #000 74%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 12%, #000 74%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .about-whoami__name {
@@ -477,7 +511,7 @@ body:not(.dark) .about-portrait__img--light {
 .about-core__line {
   position: absolute;
   top: 52%;
-  width: 3.6rem;
+  width: 5.25rem;
   height: 1px;
   background-image: linear-gradient(
     90deg,
@@ -631,7 +665,7 @@ body:not(.dark) .about-portrait__img--light {
     top: 3.4rem;
     bottom: 3.4rem;
     left: 0;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
