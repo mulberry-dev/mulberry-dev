@@ -50,7 +50,7 @@ export const lockBodyScroll = () => {
   }
 }
 
-export const unlockBodyScroll = () => {
+export const unlockBodyScroll = (restore = true) => {
   lockCount = Math.max(0, lockCount - 1)
 
   if (lockCount > 0 || !snapshot) {
@@ -71,5 +71,7 @@ export const unlockBodyScroll = () => {
   body.style.paddingRight = snapshot.bodyPaddingRight
   snapshot = null
 
-  window.scrollTo(0, scrollY)
+  if (restore) {
+    window.scrollTo(0, scrollY)
+  }
 }

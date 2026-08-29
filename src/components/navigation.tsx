@@ -58,8 +58,7 @@ const Navigation = () => {
   const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
   const skipIndicatorMotionRef = useRef(true)
   const indicatorReadyRef = useRef(false)
-  const holdMenuRef = useRef(false)
-  const holdMenuTimerRef = useRef(0)
+  const skipScrollRestoreRef = useRef(false)
 
   useEffect(() => {
     if (shouldPlayNavIntro()) {
@@ -120,10 +119,6 @@ const Navigation = () => {
       document.body.classList.add("nav-intro-done")
     }
 
-    if (holdMenuRef.current) {
-      return
-    }
-
     setMenu((current) => (current === "open" ? "closing" : current))
   }, [pathname])
 
@@ -151,7 +146,9 @@ const Navigation = () => {
 
     return () => {
       document.body.classList.remove("nav-menu-open")
-      unlockBodyScroll()
+      const restore = !skipScrollRestoreRef.current
+      skipScrollRestoreRef.current = false
+      unlockBodyScroll(restore)
     }
   }, [menuOpen])
 
@@ -487,23 +484,10 @@ const Navigation = () => {
                 onClick={() => {
                   setActivePath(link.path)
 
-                  if (menu !== "open") {
-                    return
-                  }
-
-                  const alreadyActive = isActivePath(activePath, link.path)
-
-                  if (alreadyActive || prefersReducedMotion()) {
+                  if (menu === "open") {
+                    skipScrollRestoreRef.current = !isActivePath(activePath, link.path)
                     setMenu("closing")
-                    return
                   }
-
-                  holdMenuRef.current = true
-                  window.clearTimeout(holdMenuTimerRef.current)
-                  holdMenuTimerRef.current = window.setTimeout(() => {
-                    holdMenuRef.current = false
-                    setMenu("closing")
-                  }, 320)
                 }}
               >
                 {link.name}

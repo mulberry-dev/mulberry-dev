@@ -7,6 +7,7 @@ import {
   applySectionTitle,
   focusSection,
   isSectionPath,
+  markProgrammaticSectionScroll,
   observeActiveSection,
   prefetchSectionPath,
   requiredSectionIds,
@@ -123,6 +124,29 @@ const SiteExperience = () => {
 
       if (token !== revealTokenRef.current) {
         return false
+      }
+
+      if (document.body.style.position === "fixed") {
+        await new Promise<void>((resolve) => {
+          const started = performance.now()
+          const tick = () => {
+            if (
+              document.body.style.position !== "fixed" ||
+              performance.now() - started > 400
+            ) {
+              resolve()
+              return
+            }
+
+            window.requestAnimationFrame(tick)
+          }
+
+          tick()
+        })
+
+        if (token !== revealTokenRef.current) {
+          return false
+        }
       }
 
       scrollToSection(path, behavior)
@@ -266,6 +290,7 @@ const SiteExperience = () => {
       }
 
       event.preventDefault()
+      markProgrammaticSectionScroll(1400)
       activePathRef.current = nextPath
       applySectionTitle(nextPath)
       announceSection(nextPath)
