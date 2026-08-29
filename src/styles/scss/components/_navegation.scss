@@ -287,6 +287,12 @@ body:not(.dark) .site-nav__chrome {
 
   .site-nav__inner {
     padding-inline: var(--space-4);
+    pointer-events: none;
+  }
+
+  .site-nav__brand,
+  .site-nav__actions {
+    pointer-events: auto;
   }
 
   .site-nav__backdrop {
@@ -347,7 +353,7 @@ body:not(.dark) .site-nav__chrome {
   .site-nav__links.is-open {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    pointer-events: none;
   }
 
   .site-nav__links.is-closing {
@@ -357,6 +363,7 @@ body:not(.dark) .site-nav__chrome {
   }
 
   .site-nav__links.is-open .site-nav__link {
+    pointer-events: auto;
     font-size: 1.25rem;
     font-weight: 600;
     padding: 10px 12px;
