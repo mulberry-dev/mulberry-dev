@@ -363,6 +363,10 @@ body:not(.dark) .site-nav__chrome {
   }
 
   .site-nav__links.is-open .site-nav__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     pointer-events: auto;
     font-size: 1.25rem;
     font-weight: 600;
