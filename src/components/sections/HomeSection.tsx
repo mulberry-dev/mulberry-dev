@@ -3,6 +3,8 @@
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
 import { useParticles } from "@/components/particles"
+import { SITE_LOGO, SITE_NAME } from "@/data/site"
+import Image from "next/image"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   didLeaveHome,
@@ -248,6 +250,17 @@ const IndexPage = () => {
       <Container className="home-page">
         <div className="home-hero">
           <div className="home-hero__copy">
+            <div className="home-hero__brand">
+              <Image
+                className="home-hero__logo site-logo"
+                src={SITE_LOGO}
+                width={127}
+                height={88}
+                alt=""
+                priority
+              />
+              <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
+            </div>
             <h1 aria-label="Hi! I am Santiago">
               <span aria-hidden="true">
                 <RevealChars delay={0.1}>Hi! I am </RevealChars>

@@ -1,5 +1,5 @@
 import { links } from "@/data/navegation"
-import { SITE_NAME } from "@/data/site"
+import { SITE_NAME, SITE_TITLE } from "@/data/site"
 
 export const SECTION_PATHS = links.map((link) => link.path)
 export const SECTION_CHANGE_EVENT = "site:section-change"
@@ -33,7 +33,7 @@ export const sectionDocumentTitle = (pathname: string) => {
   const section = getSectionByPath(pathname)
 
   if (!section || section.path === "/") {
-    return `${SITE_NAME} | Web Programmer`
+    return SITE_TITLE
   }
 
   return `${section.name} | ${SITE_NAME}`

@@ -1,6 +1,6 @@
 "use client"
 
-import { SITE_NAME } from "@/data/site"
+import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
@@ -450,8 +450,9 @@ const Navigation = () => {
           <div className="site-nav__brand">
             <Link href="/" className="site-nav__logo" scroll={false}>
               <Image
-                src="/images/Icons/MouseArrow.webp"
-                width={28}
+                className="site-logo"
+                src={SITE_LOGO}
+                width={40}
                 height={28}
                 alt=""
                 priority

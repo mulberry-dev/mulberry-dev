@@ -1,6 +1,6 @@
 "use client"
 
-import { COPYRIGHT_NAME, SITE_NAME } from "@/data/site"
+import { COPYRIGHT_NAME, SITE_LOGO, SITE_NAME } from "@/data/site"
 import { isSectionPath } from "@/lib/sectionNav"
 import Image from "next/image"
 import Link from "next/link"
@@ -19,8 +19,9 @@ const Footer = () => {
       <div className="site-footer__inner">
         <Link href="/" className="site-footer__brand" scroll={false}>
           <Image
-            src="/images/Icons/MouseArrow.webp"
-            width={22}
+            className="site-logo"
+            src={SITE_LOGO}
+            width={32}
             height={22}
             alt=""
             loading="lazy"

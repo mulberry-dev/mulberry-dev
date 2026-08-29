@@ -64,7 +64,7 @@
       color-mix(in srgb, #000 8%, transparent) 100%
     ),
     color-mix(in srgb, var(--color-canvas) 12%, transparent);
-  border: 1px solid color-mix(in srgb, #fff 18%, transparent);
+  border: 1px solid color-mix(in srgb, #ffffff79 50%, transparent);
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, #fff 28%, transparent),
     inset 0 -1px 10px color-mix(in srgb, #000 14%, transparent),
@@ -136,6 +136,12 @@
 .site-nav__logo span {
   line-height: 1.2;
   overflow-wrap: anywhere;
+}
+
+.site-nav__logo .site-logo {
+  width: auto;
+  height: 28px;
+  object-fit: contain;
 }
 
 .site-nav__links {

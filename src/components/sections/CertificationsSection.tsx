@@ -33,6 +33,10 @@ const Certifications = () => {
     [active]
   )
   const openCertificate = certificates.find(item => item.id === viewer?.id)
+  const currentIndex = viewer
+    ? visible.findIndex(item => item.id === viewer.id)
+    : -1
+  const canNavigate = visible.length > 1 && currentIndex >= 0
   const sourceImage = openCertificate
     ? imageRefs.current.get(openCertificate.id)
     : undefined
@@ -75,6 +79,25 @@ const Certifications = () => {
 
     setViewer({ id, origin })
   }
+
+  const goByOffset = useCallback((offset: number) => {
+    setViewer(current => {
+      if (!current) {
+        return current
+      }
+
+      const index = visible.findIndex(item => item.id === current.id)
+      if (index < 0 || visible.length < 2) {
+        return current
+      }
+
+      const next = visible[(index + offset + visible.length) % visible.length]
+      return { ...current, id: next.id }
+    })
+  }, [visible])
+
+  const goPrevious = useCallback(() => goByOffset(-1), [goByOffset])
+  const goNext = useCallback(() => goByOffset(1), [goByOffset])
 
   return (
     <section
@@ -142,6 +165,15 @@ const Certifications = () => {
           getOrigin={getOrigin}
           aspectRatio={aspectRatio}
           onClose={() => setViewer(null)}
+          onPrevious={canNavigate ? goPrevious : undefined}
+          onNext={canNavigate ? goNext : undefined}
+          hasPrevious={canNavigate}
+          hasNext={canNavigate}
+          counter={
+            currentIndex >= 0
+              ? `${currentIndex + 1} / ${visible.length}`
+              : undefined
+          }
         />
       ) : null}
     </section>

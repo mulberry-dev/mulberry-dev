@@ -40,23 +40,23 @@ export const ABOUT_HISTORY = {
   items: [
     {
       step: "01",
-      title: "Started in design",
-      text: "Years of visual work taught me to notice what people feel before they can name it."
+      title: "I care about how products feel",
+      text: "I'm drawn to thoughtful design: clear interfaces, small details, and experiences that make people feel confident using a product."
     },
     {
       step: "02",
-      title: "Learned the interface",
-      text: "I learned to build the screens people actually live in."
+      title: "I build the frontend people experience",
+      text: "With React and TypeScript, I turn product ideas into interfaces that are intuitive, responsive, and useful."
     },
     {
       step: "03",
-      title: "Built the system",
-      text: "I added the architecture behind those screens so the product could ship complete."
+      title: "I enjoy building what powers it",
+      text: "Backend work is what makes a great frontend possible: reliable APIs, secure authentication, clean data flows, and systems that perform under real use."
     },
     {
       step: "04",
-      title: "Now I hold both",
-      text: "Frontend and backend as one craft: something that looks right because it works right."
+      title: "I like connecting both worlds",
+      text: "For me, frontend and backend are one craft: design guides the experience, and strong engineering makes that experience work."
     }
   ]
 } as const

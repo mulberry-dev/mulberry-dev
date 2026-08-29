@@ -9,7 +9,7 @@ import TechBadge from "@/components/ui/TechBadge"
 import { data as projects } from "@/data/projects"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useMemo, useState, type MouseEvent } from "react"
 
 const filters = [
@@ -37,8 +37,13 @@ const preloadProjectImage = (src: string) => {
 
 const PortfolioCard = ({ project }: { project: Project }) => {
   const router = useRouter()
+  const pathname = usePathname()
   const [loading, setLoading] = useState(false)
   const href = `/portfolio/${project.id}`
+
+  useEffect(() => {
+    setLoading(false)
+  }, [pathname])
 
   const prefetchProject = () => {
     router.prefetch(href)
