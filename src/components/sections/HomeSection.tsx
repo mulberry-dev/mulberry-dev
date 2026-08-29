@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
 import { useParticles } from "@/components/particles"
+import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   didLeaveHome,
   isHomeChromeRevealed,
@@ -14,6 +15,7 @@ import {
   Children,
   cloneElement,
   isValidElement,
+  useCallback,
   useEffect,
   useState,
   type CSSProperties,
@@ -95,9 +97,26 @@ const IndexPage = () => {
   const { contentReady, reducedMotion } = useParticles()
   const [isFirstHome] = useState(() => !didLeaveHome())
   const [introComplete, setIntroComplete] = useState(false)
-  const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() =>
-    shouldRevealHomeChrome() ? "shown" : "wait"
-  )
+  const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() => {
+    if (!shouldRevealHomeChrome()) {
+      return "wait"
+    }
+
+    markHomeChromeRevealed()
+    return "shown"
+  })
+
+  const revealChrome = useCallback(() => {
+    if (isHomeChromeRevealed()) {
+      return false
+    }
+
+    markHomeChromeRevealed()
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    setChromePhase(reduced ? "shown" : "nav")
+    window.dispatchEvent(new Event("site:home-chrome-revealed"))
+    return true
+  }, [])
 
   useEffect(() => {
     if (!contentReady) {
@@ -117,23 +136,25 @@ const IndexPage = () => {
   }, [contentReady, isFirstHome, reducedMotion])
 
   useEffect(() => {
-    if (pathname !== "/") {
-      return
+    const onSectionChange = (event: Event) => {
+      const path = (event as CustomEvent<{ path?: string }>).detail?.path
+
+      if (path && path !== "/") {
+        revealChrome()
+      }
     }
 
-    if (shouldRevealHomeChrome()) {
-      markHomeChromeRevealed()
-      setChromePhase("shown")
-      return
-    }
+    window.addEventListener(SECTION_CHANGE_EVENT, onSectionChange)
+    return () => window.removeEventListener(SECTION_CHANGE_EVENT, onSectionChange)
+  }, [revealChrome])
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
+  useEffect(() => {
+    if (pathname !== "/" || shouldRevealHomeChrome() || window.scrollY > 1) {
+      if (!isHomeChromeRevealed()) {
+        markHomeChromeRevealed()
+      }
 
-    if (window.scrollY > 1) {
-      markHomeChromeRevealed()
-      setChromePhase("shown")
+      setChromePhase((current) => (current === "wait" ? "shown" : current))
       return
     }
 
@@ -147,7 +168,7 @@ const IndexPage = () => {
         return
       }
 
-      revealChrome()
+      revealAndDetach()
     }
 
     const onFirstKeyScroll = (event: KeyboardEvent) => {
@@ -164,22 +185,19 @@ const IndexPage = () => {
         event.key === "End" ||
         event.key === " "
       ) {
-        revealChrome()
+        revealAndDetach()
       }
     }
 
-    const revealChrome = () => {
-      if (isHomeChromeRevealed()) {
+    const revealAndDetach = () => {
+      if (!revealChrome()) {
         return
       }
 
-      markHomeChromeRevealed()
       window.removeEventListener("wheel", onFirstScroll)
       window.removeEventListener("touchmove", onFirstScroll)
       window.removeEventListener("scroll", onFirstScroll)
       window.removeEventListener("keydown", onFirstKeyScroll)
-      setChromePhase(reducedMotion ? "shown" : "nav")
-      window.dispatchEvent(new Event("site:home-chrome-revealed"))
     }
 
     const scrollListener: AddEventListenerOptions = { passive: true }
@@ -195,7 +213,7 @@ const IndexPage = () => {
       window.removeEventListener("scroll", onFirstScroll)
       window.removeEventListener("keydown", onFirstKeyScroll)
     }
-  }, [pathname])
+  }, [pathname, revealChrome])
 
   useEffect(() => {
     if (chromePhase !== "nav") {

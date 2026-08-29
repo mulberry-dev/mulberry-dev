@@ -28,6 +28,8 @@ export type ContactOption = {
   icon: SiteIconName
   title: string
   description: string
+  value: string
+  copyValue?: string
   cta: string
   href: string
   external: boolean
@@ -35,6 +37,10 @@ export type ContactOption = {
   featured?: boolean
 }
 
+const displayUrl = (url: string) =>
+  url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
+
+const CALL_VALUE = CALENDLY_URL || CONTACT_EMAIL
 const CALL_HREF =
   CALENDLY_URL ||
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Schedule a 30-min call")}`
@@ -46,6 +52,7 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     title: "Email",
     description:
       "Send me an email anytime. Perfect for detailed project discussions.",
+    value: CONTACT_EMAIL,
     cta: "Send email",
     href: `mailto:${CONTACT_EMAIL}`,
     external: false,
@@ -58,6 +65,8 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     title: "LinkedIn",
     description:
       "Connect with me for professional opportunities and networking.",
+    value: displayUrl(LINKEDIN_URL),
+    copyValue: LINKEDIN_URL,
     cta: "View profile",
     href: LINKEDIN_URL,
     external: true,
@@ -69,6 +78,8 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     title: "Schedule a call",
     description:
       "Book a 30-min call to discuss your project or explore opportunities.",
+    value: displayUrl(CALL_VALUE),
+    copyValue: CALL_VALUE,
     cta: "Book a call",
     href: CALL_HREF,
     external: Boolean(CALENDLY_URL),
@@ -79,6 +90,8 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     icon: "github",
     title: "GitHub",
     description: "Explore my code, open-source projects and contributions.",
+    value: displayUrl(GITHUB_URL),
+    copyValue: GITHUB_URL,
     cta: "View GitHub",
     href: GITHUB_URL,
     external: true,

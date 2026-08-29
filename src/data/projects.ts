@@ -301,6 +301,8 @@ export const data = [
     description:
       "A blog developed in Next.js includes an admin panel that allows users to add or delete posts. The platform features a login and authentication system and supports an Offline Mode with Local Storage. (2023)",
     img: "/images/Webp/mi-blog.webp",
+    width: 1586,
+    height: 992,
 
     tech: [
       {
