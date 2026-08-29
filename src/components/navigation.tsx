@@ -3,7 +3,7 @@
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
-import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
+import { prefetchSectionPath, SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import { markLeftHome, shouldPlayNavIntro } from "@/lib/siteSession"
 import Image from "next/image"
 import Link from "next/link"
@@ -58,7 +58,6 @@ const Navigation = () => {
   const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
   const skipIndicatorMotionRef = useRef(true)
   const indicatorReadyRef = useRef(false)
-  const skipScrollRestoreRef = useRef(false)
 
   useEffect(() => {
     if (shouldPlayNavIntro()) {
@@ -136,21 +135,20 @@ const Navigation = () => {
   }, [playNavIntro])
 
   useLayoutEffect(() => {
-    if (!menuOpen) {
+    if (menu !== "open") {
       document.body.classList.remove("nav-menu-open")
       return
     }
 
     document.body.classList.add("nav-menu-open")
+    prefetchSectionPath("/contact")
     lockBodyScroll()
 
     return () => {
       document.body.classList.remove("nav-menu-open")
-      const restore = !skipScrollRestoreRef.current
-      skipScrollRestoreRef.current = false
-      unlockBodyScroll(restore)
+      unlockBodyScroll()
     }
-  }, [menuOpen])
+  }, [menu])
 
   useEffect(() => {
     if (menu !== "open") {
@@ -485,7 +483,6 @@ const Navigation = () => {
                   setActivePath(link.path)
 
                   if (menu === "open") {
-                    skipScrollRestoreRef.current = !isActivePath(activePath, link.path)
                     setMenu("closing")
                   }
                 }}

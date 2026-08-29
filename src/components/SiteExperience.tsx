@@ -12,6 +12,7 @@ import {
   prefetchSectionPath,
   requiredSectionIds,
   scrollToSection,
+  settleSectionInView,
   subscribeSectionPrefetch,
   waitForSections
 } from "@/lib/sectionNav"
@@ -126,30 +127,11 @@ const SiteExperience = () => {
         return false
       }
 
-      if (document.body.style.position === "fixed") {
-        await new Promise<void>((resolve) => {
-          const started = performance.now()
-          const tick = () => {
-            if (
-              document.body.style.position !== "fixed" ||
-              performance.now() - started > 400
-            ) {
-              resolve()
-              return
-            }
-
-            window.requestAnimationFrame(tick)
-          }
-
-          tick()
-        })
-
-        if (token !== revealTokenRef.current) {
-          return false
-        }
+      if (behavior === "auto") {
+        settleSectionInView(path)
+      } else {
+        scrollToSection(path, behavior)
       }
-
-      scrollToSection(path, behavior)
 
       if (moveFocus) {
         focusSection(path)
@@ -290,17 +272,19 @@ const SiteExperience = () => {
       }
 
       event.preventDefault()
-      markProgrammaticSectionScroll(1400)
+      markProgrammaticSectionScroll(1800)
       activePathRef.current = nextPath
       applySectionTitle(nextPath)
       announceSection(nextPath)
+
+      const fromMenu = document.body.classList.contains("nav-menu-open")
 
       if (pathnameRef.current !== nextPath) {
         ignorePathRef.current = nextPath
         router.push(nextPath, { scroll: false })
       }
 
-      void revealPath(nextPath, "smooth")
+      void revealPath(nextPath, fromMenu ? "auto" : "smooth")
     }
 
     const onPointerOver = (event: PointerEvent) => {

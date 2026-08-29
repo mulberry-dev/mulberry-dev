@@ -105,3 +105,7 @@ body:not(.dark) {
 html.is-pinning-scroll {
   scroll-behavior: auto !important;
 }
+
+body.nav-menu-open {
+  overscroll-behavior: none;
+}

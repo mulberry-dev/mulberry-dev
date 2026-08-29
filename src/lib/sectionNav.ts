@@ -151,24 +151,66 @@ const pinInstantScroll = (run: () => void) => {
   html.classList.remove("is-pinning-scroll")
 }
 
+export const getSectionScrollTop = (pathname: string) => {
+  if (pathname === "/") {
+    return 0
+  }
+
+  const section = getSectionByPath(pathname)
+  const node = section ? document.getElementById(section.id) : null
+
+  if (!isSectionReady(node)) {
+    return null
+  }
+
+  const margin = Number.parseFloat(getComputedStyle(node).scrollMarginTop) || 0
+  const padding =
+    Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) ||
+    0
+  const offset = margin || padding
+
+  return Math.max(
+    0,
+    Math.round(node.getBoundingClientRect().top + window.scrollY - offset)
+  )
+}
+
+export const isSectionInViewport = (pathname: string, slack = 28) => {
+  if (pathname === "/") {
+    return window.scrollY <= slack
+  }
+
+  const section = getSectionByPath(pathname)
+  const node = section ? document.getElementById(section.id) : null
+
+  if (!isSectionReady(node)) {
+    return false
+  }
+
+  const top = node.getBoundingClientRect().top
+  const margin = Number.parseFloat(getComputedStyle(node).scrollMarginTop) || 0
+  const expected = margin || 0
+
+  return Math.abs(top - expected) <= slack
+}
+
 export const scrollToSection = (
   pathname: string,
   behavior: ScrollBehavior = "smooth"
 ) => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   const nextBehavior: ScrollBehavior = reduced ? "auto" : behavior
-  markProgrammaticSectionScroll(nextBehavior === "smooth" ? 1100 : 160)
+  markProgrammaticSectionScroll(nextBehavior === "smooth" ? 1100 : 240)
+
+  const top = getSectionScrollTop(pathname)
+  const scroller = document.scrollingElement || document.documentElement
 
   const run = () => {
-    if (pathname === "/") {
-      const scroller = document.scrollingElement || document.documentElement
-      scroller.scrollTo({ top: 0, behavior: nextBehavior })
+    if (top === null) {
       return
     }
 
-    const section = getSectionByPath(pathname)
-    const node = section ? document.getElementById(section.id) : null
-    node?.scrollIntoView({ behavior: nextBehavior, block: "start" })
+    scroller.scrollTo({ top, behavior: nextBehavior })
   }
 
   if (nextBehavior === "auto") {
@@ -177,6 +219,23 @@ export const scrollToSection = (
   }
 
   run()
+}
+
+export const settleSectionInView = (pathname: string) => {
+  markProgrammaticSectionScroll(1800)
+  scrollToSection(pathname, "auto")
+
+  window.requestAnimationFrame(() => {
+    if (!isSectionInViewport(pathname)) {
+      scrollToSection(pathname, "auto")
+    }
+
+    window.requestAnimationFrame(() => {
+      if (!isSectionInViewport(pathname)) {
+        scrollToSection(pathname, "auto")
+      }
+    })
+  })
 }
 
 export const readActiveSectionPath = () => {
