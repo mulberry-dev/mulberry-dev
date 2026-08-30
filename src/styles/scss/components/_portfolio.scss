@@ -225,11 +225,17 @@
 }
 
 .archive-card__year {
+  flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-dim);
+}
+
+.archive-card__meta .project-flags {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .archive-card h3 {
