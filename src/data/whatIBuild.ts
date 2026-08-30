@@ -127,6 +127,5 @@ export const BUILD_SECTIONS = [
   { id: "build-interfaces", index: "01", label: "FRONTEND" },
   { id: "build-systems", index: "02", label: "BACKEND" },
   { id: "build-connected", index: "03", label: "FULL STACK" },
-  { id: "build-modernize", index: "04", label: "MODERNIZATION" },
-  { id: "build-approach", index: "05", label: "APPROACH" }
+  { id: "build-modernize", index: "04", label: "MODERNIZATION" }
 ] as const

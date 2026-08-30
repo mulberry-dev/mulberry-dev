@@ -1,6 +1,5 @@
 "use client"
 
-import ApproachScene from "@/components/build/ApproachScene"
 import ArchitectureScene from "@/components/build/ArchitectureScene"
 import ConnectedScene from "@/components/build/ConnectedScene"
 import ModernizeScene from "@/components/build/ModernizeScene"
@@ -12,7 +11,6 @@ import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
 import { WORKSPACE } from "@/data/workspace"
 import {
-  BUILD_APPROACH,
   BUILD_CONNECTED,
   BUILD_INTERFACES,
   BUILD_MODERNIZATION,
@@ -204,13 +202,6 @@ const Skills = () => {
             <CopyBlock
               index={BUILD_MODERNIZATION.index}
               title={BUILD_MODERNIZATION.title}
-            />
-          </Capability>
-
-          <Capability id="build-approach" stage={<ApproachScene />}>
-            <CopyBlock
-              index={BUILD_APPROACH.index}
-              title={BUILD_APPROACH.title}
             />
           </Capability>
         </div>
