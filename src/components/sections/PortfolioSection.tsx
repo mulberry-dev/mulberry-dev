@@ -138,7 +138,7 @@ const FeaturedCard = ({
             alt={project.name}
             width={project.width || 1280}
             height={project.height || 800}
-            sizes="(max-width: 1023px) 50vw, 33vw"
+            sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
             className="work-card__image"
             priority={index === 0}
           />
