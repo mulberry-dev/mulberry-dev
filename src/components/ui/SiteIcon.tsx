@@ -37,6 +37,8 @@ export type SiteIconName =
   | "linkedin"
   | "github"
   | "calendar"
+  | "copy"
+  | "check"
   | "leaf"
   | "globe"
   | "devices"
@@ -283,6 +285,17 @@ const ICONS: Record<SiteIconName, ReactElement> = {
     <svg {...iconProps}>
       <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
       <path d="M8 3v4M16 3v4M3.5 10h17" />
+    </svg>
+  ),
+  copy: (
+    <svg {...iconProps}>
+      <rect x="8.5" y="8" width="11" height="12.5" rx="2" />
+      <path d="M15.5 8V6.4A1.9 1.9 0 0 0 13.6 4.5H6.4A1.9 1.9 0 0 0 4.5 6.4v11.2A1.9 1.9 0 0 0 6.4 19.5H8.5" />
+    </svg>
+  ),
+  check: (
+    <svg {...iconProps}>
+      <path d="M5 12.2 9.6 16.8 19 7.4" />
     </svg>
   ),
   leaf: (

@@ -1,42 +1,42 @@
 import { SiteIconName } from "@/components/ui/SiteIcon"
 
 export const BUILD_HOST = "santiago@dev"
-export const BUILD_PATH = "~/what-i-build"
+export const BUILD_PATH = "~/what-i-do"
 export const BUILD_STACK_PATH = "~/stack.json"
 
 export const BUILD_INTRO = {
-  headline: [
-    "I BUILD PRODUCTS",
-    "THAT FEEL SIMPLE.",
-    "AND SYSTEMS THAT",
-    "MAKE THEM POSSIBLE."
-  ],
-  accentFrom: 2,
-  body: [
-    "From the interface people touch",
-    "to the systems running underneath it —",
-    "I build across the whole product."
-  ]
+  headline: "How I ship products."
 } as const
 
 export const BUILD_INTERFACES = {
   index: "01",
-  title: "PRODUCT INTERFACES",
-  kicker: "WHAT PEOPLE FEEL",
-  copy: ["I turn complex workflows into", "interfaces that feel obvious."],
-  tech: ["React", "Next.js", "TypeScript", "MUI", "TanStack Query"]
+  title: "FRONTEND",
+  kicker: "WHAT PEOPLE SEE",
+  items: [
+    { icon: "interface" as const, label: "UI components" },
+    { icon: "cursor" as const, label: "Interactions" },
+    { icon: "user" as const, label: "UX & accessibility" },
+    { icon: "performance" as const, label: "Performance" }
+  ],
+  tech: ["React", "Next.js", "TypeScript"]
 } as const
 
 export const BUILD_SYSTEMS = {
   index: "02",
-  title: "SYSTEMS BEHIND IT",
+  title: "BACKEND",
   kicker: "HOW IT WORKS",
-  copy: ["Robust, secure and scalable", "systems that power the product."],
-  tech: ["Node.js", "GraphQL", "PostgreSQL", "MongoDB", "AWS", "Docker"]
+  items: [
+    { icon: "systems" as const, label: "APIs" },
+    { icon: "connect" as const, label: "Services" },
+    { icon: "database" as const, label: "Databases" },
+    { icon: "cube" as const, label: "Architecture" },
+    { icon: "thinking" as const, label: "Business logic" }
+  ],
+  tech: ["Node.js", "Express", "GraphQL"]
 } as const
 
 export const BUILD_MODERNIZATION = {
-  index: "03",
+  index: "04",
   title: "MODERNIZATION",
   kicker: "EVOLVE WITHOUT BREAKING",
   copy: [
@@ -60,20 +60,15 @@ export const BUILD_MODERNIZATION = {
 } as const
 
 export const BUILD_CONNECTED = {
-  index: "04",
-  title: "CONNECTED PRODUCTS",
+  index: "03",
+  title: "FULL STACK",
   kicker: "EVERYTHING WORKS TOGETHER",
-  copy: [
-    "I connect the pieces that",
-    "make a product reliable,",
-    "useful and ready to grow."
-  ]
+  copy: ["Identity, payments, data, and APIs in one product."]
 } as const
 
 export const BUILD_APPROACH = {
   index: "05",
   title: "THE WAY I BUILD",
-  kicker: "THINK. DESIGN. BUILD. SHIP.",
   stages: [
     {
       icon: "idea" as const,
@@ -117,13 +112,7 @@ export const BUILD_APPROACH = {
 } as const
 
 export const BUILD_STACK = {
-  command: "cat stack.json",
-  value: {
-    frontend: ["React", "Next.js", "TypeScript", "MUI"],
-    backend: ["Node.js", "GraphQL", "Express"],
-    data: ["PostgreSQL", "MongoDB"],
-    cloud: ["AWS", "Docker"]
-  }
+  command: "cat stack.json"
 } as const
 
 export const ARCH_MAIN = [
@@ -182,9 +171,9 @@ export const PRODUCT_LAYERS = [
 
 export const BUILD_SECTIONS = [
   { id: "build-intro", index: "00", label: "INTRO" },
-  { id: "build-interfaces", index: "01", label: "INTERFACES" },
-  { id: "build-systems", index: "02", label: "SYSTEMS" },
-  { id: "build-modernize", index: "03", label: "MODERNIZATION" },
-  { id: "build-connected", index: "04", label: "CONNECTED" },
+  { id: "build-interfaces", index: "01", label: "FRONTEND" },
+  { id: "build-systems", index: "02", label: "BACKEND" },
+  { id: "build-connected", index: "03", label: "FULL STACK" },
+  { id: "build-modernize", index: "04", label: "MODERNIZATION" },
   { id: "build-approach", index: "05", label: "APPROACH" }
 ] as const

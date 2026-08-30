@@ -18,6 +18,11 @@ type LightboxProps = {
   getOrigin?: () => LightboxOrigin | null
   aspectRatio?: number
   onClose: () => void
+  onPrevious?: () => void
+  onNext?: () => void
+  hasPrevious?: boolean
+  hasNext?: boolean
+  counter?: string
 }
 
 const OPEN_MS = 540
@@ -36,10 +41,11 @@ const invertFromOrigin = (origin: LightboxOrigin, dest: DOMRect) => {
   return `translate(${originX - destX}px, ${originY - destY}px) scale(${scaleX}, ${scaleY})`
 }
 
-const fitFrame = (aspect: number) => {
-  const maxW = Math.min(window.innerWidth * 0.92, 1280)
-  const maxH = Math.min(window.innerHeight * 0.82, 860)
-  let width = maxW
+const fitFrame = (aspect: number, withNav: boolean) => {
+  const sideGutter = withNav ? 120 : 32
+  const maxW = Math.min(window.innerWidth - sideGutter * 2, 1280)
+  const maxH = Math.min(window.innerHeight * 0.78, 860)
+  let width = Math.max(maxW, 160)
   let height = width / aspect
 
   if (height > maxH) {
@@ -50,20 +56,48 @@ const fitFrame = (aspect: number) => {
   return { width, height }
 }
 
+const NavChevron = ({ direction }: { direction: "prev" | "next" }) => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.6"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    {direction === "prev" ? (
+      <path d="M15 6 9 12l6 6" />
+    ) : (
+      <path d="M9 6l6 6-6 6" />
+    )}
+  </svg>
+)
+
 const Lightbox = ({
   src,
   alt,
   origin,
   getOrigin,
   aspectRatio = 1.5,
-  onClose
+  onClose,
+  onPrevious,
+  onNext,
+  hasPrevious = false,
+  hasNext = false,
+  counter
 }: LightboxProps) => {
   const closeRef = useRef<HTMLButtonElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
   const closingRef = useRef(false)
+  const openedRef = useRef(false)
+  const swipeRef = useRef<{ x: number; y: number } | null>(null)
   const [ready, setReady] = useState(false)
   const [closing, setClosing] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const canNavigate = Boolean((hasPrevious && onPrevious) || (hasNext && onNext))
 
   useEffect(() => {
     setMounted(true)
@@ -99,12 +133,19 @@ const Lightbox = ({
       return
     }
 
-    const size = fitFrame(aspectRatio)
+    const size = fitFrame(aspectRatio, canNavigate)
     frame.style.width = `${size.width}px`
     frame.style.height = `${size.height}px`
 
     const dest = frame.getBoundingClientRect()
     const reduced = reduceMotion()
+
+    if (openedRef.current) {
+      if (!reduced) {
+        frame.style.transition = `width 280ms ${OPEN_EASE}, height 280ms ${OPEN_EASE}`
+      }
+      return
+    }
 
     if (!reduced) {
       frame.style.transition = "none"
@@ -118,13 +159,14 @@ const Lightbox = ({
           frame.style.transition = `transform ${OPEN_MS}ms ${OPEN_EASE}`
           frame.style.transform = "translate(0, 0) scale(1)"
         }
+        openedRef.current = true
         setReady(true)
         closeRef.current?.focus()
       })
     })
 
     return () => window.cancelAnimationFrame(openId)
-  }, [aspectRatio, mounted, origin])
+  }, [aspectRatio, canNavigate, mounted, origin])
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
@@ -133,6 +175,21 @@ const Lightbox = ({
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         playClose()
+        return
+      }
+
+      if (closingRef.current || !ready) {
+        return
+      }
+
+      if (event.key === "ArrowLeft" && hasPrevious) {
+        event.preventDefault()
+        onPrevious?.()
+      }
+
+      if (event.key === "ArrowRight" && hasNext) {
+        event.preventDefault()
+        onNext?.()
       }
     }
 
@@ -142,7 +199,7 @@ const Lightbox = ({
       document.body.style.overflow = previousOverflow
       window.removeEventListener("keydown", onKeyDown)
     }
-  }, [playClose])
+  }, [hasNext, hasPrevious, onNext, onPrevious, playClose, ready])
 
   if (!mounted) {
     return null
@@ -177,8 +234,66 @@ const Lightbox = ({
       >
         ×
       </button>
+      {hasPrevious && onPrevious ? (
+        <button
+          type="button"
+          className="certs-lightbox__nav certs-lightbox__nav--prev"
+          onClick={onPrevious}
+          disabled={!ready}
+          aria-label="Previous certificate"
+        >
+          <NavChevron direction="prev" />
+        </button>
+      ) : null}
+      {hasNext && onNext ? (
+        <button
+          type="button"
+          className="certs-lightbox__nav certs-lightbox__nav--next"
+          onClick={onNext}
+          disabled={!ready}
+          aria-label="Next certificate"
+        >
+          <NavChevron direction="next" />
+        </button>
+      ) : null}
       <div className="certs-lightbox__stage">
-        <div ref={frameRef} className="certs-lightbox__frame">
+        <div
+          ref={frameRef}
+          className="certs-lightbox__frame"
+          onPointerDown={event => {
+            if (!canNavigate) {
+              return
+            }
+
+            swipeRef.current = { x: event.clientX, y: event.clientY }
+          }}
+          onPointerUp={event => {
+            if (!swipeRef.current || closingRef.current) {
+              swipeRef.current = null
+              return
+            }
+
+            const dx = event.clientX - swipeRef.current.x
+            const dy = event.clientY - swipeRef.current.y
+            swipeRef.current = null
+
+            if (Math.abs(dx) < 56 || Math.abs(dx) < Math.abs(dy)) {
+              return
+            }
+
+            if (dx > 0 && hasPrevious) {
+              onPrevious?.()
+              return
+            }
+
+            if (dx < 0 && hasNext) {
+              onNext?.()
+            }
+          }}
+          onPointerCancel={() => {
+            swipeRef.current = null
+          }}
+        >
           <Image
             src={src}
             alt={alt}
@@ -188,6 +303,10 @@ const Lightbox = ({
             className="certs-lightbox__image"
           />
         </div>
+      </div>
+      <div className="certs-lightbox__meta">
+        <p className="certs-lightbox__title">{alt}</p>
+        {counter ? <p className="certs-lightbox__counter">{counter}</p> : null}
       </div>
     </div>,
     document.body

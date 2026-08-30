@@ -1,7 +1,7 @@
 "use client"
 
 import { useParticles } from "@/components/particles"
-import { isSectionPath } from "@/lib/sectionNav"
+import { isProjectDetailPath, isSectionPath } from "@/lib/sectionNav"
 import { usePathname } from "next/navigation"
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react"
 
@@ -52,6 +52,10 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     window.scrollTo(0, 0)
     html.style.scrollBehavior = previous
     html.classList.remove("is-pinning-scroll")
+
+    if (isProjectDetailPath(fromPath) || isProjectDetailPath(pathname)) {
+      return
+    }
 
     if (apiRef.current.canTransition) {
       void apiRef.current.beginRouteTransition().then(() => {

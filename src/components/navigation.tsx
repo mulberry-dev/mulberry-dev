@@ -1,10 +1,9 @@
 "use client"
 
-import ThemeIcon from "@/components/ThemeIcon"
-import { SITE_NAME } from "@/data/site"
+import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
-import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
+import { prefetchSectionPath, SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import { markLeftHome, shouldPlayNavIntro } from "@/lib/siteSession"
 import Image from "next/image"
 import Link from "next/link"
@@ -59,8 +58,6 @@ const Navigation = () => {
   const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
   const skipIndicatorMotionRef = useRef(true)
   const indicatorReadyRef = useRef(false)
-  const holdMenuRef = useRef(false)
-  const holdMenuTimerRef = useRef(0)
 
   useEffect(() => {
     if (shouldPlayNavIntro()) {
@@ -121,10 +118,6 @@ const Navigation = () => {
       document.body.classList.add("nav-intro-done")
     }
 
-    if (holdMenuRef.current) {
-      return
-    }
-
     setMenu((current) => (current === "open" ? "closing" : current))
   }, [pathname])
 
@@ -142,19 +135,20 @@ const Navigation = () => {
   }, [playNavIntro])
 
   useLayoutEffect(() => {
-    if (!menuOpen) {
+    if (menu !== "open") {
       document.body.classList.remove("nav-menu-open")
       return
     }
 
     document.body.classList.add("nav-menu-open")
+    prefetchSectionPath("/contact")
     lockBodyScroll()
 
     return () => {
       document.body.classList.remove("nav-menu-open")
       unlockBodyScroll()
     }
-  }, [menuOpen])
+  }, [menu])
 
   useEffect(() => {
     if (menu !== "open") {
@@ -451,10 +445,12 @@ const Navigation = () => {
           <div className="site-nav__brand">
             <Link href="/" className="site-nav__logo" scroll={false}>
               <Image
-                src="/images/Icons/MouseArrow.webp"
-                width={28}
+                className="site-logo"
+                src={SITE_LOGO}
+                width={40}
                 height={28}
                 alt=""
+                priority
               />
               <span>{SITE_NAME}</span>
             </Link>
@@ -486,23 +482,9 @@ const Navigation = () => {
                 onClick={() => {
                   setActivePath(link.path)
 
-                  if (menu !== "open") {
-                    return
-                  }
-
-                  const alreadyActive = isActivePath(activePath, link.path)
-
-                  if (alreadyActive || prefersReducedMotion()) {
+                  if (menu === "open") {
                     setMenu("closing")
-                    return
                   }
-
-                  holdMenuRef.current = true
-                  window.clearTimeout(holdMenuTimerRef.current)
-                  holdMenuTimerRef.current = window.setTimeout(() => {
-                    holdMenuRef.current = false
-                    setMenu("closing")
-                  }, 320)
                 }}
               >
                 {link.name}
@@ -511,7 +493,6 @@ const Navigation = () => {
           </nav>
 
           <div className="site-nav__actions">
-            <ThemeIcon />
             <button
               ref={toggleRef}
               className={`site-nav__toggle${menu === "open" ? " is-open" : ""}`}

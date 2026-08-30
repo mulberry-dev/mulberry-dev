@@ -1,99 +1,94 @@
 "use client"
 
-import ContactCard from "@/components/contact/ContactCard"
-import ContactGraphic from "@/components/contact/ContactGraphic"
-import Badge from "@/components/ui/Badge"
+import Button from "@/components/ui/Button"
+import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"
-import CtaBanner from "@/components/ui/CtaBanner"
-import IconBox from "@/components/ui/IconBox"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SiteIcon from "@/components/ui/SiteIcon"
+import StatusDot from "@/components/terminal/StatusDot"
+import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import {
-  CONTACT_CLOSE_CTA,
-  CONTACT_CREDIBILITY_COPY,
   CONTACT_INTRO,
   CONTACT_OPTIONS,
-  CONTACT_OPTIONS_COPY,
-  CONTACT_TECH
+  CONTACT_OPTIONS_COPY
 } from "@/data/contact"
-import Image from "next/image"
+import { WORKSPACE } from "@/data/workspace"
+import { padCount } from "@/lib/projects"
+import { useState } from "react"
 
 const Contact = () => {
+  const [active, setActive] = useState(CONTACT_OPTIONS[0]?.id ?? "")
+  const selected =
+    CONTACT_OPTIONS.find(option => option.id === active) ?? CONTACT_OPTIONS[0]
+  const primary = CONTACT_OPTIONS.find(option => option.featured) ?? CONTACT_OPTIONS[0]
+
   return (
-    <section id="contact" data-section-path="/contact">
+    <section
+      id="contact"
+      data-section-path="/contact"
+      aria-label="Contact"
+      tabIndex={-1}
+    >
       <Container className="contact-page">
-        <div className="contact-hero">
-          <RevealGroup className="contact-hero__copy" mode="auto" stagger={56}>
-            <Reveal type="eyebrow">
-              <Badge>{CONTACT_INTRO.badge}</Badge>
-            </Reveal>
-            <Reveal type="heading" as="h2">
-              <span>{CONTACT_INTRO.title}</span>
-              <span className="gradient-text">{CONTACT_INTRO.gradientText}</span>
-            </Reveal>
-            <Reveal type="text" as="p" className="contact-hero__lede">
-              {CONTACT_INTRO.subtitle}
-            </Reveal>
-            <Reveal type="text" as="p" className="contact-availability">
-              <span className="contact-availability__dot" aria-hidden="true" />
-              {CONTACT_INTRO.availability}
-            </Reveal>
+        <WorkspaceHeader
+          index={WORKSPACE.contact.index}
+          path={WORKSPACE.contact.path}
+          title={WORKSPACE.contact.title}
+        />
+
+        <div className="contact-workspace">
+          <RevealGroup className="contact-log" mode="auto" stagger={48}>
+            <CommandLine command="./start-conversation" />
+            <p>
+              <span className="contact-log__prefix">&gt;</span> checking availability...
+            </p>
+            <p>
+              <span className="contact-log__prefix">&gt;</span> status:{" "}
+              <span className="contact-log__ok">
+                <StatusDot pulse />
+                {CONTACT_INTRO.availability}
+              </span>
+            </p>
+            <p>
+              <span className="contact-log__prefix">&gt;</span> {CONTACT_OPTIONS_COPY.supporting}
+            </p>
+            {primary ? (
+              <Button href={primary.href} variant="terminal" external={primary.external}>
+                <span className="sr-only">{primary.cta}</span>
+                <span aria-hidden="true">&gt; start a conversation</span>
+              </Button>
+            ) : null}
           </RevealGroup>
-          <Reveal type="image" mode="auto" delay={80}>
-            <ContactGraphic />
-          </Reveal>
-        </div>
 
-        <RevealGroup mode="scroll" stagger={52}>
-          <header className="contact-options__header">
-            <Reveal type="heading" as="h2">
-              {CONTACT_OPTIONS_COPY.heading}
-            </Reveal>
-            <Reveal type="text" as="p">
-              {CONTACT_OPTIONS_COPY.supporting}
-            </Reveal>
-          </header>
-          <div className="contact-options">
-            {CONTACT_OPTIONS.map((option) => (
-              <Reveal key={option.id} type="card">
-                <ContactCard {...option} />
-              </Reveal>
-            ))}
+          <div className="contact-channels">
+            <h3>Select channel</h3>
+            <ul>
+              {CONTACT_OPTIONS.map((option, index) => (
+                <li key={option.id}>
+                  <a
+                    className={`contact-channel${option.id === selected?.id ? " is-active" : ""}`}
+                    href={option.href}
+                    {...(option.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    onFocus={() => setActive(option.id)}
+                    onMouseEnter={() => setActive(option.id)}
+                  >
+                    <span className="contact-channel__index">
+                      {padCount(index + 1)}
+                    </span>
+                    <span className="contact-channel__copy">
+                      <strong>{option.title}</strong>
+                      {option.description ? <span>{option.description}</span> : null}
+                    </span>
+                    {option.external ? (
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    ) : null}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-        </RevealGroup>
-
-        <RevealGroup className="contact-credibility" mode="scroll" stagger={36}>
-          <Reveal type="text" as="p">
-            {CONTACT_CREDIBILITY_COPY.label}
-          </Reveal>
-          <ul>
-            {CONTACT_TECH.map((tech) => (
-              <Reveal key={tech.name} as="li" type="chip">
-                <Image
-                  src={tech.imageSrc}
-                  alt=""
-                  width={18}
-                  height={18}
-                />
-                <span>{tech.name}</span>
-              </Reveal>
-            ))}
-          </ul>
-        </RevealGroup>
-
-        <Reveal type="button" mode="scroll">
-          <CtaBanner
-            icon={
-              <IconBox round>
-                <SiteIcon name="cursor" />
-              </IconBox>
-            }
-            title={CONTACT_CLOSE_CTA.title}
-            subtitle={CONTACT_CLOSE_CTA.subtitle}
-            actionHref={CONTACT_CLOSE_CTA.actionHref}
-            actionLabel={CONTACT_CLOSE_CTA.actionLabel}
-          />
-        </Reveal>
+        </div>
       </Container>
     </section>
   )

@@ -5,32 +5,16 @@ import {
   GITHUB_URL,
   LINKEDIN_URL
 } from "@/data/site"
-import { skills } from "@/data/skills"
 
 export const CONTACT_INTRO = {
-  badge: "Let's Connect",
   title: "Let's build something",
   gradientText: "great together",
-  subtitle:
-    "I'm available for new opportunities, collaborations, and challenging projects. Let's discuss how I can help bring your ideas to life.",
   availability: "Available for new opportunities"
 } as const
 
 export const CONTACT_OPTIONS_COPY = {
-  heading: "Best ways to reach me",
-  supporting:
-    "Choose the option that works best for you. I usually respond within 24 hours."
-} as const
-
-export const CONTACT_CREDIBILITY_COPY = {
-  label: "Built with technologies I work with"
-} as const
-
-export const CONTACT_CLOSE_CTA = {
-  title: "Have a project in mind?",
-  subtitle: "Let's turn your ideas into exceptional digital experiences.",
-  actionLabel: "View my work →",
-  actionHref: "/portfolio"
+  heading: "Reach me",
+  supporting: "I usually respond within 24 hours."
 } as const
 
 export type ContactAccent = "teal" | "cyan" | "purple" | "neutral"
@@ -39,7 +23,9 @@ export type ContactOption = {
   id: string
   icon: SiteIconName
   title: string
-  description: string
+  description?: string
+  value: string
+  copyValue?: string
   cta: string
   href: string
   external: boolean
@@ -47,17 +33,31 @@ export type ContactOption = {
   featured?: boolean
 }
 
-const CALL_HREF =
-  CALENDLY_URL ||
-  `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Schedule a 30-min call")}`
+const displayUrl = (url: string) =>
+  url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
+
+const CALL_OPTION: ContactOption | null = CALENDLY_URL
+  ? {
+      id: "call",
+      icon: "calendar",
+      title: "Call",
+      description: "30 minutes to talk through a project.",
+      value: displayUrl(CALENDLY_URL),
+      copyValue: CALENDLY_URL,
+      cta: "Book a call",
+      href: CALENDLY_URL,
+      external: true,
+      accent: "purple"
+    }
+  : null
 
 export const CONTACT_OPTIONS: ContactOption[] = [
   {
     id: "email",
     icon: "mail",
     title: "Email",
-    description:
-      "Send me an email anytime. Perfect for detailed project discussions.",
+    description: "Best for project briefs.",
+    value: CONTACT_EMAIL,
     cta: "Send email",
     href: `mailto:${CONTACT_EMAIL}`,
     external: false,
@@ -68,56 +68,25 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     id: "linkedin",
     icon: "linkedin",
     title: "LinkedIn",
-    description:
-      "Connect with me for professional opportunities and networking.",
+    description: "Work and opportunities.",
+    value: displayUrl(LINKEDIN_URL),
+    copyValue: LINKEDIN_URL,
     cta: "View profile",
     href: LINKEDIN_URL,
     external: true,
     accent: "cyan"
   },
-  {
-    id: "call",
-    icon: "calendar",
-    title: "Schedule a call",
-    description:
-      "Book a 30-min call to discuss your project or explore opportunities.",
-    cta: "Book a call",
-    href: CALL_HREF,
-    external: Boolean(CALENDLY_URL),
-    accent: "purple"
-  },
+  ...(CALL_OPTION ? [CALL_OPTION] : []),
   {
     id: "github",
     icon: "github",
     title: "GitHub",
-    description: "Explore my code, open-source projects and contributions.",
+    description: "Code and public repos.",
+    value: displayUrl(GITHUB_URL),
+    copyValue: GITHUB_URL,
     cta: "View GitHub",
     href: GITHUB_URL,
     external: true,
     accent: "neutral"
   }
 ]
-
-const TECH_SIGNAL = [
-  { skillName: "AWS", label: "AWS" },
-  { skillName: "Docker", label: "Docker" },
-  { skillName: "React", label: "React" },
-  { skillName: "Node", label: "Node.js" },
-  { skillName: "TypeScript", label: "TypeScript" },
-  { skillName: "Apollo GraphQL", label: "GraphQL" }
-] as const
-
-export const CONTACT_TECH = TECH_SIGNAL.flatMap((item) => {
-  const skill = skills.find((entry) => entry.name === item.skillName)
-
-  if (!skill) {
-    return []
-  }
-
-  return [
-    {
-      name: item.label,
-      imageSrc: skill.imageSrc
-    }
-  ]
-})

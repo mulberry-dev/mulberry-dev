@@ -1,5 +1,5 @@
 .ui-container.skills-page {
-  width: min(1280px, calc(100% - 32px));
+  width: min(1440px, calc(100% - 32px));
   display: flex;
   flex-direction: column;
   gap: var(--space-7);
@@ -17,7 +17,7 @@
   overflow: clip;
   border: 1px solid var(--skills-line);
   background: color-mix(in srgb, var(--color-canvas-deep) 42%, transparent);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   color: var(--color-text);
 }
 
@@ -27,6 +27,8 @@
 
 .skills-chrome,
 .skills-intro,
+.skills-capabilities,
+.skills-stackbar,
 .skills-capability,
 .skills-foot {
   padding-inline: clamp(1rem, 3.2vw, 2.15rem);
@@ -48,6 +50,7 @@
 .skills-copy__tech,
 .skills-stack__json {
   margin: 0;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.4;
   letter-spacing: 0.01em;
@@ -56,11 +59,14 @@
 .skills-session__host,
 .skills-prompt__cash,
 .skills-session__cash,
-.skills-session__path,
 .skills-copy__index span:first-child,
 .skills-copy__kicker,
 .approach-scene__kicker {
-  color: var(--color-teal);
+  color: var(--brand-cyan);
+}
+
+.skills-session__path {
+  color: var(--brand-blue);
 }
 
 .skills-session__colon,
@@ -107,32 +113,27 @@
 }
 
 .skills-headline {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 1.35rem;
-  font-size: clamp(1.7rem, 1.15rem + 2.6vw, 3.35rem);
-  font-weight: 700;
-  line-height: 0.96;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-}
-
-.skills-headline__line {
-  display: block;
-}
-
-.skills-headline__line.is-accent {
-  color: var(--color-teal);
-}
-
-.skills-intro__body {
-  display: flex;
-  flex-direction: column;
   margin: 0;
-  max-width: 28rem;
-  color: var(--color-text-muted);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  max-width: 14em;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 1.05rem + 2vw, 2.65rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.skills-capabilities,
+.skills-stackbar {
+  padding-inline: clamp(1rem, 3.2vw, 2.15rem);
+}
+
+.skills-capabilities {
+  padding-block: clamp(1.5rem, 4vw, 2.4rem);
+  border-bottom: 1px solid var(--skills-line);
+}
+
+.skills-stackbar {
+  padding-bottom: clamp(1.5rem, 4vw, 2.4rem);
 }
 
 .skills-intro__rule {
@@ -198,13 +199,32 @@
   line-height: 1.55;
 }
 
-.skills-copy__tech {
+.skills-copy__items {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin: 1.25rem 0 0;
+  gap: 0.5rem;
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.skills-copy__items li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+}
+
+.skills-copy__items svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-teal);
+  flex-shrink: 0;
+}
+
+.skills-copy__tech {
+  margin: 1.15rem 0 0;
+  padding: 0;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
 }
@@ -269,7 +289,8 @@
   font-family: inherit;
   font-size: 0.78rem;
   line-height: 1.65;
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .skills-stack__json .is-key {
@@ -1222,7 +1243,7 @@
 
 @media (max-width: 767px) {
   .ui-container.skills-page {
-    width: min(1280px, calc(100% - 20px));
+    width: min(1440px, calc(100% - 20px));
   }
 
   .skills-chrome,

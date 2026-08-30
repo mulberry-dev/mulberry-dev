@@ -1,9 +1,10 @@
 "use client"
 
-import { COPYRIGHT_NAME, SITE_NAME } from "@/data/site"
+import StatusDot from "@/components/terminal/StatusDot"
+import TerminalPrompt from "@/components/terminal/TerminalPrompt"
+import { COPYRIGHT_NAME } from "@/data/site"
+import { WORKSPACE } from "@/data/workspace"
 import { isSectionPath } from "@/lib/sectionNav"
-import Image from "next/image"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const Footer = () => {
@@ -17,19 +18,14 @@ const Footer = () => {
   return (
     <footer className="site-footer">
       <div className="site-footer__inner">
-        <Link href="/" className="site-footer__brand" scroll={false}>
-          <Image
-            src="/images/Icons/MouseArrow.webp"
-            width={22}
-            height={22}
-            alt=""
-          />
-          <span>{SITE_NAME}</span>
-        </Link>
+        <TerminalPrompt path={WORKSPACE.home.path} cursor className="site-footer__prompt" />
         <p className="site-footer__copy">
-          © {year} {COPYRIGHT_NAME}. All rights reserved.
+          © {year} {COPYRIGHT_NAME}
         </p>
-        <p className="site-footer__note">Built with care and lots of coffee</p>
+        <p className="site-footer__note">
+          <span>System online</span>
+          <StatusDot pulse />
+        </p>
       </div>
     </footer>
   )

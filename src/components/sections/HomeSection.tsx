@@ -2,22 +2,26 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
-import TechMarquee from "@/components/TechMarquee"
+import StatusDot from "@/components/terminal/StatusDot"
+import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { useParticles } from "@/components/particles"
+import { CONTACT_INTRO, CONTACT_OPTIONS_COPY } from "@/data/contact"
+import { SITE_LOGO, SITE_NAME } from "@/data/site"
+import { WORKSPACE } from "@/data/workspace"
+import Image from "next/image"
+import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   didLeaveHome,
   isHomeChromeRevealed,
   markHomeChromeRevealed,
   shouldRevealHomeChrome
 } from "@/lib/siteSession"
-import { LINKEDIN_URL } from "@/data/site"
-import Image from "next/image"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
   Children,
   cloneElement,
   isValidElement,
+  useCallback,
   useEffect,
   useState,
   type CSSProperties,
@@ -25,8 +29,7 @@ import {
   type ReactNode
 } from "react"
 
-const ABOUT_SHORT =
-  "I build thoughtful digital products across frontend, backend, and everything in between."
+const ABOUT_SHORT = "I ship thoughtful digital products."
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
@@ -99,9 +102,26 @@ const IndexPage = () => {
   const { contentReady, reducedMotion } = useParticles()
   const [isFirstHome] = useState(() => !didLeaveHome())
   const [introComplete, setIntroComplete] = useState(false)
-  const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() =>
-    shouldRevealHomeChrome() ? "shown" : "wait"
-  )
+  const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() => {
+    if (!shouldRevealHomeChrome()) {
+      return "wait"
+    }
+
+    markHomeChromeRevealed()
+    return "shown"
+  })
+
+  const revealChrome = useCallback(() => {
+    if (isHomeChromeRevealed()) {
+      return false
+    }
+
+    markHomeChromeRevealed()
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    setChromePhase(reduced ? "shown" : "nav")
+    window.dispatchEvent(new Event("site:home-chrome-revealed"))
+    return true
+  }, [])
 
   useEffect(() => {
     if (!contentReady) {
@@ -121,23 +141,25 @@ const IndexPage = () => {
   }, [contentReady, isFirstHome, reducedMotion])
 
   useEffect(() => {
-    if (pathname !== "/") {
-      return
+    const onSectionChange = (event: Event) => {
+      const path = (event as CustomEvent<{ path?: string }>).detail?.path
+
+      if (path && path !== "/") {
+        revealChrome()
+      }
     }
 
-    if (shouldRevealHomeChrome()) {
-      markHomeChromeRevealed()
-      setChromePhase("shown")
-      return
-    }
+    window.addEventListener(SECTION_CHANGE_EVENT, onSectionChange)
+    return () => window.removeEventListener(SECTION_CHANGE_EVENT, onSectionChange)
+  }, [revealChrome])
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
+  useEffect(() => {
+    if (pathname !== "/" || shouldRevealHomeChrome() || window.scrollY > 1) {
+      if (!isHomeChromeRevealed()) {
+        markHomeChromeRevealed()
+      }
 
-    if (window.scrollY > 1) {
-      markHomeChromeRevealed()
-      setChromePhase("shown")
+      setChromePhase((current) => (current === "wait" ? "shown" : current))
       return
     }
 
@@ -151,7 +173,7 @@ const IndexPage = () => {
         return
       }
 
-      revealChrome()
+      revealAndDetach()
     }
 
     const onFirstKeyScroll = (event: KeyboardEvent) => {
@@ -168,22 +190,19 @@ const IndexPage = () => {
         event.key === "End" ||
         event.key === " "
       ) {
-        revealChrome()
+        revealAndDetach()
       }
     }
 
-    const revealChrome = () => {
-      if (isHomeChromeRevealed()) {
+    const revealAndDetach = () => {
+      if (!revealChrome()) {
         return
       }
 
-      markHomeChromeRevealed()
       window.removeEventListener("wheel", onFirstScroll)
       window.removeEventListener("touchmove", onFirstScroll)
       window.removeEventListener("scroll", onFirstScroll)
       window.removeEventListener("keydown", onFirstKeyScroll)
-      setChromePhase(reducedMotion ? "shown" : "nav")
-      window.dispatchEvent(new Event("site:home-chrome-revealed"))
     }
 
     const scrollListener: AddEventListenerOptions = { passive: true }
@@ -199,7 +218,7 @@ const IndexPage = () => {
       window.removeEventListener("scroll", onFirstScroll)
       window.removeEventListener("keydown", onFirstKeyScroll)
     }
-  }, [pathname])
+  }, [pathname, revealChrome])
 
   useEffect(() => {
     if (chromePhase !== "nav") {
@@ -224,10 +243,28 @@ const IndexPage = () => {
     .join(" ")
 
   return (
-    <section id="index" className={introClass || undefined} data-section-path="/">
+    <section
+      id="index"
+      className={introClass || undefined}
+      data-section-path="/"
+      aria-label="Home"
+      tabIndex={-1}
+    >
       <Container className="home-page">
         <div className="home-hero">
           <div className="home-hero__copy">
+            <TerminalPrompt path={WORKSPACE.home.path} className="home-hero__prompt" />
+            <div className="home-hero__brand">
+              <Image
+                className="home-hero__logo site-logo"
+                src={SITE_LOGO}
+                width={127}
+                height={88}
+                alt=""
+                priority
+              />
+              <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
+            </div>
             <h1 aria-label="Hi! I am Santiago">
               <span aria-hidden="true">
                 <RevealChars delay={0.1}>Hi! I am </RevealChars>
@@ -244,19 +281,43 @@ const IndexPage = () => {
                 </RevealChars>
               </span>
             </p>
+            <p className="home-hero__statement">
+              <span>I build </span>
+              <span className="home-hero__solutions">digital solutions</span>
+              <span> that </span>
+              <span className="gradient-text">deliver value</span>
+              <span className="home-hero__caret" aria-hidden="true">
+                _
+              </span>
+            </p>
             <p className="home-hero__body">{ABOUT_SHORT}</p>
+            <dl className="home-hero__status">
+              <div>
+                <dt>Status</dt>
+                <dd>
+                  <StatusDot pulse />
+                  {CONTACT_INTRO.availability}
+                </dd>
+              </div>
+              <div>
+                <dt>Response</dt>
+                <dd>{CONTACT_OPTIONS_COPY.supporting}</dd>
+              </div>
+            </dl>
             <div className="home-hero__actions">
-              <Button href="/portfolio">View my work →</Button>
+              <Button href="/portfolio" variant="terminal">
+                <span className="sr-only">View my work</span>
+                <span aria-hidden="true">&gt; ./start-exploring</span>
+              </Button>
               <Button href="/about" variant="secondary">
                 About me
               </Button>
             </div>
           </div>
 
-          <div className="home-hero__visual">
+          <div className="home-hero__visual" aria-hidden="true">
             <div
               className="home-orbit"
-              aria-hidden="true"
               onPointerEnter={(event) =>
                 setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
               }
@@ -266,7 +327,6 @@ const IndexPage = () => {
             </div>
             <div
               className="home-orbit home-orbit--inner"
-              aria-hidden="true"
               onPointerEnter={(event) =>
                 setOrbitRate(event.currentTarget, ORBIT_HOVER_RATE)
               }
@@ -274,37 +334,9 @@ const IndexPage = () => {
             >
               <span className="home-orbit__node home-orbit__node--purple" />
             </div>
-            <Image
-              src="/images/Webp/santi-dark-theme.webp"
-              alt="Santiago"
-              width={960}
-              height={960}
-              unoptimized
-              priority
-              className="home-avatar home-avatar--dark"
-            />
-            <Image
-              src="/images/Webp/santi-light-theme.webp"
-              alt="Santiago"
-              width={960}
-              height={960}
-              unoptimized
-              priority
-              className="home-avatar home-avatar--light"
-            />
-            <Link
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="home-social"
-              aria-label="LinkedIn"
-            >
-              in
-            </Link>
           </div>
         </div>
       </Container>
-      <TechMarquee />
     </section>
   )
 }

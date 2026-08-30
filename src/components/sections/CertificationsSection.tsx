@@ -3,14 +3,12 @@
 import Badge from "@/components/ui/Badge"
 import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"
-import CountUp from "@/components/ui/CountUp"
 import FilterPills from "@/components/ui/FilterPills"
 import Lightbox, { LightboxOrigin } from "@/components/ui/Lightbox"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SectionHeader from "@/components/ui/SectionHeader"
+import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import { certificates } from "@/data/certificates"
-import { data as projects } from "@/data/projects"
-import { skills } from "@/data/skills"
+import { WORKSPACE } from "@/data/workspace"
 import Image from "next/image"
 import { MouseEvent, useCallback, useMemo, useRef, useState } from "react"
 
@@ -36,6 +34,10 @@ const Certifications = () => {
     [active]
   )
   const openCertificate = certificates.find(item => item.id === viewer?.id)
+  const currentIndex = viewer
+    ? visible.findIndex(item => item.id === viewer.id)
+    : -1
+  const canNavigate = visible.length > 1 && currentIndex >= 0
   const sourceImage = openCertificate
     ? imageRefs.current.get(openCertificate.id)
     : undefined
@@ -79,42 +81,40 @@ const Certifications = () => {
     setViewer({ id, origin })
   }
 
+  const goByOffset = useCallback((offset: number) => {
+    setViewer(current => {
+      if (!current) {
+        return current
+      }
+
+      const index = visible.findIndex(item => item.id === current.id)
+      if (index < 0 || visible.length < 2) {
+        return current
+      }
+
+      const next = visible[(index + offset + visible.length) % visible.length]
+      return { ...current, id: next.id }
+    })
+  }, [visible])
+
+  const goPrevious = useCallback(() => goByOffset(-1), [goByOffset])
+  const goNext = useCallback(() => goByOffset(1), [goByOffset])
+
   return (
-    <section id="certifications" data-section-path="/certifications">
+    <section
+      id="certifications"
+      data-section-path="/certifications"
+      aria-label="Certifications"
+      tabIndex={-1}
+    >
       <Container className="certs-page">
         <RevealGroup mode="auto" stagger={64}>
-          <SectionHeader
-            as="h2"
-            align="center"
-            title="Certifications"
-            subtitle="Continuously learning and validating my knowledge to deliver better solutions."
+          <WorkspaceHeader
+            index={WORKSPACE.certifications.index}
+            path={WORKSPACE.certifications.path}
+            title={WORKSPACE.certifications.title}
+            meta={`${certificates.length} certificates in development, security, and English.`}
           />
-          <div className="certs-metrics">
-            <Reveal type="chip">
-              <div>
-                <strong>
-                  <CountUp value={certificates.length} duration={2000} delay={60} />
-                </strong>
-                <span>Certifications</span>
-              </div>
-            </Reveal>
-            <Reveal type="chip">
-              <div>
-                <strong>
-                  <CountUp value={projects.length} duration={2000} delay={180} />
-                </strong>
-                <span>Projects shipped</span>
-              </div>
-            </Reveal>
-            <Reveal type="chip">
-              <div>
-                <strong>
-                  <CountUp value={skills.length} duration={2000} delay={300} />
-                </strong>
-                <span>Tools in daily use</span>
-              </div>
-            </Reveal>
-          </div>
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
           </Reveal>
@@ -143,6 +143,9 @@ const Certifications = () => {
                   alt={certificate.title}
                   width={640}
                   height={420}
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                  loading="lazy"
+                  decoding="async"
                   className="certs-card__image"
                 />
                 <Badge variant={certificate.category}>
@@ -163,6 +166,15 @@ const Certifications = () => {
           getOrigin={getOrigin}
           aspectRatio={aspectRatio}
           onClose={() => setViewer(null)}
+          onPrevious={canNavigate ? goPrevious : undefined}
+          onNext={canNavigate ? goNext : undefined}
+          hasPrevious={canNavigate}
+          hasNext={canNavigate}
+          counter={
+            currentIndex >= 0
+              ? `${currentIndex + 1} / ${visible.length}`
+              : undefined
+          }
         />
       ) : null}
     </section>

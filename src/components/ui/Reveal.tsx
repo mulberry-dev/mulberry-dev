@@ -114,7 +114,11 @@ const Reveal = ({
 
   useLayoutEffect(() => {
     const arm = window.requestAnimationFrame(() => setArmed(true))
-    return () => window.cancelAnimationFrame(arm)
+    const fallback = window.setTimeout(() => setArmed(true), 80)
+    return () => {
+      window.cancelAnimationFrame(arm)
+      window.clearTimeout(fallback)
+    }
   }, [])
 
   useLayoutEffect(() => {
@@ -136,12 +140,19 @@ const Reveal = ({
 
     const isNearFold = () => {
       const rect = node.getBoundingClientRect()
-      return rect.top < window.innerHeight * 0.92 && rect.bottom > 0
+      return rect.top < window.innerHeight * 0.98 && rect.bottom > 0
     }
 
-    if (resolvedMode === "auto" && isNearFold()) {
-      setInView(true)
+    const revealIfVisible = () => {
+      if (isNearFold()) {
+        setInView(true)
+        return true
+      }
+
+      return false
     }
+
+    revealIfVisible()
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -150,12 +161,18 @@ const Reveal = ({
           observer.disconnect()
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0, rootMargin: "12% 0px" }
     )
 
     observer.observe(node)
-    return () => observer.disconnect()
-  }, [reducedMotion, resolvedMode])
+    const retry = window.setTimeout(revealIfVisible, 240)
+    const lateRetry = window.setTimeout(revealIfVisible, 700)
+    return () => {
+      observer.disconnect()
+      window.clearTimeout(retry)
+      window.clearTimeout(lateRetry)
+    }
+  }, [contentReady, reducedMotion, resolvedMode])
 
   useLayoutEffect(() => {
     if (reducedMotion) {
@@ -178,10 +195,12 @@ const Reveal = ({
         setEntered(true)
       })
     })
+    const fallback = window.setTimeout(() => setEntered(true), 80)
 
     return () => {
       window.cancelAnimationFrame(outer)
       window.cancelAnimationFrame(inner)
+      window.clearTimeout(fallback)
     }
   }, [armed, contentReady, inView, reducedMotion])
 

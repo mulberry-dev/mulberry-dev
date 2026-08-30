@@ -16,6 +16,18 @@
     transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay);
 }
 
+.reveal.is-armed:not(.is-visible) {
+  animation: reveal-failsafe 0.28s var(--reveal-ease) 1.8s forwards;
+}
+
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
+
 .reveal.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
@@ -112,19 +124,16 @@
   height: 100%;
 }
 
-.certs-metrics > .reveal,
-.contact-credibility ul > .reveal {
-  min-width: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal.is-armed,
+  .reveal.is-armed:not(.is-visible),
   .reveal.is-visible {
     opacity: 1;
     transform: none;
     clip-path: none;
     transition: none;
+    animation: none;
   }
 }
 

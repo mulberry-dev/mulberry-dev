@@ -13,13 +13,29 @@ main > section {
 }
 
 .site-experience:not(.is-aligned) {
-  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-transition-view > main[hidden],
+.site-main[hidden] {
+  display: none !important;
 }
 
 .site-experience > section {
   flex: 0 0 auto;
   scroll-margin-top: calc(var(--nav-height) + var(--space-3));
   padding: clamp(4.75rem, 10vw, 8.5rem) 0;
+}
+
+.site-experience > section:focus {
+  outline: none;
+}
+
+.site-experience > section.is-deferred {
+  min-height: max(72vh, 28rem);
+  padding: 0;
+  pointer-events: none;
 }
 
 .site-experience > section + section {

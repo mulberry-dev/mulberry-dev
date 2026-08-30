@@ -6,17 +6,17 @@ export const links = [
   },
   {
     id: 2,
-    name: "About Me",
+    name: "About",
     path: "/about",
   },
   {
     id: 3,
-    name: "What I Build",
+    name: "What I Do",
     path: "/skills",
   },
   {
     id: 4,
-    name: "My Work",
+    name: "Work",
     path: "/portfolio",
   },
   {

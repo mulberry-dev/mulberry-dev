@@ -5,8 +5,9 @@ export const data = [
     id: "FuenteDeVidaResidencial",
     name: "Fuente de Vida Residencial",
     category: "landing",
+    teaser: "Residential marketing site with bilingual content and visit booking.",
     description:
-      "Marketing website for a residential development in Comitán de Domínguez, Chiapas. The experience presents lots from 1,000 m² with a nature-first brand, bilingual content, an interactive masterplan lightbox, animated stats, and visit-scheduling CTAs designed to convert interest into on-site appointments. (2025)",
+      "Marketing website for a residential development in Comitán de Domínguez, Chiapas. (2025)",
     img: "/images/Webp/fuente-de-vida.webp",
     tech: [
       {
@@ -34,8 +35,9 @@ export const data = [
     id: "MulberryMarketing",
     name: "Mulberry Marketing",
     category: "web",
+    teaser: "Agency site for strategy, content, and custom web.",
     description:
-      "Boutique agency site that unifies strategy, creativity, and technology. It includes service deep-dives (social, content, ads, UX/UI, custom web, and e-commerce), case studies with measurable outcomes, resource content, and a conversion-focused contact flow with a 3D brand moment in the hero. (2025)",
+      "Boutique agency site that unifies strategy, creativity, and technology. (2025)",
     img: "/images/Webp/mulberry-marketing.webp",
     tech: [
       {
@@ -61,11 +63,14 @@ export const data = [
   },
   {
     id: "CeciliaRodriguez",
-    name: "Digital Business Card & Landing Page",
+    name: "Business Card",
     category: "landing",
+    teaser: "Mobile-first digital card for an eXp Realty agent in CDMX.",
     description:
-      "Digital business card and landing page for an eXp Realty México agent in CDMX. One-tap actions for call, WhatsApp, email, and contact saving, plus clear buy/sell/rent paths and trust signals for international-backed transactions. Built as a fast, mobile-first presentation site. (2025)",
+      "Digital business card for an eXp Realty México agent in CDMX. (2025)",
     img: "/images/Webp/cecilia-rodriguez.webp",
+    width: 1024,
+    height: 640,
     tech: [
       {
         tech: "React.js",
@@ -92,8 +97,9 @@ export const data = [
     id: "MulberryDrone",
     name: "Mulberry Drone",
     category: "landing",
+    teaser: "Aerial photo and video portfolio with WhatsApp booking.",
     description:
-      "Portfolio site for certified aerial photography and videography in CDMX. It showcases 4K cinematic work, commercial services for marketing and inspections, a photo gallery, and WhatsApp-first contact so clients can brief a shoot quickly. (2025)",
+      "Portfolio for certified aerial photography and videography in CDMX. (2025)",
     img: "/images/Webp/mulberry-drone.webp",
     tech: [
       {
@@ -121,8 +127,9 @@ export const data = [
     id: "ThisIsSantiOriginal",
     name: "ThisIsSanti.dev (Original)",
     category: "landing",
+    teaser: "The original ThisIsSanti.dev portfolio, still live.",
     description:
-      "Original personal landing and portfolio for ThisIsSanti.dev. A multi-page presentation with Home, About, Skills, Portfolio, Certifications, and Contact, plus Login and SignUp. The hero introduces Santiago as a Full Stack Developer over a purple-to-teal particle sky, with a dark/light theme toggle. (2024)",
+      "Original personal portfolio for ThisIsSanti.dev. (2024)",
     img: "/images/Webp/thisissanti-original.webp",
     tech: [
       {
@@ -150,8 +157,9 @@ export const data = [
     id: "SalonTarget",
     name: "SalonTarget",
     category: "web",
+    teaser: "Modernizing an all-in-one salon and spa platform.",
     description:
-      "I contribute to the ongoing modernization of SalonTarget's all-in-one salon and spa management platform. I help migrate legacy systems from PHP and Node.js to a modern stack using React, Apollo GraphQL, and TypeORM, enhancing performance and maintainability. I also support the integration of a new payment processor with banking terminals to streamline checkout and improve the user experience for salon staff and clients. (2025-2026)",
+      "Ongoing modernization of SalonTarget's salon and spa management platform. (2025–2026)",
     img: "/images/Webp/salon-target.webp",
     tech: [
       {
@@ -187,8 +195,9 @@ export const data = [
     id: "SsoSamlOkta",
     name: "SSO SAML Okta API",
     category: "api",
+    teaser: "Custom SAML SSO API integrated with Okta.",
     description:
-      "I designed and developed an authentication and Single Sign-On (SSO) Security Assertion Markup Language (SAML) API from the ground up using Node.js with TypeScript. The implementation includes seamless integration with OKTA, a leading identity management platform. This custom API facilitates secure and efficient user authentication, allowing seamless access to multiple applications through a unified sign-on process. The use of TypeScript ensures a robust and maintainable codebase. (2023)",
+      "Authentication and SAML SSO API built with Node.js and TypeScript. (2023)",
     img: "/images/thumbnails/sso-saml-okta.png",
     tech: [
       {
@@ -221,8 +230,9 @@ export const data = [
     id: "ManagerProxy",
     name: "Proxy Manager API",
     category: "api",
+    teaser: "Public gateway to eight private AWS microservices.",
     description:
-      "I built a Manager Proxy API from scratch that consumed data from 8 microservices hosted on the private AWS domain. The primary purpose of this API was to enable access to the microservices from a public network without the need for a VPN. By orchestrating communication between the private microservices and the public network, the Manager Proxy API enhances security and ensures seamless data retrieval without compromising the integrity of the private domain. This solution optimizes accessibility while maintaining a secure and efficient data exchange between the private AWS domain and the external public network. (2023)",
+      "API that exposes eight private AWS microservices without a VPN. (2023)",
     img: "/images/thumbnails/proxy-manager-aws.png",
     tech: [
       {
@@ -247,8 +257,9 @@ export const data = [
     id: "ElectronicBilling",
     name: "Electronic Billing GS",
     category: "api",
+    teaser: "Invoice platform for Grupo Salinas, connected to SAT.",
     description:
-      "This application, developed for Grupo Salinas, features a React-based frontend and a Node.js backend comprising over 15 microservices. Authentication is implemented through OKTA single sign-on, and the user interface is built using Ant Design. The application serves as an invoice issuance platform, connected to the SAT API for efficient data exchange and compliance with tax regulations, built in AWS. (2024)",
+      "Invoice issuance platform for Grupo Salinas, connected to the SAT API. (2024)",
     img: "/images/Webp/FacturacionElectronica.webp",
     tech: [
       {
@@ -296,9 +307,12 @@ export const data = [
     id: "MiBlog",
     name: "Mi Blog",
     category: "web",
+    teaser: "Next.js blog with admin, auth, and offline mode.",
     description:
-      "A blog developed in Next.js includes an admin panel that allows users to add or delete posts. The platform features a login and authentication system and supports an Offline Mode with Local Storage. (2023)",
+      "Next.js blog with an admin panel and authentication. (2023)",
     img: "/images/Webp/mi-blog.webp",
+    width: 1586,
+    height: 992,
 
     tech: [
       {
@@ -327,8 +341,9 @@ export const data = [
     name: "eCommerce",
     category: "ecommerce",
     img: "/images/thumbnails/ecommerce-backend.png",
+    teaser: "Node.js store with cart, chat, and email confirmations.",
     description:
-      "An eCommerce platform, developed in Node.js, features a chat functionality. It enables users to add and delete products from the shopping cart, incorporates a login and authentication system, and sends a confirmation email upon registration. Users can access their profiles, view personal data, and upon completing a purchase, receive an email containing details of the purchased products. The platform is tested using Mocha. (2023)",
+      "Node.js store with cart, live chat, and purchase emails. (2023)",
     tech: [
       {
         tech: "Node.js",
@@ -393,8 +408,9 @@ export const data = [
     id: "TreeHug",
     name: "Tree Hug",
     category: "landing",
+    teaser: "Martial arts school landing with Mercado Pago.",
     description:
-      "A landing page developed in Vanilla JavaScript for a martial arts school. It facilitates course and product purchases through Mercado Pago. (2023)",
+      "Landing page for a martial arts school with Mercado Pago checkout. (2023)",
     img: "/images/Webp/AbrazoDelArbol.webp",
     tech: [
       {
@@ -426,8 +442,9 @@ export const data = [
     id: "TecnoShop",
     name: "Tecno Shop",
     category: "ecommerce",
+    teaser: "React computer store with cart and live stock.",
     description:
-      "This application is a computer e-commerce platform developed in React.js. Users can select a category of products, add items to a shopping cart, and remove them. Upon completing a purchase, the available product stock decreases.",
+      "React.js computer store with cart and live inventory.",
     img: "/images/Webp/TecnoShop.webp",
     tech: [
       {
@@ -464,8 +481,9 @@ export const data = [
     name: "eCommerce Js",
     category: "ecommerce",
     img: "/images/Webp/eCommerceJs.webp",
+    teaser: "Vanilla JavaScript storefront with dark mode.",
     description:
-      "This web page, developed with Vanilla JavaScript, is an eCommerce platform that enables users to add products to the cart and complete purchases. It includes a dark/light theme and served as the final project for a JavaScript course. (2022)",
+      "Vanilla JavaScript storefront built as a course final project. (2022)",
     tech: [
       {
         tech: "HTML5",
@@ -512,8 +530,9 @@ export const data = [
     name: "Live Chat App",
     category: "web",
     img: "/images/Webp/LiveChatApp.webp",
+    teaser: "Realtime chat rooms built with Node.js.",
     description:
-      "Choose a chat room, engage in conversations with participants inside, and view message timestamps. When ready, you can exit the room and return to the home page. Developed in Node.js. (2023)",
+      "Node.js chat app where you pick a room and talk in realtime. (2023)",
     tech: [
       {
         tech: "Node.js",
@@ -541,8 +560,9 @@ export const data = [
     name: "Pokedex",
     category: "web",
     img: "/images/Webp/Pokedex.webp",
+    teaser: "Browse and favorite 1,000 Pokémon with auth.",
     description:
-      "This Node.js application enables users to view a list of 1000 Pokémon, add their favorite Pokémon to a list, and remove them. Users can search for any Pokémon and access all its characteristics. The application includes a login and authentication feature. (2023)",
+      "Node.js app to browse 1,000 Pokémon, search, and save favorites. (2023)",
     tech: [
       {
         tech: "Node.js",
@@ -601,8 +621,9 @@ export const data = [
     id: "Naturatours",
     name: "Naturatours",
     category: "landing",
+    teaser: "WordPress site for a Puerto Vallarta tour agency.",
     description:
-      "This website was developed using the CMS WordPress for a tour agency in Puerto Vallarta. It features a landing page that allows you to showcase products, make reservations, and complete sales. (2020)",
+      "WordPress site for a tour agency in Puerto Vallarta. (2020)",
     img: "https://i.ibb.co/VTrr8C7/Natura-Tours.webp",
     tech: [
       {

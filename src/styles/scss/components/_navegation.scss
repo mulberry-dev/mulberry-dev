@@ -64,7 +64,7 @@
       color-mix(in srgb, #000 8%, transparent) 100%
     ),
     color-mix(in srgb, var(--color-canvas) 12%, transparent);
-  border: 1px solid color-mix(in srgb, #fff 18%, transparent);
+  border: 1px solid color-mix(in srgb, #ffffff79 50%, transparent);
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, #fff 28%, transparent),
     inset 0 -1px 10px color-mix(in srgb, #000 14%, transparent),
@@ -138,6 +138,12 @@
   overflow-wrap: anywhere;
 }
 
+.site-nav__logo .site-logo {
+  width: auto;
+  height: 28px;
+  object-fit: contain;
+}
+
 .site-nav__links {
   position: relative;
   justify-content: center;
@@ -158,7 +164,7 @@
   height: 2px;
   pointer-events: none;
   border-radius: var(--radius-pill);
-  background: var(--color-teal);
+  background: var(--gradient-brand);
   opacity: 0;
   transform: translate3d(0, 0, 0);
   transform-origin: left center;
@@ -186,7 +192,7 @@
 
 .site-nav__link:hover,
 .site-nav__link.is-active {
-  color: var(--color-teal);
+  color: var(--color-text);
 }
 
 .site-nav__actions {
@@ -281,6 +287,12 @@ body:not(.dark) .site-nav__chrome {
 
   .site-nav__inner {
     padding-inline: var(--space-4);
+    pointer-events: none;
+  }
+
+  .site-nav__brand,
+  .site-nav__actions {
+    pointer-events: auto;
   }
 
   .site-nav__backdrop {
@@ -341,7 +353,7 @@ body:not(.dark) .site-nav__chrome {
   .site-nav__links.is-open {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    pointer-events: none;
   }
 
   .site-nav__links.is-closing {
@@ -351,6 +363,11 @@ body:not(.dark) .site-nav__chrome {
   }
 
   .site-nav__links.is-open .site-nav__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    pointer-events: auto;
     font-size: 1.25rem;
     font-weight: 600;
     padding: 10px 12px;

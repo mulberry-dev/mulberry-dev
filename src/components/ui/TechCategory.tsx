@@ -16,7 +16,7 @@ const TechItem = ({ name, index = 0 }: { name: string; index?: number }) => {
           alt=""
           width={14}
           height={14}
-          loading="eager"
+          loading="lazy"
           decoding="async"
         />
       ) : (

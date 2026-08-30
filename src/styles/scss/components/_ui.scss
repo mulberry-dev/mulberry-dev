@@ -4,11 +4,17 @@
 }
 
 .gradient-text {
-  background-image: linear-gradient(90deg, var(--color-teal) 0%, var(--color-purple) 100%);
+  background-image: var(--gradient-brand);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+.site-logo {
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: screen;
 }
 
 .page-fade {
@@ -109,7 +115,31 @@
 }
 
 .ui-button--ghost:hover {
-  color: var(--color-teal);
+  color: var(--brand-cyan);
+}
+
+.ui-button--terminal {
+  position: relative;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--color-canvas), var(--color-canvas)) padding-box,
+    var(--gradient-brand) border-box;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.ui-button--terminal:hover {
+  box-shadow: var(--glow-soft);
+  color: var(--color-text);
+}
+
+.ui-button--terminal:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 .ui-card {
@@ -230,6 +260,27 @@ body:not(.dark) .ui-tech-badge {
   object-fit: contain;
 }
 
+@mixin tech-logo-mono {
+  filter: grayscale(1) brightness(.6) invert(1);
+  opacity: 0.86;
+
+  body:not(.dark) & {
+    filter: grayscale(1) brightness(0.5);
+    opacity: 0.62;
+  }
+}
+
+.tech-logo,
+.ui-tech-badge :is(img, svg),
+.tech-category li :is(img, svg) {
+  @include tech-logo-mono;
+}
+
+.ui-button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
 .ui-filter-pills {
   display: flex;
   flex-wrap: wrap;
@@ -280,7 +331,19 @@ body:not(.dark) .ui-tech-badge {
 }
 
 .ui-filter-pill--landing {
-  --pill-tone: var(--color-cyan);
+  --pill-tone: var(--brand-cyan);
+}
+
+.ui-filter-pill--web {
+  --pill-tone: var(--brand-blue);
+}
+
+.ui-filter-pill--api {
+  --pill-tone: var(--accent-indigo);
+}
+
+.ui-filter-pill--ecommerce {
+  --pill-tone: var(--brand-purple);
 }
 
 .ui-filter-pill:hover,
@@ -449,13 +512,8 @@ body:not(.dark) .site-textarea {
   font-size: var(--text-caption);
 }
 
-.site-footer__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 600;
+.site-footer__prompt {
+  justify-content: flex-start;
 }
 
 .site-footer__copy {
@@ -464,17 +522,24 @@ body:not(.dark) .site-textarea {
 }
 
 .site-footer__note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
   margin: 0;
-  text-align: right;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 767px) {
   .site-footer__inner {
     grid-template-columns: 1fr;
+    justify-items: center;
     text-align: center;
   }
 
-  .site-footer__brand,
+  .site-footer__prompt,
   .site-footer__note {
     justify-content: center;
     text-align: center;

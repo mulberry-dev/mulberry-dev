@@ -7,9 +7,13 @@ import ConnectedScene from "@/components/build/ConnectedScene"
 import ModernizeScene from "@/components/build/ModernizeScene"
 import ProductScene from "@/components/build/ProductScene"
 import StackTerminal from "@/components/build/StackTerminal"
+import TechStackBar from "@/components/terminal/TechStackBar"
+import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SiteIcon from "@/components/ui/SiteIcon"
+import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
+import { CAPABILITIES } from "@/data/whatIDo"
+import { WORKSPACE } from "@/data/workspace"
 import {
   BUILD_APPROACH,
   BUILD_CONNECTED,
@@ -25,14 +29,16 @@ const CopyBlock = ({
   index,
   title,
   kicker,
-  copy,
+  copy = [],
+  items,
   tech,
   stages
 }: {
   index: string
   title: string
-  kicker: string
-  copy: readonly string[]
+  kicker?: string
+  copy?: readonly string[]
+  items?: readonly { icon: SiteIconName; label: string }[]
   tech?: readonly string[]
   stages?: typeof BUILD_APPROACH.stages
 }) => (
@@ -43,9 +49,11 @@ const CopyBlock = ({
         <span> / {title}</span>
       </h3>
     </Reveal>
-    <Reveal type="text" as="p" className="skills-copy__kicker">
-      {kicker}
-    </Reveal>
+    {kicker ? (
+      <Reveal type="text" as="p" className="skills-copy__kicker">
+        {kicker}
+      </Reveal>
+    ) : null}
     {copy.length ? (
       <Reveal type="text" as="p" className="skills-copy__body">
         {copy.map((line) => (
@@ -53,14 +61,22 @@ const CopyBlock = ({
         ))}
       </Reveal>
     ) : null}
-    {tech ? (
-      <ul className="skills-copy__tech">
-        {tech.map((item) => (
-          <Reveal key={item} as="li" type="chip">
-            {item}
+    {items ? (
+      <ul className="skills-copy__items">
+        {items.map((item) => (
+          <Reveal key={item.label} as="li" type="chip">
+            <span aria-hidden="true">
+              <SiteIcon name={item.icon} />
+            </span>
+            <span>{item.label}</span>
           </Reveal>
         ))}
       </ul>
+    ) : null}
+    {tech ? (
+      <Reveal type="text" as="p" className="skills-copy__tech">
+        {tech.join(" · ")}
+      </Reveal>
     ) : null}
     {stages ? (
       <ol className="skills-copy__stages">
@@ -131,13 +147,36 @@ const Skills = () => {
       setActive(current)
     }
 
+    let frame = 0
+    const schedule = () => {
+      if (frame) {
+        return
+      }
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0
+        update()
+      })
+    }
+
     update()
-    window.addEventListener("scroll", update, { passive: true })
-    window.addEventListener("resize", update)
+
+    const observer = new IntersectionObserver(schedule, {
+      root: null,
+      rootMargin: "-22% 0px -52% 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    })
+
+    nodes.forEach((node) => observer.observe(node))
+    window.addEventListener("resize", schedule)
 
     return () => {
-      window.removeEventListener("scroll", update)
-      window.removeEventListener("resize", update)
+      observer.disconnect()
+      window.removeEventListener("resize", schedule)
+
+      if (frame) {
+        window.cancelAnimationFrame(frame)
+      }
     }
   }, [])
 
@@ -157,8 +196,18 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" data-section-path="/skills">
+    <section
+      id="skills"
+      data-section-path="/skills"
+      aria-label="What I Do"
+      tabIndex={-1}
+    >
       <Container className="skills-page">
+        <WorkspaceHeader
+          index={WORKSPACE.skills.index}
+          path={WORKSPACE.skills.path}
+          title={WORKSPACE.skills.title}
+        />
         <div className="skills-terminal">
           <nav className="skills-rail" aria-label="On this page">
             {BUILD_SECTIONS.map((section) => (
@@ -180,33 +229,13 @@ const Skills = () => {
           </nav>
 
           <header className="skills-chrome">
-            <BuildSession path="~" />
-            <p className="skills-chrome__place">WHAT I BUILD</p>
+            <BuildSession />
           </header>
 
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
-              <Reveal type="eyebrow">
-                <BuildSession cursor />
-              </Reveal>
-              <Reveal type="heading" as="h2" className="skills-headline">
-                {BUILD_INTRO.headline.map((line, index) => (
-                  <span
-                    key={line}
-                    className={
-                      index >= BUILD_INTRO.accentFrom
-                        ? "skills-headline__line is-accent"
-                        : "skills-headline__line"
-                    }
-                  >
-                    {line}
-                  </span>
-                ))}
-              </Reveal>
-              <Reveal type="text" as="p" className="skills-intro__body">
-                {BUILD_INTRO.body.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
+              <Reveal type="heading" as="h3" className="skills-headline">
+                {BUILD_INTRO.headline}
               </Reveal>
               <Reveal
                 type="decorative"
@@ -216,12 +245,35 @@ const Skills = () => {
             </div>
           </RevealGroup>
 
+          <RevealGroup className="capability-grid skills-capabilities" mode="scroll" stagger={48}>
+            {CAPABILITIES.map(item => (
+              <Reveal key={item.title} type="card">
+                <article className={`capability-card capability-card--${item.accent}`}>
+                  <span className="capability-card__icon" aria-hidden="true">
+                    <SiteIcon name={item.icon} />
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <span className="capability-card__rule" aria-hidden="true" />
+                </article>
+              </Reveal>
+            ))}
+          </RevealGroup>
+
+          <Reveal type="nav" mode="scroll" className="skills-stackbar">
+            <TechStackBar />
+          </Reveal>
+
           <Capability id="build-interfaces" stage={<ProductScene />}>
             <CopyBlock {...BUILD_INTERFACES} />
           </Capability>
 
           <Capability id="build-systems" stage={<ArchitectureScene />}>
             <CopyBlock {...BUILD_SYSTEMS} />
+          </Capability>
+
+          <Capability id="build-connected" stage={<ConnectedScene />}>
+            <CopyBlock {...BUILD_CONNECTED} />
           </Capability>
 
           <Capability id="build-modernize" stage={<ModernizeScene />}>
@@ -233,16 +285,10 @@ const Skills = () => {
             />
           </Capability>
 
-          <Capability id="build-connected" stage={<ConnectedScene />}>
-            <CopyBlock {...BUILD_CONNECTED} />
-          </Capability>
-
           <Capability id="build-approach" stage={<ApproachScene />}>
             <CopyBlock
               index={BUILD_APPROACH.index}
               title={BUILD_APPROACH.title}
-              kicker={BUILD_APPROACH.kicker}
-              copy={[]}
               stages={BUILD_APPROACH.stages}
             />
           </Capability>

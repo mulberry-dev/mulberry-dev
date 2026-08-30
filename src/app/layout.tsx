@@ -1,15 +1,35 @@
-import Head from "@/components/Head"
 import Navigation from "@/components/navigation"
 import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
-import { SITE_NAME, SITE_URL } from "@/data/site"
-import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme"
+import {
+  COPYRIGHT_NAME,
+  SITE_DESCRIPTION,
+  SITE_LOGO,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  SITE_TITLE,
+  SITE_URL
+} from "@/data/site"
 import "@/styles/scss/styles.scss"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { JetBrains_Mono } from "next/font/google"
+import { JetBrains_Mono, Sora, Space_Grotesk } from "next/font/google"
 import type { Metadata } from "next"
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora",
+  display: "swap"
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-grotesk",
+  display: "swap"
+})
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -19,25 +39,44 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | Web Programmer`,
+    default: SITE_TITLE,
     template: `%s | ${SITE_NAME}`
   },
-  description:
-    "Programmer who loves code and technology, committed to developing specialized and scalable technology in new projects.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "Developer",
     "Full Stack",
     "JavaScript",
     "TypeScript",
     "React",
-    "Next.js"
+    "Next.js",
+    "Node.js",
+    "Santiago Morera"
   ],
+  icons: {
+    icon: [{ url: SITE_LOGO, type: "image/png" }],
+    shortcut: SITE_LOGO,
+    apple: SITE_LOGO
+  },
   openGraph: {
-    title: SITE_NAME,
-    description: "Senior Full Stack Engineer specialized in JavaScript/TypeScript",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: SITE_URL,
-    type: "website"
+    siteName: SITE_NAME,
+    locale: "en_US",
+    type: "website",
+    images: [SITE_OG_IMAGE]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SITE_LOGO]
+  },
+  other: {
+    copyright: COPYRIGHT_NAME
   }
 }
 
@@ -47,13 +86,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
-        <Head />
-      </head>
+    <html
+      lang="en"
+      className={`${sora.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <GoogleAnalytics gaId="G-HP85BC1BKY" />
       <body className="dark" suppressHydrationWarning>
+        <a className="skip-link" href="#site-main">
+          Skip to content
+        </a>
         <div className="site-atmosphere" aria-hidden="true" />
         <ParticlesProvider>
           <Navigation />
