@@ -2,7 +2,6 @@
 
 import ContactCard from "@/components/contact/ContactCard"
 import ContactGraphic from "@/components/contact/ContactGraphic"
-import Badge from "@/components/ui/Badge"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import {
@@ -22,15 +21,9 @@ const Contact = () => {
       <Container className="contact-page">
         <div className="contact-hero">
           <RevealGroup className="contact-hero__copy" mode="auto" stagger={56}>
-            <Reveal type="eyebrow">
-              <Badge>{CONTACT_INTRO.badge}</Badge>
-            </Reveal>
             <Reveal type="heading" as="h2">
               <span>{CONTACT_INTRO.title}</span>
               <span className="gradient-text">{CONTACT_INTRO.gradientText}</span>
-            </Reveal>
-            <Reveal type="text" as="p" className="contact-hero__lede">
-              {CONTACT_INTRO.subtitle}
             </Reveal>
             <Reveal type="text" as="p" className="contact-availability">
               <span className="contact-availability__dot" aria-hidden="true" />

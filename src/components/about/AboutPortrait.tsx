@@ -1,3 +1,4 @@
+import { ABOUT_NAME, ABOUT_ROLE } from "@/data/about"
 import Image from "next/image"
 
 const AboutPortrait = () => (
@@ -13,7 +14,7 @@ const AboutPortrait = () => (
     />
     <Image
       src="/images/Webp/about-me.webp"
-      alt="Santiago Morera, Mexican Full Stack Developer"
+      alt={`${ABOUT_NAME}, ${ABOUT_ROLE}`}
       width={1254}
       height={1254}
       unoptimized

@@ -65,7 +65,7 @@ const ContactCard = ({
         <SiteIcon name={icon} />
       </span>
       <h3>{title}</h3>
-      <p>{description}</p>
+      {description ? <p>{description}</p> : null}
       <button
         type="button"
         className={`contact-card__copy${copied ? " is-copied" : ""}`}

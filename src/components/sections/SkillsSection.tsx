@@ -32,7 +32,7 @@ const CopyBlock = ({
 }: {
   index: string
   title: string
-  kicker: string
+  kicker?: string
   copy?: readonly string[]
   items?: readonly { icon: SiteIconName; label: string }[]
   tech?: readonly string[]
@@ -45,9 +45,11 @@ const CopyBlock = ({
         <span> / {title}</span>
       </h3>
     </Reveal>
-    <Reveal type="text" as="p" className="skills-copy__kicker">
-      {kicker}
-    </Reveal>
+    {kicker ? (
+      <Reveal type="text" as="p" className="skills-copy__kicker">
+        {kicker}
+      </Reveal>
+    ) : null}
     {copy.length ? (
       <Reveal type="text" as="p" className="skills-copy__body">
         {copy.map((line) => (
@@ -218,15 +220,11 @@ const Skills = () => {
           </nav>
 
           <header className="skills-chrome">
-            <BuildSession path="~" />
-            <p className="skills-chrome__place">WHAT I BUILD</p>
+            <BuildSession />
           </header>
 
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
-              <Reveal type="eyebrow">
-                <BuildSession cursor />
-              </Reveal>
               <Reveal type="heading" as="h2" className="skills-headline">
                 {BUILD_INTRO.headline}
               </Reveal>
@@ -263,8 +261,6 @@ const Skills = () => {
             <CopyBlock
               index={BUILD_APPROACH.index}
               title={BUILD_APPROACH.title}
-              kicker={BUILD_APPROACH.kicker}
-              copy={[]}
               stages={BUILD_APPROACH.stages}
             />
           </Capability>
