@@ -58,7 +58,7 @@ const Contact = () => {
                     </span>
                     <span className="contact-channel__copy">
                       <strong>{option.title}</strong>
-                      {option.description ? <span>{option.description}</span> : null}
+                      <span>{option.value}</span>
                     </span>
                     {option.external ? (
                       <span className="sr-only"> (opens in a new tab)</span>
