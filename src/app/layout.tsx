@@ -14,8 +14,22 @@ import "@/styles/scss/styles.scss"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { JetBrains_Mono } from "next/font/google"
+import { JetBrains_Mono, Sora, Space_Grotesk } from "next/font/google"
 import type { Metadata } from "next"
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora",
+  display: "swap"
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-grotesk",
+  display: "swap"
+})
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -72,7 +86,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${sora.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <GoogleAnalytics gaId="G-HP85BC1BKY" />
       <body className="dark" suppressHydrationWarning>
         <a className="skip-link" href="#site-main">

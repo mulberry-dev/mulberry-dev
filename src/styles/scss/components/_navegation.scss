@@ -164,7 +164,7 @@
   height: 2px;
   pointer-events: none;
   border-radius: var(--radius-pill);
-  background: var(--color-teal);
+  background: var(--gradient-brand);
   opacity: 0;
   transform: translate3d(0, 0, 0);
   transform-origin: left center;
@@ -192,7 +192,7 @@
 
 .site-nav__link:hover,
 .site-nav__link.is-active {
-  color: var(--color-teal);
+  color: var(--color-text);
 }
 
 .site-nav__actions {

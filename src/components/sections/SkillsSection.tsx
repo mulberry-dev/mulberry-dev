@@ -7,9 +7,13 @@ import ConnectedScene from "@/components/build/ConnectedScene"
 import ModernizeScene from "@/components/build/ModernizeScene"
 import ProductScene from "@/components/build/ProductScene"
 import StackTerminal from "@/components/build/StackTerminal"
+import TechStackBar from "@/components/terminal/TechStackBar"
+import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
+import { CAPABILITIES } from "@/data/whatIDo"
+import { WORKSPACE } from "@/data/workspace"
 import {
   BUILD_APPROACH,
   BUILD_CONNECTED,
@@ -195,10 +199,15 @@ const Skills = () => {
     <section
       id="skills"
       data-section-path="/skills"
-      aria-label="What I Build"
+      aria-label="What I Do"
       tabIndex={-1}
     >
       <Container className="skills-page">
+        <WorkspaceHeader
+          index={WORKSPACE.skills.index}
+          path={WORKSPACE.skills.path}
+          title={WORKSPACE.skills.title}
+        />
         <div className="skills-terminal">
           <nav className="skills-rail" aria-label="On this page">
             {BUILD_SECTIONS.map((section) => (
@@ -225,7 +234,7 @@ const Skills = () => {
 
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
-              <Reveal type="heading" as="h2" className="skills-headline">
+              <Reveal type="heading" as="h3" className="skills-headline">
                 {BUILD_INTRO.headline}
               </Reveal>
               <Reveal
@@ -235,6 +244,25 @@ const Skills = () => {
               />
             </div>
           </RevealGroup>
+
+          <RevealGroup className="capability-grid skills-capabilities" mode="scroll" stagger={48}>
+            {CAPABILITIES.map(item => (
+              <Reveal key={item.title} type="card">
+                <article className={`capability-card capability-card--${item.accent}`}>
+                  <span className="capability-card__icon" aria-hidden="true">
+                    <SiteIcon name={item.icon} />
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <span className="capability-card__rule" aria-hidden="true" />
+                </article>
+              </Reveal>
+            ))}
+          </RevealGroup>
+
+          <Reveal type="nav" mode="scroll" className="skills-stackbar">
+            <TechStackBar />
+          </Reveal>
 
           <Capability id="build-interfaces" stage={<ProductScene />}>
             <CopyBlock {...BUILD_INTERFACES} />

@@ -1,27 +1,46 @@
 .certs-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-6);
+  text-align: center;
+}
+
+.certs-page .workspace-header {
+  align-items: center;
+}
+
+.certs-page .workspace-header__context {
+  justify-content: center;
+}
+
+.certs-page .ui-filter-pills {
+  justify-content: center;
 }
 
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-5);
+  align-self: stretch;
+  width: 100%;
+  max-width: 100%;
 }
 
 .certs-card {
   display: flex;
   flex-direction: column;
-  padding: var(--space-4);
+  padding: var(--space-3);
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+  background: color-mix(in srgb, var(--color-surface) 48%, transparent);
+  box-shadow: none;
+  transition: border-color 0.3s var(--ease-out);
 }
 
 .certs-card__open {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-3);
   width: 100%;
   padding: 0;
@@ -29,7 +48,7 @@
   background: transparent;
   color: inherit;
   font: inherit;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -40,21 +59,20 @@
 }
 
 .certs-card:hover {
-  transform: scale(1.02);
-  border-color: var(--color-teal);
+  border-color: var(--border-active);
 }
 
 .certs-card__image {
   width: 100%;
-  height: 180px;
+  height: 132px;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border-radius: var(--radius-md);
-  transition: transform 0.4s ease, opacity 0.2s ease;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.2s ease;
 }
 
 .certs-card:hover .certs-card__image {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .certs-card.is-expanded,
@@ -70,6 +88,11 @@
 
 .certs-card h3 {
   margin: 0;
+  text-wrap: pretty;
+}
+
+.certs-card .ui-badge {
+  margin-inline: auto;
 }
 
 .certs-lightbox {
@@ -300,7 +323,21 @@
 
 @media (max-width: 767px) {
   .certs-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .certs-card {
+    padding: var(--space-3);
+  }
+
+  .certs-card__image {
+    height: 96px;
+  }
+
+  .certs-card h3 {
+    font-size: 0.8125rem;
+    line-height: 1.3;
   }
 
   .certs-lightbox__stage {
