@@ -184,11 +184,11 @@
 }
 
 .ui-badge--security {
-  --badge-tone: var(--color-purple);
+  --badge-tone: var(--color-blue);
 }
 
 .ui-badge--english {
-  --badge-tone: var(--color-cyan);
+  --badge-tone: var(--color-purple);
 }
 
 .ui-badge--development,
@@ -323,11 +323,11 @@ body:not(.dark) .ui-tech-badge {
 }
 
 .ui-filter-pill--security {
-  --pill-tone: var(--color-purple);
+  --pill-tone: var(--color-blue);
 }
 
 .ui-filter-pill--english {
-  --pill-tone: var(--color-cyan);
+  --pill-tone: var(--color-purple);
 }
 
 .ui-filter-pill--landing {

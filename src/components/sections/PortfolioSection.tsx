@@ -154,6 +154,7 @@ const FeaturedCard = ({
 
 const ArchiveCard = ({ project }: { project: Project }) => {
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
+  const year = extractYear(project.description)
   const stack = techNames(project.tech).slice(0, 3)
 
   return (
@@ -168,6 +169,7 @@ const ArchiveCard = ({ project }: { project: Project }) => {
     >
       <article className="archive-card">
         <header className="archive-card__meta">
+          {year ? <span className="archive-card__year">{year}</span> : null}
           <ProjectFlags project={project} />
         </header>
         <div className="archive-card__media">
@@ -183,7 +185,7 @@ const ArchiveCard = ({ project }: { project: Project }) => {
           />
         </div>
         <h3>{project.name}</h3>
-        <p>{project.teaser}</p>
+        <p className="archive-card__teaser">{project.teaser}</p>
         <p className="archive-card__stack">{stack.join(" · ")}</p>
         <span className="archive-card__cta">
           View

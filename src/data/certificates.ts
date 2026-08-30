@@ -1,5 +1,17 @@
 export const certificates = [
   {
+    id: 8,
+    url: "/images/Certificates/Ciberseguridad.webp",
+    title: "Cybersecurity",
+    category: "security"
+  },
+  {
+    id: 5,
+    url: "/images/Certificates/Ingles.webp",
+    title: "English",
+    category: "english"
+  },
+  {
     id: 0,
     url: "/images/Certificates/CarreraDesarrolloFullStack.webp",
     title: "Full Stack Development Career",
@@ -30,12 +42,6 @@ export const certificates = [
     category: "development"
   },
   {
-    id: 5,
-    url: "/images/Certificates/Ingles.webp",
-    title: "English",
-    category: "english"
-  },
-  {
     id: 6,
     url: "/images/Certificates/JavaScript.webp",
     title: "JavaScript",
@@ -46,11 +52,5 @@ export const certificates = [
     url: "/images/Certificates/DesarrolloWeb.webp",
     title: "Web Development",
     category: "development"
-  },
-  {
-    id: 8,
-    url: "/images/Certificates/Ciberseguridad.webp",
-    title: "Cybersecurity",
-    category: "security"
   }
 ]
