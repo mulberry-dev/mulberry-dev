@@ -82,6 +82,21 @@
   color: var(--color-text-muted);
 }
 
+.term-status--pre-ai {
+  color: var(--color-text-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+}
+
+.project-flags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem 0.65rem;
+}
+
 .workspace-header {
   display: flex;
   flex-direction: column;

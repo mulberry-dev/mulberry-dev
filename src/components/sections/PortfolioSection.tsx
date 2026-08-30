@@ -1,7 +1,7 @@
 "use client"
 
 import CommandLine from "@/components/terminal/CommandLine"
-import ProjectStatus from "@/components/terminal/ProjectStatus"
+import ProjectFlags from "@/components/terminal/ProjectFlags"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
@@ -9,6 +9,7 @@ import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import { WORKSPACE } from "@/data/workspace"
 import {
   archiveProjects,
+  builtWithoutAi,
   categoryCounts,
   extractYear,
   featuredProjects,
@@ -105,7 +106,7 @@ const FeaturedCard = ({
             <span className="work-card__index">
               {padCount(index + 1)} / Featured
             </span>
-            <ProjectStatus project={project} />
+            <ProjectFlags project={project} />
           </header>
           <h3>{project.name}</h3>
           <p className="work-card__teaser">{project.teaser}</p>
@@ -167,6 +168,9 @@ const ArchiveCard = ({ project }: { project: Project }) => {
       onClick={handleClick}
     >
       <article className="archive-card">
+        <header className="archive-card__meta">
+          <ProjectFlags project={project} />
+        </header>
         <div className="archive-card__media">
           <Image
             src={project.thumbnail}
@@ -276,6 +280,9 @@ const Portfolio = () => {
           <CommandLine command="ls ./archive" />
           <p className="workspace-header__meta">
             {padCount(archiveVisible.length)} projects in archive
+            {archiveVisible.some(builtWithoutAi)
+              ? ` · ${padCount(archiveVisible.filter(builtWithoutAi).length)} built without AI`
+              : ""}
           </p>
           <RevealGroup className="archive-grid" mode="auto" stagger={48} key={active}>
             {archiveVisible.map(project => (

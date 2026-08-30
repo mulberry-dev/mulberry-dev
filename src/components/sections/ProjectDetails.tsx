@@ -3,7 +3,7 @@
 import Button from "@/components/ui/Button"
 import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"
-import ProjectStatus from "@/components/terminal/ProjectStatus"
+import ProjectFlags from "@/components/terminal/ProjectFlags"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
 import TechBadge from "@/components/ui/TechBadge"
@@ -124,7 +124,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 <span>
                   {padCount(index + 1)} / Project
                 </span>
-                <ProjectStatus project={project} />
+                <ProjectFlags project={project} />
               </Reveal>
               <Reveal type="heading" as="h1">
                 {project.name}

@@ -163,6 +163,12 @@
   padding: var(--space-4);
 }
 
+.archive-card__meta {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
 .archive-card h3 {
   font-size: 1.05rem;
 }
@@ -353,6 +359,19 @@
 
   .archive-card__cta {
     font-size: 0.75rem;
+  }
+
+  .archive-card__meta,
+  .work-card__meta {
+    gap: 0.35rem;
+  }
+
+  .project-flags {
+    justify-content: flex-start;
+  }
+
+  .term-status {
+    font-size: 0.625rem;
   }
 
   .work-card:not(.work-card--featured) {

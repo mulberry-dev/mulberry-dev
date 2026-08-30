@@ -17,6 +17,17 @@ export const extractYear = (description: string) => {
   return match?.[1]
 }
 
+export const extractStartYear = (description: string) => {
+  const year = extractYear(description)
+  const start = year?.match(/^\d{4}/)?.[0]
+  return start ? Number(start) : undefined
+}
+
+export const builtWithoutAi = (project: Project) => {
+  const year = extractStartYear(project.description)
+  return year !== undefined && year <= 2023
+}
+
 export const projectSlug = (id: string | number) =>
   String(id)
     .replace(/([a-z\d])([A-Z])/g, "$1-$2")
