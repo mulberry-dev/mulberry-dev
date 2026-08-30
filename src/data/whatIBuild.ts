@@ -4,45 +4,23 @@ export const BUILD_HOST = "santiago@dev"
 export const BUILD_PATH = "~/what-i-do"
 export const BUILD_STACK_PATH = "~/stack.json"
 
-export const BUILD_INTRO = {
-  headline: "How I ship products."
-} as const
-
 export const BUILD_INTERFACES = {
   index: "01",
   title: "FRONTEND",
-  kicker: "WHAT PEOPLE SEE",
   items: [
-    { icon: "interface" as const, label: "UI components" },
-    { icon: "cursor" as const, label: "Interactions" },
     { icon: "user" as const, label: "UX & accessibility" },
     { icon: "performance" as const, label: "Performance" }
-  ],
-  tech: ["React", "Next.js", "TypeScript"]
+  ]
 } as const
 
 export const BUILD_SYSTEMS = {
   index: "02",
-  title: "BACKEND",
-  kicker: "HOW IT WORKS",
-  items: [
-    { icon: "systems" as const, label: "APIs" },
-    { icon: "connect" as const, label: "Services" },
-    { icon: "database" as const, label: "Databases" },
-    { icon: "cube" as const, label: "Architecture" },
-    { icon: "thinking" as const, label: "Business logic" }
-  ],
-  tech: ["Node.js", "Express", "GraphQL"]
+  title: "BACKEND"
 } as const
 
 export const BUILD_MODERNIZATION = {
   index: "04",
   title: "MODERNIZATION",
-  kicker: "EVOLVE WITHOUT BREAKING",
-  copy: [
-    "I don't replace working businesses.",
-    "I modernize the systems behind them."
-  ],
   legacy: {
     label: "LEGACY",
     items: ["PHP", "Old UI", "Monolith", "Disconnected", "Hard to scale"]
@@ -61,36 +39,12 @@ export const BUILD_MODERNIZATION = {
 
 export const BUILD_CONNECTED = {
   index: "03",
-  title: "FULL STACK",
-  kicker: "EVERYTHING WORKS TOGETHER",
-  copy: ["Identity, payments, data, and APIs in one product."]
+  title: "FULL STACK"
 } as const
 
 export const BUILD_APPROACH = {
   index: "05",
-  title: "THE WAY I BUILD",
-  stages: [
-    {
-      icon: "idea" as const,
-      title: "THINK",
-      text: "Understand the problem."
-    },
-    {
-      icon: "design" as const,
-      title: "DESIGN",
-      text: "Shape the experience."
-    },
-    {
-      icon: "code" as const,
-      title: "BUILD",
-      text: "Make the system work."
-    },
-    {
-      icon: "rocket" as const,
-      title: "SHIP",
-      text: "Put it in people's hands."
-    }
-  ],
+  title: "APPROACH",
   principles: [
     {
       icon: "user" as const,
@@ -170,7 +124,6 @@ export const PRODUCT_LAYERS = [
 ] as const
 
 export const BUILD_SECTIONS = [
-  { id: "build-intro", index: "00", label: "INTRO" },
   { id: "build-interfaces", index: "01", label: "FRONTEND" },
   { id: "build-systems", index: "02", label: "BACKEND" },
   { id: "build-connected", index: "03", label: "FULL STACK" },

@@ -153,6 +153,16 @@
   gap: var(--space-4);
 }
 
+.work-archive__title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

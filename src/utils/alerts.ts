@@ -7,10 +7,10 @@ export async function PrivateDeployment(params: string) {
 
   Swal.fire({
     icon: "info",
-    title: `This deployment is private: <br/> <span>${params} <span/> <br/>  🔒 `,
-    text: `If you want to know more about this project, please contact me.`,
+    title: `${params} is private`,
+    text: "Contact me if you want details.",
     focusConfirm: false,
-    confirmButtonText: "Great!",
+    confirmButtonText: "OK",
     confirmButtonAriaLabel: "Thumbs up, great!",
     confirmButtonColor:
       getComputedStyle(document.body).getPropertyValue("--color-teal").trim() ||

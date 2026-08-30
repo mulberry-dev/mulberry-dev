@@ -6,10 +6,21 @@
 }
 
 .contact-workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(var(--space-5), 4vw, var(--space-8));
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-5), 4vw, var(--space-7));
+  max-width: 40rem;
+}
+
+.contact-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
 }
 
 .contact-log {
@@ -125,7 +136,7 @@
 
 @media (max-width: 767px) {
   .contact-workspace {
-    grid-template-columns: 1fr;
+    max-width: none;
   }
 }
 

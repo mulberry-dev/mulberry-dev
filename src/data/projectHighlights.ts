@@ -68,11 +68,6 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       icon: "design",
       title: "Signature visual",
       text: "Gradient type, particle sky, and theme toggle"
-    },
-    {
-      icon: "devices",
-      title: "Still live",
-      text: "Previous public version, kept online"
     }
   ],
   MulberryDrone: [
