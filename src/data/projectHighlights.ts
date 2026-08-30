@@ -16,25 +16,20 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
     {
       icon: "globe",
       title: "Bilingual experience",
-      text: "Content available in ES / EN"
+      text: "Content in Spanish and English"
     },
     {
       icon: "calendar",
       title: "Visit scheduling",
-      text: "CTAs designed to convert interest"
+      text: "CTAs that convert interest into appointments"
     },
     {
-      icon: "devices",
-      title: "Fully responsive",
-      text: "Optimized for all devices and screen sizes"
+      icon: "compass",
+      title: "Interactive masterplan",
+      text: "Lightbox tour of lots from 1,000 m²"
     }
   ],
   MulberryMarketing: [
-    {
-      icon: "design",
-      title: "Unified brand site",
-      text: "Strategy, creativity, and technology in one place"
-    },
     {
       icon: "interface",
       title: "Service deep-dives",
@@ -42,13 +37,13 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
     },
     {
       icon: "performance",
-      title: "Measurable case studies",
-      text: "Work presented with clear outcomes"
+      title: "Case studies",
+      text: "Work presented with measurable outcomes"
     },
     {
       icon: "cube",
-      title: "Conversion-focused",
-      text: "Contact flow with a 3D brand moment"
+      title: "Conversion flow",
+      text: "Contact path with a 3D brand moment"
     }
   ],
   CeciliaRodriguez: [
@@ -66,40 +61,25 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       icon: "shield",
       title: "Trust signals",
       text: "International-backed transactions"
-    },
-    {
-      icon: "devices",
-      title: "Mobile-first",
-      text: "Fast presentation site for the field"
     }
   ],
   ThisIsSantiOriginal: [
     {
-      icon: "user",
-      title: "Personal brand landing",
-      text: "Hero intro and multi-page portfolio for ThisIsSanti.dev"
-    },
-    {
-      icon: "interface",
-      title: "Full site map",
-      text: "Home, About, Skills, Portfolio, Certifications, and Contact"
-    },
-    {
       icon: "design",
       title: "Signature visual",
-      text: "Gradient type, particle sky, and dark/light accents"
+      text: "Gradient type, particle sky, and theme toggle"
     },
     {
       icon: "devices",
-      title: "Live original",
-      text: "Still available as the previous public version"
+      title: "Still live",
+      text: "Previous public version, kept online"
     }
   ],
   MulberryDrone: [
     {
       icon: "cursor",
-      title: "Cinematic work",
-      text: "4K aerial photography and videography"
+      title: "4K cinematic work",
+      text: "Aerial photography and videography"
     },
     {
       icon: "craft",
@@ -110,45 +90,30 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       icon: "frontend",
       title: "Photo gallery",
       text: "Selected aerial work in one place"
-    },
-    {
-      icon: "connect",
-      title: "WhatsApp-first contact",
-      text: "Clients can brief a shoot quickly"
     }
   ],
   SalonTarget: [
     {
       icon: "modernize",
-      title: "Platform modernization",
-      text: "Legacy PHP and Node.js moving to a modern stack"
+      title: "Legacy migration",
+      text: "PHP and Node.js moving to React and GraphQL"
     },
     {
       icon: "code",
-      title: "React and GraphQL",
-      text: "Apollo GraphQL and TypeORM for maintainability"
+      title: "Maintainable stack",
+      text: "Apollo GraphQL and TypeORM"
     },
     {
       icon: "swap",
       title: "Payments upgrade",
       text: "New processor with banking terminals"
-    },
-    {
-      icon: "systems",
-      title: "Salon operations",
-      text: "All-in-one management for staff and clients"
     }
   ],
   SsoSamlOkta: [
     {
-      icon: "shield",
-      title: "SSO from scratch",
-      text: "Authentication and SAML built end to end"
-    },
-    {
       icon: "connect",
       title: "Okta integration",
-      text: "Identity management through a leading platform"
+      text: "Identity through a leading platform"
     },
     {
       icon: "puzzle",
@@ -156,39 +121,29 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "One sign-on across multiple applications"
     },
     {
-      icon: "code",
-      title: "TypeScript API",
-      text: "A robust, maintainable Node.js codebase"
+      icon: "shield",
+      title: "Built end to end",
+      text: "Custom SAML flow, not a plugin wrapper"
     }
   ],
   ManagerProxy: [
     {
-      icon: "systems",
-      title: "Eight microservices",
-      text: "Orchestrated data from a private AWS domain"
-    },
-    {
       icon: "globe",
-      title: "Public access",
-      text: "Reach private services without a VPN"
+      title: "No VPN required",
+      text: "Reach private services from a public network"
     },
     {
       icon: "shield",
-      title: "Secure exchange",
-      text: "Public retrieval without exposing the private network"
+      title: "Private domain intact",
+      text: "Retrieval without exposing the internal network"
     },
     {
       icon: "database",
       title: "AWS-hosted",
-      text: "Built for a private cloud domain"
+      text: "Orchestrated on a private cloud domain"
     }
   ],
   ElectronicBilling: [
-    {
-      icon: "frontend",
-      title: "Invoice platform",
-      text: "React frontend with Ant Design"
-    },
     {
       icon: "systems",
       title: "15+ microservices",
@@ -200,9 +155,9 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "Single sign-on for authenticated access"
     },
     {
-      icon: "connect",
-      title: "SAT integration",
-      text: "Tax-compliant data exchange"
+      icon: "frontend",
+      title: "React + Ant Design",
+      text: "Staff-facing invoice interface"
     }
   ],
   MiBlog: [
@@ -212,63 +167,38 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "Add and delete posts from the dashboard"
     },
     {
-      icon: "shield",
-      title: "Authentication",
-      text: "Login-protected publishing"
-    },
-    {
       icon: "database",
       title: "Offline mode",
       text: "Local Storage when the network is down"
-    },
-    {
-      icon: "code",
-      title: "Next.js",
-      text: "App built on a modern React stack"
     }
   ],
   eCommerce: [
     {
-      icon: "connect",
-      title: "Live chat",
-      text: "Conversation built into the store"
-    },
-    {
-      icon: "cube",
-      title: "Cart and checkout",
-      text: "Add, remove, and complete purchases"
-    },
-    {
       icon: "mail",
       title: "Transactional email",
-      text: "Confirmation and purchase details"
+      text: "Registration and purchase details"
     },
     {
       icon: "gauge",
       title: "Mocha coverage",
-      text: "Flows tested with Mocha"
+      text: "Core flows tested with Mocha"
+    },
+    {
+      icon: "shield",
+      title: "Auth and profiles",
+      text: "Login, personal data, and confirmation mail"
     }
   ],
   TreeHug: [
     {
-      icon: "interface",
-      title: "School landing",
-      text: "Martial arts courses and products in one page"
-    },
-    {
-      icon: "cube",
-      title: "Direct purchases",
-      text: "Courses and products available to buy"
-    },
-    {
-      icon: "connect",
-      title: "Mercado Pago",
-      text: "Payments handled through Mercado Pago"
-    },
-    {
       icon: "code",
       title: "Vanilla JavaScript",
       text: "Built without a frontend framework"
+    },
+    {
+      icon: "cube",
+      title: "Courses and products",
+      text: "Both available to buy on one page"
     }
   ],
   TecnoShop: [
@@ -278,19 +208,14 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "Shop by product type"
     },
     {
-      icon: "cube",
-      title: "Shopping cart",
-      text: "Add and remove items before checkout"
-    },
-    {
       icon: "swap",
       title: "Live stock",
       text: "Inventory decreases after each purchase"
     },
     {
       icon: "code",
-      title: "React.js",
-      text: "Client-side storefront with Firebase"
+      title: "Firebase",
+      text: "Client-side storefront with live data"
     }
   ],
   eCommerceJs: [
@@ -303,24 +228,9 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       icon: "design",
       title: "Theme switch",
       text: "Dark and light modes included"
-    },
-    {
-      icon: "code",
-      title: "Vanilla JavaScript",
-      text: "Built as a JavaScript course final project"
-    },
-    {
-      icon: "interface",
-      title: "Storefront UI",
-      text: "HTML, Sass, and Bootstrap layout"
     }
   ],
   LiveChatApp: [
-    {
-      icon: "connect",
-      title: "Chat rooms",
-      text: "Choose a room and join the conversation"
-    },
     {
       icon: "calendar",
       title: "Message timestamps",
@@ -333,16 +243,11 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
     },
     {
       icon: "code",
-      title: "Node.js",
-      text: "Realtime chat with Socket.io"
+      title: "Socket.io",
+      text: "Realtime rooms on Node.js"
     }
   ],
   Pokedex: [
-    {
-      icon: "frontend",
-      title: "1,000 Pokémon",
-      text: "Browse a large catalog in one app"
-    },
     {
       icon: "detail",
       title: "Favorites list",
@@ -361,14 +266,9 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
   ],
   Naturatours: [
     {
-      icon: "compass",
-      title: "Tour agency site",
-      text: "Built for a Puerto Vallarta operator"
-    },
-    {
       icon: "frontend",
       title: "Product showcase",
-      text: "Landing page that presents tours clearly"
+      text: "Tours presented on a dedicated landing"
     },
     {
       icon: "calendar",
@@ -377,8 +277,8 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
     },
     {
       icon: "cube",
-      title: "WordPress CMS",
-      text: "Content managed in Gutenberg"
+      title: "Gutenberg",
+      text: "Content managed in WordPress"
     }
   ]
 }

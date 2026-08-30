@@ -5,7 +5,7 @@ export const BUILD_PATH = "~/what-i-build"
 export const BUILD_STACK_PATH = "~/stack.json"
 
 export const BUILD_INTRO = {
-  headline: "I build products and the systems behind them."
+  headline: "How I ship products."
 } as const
 
 export const BUILD_INTERFACES = {
@@ -63,17 +63,12 @@ export const BUILD_CONNECTED = {
   index: "03",
   title: "FULL STACK",
   kicker: "EVERYTHING WORKS TOGETHER",
-  copy: [
-    "I connect the pieces that",
-    "make a product reliable,",
-    "useful and ready to grow."
-  ]
+  copy: ["Identity, payments, data, and APIs in one product."]
 } as const
 
 export const BUILD_APPROACH = {
   index: "05",
   title: "THE WAY I BUILD",
-  kicker: "THINK. DESIGN. BUILD. SHIP.",
   stages: [
     {
       icon: "idea" as const,

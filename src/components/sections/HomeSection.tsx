@@ -25,8 +25,7 @@ import {
   type ReactNode
 } from "react"
 
-const ABOUT_SHORT =
-  "I build thoughtful digital products across frontend, backend, and everything in between."
+const ABOUT_SHORT = "I ship thoughtful digital products."
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
@@ -279,7 +278,7 @@ const IndexPage = () => {
             </p>
             <p className="home-hero__body">{ABOUT_SHORT}</p>
             <div className="home-hero__actions">
-              {/* <Button href="/portfolio">View my work →</Button> */}
+              <Button href="/portfolio">My work</Button>
               <Button href="/about" variant="secondary">
                 About me
               </Button>

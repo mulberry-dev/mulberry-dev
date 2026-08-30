@@ -10,9 +10,9 @@ export const CALENDLY_URL = ""
 export const COPYRIGHT_NAME = "mulberry-dev"
 
 export const SITE_LOGO = "/images/Icons/logo.png"
-export const SITE_TITLE = "mulberry-dev — Full Stack Developer"
+export const SITE_TITLE = "mulberry-dev — Senior Full Stack Engineer"
 export const SITE_DESCRIPTION =
-  "Senior Full Stack Engineer specialized in JavaScript and TypeScript. I build thoughtful digital products from interface to infrastructure."
+  "Senior Full Stack Engineer specialized in JavaScript and TypeScript. I ship thoughtful digital products."
 export const SITE_OG_IMAGE = {
   url: SITE_LOGO,
   width: 3814,

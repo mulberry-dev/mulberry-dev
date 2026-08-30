@@ -200,19 +200,9 @@ const About = () => {
                 <Reveal type="text" as="p" className="about-whoami__name">
                   {ABOUT_WHOAMI.name}
                 </Reveal>
-                <Reveal type="text" as="p" className="about-whoami__role">
-                  {ABOUT_WHOAMI.comment}
-                </Reveal>
-                <Reveal type="text" as="p" className="about-whoami__place">
-                  <span aria-hidden="true">
-                    <SiteIcon name="pin" />
-                  </span>
-                  {ABOUT_WHOAMI.location}
-                </Reveal>
                 <Reveal type="text" as="p" className="about-whoami__origin">
                   <span>{ABOUT_ORIGIN.code}</span>
                   <span>{ABOUT_ORIGIN.coords}</span>
-                  <span>{ABOUT_ORIGIN.caption}</span>
                 </Reveal>
               </div>
 
@@ -255,7 +245,6 @@ const About = () => {
 
           <footer className="about-foot">
             <span className="about-foot__mark">{ABOUT_INITIALS}</span>
-            <SessionPrompt cursor />
             <Link href={ABOUT_FOOTER.href} className="about-talk" scroll={false}>
               <span>{ABOUT_FOOTER.question}</span>
               <span className="about-talk__arrow" aria-hidden="true">

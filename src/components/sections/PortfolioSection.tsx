@@ -92,7 +92,7 @@ const PortfolioCard = ({ project }: { project: Project }) => {
           />
         </div>
         <h3>{project.name}</h3>
-        <p>{project.description}</p>
+        <p>{project.teaser}</p>
         <div className="portfolio-card__tech">
           {project.tech.slice(0, 4).map(tech =>
             typeof tech === "string" ? (
@@ -106,7 +106,7 @@ const PortfolioCard = ({ project }: { project: Project }) => {
             )
           )}
         </div>
-        <span className="portfolio-card__cta">View Project Details</span>
+        <span className="portfolio-card__cta">View →</span>
         {loading ? (
           <span className="portfolio-card__loader" role="status">
             <span className="portfolio-card__spinner" aria-hidden="true" />
@@ -149,7 +149,7 @@ const Portfolio = () => {
             as="h2"
             align="center"
             title="My Work"
-            subtitle="Selected work that solved real problems and delivered impact."
+            subtitle={`${projects.length} projects across web, APIs, and stores.`}
           />
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />

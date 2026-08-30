@@ -11,15 +11,13 @@ import type { Metadata } from "next"
 export const SECTION_DESCRIPTIONS: Record<string, string> = {
   "/": SITE_DESCRIPTION,
   "/about":
-    "Full Stack Developer from Mexico. I build what you see — interfaces people feel — and the systems that make them last.",
+    "Senior Full Stack Engineer based in Mexico City. I came to software through design.",
   "/skills":
-    "Product interfaces, the systems behind them, modernization, and the stack I use to ship complete products.",
-  "/portfolio":
-    "Selected work that solved real problems and delivered impact.",
+    "Frontend, backend, modernization, and the stack I use to ship products.",
+  "/portfolio": "Selected projects across web, landing pages, APIs, and stores.",
   "/certifications":
-    "Certifications and continuous learning that back the work I ship.",
-  "/contact":
-    "Available for new projects. Let's talk about building something great."
+    "Certificates in development, security, and English.",
+  "/contact": "Available for new projects. I usually respond within 24 hours."
 }
 
 export const sectionPageMetadata = (path: string): Metadata => {

@@ -112,7 +112,7 @@ const Certifications = () => {
             as="h2"
             align="center"
             title="Certifications"
-            subtitle="Continuously learning and validating my knowledge to deliver better solutions."
+            subtitle={`${certificates.length} certificates in development, security, and English.`}
           />
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
