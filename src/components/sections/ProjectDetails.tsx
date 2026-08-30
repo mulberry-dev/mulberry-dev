@@ -243,7 +243,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 aria-label={`Previous project: ${previous.name}`}
               >
                 <ProjectNavChevron direction="prev" />
-                <span>
+                <span className="project-nav__copy">
                   <span className="project-nav__dir">Previous</span>
                   <span className="project-nav__name">{previous.name}</span>
                 </span>
@@ -251,7 +251,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
             ) : (
               <span className="project-nav__link is-disabled">
                 <ProjectNavChevron direction="prev" />
-                Previous project
+                Previous
               </span>
             )}
             {next ? (
@@ -261,7 +261,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 prefetch
                 aria-label={`Next project: ${next.name}`}
               >
-                <span>
+                <span className="project-nav__copy">
                   <span className="project-nav__dir">Next</span>
                   <span className="project-nav__name">{next.name}</span>
                 </span>
@@ -269,7 +269,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
               </Link>
             ) : (
               <span className="project-nav__link project-nav__link--next is-disabled">
-                Next project
+                Next
                 <ProjectNavChevron direction="next" />
               </span>
             )}

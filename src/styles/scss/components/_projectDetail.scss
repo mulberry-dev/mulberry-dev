@@ -127,8 +127,16 @@ section:has(.project-page) {
   line-height: 1.7;
 }
 
+.project-nav__copy {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
 .project-nav__dir {
-  display: block;
+  flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.08em;
@@ -137,7 +145,6 @@ section:has(.project-page) {
 }
 
 .project-nav__name {
-  display: block;
   overflow: hidden;
   color: var(--color-text);
   text-overflow: ellipsis;
@@ -330,35 +337,35 @@ body:not(.dark) .project-hero__image {
 }
 
 .project-nav {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: stretch;
-  gap: var(--space-3);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   width: 100%;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
 }
 
 .project-nav__link {
   display: inline-flex;
+  flex-flow: row nowrap;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0.4rem;
   min-width: 0;
-  min-height: 52px;
-  padding: 10px 14px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
+  flex: 1 1 0;
+  max-width: 50%;
+  min-height: 36px;
   color: var(--color-text-dim);
   font-size: var(--text-caption);
   font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1.2;
   text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out);
-}
-
-.project-nav__link > span {
-  min-width: 0;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .project-nav__link--next {
@@ -375,7 +382,6 @@ body:not(.dark) .project-hero__image {
 
 .project-nav__link:hover {
   color: var(--color-text-muted);
-  border-color: var(--border-active);
 }
 
 .project-nav__link:hover:not(.is-disabled):not(.project-nav__link--next) svg {
@@ -444,12 +450,12 @@ body:not(.dark) .project-hero__image {
   }
 
   .project-nav {
-    gap: var(--space-2);
+    gap: 8px;
+    padding: 8px 10px;
   }
 
   .project-nav__link {
-    min-height: 48px;
-    padding: 8px 10px;
+    min-height: 32px;
   }
 }
 
