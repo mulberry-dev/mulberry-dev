@@ -1,6 +1,5 @@
 "use client"
 
-import { SECTION_PREFETCH_MARGIN } from "@/lib/sectionNav"
 import { useEffect, useRef, type ReactNode } from "react"
 
 const DeferredSection = ({
@@ -29,20 +28,38 @@ const DeferredSection = ({
       return
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          return
-        }
+    let observer: IntersectionObserver | null = null
 
-        observer.disconnect()
-        onApproach(path)
-      },
-      { root: null, rootMargin: SECTION_PREFETCH_MARGIN, threshold: 0 }
-    )
+    const watch = () => {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) {
+            return
+          }
 
-    observer.observe(node)
-    return () => observer.disconnect()
+          observer?.disconnect()
+          onApproach(path)
+        },
+        { root: null, rootMargin: "80px 0px", threshold: 0 }
+      )
+      observer.observe(node)
+    }
+
+    const onScroll = () => {
+      if (window.scrollY < 48) {
+        return
+      }
+
+      window.removeEventListener("scroll", onScroll)
+      watch()
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      observer?.disconnect()
+    }
   }, [mounted, onApproach, path])
 
   if (mounted) {

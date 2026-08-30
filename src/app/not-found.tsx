@@ -1,3 +1,4 @@
+import "@/styles/scss/components/_login.scss"
 import Button from "@/components/ui/Button"
 import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"

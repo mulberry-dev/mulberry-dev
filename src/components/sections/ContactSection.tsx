@@ -1,5 +1,6 @@
 "use client"
 
+import "@/styles/scss/sections/contact.scss"
 import Button from "@/components/ui/Button"
 import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"

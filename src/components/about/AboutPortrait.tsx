@@ -9,6 +9,8 @@ const AboutPortrait = () => (
       width={1024}
       height={682}
       unoptimized
+      loading="lazy"
+      decoding="async"
       className="about-portrait__map"
       aria-hidden="true"
     />

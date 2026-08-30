@@ -1,21 +1,19 @@
 export const SITE_NAME = "mulberry-dev"
-export const SITE_SHORT = "mulberry-dev"
-export const SITE_URL = "https://thisissanti.dev"
+export const SITE_URL = "https://mulberry-dev.com"
 export const LINKEDIN_URL = "https://www.linkedin.com/in/santidev/"
 export const GITHUB_URL = "https://github.com/mulberry-dev"
-export const CONTACT_EMAIL = "thisissanti.dev@gmail.com"
-export const LOCATION_LABEL = "Mexico City, Mexico"
-/** Set this to your Calendly link. When empty, the call card falls back to email. */
+export const CONTACT_EMAIL = "mulberry.developer@gmail.com"
+/** Set this to your Calendly link. When empty, the call option is hidden. */
 export const CALENDLY_URL = ""
 export const COPYRIGHT_NAME = "mulberry-dev"
 
 export const SITE_LOGO = "/images/Icons/logo.png"
-export const SITE_TITLE = "mulberry-dev — Senior Full Stack Engineer"
+  export const SITE_TITLE = "mulberry-dev — Senior Web Developer"
 export const SITE_DESCRIPTION =
-  "Senior Full Stack Engineer specialized in JavaScript and TypeScript. I ship thoughtful digital products."
+  "Senior Web Developer specialized in JavaScript and TypeScript. I ship thoughtful digital products."
 export const SITE_OG_IMAGE = {
-  url: SITE_LOGO,
-  width: 3814,
-  height: 2639,
+  url: "/images/og.png",
+  width: 1200,
+  height: 630,
   alt: SITE_NAME
 }

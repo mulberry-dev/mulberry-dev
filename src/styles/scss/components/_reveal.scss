@@ -116,10 +116,8 @@
   --reveal-duration: 0.62s;
 }
 
-.feature-grid > .reveal,
 .portfolio-grid > .reveal,
-.certs-grid > .reveal,
-.contact-options > .reveal {
+.certs-grid > .reveal {
   min-width: 0;
   height: 100%;
 }

@@ -1,41 +1,43 @@
+import DeferredAnalytics from "@/components/DeferredAnalytics"
 import Navigation from "@/components/navigation"
 import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
 import {
   COPYRIGHT_NAME,
   SITE_DESCRIPTION,
-  SITE_LOGO,
   SITE_NAME,
   SITE_OG_IMAGE,
   SITE_TITLE,
   SITE_URL
 } from "@/data/site"
 import "@/styles/scss/styles.scss"
-import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { JetBrains_Mono, Sora, Space_Grotesk } from "next/font/google"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 
 const sora = Sora({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["700", "800"],
   variable: "--font-sora",
-  display: "swap"
+  display: "swap",
+  preload: true
 })
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-grotesk",
-  display: "swap"
+  display: "optional",
+  preload: false
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-jetbrains",
-  display: "swap"
+  display: "optional",
+  preload: false
 })
 
 export const metadata: Metadata = {
@@ -56,9 +58,9 @@ export const metadata: Metadata = {
     "Santiago Morera"
   ],
   icons: {
-    icon: [{ url: SITE_LOGO, type: "image/png" }],
-    shortcut: SITE_LOGO,
-    apple: SITE_LOGO
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png"
   },
   openGraph: {
     title: SITE_TITLE,
@@ -73,11 +75,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: [SITE_LOGO]
+    images: [SITE_OG_IMAGE.url]
+  },
+  robots: {
+    index: true,
+    follow: true
   },
   other: {
     copyright: COPYRIGHT_NAME
   }
+}
+
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
+  width: "device-width",
+  initialScale: 1
 }
 
 export default function RootLayout({
@@ -91,7 +103,6 @@ export default function RootLayout({
       className={`${sora.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <GoogleAnalytics gaId="G-HP85BC1BKY" />
       <body className="dark" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
@@ -108,8 +119,13 @@ export default function RootLayout({
             <SiteShell>{children}</SiteShell>
           </div>
         </ParticlesProvider>
-        <Analytics />
-        <SpeedInsights />
+        {process.env.NEXT_PUBLIC_VERCEL_ENV ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
+        <DeferredAnalytics gaId="G-HP85BC1BKY" />
       </body>
     </html>
   )

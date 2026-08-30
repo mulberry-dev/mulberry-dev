@@ -1,3 +1,5 @@
+@import "../tokens/_mixins";
+
 .portfolio-page {
   display: flex;
   flex-direction: column;
@@ -210,16 +212,6 @@
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: var(--color-text-dim);
-}
-
-.portfolio-page .ui-section-header p {
-  max-width: none;
-}
-
-@media (min-width: 640px) {
-  .portfolio-page .ui-section-header p {
-    white-space: nowrap;
-  }
 }
 
 .portfolio-grid {

@@ -1,28 +1,20 @@
 import { ReactElement, SVGProps } from "react"
 
 export type SiteIconName =
-  | "product"
   | "frontend"
-  | "backend"
   | "detail"
   | "design"
   | "user"
   | "craft"
   | "clarity"
-  | "care"
   | "code"
   | "bolt"
   | "interface"
   | "systems"
   | "connect"
   | "modernize"
-  | "idea"
-  | "legacy"
-  | "speed"
   | "thinking"
-  | "system"
   | "performance"
-  | "maintain"
   | "cube"
   | "shield"
   | "database"
@@ -31,18 +23,12 @@ export type SiteIconName =
   | "gauge"
   | "puzzle"
   | "cursor"
-  | "star"
   | "compass"
   | "mail"
-  | "linkedin"
-  | "github"
   | "calendar"
-  | "copy"
-  | "check"
   | "leaf"
   | "globe"
   | "devices"
-  | "pin"
   | "lock"
   | "storage"
   | "bell"
@@ -62,24 +48,11 @@ const iconProps: SVGProps<SVGSVGElement> = {
 }
 
 const ICONS: Record<SiteIconName, ReactElement> = {
-  product: (
-    <svg {...iconProps}>
-      <circle cx="12" cy="8" r="3.2" />
-      <path d="M5.5 19.2c.8-3.2 3.3-5 6.5-5s5.7 1.8 6.5 5" />
-    </svg>
-  ),
   frontend: (
     <svg {...iconProps}>
       <rect x="3" y="4" width="18" height="16" rx="2" />
       <path d="M3 8.5h18" />
       <path d="M7 14h4M7 16.5h7" />
-    </svg>
-  ),
-  backend: (
-    <svg {...iconProps}>
-      <rect x="4" y="3.5" width="16" height="4.5" rx="1" />
-      <rect x="4" y="9.75" width="16" height="4.5" rx="1" />
-      <rect x="4" y="16" width="16" height="4.5" rx="1" />
     </svg>
   ),
   detail: (
@@ -110,11 +83,6 @@ const ICONS: Record<SiteIconName, ReactElement> = {
     <svg {...iconProps}>
       <circle cx="11" cy="11" r="6.5" />
       <path d="M16 16.5 20.2 20.7" />
-    </svg>
-  ),
-  care: (
-    <svg {...iconProps}>
-      <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10Z" />
     </svg>
   ),
   code: (
@@ -155,24 +123,6 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M3.5 16.5 8 11l3.5 3.5 4.5-7 4.5 3" />
     </svg>
   ),
-  idea: (
-    <svg {...iconProps}>
-      <path d="M9 18h6M10 21h4" />
-      <path d="M12 3a6 6 0 0 0-3.5 10.8c.6.5 1 1.2 1.1 2h4.8c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3Z" />
-    </svg>
-  ),
-  legacy: (
-    <svg {...iconProps}>
-      <path d="M4 19h16" />
-      <rect x="6" y="8" width="5" height="11" rx="1" />
-      <rect x="13" y="4" width="5" height="15" rx="1" />
-    </svg>
-  ),
-  speed: (
-    <svg {...iconProps}>
-      <path d="M5 19 13 4h2L9 14h6L7.5 20H5Z" />
-    </svg>
-  ),
   thinking: (
     <svg {...iconProps}>
       <circle cx="12" cy="11" r="6" />
@@ -180,24 +130,10 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M10 10.5h.01M12 10.5h.01M14 10.5h.01" />
     </svg>
   ),
-  system: (
-    <svg {...iconProps}>
-      <rect x="3" y="3" width="7" height="7" rx="1.4" />
-      <rect x="14" y="3" width="7" height="7" rx="1.4" />
-      <rect x="8.5" y="14" width="7" height="7" rx="1.4" />
-      <path d="M6.5 10v1.5A2.5 2.5 0 0 0 9 14M17.5 10v1.5A2.5 2.5 0 0 1 15 14" />
-    </svg>
-  ),
   performance: (
     <svg {...iconProps}>
       <path d="M4 16.5 9 11l3.2 3.2L20 7" />
       <path d="M14.5 7H20v5.5" />
-    </svg>
-  ),
-  maintain: (
-    <svg {...iconProps}>
-      <path d="M12 21a8.5 8.5 0 1 0-8.2-10.7" />
-      <path d="M3.5 5.5v5h5" />
     </svg>
   ),
   cube: (
@@ -249,11 +185,6 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M8.15 5.2 16.55 13.85l-3.85.55 2.2 5.15-2.05.85-2.2-5.2-3.4 2.55Z" />
     </svg>
   ),
-  star: (
-    <svg {...iconProps}>
-      <path d="M12 3.4 14.08 9.12 20.2 9.52 15.58 13.42 17.12 19.5 12 16.28 6.88 19.5 8.42 13.42 3.8 9.52 9.92 9.12Z" />
-    </svg>
-  ),
   compass: (
     <svg {...iconProps}>
       <circle cx="12" cy="12" r="8.5" />
@@ -267,35 +198,10 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M4 7l8 6 8-6" />
     </svg>
   ),
-  linkedin: (
-    <svg {...iconProps}>
-      <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
-      <path d="M8 10.5V17" />
-      <path d="M8 7.5h.01" />
-      <path d="M12 17v-4.2a2.3 2.3 0 0 1 4.4.6V17" />
-    </svg>
-  ),
-  github: (
-    <svg {...iconProps}>
-      <path d="M9 19c-4.3 1.4-4.3-2.1-6-2.5" />
-      <path d="M15 22v-3.9a3.2 3.2 0 0 0-.9-2.5c3-.3 6.1-1.5 6.1-6.6A5 5 0 0 0 19 5.2 4.6 4.6 0 0 0 18.9 2S17.7 1.7 15 3.6a11.2 11.2 0 0 0-6 0C6.3 1.7 5.1 2 5.1 2A4.6 4.6 0 0 0 5 5.2 5 5 0 0 0 3.8 9c0 5.1 3.1 6.3 6.1 6.6a3.2 3.2 0 0 0-.9 2.5V22" />
-    </svg>
-  ),
   calendar: (
     <svg {...iconProps}>
       <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
       <path d="M8 3v4M16 3v4M3.5 10h17" />
-    </svg>
-  ),
-  copy: (
-    <svg {...iconProps}>
-      <rect x="8.5" y="8" width="11" height="12.5" rx="2" />
-      <path d="M15.5 8V6.4A1.9 1.9 0 0 0 13.6 4.5H6.4A1.9 1.9 0 0 0 4.5 6.4v11.2A1.9 1.9 0 0 0 6.4 19.5H8.5" />
-    </svg>
-  ),
-  check: (
-    <svg {...iconProps}>
-      <path d="M5 12.2 9.6 16.8 19 7.4" />
     </svg>
   ),
   leaf: (
@@ -315,12 +221,6 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <rect x="2.5" y="4.5" width="13" height="10" rx="1.4" />
       <path d="M7 16.2h4" />
       <rect x="14.2" y="9.2" width="7.3" height="10.3" rx="1.4" />
-    </svg>
-  ),
-  pin: (
-    <svg {...iconProps}>
-      <path d="M12 21s6.5-5.2 6.5-10.2A6.5 6.5 0 0 0 5.5 10.8C5.5 15.8 12 21 12 21Z" />
-      <circle cx="12" cy="10.5" r="2.2" />
     </svg>
   ),
   lock: (

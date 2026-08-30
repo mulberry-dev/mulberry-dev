@@ -16,62 +16,10 @@ import {
   shouldRevealHomeChrome
 } from "@/lib/siteSession"
 import { usePathname } from "next/navigation"
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  useCallback,
-  useEffect,
-  useState,
-  type CSSProperties,
-  type ReactElement,
-  type ReactNode
-} from "react"
+import { useCallback, useEffect, useState } from "react"
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
-
-const RevealChars = ({
-  children,
-  delay = 0
-}: {
-  children: ReactNode
-  delay?: number
-}) => {
-  let index = 0
-
-  const paint = (nodes: ReactNode): ReactNode =>
-    Children.map(nodes, (child) => {
-      if (typeof child === "string" || typeof child === "number") {
-        return Array.from(String(child)).map((char) => {
-          const i = index++
-          return (
-            <span
-              key={i}
-              className="home-hero__char"
-              style={
-                {
-                  "--i": i,
-                  "--reveal-delay": `${delay}s`
-                } as CSSProperties
-              }
-            >
-              {char}
-            </span>
-          )
-        })
-      }
-
-      if (isValidElement(child)) {
-        const element = child as ReactElement<{ children?: ReactNode }>
-        return cloneElement(element, undefined, paint(element.props.children))
-      }
-
-      return child
-    })
-
-  return <>{paint(children)}</>
-}
 
 const setOrbitRate = (node: HTMLDivElement, rate: number) => {
   node.getAnimations().forEach((animation) => {
@@ -217,24 +165,20 @@ const IndexPage = () => {
                 height={88}
                 alt=""
                 priority
+                sizes="88px"
+                quality={80}
               />
               <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
             </div>
-            <h1 aria-label="Hi! I am Santiago">
-              <span aria-hidden="true">
-                <RevealChars delay={0.1}>Hi! I am </RevealChars>
-                <span className="gradient-text home-hero__name">Santiago</span>
-              </span>
+            <h1>
+              Hi! I am{" "}
+              <span className="gradient-text home-hero__name">Santiago</span>
             </h1>
-            <p className="home-hero__role" aria-label="< Senior Full Stack Engineer / >">
-              <span aria-hidden="true">
-                <RevealChars delay={0.34}>
-                  <span className="home-hero__bracket">&lt;</span>{" "}
-                  <span className="home-hero__teal">Senior Full Stack</span>{" "}
-                  <span className="home-hero__purple">Engineer</span>{" "}
-                  <span className="home-hero__bracket">/ &gt;</span>
-                </RevealChars>
-              </span>
+            <p className="home-hero__role">
+              <span className="home-hero__bracket">&lt;</span>{" "}
+              <span className="home-hero__teal">Senior Full Stack</span>{" "}
+              <span className="home-hero__purple">Engineer</span>{" "}
+              <span className="home-hero__bracket">/ &gt;</span>
             </p>
             <p className="home-hero__body">
               <span>I build </span>

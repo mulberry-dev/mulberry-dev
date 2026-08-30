@@ -1,5 +1,6 @@
 "use client"
 
+import "@/styles/scss/sections/skills.scss"
 import ApproachScene from "@/components/build/ApproachScene"
 import ArchitectureScene from "@/components/build/ArchitectureScene"
 import { BuildSession } from "@/components/build/BuildChrome"
@@ -270,42 +271,44 @@ const Skills = () => {
             ))}
           </RevealGroup>
 
-          <Capability
-            id="build-interfaces"
-            accent={BUILD_INTERFACES.accent}
-            stage={<ProductScene />}
-          >
-            <CopyBlock {...BUILD_INTERFACES} />
-          </Capability>
+          <div className="skills-capability-board">
+            <Capability
+              id="build-interfaces"
+              accent={BUILD_INTERFACES.accent}
+              stage={<ProductScene />}
+            >
+              <CopyBlock {...BUILD_INTERFACES} />
+            </Capability>
 
-          <Capability
-            id="build-systems"
-            accent={BUILD_SYSTEMS.accent}
-            stage={<ArchitectureScene />}
-          >
-            <CopyBlock {...BUILD_SYSTEMS} />
-          </Capability>
+            <Capability
+              id="build-systems"
+              accent={BUILD_SYSTEMS.accent}
+              stage={<ArchitectureScene />}
+            >
+              <CopyBlock {...BUILD_SYSTEMS} />
+            </Capability>
 
-          <Capability
-            id="build-connected"
-            accent={BUILD_CONNECTED.accent}
-            stage={<ConnectedScene />}
-          >
-            <CopyBlock {...BUILD_CONNECTED} />
-          </Capability>
+            <Capability
+              id="build-connected"
+              accent={BUILD_CONNECTED.accent}
+              stage={<ConnectedScene />}
+            >
+              <CopyBlock {...BUILD_CONNECTED} />
+            </Capability>
 
-          <Capability
-            id="build-modernize"
-            accent={BUILD_MODERNIZATION.accent}
-            stage={<ModernizeScene />}
-          >
-            <CopyBlock
-              index={BUILD_MODERNIZATION.index}
-              title={BUILD_MODERNIZATION.title}
-              kicker={BUILD_MODERNIZATION.kicker}
-              copy={BUILD_MODERNIZATION.copy}
-            />
-          </Capability>
+            <Capability
+              id="build-modernize"
+              accent={BUILD_MODERNIZATION.accent}
+              stage={<ModernizeScene />}
+            >
+              <CopyBlock
+                index={BUILD_MODERNIZATION.index}
+                title={BUILD_MODERNIZATION.title}
+                kicker={BUILD_MODERNIZATION.kicker}
+                copy={BUILD_MODERNIZATION.copy}
+              />
+            </Capability>
+          </div>
 
           <Capability
             id="build-approach"

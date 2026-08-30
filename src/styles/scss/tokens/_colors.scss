@@ -24,7 +24,7 @@ $cyan-bright: #20e0d2;
 $text: #f8fafc;
 $text-secondary: #cbd5e1;
 $text-muted: #94a3b8;
-$text-dim: #64748b;
+$text-dim: #8b9cb3;
 $focus: $brand-cyan;
 $signal: $accent-teal;
 
@@ -145,11 +145,6 @@ $glass-blur: 5px;
   color-scheme: dark;
 }
 
-@mixin glass-blur {
-  -webkit-backdrop-filter: blur(#{$glass-blur});
-  backdrop-filter: blur(#{$glass-blur});
-}
-
 body:not(.dark) {
   --color-canvas: #{$light-canvas};
   --color-canvas-deep: #e8eef6;
@@ -160,7 +155,7 @@ body:not(.dark) {
   --color-text: #{$light-text};
   --color-text-secondary: #334155;
   --color-text-muted: #{$light-muted};
-  --color-text-dim: #64748b;
+  --color-text-dim: #8b9cb3;
   --surface-primary: #{$light-canvas};
   --surface-secondary: #ffffff;
   --surface-elevated: #ffffff;

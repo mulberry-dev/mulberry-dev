@@ -4,25 +4,13 @@
 /* Base */
 @import "./base/_reset";
 @import "./base/_body";
-@import "./base/_fonts";
 @import "./base/_keyframes";
 
-/* Components */
+/* First-paint chrome only. Section styles load with their routes. */
 @import "./components/_ui";
 @import "./components/_workspace";
 @import "./components/_reveal";
 @import "./components/_wallpaper";
 @import "./components/_sections";
 @import "./components/_navegation";
-@import "./components/_buttons";
 @import "./components/_pageMain";
-@import "./components/_about";
-@import "./components/_identity";
-@import "./components/_education";
-@import "./components/_skills";
-@import "./components/_portfolio";
-@import "./components/_projectDetail";
-@import "./components/_contact";
-@import "./components/_login";
-@import "./components/_info";
-@import "./components/_vibes";

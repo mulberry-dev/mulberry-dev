@@ -53,7 +53,8 @@ const MIN_TRAVEL = 0.54
 const MAX_TRAVEL_WAIT = 2.4
 const ENTER_DURATION = 2.35
 const ENTER_REVEAL_AT = 0.48
-const DPR_CAP = 2
+const DPR_CAP = 1.5
+const DPR_CAP_MOBILE = 1.25
 const EMBER_DURATION = 1.08
 const EMBER_LAG = 0.22
 const EMBER_SPRITE_SIZE = 64
@@ -150,7 +151,12 @@ const pickEmberLook = () => {
 
 const countForView = (width: number, height: number) => {
   const area = width * height
-  return clamp(Math.round(area / 13500), 72, 210)
+  const mobile = width < 768
+  return clamp(
+    Math.round(area / (mobile ? 28000 : 20000)),
+    mobile ? 28 : 48,
+    mobile ? 64 : 110
+  )
 }
 
 const parseCssColor = (value: string): Color => {
@@ -267,7 +273,7 @@ export class ParticlesEngine {
     this.enterBoost = 10
     this.enterAge = 0
     this.setPhase("entering")
-    this.scheduleContentReveal(ENTER_REVEAL_AT * 1000)
+    this.markContentReveal()
   }
 
   armContentReveal() {
@@ -600,7 +606,10 @@ export class ParticlesEngine {
     const bounds = this.canvas.getBoundingClientRect()
     const width = Math.max(1, Math.round(bounds.width))
     const height = Math.max(1, Math.round(bounds.height))
-    const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP)
+    const dpr = Math.min(
+      window.devicePixelRatio || 1,
+      width < 768 ? DPR_CAP_MOBILE : DPR_CAP
+    )
     const bufferW = Math.round(width * dpr)
     const bufferH = Math.round(height * dpr)
 

@@ -1,5 +1,6 @@
 "use client"
 
+import "@/styles/scss/sections/portfolio.scss"
 import CommandLine from "@/components/terminal/CommandLine"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"

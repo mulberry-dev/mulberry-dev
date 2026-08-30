@@ -521,14 +521,16 @@ const Navigation = () => {
         <div className="site-nav__chrome" aria-hidden="true" />
         <div className="site-nav__inner">
           <div className="site-nav__brand">
-            <Link href="/" className="site-nav__logo" scroll={false}>
+            <Link href="/" className="site-nav__logo" scroll={false} prefetch={false}>
               <Image
                 className="site-logo"
                 src={SITE_LOGO}
                 width={40}
                 height={28}
                 alt=""
-                priority
+                sizes="40px"
+                quality={75}
+                loading="lazy"
               />
               <span>{SITE_NAME}</span>
             </Link>
@@ -551,6 +553,7 @@ const Navigation = () => {
                 key={link.id}
                 href={link.path}
                 scroll={false}
+                prefetch={false}
                 ref={(node) => {
                   linkRefs.current[index] = node
                 }}

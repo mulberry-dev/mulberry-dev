@@ -3,7 +3,6 @@ import { SITE_NAME, SITE_TITLE } from "@/data/site"
 
 export const SECTION_PATHS = links.map((link) => link.path)
 export const SECTION_CHANGE_EVENT = "site:section-change"
-export const SECTION_PREFETCH_MARGIN = "140% 0px"
 
 export type SiteSection = {
   path: string
@@ -72,9 +71,8 @@ export const prefetchSectionPath = (path: string) => {
 
 export const requiredSectionIds = (pathname: string) => {
   const index = Math.max(0, getSectionIndex(pathname))
-  const last = Math.max(index, 1)
 
-  return SECTIONS.filter((_, position) => position <= last).map(
+  return SECTIONS.filter((_, position) => position <= index).map(
     (section) => section.id
   )
 }

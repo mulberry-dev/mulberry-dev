@@ -1,5 +1,6 @@
 "use client"
 
+import "@/styles/scss/sections/certifications.scss"
 import Badge from "@/components/ui/Badge"
 import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ButtonHTMLAttributes, ReactNode } from "react"
 
-type Variant = "primary" | "secondary" | "ghost" | "terminal"
+type Variant = "primary" | "secondary" | "terminal"
 
 type ButtonProps = {
   children: ReactNode

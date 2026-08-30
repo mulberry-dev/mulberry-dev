@@ -1,5 +1,6 @@
 "use client"
 
+import "@/styles/scss/sections/about.scss"
 import AboutPortrait from "@/components/about/AboutPortrait"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"

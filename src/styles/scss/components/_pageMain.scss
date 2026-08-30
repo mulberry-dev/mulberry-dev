@@ -291,9 +291,6 @@
 
 #index.home-intro.is-reveal-wait {
   .home-hero__prompt,
-  .home-hero__brand,
-  .home-hero__char,
-  .home-hero__name,
   .home-hero__body,
   .home-hero__actions .ui-button,
   .home-hero__visual,
@@ -303,93 +300,20 @@
   }
 }
 
-#index.home-intro.is-return.is-reveal-ready {
-  .home-hero__char {
-    animation: none;
-    opacity: 1;
-  }
-
-  .home-hero__prompt {
-    animation: homeFadeRise 0.46s var(--ease-out) both;
-  }
-
-  .home-hero__brand {
-    animation: homeFadeRise 0.5s var(--ease-out) both;
-  }
-
-  .home-hero__copy h1 {
-    animation: homeFadeRise 0.58s var(--ease-out) 40ms both;
-  }
-
-  .home-hero__role {
-    animation: homeFadeRise 0.56s var(--ease-out) 50ms both;
-  }
-
-  .home-hero__name {
+#index.home-intro.is-return.is-reveal-ready,
+#index.home-intro.is-reveal-ready:not(.is-return) {
+  .home-hero__prompt,
+  .home-hero__brand,
+  .home-hero__char,
+  .home-hero__name,
+  .home-hero__body,
+  .home-hero__actions .ui-button,
+  .home-hero__visual,
+  .home-social {
     animation: none;
     opacity: 1;
     clip-path: none;
     filter: none;
-  }
-
-  .home-hero__body {
-    animation: homeFadeRise 0.56s var(--ease-out) 80ms both;
-  }
-
-  .home-hero__actions .ui-button {
-    animation: homeFadeRise 0.5s var(--ease-out) 130ms both;
-  }
-
-  .home-hero__visual {
-    animation: homeOrbitReveal 0.64s var(--ease-out) 70ms both;
-  }
-
-  .home-social {
-    animation: homeFadeRise 0.48s var(--ease-out) 250ms both;
-  }
-}
-
-#index.home-intro.is-reveal-ready:not(.is-return) {
-  .home-hero__prompt {
-    animation: homeFadeRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.04s both;
-  }
-
-  .home-hero__brand {
-    animation: homeFadeRise 0.64s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
-  }
-
-  .home-hero__char {
-    opacity: 0;
-    animation: homeCharIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: calc(var(--reveal-delay) + var(--i) * 26ms);
-  }
-
-  .home-hero__name {
-    animation: homeNameWrite 0.48s cubic-bezier(0.4, 0, 0.2, 1) 0.38s both;
-  }
-
-  .home-hero__body {
-    animation: homeFadeRise 0.64s cubic-bezier(0.22, 1, 0.36, 1) 0.78s both;
-  }
-
-  .home-hero__actions .ui-button {
-    animation: homeFadeRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.94s both;
-  }
-
-  .home-hero__visual {
-    animation: homeOrbitReveal 0.72s cubic-bezier(0.33, 1.02, 0.4, 1) 0.8s both;
-  }
-
-  .home-orbit {
-    animation-delay: 1.08s;
-  }
-
-  .home-orbit--inner {
-    animation-delay: 1.16s;
-  }
-
-  .home-social {
-    animation: homeFadeRise 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.22s both;
   }
 }
 

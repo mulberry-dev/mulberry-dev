@@ -36,6 +36,8 @@ main > section {
   min-height: max(72vh, 28rem);
   padding: 0;
   pointer-events: none;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 72vh;
 }
 
 .site-experience > section + section {

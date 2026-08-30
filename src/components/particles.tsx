@@ -25,8 +25,6 @@ type ParticlesContextValue = {
   releaseContent: () => void
 }
 
-const CONTENT_REVEAL_FALLBACK_MS = 900
-
 const ParticlesContext = createContext<ParticlesContextValue | null>(null)
 
 export const useParticles = () => {
@@ -46,10 +44,10 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
   const [engine] = useState(() => new ParticlesEngine())
   const [phase, setPhase] = useState<ParticlePhase>("idle")
   const [reducedMotion, setReducedMotion] = useState(false)
-  const [contentReady, setContentReady] = useState(false)
+  const [contentReady, setContentReady] = useState(true)
+  const [layerMounted, setLayerMounted] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const prevPathRef = useRef(pathname)
-  const layerMounted = phase !== "idle"
 
   const holdContent = useCallback(() => {
     setContentReady(false)
@@ -71,7 +69,6 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
 
     syncMotion()
     media.addEventListener("change", syncMotion)
-    setPhase(media.matches ? "active" : "entering")
 
     return () => {
       engine.setPhaseListener(null)
@@ -79,6 +76,28 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
       media.removeEventListener("change", syncMotion)
     }
   }, [engine, releaseContent])
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setPhase("active")
+      setLayerMounted(false)
+      return
+    }
+
+    const mount = () => setLayerMounted(true)
+    const timeoutId = window.setTimeout(mount, 8000)
+
+    window.addEventListener("pointerdown", mount, { once: true, passive: true })
+    window.addEventListener("scroll", mount, { once: true, passive: true })
+    window.addEventListener("keydown", mount, { once: true })
+
+    return () => {
+      window.clearTimeout(timeoutId)
+      window.removeEventListener("pointerdown", mount)
+      window.removeEventListener("scroll", mount)
+      window.removeEventListener("keydown", mount)
+    }
+  }, [reducedMotion])
 
   useLayoutEffect(() => {
     if (prevPathRef.current === pathname) {
@@ -89,18 +108,6 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     releaseContent()
   }, [pathname, releaseContent])
 
-  useEffect(() => {
-    if (contentReady) {
-      return
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setContentReady(true)
-    }, reducedMotion ? 80 : CONTENT_REVEAL_FALLBACK_MS)
-
-    return () => window.clearTimeout(timeoutId)
-  }, [contentReady, reducedMotion])
-
   useLayoutEffect(() => {
     const canvas = canvasRef.current
 
@@ -109,30 +116,26 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     }
 
     if (!canvas || !engine.mount(canvas)) {
-      releaseContent()
       return () => engine.unmount()
     }
 
     engine.setEmberMode(true, true)
 
-    const phase = engine.getPhase()
+    const currentPhase = engine.getPhase()
 
-    if (phase === "idle") {
-      if (reducedMotion) {
-        engine.startActive()
-      } else {
-        engine.startEnter()
-      }
-    } else if (engine.hasRevealedContent()) {
-      releaseContent()
-    } else if (reducedMotion || phase === "active" || phase === "transitioning") {
+    if (currentPhase === "idle") {
+      engine.startEnter()
+    } else if (
+      currentPhase === "active" ||
+      currentPhase === "transitioning"
+    ) {
       engine.startActive()
     } else {
       engine.armContentReveal()
     }
 
     return () => engine.unmount()
-  }, [engine, layerMounted, reducedMotion, releaseContent])
+  }, [engine, layerMounted])
 
   const beginRouteTransition = useCallback(
     () => engine.beginRouteTransition(),
