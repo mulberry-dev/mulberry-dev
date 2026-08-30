@@ -4,9 +4,9 @@ import { data as projects } from "@/data/projects"
 export type Project = (typeof projects)[number]
 
 export const CATEGORY_LABEL: Record<string, string> = {
-  web: "Web Application",
+  web: "Web App",
   landing: "Landing Page",
-  api: "APIs & Backend",
+  api: "API",
   ecommerce: "eCommerce"
 }
 

@@ -101,6 +101,10 @@ section:has(.project-page) {
   font-size: 0.9375rem;
 }
 
+.project-facts dd .project-type {
+  margin-top: 2px;
+}
+
 .project-story,
 .project-features {
   display: grid;
@@ -134,7 +138,10 @@ section:has(.project-page) {
 
 .project-nav__name {
   display: block;
+  overflow: hidden;
   color: var(--color-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-eof {
@@ -318,35 +325,45 @@ body:not(.dark) .project-hero__image {
   pointer-events: none;
 }
 
-.project-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
+.project-nav-wrap {
   width: 100%;
-  min-height: 44px;
-  padding: 8px 22px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
+}
+
+.project-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--space-3);
+  width: 100%;
 }
 
 .project-nav__link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 36px;
+  min-width: 0;
+  min-height: 52px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
   color: var(--color-text-dim);
   font-size: var(--text-caption);
   font-weight: 500;
   letter-spacing: 0.01em;
-  line-height: 1;
+  line-height: 1.2;
   text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.project-nav__link > span {
+  min-width: 0;
 }
 
 .project-nav__link--next {
-  margin-left: auto;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .project-nav__link svg {
@@ -358,6 +375,7 @@ body:not(.dark) .project-hero__image {
 
 .project-nav__link:hover {
   color: var(--color-text-muted);
+  border-color: var(--border-active);
 }
 
 .project-nav__link:hover:not(.is-disabled):not(.project-nav__link--next) svg {
@@ -426,14 +444,12 @@ body:not(.dark) .project-hero__image {
   }
 
   .project-nav {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 10px 16px;
+    gap: var(--space-2);
   }
 
-  .project-nav__link--next {
-    margin-left: 0;
-    justify-content: flex-end;
+  .project-nav__link {
+    min-height: 48px;
+    padding: 8px 10px;
   }
 }
 

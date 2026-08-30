@@ -119,6 +119,10 @@
   margin: 0;
 }
 
+.work-card__facts-stack {
+  grid-column: 1 / -1;
+}
+
 .work-card__facts dt {
   margin: 0 0 0.2rem;
   font-family: var(--font-mono);
@@ -135,6 +139,11 @@
   font-size: 0.875rem;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.work-card__facts dd:has(.project-type) {
+  overflow: visible;
+  white-space: normal;
 }
 
 .work-card__cta,
@@ -193,7 +202,10 @@
 
 .archive-card__meta {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem 0.65rem;
   min-width: 0;
 }
 
@@ -342,7 +354,7 @@
 
 @media (max-width: 767px) {
   .work-card__facts {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .work-featured,
@@ -383,8 +395,13 @@
     justify-content: flex-start;
   }
 
-  .term-status {
+  .term-status,
+  .project-type {
     font-size: 0.625rem;
+  }
+
+  .project-type {
+    padding: 0.12rem 0.4rem;
   }
 
   .work-card {
@@ -410,6 +427,10 @@
   .work-card__facts dd,
   .work-card__cta {
     font-size: 0.75rem;
+  }
+
+  .work-card__facts dd:has(.project-type) {
+    font-size: inherit;
   }
 }
 
