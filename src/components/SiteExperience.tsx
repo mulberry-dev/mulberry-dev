@@ -14,6 +14,7 @@ import {
   scrollToSection,
   settleSectionInView,
   subscribeSectionPrefetch,
+  syncSectionUrl,
   waitForSections
 } from "@/lib/sectionNav"
 import dynamic from "next/dynamic"
@@ -234,15 +235,14 @@ const SiteExperience = () => {
       }
 
       activePathRef.current = nextPath
-      ignorePathRef.current = nextPath
       applySectionTitle(nextPath)
       announceSection(nextPath)
       mountThrough(nextPath)
-      router.replace(nextPath, { scroll: false })
+      syncSectionUrl(nextPath)
     }
 
     return observeActiveSection(syncFromScroll)
-  }, [mountedKey, mountThrough, pathname, router])
+  }, [mountedKey, mountThrough, pathname])
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
