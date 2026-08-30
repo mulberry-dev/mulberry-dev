@@ -21,6 +21,7 @@
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
   gap: var(--space-5);
   align-self: stretch;
   width: 100%;
@@ -29,7 +30,10 @@
 
 .certs-card {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
   padding: var(--space-3);
   overflow: hidden;
   background: color-mix(in srgb, var(--color-surface) 48%, transparent);
@@ -39,10 +43,12 @@
 
 .certs-card__open {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   gap: var(--space-3);
   width: 100%;
+  height: 100%;
   padding: 0;
   border: 0;
   background: transparent;
@@ -63,8 +69,9 @@
 }
 
 .certs-card__image {
+  display: block;
   width: 100%;
-  height: 132px;
+  height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: var(--radius-sm);
@@ -87,7 +94,13 @@
 }
 
 .certs-card h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 0;
+  min-height: calc(1.125rem * 1.35 * 2);
+  line-height: 1.35;
   text-wrap: pretty;
 }
 
@@ -331,11 +344,8 @@
     padding: var(--space-3);
   }
 
-  .certs-card__image {
-    height: 96px;
-  }
-
   .certs-card h3 {
+    min-height: calc(0.8125rem * 1.3 * 2);
     font-size: 0.8125rem;
     line-height: 1.3;
   }

@@ -183,13 +183,6 @@ const ProjectDetails = ({ id }: { id: string }) => {
           ) : null}
         </dl>
 
-        <div className="project-story">
-          <section>
-            <h2>About the project</h2>
-            <p>{project.description}</p>
-          </section>
-        </div>
-
         {highlights?.length ? (
           <section className="project-features">
             <h2>Key features</h2>

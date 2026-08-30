@@ -113,7 +113,7 @@ const Certifications = () => {
             index={WORKSPACE.certifications.index}
             path={WORKSPACE.certifications.path}
             title={WORKSPACE.certifications.title}
-            meta={`${certificates.length} certificates in development, security, and English.`}
+            meta={`${certificates.length} certificates`}
           />
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />

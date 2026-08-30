@@ -13,12 +13,16 @@
 .work-featured__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--space-5);
 }
 
 .work-card-link,
 .archive-card-link {
-  display: block;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
   text-decoration: none;
   color: inherit;
   border-radius: var(--radius-lg);
@@ -40,6 +44,7 @@
   position: relative;
   display: grid;
   gap: var(--space-4);
+  width: 100%;
   height: 100%;
   padding: var(--space-5);
   border: 1px solid var(--border-subtle);
@@ -47,6 +52,21 @@
   background: color-mix(in srgb, var(--color-surface) 48%, transparent);
   overflow: hidden;
   transition: border-color var(--duration) var(--ease-out);
+}
+
+.work-card:not(.work-card--featured) {
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.work-card:not(.work-card--featured) .work-card__teaser {
+  min-height: calc(1em * 1.6 * 2);
+}
+
+.work-card__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 0;
 }
 
 .work-card--featured {
@@ -78,6 +98,10 @@
 
 .work-card h3,
 .archive-card h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 2vw, 2rem);
@@ -86,7 +110,11 @@
 
 .work-card__teaser,
 .work-card__description,
-.archive-card p {
+.archive-card__teaser {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 0;
   color: var(--color-text-muted);
   line-height: 1.6;
@@ -109,13 +137,17 @@
 }
 
 .work-card__facts dd {
+  overflow: hidden;
   margin: 0;
   color: var(--color-text-secondary);
   font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .work-card__cta,
 .archive-card__cta {
+  margin-top: auto;
   color: var(--brand-blue);
   font-weight: 600;
 }
@@ -137,9 +169,16 @@
   transition: transform var(--duration) var(--ease-out);
 }
 
+.work-card:not(.work-card--featured) .work-card__media,
+.archive-card__media {
+  aspect-ratio: 16 / 10;
+}
+
+.work-card:not(.work-card--featured) .work-card__image,
 .archive-card__image {
-  height: 140px;
+  height: 100%;
   max-height: none;
+  object-fit: cover;
 }
 
 .work-card:hover .work-card__image,
@@ -153,37 +192,69 @@
   gap: var(--space-4);
 }
 
+.work-archive__title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--space-4);
 }
 
 .archive-card {
+  display: flex;
+  flex-direction: column;
   padding: var(--space-4);
 }
 
 .archive-card__meta {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
   min-width: 0;
 }
 
-.archive-card h3 {
-  font-size: 1.05rem;
+.archive-card__year {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
 }
 
-.archive-card p {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.archive-card__meta .project-flags {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+
+.archive-card h3 {
+  min-height: calc(1.05rem * 1.25 * 2);
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.archive-card__teaser {
+  min-height: calc(1em * 1.6 * 2);
 }
 
 .archive-card__stack {
+  overflow: hidden;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: var(--color-text-dim);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .portfolio-page .ui-section-header p {
@@ -344,17 +415,14 @@
   }
 
   .archive-card h3 {
+    min-height: calc(0.875rem * 1.25 * 2);
     font-size: 0.875rem;
     line-height: 1.25;
   }
 
-  .archive-card p {
+  .archive-card__teaser {
     font-size: 0.75rem;
     line-height: 1.45;
-  }
-
-  .archive-card__image {
-    height: 96px;
   }
 
   .archive-card__cta {
@@ -383,7 +451,7 @@
   }
 
   .work-card:not(.work-card--featured) .work-card__image {
-    max-height: 7.5rem;
+    max-height: none;
   }
 }
 

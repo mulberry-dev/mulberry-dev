@@ -444,7 +444,7 @@ export const data = [
     category: "ecommerce",
     teaser: "React computer store with cart and live stock.",
     description:
-      "React.js computer store with cart and live inventory.",
+      "React.js computer store with cart and live inventory. (2022)",
     img: "/images/Webp/TecnoShop.webp",
     tech: [
       {

@@ -19,12 +19,12 @@ export const WORKSPACE = {
   work: {
     path: "~/work",
     index: "03",
-    title: "Selected Work"
+    title: "Selected work"
   },
   certifications: {
     path: "~/certifications",
     index: "04",
-    title: "Certifications"
+    title: "Credentials"
   },
   contact: {
     path: "~/contact",
@@ -47,5 +47,5 @@ export const STACK_BAR = [
   "SQL",
   "AWS",
   "Docker",
-  "Git - Github"
+  "GitHub"
 ] as const
