@@ -21,6 +21,7 @@
 .certs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
   gap: var(--space-5);
   align-self: stretch;
   width: 100%;
@@ -29,7 +30,9 @@
 
 .certs-card {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  width: 100%;
   height: 100%;
   padding: var(--space-3);
   overflow: hidden;
