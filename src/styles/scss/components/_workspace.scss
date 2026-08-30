@@ -97,6 +97,47 @@
   gap: 0.45rem 0.65rem;
 }
 
+.project-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 100%;
+  padding: 0.18rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--project-type-tone) 32%, var(--border-subtle));
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--project-type-tone) 12%, transparent);
+  color: var(--project-type-tone);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.project-type svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.project-type--landing {
+  --project-type-tone: var(--brand-cyan);
+}
+
+.project-type--web {
+  --project-type-tone: var(--brand-blue);
+}
+
+.project-type--api {
+  --project-type-tone: var(--accent-indigo);
+}
+
+.project-type--ecommerce {
+  --project-type-tone: var(--brand-purple);
+}
+
 .workspace-header {
   display: flex;
   flex-direction: column;

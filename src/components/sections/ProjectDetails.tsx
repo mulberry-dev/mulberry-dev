@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button"
 import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
+import ProjectType from "@/components/terminal/ProjectType"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
 import TechBadge from "@/components/ui/TechBadge"
@@ -12,12 +13,7 @@ import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { projectHighlights } from "@/data/projectHighlights"
 import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
-import {
-  CATEGORY_LABEL,
-  extractYear,
-  padCount,
-  projectSlug
-} from "@/lib/projects"
+import { extractYear, padCount, projectSlug } from "@/lib/projects"
 import { PrivateDeployment } from "@/utils/alerts"
 import Image from "next/image"
 import Link from "next/link"
@@ -125,6 +121,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 <span>
                   {padCount(index + 1)} / Project
                 </span>
+                <ProjectType project={project} />
                 <ProjectFlags project={project} />
               </Reveal>
               <Reveal type="heading" as="h1">
@@ -179,7 +176,9 @@ const ProjectDetails = ({ id }: { id: string }) => {
           {project.category ? (
             <div>
               <dt>Type</dt>
-              <dd>{CATEGORY_LABEL[project.category]}</dd>
+              <dd>
+                <ProjectType project={project} />
+              </dd>
             </div>
           ) : null}
         </dl>
@@ -234,7 +233,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
           </RevealGroup>
         </div>
 
-        <Reveal type="nav" mode="scroll">
+        <Reveal type="nav" mode="scroll" className="project-nav-wrap">
           <nav className="project-nav" aria-label="Projects">
             {previous ? (
               <Link
@@ -244,7 +243,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 aria-label={`Previous project: ${previous.name}`}
               >
                 <ProjectNavChevron direction="prev" />
-                <span>
+                <span className="project-nav__copy">
                   <span className="project-nav__dir">Previous</span>
                   <span className="project-nav__name">{previous.name}</span>
                 </span>
@@ -252,7 +251,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
             ) : (
               <span className="project-nav__link is-disabled">
                 <ProjectNavChevron direction="prev" />
-                Previous project
+                Previous
               </span>
             )}
             {next ? (
@@ -262,7 +261,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 prefetch
                 aria-label={`Next project: ${next.name}`}
               >
-                <span>
+                <span className="project-nav__copy">
                   <span className="project-nav__dir">Next</span>
                   <span className="project-nav__name">{next.name}</span>
                 </span>
@@ -270,7 +269,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
               </Link>
             ) : (
               <span className="project-nav__link project-nav__link--next is-disabled">
-                Next project
+                Next
                 <ProjectNavChevron direction="next" />
               </span>
             )}

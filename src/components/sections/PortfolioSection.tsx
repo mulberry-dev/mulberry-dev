@@ -3,6 +3,7 @@
 import "@/styles/scss/sections/portfolio.scss"
 import CommandLine from "@/components/terminal/CommandLine"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
+import ProjectType from "@/components/terminal/ProjectType"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
@@ -117,6 +118,12 @@ const FeaturedCard = ({
               </div>
             ) : null}
             <div>
+              <dt>Type</dt>
+              <dd>
+                <ProjectType project={project} />
+              </dd>
+            </div>
+            <div className="work-card__facts-stack">
               <dt>Stack</dt>
               <dd>{stack.join(" · ")}</dd>
             </div>
@@ -164,6 +171,7 @@ const ArchiveCard = ({ project }: { project: Project }) => {
     >
       <article className="archive-card">
         <header className="archive-card__meta">
+          <ProjectType project={project} />
           <ProjectFlags project={project} />
         </header>
         <div className="archive-card__media">
