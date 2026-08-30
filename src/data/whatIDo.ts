@@ -1,5 +1,12 @@
 import { SiteIconName } from "@/components/ui/SiteIcon"
 import { SkillCategory, skills } from "@/data/skills"
+import {
+  BUILD_CONNECTED,
+  BUILD_INTERFACES,
+  BUILD_MODERNIZATION,
+  BUILD_SYSTEMS,
+  type BuildAccent
+} from "@/data/whatIBuild"
 
 export const WHAT_I_DO_INTRO = {
   badge: "What I Do",
@@ -36,35 +43,35 @@ export const CAPABILITIES: {
   title: string
   text: string
   tags: string[]
-  accent: "cyan" | "blue" | "indigo" | "purple"
+  accent: BuildAccent
 }[] = [
   {
     icon: "interface",
     title: "Product Interfaces",
     text: "Clear, fast, accessible screens people actually use.",
     tags: ["React", "Next.js", "TypeScript"],
-    accent: "cyan"
+    accent: BUILD_INTERFACES.accent
   },
   {
     icon: "systems",
     title: "Backend Systems",
     text: "APIs and services that stay reliable as usage grows.",
     tags: ["Node.js", "Express", "GraphQL"],
-    accent: "blue"
+    accent: BUILD_SYSTEMS.accent
   },
   {
     icon: "database",
     title: "Data & Integrations",
     text: "Databases, auth, and third-party services working as one system.",
     tags: ["SQL", "MongoDB", "Firebase"],
-    accent: "indigo"
+    accent: BUILD_CONNECTED.accent
   },
   {
     icon: "rocket",
     title: "Modernization",
     text: "Evolve what exists without throwing away what already works.",
     tags: ["React", "PHP", "Docker"],
-    accent: "purple"
+    accent: BUILD_MODERNIZATION.accent
   }
 ]
 

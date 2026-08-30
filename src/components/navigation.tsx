@@ -4,7 +4,15 @@ import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
 import { prefetchSectionPath, SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
-import { markLeftHome, shouldPlayNavIntro } from "@/lib/siteSession"
+import {
+  HOME_CHROME_REVEALED_EVENT,
+  isHomeChromeRevealed,
+  markHomeChromeRevealed,
+  markLeftHome,
+  shouldPlayNavIntro,
+  shouldRevealHomeChrome,
+  syncHomeNavWaitClass
+} from "@/lib/siteSession"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -20,8 +28,10 @@ import {
 } from "react"
 
 type MenuPhase = "closed" | "open" | "closing"
+type ChromePhase = "wait" | "nav" | "shown"
 
 const MOBILE_INDICATOR_DELAY_MS = 420
+const HOME_CHROME_NAV_MS = 480
 const INDICATOR_HEIGHT = 2
 
 const isActivePath = (pathname: string, path: string) => {
@@ -40,6 +50,7 @@ const Navigation = () => {
   const menuId = useId()
   const [menu, setMenu] = useState<MenuPhase>("closed")
   const toggleRef = useRef<HTMLButtonElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const navRef = useRef<HTMLElement>(null)
   const lastFocusRef = useRef<HTMLElement | null>(null)
   const menuWasOpenRef = useRef(false)
@@ -49,6 +60,9 @@ const Navigation = () => {
   }
 
   const [playNavIntro, setPlayNavIntro] = useState(false)
+  const [chromePhase, setChromePhase] = useState<ChromePhase>(() =>
+    pathname === "/" && !shouldRevealHomeChrome() ? "wait" : "shown"
+  )
   const [isCompact, setIsCompact] = useState(false)
   const [activePath, setActivePath] = useState(pathname)
   const [indicatorReady, setIndicatorReady] = useState(false)
@@ -64,6 +78,63 @@ const Navigation = () => {
       setPlayNavIntro(true)
     }
   }, [])
+
+  useLayoutEffect(() => {
+    const shouldWait = pathname === "/" && !shouldRevealHomeChrome()
+
+    if (!shouldWait) {
+      if (pathname !== "/") {
+        markHomeChromeRevealed()
+      }
+
+      setChromePhase("shown")
+      syncHomeNavWaitClass(false)
+      return
+    }
+
+    setChromePhase("wait")
+    syncHomeNavWaitClass(true)
+
+    const onReveal = () => {
+      markHomeChromeRevealed()
+      syncHomeNavWaitClass(false)
+      setChromePhase(prefersReducedMotion() ? "shown" : "nav")
+    }
+
+    window.addEventListener(HOME_CHROME_REVEALED_EVENT, onReveal)
+
+    if (isHomeChromeRevealed()) {
+      onReveal()
+    }
+
+    return () => window.removeEventListener(HOME_CHROME_REVEALED_EVENT, onReveal)
+  }, [pathname])
+
+  useLayoutEffect(() => {
+    const header = headerRef.current
+
+    if (!header) {
+      return
+    }
+
+    if (chromePhase === "wait") {
+      header.setAttribute("inert", "")
+    } else {
+      header.removeAttribute("inert")
+    }
+  }, [chromePhase])
+
+  useEffect(() => {
+    if (chromePhase !== "nav") {
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setChromePhase("shown")
+    }, HOME_CHROME_NAV_MS)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [chromePhase])
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1023px)")
@@ -427,9 +498,16 @@ const Navigation = () => {
         </defs>
       </svg>
 
-      <div className="site-nav__lens" aria-hidden="true" />
+      <div
+        className={`site-nav__lens${chromePhase === "wait" ? " is-chrome-wait" : ""}${chromePhase === "nav" ? " is-chrome-nav" : ""}`}
+        aria-hidden="true"
+      />
 
-      <header className="site-nav">
+      <header
+        ref={headerRef}
+        className={`site-nav${chromePhase === "wait" ? " is-chrome-wait" : ""}${chromePhase === "nav" ? " is-chrome-nav" : ""}`}
+        aria-hidden={chromePhase === "wait" || undefined}
+      >
         <div
           className={`site-nav__backdrop${menuOpen ? " is-visible" : ""}${menu === "open" ? " is-open" : ""}`}
           aria-hidden="true"

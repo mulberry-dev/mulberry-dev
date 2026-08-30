@@ -2,16 +2,15 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
-import StatusDot from "@/components/terminal/StatusDot"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { useParticles } from "@/components/particles"
-import { CONTACT_INTRO, CONTACT_OPTIONS_COPY } from "@/data/contact"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { WORKSPACE } from "@/data/workspace"
 import Image from "next/image"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   didLeaveHome,
+  HOME_CHROME_REVEALED_EVENT,
   isHomeChromeRevealed,
   markHomeChromeRevealed,
   shouldRevealHomeChrome
@@ -29,25 +28,8 @@ import {
   type ReactNode
 } from "react"
 
-const ABOUT_SHORT = "I ship thoughtful digital products."
-
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
-const HOME_CHROME_NAV_MS = 480
-
-type HomeChromePhase = "wait" | "nav" | "shown"
-
-const chromeClassName = (phase: HomeChromePhase) => {
-  if (phase === "wait") {
-    return "home-chrome-wait"
-  }
-
-  if (phase === "nav") {
-    return "home-chrome-nav"
-  }
-
-  return ""
-}
 
 const RevealChars = ({
   children,
@@ -102,14 +84,6 @@ const IndexPage = () => {
   const { contentReady, reducedMotion } = useParticles()
   const [isFirstHome] = useState(() => !didLeaveHome())
   const [introComplete, setIntroComplete] = useState(false)
-  const [chromePhase, setChromePhase] = useState<HomeChromePhase>(() => {
-    if (!shouldRevealHomeChrome()) {
-      return "wait"
-    }
-
-    markHomeChromeRevealed()
-    return "shown"
-  })
 
   const revealChrome = useCallback(() => {
     if (isHomeChromeRevealed()) {
@@ -117,9 +91,7 @@ const IndexPage = () => {
     }
 
     markHomeChromeRevealed()
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    setChromePhase(reduced ? "shown" : "nav")
-    window.dispatchEvent(new Event("site:home-chrome-revealed"))
+    window.dispatchEvent(new Event(HOME_CHROME_REVEALED_EVENT))
     return true
   }, [])
 
@@ -155,11 +127,7 @@ const IndexPage = () => {
 
   useEffect(() => {
     if (pathname !== "/" || shouldRevealHomeChrome() || window.scrollY > 1) {
-      if (!isHomeChromeRevealed()) {
-        markHomeChromeRevealed()
-      }
-
-      setChromePhase((current) => (current === "wait" ? "shown" : current))
+      revealChrome()
       return
     }
 
@@ -220,24 +188,11 @@ const IndexPage = () => {
     }
   }, [pathname, revealChrome])
 
-  useEffect(() => {
-    if (chromePhase !== "nav") {
-      return
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setChromePhase("shown")
-    }, HOME_CHROME_NAV_MS)
-
-    return () => window.clearTimeout(timeoutId)
-  }, [chromePhase])
-
   const introClass = [
     "home-intro",
     isFirstHome ? "" : "is-return",
     contentReady ? "is-reveal-ready" : "is-reveal-wait",
-    introComplete ? "is-complete" : "",
-    chromeClassName(chromePhase)
+    introComplete ? "is-complete" : ""
   ]
     .filter(Boolean)
     .join(" ")
@@ -271,17 +226,17 @@ const IndexPage = () => {
                 <span className="gradient-text home-hero__name">Santiago</span>
               </span>
             </h1>
-            <p className="home-hero__role" aria-label="< Senior Full Stack Engineer />">
+            <p className="home-hero__role" aria-label="< Senior Full Stack Engineer / >">
               <span aria-hidden="true">
                 <RevealChars delay={0.34}>
                   <span className="home-hero__bracket">&lt;</span>{" "}
                   <span className="home-hero__teal">Senior Full Stack</span>{" "}
                   <span className="home-hero__purple">Engineer</span>{" "}
-                  <span className="home-hero__bracket">/&gt;</span>
+                  <span className="home-hero__bracket">/ &gt;</span>
                 </RevealChars>
               </span>
             </p>
-            <p className="home-hero__statement">
+            <p className="home-hero__body">
               <span>I build </span>
               <span className="home-hero__solutions">digital solutions</span>
               <span> that </span>
@@ -290,27 +245,10 @@ const IndexPage = () => {
                 _
               </span>
             </p>
-            <p className="home-hero__body">{ABOUT_SHORT}</p>
-            <dl className="home-hero__status">
-              <div>
-                <dt>Status</dt>
-                <dd>
-                  <StatusDot pulse />
-                  {CONTACT_INTRO.availability}
-                </dd>
-              </div>
-              <div>
-                <dt>Response</dt>
-                <dd>{CONTACT_OPTIONS_COPY.supporting}</dd>
-              </div>
-            </dl>
             <div className="home-hero__actions">
-              <Button href="/portfolio" variant="terminal">
-                <span className="sr-only">View my work</span>
+              <Button href="/about" variant="terminal">
+                <span className="sr-only">About me</span>
                 <span aria-hidden="true">&gt; ./start-exploring</span>
-              </Button>
-              <Button href="/about" variant="secondary">
-                About me
               </Button>
             </div>
           </div>

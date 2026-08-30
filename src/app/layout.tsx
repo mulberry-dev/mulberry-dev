@@ -93,6 +93,11 @@ export default function RootLayout({
     >
       <GoogleAnalytics gaId="G-HP85BC1BKY" />
       <body className="dark" suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var p=location.pathname;if(p==="/"||p==="")document.documentElement.classList.add("home-nav-wait")})()`
+          }}
+        />
         <a className="skip-link" href="#site-main">
           Skip to content
         </a>

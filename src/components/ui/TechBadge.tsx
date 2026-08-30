@@ -13,7 +13,7 @@ const TechBadge = ({
   const content = (
     <>
       {icon ? (
-        <Image src={icon} alt="" width={16} height={16} />
+        <Image src={icon} alt="" width={16} height={16} aria-hidden="true" />
       ) : null}
       <span>{name}</span>
     </>

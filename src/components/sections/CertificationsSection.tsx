@@ -12,11 +12,13 @@ import { WORKSPACE } from "@/data/workspace"
 import Image from "next/image"
 import { MouseEvent, useCallback, useMemo, useRef, useState } from "react"
 
+const categoryOrder = ["security", "english", "development"]
+
 const filters = [
   { id: "all", label: "All" },
-  { id: "development", label: "Development" },
   { id: "security", label: "Security" },
-  { id: "english", label: "English" }
+  { id: "english", label: "English" },
+  { id: "development", label: "Development" }
 ]
 
 const Certifications = () => {
@@ -28,9 +30,12 @@ const Certifications = () => {
   const imageRefs = useRef<Map<number, HTMLImageElement>>(new Map())
   const visible = useMemo(
     () =>
-      certificates.filter(item =>
-        active === "all" ? true : item.category === active
-      ),
+      certificates
+        .filter(item => (active === "all" ? true : item.category === active))
+        .sort(
+          (a, b) =>
+            categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category)
+        ),
     [active]
   )
   const openCertificate = certificates.find(item => item.id === viewer?.id)
@@ -113,7 +118,7 @@ const Certifications = () => {
             index={WORKSPACE.certifications.index}
             path={WORKSPACE.certifications.path}
             title={WORKSPACE.certifications.title}
-            meta={`${certificates.length} certificates in development, security, and English.`}
+            meta={`${certificates.length} certificates in security, English, and development.`}
           />
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />

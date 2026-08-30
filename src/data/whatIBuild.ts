@@ -1,5 +1,7 @@
 import { SiteIconName } from "@/components/ui/SiteIcon"
 
+export type BuildAccent = "cyan" | "blue" | "indigo" | "purple" | "orange"
+
 export const BUILD_HOST = "santiago@dev"
 export const BUILD_PATH = "~/what-i-do"
 export const BUILD_STACK_PATH = "~/stack.json"
@@ -11,6 +13,7 @@ export const BUILD_INTRO = {
 export const BUILD_INTERFACES = {
   index: "01",
   title: "FRONTEND",
+  accent: "cyan" as const,
   kicker: "WHAT PEOPLE SEE",
   items: [
     { icon: "interface" as const, label: "UI components" },
@@ -24,6 +27,7 @@ export const BUILD_INTERFACES = {
 export const BUILD_SYSTEMS = {
   index: "02",
   title: "BACKEND",
+  accent: "blue" as const,
   kicker: "HOW IT WORKS",
   items: [
     { icon: "systems" as const, label: "APIs" },
@@ -38,6 +42,7 @@ export const BUILD_SYSTEMS = {
 export const BUILD_MODERNIZATION = {
   index: "04",
   title: "MODERNIZATION",
+  accent: "purple" as const,
   kicker: "EVOLVE WITHOUT BREAKING",
   copy: [
     "I don't replace working businesses.",
@@ -62,51 +67,40 @@ export const BUILD_MODERNIZATION = {
 export const BUILD_CONNECTED = {
   index: "03",
   title: "FULL STACK",
+  accent: "indigo" as const,
   kicker: "EVERYTHING WORKS TOGETHER",
   copy: ["Identity, payments, data, and APIs in one product."]
 } as const
 
 export const BUILD_APPROACH = {
   index: "05",
-  title: "THE WAY I BUILD",
+  title: "STAR METHOD",
+  accent: "orange" as const,
+  kicker: "HOW I PROVE THE WORK",
+  copy: [
+    "Past work is the evidence.",
+    "I tell it as Situation, Task, Action, Result."
+  ],
   stages: [
     {
-      icon: "idea" as const,
-      title: "THINK",
-      text: "Understand the problem."
+      letter: "S",
+      title: "SITUATION",
+      text: "The context I walked into."
     },
     {
-      icon: "design" as const,
-      title: "DESIGN",
-      text: "Shape the experience."
+      letter: "T",
+      title: "TASK",
+      text: "What I owned."
     },
     {
-      icon: "code" as const,
-      title: "BUILD",
-      text: "Make the system work."
+      letter: "A",
+      title: "ACTION",
+      text: "The decisions I made."
     },
     {
-      icon: "rocket" as const,
-      title: "SHIP",
-      text: "Put it in people's hands."
-    }
-  ],
-  principles: [
-    {
-      icon: "user" as const,
-      title: "START WITH THE PERSON."
-    },
-    {
-      icon: "craft" as const,
-      title: "DESIGN IS PART OF THE BUILD."
-    },
-    {
-      icon: "clarity" as const,
-      title: "CLARITY OVER CLEVERNESS."
-    },
-    {
-      icon: "care" as const,
-      title: "LEAVE IT IN GOOD HANDS."
+      letter: "R",
+      title: "RESULT",
+      text: "The impact I can prove."
     }
   ]
 } as const
@@ -171,9 +165,9 @@ export const PRODUCT_LAYERS = [
 
 export const BUILD_SECTIONS = [
   { id: "build-intro", index: "00", label: "INTRO" },
-  { id: "build-interfaces", index: "01", label: "FRONTEND" },
-  { id: "build-systems", index: "02", label: "BACKEND" },
-  { id: "build-connected", index: "03", label: "FULL STACK" },
-  { id: "build-modernize", index: "04", label: "MODERNIZATION" },
-  { id: "build-approach", index: "05", label: "APPROACH" }
+  { id: "build-interfaces", index: "01", label: "FRONTEND", accent: BUILD_INTERFACES.accent },
+  { id: "build-systems", index: "02", label: "BACKEND", accent: BUILD_SYSTEMS.accent },
+  { id: "build-connected", index: "03", label: "FULL STACK", accent: BUILD_CONNECTED.accent },
+  { id: "build-modernize", index: "04", label: "MODERNIZATION", accent: BUILD_MODERNIZATION.accent },
+  { id: "build-approach", index: "05", label: "STAR", accent: BUILD_APPROACH.accent }
 ] as const

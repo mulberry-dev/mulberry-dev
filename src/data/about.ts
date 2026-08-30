@@ -50,8 +50,8 @@ export const ABOUT_PASSIONS: {
 
 export const ABOUT_FOOTER = {
   question: "have a project in mind?",
-  action: "let's talk",
-  href: "/contact"
+  action: "check what i do",
+  href: "/skills"
 } as const
 
 export const ABOUT_SECTIONS = [

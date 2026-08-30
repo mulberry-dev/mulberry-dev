@@ -38,14 +38,3 @@ export const FEATURED_PROJECT_IDS = [
   "MulberryMarketing",
   "SalonTarget"
 ] as const
-
-export const STACK_BAR = [
-  "React",
-  "Next",
-  "Node",
-  "TypeScript",
-  "SQL",
-  "AWS",
-  "Docker",
-  "Git - Github"
-] as const

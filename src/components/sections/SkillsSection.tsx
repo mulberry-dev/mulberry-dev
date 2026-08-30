@@ -7,7 +7,6 @@ import ConnectedScene from "@/components/build/ConnectedScene"
 import ModernizeScene from "@/components/build/ModernizeScene"
 import ProductScene from "@/components/build/ProductScene"
 import StackTerminal from "@/components/build/StackTerminal"
-import TechStackBar from "@/components/terminal/TechStackBar"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
@@ -21,7 +20,8 @@ import {
   BUILD_INTRO,
   BUILD_MODERNIZATION,
   BUILD_SECTIONS,
-  BUILD_SYSTEMS
+  BUILD_SYSTEMS,
+  type BuildAccent
 } from "@/data/whatIBuild"
 import { useEffect, useState, type ReactNode } from "react"
 
@@ -81,9 +81,9 @@ const CopyBlock = ({
     {stages ? (
       <ol className="skills-copy__stages">
         {stages.map((stage) => (
-          <Reveal key={stage.title} as="li" type="chip">
-            <span aria-hidden="true">
-              <SiteIcon name={stage.icon} />
+          <Reveal key={stage.letter} as="li" type="chip">
+            <span className="skills-copy__letter" aria-hidden="true">
+              {stage.letter}
             </span>
             <span>
               <strong>{stage.title}</strong>
@@ -99,13 +99,21 @@ const CopyBlock = ({
 const Capability = ({
   id,
   children,
-  stage
+  stage,
+  accent
 }: {
   id: string
   children: ReactNode
   stage: ReactNode
+  accent?: BuildAccent
 }) => (
-  <RevealGroup className="skills-capability" mode="scroll" stagger={56}>
+  <RevealGroup
+    className={
+      accent ? `skills-capability skills-capability--${accent}` : "skills-capability"
+    }
+    mode="scroll"
+    stagger={56}
+  >
     <div id={id} className="skills-capability__copy">
       {children}
     </div>
@@ -214,11 +222,13 @@ const Skills = () => {
               <button
                 key={section.id}
                 type="button"
-                className={
-                  active === section.id
-                    ? "skills-rail__item is-active"
-                    : "skills-rail__item"
-                }
+                className={[
+                  "skills-rail__item",
+                  "accent" in section ? `skills-rail__item--${section.accent}` : "",
+                  active === section.id ? "is-active" : ""
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 onClick={() => goToBlock(section.id)}
                 aria-current={active === section.id ? "true" : undefined}
               >
@@ -260,23 +270,35 @@ const Skills = () => {
             ))}
           </RevealGroup>
 
-          <Reveal type="nav" mode="scroll" className="skills-stackbar">
-            <TechStackBar />
-          </Reveal>
-
-          <Capability id="build-interfaces" stage={<ProductScene />}>
+          <Capability
+            id="build-interfaces"
+            accent={BUILD_INTERFACES.accent}
+            stage={<ProductScene />}
+          >
             <CopyBlock {...BUILD_INTERFACES} />
           </Capability>
 
-          <Capability id="build-systems" stage={<ArchitectureScene />}>
+          <Capability
+            id="build-systems"
+            accent={BUILD_SYSTEMS.accent}
+            stage={<ArchitectureScene />}
+          >
             <CopyBlock {...BUILD_SYSTEMS} />
           </Capability>
 
-          <Capability id="build-connected" stage={<ConnectedScene />}>
+          <Capability
+            id="build-connected"
+            accent={BUILD_CONNECTED.accent}
+            stage={<ConnectedScene />}
+          >
             <CopyBlock {...BUILD_CONNECTED} />
           </Capability>
 
-          <Capability id="build-modernize" stage={<ModernizeScene />}>
+          <Capability
+            id="build-modernize"
+            accent={BUILD_MODERNIZATION.accent}
+            stage={<ModernizeScene />}
+          >
             <CopyBlock
               index={BUILD_MODERNIZATION.index}
               title={BUILD_MODERNIZATION.title}
@@ -285,10 +307,16 @@ const Skills = () => {
             />
           </Capability>
 
-          <Capability id="build-approach" stage={<ApproachScene />}>
+          <Capability
+            id="build-approach"
+            accent={BUILD_APPROACH.accent}
+            stage={<ApproachScene />}
+          >
             <CopyBlock
               index={BUILD_APPROACH.index}
               title={BUILD_APPROACH.title}
+              kicker={BUILD_APPROACH.kicker}
+              copy={BUILD_APPROACH.copy}
               stages={BUILD_APPROACH.stages}
             />
           </Capability>

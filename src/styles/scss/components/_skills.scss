@@ -28,7 +28,6 @@
 .skills-chrome,
 .skills-intro,
 .skills-capabilities,
-.skills-stackbar,
 .skills-capability,
 .skills-foot {
   padding-inline: clamp(1rem, 3.2vw, 2.15rem);
@@ -58,11 +57,13 @@
 
 .skills-session__host,
 .skills-prompt__cash,
-.skills-session__cash,
-.skills-copy__index span:first-child,
-.skills-copy__kicker,
-.approach-scene__kicker {
+.skills-session__cash {
   color: var(--brand-cyan);
+}
+
+.skills-copy__index span:first-child,
+.skills-copy__kicker {
+  color: var(--skills-tone, var(--brand-cyan));
 }
 
 .skills-session__path {
@@ -108,7 +109,7 @@
 }
 
 .skills-intro {
-  padding-block: clamp(3.25rem, 8vw, 6.5rem);
+  padding-block: clamp(3.25rem, 8vw, 1.5rem);
   border-bottom: 1px solid var(--skills-line);
 }
 
@@ -122,18 +123,10 @@
   letter-spacing: -0.03em;
 }
 
-.skills-capabilities,
-.skills-stackbar {
-  padding-inline: clamp(1rem, 3.2vw, 2.15rem);
-}
-
 .skills-capabilities {
+  padding-inline: clamp(1rem, 3.2vw, 2.15rem);
   padding-block: clamp(1.5rem, 4vw, 2.4rem);
   border-bottom: 1px solid var(--skills-line);
-}
-
-.skills-stackbar {
-  padding-bottom: clamp(1.5rem, 4vw, 2.4rem);
 }
 
 .skills-intro__rule {
@@ -144,11 +137,37 @@
 }
 
 .skills-capability {
+  --skills-tone: var(--color-teal);
   display: grid;
   grid-template-columns: minmax(15rem, 0.86fr) minmax(0, 1.28fr);
   gap: clamp(1.25rem, 3.5vw, 3rem);
   align-items: center;
   padding-block: clamp(2.4rem, 5.5vw, 4.25rem);
+}
+
+.skills-capability--cyan,
+.skills-rail__item--cyan {
+  --skills-tone: var(--brand-cyan);
+}
+
+.skills-capability--blue,
+.skills-rail__item--blue {
+  --skills-tone: var(--brand-blue);
+}
+
+.skills-capability--indigo,
+.skills-rail__item--indigo {
+  --skills-tone: var(--accent-indigo);
+}
+
+.skills-capability--purple,
+.skills-rail__item--purple {
+  --skills-tone: var(--brand-purple);
+}
+
+.skills-capability--orange,
+.skills-rail__item--orange {
+  --skills-tone: var(--brand-orange);
 }
 
 .skills-capability + .skills-capability {
@@ -180,6 +199,10 @@
 
 .skills-copy__index span:last-child {
   color: var(--color-text);
+}
+
+.skills-capability--orange .skills-copy__index span:last-child {
+  color: var(--skills-tone);
 }
 
 .skills-copy__kicker {
@@ -218,7 +241,7 @@
 .skills-copy__items svg {
   width: 16px;
   height: 16px;
-  color: var(--color-teal);
+  color: var(--skills-tone);
   flex-shrink: 0;
 }
 
@@ -244,11 +267,19 @@
   gap: 0.7rem;
 }
 
-.skills-copy__stages svg {
-  width: 16px;
-  height: 16px;
-  margin-top: 0.15rem;
-  color: var(--color-teal);
+.skills-copy__letter {
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  border: 1px solid color-mix(in srgb, var(--skills-tone) 42%, var(--skills-line));
+  color: var(--skills-tone);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .skills-copy__stages strong {
@@ -351,8 +382,8 @@
   width: 1.7rem;
   height: 1.7rem;
   margin-inline: auto;
-  border: 1px solid color-mix(in srgb, var(--color-teal) 50%, var(--skills-line));
-  color: var(--color-teal);
+  border: 1px solid color-mix(in srgb, var(--skills-tone) 50%, var(--skills-line));
+  color: var(--skills-tone);
   font-size: 0.68rem;
   font-weight: 700;
 }
@@ -381,8 +412,8 @@
 }
 
 .product-scene__nav-item.is-active {
-  color: var(--color-teal);
-  background: color-mix(in srgb, var(--color-teal) 8%, transparent);
+  color: var(--skills-tone);
+  background: color-mix(in srgb, var(--skills-tone) 8%, transparent);
 }
 
 .product-scene__main {
@@ -420,8 +451,8 @@
   width: 1.45rem;
   height: 1.45rem;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--color-teal) 40%, var(--skills-line));
-  color: var(--color-teal);
+  border: 1px solid color-mix(in srgb, var(--skills-tone) 40%, var(--skills-line));
+  color: var(--skills-tone);
   font-size: 0.55rem;
   font-weight: 700;
 }
@@ -455,7 +486,7 @@
 }
 
 .product-scene__metric em {
-  color: var(--color-teal);
+  color: var(--skills-tone);
   font-size: 0.58rem;
   font-style: normal;
 }
@@ -469,7 +500,7 @@
 .product-scene__metric:hover,
 .arch-scene__node:hover,
 .connect-scene__node:hover {
-  border-color: color-mix(in srgb, var(--color-teal) 45%, var(--skills-line));
+  border-color: color-mix(in srgb, var(--skills-tone) 45%, var(--skills-line));
 }
 
 .product-scene__body {
@@ -505,7 +536,7 @@
 
 .product-scene__chart-line {
   fill: none;
-  stroke: var(--color-teal);
+  stroke: var(--skills-tone);
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-dasharray: 1;
@@ -513,7 +544,7 @@
 }
 
 .product-scene__chart-fill {
-  fill: color-mix(in srgb, var(--color-teal) 12%, transparent);
+  fill: color-mix(in srgb, var(--skills-tone) 12%, transparent);
   opacity: 0;
 }
 
@@ -572,8 +603,8 @@
 }
 
 .product-scene__layers .is-active {
-  color: var(--color-teal);
-  background: color-mix(in srgb, var(--color-teal) 8%, transparent);
+  color: var(--skills-tone);
+  background: color-mix(in srgb, var(--skills-tone) 8%, transparent);
 }
 
 .product-scene__rail,
@@ -655,7 +686,7 @@
 .arch-scene__node svg {
   width: 16px;
   height: 16px;
-  color: var(--color-teal);
+  color: var(--skills-tone);
 }
 
 .arch-scene__node span {
@@ -679,7 +710,7 @@
   display: block;
   background-image: linear-gradient(
     90deg,
-    color-mix(in srgb, var(--color-teal) 70%, transparent) 45%,
+    color-mix(in srgb, var(--skills-tone) 70%, transparent) 45%,
     transparent 0
   );
   background-size: 7px 1px;
@@ -698,7 +729,7 @@
   height: 18px;
   background-image: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--color-teal) 70%, transparent) 45%,
+    color-mix(in srgb, var(--skills-tone) 70%, transparent) 45%,
     transparent 0
   );
   background-size: 1px 7px;
@@ -800,12 +831,12 @@
 }
 
 .modern-scene__pane--modern {
-  border-color: color-mix(in srgb, var(--color-teal) 55%, var(--skills-line));
+  border-color: color-mix(in srgb, var(--skills-tone) 55%, var(--skills-line));
 }
 
 .modern-scene__pane--modern p,
 .modern-scene__pane--modern li span {
-  color: var(--color-teal);
+  color: var(--skills-tone);
 }
 
 .modern-scene__bridge {
@@ -877,7 +908,7 @@
 }
 
 .connect-scene__path {
-  stroke: color-mix(in srgb, var(--color-teal) 55%, var(--skills-line));
+  stroke: color-mix(in srgb, var(--skills-tone) 55%, var(--skills-line));
   stroke-width: 1;
   stroke-dasharray: 3 4;
   opacity: 0;
@@ -889,7 +920,7 @@
 }
 
 .connect-scene__pulse {
-  fill: var(--color-teal);
+  fill: var(--skills-tone);
   opacity: 0;
 }
 
@@ -918,7 +949,7 @@
   left: 50%;
   z-index: 2;
   min-width: 6.4rem;
-  border-color: color-mix(in srgb, var(--color-teal) 45%, var(--skills-line));
+  border-color: color-mix(in srgb, var(--skills-tone) 45%, var(--skills-line));
 }
 
 .connect-scene__node.is-n { top: 15%; left: 50%; }
@@ -931,7 +962,7 @@
 .connect-scene__core svg {
   width: 15px;
   height: 15px;
-  color: var(--color-teal);
+  color: var(--skills-tone);
 }
 
 .connect-scene__node span,
@@ -968,9 +999,10 @@
   margin: 0;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--skills-line);
+  color: var(--skills-tone);
   font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
 }
 
 .approach-scene__grid {
@@ -984,10 +1016,25 @@
 .approach-scene__grid li {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.35rem;
   min-height: 8.5rem;
   padding: 1.1rem 1rem;
+  opacity: 0;
+  transform: translateY(10px);
 }
+
+.approach-scene.is-hot .approach-scene__grid li {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.approach-scene.is-hot .approach-scene__grid li:nth-child(1) { transition-delay: 40ms; }
+.approach-scene.is-hot .approach-scene__grid li:nth-child(2) { transition-delay: 120ms; }
+.approach-scene.is-hot .approach-scene__grid li:nth-child(3) { transition-delay: 200ms; }
+.approach-scene.is-hot .approach-scene__grid li:nth-child(4) { transition-delay: 280ms; }
 
 .approach-scene__grid li:nth-child(odd) {
   border-right: 1px solid var(--skills-line);
@@ -997,21 +1044,28 @@
   border-bottom: 1px solid var(--skills-line);
 }
 
-.approach-scene__icon {
-  color: var(--color-teal);
-}
-
-.approach-scene__icon svg {
-  width: 18px;
-  height: 18px;
+.approach-scene__letter {
+  color: var(--skills-tone);
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
 }
 
 .approach-scene__grid strong {
-  max-width: 12ch;
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   line-height: 1.3;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.12em;
+}
+
+.approach-scene__text {
+  max-width: 18ch;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  letter-spacing: 0;
 }
 
 @keyframes skillsBlink {
@@ -1034,7 +1088,11 @@
 
 @keyframes skillsTarget {
   0% {
-    background-color: color-mix(in srgb, var(--color-teal) 9%, transparent);
+    background-color: color-mix(
+      in srgb,
+      var(--skills-tone, var(--color-teal)) 9%,
+      transparent
+    );
   }
 
   100% {
@@ -1097,7 +1155,7 @@
   }
 
   .skills-rail__item.is-active {
-    color: var(--color-teal);
+    color: var(--skills-tone, var(--color-teal));
   }
 
   .skills-rail__item.is-active::before {
@@ -1106,8 +1164,9 @@
     height: 5px;
     margin-right: 0.15rem;
     border-radius: 50%;
-    background: var(--color-teal);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-teal) 18%, transparent);
+    background: var(--skills-tone, var(--color-teal));
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--skills-tone, var(--color-teal)) 18%, transparent);
   }
 
   .skills-rail__item:focus-visible {
@@ -1156,7 +1215,7 @@
     height: 1.15rem;
     background-image: linear-gradient(
       180deg,
-      color-mix(in srgb, var(--color-teal) 70%, transparent) 45%,
+      color-mix(in srgb, var(--skills-tone) 70%, transparent) 45%,
       transparent 0
     );
     background-size: 1px 7px;
@@ -1248,6 +1307,7 @@
 
   .skills-chrome,
   .skills-intro,
+  .skills-capabilities,
   .skills-capability,
   .skills-foot {
     padding-inline: 0.95rem;
@@ -1319,6 +1379,14 @@
     padding: 0.95rem 1rem;
   }
 
+  .approach-scene__letter {
+    font-size: 1.45rem;
+  }
+
+  .approach-scene__text {
+    max-width: none;
+  }
+
   .approach-scene__grid li:nth-child(odd) {
     border-right: 0;
   }
@@ -1383,7 +1451,8 @@
   .modern-scene__bridge,
   .connect-scene__node,
   .connect-scene__core,
-  .connect-scene__path {
+  .connect-scene__path,
+  .approach-scene__grid li {
     opacity: 1 !important;
     transform: none !important;
     stroke-dashoffset: 0 !important;

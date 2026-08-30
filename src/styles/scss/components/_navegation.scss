@@ -13,7 +13,7 @@
   left: 16px;
   right: 16px;
   height: calc(var(--nav-height) - 10px);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-lg);
   transition:
     transform 0.48s ease-out,
     opacity 0.4s ease-out,
@@ -273,6 +273,51 @@ body:not(.dark) .site-nav__chrome {
   display: none;
 }
 
+@keyframes homeChromeNav {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+html.home-nav-wait .site-nav,
+html.home-nav-wait .site-nav__lens,
+.site-nav.is-chrome-wait,
+.site-nav__lens.is-chrome-wait,
+.site-nav.is-chrome-nav,
+.site-nav__lens.is-chrome-nav {
+  transition: none;
+}
+
+html.home-nav-wait .site-nav,
+html.home-nav-wait .site-nav__lens,
+.site-nav.is-chrome-wait,
+.site-nav__lens.is-chrome-wait {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(0, -18px, 0);
+}
+
+.site-nav.is-chrome-nav,
+.site-nav__lens.is-chrome-nav {
+  visibility: visible;
+  animation: homeChromeNav 0.48s ease-out both;
+}
+
+.site-nav.is-chrome-nav {
+  pointer-events: auto;
+}
+
+.site-nav__lens.is-chrome-nav {
+  pointer-events: none;
+}
+
 @media (max-width: 1023px) {
   body.nav-menu-open .site-nav {
     -webkit-backdrop-filter: none;
@@ -466,6 +511,33 @@ body:not(.dark) .site-nav__chrome {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html.home-nav-wait .site-nav,
+  html.home-nav-wait .site-nav__lens,
+  .site-nav.is-chrome-wait,
+  .site-nav__lens.is-chrome-wait {
+    animation: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translate3d(0, -18px, 0) !important;
+  }
+
+  .site-nav.is-chrome-nav,
+  .site-nav__lens.is-chrome-nav {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  .site-nav.is-chrome-nav {
+    pointer-events: auto !important;
+  }
+
+  .site-nav__lens.is-chrome-nav {
+    pointer-events: none !important;
+  }
+
   .site-nav__backdrop,
   .site-nav__links,
   .site-nav__links.is-open .site-nav__link,

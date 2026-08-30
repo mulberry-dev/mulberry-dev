@@ -79,12 +79,10 @@ const useProjectLink = (project: Project) => {
 
 const FeaturedCard = ({
   project,
-  index,
-  featured
+  index
 }: {
   project: Project
   index: number
-  featured?: boolean
 }) => {
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
   const year = extractYear(project.description)
@@ -94,13 +92,13 @@ const FeaturedCard = ({
     <Link
       href={href}
       prefetch
-      className={`work-card-link${featured ? " is-featured" : ""}${loading ? " is-loading" : ""}`}
+      className={`work-card-link${loading ? " is-loading" : ""}`}
       aria-busy={loading || undefined}
       onPointerEnter={prefetchProject}
       onFocus={prefetchProject}
       onClick={handleClick}
     >
-      <article className={`work-card${featured ? " work-card--featured" : ""}`}>
+      <article className="work-card">
         <div className="work-card__copy">
           <header className="work-card__meta">
             <span className="work-card__index">
@@ -139,13 +137,9 @@ const FeaturedCard = ({
             alt={project.name}
             width={project.width || 1280}
             height={project.height || 800}
-            sizes={
-              featured
-                ? "(max-width: 899px) 100vw, 52vw"
-                : "(max-width: 767px) 100vw, 40vw"
-            }
+            sizes="(max-width: 1023px) 50vw, 33vw"
             className="work-card__image"
-            priority={featured}
+            priority={index === 0}
           />
         </div>
       </article>
@@ -258,22 +252,13 @@ const Portfolio = () => {
         </Reveal>
 
         {featuredVisible.length ? (
-          <div className="work-featured">
-            <FeaturedCard
-              project={featuredVisible[0]}
-              index={0}
-              featured
-            />
-            {featuredVisible.length > 1 ? (
-              <RevealGroup className="work-featured__grid" mode="auto" stagger={56}>
-                {featuredVisible.slice(1).map((project, index) => (
-                  <Reveal key={String(project.id)} type="image">
-                    <FeaturedCard project={project} index={index + 1} />
-                  </Reveal>
-                ))}
-              </RevealGroup>
-            ) : null}
-          </div>
+          <RevealGroup className="work-featured" mode="auto" stagger={56} key={active}>
+            {featuredVisible.map((project, index) => (
+              <Reveal key={String(project.id)} type="image">
+                <FeaturedCard project={project} index={index} />
+              </Reveal>
+            ))}
+          </RevealGroup>
         ) : null}
 
         <div className="work-archive">

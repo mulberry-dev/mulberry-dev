@@ -251,18 +251,20 @@ const About = () => {
             </div>
           </RevealGroup>
 
-          <div className="about-process" aria-label="How I work">
+          <div className="about-process" aria-label="STAR method">
             {BUILD_APPROACH.stages.map((stage, index) => (
-              <span key={stage.title} className="about-process__item">
+              <span key={stage.letter} className="about-process__item">
                 {index > 0 ? (
                   <span className="process-flow__arrow" aria-hidden="true">
                     →
                   </span>
                 ) : null}
                 <span
-                  className={`process-flow__step process-flow__step--${stage.title.toLowerCase()}`}
+                  className={`process-flow__step process-flow__step--${stage.letter.toLowerCase()}`}
                 >
-                  <SiteIcon name={stage.icon} />
+                  <span className="process-flow__letter" aria-hidden="true">
+                    {stage.letter}
+                  </span>
                   {stage.title}
                 </span>
               </span>

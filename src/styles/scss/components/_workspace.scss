@@ -146,8 +146,13 @@
 
 .capability-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.capability-grid > .reveal {
+  min-width: 0;
+  height: 100%;
 }
 
 .capability-card {
@@ -206,39 +211,6 @@
   --capability-tone: var(--brand-purple);
 }
 
-.stack-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem 1rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-surface) 42%, transparent);
-}
-
-.stack-bar__label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
-}
-
-.stack-bar__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--color-text-secondary);
-  font-size: 0.8125rem;
-}
-
-.stack-bar__item img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-}
-
 .process-flow {
   display: flex;
   flex-wrap: wrap;
@@ -256,16 +228,27 @@
   letter-spacing: 0.08em;
 }
 
-.process-flow__step--think {
+.process-flow__letter {
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1px solid currentColor;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.process-flow__step--s {
   color: var(--brand-cyan);
 }
 
-.process-flow__step--design,
-.process-flow__step--build {
+.process-flow__step--t,
+.process-flow__step--a {
   color: var(--brand-blue);
 }
 
-.process-flow__step--ship {
+.process-flow__step--r {
   color: var(--brand-purple);
 }
 
@@ -323,7 +306,29 @@
 
 @media (min-width: 768px) {
   .capability-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .capability-card {
+    gap: var(--space-2);
+    padding: 0.85rem 0.8rem;
+  }
+
+  .capability-card__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .capability-card h3 {
+    font-size: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .capability-card p {
+    font-size: 0.75rem;
+    line-height: 1.45;
   }
 }
 
