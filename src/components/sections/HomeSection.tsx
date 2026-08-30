@@ -280,9 +280,9 @@ const IndexPage = () => {
             </p>
             <p className="home-hero__body">{ABOUT_SHORT}</p>
             <div className="home-hero__actions">
-              <Button href="/portfolio" variant="terminal">
-                <span className="sr-only">View my work</span>
-                <span aria-hidden="true">&gt; work</span>
+              <Button href="/about" variant="terminal">
+                <span className="sr-only">About me</span>
+                <span aria-hidden="true">&gt; about-me</span>
               </Button>
             </div>
           </div>
