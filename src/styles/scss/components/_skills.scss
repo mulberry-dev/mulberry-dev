@@ -133,7 +133,9 @@
 }
 
 .skills-stackbar {
+  padding-top: clamp(1.15rem, 3vw, 1.75rem);
   padding-bottom: clamp(1.5rem, 4vw, 2.4rem);
+  border-bottom: 1px solid var(--skills-line);
 }
 
 .skills-intro__rule {

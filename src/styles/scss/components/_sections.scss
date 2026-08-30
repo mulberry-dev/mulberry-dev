@@ -10,6 +10,7 @@ main > section {
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-anchor: none;
 }
 
 .site-experience:not(.is-aligned) {
@@ -45,8 +46,9 @@ main > section {
 .site-experience > #index {
   scroll-margin-top: 0;
   padding: calc(var(--nav-height) + var(--space-4)) 0 0;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   min-height: 100svh;
-  min-height: 100dvh;
 }
 
 @media (max-width: 767px) {

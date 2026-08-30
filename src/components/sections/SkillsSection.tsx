@@ -1,24 +1,18 @@
 "use client"
 
-import ApproachScene from "@/components/build/ApproachScene"
 import ArchitectureScene from "@/components/build/ArchitectureScene"
-import { BuildSession } from "@/components/build/BuildChrome"
 import ConnectedScene from "@/components/build/ConnectedScene"
 import ModernizeScene from "@/components/build/ModernizeScene"
 import ProductScene from "@/components/build/ProductScene"
-import StackTerminal from "@/components/build/StackTerminal"
 import TechStackBar from "@/components/terminal/TechStackBar"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
-import { CAPABILITIES } from "@/data/whatIDo"
 import { WORKSPACE } from "@/data/workspace"
 import {
-  BUILD_APPROACH,
   BUILD_CONNECTED,
   BUILD_INTERFACES,
-  BUILD_INTRO,
   BUILD_MODERNIZATION,
   BUILD_SECTIONS,
   BUILD_SYSTEMS
@@ -28,19 +22,11 @@ import { useEffect, useState, type ReactNode } from "react"
 const CopyBlock = ({
   index,
   title,
-  kicker,
-  copy = [],
-  items,
-  tech,
-  stages
+  items
 }: {
   index: string
   title: string
-  kicker?: string
-  copy?: readonly string[]
   items?: readonly { icon: SiteIconName; label: string }[]
-  tech?: readonly string[]
-  stages?: typeof BUILD_APPROACH.stages
 }) => (
   <div className="skills-copy">
     <Reveal type="eyebrow">
@@ -49,18 +35,6 @@ const CopyBlock = ({
         <span> / {title}</span>
       </h3>
     </Reveal>
-    {kicker ? (
-      <Reveal type="text" as="p" className="skills-copy__kicker">
-        {kicker}
-      </Reveal>
-    ) : null}
-    {copy.length ? (
-      <Reveal type="text" as="p" className="skills-copy__body">
-        {copy.map((line) => (
-          <span key={line}>{line}</span>
-        ))}
-      </Reveal>
-    ) : null}
     {items ? (
       <ul className="skills-copy__items">
         {items.map((item) => (
@@ -72,26 +46,6 @@ const CopyBlock = ({
           </Reveal>
         ))}
       </ul>
-    ) : null}
-    {tech ? (
-      <Reveal type="text" as="p" className="skills-copy__tech">
-        {tech.join(" · ")}
-      </Reveal>
-    ) : null}
-    {stages ? (
-      <ol className="skills-copy__stages">
-        {stages.map((stage) => (
-          <Reveal key={stage.title} as="li" type="chip">
-            <span aria-hidden="true">
-              <SiteIcon name={stage.icon} />
-            </span>
-            <span>
-              <strong>{stage.title}</strong>
-              {stage.text}
-            </span>
-          </Reveal>
-        ))}
-      </ol>
     ) : null}
   </div>
 )
@@ -228,39 +182,7 @@ const Skills = () => {
             ))}
           </nav>
 
-          <header className="skills-chrome">
-            <BuildSession />
-          </header>
-
-          <RevealGroup className="skills-intro" mode="auto" stagger={70}>
-            <div id="build-intro">
-              <Reveal type="heading" as="h3" className="skills-headline">
-                {BUILD_INTRO.headline}
-              </Reveal>
-              <Reveal
-                type="decorative"
-                className="skills-intro__rule"
-                aria-hidden="true"
-              />
-            </div>
-          </RevealGroup>
-
-          <RevealGroup className="capability-grid skills-capabilities" mode="scroll" stagger={48}>
-            {CAPABILITIES.map(item => (
-              <Reveal key={item.title} type="card">
-                <article className={`capability-card capability-card--${item.accent}`}>
-                  <span className="capability-card__icon" aria-hidden="true">
-                    <SiteIcon name={item.icon} />
-                  </span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                  <span className="capability-card__rule" aria-hidden="true" />
-                </article>
-              </Reveal>
-            ))}
-          </RevealGroup>
-
-          <Reveal type="nav" mode="scroll" className="skills-stackbar">
+          <Reveal type="nav" mode="auto" className="skills-stackbar">
             <TechStackBar />
           </Reveal>
 
@@ -280,22 +202,8 @@ const Skills = () => {
             <CopyBlock
               index={BUILD_MODERNIZATION.index}
               title={BUILD_MODERNIZATION.title}
-              kicker={BUILD_MODERNIZATION.kicker}
-              copy={BUILD_MODERNIZATION.copy}
             />
           </Capability>
-
-          <Capability id="build-approach" stage={<ApproachScene />}>
-            <CopyBlock
-              index={BUILD_APPROACH.index}
-              title={BUILD_APPROACH.title}
-              stages={BUILD_APPROACH.stages}
-            />
-          </Capability>
-
-          <footer className="skills-foot">
-            <StackTerminal />
-          </footer>
         </div>
       </Container>
     </section>

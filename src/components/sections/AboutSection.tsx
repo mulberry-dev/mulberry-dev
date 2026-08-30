@@ -3,19 +3,13 @@
 import AboutPortrait from "@/components/about/AboutPortrait"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SiteIcon from "@/components/ui/SiteIcon"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
-import { BUILD_APPROACH } from "@/data/whatIBuild"
 import { WORKSPACE } from "@/data/workspace"
 import {
   ABOUT_FOOTER,
-  ABOUT_HOST,
   ABOUT_INITIALS,
   ABOUT_INTRO,
   ABOUT_LOCATION_SHORT,
-  ABOUT_ORIGIN,
-  ABOUT_PASSIONS,
-  ABOUT_PATH,
   ABOUT_HISTORY,
   ABOUT_SECTIONS,
   ABOUT_WHOAMI
@@ -33,16 +27,6 @@ const Prompt = ({
   <p className="about-prompt">
     <span className="about-prompt__cash">$</span>
     <span> {command}</span>
-    {cursor ? <span className="about-cursor" aria-hidden="true" /> : null}
-  </p>
-)
-
-const SessionPrompt = ({ cursor = false }: { cursor?: boolean }) => (
-  <p className="about-session">
-    <span className="about-session__host">{ABOUT_HOST}</span>
-    <span className="about-session__colon">:</span>
-    <span className="about-session__path">{ABOUT_PATH}</span>
-    <span className="about-session__cash">$</span>
     {cursor ? <span className="about-cursor" aria-hidden="true" /> : null}
   </p>
 )
@@ -160,14 +144,6 @@ const About = () => {
             ))}
           </nav>
 
-          <header className="about-chrome">
-            <SessionPrompt />
-            <p className="about-chrome__place">
-              <span className="about-chrome__dot" aria-hidden="true" />
-              {ABOUT_LOCATION_SHORT}
-            </p>
-          </header>
-
           <div className="about-identity">
             <RevealGroup className="about-intro" mode="auto" stagger={70}>
               <div id="about-intro" data-about-section="intro">
@@ -208,26 +184,9 @@ const About = () => {
                 <Reveal type="text" as="p" className="about-whoami__name">
                   {ABOUT_WHOAMI.name}
                 </Reveal>
-                <Reveal type="text" as="p" className="about-whoami__origin">
-                  <span>{ABOUT_ORIGIN.code}</span>
-                  <span>{ABOUT_ORIGIN.coords}</span>
+                <Reveal type="text" as="p" className="about-whoami__place">
+                  {ABOUT_LOCATION_SHORT}
                 </Reveal>
-              </div>
-
-              <div className="about-passions">
-                <Reveal type="eyebrow">
-                  <Prompt command="passions" />
-                </Reveal>
-                <ul>
-                  {ABOUT_PASSIONS.map((item) => (
-                    <Reveal key={item.label} as="li" type="chip">
-                      <span className="about-passions__icon" aria-hidden="true">
-                        <SiteIcon name={item.icon} />
-                      </span>
-                      <span>{item.label}</span>
-                    </Reveal>
-                  ))}
-                </ul>
               </div>
             </RevealGroup>
           </div>
@@ -251,32 +210,13 @@ const About = () => {
             </div>
           </RevealGroup>
 
-          <div className="about-process" aria-label="How I work">
-            {BUILD_APPROACH.stages.map((stage, index) => (
-              <span key={stage.title} className="about-process__item">
-                {index > 0 ? (
-                  <span className="process-flow__arrow" aria-hidden="true">
-                    →
-                  </span>
-                ) : null}
-                <span
-                  className={`process-flow__step process-flow__step--${stage.title.toLowerCase()}`}
-                >
-                  <SiteIcon name={stage.icon} />
-                  {stage.title}
-                </span>
-              </span>
-            ))}
-          </div>
-
           <footer className="about-foot">
             <span className="about-foot__mark">{ABOUT_INITIALS}</span>
             <Link href={ABOUT_FOOTER.href} className="about-talk" scroll={false}>
-              <span>{ABOUT_FOOTER.question}</span>
+              <span className="about-talk__cmd">{ABOUT_FOOTER.action}</span>
               <span className="about-talk__arrow" aria-hidden="true">
-                -&gt;
+                →
               </span>
-              <span className="about-talk__cmd">[ {ABOUT_FOOTER.action} ]</span>
             </Link>
           </footer>
         </div>

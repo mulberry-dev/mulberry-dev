@@ -51,6 +51,17 @@ export const announceSection = (href: string) => {
   )
 }
 
+const readScrollY = () => Math.max(0, window.scrollY || window.pageYOffset || 0)
+
+/** Update the address bar without a Next.js navigation (those bounce on iOS). */
+export const syncSectionUrl = (path: string) => {
+  if (window.location.pathname === path) {
+    return
+  }
+
+  window.history.replaceState(window.history.state, "", path)
+}
+
 type PrefetchFn = (path: string) => void
 
 const prefetchers = new Set<PrefetchFn>()
@@ -171,13 +182,13 @@ export const getSectionScrollTop = (pathname: string) => {
 
   return Math.max(
     0,
-    Math.round(node.getBoundingClientRect().top + window.scrollY - offset)
+    Math.round(node.getBoundingClientRect().top + readScrollY() - offset)
   )
 }
 
 export const isSectionInViewport = (pathname: string, slack = 28) => {
   if (pathname === "/") {
-    return window.scrollY <= slack
+    return readScrollY() <= slack
   }
 
   const section = getSectionByPath(pathname)
@@ -199,7 +210,9 @@ export const scrollToSection = (
   behavior: ScrollBehavior = "smooth"
 ) => {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  const nextBehavior: ScrollBehavior = reduced ? "auto" : behavior
+  const coarse = window.matchMedia("(hover: none) and (pointer: coarse)").matches
+  const nextBehavior: ScrollBehavior =
+    reduced || coarse ? "auto" : behavior
   markProgrammaticSectionScroll(nextBehavior === "smooth" ? 1100 : 240)
 
   const top = getSectionScrollTop(pathname)
@@ -239,7 +252,7 @@ export const settleSectionInView = (pathname: string) => {
 }
 
 export const readActiveSectionPath = () => {
-  const line = Math.min(window.innerHeight * 0.3, 200)
+  const line = 160
   let current = SECTIONS[0]?.path ?? "/"
 
   for (const section of SECTIONS) {

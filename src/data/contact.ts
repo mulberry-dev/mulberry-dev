@@ -7,14 +7,11 @@ import {
 } from "@/data/site"
 
 export const CONTACT_INTRO = {
-  title: "Let's build something",
-  gradientText: "great together",
   availability: "Available for new opportunities"
 } as const
 
 export const CONTACT_OPTIONS_COPY = {
-  heading: "Reach me",
-  supporting: "I usually respond within 24 hours."
+  supporting: "Usually within 24 hours."
 } as const
 
 export type ContactAccent = "teal" | "cyan" | "purple" | "neutral"
@@ -84,7 +81,7 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     description: "Code and public repos.",
     value: displayUrl(GITHUB_URL),
     copyValue: GITHUB_URL,
-    cta: "View GitHub",
+    cta: "Open repos",
     href: GITHUB_URL,
     external: true,
     accent: "neutral"

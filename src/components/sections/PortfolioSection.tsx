@@ -1,6 +1,5 @@
 "use client"
 
-import CommandLine from "@/components/terminal/CommandLine"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
@@ -244,8 +243,7 @@ const Portfolio = () => {
           index={WORKSPACE.work.index}
           path={WORKSPACE.work.path}
           title={WORKSPACE.work.title}
-          command="ls ./selected-projects --sort=impact"
-          meta={`${padCount(categoryCounts.all)} projects found · ${padCount(featuredProjects.length)} featured · ${padCount(archiveProjects.length)} archive`}
+          meta={`${padCount(categoryCounts.all)} projects`}
         />
 
         <Reveal type="nav">
@@ -277,13 +275,12 @@ const Portfolio = () => {
         ) : null}
 
         <div className="work-archive">
-          <CommandLine command="ls ./archive" />
-          <p className="workspace-header__meta">
-            {padCount(archiveVisible.length)} projects in archive
-            {archiveVisible.some(builtWithoutAi)
-              ? ` · ${padCount(archiveVisible.filter(builtWithoutAi).length)} built without AI`
-              : ""}
-          </p>
+          <h3 className="work-archive__title">Archive</h3>
+          {archiveVisible.some(builtWithoutAi) ? (
+            <p className="workspace-header__meta">
+              {padCount(archiveVisible.filter(builtWithoutAi).length)} built without AI
+            </p>
+          ) : null}
           <RevealGroup className="archive-grid" mode="auto" stagger={48} key={active}>
             {archiveVisible.map(project => (
               <Reveal key={String(project.id)} type="image">
