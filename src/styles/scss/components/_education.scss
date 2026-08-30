@@ -1,7 +1,12 @@
 .certs-page {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-6);
+}
+
+.certs-page .ui-filter-pills {
+  justify-content: flex-start;
 }
 
 .certs-grid {

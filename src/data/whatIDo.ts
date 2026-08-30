@@ -36,30 +36,35 @@ export const CAPABILITIES: {
   title: string
   text: string
   tags: string[]
+  accent: "cyan" | "blue" | "indigo" | "purple"
 }[] = [
   {
     icon: "interface",
     title: "Product Interfaces",
     text: "Clear, fast, accessible screens people actually use.",
-    tags: ["React", "Next.js", "TypeScript"]
+    tags: ["React", "Next.js", "TypeScript"],
+    accent: "cyan"
   },
   {
     icon: "systems",
     title: "Backend Systems",
     text: "APIs and services that stay reliable as usage grows.",
-    tags: ["Node.js", "Express", "GraphQL"]
+    tags: ["Node.js", "Express", "GraphQL"],
+    accent: "blue"
   },
   {
     icon: "database",
     title: "Data & Integrations",
     text: "Databases, auth, and third-party services working as one system.",
-    tags: ["SQL", "MongoDB", "Firebase"]
+    tags: ["SQL", "MongoDB", "Firebase"],
+    accent: "indigo"
   },
   {
     icon: "rocket",
     title: "Modernization",
     text: "Evolve what exists without throwing away what already works.",
-    tags: ["React", "PHP", "Docker"]
+    tags: ["React", "PHP", "Docker"],
+    accent: "purple"
   }
 ]
 

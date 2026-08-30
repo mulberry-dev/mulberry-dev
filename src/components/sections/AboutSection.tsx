@@ -4,6 +4,9 @@ import AboutPortrait from "@/components/about/AboutPortrait"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
+import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
+import { BUILD_APPROACH } from "@/data/whatIBuild"
+import { WORKSPACE } from "@/data/workspace"
 import {
   ABOUT_FOOTER,
   ABOUT_HOST,
@@ -132,6 +135,11 @@ const About = () => {
       tabIndex={-1}
     >
       <Container className="about-page">
+        <WorkspaceHeader
+          index={WORKSPACE.about.index}
+          path={WORKSPACE.about.path}
+          title={WORKSPACE.about.title}
+        />
         <div className="about-terminal">
           <nav className="about-rail" aria-label="On this page">
             {ABOUT_SECTIONS.map((section) => (
@@ -242,6 +250,24 @@ const About = () => {
               </ol>
             </div>
           </RevealGroup>
+
+          <div className="about-process" aria-label="How I work">
+            {BUILD_APPROACH.stages.map((stage, index) => (
+              <span key={stage.title} className="about-process__item">
+                {index > 0 ? (
+                  <span className="process-flow__arrow" aria-hidden="true">
+                    →
+                  </span>
+                ) : null}
+                <span
+                  className={`process-flow__step process-flow__step--${stage.title.toLowerCase()}`}
+                >
+                  <SiteIcon name={stage.icon} />
+                  {stage.title}
+                </span>
+              </span>
+            ))}
+          </div>
 
           <footer className="about-foot">
             <span className="about-foot__mark">{ABOUT_INITIALS}</span>

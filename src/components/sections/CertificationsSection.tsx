@@ -6,8 +6,9 @@ import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
 import Lightbox, { LightboxOrigin } from "@/components/ui/Lightbox"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import SectionHeader from "@/components/ui/SectionHeader"
+import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import { certificates } from "@/data/certificates"
+import { WORKSPACE } from "@/data/workspace"
 import Image from "next/image"
 import { MouseEvent, useCallback, useMemo, useRef, useState } from "react"
 
@@ -108,11 +109,11 @@ const Certifications = () => {
     >
       <Container className="certs-page">
         <RevealGroup mode="auto" stagger={64}>
-          <SectionHeader
-            as="h2"
-            align="center"
-            title="Certifications"
-            subtitle={`${certificates.length} certificates in development, security, and English.`}
+          <WorkspaceHeader
+            index={WORKSPACE.certifications.index}
+            path={WORKSPACE.certifications.path}
+            title={WORKSPACE.certifications.title}
+            meta={`${certificates.length} certificates in development, security, and English.`}
           />
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />

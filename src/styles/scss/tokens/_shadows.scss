@@ -1,8 +1,9 @@
 $ease-out: cubic-bezier(0.075, 0.82, 0.165, 1);
 
 :root {
-  --glow-teal: 0 0 32px color-mix(in srgb, var(--color-teal) 28%, transparent);
-  --glow-purple: 0 0 40px color-mix(in srgb, var(--color-purple) 28%, transparent);
+  --glow-teal: 0 0 24px color-mix(in srgb, var(--brand-cyan) 22%, transparent);
+  --glow-purple: 0 0 24px color-mix(in srgb, var(--brand-purple) 20%, transparent);
+  --glow-soft: 0 0 20px color-mix(in srgb, var(--brand-blue) 12%, transparent);
   --ease-out: #{$ease-out};
   --duration-fast: 150ms;
   --duration: 250ms;

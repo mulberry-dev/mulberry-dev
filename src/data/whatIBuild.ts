@@ -1,7 +1,7 @@
 import { SiteIconName } from "@/components/ui/SiteIcon"
 
 export const BUILD_HOST = "santiago@dev"
-export const BUILD_PATH = "~/what-i-build"
+export const BUILD_PATH = "~/what-i-do"
 export const BUILD_STACK_PATH = "~/stack.json"
 
 export const BUILD_INTRO = {

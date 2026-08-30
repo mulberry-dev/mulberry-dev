@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ButtonHTMLAttributes, ReactNode } from "react"
 
-type Variant = "primary" | "secondary" | "ghost"
+type Variant = "primary" | "secondary" | "ghost" | "terminal"
 
 type ButtonProps = {
   children: ReactNode
@@ -33,9 +33,15 @@ const Button = ({
     .join(" ")
 
   if (href) {
-    if (external) {
+    const isInternal = href.startsWith("/")
+
+    if (!isInternal) {
       return (
-        <a className={classes} href={href} target="_blank" rel="noreferrer">
+        <a
+          className={classes}
+          href={href}
+          {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+        >
           {children}
         </a>
       )

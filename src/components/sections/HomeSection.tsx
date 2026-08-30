@@ -2,8 +2,12 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
+import StatusDot from "@/components/terminal/StatusDot"
+import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { useParticles } from "@/components/particles"
+import { CONTACT_INTRO, CONTACT_OPTIONS_COPY } from "@/data/contact"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
+import { WORKSPACE } from "@/data/workspace"
 import Image from "next/image"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
@@ -249,6 +253,7 @@ const IndexPage = () => {
       <Container className="home-page">
         <div className="home-hero">
           <div className="home-hero__copy">
+            <TerminalPrompt path={WORKSPACE.home.path} className="home-hero__prompt" />
             <div className="home-hero__brand">
               <Image
                 className="home-hero__logo site-logo"
@@ -276,9 +281,34 @@ const IndexPage = () => {
                 </RevealChars>
               </span>
             </p>
+            <p className="home-hero__statement">
+              <span>I build </span>
+              <span className="home-hero__solutions">digital solutions</span>
+              <span> that </span>
+              <span className="gradient-text">deliver value</span>
+              <span className="home-hero__caret" aria-hidden="true">
+                _
+              </span>
+            </p>
             <p className="home-hero__body">{ABOUT_SHORT}</p>
+            <dl className="home-hero__status">
+              <div>
+                <dt>Status</dt>
+                <dd>
+                  <StatusDot pulse />
+                  {CONTACT_INTRO.availability}
+                </dd>
+              </div>
+              <div>
+                <dt>Response</dt>
+                <dd>{CONTACT_OPTIONS_COPY.supporting}</dd>
+              </div>
+            </dl>
             <div className="home-hero__actions">
-              <Button href="/portfolio">My work</Button>
+              <Button href="/portfolio" variant="terminal">
+                <span className="sr-only">View my work</span>
+                <span aria-hidden="true">&gt; ./start-exploring</span>
+              </Button>
               <Button href="/about" variant="secondary">
                 About me
               </Button>
