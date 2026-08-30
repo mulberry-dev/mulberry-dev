@@ -22,7 +22,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-5);
+  align-self: stretch;
   width: 100%;
+  max-width: 100%;
 }
 
 .certs-card {
