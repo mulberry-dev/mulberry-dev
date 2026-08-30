@@ -225,9 +225,6 @@ const Skills = () => {
 
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
-              <Reveal type="eyebrow">
-                <BuildSession cursor />
-              </Reveal>
               <Reveal type="heading" as="h2" className="skills-headline">
                 {BUILD_INTRO.headline}
               </Reveal>

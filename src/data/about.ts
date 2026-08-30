@@ -11,10 +11,7 @@ export const ABOUT_INTRO = {
   command: "cat about-me.txt",
   headline: ["I BUILD_", "WHAT YOU SEE.", "AND WHAT", "MAKES IT WORK."],
   accentFrom: 2,
-  body: [
-    "I came to software through design.",
-    "Clear interfaces. Small details."
-  ]
+  body: ["I came to software through design."]
 } as const
 
 export const ABOUT_WHOAMI = {
