@@ -128,15 +128,13 @@ section:has(.project-page) {
 }
 
 .project-nav__copy {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: baseline;
-  gap: 0.4rem;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-nav__dir {
-  flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: 0.625rem;
   letter-spacing: 0.08em;
@@ -144,11 +142,12 @@ section:has(.project-page) {
   color: var(--color-text-dim);
 }
 
+.project-nav__dir::after {
+  content: " ";
+}
+
 .project-nav__name {
-  overflow: hidden;
   color: var(--color-text);
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .project-eof {
@@ -343,8 +342,8 @@ body:not(.dark) .project-hero__image {
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 44px;
-  padding: 8px 14px;
+  height: 44px;
+  padding: 0 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
@@ -358,13 +357,14 @@ body:not(.dark) .project-hero__image {
   min-width: 0;
   flex: 1 1 0;
   max-width: 50%;
-  min-height: 36px;
+  height: 100%;
   color: var(--color-text-dim);
   font-size: var(--text-caption);
   font-weight: 500;
   letter-spacing: 0.01em;
-  line-height: 1.2;
+  line-height: 1;
   text-decoration: none;
+  white-space: nowrap;
   transition: color var(--duration-fast) var(--ease-out);
 }
 
@@ -451,11 +451,8 @@ body:not(.dark) .project-hero__image {
 
   .project-nav {
     gap: 8px;
-    padding: 8px 10px;
-  }
-
-  .project-nav__link {
-    min-height: 32px;
+    height: 40px;
+    padding: 0 10px;
   }
 }
 
