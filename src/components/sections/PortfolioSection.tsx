@@ -109,7 +109,6 @@ const FeaturedCard = ({
           </header>
           <h3>{project.name}</h3>
           <p className="work-card__teaser">{project.teaser}</p>
-          <p className="work-card__description">{project.description}</p>
           <dl className="work-card__facts">
             {year ? (
               <div>

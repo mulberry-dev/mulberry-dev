@@ -535,6 +535,7 @@ body:not(.dark) .site-textarea {
 @media (max-width: 767px) {
   .site-footer__inner {
     grid-template-columns: 1fr;
+    justify-items: center;
     text-align: center;
   }
 

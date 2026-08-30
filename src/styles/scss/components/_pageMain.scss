@@ -98,6 +98,13 @@
   white-space: nowrap;
 }
 
+@media (max-width: 374px) {
+  .home-hero__role {
+    white-space: normal;
+    text-wrap: pretty;
+  }
+}
+
 .home-hero__char {
   display: inline;
 }
@@ -636,5 +643,11 @@ body:has(#index.home-chrome-nav) .site-nav__lens {
 
   .home-hero__status {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 320px) {
+  .home-hero__role {
+    white-space: normal;
   }
 }

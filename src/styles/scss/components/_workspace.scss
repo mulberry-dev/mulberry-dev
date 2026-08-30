@@ -5,12 +5,14 @@
   align-items: baseline;
   gap: 0 0.15em;
   margin: 0;
+  max-width: 100%;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.45;
   letter-spacing: 0.01em;
   color: var(--color-text-muted);
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .term-prompt__host,
@@ -262,7 +264,7 @@
 }
 
 .ui-filter-pills--command .ui-filter-pill {
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   background: transparent;
   box-shadow: none;
   font-family: var(--font-mono);

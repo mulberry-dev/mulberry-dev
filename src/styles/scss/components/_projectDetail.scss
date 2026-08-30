@@ -426,7 +426,14 @@ body:not(.dark) .project-hero__image {
   }
 
   .project-nav {
-    padding: 6px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 16px;
+  }
+
+  .project-nav__link--next {
+    margin-left: 0;
+    justify-content: flex-end;
   }
 }
 

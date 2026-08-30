@@ -132,8 +132,14 @@
   display: block;
   width: 100%;
   height: auto;
+  max-height: 22rem;
   object-fit: cover;
   transition: transform var(--duration) var(--ease-out);
+}
+
+.archive-card__image {
+  height: 140px;
+  max-height: none;
 }
 
 .work-card:hover .work-card__image,
