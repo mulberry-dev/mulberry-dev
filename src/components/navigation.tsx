@@ -522,7 +522,7 @@ const Navigation = () => {
           <div
             className="site-nav__brand"
             aria-hidden={chromePhase === "wait" || undefined}
-            {...(chromePhase === "wait" ? { inert: "" } : {})}
+            inert={chromePhase === "wait" || undefined}
           >
             <Link href="/" className="site-nav__logo" scroll={false} prefetch={false}>
               <Image
