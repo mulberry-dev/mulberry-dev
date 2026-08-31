@@ -66,10 +66,15 @@ export const BUILD_MODERNIZATION = {
 
 export const BUILD_CONNECTED = {
   index: "03",
-  title: "FULL STACK",
+  title: "DATA & INTEGRATIONS",
   accent: "indigo" as const,
   kicker: "EVERYTHING WORKS TOGETHER",
-  copy: ["Identity, payments, data, and APIs in one product."]
+  items: [
+    { icon: "lock" as const, label: "Identity" },
+    { icon: "payment" as const, label: "Payments" },
+    { icon: "database" as const, label: "Data" },
+    { icon: "connect" as const, label: "APIs" }
+  ]
 } as const
 
 export const BUILD_APPROACH = {
@@ -146,30 +151,30 @@ export const BUILD_STACK = {
   ]
 } as const
 
-export const ARCH_MAIN = [
-  { id: "client", label: "CLIENT", icon: "frontend" as const },
-  { id: "api", label: "API GRAPHQL", icon: "connect" as const },
-  { id: "services", label: "SERVICES", icon: "cube" as const },
-  { id: "logic", label: "BUSINESS LOGIC", icon: "gears" as const },
-  { id: "database", label: "DATABASE", icon: "database" as const }
-] as const
+export const ARCH_REQUEST = {
+  method: "POST",
+  path: "/graphql",
+  status: "200 OK"
+} as const
 
-export const ARCH_SIDE = [
-  { id: "auth", label: "AUTH", icon: "lock" as const, attaches: "api" },
-  { id: "storage", label: "STORAGE S3", icon: "storage" as const, attaches: "logic" }
+export const ARCH_LAYERS = [
+  { id: "client", label: "CLIENT", icon: "frontend" as const, tone: "cyan" },
+  { id: "api", label: "API", icon: "connect" as const, tone: "blue", tag: "Auth" },
+  { id: "services", label: "SERVICES", icon: "cube" as const, tone: "indigo", tag: "Logic" },
+  { id: "data", label: "DATA", icon: "database" as const, tone: "purple", tag: "S3" }
 ] as const
 
 export const CONNECTED_NODES: {
   id: string
   label: string
   icon: SiteIconName
-  slot: "n" | "w" | "e" | "s" | "ss"
+  slot: "n" | "w" | "e" | "s"
+  tone: "cyan" | "blue" | "indigo" | "purple" | "orange"
 }[] = [
-  { id: "identity", label: "IDENTITY", icon: "lock", slot: "n" },
-  { id: "payments", label: "PAYMENTS", icon: "payment", slot: "w" },
-  { id: "apis", label: "APIs", icon: "connect", slot: "e" },
-  { id: "data", label: "DATA", icon: "database", slot: "s" },
-  { id: "notifications", label: "NOTIFICATIONS", icon: "bell", slot: "ss" }
+  { id: "identity", label: "IDENTITY", icon: "lock", slot: "n", tone: "cyan" },
+  { id: "payments", label: "PAYMENTS", icon: "payment", slot: "w", tone: "orange" },
+  { id: "apis", label: "APIs", icon: "connect", slot: "e", tone: "blue" },
+  { id: "data", label: "DATA", icon: "database", slot: "s", tone: "purple" }
 ]
 
 export const PRODUCT_METRICS = [
@@ -204,7 +209,7 @@ export const BUILD_SECTIONS = [
   { id: "build-intro", index: "00", label: "INTRO" },
   { id: "build-interfaces", index: "01", label: "FRONTEND", accent: BUILD_INTERFACES.accent },
   { id: "build-systems", index: "02", label: "BACKEND", accent: BUILD_SYSTEMS.accent },
-  { id: "build-connected", index: "03", label: "FULL STACK", accent: BUILD_CONNECTED.accent },
+  { id: "build-connected", index: "03", label: "DATA & INTEGRATIONS", accent: BUILD_CONNECTED.accent },
   { id: "build-modernize", index: "04", label: "MODERNIZATION", accent: BUILD_MODERNIZATION.accent },
   { id: "build-approach", index: "05", label: "STAR", accent: BUILD_APPROACH.accent }
 ] as const
