@@ -7,7 +7,7 @@ export const data = [
     category: "landing",
     teaser: "Residential marketing site with bilingual content and visit booking.",
     description:
-      "Marketing website for a residential development in Comitán de Domínguez, Chiapas. (2025)",
+      "Marketing website for a residential development in Comitán de Domínguez, Chiapas. (2026)",
     img: "/images/Webp/fuente-de-vida.webp",
     tech: [
       {
@@ -37,7 +37,7 @@ export const data = [
     category: "web",
     teaser: "Agency site for strategy, content, and custom web.",
     description:
-      "Boutique agency site that unifies strategy, creativity, and technology. (2025)",
+      "Boutique agency site that unifies strategy, creativity, and technology. (2026)",
     img: "/images/Webp/mulberry-marketing.webp",
     tech: [
       {
@@ -67,7 +67,7 @@ export const data = [
     category: "landing",
     teaser: "Mobile-first digital card for an eXp Realty agent in CDMX.",
     description:
-      "Digital business card for an eXp Realty México agent in CDMX. (2025)",
+      "Digital business card for an eXp Realty México agent in CDMX. (2026)",
     img: "/images/Webp/cecilia-rodriguez.webp",
     width: 1024,
     height: 640,
@@ -91,36 +91,6 @@ export const data = [
     ],
     url: "https://cecilia-rodriguez.vercel.app/",
     thumbnail: "/images/thumbnails/cecilia-rodriguez.webp",
-    github: null
-  },
-  {
-    id: "MulberryDrone",
-    name: "Mulberry Drone",
-    category: "landing",
-    teaser: "Aerial photo and video portfolio with WhatsApp booking.",
-    description:
-      "Portfolio for certified aerial photography and videography in CDMX. (2025)",
-    img: "/images/Webp/mulberry-drone.webp",
-    tech: [
-      {
-        tech: "Next.js",
-        icon: "/images/Icons/svg/Next.js.svg"
-      },
-      {
-        tech: "React.js",
-        icon: "/images/Icons/svg/react.svg"
-      },
-      {
-        tech: "JavaScript",
-        icon: "/images/Icons/svg/JavaScript.svg"
-      },
-      {
-        tech: "CSS3",
-        icon: "/images/Icons/svg/CSS3.svg"
-      }
-    ],
-    url: "https://mulberry-drone.vercel.app/",
-    thumbnail: "/images/thumbnails/mulberry-drone.webp",
     github: null
   },
   {

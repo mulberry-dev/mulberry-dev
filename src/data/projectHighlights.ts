@@ -75,23 +75,6 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "Previous public version, kept online"
     }
   ],
-  MulberryDrone: [
-    {
-      icon: "cursor",
-      title: "4K cinematic work",
-      text: "Aerial photography and videography"
-    },
-    {
-      icon: "craft",
-      title: "Commercial services",
-      text: "Marketing and inspection coverage"
-    },
-    {
-      icon: "frontend",
-      title: "Photo gallery",
-      text: "Selected aerial work in one place"
-    }
-  ],
   SalonTarget: [
     {
       icon: "modernize",
