@@ -9,11 +9,22 @@ const ApproachScene = () => {
   return (
     <div
       ref={ref}
+      id="build-approach"
       className={`approach-scene${hot ? " is-hot" : ""}`}
-      role="img"
       aria-label="STAR method: Situation, Task, Action, Result"
     >
-      <p className="approach-scene__kicker">STAR</p>
+      <header className="approach-scene__head">
+        <h3 className="approach-scene__index">
+          <span>{BUILD_APPROACH.index}</span>
+          <span> / {BUILD_APPROACH.title}</span>
+        </h3>
+        <p className="approach-scene__kicker">{BUILD_APPROACH.kicker}</p>
+        <p className="approach-scene__copy">
+          {BUILD_APPROACH.copy.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
+        </p>
+      </header>
       <ol className="approach-scene__grid">
         {BUILD_APPROACH.stages.map((stage) => (
           <li key={stage.letter}>

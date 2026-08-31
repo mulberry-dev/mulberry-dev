@@ -253,48 +253,8 @@
   letter-spacing: 0.04em;
 }
 
-.skills-copy__stages {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin: 1.15rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.skills-copy__stages li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
-}
-
-.skills-copy__letter {
-  display: grid;
-  place-items: center;
-  width: 1.7rem;
-  height: 1.7rem;
-  flex-shrink: 0;
-  margin-top: 0.05rem;
-  border: 1px solid color-mix(in srgb, var(--skills-tone) 42%, var(--skills-line));
-  color: var(--skills-tone);
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.skills-copy__stages strong {
-  display: block;
-  margin-bottom: 0.12rem;
-  color: var(--color-text);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-}
-
-.skills-copy__stages span span {
-  color: var(--color-text-muted);
-  font-size: 0.82rem;
-  letter-spacing: 0;
+.skills-capability--star {
+  grid-template-columns: 1fr;
 }
 
 .skills-foot {
@@ -996,14 +956,45 @@
   background: color-mix(in srgb, var(--color-canvas) 42%, transparent);
 }
 
+.approach-scene__head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: clamp(1.1rem, 2.4vw, 1.55rem) clamp(1rem, 2.2vw, 1.4rem);
+  border-bottom: 1px solid var(--skills-line);
+}
+
+.approach-scene__index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.approach-scene__index span:first-child {
+  color: var(--skills-tone);
+}
+
 .approach-scene__kicker {
   margin: 0;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--skills-line);
   color: var(--skills-tone);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
+}
+
+.approach-scene__copy {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  max-width: 36rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .approach-scene__grid {
@@ -1415,13 +1406,9 @@
     border-left: 0;
   }
 
-  .approach-scene__grid {
-    grid-template-columns: 1fr;
-  }
-
   .approach-scene__grid li {
     min-height: 0;
-    padding: 0.95rem 1rem;
+    padding: 0.95rem 0.85rem;
   }
 
   .approach-scene__letter {
@@ -1432,17 +1419,8 @@
     max-width: none;
   }
 
-  .approach-scene__grid li:nth-child(odd) {
-    border-right: 0;
-  }
-
-  .approach-scene__grid li:nth-child(-n + 2),
-  .approach-scene__grid li + li {
-    border-bottom: 1px solid var(--skills-line);
-  }
-
-  .approach-scene__grid li:last-child {
-    border-bottom: 0;
+  .approach-scene__copy {
+    font-size: 0.88rem;
   }
 
   .skills-stack__json {
