@@ -90,22 +90,26 @@ export const BUILD_APPROACH = {
     {
       letter: "S",
       title: "SITUATION",
-      text: "The context I walked into."
+      text: "The context I walked into.",
+      tone: "cyan"
     },
     {
       letter: "T",
       title: "TASK",
-      text: "What I owned."
+      text: "What I owned.",
+      tone: "blue"
     },
     {
       letter: "A",
       title: "ACTION",
-      text: "The decisions I made."
+      text: "The decisions I made.",
+      tone: "orange"
     },
     {
       letter: "R",
       title: "RESULT",
-      text: "The impact I can prove."
+      text: "The impact I can prove.",
+      tone: "purple"
     }
   ]
 } as const
