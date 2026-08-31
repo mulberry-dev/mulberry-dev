@@ -1,34 +1,38 @@
 import { data as projects } from "@/data/projects"
 import { links } from "@/data/navegation"
-import { SITE_URL } from "@/data/site"
-import { languageAlternates } from "@/lib/sectionMeta"
-import { localizePath } from "@/lib/locale"
+import { languageAlternates, absoluteUrl } from "@/lib/sectionMeta"
+import { LOCALES, type Locale } from "@/lib/locale"
 import type { MetadataRoute } from "next"
 
 const lastModified = new Date()
 
-const entry = (path: string, priority: number): MetadataRoute.Sitemap[number] => {
-  const localized = localizePath(path, "en")
-  const url = localized === "/" ? SITE_URL : `${SITE_URL}${localized}`
-
-  return {
-    url,
-    lastModified,
-    changeFrequency: "monthly",
-    priority,
-    alternates: {
-      languages: languageAlternates(path)
-    }
+const entry = (
+  path: string,
+  locale: Locale,
+  priority: number
+): MetadataRoute.Sitemap[number] => ({
+  url: absoluteUrl(path, locale),
+  lastModified,
+  changeFrequency: "monthly",
+  priority,
+  alternates: {
+    languages: languageAlternates(path)
   }
-}
+})
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sections = links.map(link =>
-    entry(link.path, link.path === "/" ? 1 : 0.7)
-  )
-  const projectPages = projects.map(project =>
-    entry(`/portfolio/${project.id}`, 0.6)
-  )
+  const paths: { path: string; priority: number }[] = [
+    ...links.map(link => ({
+      path: link.path,
+      priority: link.path === "/" ? 1 : 0.7
+    })),
+    ...projects.map(project => ({
+      path: `/portfolio/${project.id}`,
+      priority: 0.6
+    }))
+  ]
 
-  return [...sections, ...projectPages]
+  return paths.flatMap(({ path, priority }) =>
+    LOCALES.map(locale => entry(path, locale, priority))
+  )
 }
