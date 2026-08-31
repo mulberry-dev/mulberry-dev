@@ -173,9 +173,14 @@
   --badge-tone: var(--color-purple);
 }
 
+.ui-badge--mobile {
+  --badge-tone: var(--brand-orange);
+}
+
 .ui-badge--development,
 .ui-badge--security,
-.ui-badge--english {
+.ui-badge--english,
+.ui-badge--mobile {
   color: var(--badge-tone);
   border-color: var(--badge-tone);
   background: color-mix(in srgb, var(--badge-tone) 14%, var(--color-surface-glass));

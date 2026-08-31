@@ -10,6 +10,30 @@ export const CategoryIcon = ({ variant }: { variant?: string }) => {
     )
   }
 
+  if (variant === "mobile") {
+    return (
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <rect
+          x="4.4"
+          y="1.8"
+          width="7.2"
+          height="12.4"
+          rx="1.4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
+        <path
+          d="M7 12.6h2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
+      </svg>
+    )
+  }
+
   if (variant === "development") {
     return (
       <svg viewBox="0 0 16 16" aria-hidden="true">

@@ -13,7 +13,7 @@ import { WORKSPACE } from "@/data/workspace"
 import Image from "next/image"
 import { MouseEvent, useCallback, useMemo, useRef, useState } from "react"
 
-const categoryOrder = ["security", "english", "development"]
+const categoryOrder = ["mobile", "security", "english", "development"]
 
 const filters = [
   { id: "all", label: "All" },
@@ -32,7 +32,17 @@ const Certifications = () => {
   const visible = useMemo(
     () =>
       certificates
-        .filter(item => (active === "all" ? true : item.category === active))
+        .filter(item => {
+          if (active === "all") {
+            return true
+          }
+
+          if (active === "development") {
+            return item.category === "development" || item.category === "mobile"
+          }
+
+          return item.category === active
+        })
         .sort(
           (a, b) =>
             categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category)
@@ -129,7 +139,7 @@ const Certifications = () => {
           {visible.map(certificate =>
             <Reveal key={certificate.id} type="image">
             <Card
-              className={`certs-card${viewer?.id === certificate.id ? " is-expanded" : ""}`}
+              className={`certs-card${certificate.category === "mobile" ? " certs-card--mobile" : ""}${viewer?.id === certificate.id ? " is-expanded" : ""}`}
             >
               <button
                 type="button"

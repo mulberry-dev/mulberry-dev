@@ -1,5 +1,11 @@
 export const certificates = [
   {
+    id: 9,
+    url: "/images/Certificates/DesarrolloMobileReactNative.webp",
+    title: "Desarrollo mobile con React Native",
+    category: "mobile"
+  },
+  {
     id: 0,
     url: "/images/Certificates/CarreraDesarrolloFullStack.webp",
     title: "Full Stack Development Career",
