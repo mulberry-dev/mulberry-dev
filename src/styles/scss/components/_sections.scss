@@ -25,7 +25,7 @@ main > section {
 .site-experience > section {
   flex: 0 0 auto;
   scroll-margin-top: calc(var(--nav-height) + var(--space-3));
-  padding: clamp(4.75rem, 10vw, 8.5rem) 0;
+  padding: var(--section-y) 0;
 }
 
 .site-experience > section:focus {
@@ -53,7 +53,7 @@ main > section {
 
 @media (max-width: 767px) {
   .site-experience > section {
-    padding: clamp(3.75rem, 14vw, 6.25rem) 0;
+    padding: clamp(3rem, 10vw, 5rem) 0;
   }
 
   .site-experience > #index {

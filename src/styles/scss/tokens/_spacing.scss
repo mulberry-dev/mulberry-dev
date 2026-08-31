@@ -19,4 +19,6 @@ $space-9: 80px;
   --space-8: #{$space-8};
   --space-9: #{$space-9};
   --nav-height: 76px;
+  --section-y: clamp(3.5rem, 7vw, 6.25rem);
+  --section-gap: clamp(2.25rem, 4vw, 3.5rem);
 }

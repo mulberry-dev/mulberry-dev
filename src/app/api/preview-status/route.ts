@@ -1,4 +1,5 @@
 import { data as projects } from "@/data/projects"
+import { hasLivePreview } from "@/lib/projects"
 import { NextResponse } from "next/server"
 
 export const dynamic = "force-dynamic"
@@ -6,13 +7,7 @@ export const dynamic = "force-dynamic"
 const normalize = (value: string) => value.replace(/\/+$/, "")
 
 const allowed = new Set(
-  projects.flatMap(project => {
-    if (!project.url || !(project as { preview?: boolean }).preview) {
-      return []
-    }
-
-    return [normalize(project.url)]
-  })
+  projects.filter(hasLivePreview).map(project => normalize(project.url))
 )
 
 const probe = async (url: string, signal: AbortSignal) => {

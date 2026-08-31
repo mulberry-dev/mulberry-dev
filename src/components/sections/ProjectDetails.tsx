@@ -2,7 +2,6 @@
 
 import "@/styles/scss/sections/project-detail.scss"
 import Button from "@/components/ui/Button"
-import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
 import ProjectType from "@/components/terminal/ProjectType"
@@ -234,49 +233,50 @@ const ProjectDetails = ({ id }: { id: string }) => {
           </RevealGroup>
         </div>
 
-        <Reveal type="nav" mode="scroll" className="project-nav-wrap">
-          <nav className="project-nav" aria-label={t.project.navLabel}>
-            {previous ? (
-              <Link
-                className="project-nav__link"
-                href={href(`/portfolio/${previous.id}`)}
-                prefetch
-                aria-label={`${t.project.previous}: ${previous.name}`}
-              >
-                <ProjectNavChevron direction="prev" />
-                <span className="project-nav__copy">
-                  <span className="project-nav__dir">{t.project.previous}</span>
-                  <span className="project-nav__name">{previous.name}</span>
+        <div className="project-nav-wrap">
+          <Reveal type="nav" mode="fold">
+            <nav className="project-nav" aria-label={t.project.navLabel}>
+              {previous ? (
+                <Link
+                  className="project-nav__link"
+                  href={href(`/portfolio/${previous.id}`)}
+                  prefetch
+                  aria-label={`${t.project.previous}: ${previous.name}`}
+                >
+                  <ProjectNavChevron direction="prev" />
+                  <span className="project-nav__copy">
+                    <span className="project-nav__dir">{t.project.previous}</span>
+                    <span className="project-nav__name">{previous.name}</span>
+                  </span>
+                </Link>
+              ) : (
+                <span className="project-nav__link is-disabled">
+                  <ProjectNavChevron direction="prev" />
+                  {t.project.previous}
                 </span>
-              </Link>
-            ) : (
-              <span className="project-nav__link is-disabled">
-                <ProjectNavChevron direction="prev" />
-                {t.project.previous}
-              </span>
-            )}
-            {next ? (
-              <Link
-                className="project-nav__link project-nav__link--next"
-                href={href(`/portfolio/${next.id}`)}
-                prefetch
-                aria-label={`${t.project.next}: ${next.name}`}
-              >
-                <span className="project-nav__copy">
-                  <span className="project-nav__dir">{t.project.next}</span>
-                  <span className="project-nav__name">{next.name}</span>
+              )}
+              {next ? (
+                <Link
+                  className="project-nav__link project-nav__link--next"
+                  href={href(`/portfolio/${next.id}`)}
+                  prefetch
+                  aria-label={`${t.project.next}: ${next.name}`}
+                >
+                  <span className="project-nav__copy">
+                    <span className="project-nav__dir">{t.project.next}</span>
+                    <span className="project-nav__name">{next.name}</span>
+                  </span>
+                  <ProjectNavChevron direction="next" />
+                </Link>
+              ) : (
+                <span className="project-nav__link project-nav__link--next is-disabled">
+                  {t.project.next}
+                  <ProjectNavChevron direction="next" />
                 </span>
-                <ProjectNavChevron direction="next" />
-              </Link>
-            ) : (
-              <span className="project-nav__link project-nav__link--next is-disabled">
-                {t.project.next}
-                <ProjectNavChevron direction="next" />
-              </span>
-            )}
-          </nav>
-        </Reveal>
-        <CommandLine command="" cursor className="project-eof" />
+              )}
+            </nav>
+          </Reveal>
+        </div>
       </Container>
     </section>
   )

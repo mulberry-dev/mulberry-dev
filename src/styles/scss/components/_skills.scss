@@ -2,7 +2,7 @@
   width: min(1440px, calc(100% - 32px));
   display: flex;
   flex-direction: column;
-  gap: var(--space-7);
+  gap: var(--section-gap);
   padding-bottom: var(--space-4);
 }
 
@@ -103,34 +103,34 @@
 .skills-prompt {
   display: flex;
   align-items: center;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .skills-intro {
-  padding-block: clamp(3.25rem, 8vw, 1.5rem);
+  padding-block: clamp(2.25rem, 5vw, 3.5rem);
   border-bottom: 1px solid var(--skills-line);
 }
 
 .skills-headline {
   margin: 0;
-  max-width: 14em;
+  max-width: 22em;
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 1.05rem + 2vw, 2.65rem);
+  font-size: clamp(1.65rem, 1.1rem + 2.2vw, 2.75rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.22;
+  letter-spacing: var(--tracking-tight);
 }
 
 .skills-capabilities {
   padding-inline: clamp(1rem, 3.2vw, 2.15rem);
-  padding-block: clamp(1.5rem, 4vw, 2.4rem);
+  padding-block: clamp(1.75rem, 4vw, 2.75rem);
   border-bottom: 1px solid var(--skills-line);
 }
 
 .skills-intro__rule {
   width: min(11rem, 42%);
   height: 1px;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   background: color-mix(in srgb, var(--color-teal) 70%, var(--skills-line));
 }
 
@@ -189,11 +189,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.5rem;
   font-family: inherit;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-kicker);
 }
 
 .skills-copy__index span:last-child {
@@ -205,8 +205,8 @@
 }
 
 .skills-copy__kicker {
-  margin: 0 0 0.85rem;
-  font-size: 0.68rem;
+  margin: 0 0 1.05rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.16em;
 }
@@ -214,17 +214,18 @@
 .skills-copy__body {
   display: flex;
   flex-direction: column;
+  gap: 0.2em;
   margin: 0;
-  max-width: 22rem;
+  max-width: 24rem;
   color: var(--color-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
 }
 
 .skills-copy__items {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.65rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -233,8 +234,9 @@
 .skills-copy__items li {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 0.9rem;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
 }
 
 .skills-copy__items svg {
@@ -245,10 +247,11 @@
 }
 
 .skills-copy__tech {
-  margin: 1.15rem 0 0;
+  margin: 1.35rem 0 0;
   padding: 0;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
+  line-height: 1.5;
 }
 
 .skills-capability--star {
@@ -258,33 +261,33 @@
 
 .skills-foot {
   border-top: 1px solid var(--skills-line);
-  padding-block: clamp(1.4rem, 3vw, 2rem);
+  padding-block: clamp(1.65rem, 3.4vw, 2.35rem);
 }
 
 .skills-stack__head {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.2rem;
-  margin-bottom: 1.15rem;
+  gap: 0.45rem;
+  margin-bottom: 1.55rem;
 }
 
 .skills-stack__title {
-  margin: 0.2rem 0 0;
+  margin: 0.15rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+  font-size: clamp(1.3rem, 1rem + 1.2vw, 1.8rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.22;
   color: var(--color-text);
 }
 
 .skills-stack__lead {
-  margin: 0.25rem 0 0;
-  max-width: 28rem;
+  margin: 0.2rem 0 0;
+  max-width: 32rem;
   color: var(--color-text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
 }
 
 .skills-stack__groups {
@@ -1653,11 +1656,12 @@
   }
 
   .skills-intro {
-    padding-block: clamp(2.4rem, 12vw, 3.75rem);
+    padding-block: clamp(1.85rem, 8vw, 2.75rem);
   }
 
   .skills-headline {
-    font-size: clamp(1.55rem, 8vw, 2.15rem);
+    font-size: clamp(1.5rem, 7.2vw, 2.1rem);
+    line-height: 1.25;
   }
 
   .skills-chrome {

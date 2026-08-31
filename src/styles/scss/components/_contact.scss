@@ -3,14 +3,14 @@
 .contact-page {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  gap: var(--section-gap);
   padding-bottom: var(--space-4);
 }
 
 .contact-workspace {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(var(--space-5), 4vw, var(--space-8));
+  gap: clamp(var(--space-6), 5vw, var(--space-8));
   align-items: start;
 }
 
@@ -18,19 +18,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.85rem;
-  padding: var(--space-5);
+  gap: 1.05rem;
+  padding: var(--space-6);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--color-canvas-deep) 42%, transparent);
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: var(--text-caption);
   color: var(--color-text-muted);
 }
 
 .contact-log p {
   margin: 0;
-  line-height: 1.6;
+  line-height: var(--leading-body);
 }
 
 .contact-log__prefix {
@@ -45,9 +45,10 @@
 }
 
 .contact-channels h3 {
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-3);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-dim);
@@ -67,10 +68,10 @@
 .contact-channel {
   display: grid;
   grid-template-columns: 2.5rem 2.25rem minmax(0, 1fr);
-  gap: 0.85rem;
+  gap: 1rem;
   align-items: center;
-  min-height: 80px;
-  padding: 0.9rem 1rem;
+  min-height: 88px;
+  padding: 1.1rem 1.15rem;
   border-bottom: 1px solid var(--border-subtle);
   color: inherit;
   text-decoration: none;
@@ -108,20 +109,23 @@ body:not(.dark) .contact-channel__icon {
 .contact-channel__copy {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.32rem;
   min-width: 0;
 }
 
 .contact-channel__copy strong {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 700;
   letter-spacing: 0.04em;
+  line-height: 1.25;
   text-transform: uppercase;
 }
 
 .contact-channel__copy span {
   color: var(--color-text-muted);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
 
 .contact-channel:hover,
@@ -150,5 +154,17 @@ body:not(.dark) .contact-channel__icon {
 @media (max-width: 767px) {
   .contact-workspace {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .contact-log {
+    padding: var(--space-5);
+    gap: 0.9rem;
+  }
+
+  .contact-channel {
+    min-height: 76px;
+    padding: 0.95rem 0.95rem;
+    gap: 0.8rem;
   }
 }

@@ -124,7 +124,7 @@ export const en: Messages = {
   },
   skills: {
     ariaLabel: "What I Do",
-    headline: "How I ship products.",
+    headline: "As a full-stack developer, these are the main things I do.",
     stackTitle: "Stack",
     stackLead: "This is the stack I know best.",
     capabilities: [

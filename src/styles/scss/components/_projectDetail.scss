@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   flex: 1 1 auto;
-  min-height: 0;
+  min-height: 100%;
   gap: clamp(var(--space-6), 3.5vw, var(--space-7));
 }
 
@@ -40,9 +40,9 @@
 
 section:has(.project-page) {
   flex: 1 1 auto;
-  min-height: 0;
+  min-height: 100dvh;
   padding-top: calc(var(--nav-height) + var(--space-6));
-  padding-bottom: var(--space-8);
+  padding-bottom: calc(44px + var(--space-8));
 }
 
 .project-overview {
@@ -143,10 +143,6 @@ section:has(.project-page) {
   color: var(--color-text);
 }
 
-.project-eof {
-  justify-content: flex-start;
-}
-
 .project-back {
   color: var(--brand-cyan);
   text-decoration: none;
@@ -193,7 +189,10 @@ section:has(.project-page) {
 .project-hero__actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: var(--space-3);
+  width: 100%;
 }
 
 .project-hero__visual {
@@ -526,7 +525,27 @@ body:not(.dark) .project-preview__screen {
 }
 
 .project-nav-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: calc(var(--z-nav) - 1);
+  display: flex;
+  justify-content: center;
   width: 100%;
+  padding: var(--space-3) 0 max(var(--space-4), env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(
+    to top,
+    var(--color-canvas) 48%,
+    color-mix(in srgb, var(--color-canvas) 72%, transparent) 78%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.project-nav-wrap .reveal {
+  width: var(--container);
+  pointer-events: auto;
 }
 
 .project-nav {
@@ -540,7 +559,9 @@ body:not(.dark) .project-preview__screen {
   padding: 0 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-surface-glass) 28%, transparent);
+  background: color-mix(in srgb, var(--color-surface-glass) 82%, transparent);
+  backdrop-filter: blur(var(--glass-blur, 5px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 5px));
 }
 
 .project-nav__link {
@@ -638,6 +659,10 @@ body:not(.dark) .project-preview__screen {
 }
 
 @media (max-width: 767px) {
+  section:has(.project-page) {
+    padding-bottom: calc(40px + var(--space-7));
+  }
+
   .project-page {
     --container: min(1360px, calc(100% - 32px));
     gap: var(--space-6);

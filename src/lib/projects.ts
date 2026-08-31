@@ -73,7 +73,7 @@ export const hasLivePreview = (
   project: Project
 ): project is Project & { url: string } =>
   typeof project.url === "string" &&
-  Boolean((project as { preview?: boolean }).preview)
+  (project as { preview?: boolean }).preview !== false
 
 export const featuredProjects = FEATURED_PROJECT_IDS.map(id =>
   projects.find(project => String(project.id) === id)

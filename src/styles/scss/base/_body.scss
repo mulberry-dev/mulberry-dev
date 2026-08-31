@@ -40,6 +40,8 @@ body {
   min-height: 100dvh;
   background-color: var(--color-canvas);
   font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
   color: var(--color-text);
   transition: background-color 0.3s ease, color 0.3s ease;
 
@@ -47,14 +49,23 @@ body {
   h2,
   h3 {
     font-family: var(--font-display);
+    letter-spacing: var(--tracking-tight);
   }
 
   h2 {
     font-weight: 800;
     color: var(--color-text);
     font-size: var(--text-h1);
+    line-height: var(--leading-tight);
     margin-top: 0;
     text-shadow: none;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: var(--text-h3);
+    line-height: var(--leading-snug);
+    margin: 0;
   }
 }
 
