@@ -19,23 +19,35 @@ const ApproachScene = () => {
           <span> / {BUILD_APPROACH.title}</span>
         </h3>
         <p className="approach-scene__kicker">{BUILD_APPROACH.kicker}</p>
-        <p className="approach-scene__copy">
-          {BUILD_APPROACH.copy.map((line) => (
-            <span key={line}>{line}</span>
-          ))}
-        </p>
       </header>
       <ol className="approach-scene__grid">
-        {BUILD_APPROACH.stages.map((stage) => (
+        {BUILD_APPROACH.stages.map((stage, index) => (
           <li
             key={stage.letter}
-            className={`approach-scene__stage approach-scene__stage--${stage.tone}`}
+            className={`approach-scene__step is-${stage.letter.toLowerCase()}`}
+            title={stage.text}
           >
-            <span className="approach-scene__letter" aria-hidden="true">
-              {stage.letter}
-            </span>
-            <strong>{stage.title}</strong>
-            <span className="approach-scene__text">{stage.text}</span>
+            {index > 0 ? (
+              <span className="approach-scene__arrow" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M5 3.2 11 8 5 12.8"
+                    stroke="currentColor"
+                    strokeWidth="2.1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            ) : null}
+            <div
+              className={`approach-scene__stage approach-scene__stage--${stage.tone}`}
+            >
+              <span className="approach-scene__letter" aria-hidden="true">
+                {stage.letter}
+              </span>
+              <strong>{stage.title}</strong>
+            </div>
           </li>
         ))}
       </ol>
