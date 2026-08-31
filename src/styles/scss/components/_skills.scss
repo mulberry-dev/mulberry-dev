@@ -1129,16 +1129,15 @@
 
 .approach-scene__grid li,
 .approach-scene__stage {
-  --stage-tone: var(--skills-tone);
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   min-width: 0;
   min-height: 0;
   padding: 0.85rem 0.8rem 0.75rem;
-  border: 1px solid color-mix(in srgb, var(--stage-tone) 38%, var(--skills-line));
-  border-left: 3px solid var(--stage-tone);
-  background: color-mix(in srgb, var(--stage-tone) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stage-tone, var(--skills-tone)) 38%, var(--skills-line));
+  border-left: 3px solid var(--stage-tone, var(--skills-tone));
+  background: color-mix(in srgb, var(--stage-tone, var(--skills-tone)) 10%, transparent);
   opacity: 0;
   transform: translateY(10px);
 }
@@ -1162,7 +1161,7 @@
 .approach-scene.is-hot .approach-scene__grid li:nth-child(4) { transition-delay: 280ms; }
 
 .approach-scene__letter {
-  color: var(--stage-tone);
+  color: var(--stage-tone, var(--skills-tone));
   font-family: var(--font-display);
   font-size: 1.55rem;
   font-weight: 700;
