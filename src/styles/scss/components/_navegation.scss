@@ -221,6 +221,7 @@
   flex-shrink: 0;
   -webkit-appearance: none;
   appearance: none;
+  transition: filter 0.4s ease-out;
 }
 
 .site-nav__toggle span {
@@ -244,9 +245,14 @@
 }
 
 .site-nav__link:focus-visible,
-.site-nav__logo:focus-visible {
+.site-nav__logo:focus-visible,
+.site-nav__toggle:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 3px;
+}
+
+.site-nav__toggle:focus-visible {
+  border-radius: var(--radius-md);
 }
 
 body:not(.dark) .site-nav {
@@ -282,6 +288,18 @@ body:not(.dark) .site-nav__chrome {
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes siteNavToggleIn {
+  from {
+    opacity: 0;
+    transform: translate3d(16px, -24px, 0) scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -430,6 +448,64 @@ html.home-nav-wait .site-nav__lens,
   .site-nav__toggle {
     display: flex;
   }
+
+  html.home-nav-wait .site-nav,
+  .site-nav.is-chrome-wait {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  html.home-nav-wait .site-nav__lens,
+  .site-nav__lens.is-chrome-wait {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(0, -18px, 0);
+  }
+
+  html.home-nav-wait .site-nav__chrome,
+  html.home-nav-wait .site-nav__brand,
+  .site-nav.is-chrome-wait .site-nav__chrome,
+  .site-nav.is-chrome-wait .site-nav__brand {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(0, -12px, 0);
+  }
+
+  html.home-nav-wait .site-nav__toggle,
+  .site-nav.is-chrome-wait .site-nav__toggle {
+    pointer-events: auto;
+    filter: drop-shadow(0 2px 10px color-mix(in srgb, #000 50%, transparent));
+    animation: siteNavToggleIn 0.85s cubic-bezier(0.34, 1.45, 0.42, 1) 0.45s both;
+  }
+
+  html.home-nav-wait .site-nav__toggle.is-intro,
+  .site-nav.is-chrome-wait .site-nav__toggle.is-intro {
+    animation: siteNavToggleIn 0.85s cubic-bezier(0.34, 1.45, 0.42, 1) both;
+  }
+
+  .site-nav.is-chrome-nav {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+    transition:
+      background 0.48s ease-out,
+      box-shadow 0.48s ease-out;
+  }
+
+  .site-nav.is-chrome-nav .site-nav__chrome,
+  .site-nav.is-chrome-nav .site-nav__brand {
+    animation: homeChromeNav 0.48s ease-out both;
+  }
 }
 
 @media (max-width: 767px) {
@@ -553,5 +629,49 @@ html.home-nav-wait .site-nav__lens,
 
   .site-nav__links.is-open .site-nav__link {
     opacity: 1;
+  }
+
+  @media (max-width: 1023px) {
+    html.home-nav-wait .site-nav,
+    .site-nav.is-chrome-wait {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    html.home-nav-wait .site-nav__lens,
+    .site-nav__lens.is-chrome-wait {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    html.home-nav-wait .site-nav__chrome,
+    html.home-nav-wait .site-nav__brand,
+    .site-nav.is-chrome-wait .site-nav__chrome,
+    .site-nav.is-chrome-wait .site-nav__brand {
+      animation: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: none !important;
+    }
+
+    html.home-nav-wait .site-nav__toggle,
+    .site-nav.is-chrome-wait .site-nav__toggle {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+    }
+
+    .site-nav.is-chrome-nav .site-nav__chrome,
+    .site-nav.is-chrome-nav .site-nav__brand {
+      animation: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
   }
 }

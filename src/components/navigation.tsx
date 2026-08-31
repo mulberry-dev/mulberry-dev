@@ -60,6 +60,7 @@ const Navigation = () => {
   }
 
   const [playNavIntro, setPlayNavIntro] = useState(false)
+  const [playToggleIntro, setPlayToggleIntro] = useState(false)
   const [chromePhase, setChromePhase] = useState<ChromePhase>(() =>
     pathname === "/" && !shouldRevealHomeChrome() ? "wait" : "shown"
   )
@@ -78,6 +79,19 @@ const Navigation = () => {
       setPlayNavIntro(true)
     }
   }, [])
+
+  useEffect(() => {
+    if (chromePhase !== "wait") {
+      setPlayToggleIntro(false)
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setPlayToggleIntro(true)
+    }, 560)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [chromePhase])
 
   useLayoutEffect(() => {
     const shouldWait = pathname === "/" && !shouldRevealHomeChrome()
@@ -109,20 +123,6 @@ const Navigation = () => {
 
     return () => window.removeEventListener(HOME_CHROME_REVEALED_EVENT, onReveal)
   }, [pathname])
-
-  useLayoutEffect(() => {
-    const header = headerRef.current
-
-    if (!header) {
-      return
-    }
-
-    if (chromePhase === "wait") {
-      header.setAttribute("inert", "")
-    } else {
-      header.removeAttribute("inert")
-    }
-  }, [chromePhase])
 
   useEffect(() => {
     if (chromePhase !== "nav") {
@@ -506,7 +506,6 @@ const Navigation = () => {
       <header
         ref={headerRef}
         className={`site-nav${chromePhase === "wait" ? " is-chrome-wait" : ""}${chromePhase === "nav" ? " is-chrome-nav" : ""}`}
-        aria-hidden={chromePhase === "wait" || undefined}
       >
         <div
           className={`site-nav__backdrop${menuOpen ? " is-visible" : ""}${menu === "open" ? " is-open" : ""}`}
@@ -520,7 +519,11 @@ const Navigation = () => {
         />
         <div className="site-nav__chrome" aria-hidden="true" />
         <div className="site-nav__inner">
-          <div className="site-nav__brand">
+          <div
+            className="site-nav__brand"
+            aria-hidden={chromePhase === "wait" || undefined}
+            inert={chromePhase === "wait" || undefined}
+          >
             <Link href="/" className="site-nav__logo" scroll={false} prefetch={false}>
               <Image
                 className="site-logo"
@@ -576,7 +579,7 @@ const Navigation = () => {
           <div className="site-nav__actions">
             <button
               ref={toggleRef}
-              className={`site-nav__toggle${menu === "open" ? " is-open" : ""}`}
+              className={`site-nav__toggle${menu === "open" ? " is-open" : ""}${playToggleIntro ? " is-intro" : ""}`}
               type="button"
               aria-label={menu === "open" ? "Close menu" : "Open menu"}
               aria-expanded={menu === "open"}
