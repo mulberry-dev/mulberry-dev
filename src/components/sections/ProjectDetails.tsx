@@ -6,6 +6,7 @@ import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
 import ProjectType from "@/components/terminal/ProjectType"
+import ProjectPreview from "@/components/sections/ProjectPreview"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
 import TechBadge from "@/components/ui/TechBadge"
@@ -14,9 +15,8 @@ import { projectHighlights } from "@/data/projectHighlights"
 import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
-import { localizeProject } from "@/lib/projects"
-import { extractYear, padCount, projectSlug } from "@/lib/projects"
-import { PrivateDeployment } from "@/utils/alerts"
+import { extractYear, hasLivePreview, localizeProject, padCount, projectSlug } from "@/lib/projects"
+import { ConfirmLeaveSite, PrivateDeployment } from "@/utils/alerts"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -127,22 +127,52 @@ const ProjectDetails = ({ id }: { id: string }) => {
 
           <div className="project-hero">
             <RevealGroup className="project-hero__copy" mode="fold" stagger={28}>
-              <Reveal type="eyebrow" className="project-hero__kicker">
-                <span>
-                  {padCount(index + 1)} / {t.project.kicker}
-                </span>
-                <ProjectType project={project} />
-                <ProjectFlags project={project} />
+              <div className="project-hero__identity">
+                <Reveal type="eyebrow" className="project-hero__kicker">
+                  <span>
+                    {padCount(index + 1)} / {t.project.kicker}
+                  </span>
+                  {year ? <span>{year}</span> : null}
+                  <ProjectType project={project} />
+                  <ProjectFlags project={project} />
+                </Reveal>
+                <Reveal type="heading" as="h1" className="project-hero__title">
+                  {project.name}
+                </Reveal>
+              </div>
+              <Reveal type="text" className="project-hero__about">
+                <h2 className="project-hero__label">{t.project.about}</h2>
+                <p>{project.description}</p>
               </Reveal>
-              <Reveal type="heading" as="h1">
-                {project.name}
-              </Reveal>
-              <Reveal type="text" as="p" className="project-hero__lede">
-                {project.teaser}
-              </Reveal>
+              {highlights?.length ? (
+                <Reveal type="text" className="project-hero__features">
+                  <h2 className="project-hero__label">{t.project.features}</h2>
+                  <ul className="project-highlights">
+                    {highlights.map(item => (
+                      <li key={item.title}>
+                        <span className="project-highlights__icon">
+                          <SiteIcon name={item.icon} />
+                        </span>
+                        <span className="project-highlights__copy">
+                          <strong>{item.title}</strong>
+                          <span>{item.text}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              ) : null}
               <Reveal type="button" className="project-hero__actions">
                 {project.url ? (
-                  <Button href={project.url} external>
+                  <Button
+                    type="button"
+                    onClick={async () => {
+                      const leave = await ConfirmLeaveSite(t.project)
+                      if (leave) {
+                        window.location.assign(project.url)
+                      }
+                    }}
+                  >
                     {t.project.visit}
                     <ExternalIcon />
                   </Button>
@@ -163,66 +193,27 @@ const ProjectDetails = ({ id }: { id: string }) => {
             </RevealGroup>
 
             <Reveal type="image" className="project-hero__visual" mode="fold">
-              <Image
-                className="project-hero__image"
-                src={project.img}
-                alt={`${project.name} — ${project.teaser}`}
-                width={project.width || 1280}
-                height={project.height || 800}
-                sizes="(max-width: 899px) 100vw, 58vw"
-                priority
-              />
+              {hasLivePreview(project) ? (
+                <ProjectPreview
+                  url={project.url}
+                  poster={project.img}
+                  name={project.name}
+                  teaser={project.teaser}
+                />
+              ) : (
+                <Image
+                  className="project-hero__image"
+                  src={project.img}
+                  alt={`${project.name} — ${project.teaser}`}
+                  width={project.width || 1280}
+                  height={project.height || 800}
+                  sizes="(max-width: 899px) 100vw, 58vw"
+                  priority
+                />
+              )}
             </Reveal>
           </div>
         </div>
-
-        <dl className="project-facts">
-          {year ? (
-            <div>
-              <dt>{t.project.year}</dt>
-                <dd>{year}</dd>
-              </div>
-            ) : null}
-            {project.category ? (
-              <div>
-                <dt>{t.project.type}</dt>
-              <dd>
-                <ProjectType project={project} />
-              </dd>
-            </div>
-          ) : null}
-        </dl>
-
-        <div className="project-story">
-          <section>
-            <h2>{t.project.about}</h2>
-            <p>{project.description}</p>
-          </section>
-        </div>
-
-        {highlights?.length ? (
-          <section className="project-features">
-            <h2>{t.project.features}</h2>
-            <RevealGroup
-              as="ul"
-              className="project-highlights"
-              mode="scroll"
-              stagger={36}
-            >
-              {highlights.map(item => (
-                <Reveal key={item.title} as="li" type="text">
-                  <span className="project-highlights__icon">
-                    <SiteIcon name={item.icon} />
-                  </span>
-                  <span className="project-highlights__copy">
-                    <strong>{item.title}</strong>
-                    <span>{item.text}</span>
-                  </span>
-                </Reveal>
-              ))}
-            </RevealGroup>
-          </section>
-        ) : null}
 
         <div className="project-stack">
           <Reveal type="text" mode="scroll" as="h2" className="project-stack__title">

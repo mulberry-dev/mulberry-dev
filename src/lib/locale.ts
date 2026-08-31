@@ -4,9 +4,24 @@ export type Locale = (typeof LOCALES)[number]
 
 export const DEFAULT_LOCALE: Locale = "en"
 export const LOCALE_PREFIX = "es"
+export const LOCALE_STORAGE_KEY = "mulberry-locale"
 
 export const isLocale = (value: string | null | undefined): value is Locale =>
   value === "en" || value === "es"
+
+export const writeStoredLocale = (locale: Locale) => {
+  if (typeof window === "undefined") {
+    return
+  }
+
+  try {
+    window.localStorage.setItem(LOCALE_STORAGE_KEY, locale)
+  } catch {
+    // Ignore quota errors and private-mode blocks.
+  }
+}
+
+export const LOCALE_BOOTSTRAP_SCRIPT = `(function(){var k=${JSON.stringify(LOCALE_STORAGE_KEY)};var p=location.pathname;var isEs=p==="/es"||p.indexOf("/es/")===0;var current=isEs?"es":"en";var stored=null;try{stored=localStorage.getItem(k)}catch(e){}if(stored==="en"||stored==="es"){if(stored!==current){var next=stored==="es"?(p==="/"?"/es":"/es"+p):(p==="/es"||p==="/es/"?"/":p.slice(3)||"/");location.replace(next+location.search+location.hash);return}current=stored}try{localStorage.setItem(k,current)}catch(e){}document.documentElement.lang=current;if(p==="/"||p===""||p==="/es"||p==="/es/")document.documentElement.classList.add("home-nav-wait")})()`
 
 export const getLocale = (pathname: string): Locale => {
   const first = pathname.split("/").filter(Boolean)[0]

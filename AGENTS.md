@@ -18,9 +18,11 @@ Section routes (`/`, `/about`, `/skills`, `/portfolio`, `/certifications`, `/con
 - `SiteExperience` renders `HomeSection` plus lazy sections and scrolls to the active one via `src/lib/sectionNav.ts`.
 - Project detail (`/portfolio/[id]`) is a real page that renders `ProjectDetails`.
 
-English is the default locale (no prefix). Spanish lives under `/es` (see `src/lib/locale.ts`). Every section and project page exists twice: `src/app/...` and `src/app/es/...`. Middleware only sets `x-locale`.
+English is the default locale (no prefix). Spanish lives under `/es` (see `src/lib/locale.ts`). Every section and project page exists twice: `src/app/...` and `src/app/es/...`. Middleware only sets `x-locale`. The selected locale is stored in `localStorage` (`mulberry-locale`) and restored on every visit by `LOCALE_BOOTSTRAP_SCRIPT` in `src/app/layout.tsx`. `LanguageSwitch` writes the preference when the user toggles language.
 
 When adding a section or route, update **both** locale trees, `src/data/navegation.ts`, `src/i18n/types.ts`, `src/i18n/en.ts`, `src/i18n/es.ts`, `src/lib/sectionNav.ts`, `SiteExperience`, and `src/app/sitemap.ts`.
+
+When asked to correct, change, or fix copy, labels, or UI text, apply the same change in **both** locales (`src/i18n/en.ts` and `src/i18n/es.ts`). Never leave one language stale.
 
 ## Where content lives
 
@@ -32,7 +34,7 @@ When adding a section or route, update **both** locale trees, `src/data/navegati
 | Projects, skills, certs, about facts | `src/data/*.ts` |
 | Project body copy (teaser/description/highlights) | `messages.projects[id]` in both dictionaries |
 
-Do not hardcode UI strings in components. Use `useI18n()` (`t`, `href`, `locale`) on the client, or `getMessages(locale)` on the server. Build links with `href("/path")` / `localizePath`, never `/es/...` by hand.
+Do not hardcode UI strings in components. Use `useI18n()` (`t`, `href`, `locale`) on the client, or `getMessages(locale)` on the server. Build links with `href("/path")` / `localizePath`, never `/es/...` by hand. Copy/UI fixes must land in both dictionaries in the same change.
 
 Metadata: `sectionPageMetadata(path, locale)` and `projectPageMetadata(id, locale)` in `src/lib/sectionMeta.ts`.
 

@@ -46,8 +46,7 @@
 .skills-prompt,
 .skills-chrome__place,
 .skills-copy__kicker,
-.skills-copy__tech,
-.skills-stack__title {
+.skills-copy__tech {
   margin: 0;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -73,8 +72,7 @@
 .skills-session__colon,
 .skills-prompt,
 .skills-chrome__place,
-.skills-copy__tech,
-.skills-stack__title {
+.skills-copy__tech {
   color: var(--color-text-muted);
 }
 
@@ -255,7 +253,7 @@
 
 .skills-capability--star {
   grid-template-columns: 1fr;
-  padding-block: clamp(1.1rem, 2.5vw, 1.85rem);
+  padding-block: clamp(1.6rem, 3.2vw, 2.6rem);
 }
 
 .skills-foot {
@@ -265,17 +263,28 @@
 
 .skills-stack__head {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.35rem 0.85rem;
-  margin-bottom: 0.95rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  margin-bottom: 1.15rem;
 }
 
 .skills-stack__title {
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.skills-stack__lead {
+  margin: 0.25rem 0 0;
+  max-width: 28rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .skills-stack__groups {
@@ -973,9 +982,9 @@
 .connect-scene__canvas {
   position: relative;
   width: 100%;
-  min-height: 236px;
+  min-height: 18.5rem;
   overflow: hidden;
-  padding: 0.45rem 0.35rem;
+  padding: 1.15rem 1.05rem;
   border: 1px solid var(--skills-line);
   background: color-mix(in srgb, var(--color-canvas) 72%, transparent);
 }
@@ -1016,11 +1025,12 @@
 .connect-scene__core {
   --node-tone: var(--skills-tone);
   position: absolute;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.28rem;
-  padding: 0.45rem 0.55rem;
+  padding: 0.5rem 0.65rem;
   border: 1px solid color-mix(in srgb, var(--node-tone) 38%, var(--skills-line));
   border-left: 3px solid var(--node-tone);
   background: color-mix(in srgb, var(--node-tone) 12%, var(--color-canvas));
@@ -1043,21 +1053,21 @@
   background: color-mix(in srgb, var(--skills-tone) 16%, var(--color-canvas));
 }
 
-.connect-scene__node.is-n { top: 16%; left: 50%; }
-.connect-scene__node.is-w { top: 50%; left: 14%; }
-.connect-scene__node.is-e { top: 50%; left: 86%; }
-.connect-scene__node.is-s { top: 84%; left: 50%; }
+.connect-scene__node.is-n { top: 21%; left: 50%; }
+.connect-scene__node.is-w { top: 50%; left: 20%; }
+.connect-scene__node.is-e { top: 50%; left: 80%; }
+.connect-scene__node.is-s { top: 79%; left: 50%; }
 
 .connect-scene__node svg,
 .connect-scene__core svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   color: var(--node-tone);
 }
 
 .connect-scene__node span,
 .connect-scene__core span {
-  font-size: 0.58rem;
+  font-size: 0.64rem;
   font-weight: 600;
   letter-spacing: 0.1em;
 }
@@ -1080,6 +1090,7 @@
 .connect-scene.is-hot .is-s { transition-delay: 290ms; }
 
 .approach-scene {
+  --stage-tone: var(--brand-orange);
   border: 1px solid var(--skills-line);
   background: color-mix(in srgb, var(--color-canvas) 42%, transparent);
 }
@@ -1090,7 +1101,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 0.35rem 1rem;
-  padding: 0.75rem 0.9rem 0.55rem;
+  padding: 1rem 1.15rem 0.7rem;
 }
 
 .approach-scene__index {
@@ -1098,30 +1109,27 @@
   flex-wrap: wrap;
   gap: 0.35rem;
   margin: 0;
+  color: var(--skills-tone);
   font-family: inherit;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-}
-
-.approach-scene__index span:first-child {
-  color: var(--skills-tone);
 }
 
 .approach-scene__kicker {
   margin: 0;
   color: var(--skills-tone);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
 }
 
 .approach-scene__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.35rem;
+  gap: 0.5rem;
   margin: 0;
-  padding: 0.35rem 0.55rem 0.6rem;
+  padding: 0.45rem 0.85rem 0.95rem;
   list-style: none;
 }
 
@@ -1140,25 +1148,26 @@
 .approach-scene__arrow {
   display: grid;
   place-items: center;
-  width: 0.7rem;
+  width: 1rem;
   color: var(--skills-tone);
   opacity: 0;
 }
 
 .approach-scene__arrow svg {
   display: block;
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
 }
 
 .approach-scene__stage {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
+  justify-content: flex-start;
+  gap: 0.55rem;
   min-width: 0;
-  padding: 0.55rem 0.45rem;
+  min-height: 5.4rem;
+  padding: 0.8rem 0.7rem;
   border: 1px solid color-mix(in srgb, var(--stage-tone, var(--skills-tone)) 38%, var(--skills-line));
   border-left: 3px solid var(--stage-tone, var(--skills-tone));
   background: color-mix(in srgb, var(--stage-tone, var(--skills-tone)) 10%, transparent);
@@ -1193,22 +1202,37 @@
 .approach-scene.is-hot .is-r .approach-scene__stage { transition-delay: 280ms; }
 
 .approach-scene__letter {
+  flex: none;
   color: var(--stage-tone, var(--skills-tone));
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.04em;
 }
 
+.approach-scene__copy {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
 .approach-scene__grid strong {
   overflow: hidden;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.approach-scene__text {
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
 }
 
 @keyframes skillsBlink {
@@ -1274,7 +1298,8 @@
 
   .skills-capability-board .skills-capability__stage {
     display: flex;
-    min-height: 0;
+    min-height: 18.5rem;
+    overflow: visible;
   }
 
   .skills-capability-board .skills-capability__stage > * {
@@ -1292,7 +1317,7 @@
   .skills-capability-board .arch-scene__frame,
   .skills-capability-board .connect-scene__canvas {
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: 18.5rem;
   }
 
   .skills-capability-board .arch-scene__frame {
@@ -1394,6 +1419,32 @@
   .skills-rail__item:focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 3px;
+  }
+
+  .skills-capability--star {
+    padding-block: clamp(1.85rem, 3.5vw, 2.9rem);
+  }
+
+  .approach-scene__stage {
+    min-height: 5.6rem;
+    padding: 0.95rem 0.85rem;
+  }
+
+  .approach-scene__letter {
+    font-size: 1.65rem;
+  }
+
+  .approach-scene__grid strong {
+    font-size: 0.78rem;
+  }
+
+  .approach-scene__text {
+    font-size: 0.72rem;
+  }
+
+  .skills-capability-board .connect-scene__canvas,
+  .connect-scene__canvas {
+    min-height: 20rem;
   }
 }
 
@@ -1542,6 +1593,14 @@
     padding: 0.65rem 0.7rem 0.4rem;
   }
 
+  .approach-scene__index {
+    font-size: 0.78rem;
+  }
+
+  .approach-scene__kicker {
+    font-size: 0.68rem;
+  }
+
   .approach-scene__grid {
     gap: 0.22rem;
     padding: 0.25rem 0.45rem 0.5rem;
@@ -1561,8 +1620,22 @@
   }
 
   .approach-scene__stage {
-    gap: 0.28rem;
-    padding: 0.45rem 0.28rem;
+    gap: 0.32rem;
+    min-height: 0;
+    padding: 0.5rem 0.38rem;
+  }
+
+  .approach-scene__letter {
+    font-size: 1.05rem;
+  }
+
+  .approach-scene__grid strong {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+  }
+
+  .approach-scene__text {
+    font-size: 0.58rem;
   }
 }
 
@@ -1693,8 +1766,9 @@
   }
 
   .approach-scene__grid {
-    gap: 0.18rem;
-    padding: 0.2rem 0.35rem 0.45rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+    padding: 0.2rem 0.45rem 0.55rem;
   }
 
   .approach-scene__arrow {
@@ -1706,18 +1780,23 @@
   }
 
   .approach-scene__stage {
-    flex-direction: column;
-    gap: 0.18rem;
-    padding: 0.4rem 0.15rem;
+    flex-direction: row;
+    gap: 0.4rem;
+    min-height: 0;
+    padding: 0.55rem 0.5rem;
   }
 
   .approach-scene__letter {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
   }
 
   .approach-scene__grid strong {
-    font-size: 0.48rem;
+    font-size: 0.62rem;
     letter-spacing: 0.06em;
+  }
+
+  .approach-scene__text {
+    font-size: 0.62rem;
   }
 
   .skills-stack__icons li {
@@ -1756,15 +1835,20 @@
   }
 
   .approach-scene__kicker {
-    font-size: 0.55rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
   }
 
   .approach-scene__letter {
-    font-size: 0.85rem;
+    font-size: 1.05rem;
   }
 
   .approach-scene__grid strong {
-    font-size: 0.42rem;
+    font-size: 0.58rem;
+  }
+
+  .approach-scene__text {
+    font-size: 0.58rem;
   }
 
   .arch-scene__flow {

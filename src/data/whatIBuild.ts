@@ -81,31 +81,31 @@ export const BUILD_APPROACH = {
   index: "05",
   title: "STAR METHOD",
   accent: "orange" as const,
-  kicker: "HOW I PROVE THE WORK",
+  kicker: "THIS IS MY DEVELOPMENT METHOD",
   stages: [
     {
       letter: "S",
       title: "SITUATION",
-      text: "The context I walked into.",
-      tone: "cyan"
+      text: "The context I start from.",
+      tone: "orange"
     },
     {
       letter: "T",
       title: "TASK",
-      text: "What I owned.",
-      tone: "blue"
+      text: "What I take on.",
+      tone: "orange"
     },
     {
       letter: "A",
       title: "ACTION",
-      text: "The decisions I made.",
+      text: "The decisions I make.",
       tone: "orange"
     },
     {
       letter: "R",
       title: "RESULT",
-      text: "The impact I can prove.",
-      tone: "purple"
+      text: "The impact I deliver.",
+      tone: "orange"
     }
   ]
 } as const

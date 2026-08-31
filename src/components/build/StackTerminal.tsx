@@ -18,40 +18,41 @@ const StackTerminal = () => {
   const groupLabels = t.skills.groups
 
   return (
-  <div className="skills-stack">
-    <div className="skills-stack__head">
-      <StackSession />
-      <p className="skills-stack__title">{t.skills.stackTitle}</p>
+    <div className="skills-stack">
+      <div className="skills-stack__head">
+        <StackSession />
+        <h3 className="skills-stack__title">{t.skills.stackTitle}</h3>
+        <p className="skills-stack__lead">{t.skills.stackLead}</p>
+      </div>
+      <ul className="skills-stack__groups">
+        {STACK_GROUPS.map((group) => (
+          <li
+            key={group.key}
+            className={`skills-stack__group skills-stack__group--${group.tone}`}
+          >
+            <span className="skills-stack__label">
+              {groupLabels[group.key as keyof typeof groupLabels] ?? group.label}
+            </span>
+            <ul className="skills-stack__icons">
+              {group.items.map((skill) => (
+                <li key={skill.id} title={skill.name}>
+                  <Image
+                    className="tech-logo"
+                    src={skill.imageSrc}
+                    alt=""
+                    width={16}
+                    height={16}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>{skill.name}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
     </div>
-    <ul className="skills-stack__groups">
-      {STACK_GROUPS.map((group) => (
-        <li
-          key={group.key}
-          className={`skills-stack__group skills-stack__group--${group.tone}`}
-        >
-          <span className="skills-stack__label">
-            {groupLabels[group.key as keyof typeof groupLabels] ?? group.label}
-          </span>
-          <ul className="skills-stack__icons">
-            {group.items.map((skill) => (
-              <li key={skill.id} title={skill.name}>
-                <Image
-                  className="tech-logo"
-                  src={skill.imageSrc}
-                  alt=""
-                  width={16}
-                  height={16}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>{skill.name}</span>
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </ul>
-  </div>
   )
 }
 

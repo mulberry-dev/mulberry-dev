@@ -19,7 +19,7 @@ export const WORKSPACE = {
   work: {
     path: "~/work",
     index: "03",
-    title: "Selected Work"
+    title: "Selected Works"
   },
   certifications: {
     path: "~/certifications",

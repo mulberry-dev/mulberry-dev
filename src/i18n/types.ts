@@ -83,6 +83,7 @@ export type Messages = {
     ariaLabel: string
     headline: string
     stackTitle: string
+    stackLead: string
     capabilities: { title: string; text: string }[]
     interfaces: {
       kicker: string
@@ -182,6 +183,13 @@ export type Messages = {
     privateTitle: string
     privateText: string
     privateConfirm: string
+    leaveTitle: string
+    leaveText: string
+    leaveStay: string
+    leaveGo: string
+    preview: string
+    previewInteract: string
+    previewExit: string
   }
   footer: {
     systemOnline: string

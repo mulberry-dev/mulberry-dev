@@ -69,6 +69,12 @@ export const projectStatus = (project: Project) => {
   return { id: "private" as const, label: "Private" }
 }
 
+export const hasLivePreview = (
+  project: Project
+): project is Project & { url: string } =>
+  typeof project.url === "string" &&
+  Boolean((project as { preview?: boolean }).preview)
+
 export const featuredProjects = FEATURED_PROJECT_IDS.map(id =>
   projects.find(project => String(project.id) === id)
 ).filter((project): project is Project => Boolean(project))

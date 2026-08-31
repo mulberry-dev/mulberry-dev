@@ -8,7 +8,7 @@ export const en: Messages = {
     home: "Home",
     about: "About",
     skills: "What I Do",
-    portfolio: "Work",
+    portfolio: "Works",
     certifications: "Certifications",
     contact: "Contact",
     primary: "Primary",
@@ -55,10 +55,10 @@ export const en: Messages = {
     "/skills": {
       title: "What I Do",
       description:
-        "Frontend, backend, data and integrations, and legacy modernization with React, TypeScript, Next.js, Node.js, and GraphQL. How I prove the work."
+        "Frontend, backend, data and integrations, and legacy modernization with React, TypeScript, Next.js, Node.js, and GraphQL. My development method."
     },
     "/portfolio": {
-      title: "Work",
+      title: "Works",
       description:
         "Selected work by Santiago Morera: product UIs, APIs, e-commerce, and platform modernization for teams in Mexico and beyond."
     },
@@ -77,7 +77,7 @@ export const en: Messages = {
     home: "Home",
     about: "About Me",
     skills: "What I Do",
-    work: "Selected Work",
+    work: "Selected Works",
     certifications: "Certifications",
     contact: "Let's Connect"
   },
@@ -91,14 +91,14 @@ export const en: Messages = {
     bodySolutions: "digital solutions",
     bodyMid: " that ",
     bodyValue: "deliver value",
-    ctaSr: "About me",
-    cta: "> ./start-exploring"
+    ctaSr: "Start Exploring",
+    cta: "Start Exploring"
   },
   about: {
     ariaLabel: "About Me",
     command: "cat about-me.txt",
-    headline: ["I BUILD_", "WHAT YOU SEE.", "AND WHAT", "MAKES IT WORK."],
-    accentFrom: 2,
+    headline: ["I BUILD WHAT YOU SEE.", "AND I MAKE IT WORK."],
+    accentFrom: 1,
     body: [
       "I came to software through design.",
       "Senior Full Stack Engineer in Mexico City — React, TypeScript, Next.js, and Node.js.",
@@ -126,6 +126,7 @@ export const en: Messages = {
     ariaLabel: "What I Do",
     headline: "How I ship products.",
     stackTitle: "Stack",
+    stackLead: "This is the stack I know best.",
     capabilities: [
       {
         title: "Product Interfaces",
@@ -174,12 +175,12 @@ export const en: Messages = {
       ]
     },
     approach: {
-      kicker: "HOW I PROVE THE WORK",
+      kicker: "THIS IS MY DEVELOPMENT METHOD",
       stages: [
-        { title: "SITUATION", text: "The context I walked into." },
-        { title: "TASK", text: "What I owned." },
-        { title: "ACTION", text: "The decisions I made." },
-        { title: "RESULT", text: "The impact I can prove." }
+        { title: "SITUATION", text: "The context I start from." },
+        { title: "TASK", text: "What I take on." },
+        { title: "ACTION", text: "The decisions I make." },
+        { title: "RESULT", text: "The impact I deliver." }
       ]
     },
     groups: {
@@ -200,7 +201,7 @@ export const en: Messages = {
     }
   },
   portfolio: {
-    ariaLabel: "Selected Work",
+    ariaLabel: "Selected Works",
     command: "ls ./selected-projects --sort=impact",
     archiveCommand: "ls ./archive",
     featured: "Featured",
@@ -282,7 +283,14 @@ export const en: Messages = {
     navLabel: "Projects",
     privateTitle: "This deployment is private",
     privateText: "If you want to know more about this project, please contact me.",
-    privateConfirm: "Great!"
+    privateConfirm: "Great!",
+    leaveTitle: "This will take you to another page",
+    leaveText: "Are you sure you want to leave mulberry-dev?",
+    leaveStay: "Stay",
+    leaveGo: "Leave",
+    preview: "Preview",
+    previewInteract: "Click to walk through",
+    previewExit: "Exit preview"
   },
   footer: {
     systemOnline: "System online"

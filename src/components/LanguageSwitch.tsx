@@ -1,7 +1,7 @@
 "use client"
 
 import { useI18n } from "@/i18n/useI18n"
-import { localizePath } from "@/lib/locale"
+import { localizePath, writeStoredLocale } from "@/lib/locale"
 import Link from "next/link"
 
 const LanguageSwitch = ({ className }: { className?: string }) => {
@@ -18,6 +18,7 @@ const LanguageSwitch = ({ className }: { className?: string }) => {
         scroll={false}
         prefetch={false}
         aria-current={locale === "en" ? "page" : undefined}
+        onClick={() => writeStoredLocale("en")}
       >
         {t.language.en}
       </Link>
@@ -29,6 +30,7 @@ const LanguageSwitch = ({ className }: { className?: string }) => {
         scroll={false}
         prefetch={false}
         aria-current={locale === "es" ? "page" : undefined}
+        onClick={() => writeStoredLocale("es")}
       >
         {t.language.es}
       </Link>

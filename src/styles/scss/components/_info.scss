@@ -26,4 +26,15 @@
     background: var(--color-teal) !important;
     color: #041016 !important;
   }
+
+  .swal2-cancel {
+    border-radius: var(--radius-pill) !important;
+    background: transparent !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text) !important;
+  }
+
+  .swal2-actions {
+    gap: 0.75rem;
+  }
 }

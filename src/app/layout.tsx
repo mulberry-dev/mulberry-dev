@@ -16,6 +16,7 @@ import {
   SITE_TITLE,
   SITE_URL
 } from "@/data/site"
+import { LOCALE_BOOTSTRAP_SCRIPT } from "@/lib/locale"
 import "@/styles/scss/styles.scss"
 import { JetBrains_Mono, Sora, Space_Grotesk } from "next/font/google"
 import type { Metadata, Viewport } from "next"
@@ -121,7 +122,7 @@ export default function RootLayout({
       <body className="dark" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname;document.documentElement.lang=(p==="/es"||p.indexOf("/es/")===0)?"es":"en";if(p==="/"||p===""||p==="/es"||p==="/es/")document.documentElement.classList.add("home-nav-wait")})()`
+            __html: LOCALE_BOOTSTRAP_SCRIPT
           }}
         />
         <JsonLd data={[personJsonLd(locale), websiteJsonLd(locale)]} />

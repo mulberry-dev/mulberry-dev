@@ -52,7 +52,7 @@ const prefersReducedMotion = () =>
 
 const Navigation = () => {
   const pathname = usePathname()
-  const { href, t, navLabel } = useI18n()
+  const { href, t, navLabel, locale } = useI18n()
   const menuId = useId()
   const [menu, setMenu] = useState<MenuPhase>("closed")
   const toggleRef = useRef<HTMLButtonElement>(null)
@@ -79,6 +79,7 @@ const Navigation = () => {
   const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
   const skipIndicatorMotionRef = useRef(true)
   const indicatorReadyRef = useRef(false)
+  const localeRef = useRef(locale)
 
   useEffect(() => {
     if (shouldPlayNavIntro()) {
@@ -406,8 +407,15 @@ const Navigation = () => {
   }, [activePath, showIndicator])
 
   useLayoutEffect(() => {
+    const localeChanged = localeRef.current !== locale
+    localeRef.current = locale
+
+    if (localeChanged) {
+      skipIndicatorMotionRef.current = true
+    }
+
     placeIndicator(true)
-  }, [placeIndicator, activePath, menu, isCompact, playNavIntro])
+  }, [placeIndicator, activePath, menu, isCompact, playNavIntro, locale])
 
   useEffect(() => {
     const nav = navRef.current
@@ -428,9 +436,19 @@ const Navigation = () => {
       placeIndicator(false)
     })
 
+    const observer = new ResizeObserver(onResize)
+
+    observer.observe(nav)
+    linkRefs.current.forEach((link) => {
+      if (link) {
+        observer.observe(link)
+      }
+    })
+
     return () => {
       window.removeEventListener("resize", onResize)
       nav.removeEventListener("scroll", onResize)
+      observer.disconnect()
     }
   }, [placeIndicator])
 

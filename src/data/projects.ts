@@ -29,6 +29,7 @@ export const data = [
     ],
     url: "https://fuente-de-vida-residencial.vercel.app/",
     thumbnail: "/images/thumbnails/fuente-de-vida.webp",
+    preview: true,
     github: null
   },
   {

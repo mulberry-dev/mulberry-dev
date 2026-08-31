@@ -6,10 +6,10 @@ import { type CSSProperties } from "react"
 import { useHotScene } from "./useHotScene"
 
 const LINES = [
-  { d: "M200 168 V 48", delay: "0ms" },
-  { d: "M200 168 H 52", delay: "90ms" },
-  { d: "M200 168 H 348", delay: "160ms" },
-  { d: "M200 168 V 288", delay: "230ms" }
+  { d: "M200 168 V 72", delay: "0ms" },
+  { d: "M200 168 H 80", delay: "90ms" },
+  { d: "M200 168 H 320", delay: "160ms" },
+  { d: "M200 168 V 264", delay: "230ms" }
 ]
 
 const ConnectedScene = () => {

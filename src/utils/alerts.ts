@@ -1,3 +1,7 @@
+const tealButtonColor = () =>
+  getComputedStyle(document.body).getPropertyValue("--color-teal").trim() ||
+  "#2dd4bf"
+
 export async function PrivateDeployment(
   params: string,
   copy?: { privateTitle: string; privateText: string; privateConfirm: string }
@@ -20,8 +24,36 @@ export async function PrivateDeployment(
     focusConfirm: false,
     confirmButtonText: confirm,
     confirmButtonAriaLabel: confirm,
-    confirmButtonColor:
-      getComputedStyle(document.body).getPropertyValue("--color-teal").trim() ||
-      "#2dd4bf"
+    confirmButtonColor: tealButtonColor()
   })
+}
+
+export async function ConfirmLeaveSite(copy?: {
+  leaveTitle: string
+  leaveText: string
+  leaveStay: string
+  leaveGo: string
+}) {
+  const { default: Swal } = await import("sweetalert2")
+  const title = copy?.leaveTitle ?? "This will take you to another page"
+  const text =
+    copy?.leaveText ?? "Are you sure you want to leave mulberry-dev?"
+  const stay = copy?.leaveStay ?? "Stay"
+  const leave = copy?.leaveGo ?? "Leave"
+
+  const result = await Swal.fire({
+    icon: "question",
+    title,
+    text,
+    showCancelButton: true,
+    focusCancel: true,
+    confirmButtonText: leave,
+    confirmButtonAriaLabel: leave,
+    cancelButtonText: stay,
+    cancelButtonAriaLabel: stay,
+    confirmButtonColor: tealButtonColor(),
+    reverseButtons: true
+  })
+
+  return result.isConfirmed
 }

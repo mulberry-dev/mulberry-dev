@@ -9,8 +9,8 @@ export const ABOUT_LOCATION_SHORT = "MEXICO CITY, MX"
 
 export const ABOUT_INTRO = {
   command: "cat about-me.txt",
-  headline: ["I BUILD_", "WHAT YOU SEE.", "AND WHAT", "MAKES IT WORK."],
-  accentFrom: 2,
+  headline: ["I BUILD WHAT YOU SEE.", "AND I MAKE IT WORK."],
+  accentFrom: 1,
   body: [
     "I came to software through design.",
     "Senior Full Stack Engineer in Mexico City — React, TypeScript, Next.js, and Node.js.",

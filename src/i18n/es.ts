@@ -8,7 +8,7 @@ export const es: Messages = {
     home: "Inicio",
     about: "Sobre mí",
     skills: "Qué hago",
-    portfolio: "Trabajo",
+    portfolio: "Trabajos",
     certifications: "Certificaciones",
     contact: "Contacto",
     primary: "Principal",
@@ -58,7 +58,7 @@ export const es: Messages = {
         "Frontend, backend, datos e integraciones, y modernización de sistemas legacy con React, TypeScript, Next.js, Node.js y GraphQL."
     },
     "/portfolio": {
-      title: "Trabajo",
+      title: "Trabajos",
       description:
         "Proyectos seleccionados de Santiago Morera: interfaces de producto, APIs, e-commerce y modernización de plataformas en México y más allá."
     },
@@ -77,7 +77,7 @@ export const es: Messages = {
     home: "Inicio",
     about: "Sobre mí",
     skills: "Qué hago",
-    work: "Trabajo seleccionado",
+    work: "Trabajos seleccionado",
     certifications: "Certificaciones",
     contact: "Hablemos"
   },
@@ -91,14 +91,14 @@ export const es: Messages = {
     bodySolutions: "soluciones digitales",
     bodyMid: " que ",
     bodyValue: "generan valor",
-    ctaSr: "Sobre mí",
-    cta: "> ./empezar-a-explorar"
+    ctaSr: "Empezar a Explorar",
+    cta: "Empezar a Explorar"
   },
   about: {
     ariaLabel: "Sobre mí",
     command: "cat about-me.txt",
-    headline: ["CONSTRUYO_", "LO QUE SE VE.", "Y LO QUE", "LO HACE FUNCIONAR."],
-    accentFrom: 2,
+    headline: ["CONSTRUYO LO QUE SE VE.", "Y LO HAGO FUNCIONAR."],
+    accentFrom: 1,
     body: [
       "Llegué al software desde el diseño.",
       "Ingeniero Full Stack Senior en Ciudad de México — React, TypeScript, Next.js y Node.js.",
@@ -126,6 +126,7 @@ export const es: Messages = {
     ariaLabel: "Qué hago",
     headline: "Así entrego productos.",
     stackTitle: "Stack",
+    stackLead: "Este es el stack en el que más soy experto.",
     capabilities: [
       {
         title: "Interfaces de producto",
@@ -174,12 +175,12 @@ export const es: Messages = {
       ]
     },
     approach: {
-      kicker: "CÓMO DEMUESTRO EL TRABAJO",
+      kicker: "ESTA ES MI METODOLOGÍA DE DESARROLLO",
       stages: [
-        { title: "SITUACIÓN", text: "El contexto al que llegué." },
-        { title: "TAREA", text: "De qué me hice cargo." },
-        { title: "ACCIÓN", text: "Las decisiones que tomé." },
-        { title: "RESULTADO", text: "El impacto que puedo demostrar." }
+        { title: "SITUACIÓN", text: "El contexto del que parto." },
+        { title: "TAREA", text: "De qué me hago cargo." },
+        { title: "ACCIÓN", text: "Las decisiones que tomo." },
+        { title: "RESULTADO", text: "El impacto que entrego." }
       ]
     },
     groups: {
@@ -200,7 +201,7 @@ export const es: Messages = {
     }
   },
   portfolio: {
-    ariaLabel: "Trabajo seleccionado",
+    ariaLabel: "Trabajos seleccionado",
     command: "ls ./selected-projects --sort=impact",
     archiveCommand: "ls ./archive",
     featured: "Destacado",
@@ -282,7 +283,14 @@ export const es: Messages = {
     navLabel: "Proyectos",
     privateTitle: "Este despliegue es privado",
     privateText: "Si quieres saber más de este proyecto, contáctame.",
-    privateConfirm: "Entendido"
+    privateConfirm: "Entendido",
+    leaveTitle: "Esto te redirigirá a otra página",
+    leaveText: "¿Seguro que quieres dejar mulberry-dev?",
+    leaveStay: "Volver",
+    leaveGo: "Irte",
+    preview: "Vista previa",
+    previewInteract: "Clic para recorrer",
+    previewExit: "Salir de la vista previa"
   },
   footer: {
     systemOnline: "Sistema en línea"

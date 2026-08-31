@@ -111,7 +111,7 @@
   grid-template-columns:
     minmax(0, 0.96fr)
     minmax(280px, 1.42fr)
-    minmax(14.25rem, 0.78fr);
+    minmax(16.5rem, 0.92fr);
   align-items: center;
   column-gap: clamp(0.7rem, 2.2vw, 1.65rem);
   row-gap: clamp(1.25rem, 3vw, 2.2rem);
@@ -126,6 +126,10 @@
   min-width: 0;
 }
 
+.about-intro {
+  container-type: inline-size;
+}
+
 .about-prompt {
   display: flex;
   align-items: center;
@@ -137,7 +141,7 @@
   flex-direction: column;
   margin: 0 0 1.15rem;
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 1.1rem + 2.4vw, 3.2rem);
+  font-size: clamp(1.05rem, calc(100cqi / 15.4), 2.35rem);
   font-weight: 700;
   line-height: 0.96;
   letter-spacing: -0.03em;
@@ -146,6 +150,7 @@
 
 .about-headline__line {
   display: block;
+  white-space: nowrap;
 }
 
 .about-headline__line.is-accent {
@@ -462,6 +467,43 @@ body:not(.dark) .about-portrait__img {
   }
 }
 
+@media (min-width: 1024px) {
+  .about-meta .about-prompt {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .about-whoami__name {
+    margin-bottom: 0.7rem;
+    font-size: clamp(1.5rem, 2.15vw, 2rem);
+  }
+
+  .about-whoami__origin {
+    gap: 0.5rem 0.9rem;
+    margin-bottom: 1.45rem;
+    font-size: 0.88rem;
+  }
+
+  .about-passions ul {
+    gap: 0.7rem;
+  }
+
+  .about-passions li {
+    gap: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .about-passions__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .about-passions__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 @media (min-width: 1200px) {
   .about-terminal {
     padding-left: 4.1rem;
@@ -534,6 +576,32 @@ body:not(.dark) .about-portrait__img {
     outline: 2px solid var(--color-focus);
     outline-offset: 3px;
   }
+
+  .about-meta .about-prompt {
+    font-size: 1.02rem;
+  }
+
+  .about-whoami__name {
+    font-size: clamp(1.65rem, 1.9vw, 2.15rem);
+  }
+
+  .about-whoami__origin {
+    font-size: 0.95rem;
+  }
+
+  .about-passions li {
+    font-size: 1.18rem;
+  }
+
+  .about-passions__icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .about-passions__icon svg {
+    width: 19px;
+    height: 19px;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -569,9 +637,6 @@ body:not(.dark) .about-portrait__img {
     width: 118%;
   }
 
-  .about-headline {
-    font-size: clamp(1.7rem, 5.2vw, 2.6rem);
-  }
 }
 
 @media (max-width: 767px) {
@@ -617,10 +682,6 @@ body:not(.dark) .about-portrait__img {
     max-width: none;
   }
 
-  .about-headline {
-    font-size: clamp(1.55rem, 8vw, 2.15rem);
-  }
-
   .about-chrome {
     flex-wrap: wrap;
     padding-block: 0.7rem;
@@ -646,10 +707,6 @@ body:not(.dark) .about-portrait__img {
 @media (max-width: 479px) {
   .about-chrome__place {
     letter-spacing: 0.04em;
-  }
-
-  .about-headline {
-    font-size: 1.45rem;
   }
 
   .about-photo {

@@ -23,35 +23,43 @@ const ApproachScene = () => {
         <p className="approach-scene__kicker">{t.skills.approach.kicker}</p>
       </header>
       <ol className="approach-scene__grid">
-        {BUILD_APPROACH.stages.map((stage, index) => (
-          <li
-            key={stage.letter}
-            className={`approach-scene__step is-${stage.letter.toLowerCase()}`}
-            title={t.skills.approach.stages[index]?.text ?? stage.text}
-          >
-            {index > 0 ? (
-              <span className="approach-scene__arrow" aria-hidden="true">
-                <svg viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M5 3.2 11 8 5 12.8"
-                    stroke="currentColor"
-                    strokeWidth="2.1"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            ) : null}
-            <div
-              className={`approach-scene__stage approach-scene__stage--${stage.tone}`}
+        {BUILD_APPROACH.stages.map((stage, index) => {
+          const copy = t.skills.approach.stages[index]
+          const title = copy?.title ?? stage.title
+          const text = copy?.text ?? stage.text
+
+          return (
+            <li
+              key={stage.letter}
+              className={`approach-scene__step is-${stage.letter.toLowerCase()}`}
             >
-              <span className="approach-scene__letter" aria-hidden="true">
-                {stage.letter}
-              </span>
-              <strong>{t.skills.approach.stages[index]?.title ?? stage.title}</strong>
-            </div>
-          </li>
-        ))}
+              {index > 0 ? (
+                <span className="approach-scene__arrow" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M5 3.2 11 8 5 12.8"
+                      stroke="currentColor"
+                      strokeWidth="2.1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              ) : null}
+              <div
+                className={`approach-scene__stage approach-scene__stage--${stage.tone}`}
+              >
+                <span className="approach-scene__letter" aria-hidden="true">
+                  {stage.letter}
+                </span>
+                <span className="approach-scene__copy">
+                  <strong>{title}</strong>
+                  <span className="approach-scene__text">{text}</span>
+                </span>
+              </div>
+            </li>
+          )
+        })}
       </ol>
     </div>
   )
