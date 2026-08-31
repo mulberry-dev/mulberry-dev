@@ -1,53 +1,39 @@
+import Image from "next/image"
 import { BUILD_STACK } from "@/data/whatIBuild"
-import {
-  skills,
-  type SkillCategory
-} from "@/data/skills"
-import { BuildPrompt, StackSession } from "./BuildChrome"
+import { skills } from "@/data/skills"
+import { StackSession } from "./BuildChrome"
 
-const CATEGORY_ORDER: SkillCategory[] = [
-  "frontend",
-  "backend",
-  "databases",
-  "devops",
-  "tools",
-  "ai"
-]
-
-const STACK_ENTRIES = CATEGORY_ORDER.map((key) => [
-  key,
-  skills.filter((skill) => skill.category === key).map((skill) => skill.name)
-] as const)
+const STACK_GROUPS = BUILD_STACK.groups.map((group) => ({
+  ...group,
+  items: group.names
+    .map((name) => skills.find((skill) => skill.name === name))
+    .filter((skill): skill is (typeof skills)[number] => Boolean(skill))
+}))
 
 const StackTerminal = () => (
   <div className="skills-stack">
     <div className="skills-stack__head">
       <StackSession />
-      <BuildPrompt command={BUILD_STACK.command} />
+      <p className="skills-stack__title">Stack</p>
     </div>
-    <pre className="skills-stack__json">
-      <code>
-        {"{\n"}
-        {STACK_ENTRIES.map(([key, values], index) => (
-          <span key={key}>
-            {"  "}
-            <span className="is-key">{`"${key}"`}</span>
-            {": ["}
-            {values.map((value, valueIndex) => (
-              <span key={value}>
-                <span className="is-str">{`"${value}"`}</span>
-                {valueIndex < values.length - 1 ? ", " : ""}
-              </span>
+    <ul className="skills-stack__groups">
+      {STACK_GROUPS.map((group) => (
+        <li
+          key={group.key}
+          className={`skills-stack__group skills-stack__group--${group.tone}`}
+        >
+          <span className="skills-stack__label">{group.label}</span>
+          <ul className="skills-stack__icons">
+            {group.items.map((skill) => (
+              <li key={skill.id} title={skill.name}>
+                <Image src={skill.imageSrc} alt="" width={16} height={16} />
+                <span>{skill.name}</span>
+              </li>
             ))}
-            {"]"}
-            {index < STACK_ENTRIES.length - 1 ? "," : ""}
-            {"\n"}
-          </span>
-        ))}
-        {"}"}
-        <span className="skills-cursor skills-cursor--block" aria-hidden="true" />
-      </code>
-    </pre>
+          </ul>
+        </li>
+      ))}
+    </ul>
   </div>
 )
 

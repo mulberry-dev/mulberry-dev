@@ -4,7 +4,7 @@ export type BuildAccent = "cyan" | "blue" | "indigo" | "purple" | "orange"
 
 export const BUILD_HOST = "santiago@dev"
 export const BUILD_PATH = "~/what-i-do"
-export const BUILD_STACK_PATH = "~/stack.json"
+export const BUILD_STACK_PATH = "~/stack"
 
 export const BUILD_INTRO = {
   headline: "How I ship products."
@@ -106,7 +106,44 @@ export const BUILD_APPROACH = {
 } as const
 
 export const BUILD_STACK = {
-  command: "cat stack.json"
+  groups: [
+    {
+      key: "frontend",
+      label: "Frontend",
+      tone: "cyan",
+      names: ["React", "Next", "TypeScript", "JavaScript", "TailwindCSS"]
+    },
+    {
+      key: "backend",
+      label: "Backend",
+      tone: "blue",
+      names: ["Node", "Express", "Apollo GraphQL"]
+    },
+    {
+      key: "databases",
+      label: "Data",
+      tone: "indigo",
+      names: ["SQL", "MongoDB", "Firebase"]
+    },
+    {
+      key: "devops",
+      label: "DevOps",
+      tone: "purple",
+      names: ["Git - Github", "Docker", "AWS"]
+    },
+    {
+      key: "tools",
+      label: "Tools",
+      tone: "orange",
+      names: ["Cursor", "WordPress", "Jira"]
+    },
+    {
+      key: "ai",
+      label: "AI",
+      tone: "teal",
+      names: ["Cursor Grok 4.6", "Composer 2.5", "Opus 5"]
+    }
+  ]
 } as const
 
 export const ARCH_MAIN = [
