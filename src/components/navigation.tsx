@@ -86,17 +86,11 @@ const Navigation = () => {
       return
     }
 
-    let frame2 = 0
-    const frame1 = window.requestAnimationFrame(() => {
-      frame2 = window.requestAnimationFrame(() => {
-        setPlayToggleIntro(true)
-      })
-    })
+    const timeoutId = window.setTimeout(() => {
+      setPlayToggleIntro(true)
+    }, 560)
 
-    return () => {
-      window.cancelAnimationFrame(frame1)
-      window.cancelAnimationFrame(frame2)
-    }
+    return () => window.clearTimeout(timeoutId)
   }, [chromePhase])
 
   useLayoutEffect(() => {

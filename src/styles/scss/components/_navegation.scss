@@ -294,7 +294,7 @@ body:not(.dark) .site-nav__chrome {
 @keyframes siteNavToggleIn {
   from {
     opacity: 0;
-    transform: translate3d(12px, -20px, 0) scale(0.55);
+    transform: translate3d(16px, -24px, 0) scale(0.4);
   }
 
   to {
@@ -488,7 +488,7 @@ html.home-nav-wait .site-nav__lens,
 
   html.home-nav-wait .site-nav__toggle.is-intro,
   .site-nav.is-chrome-wait .site-nav__toggle.is-intro {
-    animation: siteNavToggleIn 0.7s cubic-bezier(0.34, 1.35, 0.42, 1) 0.08s both;
+    animation: siteNavToggleIn 0.85s cubic-bezier(0.34, 1.45, 0.42, 1) both;
   }
 
   .site-nav.is-chrome-nav {
