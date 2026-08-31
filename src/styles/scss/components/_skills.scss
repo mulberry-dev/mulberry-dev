@@ -518,8 +518,9 @@
 
 .product-scene__metric:hover,
 .arch-scene__node:hover,
-.connect-scene__node:hover {
-  border-color: color-mix(in srgb, var(--node-tone, var(--skills-tone)) 55%, var(--skills-line));
+.connect-scene__node:hover,
+.approach-scene__stage:hover {
+  border-color: color-mix(in srgb, var(--node-tone, var(--stage-tone, var(--skills-tone))) 55%, var(--skills-line));
 }
 
 .product-scene__body {
@@ -1120,20 +1121,31 @@
 .approach-scene__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
   margin: 0;
-  padding: 0;
+  padding: 0.7rem 0.7rem 0.75rem;
   list-style: none;
 }
 
-.approach-scene__grid li {
+.approach-scene__grid li,
+.approach-scene__stage {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  min-height: 8.5rem;
-  padding: 1.1rem 1rem;
+  gap: 0.3rem;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.85rem 0.8rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--stage-tone, var(--skills-tone)) 38%, var(--skills-line));
+  border-left: 3px solid var(--stage-tone, var(--skills-tone));
+  background: color-mix(in srgb, var(--stage-tone, var(--skills-tone)) 10%, transparent);
   opacity: 0;
   transform: translateY(10px);
 }
+
+.approach-scene__stage--cyan { --stage-tone: var(--brand-cyan); }
+.approach-scene__stage--blue { --stage-tone: var(--brand-blue); }
+.approach-scene__stage--orange { --stage-tone: var(--brand-orange); }
+.approach-scene__stage--purple { --stage-tone: var(--brand-purple); }
 
 .approach-scene.is-hot .approach-scene__grid li {
   opacity: 1;
@@ -1148,34 +1160,26 @@
 .approach-scene.is-hot .approach-scene__grid li:nth-child(3) { transition-delay: 200ms; }
 .approach-scene.is-hot .approach-scene__grid li:nth-child(4) { transition-delay: 280ms; }
 
-.approach-scene__grid li:nth-child(odd) {
-  border-right: 1px solid var(--skills-line);
-}
-
-.approach-scene__grid li:nth-child(-n + 2) {
-  border-bottom: 1px solid var(--skills-line);
-}
-
 .approach-scene__letter {
-  color: var(--skills-tone);
+  color: var(--stage-tone, var(--skills-tone));
   font-family: var(--font-display);
-  font-size: 1.85rem;
+  font-size: 1.55rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.04em;
 }
 
 .approach-scene__grid strong {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: 0.12em;
 }
 
 .approach-scene__text {
-  max-width: 18ch;
+  max-width: 22ch;
   color: var(--color-text-muted);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   line-height: 1.4;
   letter-spacing: 0;
 }
@@ -1506,6 +1510,20 @@
   .connect-scene__core span {
     font-size: 0.52rem;
   }
+
+  .approach-scene__head {
+    gap: 0.5rem;
+    padding: 0.9rem 0.8rem 0.75rem;
+  }
+
+  .approach-scene__grid {
+    gap: 0.45rem;
+    padding: 0.55rem 0.6rem 0.65rem;
+  }
+
+  .approach-scene__grid li {
+    padding: 0.7rem 0.65rem 0.6rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1630,21 +1648,38 @@
     gap: 0.55rem;
   }
 
+  .approach-scene__head {
+    gap: 0.4rem;
+    padding: 0.75rem 0.7rem 0.65rem;
+  }
+
+  .approach-scene__grid {
+    gap: 0.4rem;
+    padding: 0.45rem 0.5rem 0.55rem;
+  }
+
   .approach-scene__grid li {
     min-height: 0;
-    padding: 0.95rem 0.85rem;
+    padding: 0.55rem 0.5rem 0.48rem;
+    gap: 0.16rem;
   }
 
   .approach-scene__letter {
-    font-size: 1.45rem;
+    font-size: 1.15rem;
+  }
+
+  .approach-scene__grid strong {
+    font-size: 0.58rem;
   }
 
   .approach-scene__text {
     max-width: none;
+    font-size: 0.62rem;
+    line-height: 1.3;
   }
 
   .approach-scene__copy {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
   }
 
   .skills-stack__icons li {
@@ -1676,6 +1711,26 @@
 
   .modern-scene__pane li {
     font-size: 0.55rem;
+  }
+
+  .approach-scene__index {
+    font-size: 0.7rem;
+  }
+
+  .approach-scene__kicker {
+    font-size: 0.58rem;
+  }
+
+  .approach-scene__copy {
+    font-size: 0.74rem;
+  }
+
+  .approach-scene__grid li {
+    padding: 0.45rem 0.42rem 0.4rem;
+  }
+
+  .approach-scene__letter {
+    font-size: 1rem;
   }
 
   .arch-scene__flow {

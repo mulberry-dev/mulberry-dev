@@ -27,7 +27,10 @@ const ApproachScene = () => {
       </header>
       <ol className="approach-scene__grid">
         {BUILD_APPROACH.stages.map((stage) => (
-          <li key={stage.letter}>
+          <li
+            key={stage.letter}
+            className={`approach-scene__stage approach-scene__stage--${stage.tone}`}
+          >
             <span className="approach-scene__letter" aria-hidden="true">
               {stage.letter}
             </span>
