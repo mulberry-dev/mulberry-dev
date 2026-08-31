@@ -60,6 +60,7 @@ const Navigation = () => {
   }
 
   const [playNavIntro, setPlayNavIntro] = useState(false)
+  const [playToggleIntro, setPlayToggleIntro] = useState(false)
   const [chromePhase, setChromePhase] = useState<ChromePhase>(() =>
     pathname === "/" && !shouldRevealHomeChrome() ? "wait" : "shown"
   )
@@ -78,6 +79,25 @@ const Navigation = () => {
       setPlayNavIntro(true)
     }
   }, [])
+
+  useEffect(() => {
+    if (chromePhase !== "wait") {
+      setPlayToggleIntro(false)
+      return
+    }
+
+    let frame2 = 0
+    const frame1 = window.requestAnimationFrame(() => {
+      frame2 = window.requestAnimationFrame(() => {
+        setPlayToggleIntro(true)
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frame1)
+      window.cancelAnimationFrame(frame2)
+    }
+  }, [chromePhase])
 
   useLayoutEffect(() => {
     const shouldWait = pathname === "/" && !shouldRevealHomeChrome()
@@ -565,7 +585,7 @@ const Navigation = () => {
           <div className="site-nav__actions">
             <button
               ref={toggleRef}
-              className={`site-nav__toggle${menu === "open" ? " is-open" : ""}`}
+              className={`site-nav__toggle${menu === "open" ? " is-open" : ""}${playToggleIntro ? " is-intro" : ""}`}
               type="button"
               aria-label={menu === "open" ? "Close menu" : "Open menu"}
               aria-expanded={menu === "open"}
