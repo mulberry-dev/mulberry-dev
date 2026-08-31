@@ -167,9 +167,9 @@ const IndexPage = () => {
                 width={127}
                 height={88}
                 alt=""
-                priority
                 sizes="88px"
-                quality={80}
+                quality={70}
+                loading="eager"
               />
               <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
             </div>

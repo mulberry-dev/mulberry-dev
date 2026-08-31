@@ -5,7 +5,6 @@ import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
 import { getMessages } from "@/i18n"
 import { personJsonLd, websiteJsonLd } from "@/lib/jsonLd"
-import { isLocale } from "@/lib/locale"
 import {
   AUTHOR_NAME,
   COPYRIGHT_NAME,
@@ -19,7 +18,6 @@ import {
 } from "@/data/site"
 import "@/styles/scss/styles.scss"
 import { JetBrains_Mono, Sora, Space_Grotesk } from "next/font/google"
-import { headers } from "next/headers"
 import type { Metadata, Viewport } from "next"
 
 const sora = Sora({
@@ -27,23 +25,26 @@ const sora = Sora({
   weight: ["700", "800"],
   variable: "--font-sora",
   display: "swap",
-  preload: true
+  preload: true,
+  adjustFontFallback: true
 })
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-grotesk",
   display: "optional",
-  preload: false
+  preload: false,
+  adjustFontFallback: true
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-jetbrains",
   display: "optional",
-  preload: false
+  preload: false,
+  adjustFontFallback: true
 })
 
 export const metadata: Metadata = {
@@ -108,9 +109,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const headerLocale = headers().get("x-locale")
-  const locale = isLocale(headerLocale) ? headerLocale : "en"
-  const messages = getMessages(locale)
+  const messages = getMessages("en")
+  const locale = "en" as const
 
   return (
     <html

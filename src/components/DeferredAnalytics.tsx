@@ -3,8 +3,6 @@
 import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 
-const IDLE_DELAY_MS = 8000
-
 const GoogleAnalytics = dynamic(
   () =>
     import("@next/third-parties/google").then((mod) => mod.GoogleAnalytics),
@@ -31,16 +29,14 @@ const DeferredAnalytics = ({ gaId }: { gaId: string }) => {
     }
 
     const enable = () => setReady(true)
-    const timeoutId = window.setTimeout(enable, IDLE_DELAY_MS)
+    const timeoutId = window.setTimeout(enable, 20000)
 
     window.addEventListener("pointerdown", enable, { once: true, passive: true })
-    window.addEventListener("scroll", enable, { once: true, passive: true })
     window.addEventListener("keydown", enable, { once: true })
 
     return () => {
       window.clearTimeout(timeoutId)
       window.removeEventListener("pointerdown", enable)
-      window.removeEventListener("scroll", enable)
       window.removeEventListener("keydown", enable)
     }
   }, [ready])

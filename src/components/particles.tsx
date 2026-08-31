@@ -79,16 +79,14 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
     }
 
     const mount = () => setLayerMounted(true)
-    const timeoutId = window.setTimeout(mount, 8000)
+    const timeoutId = window.setTimeout(mount, 20000)
 
     window.addEventListener("pointerdown", mount, { once: true, passive: true })
-    window.addEventListener("scroll", mount, { once: true, passive: true })
     window.addEventListener("keydown", mount, { once: true })
 
     return () => {
       window.clearTimeout(timeoutId)
       window.removeEventListener("pointerdown", mount)
-      window.removeEventListener("scroll", mount)
       window.removeEventListener("keydown", mount)
     }
   }, [reducedMotion])
