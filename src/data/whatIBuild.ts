@@ -82,10 +82,6 @@ export const BUILD_APPROACH = {
   title: "STAR METHOD",
   accent: "orange" as const,
   kicker: "HOW I PROVE THE WORK",
-  copy: [
-    "Past work is the evidence.",
-    "I tell it as Situation, Task, Action, Result."
-  ],
   stages: [
     {
       letter: "S",
