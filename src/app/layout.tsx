@@ -9,6 +9,7 @@ import { isLocale } from "@/lib/locale"
 import {
   AUTHOR_NAME,
   COPYRIGHT_NAME,
+  GOOGLE_SITE_VERIFICATION,
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
   SITE_NAME,
@@ -44,8 +45,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: "optional",
   preload: false
 })
-
-const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -90,7 +89,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1
     }
   },
-  ...(googleVerification ? { verification: { google: googleVerification } } : {}),
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION
+  },
   other: {
     copyright: COPYRIGHT_NAME
   }

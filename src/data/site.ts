@@ -6,6 +6,8 @@ export const CONTACT_EMAIL = "mulberry.developer@gmail.com"
 /** Set this to your Calendly link. When empty, the call option is hidden. */
 export const CALENDLY_URL = ""
 export const COPYRIGHT_NAME = "mulberry-dev"
+export const GOOGLE_SITE_VERIFICATION =
+  "KPJLJW_RWEqHdG8VMF-dfc984l-r0PfqYiDQ9G4vm-o"
 
 export const AUTHOR_NAME = "Santiago Morera"
 export const AUTHOR_ROLE = "Senior Full Stack Engineer"
