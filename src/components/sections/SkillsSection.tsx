@@ -32,8 +32,7 @@ const CopyBlock = ({
   kicker,
   copy = [],
   items,
-  tech,
-  stages
+  tech
 }: {
   index: string
   title: string
@@ -41,7 +40,6 @@ const CopyBlock = ({
   copy?: readonly string[]
   items?: readonly { icon: SiteIconName; label: string }[]
   tech?: readonly string[]
-  stages?: typeof BUILD_APPROACH.stages
 }) => (
   <div className="skills-copy">
     <Reveal type="eyebrow">
@@ -78,21 +76,6 @@ const CopyBlock = ({
       <Reveal type="text" as="p" className="skills-copy__tech">
         {tech.join(" · ")}
       </Reveal>
-    ) : null}
-    {stages ? (
-      <ol className="skills-copy__stages">
-        {stages.map((stage) => (
-          <Reveal key={stage.letter} as="li" type="chip">
-            <span className="skills-copy__letter" aria-hidden="true">
-              {stage.letter}
-            </span>
-            <span>
-              <strong>{stage.title}</strong>
-              {stage.text}
-            </span>
-          </Reveal>
-        ))}
-      </ol>
     ) : null}
   </div>
 )
@@ -310,19 +293,15 @@ const Skills = () => {
             </Capability>
           </div>
 
-          <Capability
-            id="build-approach"
-            accent={BUILD_APPROACH.accent}
-            stage={<ApproachScene />}
+          <RevealGroup
+            className={`skills-capability skills-capability--${BUILD_APPROACH.accent} skills-capability--star`}
+            mode="scroll"
+            stagger={56}
           >
-            <CopyBlock
-              index={BUILD_APPROACH.index}
-              title={BUILD_APPROACH.title}
-              kicker={BUILD_APPROACH.kicker}
-              copy={BUILD_APPROACH.copy}
-              stages={BUILD_APPROACH.stages}
-            />
-          </Capability>
+            <Reveal type="image" className="skills-capability__stage">
+              <ApproachScene />
+            </Reveal>
+          </RevealGroup>
 
           <footer className="skills-foot">
             <StackTerminal />

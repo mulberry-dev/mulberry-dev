@@ -366,15 +366,11 @@
 
 @media (max-width: 767px) {
   .work-card__facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: none;
   }
 
   .work-featured,
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-
+  .portfolio-grid,
   .archive-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-3);
@@ -429,8 +425,16 @@
     gap: 0.45rem;
   }
 
+  .work-card__index {
+    font-size: 0.5625rem;
+  }
+
+  .work-card__index-label {
+    display: none;
+  }
+
   .work-card h3 {
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1.25;
   }
 
@@ -438,6 +442,10 @@
     -webkit-line-clamp: 2;
     font-size: 0.75rem;
     line-height: 1.45;
+  }
+
+  .work-card__media {
+    aspect-ratio: 16 / 11;
   }
 
   .work-card__facts dd,
