@@ -106,7 +106,7 @@ export const en: Messages = {
     ],
     whoami: "whoami",
     passionsCommand: "passions",
-    passions: ["Solving problems", "Intentional interfaces"],
+    passions: ["Solving problems", "Interface design", "Mobile apps & PWAs"],
     historyCommand: "git log --oneline",
     history: [
       {
@@ -277,6 +277,7 @@ export const en: Messages = {
     kicker: "Project",
     visit: "Visit live site",
     private: "Private deployment",
+    offline: "Site offline",
     github: "View on GitHub",
     year: "Year",
     type: "Type",
@@ -289,6 +290,8 @@ export const en: Messages = {
     privateTitle: "This deployment is private",
     privateText: "If you want to know more about this project, please contact me.",
     privateConfirm: "Great!",
+    offlineTitle: "This site is offline",
+    offlineText: "The live deployment is not available right now.",
     leaveTitle: "This will take you to another page",
     leaveText: "Are you sure you want to leave mulberry-dev?",
     leaveStay: "Stay",
@@ -316,6 +319,7 @@ export const en: Messages = {
     live: "Live",
     ongoing: "Ongoing",
     private: "Private",
+    offline: "Offline",
     noAi: "No AI",
     noAiTitle: "Built without AI"
   },

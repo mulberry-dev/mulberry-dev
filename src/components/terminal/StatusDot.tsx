@@ -3,7 +3,7 @@ const StatusDot = ({
   pulse = false,
   className = ""
 }: {
-  tone?: "success" | "info" | "muted"
+  tone?: "success" | "info" | "muted" | "warning"
   pulse?: boolean
   className?: string
 }) => (

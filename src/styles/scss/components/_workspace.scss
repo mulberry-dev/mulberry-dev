@@ -58,6 +58,11 @@
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-text-muted) 12%, transparent);
 }
 
+.term-dot--warning {
+  background: var(--brand-orange);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand-orange) 16%, transparent);
+}
+
 .term-dot.is-pulse {
   animation: termDotPulse 2.2s ease-in-out infinite;
 }
@@ -80,6 +85,10 @@
 
 .term-status--private {
   color: var(--color-text-muted);
+}
+
+.term-status--offline {
+  color: var(--brand-orange);
 }
 
 .term-status--pre-ai {

@@ -172,6 +172,7 @@ export type Messages = {
     kicker: string
     visit: string
     private: string
+    offline: string
     github: string
     year: string
     type: string
@@ -184,6 +185,8 @@ export type Messages = {
     privateTitle: string
     privateText: string
     privateConfirm: string
+    offlineTitle: string
+    offlineText: string
     leaveTitle: string
     leaveText: string
     leaveStay: string
@@ -211,6 +214,7 @@ export type Messages = {
     live: string
     ongoing: string
     private: string
+    offline: string
     noAi: string
     noAiTitle: string
   }

@@ -106,7 +106,7 @@ export const es: Messages = {
     ],
     whoami: "whoami",
     passionsCommand: "passions",
-    passions: ["Resolver problemas", "Interfaces intencionales"],
+    passions: ["Resolver problemas", "Diseño de interfaces", "Desarrollo de apps móviles y PWA"],
     historyCommand: "git log --oneline",
     history: [
       {
@@ -277,6 +277,7 @@ export const es: Messages = {
     kicker: "Proyecto",
     visit: "Visitar sitio",
     private: "Despliegue privado",
+    offline: "Sitio offline",
     github: "Ver en GitHub",
     year: "Año",
     type: "Tipo",
@@ -289,6 +290,8 @@ export const es: Messages = {
     privateTitle: "Este despliegue es privado",
     privateText: "Si quieres saber más de este proyecto, contáctame.",
     privateConfirm: "Entendido",
+    offlineTitle: "Este sitio está offline",
+    offlineText: "El despliegue en vivo no está disponible ahora.",
     leaveTitle: "Esto te redirigirá a otra página",
     leaveText: "¿Seguro que quieres dejar mulberry-dev?",
     leaveStay: "Volver",
@@ -316,6 +319,7 @@ export const es: Messages = {
     live: "En vivo",
     ongoing: "En curso",
     private: "Privado",
+    offline: "Offline",
     noAi: "Sin IA",
     noAiTitle: "Hecho sin IA"
   },

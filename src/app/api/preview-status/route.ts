@@ -58,7 +58,7 @@ export async function GET(request: Request) {
   } catch {
     clearTimeout(timer)
     return NextResponse.json(
-      { live: false },
+      { live: false, uncertain: true },
       { headers: { "Cache-Control": "no-store" } }
     )
   }

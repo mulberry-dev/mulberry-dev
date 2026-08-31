@@ -28,6 +28,31 @@ export async function PrivateDeployment(
   })
 }
 
+export async function SiteOffline(
+  name: string,
+  copy?: { offlineTitle: string; offlineText: string; privateConfirm: string }
+) {
+  if (!name) {
+    return
+  }
+
+  const { default: Swal } = await import("sweetalert2")
+  const title = copy?.offlineTitle ?? "This site is offline"
+  const text =
+    copy?.offlineText ?? "The live deployment is not available right now."
+  const confirm = copy?.privateConfirm ?? "Great!"
+
+  Swal.fire({
+    icon: "warning",
+    title: `${title}: <br/> <span>${name}</span>`,
+    text,
+    focusConfirm: false,
+    confirmButtonText: confirm,
+    confirmButtonAriaLabel: confirm,
+    confirmButtonColor: tealButtonColor()
+  })
+}
+
 export async function ConfirmLeaveSite(copy?: {
   leaveTitle: string
   leaveText: string

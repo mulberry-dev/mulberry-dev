@@ -2,7 +2,8 @@
 
 import StatusDot from "@/components/terminal/StatusDot"
 import { useI18n } from "@/i18n/useI18n"
-import { ConfirmLeaveSite } from "@/utils/alerts"
+import type { PreviewAvailability } from "@/lib/previewAvailability"
+import { ConfirmLeaveSite, SiteOffline } from "@/utils/alerts"
 import Image from "next/image"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
@@ -64,24 +65,27 @@ const ProjectPreview = ({
   url,
   poster,
   name,
-  teaser
+  teaser,
+  availability
 }: {
   url: string
   poster: string
   name: string
   teaser: string
+  availability: PreviewAvailability
 }) => {
   const { t } = useI18n()
   const rootRef = useRef<HTMLDivElement>(null)
   const screenRef = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(1)
   const [inView, setInView] = useState(false)
-  const [live, setLive] = useState(false)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
   const [active, setActive] = useState(false)
   const host = previewHost(url)
-  const showFrame = live && !failed
+  const offline = availability === "offline"
+  const canEmbed = availability === "live" || availability === "unknown"
+  const showFrame = inView && canEmbed && !failed
   const interacting = showFrame && ready && active
   const alt = `${name} — ${teaser}`
 
@@ -129,29 +133,14 @@ const ProjectPreview = ({
   }, [])
 
   useEffect(() => {
-    if (!inView) {
+    if (!offline) {
       return
     }
 
-    let cancelled = false
-
-    fetch(`/api/preview-status?url=${encodeURIComponent(url)}`)
-      .then(response => response.json())
-      .then(data => {
-        if (!cancelled) {
-          setLive(Boolean(data.live))
-        }
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setLive(true)
-        }
-      })
-
-    return () => {
-      cancelled = true
-    }
-  }, [inView, url])
+    setFailed(false)
+    setReady(false)
+    setActive(false)
+  }, [offline])
 
   useEffect(() => {
     if (!showFrame || ready) {
@@ -192,6 +181,11 @@ const ProjectPreview = ({
   }, [interacting])
 
   const openLive = async () => {
+    if (offline) {
+      SiteOffline(name, t.project)
+      return
+    }
+
     const leave = await ConfirmLeaveSite(t.project)
     if (leave) {
       window.open(url, "_blank", "noreferrer")
@@ -201,34 +195,48 @@ const ProjectPreview = ({
   return (
     <div
       ref={rootRef}
-      className={`project-preview${interacting ? " is-active" : ""}${ready ? " is-ready" : ""}`}
+      className={`project-preview${interacting ? " is-active" : ""}${ready ? " is-ready" : ""}${offline ? " is-offline" : ""}`}
     >
       <div className="project-preview__bar">
         <p className="project-preview__place">
-          <StatusDot tone={ready ? "success" : "muted"} pulse={ready} />
+          <StatusDot
+            tone={offline ? "warning" : ready ? "success" : "muted"}
+            pulse={ready}
+          />
           {t.project.preview}
         </p>
-        <button
-          type="button"
-          className="project-preview__url"
-          onClick={openLive}
-          title={url}
-        >
-          <LockIcon />
-          <span>{host}</span>
-        </button>
-        <div className="project-preview__tools">
-          {ready ? (
-            <span className="project-preview__live">{t.status.live}</span>
-          ) : null}
+        {offline ? (
+          <p className="project-preview__url is-static" title={url}>
+            <LockIcon />
+            <span>{host}</span>
+          </p>
+        ) : (
           <button
             type="button"
-            className="project-preview__open"
+            className="project-preview__url"
             onClick={openLive}
-            aria-label={t.project.visit}
+            title={url}
           >
-            <ExternalIcon />
+            <LockIcon />
+            <span>{host}</span>
           </button>
+        )}
+        <div className="project-preview__tools">
+          {offline ? (
+            <span className="project-preview__live is-offline">{t.status.offline}</span>
+          ) : ready ? (
+            <span className="project-preview__live">{t.status.live}</span>
+          ) : null}
+          {offline ? null : (
+            <button
+              type="button"
+              className="project-preview__open"
+              onClick={openLive}
+              aria-label={t.project.visit}
+            >
+              <ExternalIcon />
+            </button>
+          )}
         </div>
       </div>
 
@@ -265,7 +273,11 @@ const ProjectPreview = ({
             }}
           />
         ) : null}
-        {ready && !interacting ? (
+        {offline ? (
+          <div className="project-preview__veil is-static">
+            <span>{t.project.offline}</span>
+          </div>
+        ) : ready && !interacting ? (
           <button
             type="button"
             className="project-preview__veil"

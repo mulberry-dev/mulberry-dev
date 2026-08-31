@@ -14,8 +14,9 @@ import { projectHighlights } from "@/data/projectHighlights"
 import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
+import { usePreviewAvailability } from "@/lib/previewAvailability"
 import { extractYear, hasLivePreview, localizeProject, padCount, projectSlug } from "@/lib/projects"
-import { ConfirmLeaveSite, PrivateDeployment } from "@/utils/alerts"
+import { ConfirmLeaveSite, PrivateDeployment, SiteOffline } from "@/utils/alerts"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -83,6 +84,9 @@ const ProjectDetails = ({ id }: { id: string }) => {
   }))
   const github = project && "github" in project ? project.github : null
   const year = source ? extractYear(source.description) : undefined
+  const { status: availability, resolve: resolveAvailability } =
+    usePreviewAvailability(project?.url ?? null)
+  const siteOffline = availability === "offline"
 
   useEffect(() => {
     if (previous) {
@@ -133,7 +137,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   </span>
                   {year ? <span>{year}</span> : null}
                   <ProjectType project={project} />
-                  <ProjectFlags project={project} />
+                  <ProjectFlags project={project} availability={availability} />
                 </Reveal>
                 <Reveal type="heading" as="h1" className="project-hero__title">
                   {project.name}
@@ -163,18 +167,34 @@ const ProjectDetails = ({ id }: { id: string }) => {
               ) : null}
               <Reveal type="button" className="project-hero__actions">
                 {project.url ? (
-                  <Button
-                    type="button"
-                    onClick={async () => {
-                      const leave = await ConfirmLeaveSite(t.project)
-                      if (leave) {
-                        window.location.assign(project.url)
-                      }
-                    }}
-                  >
-                    {t.project.visit}
-                    <ExternalIcon />
-                  </Button>
+                  siteOffline ? (
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      onClick={() => SiteOffline(project.name, t.project)}
+                    >
+                      {t.project.offline}
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      onClick={async () => {
+                        const next = await resolveAvailability()
+                        if (next === "offline") {
+                          SiteOffline(project.name, t.project)
+                          return
+                        }
+
+                        const leave = await ConfirmLeaveSite(t.project)
+                        if (leave) {
+                          window.location.assign(project.url)
+                        }
+                      }}
+                    >
+                      {t.project.visit}
+                      <ExternalIcon />
+                    </Button>
+                  )
                 ) : (
                   <Button
                     type="button"
@@ -198,6 +218,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   poster={project.img}
                   name={project.name}
                   teaser={project.teaser}
+                  availability={availability}
                 />
               ) : (
                 <Image

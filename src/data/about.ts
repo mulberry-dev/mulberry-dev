@@ -49,7 +49,8 @@ export const ABOUT_PASSIONS: {
   label: string
 }[] = [
   { icon: "puzzle", label: "Solving problems" },
-  { icon: "frontend", label: "Intentional interfaces" }
+  { icon: "design", label: "Interface design" },
+  { icon: "devices", label: "Mobile apps & PWAs" }
 ]
 
 export const ABOUT_FOOTER = {
