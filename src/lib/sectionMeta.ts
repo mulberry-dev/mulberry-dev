@@ -13,7 +13,7 @@ export const SECTION_DESCRIPTIONS: Record<string, string> = {
   "/about":
     "Senior Full Stack Engineer based in Mexico City. I came to software through design.",
   "/skills":
-    "Frontend, backend, modernization, and the STAR method I use to prove the work.",
+    "Frontend, backend, data and integrations, modernization, and the STAR method I use to prove the work.",
   "/portfolio": "Selected projects across web, landing pages, APIs, and stores.",
   "/certifications":
     "Certificates in security, English, and development.",

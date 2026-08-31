@@ -6,11 +6,10 @@ import { type CSSProperties } from "react"
 import { useHotScene } from "./useHotScene"
 
 const LINES = [
-  { d: "M200 168 V 52", delay: "0ms" },
-  { d: "M200 168 H 64", delay: "90ms" },
-  { d: "M200 168 H 336", delay: "160ms" },
-  { d: "M200 168 V 250", delay: "230ms" },
-  { d: "M200 250 V 308", delay: "300ms" }
+  { d: "M200 168 V 48", delay: "0ms" },
+  { d: "M200 168 H 52", delay: "90ms" },
+  { d: "M200 168 H 348", delay: "160ms" },
+  { d: "M200 168 V 288", delay: "230ms" }
 ]
 
 const ConnectedScene = () => {
@@ -21,12 +20,12 @@ const ConnectedScene = () => {
       ref={ref}
       className={`connect-scene${hot ? " is-hot" : ""}`}
       role="img"
-      aria-label="Product connected to identity, payments, APIs, data, and notifications"
+      aria-label="Product connected to identity, payments, APIs, and data"
     >
       <div className="connect-scene__canvas">
         <svg
           className="connect-scene__lines"
-          viewBox="0 0 400 340"
+          viewBox="0 0 400 336"
           fill="none"
           role="presentation"
         >
@@ -55,7 +54,7 @@ const ConnectedScene = () => {
         {CONNECTED_NODES.map((node) => (
           <div
             key={node.id}
-            className={`connect-scene__node is-${node.slot}`}
+            className={`connect-scene__node is-${node.slot} connect-scene__node--${node.tone}`}
           >
             <SiteIcon name={node.icon} />
             <span>{node.label}</span>
