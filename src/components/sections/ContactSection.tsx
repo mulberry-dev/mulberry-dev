@@ -22,6 +22,7 @@ const Contact = () => {
   const primary = CONTACT_OPTIONS.find(option => option.featured) ?? CONTACT_OPTIONS[0]
   const optionCopy = (id: string) => {
     if (id === "email") return t.contact.options.email
+    if (id === "phone") return t.contact.options.phone
     if (id === "linkedin") return t.contact.options.linkedin
     if (id === "github") return t.contact.options.github
     if (id === "call") return t.contact.options.call

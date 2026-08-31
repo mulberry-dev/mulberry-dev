@@ -6,6 +6,7 @@ import {
   AUTHOR_LOCATION_LOCALITY,
   AUTHOR_NAME,
   CONTACT_EMAIL,
+  CONTACT_PHONE_TEL,
   GITHUB_URL,
   LINKEDIN_URL,
   SITE_NAME,
@@ -31,6 +32,7 @@ export const personJsonLd = (locale: Locale) => {
     jobTitle: messages.jsonLd.jobTitle,
     description: messages.jsonLd.description,
     email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE_TEL,
     address: {
       "@type": "PostalAddress",
       addressLocality: AUTHOR_LOCATION_LOCALITY,

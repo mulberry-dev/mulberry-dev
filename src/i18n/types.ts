@@ -160,6 +160,7 @@ export type Messages = {
     opensTab: string
     options: {
       email: { title: string; description: string; cta: string }
+      phone: { title: string; description: string; cta: string }
       linkedin: { title: string; description: string; cta: string }
       github: { title: string; description: string; cta: string }
       call: { title: string; description: string; cta: string }

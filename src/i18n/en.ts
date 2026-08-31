@@ -249,6 +249,11 @@ export const en: Messages = {
         description: "Best for project briefs.",
         cta: "Send email"
       },
+      phone: {
+        title: "Phone",
+        description: "+52 55-12-30-88-11",
+        cta: "Call"
+      },
       linkedin: {
         title: "LinkedIn",
         description: "Work and opportunities.",

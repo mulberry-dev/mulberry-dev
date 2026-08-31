@@ -1,8 +1,10 @@
 export const SITE_NAME = "mulberry-dev"
 export const SITE_URL = "https://mulberry-dev.com"
-export const LINKEDIN_URL = "https://www.linkedin.com/in/santidev/"
+export const LINKEDIN_URL = "https://www.linkedin.com/in/mulberry-dev/"
 export const GITHUB_URL = "https://github.com/mulberry-dev"
 export const CONTACT_EMAIL = "mulberry.developer@gmail.com"
+export const CONTACT_PHONE = "+52 55-12-30-88-11"
+export const CONTACT_PHONE_TEL = "+525512308811"
 /** Set this to your Calendly link. When empty, the call option is hidden. */
 export const CALENDLY_URL = ""
 export const COPYRIGHT_NAME = "mulberry-dev"

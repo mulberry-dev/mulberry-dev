@@ -2,6 +2,8 @@ import type { SiteIconName } from "@/components/ui/SiteIcon"
 import {
   CALENDLY_URL,
   CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_TEL,
   GITHUB_URL,
   LINKEDIN_URL
 } from "@/data/site"
@@ -47,6 +49,15 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     icon: "mail",
     external: false,
     featured: true
+  },
+  {
+    id: "phone",
+    title: "Phone",
+    description: CONTACT_PHONE,
+    cta: "Call",
+    href: `tel:${CONTACT_PHONE_TEL}`,
+    icon: "phone",
+    external: false
   },
   {
     id: "linkedin",
