@@ -1252,6 +1252,28 @@
     width: 100%;
   }
 
+  .skills-capability-board .arch-scene,
+  .skills-capability-board .connect-scene {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skills-capability-board .arch-scene__frame,
+  .skills-capability-board .connect-scene__canvas {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .skills-capability-board .arch-scene__frame {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skills-capability-board .arch-scene__flow {
+    flex: 1 1 auto;
+    align-content: center;
+  }
+
   .skills-capability-board .skills-capability + .skills-capability {
     border-top: 0;
   }
