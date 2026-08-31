@@ -252,51 +252,6 @@
   --capability-tone: var(--brand-purple);
 }
 
-.process-flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.7rem 0.9rem;
-}
-
-.process-flow__step {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-family: var(--font-display);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.process-flow__letter {
-  display: grid;
-  place-items: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  border: 1px solid currentColor;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.process-flow__step--s {
-  color: var(--brand-cyan);
-}
-
-.process-flow__step--t,
-.process-flow__step--a {
-  color: var(--brand-blue);
-}
-
-.process-flow__step--r {
-  color: var(--brand-purple);
-}
-
-.process-flow__arrow {
-  color: var(--color-text-dim);
-}
-
 .ui-filter-pills--command {
   justify-content: flex-start;
   gap: var(--space-2);
