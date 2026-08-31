@@ -227,7 +227,8 @@ body:not(.dark) .ui-tech-badge {
 }
 
 .tech-logo,
-.ui-tech-badge :is(img, svg) {
+.ui-tech-badge :is(img, svg),
+.skills-stack__icons :is(img, svg) {
   @include tech-logo-mono;
 }
 

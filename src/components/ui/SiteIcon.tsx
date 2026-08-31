@@ -34,6 +34,9 @@ export type SiteIconName =
   | "bell"
   | "payment"
   | "gears"
+  | "github"
+  | "linkedin"
+  | "phone"
 
 const iconProps: SVGProps<SVGSVGElement> = {
   width: 22,
@@ -255,6 +258,25 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M9 8.2v1.4M9 16.4v1.4M4.8 10.6l1.2.7M12 14.7l1.2.7M4.8 15.4l1.2-.7M12 11.3l1.2-.7" />
       <circle cx="16" cy="8.2" r="1.7" />
       <path d="M16 4.6v1.1M16 10.7v1.1M12.8 6.4l.9.5M18.3 9.5l.9.5M12.8 10l.9-.5M18.3 6.9l.9-.5" />
+    </svg>
+  ),
+  github: (
+    <svg {...iconProps}>
+      <path d="M9 19c-4.3 1.4-4.3-2.1-6-2.5" />
+      <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22" />
+    </svg>
+  ),
+  linkedin: (
+    <svg {...iconProps}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
+      <path d="M8 11.2V16.5" />
+      <path d="M8 8.2v.01" />
+      <path d="M12 16.5v-3.2a2 2 0 0 1 4 0v3.2" />
+    </svg>
+  ),
+  phone: (
+    <svg {...iconProps}>
+      <path d="M7.2 3.8h3.1l1.2 3.4-2.1 1.2a12.4 12.4 0 0 0 6.2 6.2l1.2-2.1 3.4 1.2v3.1c0 .9-.8 2.4-5.4 2.4C8.4 19.2 4.8 13.8 4.8 8.4c0-4.6 1.5-4.6 2.4-4.6Z" />
     </svg>
   )
 }

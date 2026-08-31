@@ -26,7 +26,13 @@ const StackTerminal = () => (
           <ul className="skills-stack__icons">
             {group.items.map((skill) => (
               <li key={skill.id} title={skill.name}>
-                <Image src={skill.imageSrc} alt="" width={16} height={16} />
+                <Image
+                  className="tech-logo"
+                  src={skill.imageSrc}
+                  alt=""
+                  width={16}
+                  height={16}
+                />
                 <span>{skill.name}</span>
               </li>
             ))}

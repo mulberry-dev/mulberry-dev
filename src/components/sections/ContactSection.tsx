@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button"
 import CommandLine from "@/components/terminal/CommandLine"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
+import SiteIcon from "@/components/ui/SiteIcon"
 import StatusDot from "@/components/terminal/StatusDot"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import {
@@ -76,6 +77,9 @@ const Contact = () => {
                   >
                     <span className="contact-channel__index">
                       {padCount(index + 1)}
+                    </span>
+                    <span className="contact-channel__icon" aria-hidden="true">
+                      <SiteIcon name={option.icon} />
                     </span>
                     <span className="contact-channel__copy">
                       <strong>{option.title}</strong>

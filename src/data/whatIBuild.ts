@@ -116,7 +116,15 @@ export const BUILD_STACK = {
       key: "frontend",
       label: "Frontend",
       tone: "cyan",
-      names: ["React", "Next", "TypeScript", "JavaScript", "TailwindCSS"]
+      names: [
+        "React",
+        "React Native",
+        "Redux",
+        "TypeScript",
+        "Jest",
+        "Playwright",
+        "Sass"
+      ]
     },
     {
       key: "backend",
@@ -128,25 +136,31 @@ export const BUILD_STACK = {
       key: "databases",
       label: "Data",
       tone: "indigo",
-      names: ["SQL", "MongoDB", "Firebase"]
+      names: ["SQL", "TypeORM", "MongoDB", "Firebase"]
     },
     {
       key: "devops",
       label: "DevOps",
       tone: "purple",
-      names: ["Git - Github", "Docker", "AWS"]
+      names: ["Git - Github", "Docker", "Jenkins", "AWS"]
     },
     {
       key: "tools",
       label: "Tools",
       tone: "orange",
-      names: ["Cursor", "WordPress", "Jira"]
+      names: ["Cursor", "WordPress", "Jira", "Slack"]
     },
     {
       key: "ai",
       label: "AI",
       tone: "teal",
-      names: ["Cursor Grok 4.6", "Composer 2.5", "Opus 5"]
+      names: [
+        "Cursor Grok 4.6",
+        "Composer 2.5",
+        "Opus 5",
+        "Sonnet 5",
+        "Fable 5"
+      ]
     }
   ]
 } as const

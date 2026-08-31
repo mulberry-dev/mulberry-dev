@@ -1,3 +1,4 @@
+import { SiteIconName } from "@/components/ui/SiteIcon"
 import {
   CALENDLY_URL,
   CONTACT_EMAIL,
@@ -19,6 +20,7 @@ export type ContactOption = {
   description?: string
   cta: string
   href: string
+  icon: SiteIconName
   external: boolean
   featured?: boolean
 }
@@ -30,6 +32,7 @@ const CALL_OPTION: ContactOption | null = CALENDLY_URL
       description: "30 minutes to talk through a project.",
       cta: "Book a call",
       href: CALENDLY_URL,
+      icon: "phone",
       external: true
     }
   : null
@@ -41,6 +44,7 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     description: "Best for project briefs.",
     cta: "Send email",
     href: `mailto:${CONTACT_EMAIL}`,
+    icon: "mail",
     external: false,
     featured: true
   },
@@ -50,6 +54,7 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     description: "Work and opportunities.",
     cta: "View profile",
     href: LINKEDIN_URL,
+    icon: "linkedin",
     external: true
   },
   ...(CALL_OPTION ? [CALL_OPTION] : []),
@@ -59,6 +64,7 @@ export const CONTACT_OPTIONS: ContactOption[] = [
     description: "Code and public repos.",
     cta: "View GitHub",
     href: GITHUB_URL,
+    icon: "github",
     external: true
   }
 ]

@@ -135,6 +135,24 @@ export const skills: Skill[] = [
     category: "frontend"
   },
   {
+    id: 49,
+    name: "Jest",
+    imageSrc: "/images/Icons/svg/jest.svg",
+    experience: 4,
+    unite: "Years",
+    progress: 75,
+    category: "frontend"
+  },
+  {
+    id: 50,
+    name: "Playwright",
+    imageSrc: "/images/Icons/svg/playwright.svg",
+    experience: 2,
+    unite: "Years",
+    progress: 65,
+    category: "frontend"
+  },
+  {
     id: 31,
     name: "Node",
     imageSrc: "/images/Icons/svg/node.svg",
