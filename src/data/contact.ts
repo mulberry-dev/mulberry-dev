@@ -1,4 +1,4 @@
-import { SiteIconName } from "@/components/ui/SiteIcon"
+import type { SiteIconName } from "@/components/ui/SiteIcon"
 import {
   CALENDLY_URL,
   CONTACT_EMAIL,

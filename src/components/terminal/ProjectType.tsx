@@ -1,14 +1,23 @@
-import { CategoryIcon } from "@/components/ui/CategoryIcon"
-import { CATEGORY_LABEL, type Project } from "@/lib/projects"
+"use client"
 
-const ProjectType = ({ project }: { project: Project }) => (
-  <span
-    className={`project-type project-type--${project.category}`}
-    title={CATEGORY_LABEL[project.category]}
-  >
-    <CategoryIcon variant={project.category} />
-    {CATEGORY_LABEL[project.category]}
-  </span>
-)
+import { CategoryIcon } from "@/components/ui/CategoryIcon"
+import { useI18n } from "@/i18n/useI18n"
+import { type Project } from "@/lib/projects"
+
+const ProjectType = ({ project }: { project: Project }) => {
+  const { t } = useI18n()
+  const label =
+    t.categories[project.category as keyof typeof t.categories] ?? project.category
+
+  return (
+    <span
+      className={`project-type project-type--${project.category}`}
+      title={label}
+    >
+      <CategoryIcon variant={project.category} />
+      {label}
+    </span>
+  )
+}
 
 export default ProjectType

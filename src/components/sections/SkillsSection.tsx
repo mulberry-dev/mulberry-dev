@@ -1,30 +1,52 @@
 "use client"
 
 import "@/styles/scss/sections/skills.scss"
-import ApproachScene from "@/components/build/ApproachScene"
-import ArchitectureScene from "@/components/build/ArchitectureScene"
+import LazyOnView from "@/components/LazyOnView"
 import { BuildSession } from "@/components/build/BuildChrome"
-import ConnectedScene from "@/components/build/ConnectedScene"
-import ModernizeScene from "@/components/build/ModernizeScene"
-import ProductScene from "@/components/build/ProductScene"
-import StackTerminal from "@/components/build/StackTerminal"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
+import dynamic from "next/dynamic"
 import { CAPABILITIES } from "@/data/whatIDo"
 import { WORKSPACE } from "@/data/workspace"
+import { useI18n } from "@/i18n/useI18n"
 import {
   BUILD_APPROACH,
   BUILD_CONNECTED,
   BUILD_INTERFACES,
-  BUILD_INTRO,
   BUILD_MODERNIZATION,
   BUILD_SECTIONS,
   BUILD_SYSTEMS,
   type BuildAccent
 } from "@/data/whatIBuild"
 import { useEffect, useState, type ReactNode } from "react"
+
+const SceneFallback = () => (
+  <div className="skills-scene-fallback" aria-hidden="true" />
+)
+
+const ProductScene = dynamic(() => import("@/components/build/ProductScene"), {
+  loading: SceneFallback
+})
+const ArchitectureScene = dynamic(
+  () => import("@/components/build/ArchitectureScene"),
+  { loading: SceneFallback }
+)
+const ConnectedScene = dynamic(
+  () => import("@/components/build/ConnectedScene"),
+  { loading: SceneFallback }
+)
+const ModernizeScene = dynamic(
+  () => import("@/components/build/ModernizeScene"),
+  { loading: SceneFallback }
+)
+const ApproachScene = dynamic(() => import("@/components/build/ApproachScene"), {
+  loading: SceneFallback
+})
+const StackTerminal = dynamic(() => import("@/components/build/StackTerminal"), {
+  loading: SceneFallback
+})
 
 const CopyBlock = ({
   index,
@@ -108,7 +130,16 @@ const Capability = ({
 )
 
 const Skills = () => {
+  const { t } = useI18n()
   const [active, setActive] = useState<string>(BUILD_SECTIONS[0].id)
+  const railLabels = [
+    t.skills.rail.intro,
+    t.skills.rail.frontend,
+    t.skills.rail.backend,
+    t.skills.rail.connected,
+    t.skills.rail.modernize,
+    t.skills.rail.star
+  ]
 
   useEffect(() => {
     const nodes = BUILD_SECTIONS.map((section) =>
@@ -191,17 +222,17 @@ const Skills = () => {
     <section
       id="skills"
       data-section-path="/skills"
-      aria-label="What I Do"
+      aria-label={t.skills.ariaLabel}
       tabIndex={-1}
     >
       <Container className="skills-page">
         <WorkspaceHeader
           index={WORKSPACE.skills.index}
           path={WORKSPACE.skills.path}
-          title={WORKSPACE.skills.title}
+          title={t.workspace.skills}
         />
         <div className="skills-terminal">
-          <nav className="skills-rail" aria-label="On this page">
+          <nav className="skills-rail" aria-label={t.nav.onThisPage}>
             {BUILD_SECTIONS.map((section) => (
               <button
                 key={section.id}
@@ -217,7 +248,9 @@ const Skills = () => {
                 aria-current={active === section.id ? "true" : undefined}
               >
                 <span className="skills-rail__index">{section.index}</span>
-                <span className="skills-rail__label">{section.label}</span>
+                <span className="skills-rail__label">
+                  {railLabels[BUILD_SECTIONS.indexOf(section)] ?? section.label}
+                </span>
               </button>
             ))}
           </nav>
@@ -229,7 +262,7 @@ const Skills = () => {
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
               <Reveal type="heading" as="h3" className="skills-headline">
-                {BUILD_INTRO.headline}
+                {t.skills.headline}
               </Reveal>
               <Reveal
                 type="decorative"
@@ -240,14 +273,14 @@ const Skills = () => {
           </RevealGroup>
 
           <RevealGroup className="capability-grid skills-capabilities" mode="scroll" stagger={48}>
-            {CAPABILITIES.map(item => (
-              <Reveal key={item.title} type="card">
+            {CAPABILITIES.map((item, index) => (
+              <Reveal key={item.icon} type="card">
                 <article className={`capability-card capability-card--${item.accent}`}>
                   <span className="capability-card__icon" aria-hidden="true">
                     <SiteIcon name={item.icon} />
                   </span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <h3>{t.skills.capabilities[index]?.title ?? item.title}</h3>
+                  <p>{t.skills.capabilities[index]?.text ?? item.text}</p>
                   <span className="capability-card__rule" aria-hidden="true" />
                 </article>
               </Reveal>
@@ -258,37 +291,79 @@ const Skills = () => {
             <Capability
               id="build-interfaces"
               accent={BUILD_INTERFACES.accent}
-              stage={<ProductScene />}
+              stage={
+                <LazyOnView minHeight="18.25rem">
+                  <ProductScene />
+                </LazyOnView>
+              }
             >
-              <CopyBlock {...BUILD_INTERFACES} />
+              <CopyBlock
+                index={BUILD_INTERFACES.index}
+                title={BUILD_INTERFACES.title}
+                kicker={t.skills.interfaces.kicker}
+                items={BUILD_INTERFACES.items.map((item, index) => ({
+                  ...item,
+                  label: t.skills.interfaces.items[index] ?? item.label
+                }))}
+                tech={BUILD_INTERFACES.tech}
+              />
             </Capability>
 
             <Capability
               id="build-systems"
               accent={BUILD_SYSTEMS.accent}
-              stage={<ArchitectureScene />}
+              stage={
+                <LazyOnView minHeight="18.25rem">
+                  <ArchitectureScene />
+                </LazyOnView>
+              }
             >
-              <CopyBlock {...BUILD_SYSTEMS} />
+              <CopyBlock
+                index={BUILD_SYSTEMS.index}
+                title={BUILD_SYSTEMS.title}
+                kicker={t.skills.systems.kicker}
+                items={BUILD_SYSTEMS.items.map((item, index) => ({
+                  ...item,
+                  label: t.skills.systems.items[index] ?? item.label
+                }))}
+                tech={BUILD_SYSTEMS.tech}
+              />
             </Capability>
 
             <Capability
               id="build-connected"
               accent={BUILD_CONNECTED.accent}
-              stage={<ConnectedScene />}
+              stage={
+                <LazyOnView minHeight="18.25rem">
+                  <ConnectedScene />
+                </LazyOnView>
+              }
             >
-              <CopyBlock {...BUILD_CONNECTED} />
+              <CopyBlock
+                index={BUILD_CONNECTED.index}
+                title={BUILD_CONNECTED.title}
+                kicker={t.skills.connected.kicker}
+                items={BUILD_CONNECTED.items.map((item, index) => ({
+                  ...item,
+                  label: t.skills.connected.items[index] ?? item.label
+                }))}
+              />
             </Capability>
 
             <Capability
               id="build-modernize"
               accent={BUILD_MODERNIZATION.accent}
-              stage={<ModernizeScene />}
+              stage={
+                <LazyOnView minHeight="18.25rem">
+                  <ModernizeScene />
+                </LazyOnView>
+              }
             >
               <CopyBlock
                 index={BUILD_MODERNIZATION.index}
                 title={BUILD_MODERNIZATION.title}
-                kicker={BUILD_MODERNIZATION.kicker}
-                copy={BUILD_MODERNIZATION.copy}
+                kicker={t.skills.modernization.kicker}
+                copy={t.skills.modernization.copy}
               />
             </Capability>
           </div>
@@ -299,12 +374,16 @@ const Skills = () => {
             stagger={56}
           >
             <Reveal type="image" className="skills-capability__stage">
-              <ApproachScene />
+              <LazyOnView minHeight="18.25rem">
+                <ApproachScene />
+              </LazyOnView>
             </Reveal>
           </RevealGroup>
 
           <footer className="skills-foot">
-            <StackTerminal />
+            <LazyOnView minHeight="12rem">
+              <StackTerminal />
+            </LazyOnView>
           </footer>
         </div>
       </Container>

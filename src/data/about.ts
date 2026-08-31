@@ -1,4 +1,4 @@
-import { SiteIconName } from "@/components/ui/SiteIcon"
+import type { SiteIconName } from "@/components/ui/SiteIcon"
 
 export const ABOUT_HOST = "santiago@dev"
 export const ABOUT_PATH = "~/about-me"
@@ -11,7 +11,11 @@ export const ABOUT_INTRO = {
   command: "cat about-me.txt",
   headline: ["I BUILD_", "WHAT YOU SEE.", "AND WHAT", "MAKES IT WORK."],
   accentFrom: 2,
-  body: ["I came to software through design."]
+  body: [
+    "I came to software through design.",
+    "Senior Full Stack Engineer in Mexico City — React, TypeScript, Next.js, and Node.js.",
+    "I work in English and Spanish. Available for new opportunities."
+  ]
 } as const
 
 export const ABOUT_WHOAMI = {

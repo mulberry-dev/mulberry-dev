@@ -1,19 +1,24 @@
 import DeferredAnalytics from "@/components/DeferredAnalytics"
+import JsonLd from "@/components/JsonLd"
 import Navigation from "@/components/navigation"
 import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
+import { getMessages } from "@/i18n"
+import { personJsonLd, websiteJsonLd } from "@/lib/jsonLd"
+import { isLocale } from "@/lib/locale"
 import {
+  AUTHOR_NAME,
   COPYRIGHT_NAME,
   SITE_DESCRIPTION,
+  SITE_KEYWORDS,
   SITE_NAME,
   SITE_OG_IMAGE,
   SITE_TITLE,
   SITE_URL
 } from "@/data/site"
 import "@/styles/scss/styles.scss"
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { JetBrains_Mono, Sora, Space_Grotesk } from "next/font/google"
+import { headers } from "next/headers"
 import type { Metadata, Viewport } from "next"
 
 const sora = Sora({
@@ -40,6 +45,8 @@ const jetbrainsMono = JetBrains_Mono({
   preload: false
 })
 
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -47,16 +54,10 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    "Developer",
-    "Full Stack",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Santiago Morera"
-  ],
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: AUTHOR_NAME, url: SITE_URL }],
+  creator: AUTHOR_NAME,
+  publisher: SITE_NAME,
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     shortcut: "/icon.png",
@@ -68,6 +69,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "en_US",
+    alternateLocale: ["es_MX"],
     type: "website",
     images: [SITE_OG_IMAGE]
   },
@@ -79,8 +81,16 @@ export const metadata: Metadata = {
   },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
   },
+  ...(googleVerification ? { verification: { google: googleVerification } } : {}),
   other: {
     copyright: COPYRIGHT_NAME
   }
@@ -97,20 +107,25 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const headerLocale = headers().get("x-locale")
+  const locale = isLocale(headerLocale) ? headerLocale : "en"
+  const messages = getMessages(locale)
+
   return (
     <html
-      lang="en"
+      lang={messages.htmlLang}
       className={`${sora.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="dark" suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname;if(p==="/"||p==="")document.documentElement.classList.add("home-nav-wait")})()`
+            __html: `(function(){var p=location.pathname;document.documentElement.lang=(p==="/es"||p.indexOf("/es/")===0)?"es":"en";if(p==="/"||p===""||p==="/es"||p==="/es/")document.documentElement.classList.add("home-nav-wait")})()`
           }}
         />
+        <JsonLd data={[personJsonLd(locale), websiteJsonLd(locale)]} />
         <a className="skip-link" href="#site-main">
-          Skip to content
+          {messages.skipToContent}
         </a>
         <div className="site-atmosphere" aria-hidden="true" />
         <ParticlesProvider>
@@ -119,12 +134,6 @@ export default function RootLayout({
             <SiteShell>{children}</SiteShell>
           </div>
         </ParticlesProvider>
-        {process.env.NEXT_PUBLIC_VERCEL_ENV ? (
-          <>
-            <Analytics />
-            <SpeedInsights />
-          </>
-        ) : null}
         <DeferredAnalytics gaId="G-HP85BC1BKY" />
       </body>
     </html>

@@ -6,6 +6,8 @@ import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { useParticles } from "@/components/particles"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { WORKSPACE } from "@/data/workspace"
+import { useI18n } from "@/i18n/useI18n"
+import { isHomePath } from "@/lib/locale"
 import Image from "next/image"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
@@ -29,6 +31,7 @@ const setOrbitRate = (node: HTMLDivElement, rate: number) => {
 
 const IndexPage = () => {
   const pathname = usePathname()
+  const { t, href } = useI18n()
   const { contentReady, reducedMotion } = useParticles()
   const [isFirstHome] = useState(() => !didLeaveHome())
   const [introComplete, setIntroComplete] = useState(false)
@@ -74,7 +77,7 @@ const IndexPage = () => {
   }, [revealChrome])
 
   useEffect(() => {
-    if (pathname !== "/" || shouldRevealHomeChrome() || window.scrollY > 1) {
+    if (!isHomePath(pathname) || shouldRevealHomeChrome() || window.scrollY > 1) {
       revealChrome()
       return
     }
@@ -150,7 +153,7 @@ const IndexPage = () => {
       id="index"
       className={introClass || undefined}
       data-section-path="/"
-      aria-label="Home"
+      aria-label={t.home.ariaLabel}
       tabIndex={-1}
     >
       <Container className="home-page">
@@ -171,28 +174,28 @@ const IndexPage = () => {
               <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
             </div>
             <h1>
-              Hi! I am{" "}
-              <span className="gradient-text home-hero__name">Santiago</span>
+              {t.home.greeting}{" "}
+              <span className="gradient-text home-hero__name">{t.home.name}</span>
             </h1>
             <p className="home-hero__role">
               <span className="home-hero__bracket">&lt;</span>{" "}
-              <span className="home-hero__teal">Senior Full Stack</span>{" "}
-              <span className="home-hero__purple">Engineer</span>{" "}
+              <span className="home-hero__teal">{t.home.roleLead}</span>{" "}
+              <span className="home-hero__purple">{t.home.roleTrail}</span>{" "}
               <span className="home-hero__bracket">/ &gt;</span>
             </p>
             <p className="home-hero__body">
-              <span>I build </span>
-              <span className="home-hero__solutions">digital solutions</span>
-              <span> that </span>
-              <span className="gradient-text">deliver value</span>
+              <span>{t.home.bodyBefore}</span>
+              <span className="home-hero__solutions">{t.home.bodySolutions}</span>
+              <span>{t.home.bodyMid}</span>
+              <span className="gradient-text">{t.home.bodyValue}</span>
               <span className="home-hero__caret" aria-hidden="true">
                 _
               </span>
             </p>
             <div className="home-hero__actions">
-              <Button href="/about" variant="terminal">
-                <span className="sr-only">About me</span>
-                <span aria-hidden="true">&gt; ./start-exploring</span>
+              <Button href={href("/about")} variant="terminal">
+                <span className="sr-only">{t.home.ctaSr}</span>
+                <span aria-hidden="true">{t.home.cta}</span>
               </Button>
             </div>
           </div>

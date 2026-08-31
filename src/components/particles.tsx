@@ -1,6 +1,6 @@
 "use client"
 
-import { ParticlesEngine, type ParticlePhase } from "@/lib/particlesEngine"
+import type { ParticlePhase, ParticlesEngine } from "@/lib/particlesEngine"
 import { usePathname } from "next/navigation"
 import {
   createContext,
@@ -41,7 +41,7 @@ export const useMotion = () => useContext(ParticlesContext)
 
 export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()
-  const [engine] = useState(() => new ParticlesEngine())
+  const engineRef = useRef<ParticlesEngine | null>(null)
   const [phase, setPhase] = useState<ParticlePhase>("idle")
   const [reducedMotion, setReducedMotion] = useState(false)
   const [contentReady, setContentReady] = useState(true)
@@ -58,24 +58,18 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   useLayoutEffect(() => {
-    engine.setPhaseListener(setPhase)
-    engine.setContentRevealListener(releaseContent)
-
     const media = window.matchMedia("(prefers-reduced-motion: reduce)")
     const syncMotion = () => {
-      setReducedMotion(media.matches)
-      engine.setReducedMotion(media.matches)
+      const reduced = media.matches
+      setReducedMotion(reduced)
+      engineRef.current?.setReducedMotion(reduced)
     }
 
     syncMotion()
     media.addEventListener("change", syncMotion)
 
-    return () => {
-      engine.setPhaseListener(null)
-      engine.setContentRevealListener(null)
-      media.removeEventListener("change", syncMotion)
-    }
-  }, [engine, releaseContent])
+    return () => media.removeEventListener("change", syncMotion)
+  }, [])
 
   useEffect(() => {
     if (reducedMotion) {
@@ -109,43 +103,75 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
   }, [pathname, releaseContent])
 
   useLayoutEffect(() => {
-    const canvas = canvasRef.current
-
     if (!layerMounted) {
       return
     }
 
-    if (!canvas || !engine.mount(canvas)) {
-      return () => engine.unmount()
+    const canvas = canvasRef.current
+
+    if (!canvas) {
+      return
     }
 
-    engine.setEmberMode(true, true)
+    let cancelled = false
 
-    const currentPhase = engine.getPhase()
+    const attach = (engine: ParticlesEngine) => {
+      engine.setPhaseListener(setPhase)
+      engine.setContentRevealListener(releaseContent)
+      engine.setReducedMotion(reducedMotion)
 
-    if (currentPhase === "idle") {
-      engine.startEnter()
-    } else if (
-      currentPhase === "active" ||
-      currentPhase === "transitioning"
-    ) {
-      engine.startActive()
+      if (!engine.mount(canvas)) {
+        return
+      }
+
+      engine.setEmberMode(true, true)
+
+      const currentPhase = engine.getPhase()
+
+      if (currentPhase === "idle") {
+        engine.startEnter()
+      } else if (
+        currentPhase === "active" ||
+        currentPhase === "transitioning"
+      ) {
+        engine.startActive()
+      } else {
+        engine.armContentReveal()
+      }
+    }
+
+    const existing = engineRef.current
+
+    if (existing) {
+      attach(existing)
     } else {
-      engine.armContentReveal()
+      void import("@/lib/particlesEngine").then(({ ParticlesEngine }) => {
+        if (cancelled) {
+          return
+        }
+
+        const engine = new ParticlesEngine()
+        engineRef.current = engine
+        attach(engine)
+      })
     }
 
-    return () => engine.unmount()
-  }, [engine, layerMounted])
+    return () => {
+      cancelled = true
+      engineRef.current?.setPhaseListener(null)
+      engineRef.current?.setContentRevealListener(null)
+      engineRef.current?.unmount()
+    }
+  }, [layerMounted, reducedMotion, releaseContent])
 
   const beginRouteTransition = useCallback(
-    () => engine.beginRouteTransition(),
-    [engine]
+    () => engineRef.current?.beginRouteTransition() ?? Promise.resolve(),
+    []
   )
 
-  const completeRouteTransition = useCallback(
-    () => engine.completeRouteTransition(),
-    [engine]
-  )
+  const completeRouteTransition = useCallback(() => {
+    engineRef.current?.completeRouteTransition()
+  }, [])
 
   const canTransition =
     !reducedMotion &&

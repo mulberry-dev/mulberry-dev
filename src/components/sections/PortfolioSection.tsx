@@ -9,12 +9,14 @@ import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import { WORKSPACE } from "@/data/workspace"
+import { useI18n } from "@/i18n/useI18n"
 import {
   archiveProjects,
   builtWithoutAi,
   categoryCounts,
   extractYear,
   featuredProjects,
+  localizeProject,
   padCount,
   techNames,
   type Project
@@ -23,14 +25,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useMemo, useState, type MouseEvent } from "react"
-
-const filters = [
-  { id: "all", label: "all" },
-  { id: "web", label: "web" },
-  { id: "landing", label: "landing" },
-  { id: "api", label: "backend" },
-  { id: "ecommerce", label: "commerce" }
-]
 
 const preloadedImages = new Set<string>()
 
@@ -48,8 +42,9 @@ const preloadProjectImage = (src: string) => {
 const useProjectLink = (project: Project) => {
   const router = useRouter()
   const pathname = usePathname()
+  const { href: localize } = useI18n()
   const [loading, setLoading] = useState(false)
-  const href = `/portfolio/${project.id}`
+  const href = localize(`/portfolio/${project.id}`)
 
   useEffect(() => {
     setLoading(false)
@@ -86,6 +81,7 @@ const FeaturedCard = ({
   project: Project
   index: number
 }) => {
+  const { t } = useI18n()
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
   const year = extractYear(project.description)
   const stack = techNames(project.tech).slice(0, 4)
@@ -93,7 +89,7 @@ const FeaturedCard = ({
   return (
     <Link
       href={href}
-      prefetch
+      prefetch={false}
       className={`work-card-link${loading ? " is-loading" : ""}`}
       aria-busy={loading || undefined}
       onPointerEnter={prefetchProject}
@@ -105,7 +101,7 @@ const FeaturedCard = ({
           <header className="work-card__meta">
             <span className="work-card__index">
               {padCount(index + 1)}
-              <span className="work-card__index-label"> / Featured</span>
+              <span className="work-card__index-label"> / {t.portfolio.featured}</span>
             </span>
             <ProjectFlags project={project} />
           </header>
@@ -114,41 +110,43 @@ const FeaturedCard = ({
           <dl className="work-card__facts">
             {year ? (
               <div>
-                <dt>Year</dt>
+                <dt>{t.portfolio.year}</dt>
                 <dd>{year}</dd>
               </div>
             ) : null}
             <div>
-              <dt>Type</dt>
+              <dt>{t.portfolio.type}</dt>
               <dd>
                 <ProjectType project={project} />
               </dd>
             </div>
             <div className="work-card__facts-stack">
-              <dt>Stack</dt>
+              <dt>{t.portfolio.stack}</dt>
               <dd>{stack.join(" · ")}</dd>
             </div>
           </dl>
           <span className="work-card__cta">
-            View case study
+            {t.portfolio.viewCase}
             <span aria-hidden="true"> →</span>
           </span>
           {loading ? (
             <span className="portfolio-card__loader" role="status">
               <span className="portfolio-card__spinner" aria-hidden="true" />
-              Loading project details…
+              {t.portfolio.loading}
             </span>
           ) : null}
         </div>
         <div className="work-card__media">
           <Image
             src={project.img}
-            alt={project.name}
+            alt={`${project.name} — ${project.teaser}`}
             width={project.width || 1280}
             height={project.height || 800}
             sizes="(max-width: 1023px) 50vw, 33vw"
             className="work-card__image"
             priority={index === 0}
+            loading={index === 0 ? undefined : "lazy"}
+            decoding="async"
           />
         </div>
       </article>
@@ -157,13 +155,14 @@ const FeaturedCard = ({
 }
 
 const ArchiveCard = ({ project }: { project: Project }) => {
+  const { t } = useI18n()
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
   const stack = techNames(project.tech).slice(0, 3)
 
   return (
     <Link
       href={href}
-      prefetch
+      prefetch={false}
       className={`archive-card-link${loading ? " is-loading" : ""}`}
       aria-busy={loading || undefined}
       onPointerEnter={prefetchProject}
@@ -178,7 +177,7 @@ const ArchiveCard = ({ project }: { project: Project }) => {
         <div className="archive-card__media">
           <Image
             src={project.thumbnail}
-            alt=""
+            alt={`${project.name} — ${project.teaser}`}
             width={400}
             height={220}
             sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -191,13 +190,13 @@ const ArchiveCard = ({ project }: { project: Project }) => {
         <p>{project.teaser}</p>
         <p className="archive-card__stack">{stack.join(" · ")}</p>
         <span className="archive-card__cta">
-          View
+          {t.portfolio.view}
           <span aria-hidden="true"> →</span>
         </span>
         {loading ? (
           <span className="portfolio-card__loader" role="status">
             <span className="portfolio-card__spinner" aria-hidden="true" />
-            Loading project details…
+            {t.portfolio.loading}
           </span>
         ) : null}
       </article>
@@ -206,8 +205,15 @@ const ArchiveCard = ({ project }: { project: Project }) => {
 }
 
 const Portfolio = () => {
-  const router = useRouter()
+  const { t, locale } = useI18n()
   const [active, setActive] = useState("all")
+  const filters = [
+    { id: "all", label: t.portfolio.filters.all },
+    { id: "web", label: t.portfolio.filters.web },
+    { id: "landing", label: t.portfolio.filters.landing },
+    { id: "api", label: t.portfolio.filters.api },
+    { id: "ecommerce", label: t.portfolio.filters.ecommerce }
+  ] as const
 
   const featuredVisible = useMemo(
     () =>
@@ -230,26 +236,23 @@ const Portfolio = () => {
     count: categoryCounts[filter.id] || 0
   }))
 
-  useEffect(() => {
-    ;[...featuredVisible, ...archiveVisible].forEach(project => {
-      router.prefetch(`/portfolio/${project.id}`)
-    })
-  }, [archiveVisible, featuredVisible, router])
-
   return (
     <section
       id="portfolio"
       data-section-path="/portfolio"
-      aria-label="Selected Work"
+      aria-label={t.portfolio.ariaLabel}
       tabIndex={-1}
     >
       <Container className="portfolio-page">
         <WorkspaceHeader
           index={WORKSPACE.work.index}
           path={WORKSPACE.work.path}
-          title={WORKSPACE.work.title}
-          command="ls ./selected-projects --sort=impact"
-          meta={`${padCount(categoryCounts.all)} projects found · ${padCount(featuredProjects.length)} featured · ${padCount(archiveProjects.length)} archive`}
+          title={t.workspace.work}
+          command={t.portfolio.command}
+          meta={t.portfolio.meta
+            .replace("{all}", padCount(categoryCounts.all))
+            .replace("{featured}", padCount(featuredProjects.length))
+            .replace("{archive}", padCount(archiveProjects.length))}
         />
 
         <Reveal type="nav">
@@ -265,24 +268,27 @@ const Portfolio = () => {
           <RevealGroup className="work-featured" mode="auto" stagger={56} key={active}>
             {featuredVisible.map((project, index) => (
               <Reveal key={String(project.id)} type="image">
-                <FeaturedCard project={project} index={index} />
+                <FeaturedCard project={localizeProject(project, locale)} index={index} />
               </Reveal>
             ))}
           </RevealGroup>
         ) : null}
 
         <div className="work-archive">
-          <CommandLine command="ls ./archive" />
+          <CommandLine command={t.portfolio.archiveCommand} />
           <p className="workspace-header__meta">
-            {padCount(archiveVisible.length)} projects in archive
+            {t.portfolio.archiveMeta.replace("{count}", padCount(archiveVisible.length))}
             {archiveVisible.some(builtWithoutAi)
-              ? ` · ${padCount(archiveVisible.filter(builtWithoutAi).length)} built without AI`
+              ? t.portfolio.archiveNoAi.replace(
+                  "{count}",
+                  padCount(archiveVisible.filter(builtWithoutAi).length)
+                )
               : ""}
           </p>
           <RevealGroup className="archive-grid" mode="auto" stagger={48} key={active}>
             {archiveVisible.map(project => (
               <Reveal key={String(project.id)} type="image">
-                <ArchiveCard project={project} />
+                <ArchiveCard project={localizeProject(project, locale)} />
               </Reveal>
             ))}
           </RevealGroup>

@@ -244,6 +244,11 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+.site-nav__actions .language-switch {
+  position: relative;
+  z-index: 2;
+}
+
 .site-nav__link:focus-visible,
 .site-nav__logo:focus-visible,
 .site-nav__toggle:focus-visible {

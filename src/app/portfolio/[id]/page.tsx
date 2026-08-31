@@ -1,6 +1,9 @@
+import JsonLd from "@/components/JsonLd"
 import ProjectDetails from "@/components/sections/ProjectDetails"
+import { getMessages } from "@/i18n"
 import { data as projects } from "@/data/projects"
-import { SITE_NAME, SITE_URL } from "@/data/site"
+import { breadcrumbJsonLd, projectJsonLd } from "@/lib/jsonLd"
+import { projectPageMetadata } from "@/lib/sectionMeta"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -13,35 +16,36 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const project = projects.find(item => String(item.id) === params.id)
-
-  if (!project) {
-    return { title: "Project" }
-  }
-
-  return {
-    title: project.name,
-    description: project.description,
-    alternates: {
-      canonical: `${SITE_URL}/portfolio/${project.id}`
-    },
-    openGraph: {
-      title: `${project.name} | ${SITE_NAME}`,
-      description: project.description,
-      url: `${SITE_URL}/portfolio/${project.id}`,
-      images: [{ url: project.img }]
-    }
-  }
+  return projectPageMetadata(params.id, "en")
 }
 
 const Page = ({ params }: PageProps) => {
-  const exists = projects.some(item => String(item.id) === params.id)
+  const project = projects.find(item => String(item.id) === params.id)
 
-  if (!exists) {
+  if (!project) {
     notFound()
   }
 
-  return <ProjectDetails id={params.id} />
+  const messages = getMessages("en")
+
+  return (
+    <>
+      <JsonLd
+        data={[
+          projectJsonLd(params.id, "en"),
+          breadcrumbJsonLd(
+            [
+              { name: messages.nav.home, path: "/" },
+              { name: messages.nav.portfolio, path: "/portfolio" },
+              { name: project.name, path: `/portfolio/${params.id}` }
+            ],
+            "en"
+          )
+        ]}
+      />
+      <ProjectDetails id={params.id} />
+    </>
+  )
 }
 
 export default Page

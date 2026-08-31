@@ -13,6 +13,8 @@ import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { projectHighlights } from "@/data/projectHighlights"
 import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
+import { useI18n } from "@/i18n/useI18n"
+import { localizeProject } from "@/lib/projects"
 import { extractYear, padCount, projectSlug } from "@/lib/projects"
 import { PrivateDeployment } from "@/utils/alerts"
 import Image from "next/image"
@@ -66,24 +68,32 @@ const ProjectNavChevron = ({ direction }: { direction: "prev" | "next" }) => (
 
 const ProjectDetails = ({ id }: { id: string }) => {
   const router = useRouter()
+  const { t, locale, href } = useI18n()
   const index = projects.findIndex(item => String(item.id) === id)
-  const project = index >= 0 ? projects[index] : undefined
+  const source = index >= 0 ? projects[index] : undefined
+  const project = source ? localizeProject(source, locale) : undefined
   const previous = index > 0 ? projects[index - 1] : null
   const next =
     index >= 0 && index < projects.length - 1 ? projects[index + 1] : null
-  const highlights = project ? projectHighlights[String(project.id)] : undefined
+  const highlightSource = project ? projectHighlights[String(project.id)] : undefined
+  const highlightCopy = project ? t.projects[String(project.id)]?.highlights : undefined
+  const highlights = highlightSource?.map((item, highlightIndex) => ({
+    ...item,
+    title: highlightCopy?.[highlightIndex]?.title ?? item.title,
+    text: highlightCopy?.[highlightIndex]?.text ?? item.text
+  }))
   const github = project && "github" in project ? project.github : null
-  const year = project ? extractYear(project.description) : undefined
+  const year = source ? extractYear(source.description) : undefined
 
   useEffect(() => {
     if (previous) {
-      router.prefetch(`/portfolio/${previous.id}`)
+      router.prefetch(href(`/portfolio/${previous.id}`))
     }
 
     if (next) {
-      router.prefetch(`/portfolio/${next.id}`)
+      router.prefetch(href(`/portfolio/${next.id}`))
     }
-  }, [next, previous, router])
+  }, [href, next, previous, router])
 
   if (!project) {
     return (
@@ -91,11 +101,11 @@ const ProjectDetails = ({ id }: { id: string }) => {
         <Container className="project-page">
           <RevealGroup mode="fold" stagger={24}>
             <Reveal type="heading" as="h1">
-              Project not found
+              {t.project.notFound}
             </Reveal>
             <Reveal type="button">
-              <Button href="/portfolio" variant="secondary">
-                Back to projects
+              <Button href={href("/portfolio")} variant="secondary">
+                {t.project.back}
               </Button>
             </Reveal>
           </RevealGroup>
@@ -110,8 +120,8 @@ const ProjectDetails = ({ id }: { id: string }) => {
         <div className="project-overview">
           <Reveal type="nav" mode="fold" className="project-context">
             <TerminalPrompt path={`${WORKSPACE.work.path}/${projectSlug(project.id)}`} />
-            <Link href="/portfolio" className="project-back">
-              ← Back to projects
+            <Link href={href("/portfolio")} className="project-back">
+              ← {t.project.back}
             </Link>
           </Reveal>
 
@@ -119,7 +129,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
             <RevealGroup className="project-hero__copy" mode="fold" stagger={28}>
               <Reveal type="eyebrow" className="project-hero__kicker">
                 <span>
-                  {padCount(index + 1)} / Project
+                  {padCount(index + 1)} / {t.project.kicker}
                 </span>
                 <ProjectType project={project} />
                 <ProjectFlags project={project} />
@@ -133,20 +143,20 @@ const ProjectDetails = ({ id }: { id: string }) => {
               <Reveal type="button" className="project-hero__actions">
                 {project.url ? (
                   <Button href={project.url} external>
-                    Visit live site
+                    {t.project.visit}
                     <ExternalIcon />
                   </Button>
                 ) : (
                   <Button
                     type="button"
-                    onClick={() => PrivateDeployment(project.name)}
+                    onClick={() => PrivateDeployment(project.name, t.project)}
                   >
-                    Private deployment
+                    {t.project.private}
                   </Button>
                 )}
                 {github ? (
                   <Button href={github} variant="secondary" external>
-                    View on GitHub
+                    {t.project.github}
                   </Button>
                 ) : null}
               </Reveal>
@@ -156,7 +166,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
               <Image
                 className="project-hero__image"
                 src={project.img}
-                alt={project.name}
+                alt={`${project.name} — ${project.teaser}`}
                 width={project.width || 1280}
                 height={project.height || 800}
                 sizes="(max-width: 899px) 100vw, 58vw"
@@ -169,13 +179,13 @@ const ProjectDetails = ({ id }: { id: string }) => {
         <dl className="project-facts">
           {year ? (
             <div>
-              <dt>Year</dt>
-              <dd>{year}</dd>
-            </div>
-          ) : null}
-          {project.category ? (
-            <div>
-              <dt>Type</dt>
+              <dt>{t.project.year}</dt>
+                <dd>{year}</dd>
+              </div>
+            ) : null}
+            {project.category ? (
+              <div>
+                <dt>{t.project.type}</dt>
               <dd>
                 <ProjectType project={project} />
               </dd>
@@ -185,14 +195,14 @@ const ProjectDetails = ({ id }: { id: string }) => {
 
         <div className="project-story">
           <section>
-            <h2>About the project</h2>
+            <h2>{t.project.about}</h2>
             <p>{project.description}</p>
           </section>
         </div>
 
         {highlights?.length ? (
           <section className="project-features">
-            <h2>Key features</h2>
+            <h2>{t.project.features}</h2>
             <RevealGroup
               as="ul"
               className="project-highlights"
@@ -216,7 +226,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
 
         <div className="project-stack">
           <Reveal type="text" mode="scroll" as="h2" className="project-stack__title">
-            Technologies
+            {t.project.technologies}
           </Reveal>
           <RevealGroup className="project-tech" mode="scroll" stagger={28}>
             {project.tech.map((tech, techIndex) =>
@@ -234,42 +244,42 @@ const ProjectDetails = ({ id }: { id: string }) => {
         </div>
 
         <Reveal type="nav" mode="scroll" className="project-nav-wrap">
-          <nav className="project-nav" aria-label="Projects">
+          <nav className="project-nav" aria-label={t.project.navLabel}>
             {previous ? (
               <Link
                 className="project-nav__link"
-                href={`/portfolio/${previous.id}`}
+                href={href(`/portfolio/${previous.id}`)}
                 prefetch
-                aria-label={`Previous project: ${previous.name}`}
+                aria-label={`${t.project.previous}: ${previous.name}`}
               >
                 <ProjectNavChevron direction="prev" />
                 <span className="project-nav__copy">
-                  <span className="project-nav__dir">Previous</span>
+                  <span className="project-nav__dir">{t.project.previous}</span>
                   <span className="project-nav__name">{previous.name}</span>
                 </span>
               </Link>
             ) : (
               <span className="project-nav__link is-disabled">
                 <ProjectNavChevron direction="prev" />
-                Previous
+                {t.project.previous}
               </span>
             )}
             {next ? (
               <Link
                 className="project-nav__link project-nav__link--next"
-                href={`/portfolio/${next.id}`}
+                href={href(`/portfolio/${next.id}`)}
                 prefetch
-                aria-label={`Next project: ${next.name}`}
+                aria-label={`${t.project.next}: ${next.name}`}
               >
                 <span className="project-nav__copy">
-                  <span className="project-nav__dir">Next</span>
+                  <span className="project-nav__dir">{t.project.next}</span>
                   <span className="project-nav__name">{next.name}</span>
                 </span>
                 <ProjectNavChevron direction="next" />
               </Link>
             ) : (
               <span className="project-nav__link project-nav__link--next is-disabled">
-                Next
+                {t.project.next}
                 <ProjectNavChevron direction="next" />
               </span>
             )}

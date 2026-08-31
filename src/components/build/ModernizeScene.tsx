@@ -1,11 +1,12 @@
 "use client"
 
-import { BUILD_MODERNIZATION } from "@/data/whatIBuild"
+import { useI18n } from "@/i18n/useI18n"
 import { useHotScene } from "./useHotScene"
 
 const ARROWS = [0, 1, 2] as const
 
 const ModernizeScene = () => {
+  const { t } = useI18n()
   const { ref, hot } = useHotScene(0.2)
 
   return (
@@ -13,12 +14,12 @@ const ModernizeScene = () => {
       ref={ref}
       className={`modern-scene${hot ? " is-hot" : ""}`}
       role="img"
-      aria-label="Legacy PHP, old UI, and monolith compared with React, TypeScript, Node.js, GraphQL, and a modular architecture"
+      aria-label={`${t.skills.modernization.legacyLabel}: ${t.skills.modernization.legacy.join(", ")}. ${t.skills.modernization.modernLabel}: ${t.skills.modernization.modern.join(", ")}`}
     >
       <div className="modern-scene__pane modern-scene__pane--legacy">
-        <p>{BUILD_MODERNIZATION.legacy.label}</p>
+        <p>{t.skills.modernization.legacyLabel}</p>
         <ul>
-          {BUILD_MODERNIZATION.legacy.items.map((item) => (
+          {t.skills.modernization.legacy.map((item) => (
             <li key={item}>
               <span>×</span>
               {item}
@@ -44,9 +45,9 @@ const ModernizeScene = () => {
       </div>
 
       <div className="modern-scene__pane modern-scene__pane--modern">
-        <p>{BUILD_MODERNIZATION.modern.label}</p>
+        <p>{t.skills.modernization.modernLabel}</p>
         <ul>
-          {BUILD_MODERNIZATION.modern.items.map((item) => (
+          {t.skills.modernization.modern.map((item) => (
             <li key={item}>
               <span>✓</span>
               {item}

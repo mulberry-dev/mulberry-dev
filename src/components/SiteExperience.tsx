@@ -16,6 +16,12 @@ import {
   subscribeSectionPrefetch,
   waitForSections
 } from "@/lib/sectionNav"
+import {
+  getLocale,
+  isHomePath,
+  localizePath,
+  stripLocale
+} from "@/lib/locale"
 import dynamic from "next/dynamic"
 import { usePathname, useRouter } from "next/navigation"
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
@@ -85,13 +91,18 @@ const readSectionHref = (anchor: Element) => {
 const SiteExperience = () => {
   const pathname = usePathname()
   const router = useRouter()
+  const locale = getLocale(pathname)
+  const toHref = useCallback(
+    (path: string) => localizePath(stripLocale(path), locale),
+    [locale]
+  )
   const ignorePathRef = useRef<string | null>(null)
   const readyRef = useRef(false)
   const revealTokenRef = useRef(0)
   const activePathRef = useRef(pathname)
   const pathnameRef = useRef(pathname)
   const offSiteRef = useRef(!isSectionPath(pathname))
-  const [aligned, setAligned] = useState(pathname === "/")
+  const [aligned, setAligned] = useState(isHomePath(pathname))
   const [mountedIds, setMountedIds] = useState(
     () => new Set(requiredSectionIds(pathname))
   )
@@ -177,7 +188,7 @@ const SiteExperience = () => {
       if (!readyRef.current) {
         readyRef.current = true
 
-        if (pathname !== "/") {
+        if (!isHomePath(pathname)) {
           await revealPath(pathname, "auto", true)
         }
 
@@ -229,20 +240,21 @@ const SiteExperience = () => {
     }
 
     const syncFromScroll = (nextPath: string) => {
-      if (nextPath === activePathRef.current) {
+      if (stripLocale(nextPath) === stripLocale(activePathRef.current)) {
         return
       }
 
-      activePathRef.current = nextPath
-      ignorePathRef.current = nextPath
-      applySectionTitle(nextPath)
-      announceSection(nextPath)
+      const href = toHref(nextPath)
+      activePathRef.current = href
+      ignorePathRef.current = href
+      applySectionTitle(href)
+      announceSection(href)
       mountThrough(nextPath)
-      router.replace(nextPath, { scroll: false })
+      router.replace(href, { scroll: false })
     }
 
     return observeActiveSection(syncFromScroll)
-  }, [mountedKey, mountThrough, pathname, router])
+  }, [mountedKey, mountThrough, pathname, router, toHref])
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {

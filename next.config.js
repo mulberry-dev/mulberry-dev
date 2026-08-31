@@ -5,6 +5,9 @@ const nextConfig = {
     removeConsole:
       process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false
   },
+  experimental: {
+    optimizePackageImports: ["sweetalert2", "@next/third-parties"]
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,

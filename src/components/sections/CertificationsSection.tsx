@@ -5,24 +5,30 @@ import Badge from "@/components/ui/Badge"
 import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
-import Lightbox, { LightboxOrigin } from "@/components/ui/Lightbox"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import { certificates } from "@/data/certificates"
 import { WORKSPACE } from "@/data/workspace"
+import { useI18n } from "@/i18n/useI18n"
+import type { LightboxOrigin } from "@/components/ui/Lightbox"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import { MouseEvent, useCallback, useMemo, useRef, useState } from "react"
 
+const Lightbox = dynamic(() => import("@/components/ui/Lightbox"), {
+  ssr: false
+})
+
 const categoryOrder = ["mobile", "security", "english", "development"]
 
-const filters = [
-  { id: "all", label: "All" },
-  { id: "security", label: "Security" },
-  { id: "english", label: "English" },
-  { id: "development", label: "Development" }
-]
-
 const Certifications = () => {
+  const { t } = useI18n()
+  const filters = [
+    { id: "all", label: t.certifications.filters.all },
+    { id: "security", label: t.certifications.filters.security },
+    { id: "english", label: t.certifications.filters.english },
+    { id: "development", label: t.certifications.filters.development }
+  ]
   const [active, setActive] = useState("all")
   const [viewer, setViewer] = useState<{
     id: number
@@ -120,7 +126,7 @@ const Certifications = () => {
     <section
       id="certifications"
       data-section-path="/certifications"
-      aria-label="Certifications"
+      aria-label={t.certifications.ariaLabel}
       tabIndex={-1}
     >
       <Container className="certs-page">
@@ -128,8 +134,8 @@ const Certifications = () => {
           <WorkspaceHeader
             index={WORKSPACE.certifications.index}
             path={WORKSPACE.certifications.path}
-            title={WORKSPACE.certifications.title}
-            meta={`${certificates.length} certificates in security, English, and development.`}
+            title={t.workspace.certifications}
+            meta={t.certifications.meta.replace("{count}", String(certificates.length))}
           />
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
@@ -145,7 +151,7 @@ const Certifications = () => {
                 type="button"
                 className="certs-card__open"
                 onClick={event => openViewer(certificate.id, event)}
-                aria-label={`View ${certificate.title} fullscreen`}
+                aria-label={t.certifications.view.replace("{title}", certificate.title)}
               >
                 <Image
                   ref={node => {

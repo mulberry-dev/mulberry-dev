@@ -1,7 +1,10 @@
 "use client"
 
+import LanguageSwitch from "@/components/LanguageSwitch"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
+import { useI18n } from "@/i18n/useI18n"
+import { isHomePath, stripLocale } from "@/lib/locale"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
 import { prefetchSectionPath, SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
@@ -35,11 +38,13 @@ const HOME_CHROME_NAV_MS = 480
 const INDICATOR_HEIGHT = 2
 
 const isActivePath = (pathname: string, path: string) => {
+  const current = stripLocale(pathname)
+
   if (path === "/") {
-    return pathname === "/"
+    return current === "/"
   }
 
-  return pathname === path || pathname.startsWith(`${path}/`)
+  return current === path || current.startsWith(`${path}/`)
 }
 
 const prefersReducedMotion = () =>
@@ -47,6 +52,7 @@ const prefersReducedMotion = () =>
 
 const Navigation = () => {
   const pathname = usePathname()
+  const { href, t, navLabel } = useI18n()
   const menuId = useId()
   const [menu, setMenu] = useState<MenuPhase>("closed")
   const toggleRef = useRef<HTMLButtonElement>(null)
@@ -55,14 +61,14 @@ const Navigation = () => {
   const lastFocusRef = useRef<HTMLElement | null>(null)
   const menuWasOpenRef = useRef(false)
 
-  if (pathname !== "/") {
+  if (!isHomePath(pathname)) {
     markLeftHome()
   }
 
   const [playNavIntro, setPlayNavIntro] = useState(false)
   const [playToggleIntro, setPlayToggleIntro] = useState(false)
   const [chromePhase, setChromePhase] = useState<ChromePhase>(() =>
-    pathname === "/" && !shouldRevealHomeChrome() ? "wait" : "shown"
+    isHomePath(pathname) && !shouldRevealHomeChrome() ? "wait" : "shown"
   )
   const [isCompact, setIsCompact] = useState(false)
   const [activePath, setActivePath] = useState(pathname)
@@ -94,10 +100,10 @@ const Navigation = () => {
   }, [chromePhase])
 
   useLayoutEffect(() => {
-    const shouldWait = pathname === "/" && !shouldRevealHomeChrome()
+    const shouldWait = isHomePath(pathname) && !shouldRevealHomeChrome()
 
     if (!shouldWait) {
-      if (pathname !== "/") {
+      if (!isHomePath(pathname)) {
         markHomeChromeRevealed()
       }
 
@@ -185,7 +191,7 @@ const Navigation = () => {
   }, [])
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (!isHomePath(pathname)) {
       document.body.classList.add("nav-intro-done")
     }
 
@@ -524,7 +530,7 @@ const Navigation = () => {
             aria-hidden={chromePhase === "wait" || undefined}
             inert={chromePhase === "wait" || undefined}
           >
-            <Link href="/" className="site-nav__logo" scroll={false} prefetch={false}>
+            <Link href={href("/")} className="site-nav__logo" scroll={false} prefetch={false}>
               <Image
                 className="site-logo"
                 src={SITE_LOGO}
@@ -543,7 +549,7 @@ const Navigation = () => {
             ref={navRef}
             id={menuId}
             className={`site-nav__links${menuOpen ? " is-open" : ""}${menu === "closing" ? " is-closing" : ""}`}
-            aria-label="Primary"
+            aria-label={t.nav.primary}
             onTransitionEnd={onMenuTransitionEnd}
           >
             <span
@@ -554,7 +560,7 @@ const Navigation = () => {
             {links.map((link, index) =>
               <Link
                 key={link.id}
-                href={link.path}
+                href={href(link.path)}
                 scroll={false}
                 prefetch={false}
                 ref={(node) => {
@@ -571,17 +577,18 @@ const Navigation = () => {
                   }
                 }}
               >
-                {link.name}
+                {navLabel(link.path)}
               </Link>
             )}
           </nav>
 
           <div className="site-nav__actions">
+            <LanguageSwitch />
             <button
               ref={toggleRef}
               className={`site-nav__toggle${menu === "open" ? " is-open" : ""}${playToggleIntro ? " is-intro" : ""}`}
               type="button"
-              aria-label={menu === "open" ? "Close menu" : "Open menu"}
+              aria-label={menu === "open" ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={menu === "open"}
               aria-controls={menuId}
               onClick={() => setMenu((value) => (value === "open" ? "closing" : "open"))}

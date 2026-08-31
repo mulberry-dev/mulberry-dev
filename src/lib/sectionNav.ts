@@ -1,5 +1,7 @@
+import { getMessages, navLabel } from "@/i18n"
 import { links } from "@/data/navegation"
-import { SITE_NAME, SITE_TITLE } from "@/data/site"
+import { SITE_NAME } from "@/data/site"
+import { getLocale, stripLocale } from "@/lib/locale"
 
 export const SECTION_PATHS = links.map((link) => link.path)
 export const SECTION_CHANGE_EVENT = "site:section-change"
@@ -17,25 +19,29 @@ export const SECTIONS: SiteSection[] = links.map((link) => ({
 }))
 
 export const isSectionPath = (pathname: string) =>
-  SECTION_PATHS.includes(pathname)
+  SECTION_PATHS.includes(stripLocale(pathname))
 
-export const isProjectDetailPath = (pathname: string) =>
-  pathname.startsWith("/portfolio/") && pathname !== "/portfolio"
+export const isProjectDetailPath = (pathname: string) => {
+  const path = stripLocale(pathname)
+  return path.startsWith("/portfolio/") && path !== "/portfolio"
+}
 
 export const getSectionIndex = (pathname: string) =>
-  SECTION_PATHS.indexOf(pathname)
+  SECTION_PATHS.indexOf(stripLocale(pathname))
 
 export const getSectionByPath = (pathname: string) =>
-  SECTIONS.find((section) => section.path === pathname) ?? null
+  SECTIONS.find((section) => section.path === stripLocale(pathname)) ?? null
 
 export const sectionDocumentTitle = (pathname: string) => {
+  const locale = getLocale(pathname)
+  const messages = getMessages(locale)
   const section = getSectionByPath(pathname)
 
   if (!section || section.path === "/") {
-    return SITE_TITLE
+    return messages.site.title
   }
 
-  return `${section.name} | ${SITE_NAME}`
+  return `${navLabel(messages, section.path)} | ${SITE_NAME}`
 }
 
 export const applySectionTitle = (pathname: string) => {
@@ -150,7 +156,7 @@ const pinInstantScroll = (run: () => void) => {
 }
 
 export const getSectionScrollTop = (pathname: string) => {
-  if (pathname === "/") {
+  if (stripLocale(pathname) === "/") {
     return 0
   }
 
@@ -174,7 +180,7 @@ export const getSectionScrollTop = (pathname: string) => {
 }
 
 export const isSectionInViewport = (pathname: string, slack = 28) => {
-  if (pathname === "/") {
+  if (stripLocale(pathname) === "/") {
     return window.scrollY <= slack
   }
 

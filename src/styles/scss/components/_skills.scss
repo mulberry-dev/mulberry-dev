@@ -368,6 +368,12 @@
   width: 100%;
 }
 
+.skills-scene-fallback {
+  min-height: 18.25rem;
+  border: 1px solid var(--skills-line);
+  background: color-mix(in srgb, var(--color-canvas) 72%, transparent);
+}
+
 .product-scene__frame {
   display: grid;
   grid-template-columns: 4.6rem minmax(0, 1fr);

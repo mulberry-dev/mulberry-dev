@@ -1,9 +1,11 @@
 "use client"
 
 import { BUILD_APPROACH } from "@/data/whatIBuild"
+import { useI18n } from "@/i18n/useI18n"
 import { useHotScene } from "./useHotScene"
 
 const ApproachScene = () => {
+  const { t } = useI18n()
   const { ref, hot } = useHotScene(0.2)
 
   return (
@@ -11,21 +13,21 @@ const ApproachScene = () => {
       ref={ref}
       id="build-approach"
       className={`approach-scene${hot ? " is-hot" : ""}`}
-      aria-label="STAR method: Situation, Task, Action, Result"
+      aria-label={`${BUILD_APPROACH.title}: ${t.skills.approach.stages.map(stage => stage.title).join(", ")}`}
     >
       <header className="approach-scene__head">
         <h3 className="approach-scene__index">
           <span>{BUILD_APPROACH.index}</span>
           <span> / {BUILD_APPROACH.title}</span>
         </h3>
-        <p className="approach-scene__kicker">{BUILD_APPROACH.kicker}</p>
+        <p className="approach-scene__kicker">{t.skills.approach.kicker}</p>
       </header>
       <ol className="approach-scene__grid">
         {BUILD_APPROACH.stages.map((stage, index) => (
           <li
             key={stage.letter}
             className={`approach-scene__step is-${stage.letter.toLowerCase()}`}
-            title={stage.text}
+            title={t.skills.approach.stages[index]?.text ?? stage.text}
           >
             {index > 0 ? (
               <span className="approach-scene__arrow" aria-hidden="true">
@@ -46,7 +48,7 @@ const ApproachScene = () => {
               <span className="approach-scene__letter" aria-hidden="true">
                 {stage.letter}
               </span>
-              <strong>{stage.title}</strong>
+              <strong>{t.skills.approach.stages[index]?.title ?? stage.title}</strong>
             </div>
           </li>
         ))}

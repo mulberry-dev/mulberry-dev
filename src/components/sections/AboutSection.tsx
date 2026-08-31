@@ -1,27 +1,29 @@
 "use client"
 
 import "@/styles/scss/sections/about.scss"
-import AboutPortrait from "@/components/about/AboutPortrait"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
+import dynamic from "next/dynamic"
 import { WORKSPACE } from "@/data/workspace"
 import {
   ABOUT_FOOTER,
   ABOUT_HOST,
   ABOUT_INITIALS,
-  ABOUT_INTRO,
   ABOUT_LOCATION_SHORT,
+  ABOUT_NAME,
   ABOUT_ORIGIN,
   ABOUT_PASSIONS,
   ABOUT_PATH,
   ABOUT_HISTORY,
-  ABOUT_SECTIONS,
-  ABOUT_WHOAMI
+  ABOUT_SECTIONS
 } from "@/data/about"
+import { useI18n } from "@/i18n/useI18n"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+
+const AboutPortrait = dynamic(() => import("@/components/about/AboutPortrait"))
 
 const Prompt = ({
   command,
@@ -48,6 +50,7 @@ const SessionPrompt = ({ cursor = false }: { cursor?: boolean }) => (
 )
 
 const About = () => {
+  const { t, href } = useI18n()
   const [active, setActive] = useState<string>(ABOUT_SECTIONS[0].id)
 
   useEffect(() => {
@@ -131,17 +134,17 @@ const About = () => {
     <section
       id="about"
       data-section-path="/about"
-      aria-label="About Me"
+      aria-label={t.about.ariaLabel}
       tabIndex={-1}
     >
       <Container className="about-page">
         <WorkspaceHeader
           index={WORKSPACE.about.index}
           path={WORKSPACE.about.path}
-          title={WORKSPACE.about.title}
+          title={t.workspace.about}
         />
         <div className="about-terminal">
-          <nav className="about-rail" aria-label="On this page">
+          <nav className="about-rail" aria-label={t.nav.onThisPage}>
             {ABOUT_SECTIONS.map((section) => (
               <button
                 key={section.id}
@@ -155,7 +158,13 @@ const About = () => {
                 aria-current={active === section.id ? "true" : undefined}
               >
                 <span className="about-rail__index">{section.index}</span>
-                <span className="about-rail__label">{section.label}</span>
+                <span className="about-rail__label">
+                  {section.id === "about-intro"
+                    ? t.about.rail.intro
+                    : section.id === "about-identity"
+                      ? t.about.rail.identity
+                      : t.about.rail.path}
+                </span>
               </button>
             ))}
           </nav>
@@ -172,14 +181,14 @@ const About = () => {
             <RevealGroup className="about-intro" mode="auto" stagger={70}>
               <div id="about-intro" data-about-section="intro">
                 <Reveal type="eyebrow">
-                  <Prompt command={ABOUT_INTRO.command} cursor />
+                  <Prompt command={t.about.command} cursor />
                 </Reveal>
                 <Reveal type="heading" as="h2" className="about-headline">
-                  {ABOUT_INTRO.headline.map((line, index) => (
+                  {t.about.headline.map((line, index) => (
                     <span
                       key={line}
                       className={
-                        index >= ABOUT_INTRO.accentFrom
+                        index >= t.about.accentFrom
                           ? "about-headline__line is-accent"
                           : "about-headline__line"
                       }
@@ -189,7 +198,7 @@ const About = () => {
                   ))}
                 </Reveal>
                 <Reveal type="text" className="about-intro__body" as="p">
-                  {ABOUT_INTRO.body.map((line) => (
+                  {t.about.body.map((line) => (
                     <span key={line}>{line}</span>
                   ))}
                 </Reveal>
@@ -203,10 +212,10 @@ const About = () => {
             <RevealGroup className="about-meta" mode="auto" stagger={56}>
               <div id="about-identity" data-about-section="identity">
                 <Reveal type="eyebrow">
-                  <Prompt command={ABOUT_WHOAMI.command} cursor />
+                  <Prompt command={t.about.whoami} cursor />
                 </Reveal>
                 <Reveal type="text" as="p" className="about-whoami__name">
-                  {ABOUT_WHOAMI.name}
+                  {ABOUT_NAME}
                 </Reveal>
                 <Reveal type="text" as="p" className="about-whoami__origin">
                   <span>{ABOUT_ORIGIN.code}</span>
@@ -216,15 +225,15 @@ const About = () => {
 
               <div className="about-passions">
                 <Reveal type="eyebrow">
-                  <Prompt command="passions" />
+                  <Prompt command={t.about.passionsCommand} />
                 </Reveal>
                 <ul>
-                  {ABOUT_PASSIONS.map((item) => (
-                    <Reveal key={item.label} as="li" type="chip">
+                  {ABOUT_PASSIONS.map((item, index) => (
+                    <Reveal key={item.icon} as="li" type="chip">
                       <span className="about-passions__icon" aria-hidden="true">
                         <SiteIcon name={item.icon} />
                       </span>
-                      <span>{item.label}</span>
+                      <span>{t.about.passions[index] ?? item.label}</span>
                     </Reveal>
                   ))}
                 </ul>
@@ -235,15 +244,15 @@ const About = () => {
           <RevealGroup className="about-path" mode="scroll" stagger={48}>
             <div id="about-path" data-about-section="path">
               <Reveal type="eyebrow">
-                <Prompt command={ABOUT_HISTORY.command} />
+                <Prompt command={t.about.historyCommand} />
               </Reveal>
               <ol className="about-log">
-                {ABOUT_HISTORY.items.map((item) => (
+                {ABOUT_HISTORY.items.map((item, index) => (
                   <Reveal key={item.step} as="li" type="chip">
                     <span className="about-log__step">{item.step}</span>
                     <span>
-                      <strong>{item.title}</strong>
-                      {item.text}
+                      <strong>{t.about.history[index]?.title ?? item.title}</strong>
+                      {t.about.history[index]?.text ?? item.text}
                     </span>
                   </Reveal>
                 ))}
@@ -253,12 +262,12 @@ const About = () => {
 
           <footer className="about-foot">
             <span className="about-foot__mark">{ABOUT_INITIALS}</span>
-            <Link href={ABOUT_FOOTER.href} className="about-talk" scroll={false}>
-              <span>{ABOUT_FOOTER.question}</span>
+            <Link href={href(ABOUT_FOOTER.href)} className="about-talk" scroll={false}>
+              <span>{t.about.footerQuestion}</span>
               <span className="about-talk__arrow" aria-hidden="true">
                 -&gt;
               </span>
-              <span className="about-talk__cmd">[ {ABOUT_FOOTER.action} ]</span>
+              <span className="about-talk__cmd">[ {t.about.footerAction} ]</span>
             </Link>
           </footer>
         </div>

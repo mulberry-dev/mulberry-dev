@@ -5,8 +5,35 @@ import Container from "@/components/ui/Container"
 import IconBox from "@/components/ui/IconBox"
 import Reveal from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
+import { getMessages } from "@/i18n"
+import { isLocale, localizePath } from "@/lib/locale"
+import { headers } from "next/headers"
+import type { Metadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headerLocale = headers().get("x-locale")
+  const locale = isLocale(headerLocale) ? headerLocale : "en"
+  const t = getMessages(locale)
+
+  return {
+    title: t.notFound.title,
+    description: t.notFound.body,
+    robots: {
+      index: false,
+      follow: false
+    },
+    twitter: {
+      title: t.notFound.title,
+      description: t.notFound.body
+    }
+  }
+}
 
 export default function NotFound() {
+  const headerLocale = headers().get("x-locale")
+  const locale = isLocale(headerLocale) ? headerLocale : "en"
+  const t = getMessages(locale)
+
   return (
     <section className="not-found-page">
       <Container className="auth-page auth-page--missing">
@@ -18,11 +45,11 @@ export default function NotFound() {
             </IconBox>
           </div>
           <div className="not-found-card__copy">
-            <h2>Error 404</h2>
-            <p>The page you&apos;re looking for doesn&apos;t exist or has been moved.</p>
+            <h1>{t.notFound.heading}</h1>
+            <p>{t.notFound.body}</p>
           </div>
           <div className="not-found-card__actions">
-            <Button href="/">Back Home</Button>
+            <Button href={localizePath("/", locale)}>{t.notFound.back}</Button>
           </div>
         </Card>
         </Reveal>

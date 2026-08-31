@@ -1,5 +1,7 @@
+import { getMessages } from "@/i18n"
 import { FEATURED_PROJECT_IDS } from "@/data/workspace"
 import { data as projects } from "@/data/projects"
+import type { Locale } from "@/lib/locale"
 
 export type Project = (typeof projects)[number]
 
@@ -24,7 +26,8 @@ export const extractStartYear = (description: string) => {
 }
 
 export const builtWithoutAi = (project: Project) => {
-  const year = extractStartYear(project.description)
+  const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  const year = extractStartYear(source.description)
   return year !== undefined && year <= 2023
 }
 
@@ -37,8 +40,23 @@ export const projectSlug = (id: string | number) =>
 export const techNames = (tech: Project["tech"]) =>
   tech.map(item => (typeof item === "string" ? item : item.tech))
 
+export const localizeProject = (project: Project, locale: Locale): Project => {
+  const copy = getMessages(locale).projects[String(project.id)]
+
+  if (!copy) {
+    return project
+  }
+
+  return {
+    ...project,
+    teaser: copy.teaser,
+    description: copy.description
+  }
+}
+
 export const projectStatus = (project: Project) => {
-  const copy = `${project.teaser} ${project.description}`
+  const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  const copy = `${source.teaser} ${source.description}`
 
   if (/ongoing/i.test(copy)) {
     return { id: "ongoing" as const, label: "Ongoing" }

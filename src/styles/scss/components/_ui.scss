@@ -375,6 +375,43 @@ body:not(.dark) .ui-tech-badge {
 .site-footer__copy {
   margin: 0;
   text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.language-switch a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.language-switch a[aria-current="page"] {
+  color: var(--color-text);
+  pointer-events: none;
+}
+
+.language-switch a:hover,
+.language-switch a:focus-visible {
+  color: var(--color-text);
+}
+
+.language-switch a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 .site-footer__note {
