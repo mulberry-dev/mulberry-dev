@@ -1,5 +1,6 @@
 "use client"
 
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { CategoryIcon } from "@/components/ui/CategoryIcon"
 
 export type FilterOption = {
@@ -42,7 +43,8 @@ const FilterPills = ({
       >
         {variant === "pills" ? <CategoryIcon variant={option.id} /> : null}
         <span>
-          {variant === "command" ? `[ ${option.label}` : option.label}
+          {variant === "command" ? "[ " : null}
+          <TypeCopy text={option.label} caret={false} />
           {option.count !== undefined ? (
             <span className="ui-filter-count">
               {" "}

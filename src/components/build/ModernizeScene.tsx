@@ -1,5 +1,6 @@
 "use client"
 
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { useI18n } from "@/i18n/useI18n"
 import { useHotScene } from "./useHotScene"
 
@@ -17,12 +18,14 @@ const ModernizeScene = () => {
       aria-label={`${t.skills.modernization.legacyLabel}: ${t.skills.modernization.legacy.join(", ")}. ${t.skills.modernization.modernLabel}: ${t.skills.modernization.modern.join(", ")}`}
     >
       <div className="modern-scene__pane modern-scene__pane--legacy">
-        <p>{t.skills.modernization.legacyLabel}</p>
+        <p>
+          <TypeCopy text={t.skills.modernization.legacyLabel} />
+        </p>
         <ul>
-          {t.skills.modernization.legacy.map((item) => (
-            <li key={item}>
+          {t.skills.modernization.legacy.map((item, index) => (
+            <li key={index}>
               <span>×</span>
-              {item}
+              <TypeCopy text={item} />
             </li>
           ))}
         </ul>
@@ -45,12 +48,14 @@ const ModernizeScene = () => {
       </div>
 
       <div className="modern-scene__pane modern-scene__pane--modern">
-        <p>{t.skills.modernization.modernLabel}</p>
+        <p>
+          <TypeCopy text={t.skills.modernization.modernLabel} />
+        </p>
         <ul>
-          {t.skills.modernization.modern.map((item) => (
-            <li key={item}>
+          {t.skills.modernization.modern.map((item, index) => (
+            <li key={index}>
               <span>✓</span>
-              {item}
+              <TypeCopy text={item} />
             </li>
           ))}
         </ul>

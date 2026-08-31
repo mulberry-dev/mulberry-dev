@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { BUILD_STACK } from "@/data/whatIBuild"
 import { skills } from "@/data/skills"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { useI18n } from "@/i18n/useI18n"
 import { StackSession } from "./BuildChrome"
 
@@ -21,8 +22,12 @@ const StackTerminal = () => {
     <div className="skills-stack">
       <div className="skills-stack__head">
         <StackSession />
-        <h3 className="skills-stack__title">{t.skills.stackTitle}</h3>
-        <p className="skills-stack__lead">{t.skills.stackLead}</p>
+        <h3 className="skills-stack__title">
+          <TypeCopy text={t.skills.stackTitle} />
+        </h3>
+        <p className="skills-stack__lead">
+          <TypeCopy text={t.skills.stackLead} />
+        </p>
       </div>
       <ul className="skills-stack__groups">
         {STACK_GROUPS.map((group) => (
@@ -31,7 +36,10 @@ const StackTerminal = () => {
             className={`skills-stack__group skills-stack__group--${group.tone}`}
           >
             <span className="skills-stack__label">
-              {groupLabels[group.key as keyof typeof groupLabels] ?? group.label}
+              <TypeCopy
+                text={groupLabels[group.key as keyof typeof groupLabels] ?? group.label}
+                caret={false}
+              />
             </span>
             <ul className="skills-stack__icons">
               {group.items.map((skill) => (

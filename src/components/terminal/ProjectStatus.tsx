@@ -1,6 +1,7 @@
 "use client"
 
 import StatusDot from "@/components/terminal/StatusDot"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { useI18n } from "@/i18n/useI18n"
 import type { PreviewAvailability } from "@/lib/previewAvailability"
 import { projectStatus } from "@/lib/projects"
@@ -22,7 +23,7 @@ const ProjectStatus = ({
   return (
     <span className={`term-status term-status--${id}`}>
       <StatusDot tone={tone} pulse={id === "live"} />
-      {t.status[id]}
+      <TypeCopy text={t.status[id]} caret={false} />
     </span>
   )
 }

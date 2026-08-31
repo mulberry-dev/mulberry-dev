@@ -4,6 +4,7 @@ import "@/styles/scss/sections/about.scss"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import dynamic from "next/dynamic"
 import { WORKSPACE } from "@/data/workspace"
@@ -34,7 +35,10 @@ const Prompt = ({
 }) => (
   <p className="about-prompt">
     <span className="about-prompt__cash">$</span>
-    <span> {command}</span>
+    <span>
+      {" "}
+      <TypeCopy text={command} />
+    </span>
     {cursor ? <span className="about-cursor" aria-hidden="true" /> : null}
   </p>
 )
@@ -159,11 +163,16 @@ const About = () => {
               >
                 <span className="about-rail__index">{section.index}</span>
                 <span className="about-rail__label">
-                  {section.id === "about-intro"
-                    ? t.about.rail.intro
-                    : section.id === "about-identity"
-                      ? t.about.rail.identity
-                      : t.about.rail.path}
+                  <TypeCopy
+                    text={
+                      section.id === "about-intro"
+                        ? t.about.rail.intro
+                        : section.id === "about-identity"
+                          ? t.about.rail.identity
+                          : t.about.rail.path
+                    }
+                    caret={false}
+                  />
                 </span>
               </button>
             ))}
@@ -186,20 +195,20 @@ const About = () => {
                 <Reveal type="heading" as="h2" className="about-headline">
                   {t.about.headline.map((line, index) => (
                     <span
-                      key={line}
+                      key={index}
                       className={
                         index >= t.about.accentFrom
                           ? "about-headline__line is-accent"
                           : "about-headline__line"
                       }
                     >
-                      {line}
+                      <TypeCopy text={line} block />
                     </span>
                   ))}
                 </Reveal>
                 <Reveal type="text" className="about-intro__body" as="p">
-                  {t.about.body.map((line) => (
-                    <span key={line}>{line}</span>
+                  {t.about.body.map((line, index) => (
+                    <TypeCopy key={index} text={line} block />
                   ))}
                 </Reveal>
               </div>
@@ -233,7 +242,7 @@ const About = () => {
                       <span className="about-passions__icon" aria-hidden="true">
                         <SiteIcon name={item.icon} />
                       </span>
-                      <span>{t.about.passions[index] ?? item.label}</span>
+                      <TypeCopy text={t.about.passions[index] ?? item.label} />
                     </Reveal>
                   ))}
                 </ul>
@@ -251,8 +260,10 @@ const About = () => {
                   <Reveal key={item.step} as="li" type="chip">
                     <span className="about-log__step">{item.step}</span>
                     <span>
-                      <strong>{t.about.history[index]?.title ?? item.title}</strong>
-                      {t.about.history[index]?.text ?? item.text}
+                      <strong>
+                        <TypeCopy text={t.about.history[index]?.title ?? item.title} />
+                      </strong>
+                      <TypeCopy text={t.about.history[index]?.text ?? item.text} />
                     </span>
                   </Reveal>
                 ))}
@@ -263,11 +274,13 @@ const About = () => {
           <footer className="about-foot">
             <span className="about-foot__mark">{ABOUT_INITIALS}</span>
             <Link href={href(ABOUT_FOOTER.href)} className="about-talk" scroll={false}>
-              <span>{t.about.footerQuestion}</span>
+              <TypeCopy text={t.about.footerQuestion} />
               <span className="about-talk__arrow" aria-hidden="true">
                 -&gt;
               </span>
-              <span className="about-talk__cmd">[ {t.about.footerAction} ]</span>
+              <span className="about-talk__cmd">
+                [ <TypeCopy text={t.about.footerAction} /> ]
+              </span>
             </Link>
           </footer>
         </div>

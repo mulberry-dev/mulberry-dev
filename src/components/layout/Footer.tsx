@@ -1,6 +1,7 @@
 "use client"
 
 import LanguageSwitch from "@/components/LanguageSwitch"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import StatusDot from "@/components/terminal/StatusDot"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import { COPYRIGHT_NAME } from "@/data/site"
@@ -29,7 +30,7 @@ const Footer = () => {
           <LanguageSwitch className="language-switch language-switch--footer" />
         </div>
         <p className="site-footer__note">
-          <span>{t.footer.systemOnline}</span>
+          <TypeCopy text={t.footer.systemOnline} />
           <StatusDot pulse />
         </p>
       </div>

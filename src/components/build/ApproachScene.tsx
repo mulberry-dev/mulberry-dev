@@ -1,5 +1,6 @@
 "use client"
 
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { BUILD_APPROACH } from "@/data/whatIBuild"
 import { useI18n } from "@/i18n/useI18n"
 import { useHotScene } from "./useHotScene"
@@ -20,7 +21,9 @@ const ApproachScene = () => {
           <span>{BUILD_APPROACH.index}</span>
           <span> / {BUILD_APPROACH.title}</span>
         </h3>
-        <p className="approach-scene__kicker">{t.skills.approach.kicker}</p>
+        <p className="approach-scene__kicker">
+          <TypeCopy text={t.skills.approach.kicker} />
+        </p>
       </header>
       <ol className="approach-scene__grid">
         {BUILD_APPROACH.stages.map((stage, index) => {
@@ -53,8 +56,12 @@ const ApproachScene = () => {
                   {stage.letter}
                 </span>
                 <span className="approach-scene__copy">
-                  <strong>{title}</strong>
-                  <span className="approach-scene__text">{text}</span>
+                  <strong>
+                    <TypeCopy text={title} />
+                  </strong>
+                  <span className="approach-scene__text">
+                    <TypeCopy text={text} />
+                  </span>
                 </span>
               </div>
             </li>

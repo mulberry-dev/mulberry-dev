@@ -1,6 +1,7 @@
 "use client"
 
 import ProjectStatus from "@/components/terminal/ProjectStatus"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { useI18n } from "@/i18n/useI18n"
 import type { PreviewAvailability } from "@/lib/previewAvailability"
 import { builtWithoutAi, type Project } from "@/lib/projects"
@@ -22,7 +23,7 @@ const ProjectFlags = ({
           className="term-status term-status--pre-ai"
           title={t.status.noAiTitle}
         >
-          {t.status.noAi}
+          <TypeCopy text={t.status.noAi} caret={false} />
         </span>
       ) : null}
     </span>

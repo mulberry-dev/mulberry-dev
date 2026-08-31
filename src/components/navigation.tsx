@@ -1,6 +1,7 @@
 "use client"
 
 import LanguageSwitch from "@/components/LanguageSwitch"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { useI18n } from "@/i18n/useI18n"
@@ -595,7 +596,7 @@ const Navigation = () => {
                   }
                 }}
               >
-                {navLabel(link.path)}
+                <TypeCopy text={navLabel(link.path)} caret={false} />
               </Link>
             )}
           </nav>

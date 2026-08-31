@@ -1,3 +1,5 @@
+import TypeCopy from "@/components/terminal/TypeCopy"
+
 const CommandLine = ({
   command,
   cursor = false,
@@ -9,7 +11,10 @@ const CommandLine = ({
 }) => (
   <p className={`term-command${className ? ` ${className}` : ""}`}>
     <span className="term-command__cash">$</span>
-    <span> {command}</span>
+    <span>
+      {" "}
+      <TypeCopy text={command} />
+    </span>
     {cursor ? <span className="term-cursor" aria-hidden="true" /> : null}
   </p>
 )

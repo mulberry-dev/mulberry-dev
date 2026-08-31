@@ -1,4 +1,5 @@
 import CommandLine from "@/components/terminal/CommandLine"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 
@@ -28,7 +29,7 @@ const WorkspaceHeader = ({
         <TerminalPrompt path={path} />
       </Reveal>
       <Reveal type="heading" as={Heading} className="workspace-header__title">
-        {title}
+        <TypeCopy text={title} />
       </Reveal>
       {command ? (
         <Reveal type="text">
@@ -37,7 +38,7 @@ const WorkspaceHeader = ({
       ) : null}
       {meta ? (
         <Reveal type="text" as="p" className="workspace-header__meta">
-          {meta}
+          <TypeCopy text={meta} />
         </Reveal>
       ) : null}
     </RevealGroup>

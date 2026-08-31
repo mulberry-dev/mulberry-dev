@@ -1,6 +1,8 @@
 "use client"
 
 import { useParticles } from "@/components/particles"
+import { holdActiveSection } from "@/lib/localeRewrite"
+import { isLocaleOnlyPathChange } from "@/lib/locale"
 import { isProjectDetailPath, isSectionPath } from "@/lib/sectionNav"
 import { usePathname } from "next/navigation"
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react"
@@ -42,6 +44,11 @@ const PageTransition = ({ children }: { children: ReactNode }) => {
     document.body.classList.remove("particles-route-transition")
 
     if (isSectionPath(fromPath) && isSectionPath(pathname)) {
+      return
+    }
+
+    if (isLocaleOnlyPathChange(fromPath, pathname)) {
+      holdActiveSection(pathname, 2200)
       return
     }
 

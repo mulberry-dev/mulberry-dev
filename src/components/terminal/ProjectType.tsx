@@ -1,5 +1,6 @@
 "use client"
 
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { CategoryIcon } from "@/components/ui/CategoryIcon"
 import { useI18n } from "@/i18n/useI18n"
 import { type Project } from "@/lib/projects"
@@ -15,7 +16,7 @@ const ProjectType = ({ project }: { project: Project }) => {
       title={label}
     >
       <CategoryIcon variant={project.category} />
-      {label}
+      <TypeCopy text={label} caret={false} />
     </span>
   )
 }

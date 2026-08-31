@@ -53,6 +53,9 @@ export const localizePath = (path: string, locale: Locale): string => {
 
 export const isHomePath = (pathname: string) => stripLocale(pathname) === "/"
 
+export const isLocaleOnlyPathChange = (from: string, to: string) =>
+  stripLocale(from) === stripLocale(to) && getLocale(from) !== getLocale(to)
+
 export const localeHrefLang = (locale: Locale) => (locale === "es" ? "es" : "en")
 
 export const ogLocale = (locale: Locale) => (locale === "es" ? "es_MX" : "en_US")

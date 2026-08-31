@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { useParticles } from "@/components/particles"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { WORKSPACE } from "@/data/workspace"
@@ -174,20 +175,33 @@ const IndexPage = () => {
               <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
             </div>
             <h1>
-              {t.home.greeting}{" "}
-              <span className="gradient-text home-hero__name">{t.home.name}</span>
+              <TypeCopy
+                parts={[
+                  { text: `${t.home.greeting} ` },
+                  { text: t.home.name, className: "gradient-text home-hero__name" }
+                ]}
+              />
             </h1>
             <p className="home-hero__role">
               <span className="home-hero__bracket">&lt;</span>{" "}
-              <span className="home-hero__teal">{t.home.roleLead}</span>{" "}
-              <span className="home-hero__purple">{t.home.roleTrail}</span>{" "}
+              <TypeCopy
+                parts={[
+                  { text: t.home.roleLead, className: "home-hero__teal" },
+                  { text: " " },
+                  { text: t.home.roleTrail, className: "home-hero__purple" }
+                ]}
+              />{" "}
               <span className="home-hero__bracket">/ &gt;</span>
             </p>
             <p className="home-hero__body">
-              <span>{t.home.bodyBefore}</span>
-              <span className="home-hero__solutions">{t.home.bodySolutions}</span>
-              <span>{t.home.bodyMid}</span>
-              <span className="gradient-text">{t.home.bodyValue}</span>
+              <TypeCopy
+                parts={[
+                  { text: t.home.bodyBefore },
+                  { text: t.home.bodySolutions, className: "home-hero__solutions" },
+                  { text: t.home.bodyMid },
+                  { text: t.home.bodyValue, className: "gradient-text" }
+                ]}
+              />
               <span className="home-hero__caret" aria-hidden="true">
                 _
               </span>
@@ -195,7 +209,9 @@ const IndexPage = () => {
             <div className="home-hero__actions">
               <Button href={href("/about")} variant="terminal">
                 <span className="sr-only">{t.home.ctaSr}</span>
-                <span aria-hidden="true">{t.home.cta}</span>
+                <span aria-hidden="true">
+                  <TypeCopy text={t.home.cta} />
+                </span>
               </Button>
             </div>
           </div>

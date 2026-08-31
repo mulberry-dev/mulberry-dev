@@ -242,6 +242,38 @@ export const settleSectionInView = (pathname: string) => {
   })
 }
 
+export const stabilizeSection = (pathname: string, durationMs = 1100) => {
+  markProgrammaticSectionScroll(durationMs)
+  let lastDocTop = getSectionScrollTop(pathname)
+
+  const correct = () => {
+    const top = getSectionScrollTop(pathname)
+
+    if (top === null) {
+      return
+    }
+
+    if (lastDocTop !== null && Math.abs(top - lastDocTop) <= 2) {
+      return
+    }
+
+    lastDocTop = top
+    scrollToSection(pathname, "auto")
+  }
+
+  const observer = new ResizeObserver(() => {
+    markProgrammaticSectionScroll(200)
+    correct()
+  })
+
+  document.querySelectorAll(".site-experience > section").forEach((node) => {
+    observer.observe(node)
+  })
+
+  window.setTimeout(() => observer.disconnect(), durationMs)
+  return () => observer.disconnect()
+}
+
 export const readActiveSectionPath = () => {
   const line = Math.min(window.innerHeight * 0.3, 200)
   let current = SECTIONS[0]?.path ?? "/"

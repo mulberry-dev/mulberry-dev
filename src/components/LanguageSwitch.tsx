@@ -17,6 +17,7 @@ const LanguageSwitch = ({ className }: { className?: string }) => {
         lang="en"
         scroll={false}
         prefetch={false}
+        data-locale-switch=""
         aria-current={locale === "en" ? "page" : undefined}
         onClick={() => writeStoredLocale("en")}
       >
@@ -29,6 +30,7 @@ const LanguageSwitch = ({ className }: { className?: string }) => {
         lang="es"
         scroll={false}
         prefetch={false}
+        data-locale-switch=""
         aria-current={locale === "es" ? "page" : undefined}
         onClick={() => writeStoredLocale("es")}
       >

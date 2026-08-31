@@ -3,6 +3,7 @@
 import "@/styles/scss/sections/skills.scss"
 import LazyOnView from "@/components/LazyOnView"
 import { BuildSession } from "@/components/build/BuildChrome"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
@@ -72,24 +73,24 @@ const CopyBlock = ({
     </Reveal>
     {kicker ? (
       <Reveal type="text" as="p" className="skills-copy__kicker">
-        {kicker}
+        <TypeCopy text={kicker} />
       </Reveal>
     ) : null}
     {copy.length ? (
       <Reveal type="text" as="p" className="skills-copy__body">
-        {copy.map((line) => (
-          <span key={line}>{line}</span>
+        {copy.map((line, index) => (
+          <TypeCopy key={index} text={line} block />
         ))}
       </Reveal>
     ) : null}
     {items ? (
       <ul className="skills-copy__items">
         {items.map((item) => (
-          <Reveal key={item.label} as="li" type="chip">
+          <Reveal key={item.icon} as="li" type="chip">
             <span aria-hidden="true">
               <SiteIcon name={item.icon} />
             </span>
-            <span>{item.label}</span>
+            <TypeCopy text={item.label} />
           </Reveal>
         ))}
       </ul>
@@ -249,7 +250,10 @@ const Skills = () => {
               >
                 <span className="skills-rail__index">{section.index}</span>
                 <span className="skills-rail__label">
-                  {railLabels[BUILD_SECTIONS.indexOf(section)] ?? section.label}
+                  <TypeCopy
+                    text={railLabels[BUILD_SECTIONS.indexOf(section)] ?? section.label}
+                    caret={false}
+                  />
                 </span>
               </button>
             ))}
@@ -262,7 +266,7 @@ const Skills = () => {
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
               <Reveal type="heading" as="h3" className="skills-headline">
-                {t.skills.headline}
+                <TypeCopy text={t.skills.headline} />
               </Reveal>
               <Reveal
                 type="decorative"
@@ -279,8 +283,12 @@ const Skills = () => {
                   <span className="capability-card__icon" aria-hidden="true">
                     <SiteIcon name={item.icon} />
                   </span>
-                  <h3>{t.skills.capabilities[index]?.title ?? item.title}</h3>
-                  <p>{t.skills.capabilities[index]?.text ?? item.text}</p>
+                  <h3>
+                    <TypeCopy text={t.skills.capabilities[index]?.title ?? item.title} />
+                  </h3>
+                  <p>
+                    <TypeCopy text={t.skills.capabilities[index]?.text ?? item.text} />
+                  </p>
                   <span className="capability-card__rule" aria-hidden="true" />
                 </article>
               </Reveal>

@@ -13,12 +13,15 @@ import {
   requiredSectionIds,
   scrollToSection,
   settleSectionInView,
+  stabilizeSection,
   subscribeSectionPrefetch,
   waitForSections
 } from "@/lib/sectionNav"
+import { holdActiveSection } from "@/lib/localeRewrite"
 import {
   getLocale,
   isHomePath,
+  isLocaleOnlyPathChange,
   localizePath,
   stripLocale
 } from "@/lib/locale"
@@ -101,6 +104,7 @@ const SiteExperience = () => {
   const revealTokenRef = useRef(0)
   const activePathRef = useRef(pathname)
   const pathnameRef = useRef(pathname)
+  const prevPathnameRef = useRef(pathname)
   const offSiteRef = useRef(!isSectionPath(pathname))
   const [aligned, setAligned] = useState(isHomePath(pathname))
   const [mountedIds, setMountedIds] = useState(
@@ -140,8 +144,10 @@ const SiteExperience = () => {
 
       if (behavior === "auto") {
         settleSectionInView(path)
+        stabilizeSection(path, 900)
       } else {
         scrollToSection(path, behavior)
+        stabilizeSection(path, 1400)
       }
 
       if (moveFocus) {
@@ -167,16 +173,28 @@ const SiteExperience = () => {
   useLayoutEffect(() => {
     if (!isSectionPath(pathname)) {
       offSiteRef.current = true
+      prevPathnameRef.current = pathname
       return
     }
 
     const fromOffSite = offSiteRef.current
+    const previousPath = prevPathnameRef.current
+    prevPathnameRef.current = pathname
     offSiteRef.current = false
     let cancelled = false
 
     applySectionTitle(pathname)
     announceSection(pathname)
     activePathRef.current = pathname
+
+    if (!fromOffSite && isLocaleOnlyPathChange(previousPath, pathname)) {
+      if (ignorePathRef.current === pathname) {
+        ignorePathRef.current = null
+      }
+
+      holdActiveSection(pathname, 2200)
+      return
+    }
 
     if (readyRef.current && fromOffSite) {
       mountThrough(pathname)
@@ -280,6 +298,18 @@ const SiteExperience = () => {
       const nextPath = readSectionHref(anchor)
 
       if (!nextPath) {
+        return
+      }
+
+      if (isLocaleOnlyPathChange(pathnameRef.current, nextPath)) {
+        event.preventDefault()
+        markProgrammaticSectionScroll(2200)
+        activePathRef.current = nextPath
+        ignorePathRef.current = nextPath
+        applySectionTitle(nextPath)
+        announceSection(nextPath)
+        router.push(nextPath, { scroll: false })
+        holdActiveSection(nextPath, 2200)
         return
       }
 

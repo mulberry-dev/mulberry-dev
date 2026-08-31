@@ -10,6 +10,7 @@ import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
 import TechBadge from "@/components/ui/TechBadge"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import { projectHighlights } from "@/data/projectHighlights"
 import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
@@ -104,11 +105,11 @@ const ProjectDetails = ({ id }: { id: string }) => {
         <Container className="project-page">
           <RevealGroup mode="fold" stagger={24}>
             <Reveal type="heading" as="h1">
-              {t.project.notFound}
+              <TypeCopy text={t.project.notFound} />
             </Reveal>
             <Reveal type="button">
               <Button href={href("/portfolio")} variant="secondary">
-                {t.project.back}
+                <TypeCopy text={t.project.back} />
               </Button>
             </Reveal>
           </RevealGroup>
@@ -124,7 +125,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
           <Reveal type="nav" mode="fold" className="project-context">
             <TerminalPrompt path={`${WORKSPACE.work.path}/${projectSlug(project.id)}`} />
             <Link href={href("/portfolio")} className="project-back">
-              ← {t.project.back}
+              ← <TypeCopy text={t.project.back} />
             </Link>
           </Reveal>
 
@@ -133,7 +134,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
               <div className="project-hero__identity">
                 <Reveal type="eyebrow" className="project-hero__kicker">
                   <span>
-                    {padCount(index + 1)} / {t.project.kicker}
+                    {padCount(index + 1)} / <TypeCopy text={t.project.kicker} caret={false} />
                   </span>
                   {year ? <span>{year}</span> : null}
                   <ProjectType project={project} />
@@ -144,21 +145,29 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 </Reveal>
               </div>
               <Reveal type="text" className="project-hero__about">
-                <h2 className="project-hero__label">{t.project.about}</h2>
-                <p>{project.description}</p>
+                <h2 className="project-hero__label">
+                  <TypeCopy text={t.project.about} />
+                </h2>
+                <p>
+                  <TypeCopy text={project.description} />
+                </p>
               </Reveal>
               {highlights?.length ? (
                 <Reveal type="text" className="project-hero__features">
-                  <h2 className="project-hero__label">{t.project.features}</h2>
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.features} />
+                  </h2>
                   <ul className="project-highlights">
-                    {highlights.map(item => (
-                      <li key={item.title}>
+                    {highlights.map((item, highlightIndex) => (
+                      <li key={item.icon ?? highlightIndex}>
                         <span className="project-highlights__icon">
                           <SiteIcon name={item.icon} />
                         </span>
                         <span className="project-highlights__copy">
-                          <strong>{item.title}</strong>
-                          <span>{item.text}</span>
+                          <strong>
+                            <TypeCopy text={item.title} />
+                          </strong>
+                          <TypeCopy text={item.text} />
                         </span>
                       </li>
                     ))}
@@ -173,7 +182,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                       variant="secondary"
                       onClick={() => SiteOffline(project.name, t.project)}
                     >
-                      {t.project.offline}
+                      <TypeCopy text={t.project.offline} />
                     </Button>
                   ) : (
                     <Button
@@ -191,7 +200,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                         }
                       }}
                     >
-                      {t.project.visit}
+                      <TypeCopy text={t.project.visit} />
                       <ExternalIcon />
                     </Button>
                   )
@@ -200,12 +209,12 @@ const ProjectDetails = ({ id }: { id: string }) => {
                     type="button"
                     onClick={() => PrivateDeployment(project.name, t.project)}
                   >
-                    {t.project.private}
+                    <TypeCopy text={t.project.private} />
                   </Button>
                 )}
                 {github ? (
                   <Button href={github} variant="secondary" external>
-                    {t.project.github}
+                    <TypeCopy text={t.project.github} />
                   </Button>
                 ) : null}
               </Reveal>
@@ -237,7 +246,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
 
         <div className="project-stack">
           <Reveal type="text" mode="scroll" as="h2" className="project-stack__title">
-            {t.project.technologies}
+            <TypeCopy text={t.project.technologies} />
           </Reveal>
           <RevealGroup className="project-tech" mode="scroll" stagger={28}>
             {project.tech.map((tech, techIndex) =>
@@ -266,14 +275,16 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 >
                   <ProjectNavChevron direction="prev" />
                   <span className="project-nav__copy">
-                    <span className="project-nav__dir">{t.project.previous}</span>
+                    <span className="project-nav__dir">
+                      <TypeCopy text={t.project.previous} caret={false} />
+                    </span>
                     <span className="project-nav__name">{previous.name}</span>
                   </span>
                 </Link>
               ) : (
                 <span className="project-nav__link is-disabled">
                   <ProjectNavChevron direction="prev" />
-                  {t.project.previous}
+                  <TypeCopy text={t.project.previous} caret={false} />
                 </span>
               )}
               {next ? (
@@ -284,14 +295,16 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   aria-label={`${t.project.next}: ${next.name}`}
                 >
                   <span className="project-nav__copy">
-                    <span className="project-nav__dir">{t.project.next}</span>
+                    <span className="project-nav__dir">
+                      <TypeCopy text={t.project.next} caret={false} />
+                    </span>
                     <span className="project-nav__name">{next.name}</span>
                   </span>
                   <ProjectNavChevron direction="next" />
                 </Link>
               ) : (
                 <span className="project-nav__link project-nav__link--next is-disabled">
-                  {t.project.next}
+                  <TypeCopy text={t.project.next} caret={false} />
                   <ProjectNavChevron direction="next" />
                 </span>
               )}

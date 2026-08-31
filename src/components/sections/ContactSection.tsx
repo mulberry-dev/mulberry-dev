@@ -3,6 +3,7 @@
 import "@/styles/scss/sections/contact.scss"
 import Button from "@/components/ui/Button"
 import CommandLine from "@/components/terminal/CommandLine"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon from "@/components/ui/SiteIcon"
@@ -47,28 +48,35 @@ const Contact = () => {
           <RevealGroup className="contact-log" mode="auto" stagger={48}>
             <CommandLine command={t.contact.command} />
             <p>
-              <span className="contact-log__prefix">&gt;</span> {t.contact.checking}
+              <span className="contact-log__prefix">&gt;</span>{" "}
+              <TypeCopy text={t.contact.checking} />
             </p>
             <p>
-              <span className="contact-log__prefix">&gt;</span> {t.contact.statusPrefix}{" "}
+              <span className="contact-log__prefix">&gt;</span>{" "}
+              <TypeCopy text={t.contact.statusPrefix} />{" "}
               <span className="contact-log__ok">
                 <StatusDot pulse />
-                {t.contact.availability}
+                <TypeCopy text={t.contact.availability} />
               </span>
             </p>
             <p>
-              <span className="contact-log__prefix">&gt;</span> {t.contact.supporting}
+              <span className="contact-log__prefix">&gt;</span>{" "}
+              <TypeCopy text={t.contact.supporting} />
             </p>
             {primary ? (
               <Button href={primary.href} variant="terminal" external={primary.external}>
                 <span className="sr-only">{optionCopy(primary.id).cta}</span>
-                <span aria-hidden="true">&gt; {t.contact.startConversation}</span>
+                <span aria-hidden="true">
+                  &gt; <TypeCopy text={t.contact.startConversation} />
+                </span>
               </Button>
             ) : null}
           </RevealGroup>
 
           <div className="contact-channels">
-            <h3>{t.contact.selectChannel}</h3>
+            <h3>
+              <TypeCopy text={t.contact.selectChannel} />
+            </h3>
             <ul>
               {CONTACT_OPTIONS.map((option, index) => {
                 const copy = optionCopy(option.id)
@@ -91,8 +99,12 @@ const Contact = () => {
                       <SiteIcon name={option.icon} />
                     </span>
                     <span className="contact-channel__copy">
-                      <strong>{copy.title}</strong>
-                      {copy.description ? <span>{copy.description}</span> : null}
+                      <strong>
+                        <TypeCopy text={copy.title} />
+                      </strong>
+                      {copy.description ? (
+                        <TypeCopy text={copy.description} />
+                      ) : null}
                     </span>
                     {option.external ? (
                       <span className="sr-only"> {t.contact.opensTab}</span>

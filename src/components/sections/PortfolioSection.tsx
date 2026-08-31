@@ -2,6 +2,7 @@
 
 import "@/styles/scss/sections/portfolio.scss"
 import CommandLine from "@/components/terminal/CommandLine"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import ProjectFlags from "@/components/terminal/ProjectFlags"
 import ProjectType from "@/components/terminal/ProjectType"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
@@ -101,32 +102,43 @@ const FeaturedCard = ({
           <header className="work-card__meta">
             <span className="work-card__index">
               {padCount(index + 1)}
-              <span className="work-card__index-label"> / {t.portfolio.featured}</span>
+              <span className="work-card__index-label">
+                {" "}
+                / <TypeCopy text={t.portfolio.featured} caret={false} />
+              </span>
             </span>
             <ProjectFlags project={project} />
           </header>
           <h3>{project.name}</h3>
-          <p className="work-card__teaser">{project.teaser}</p>
+          <p className="work-card__teaser">
+            <TypeCopy text={project.teaser} />
+          </p>
           <dl className="work-card__facts">
             {year ? (
               <div>
-                <dt>{t.portfolio.year}</dt>
+                <dt>
+                  <TypeCopy text={t.portfolio.year} caret={false} />
+                </dt>
                 <dd>{year}</dd>
               </div>
             ) : null}
             <div>
-              <dt>{t.portfolio.type}</dt>
+              <dt>
+                <TypeCopy text={t.portfolio.type} caret={false} />
+              </dt>
               <dd>
                 <ProjectType project={project} />
               </dd>
             </div>
             <div className="work-card__facts-stack">
-              <dt>{t.portfolio.stack}</dt>
+              <dt>
+                <TypeCopy text={t.portfolio.stack} caret={false} />
+              </dt>
               <dd>{stack.join(" · ")}</dd>
             </div>
           </dl>
           <span className="work-card__cta">
-            {t.portfolio.viewCase}
+            <TypeCopy text={t.portfolio.viewCase} caret={false} />
             <span aria-hidden="true"> →</span>
           </span>
           {loading ? (
@@ -187,10 +199,12 @@ const ArchiveCard = ({ project }: { project: Project }) => {
           />
         </div>
         <h3>{project.name}</h3>
-        <p>{project.teaser}</p>
+        <p>
+          <TypeCopy text={project.teaser} />
+        </p>
         <p className="archive-card__stack">{stack.join(" · ")}</p>
         <span className="archive-card__cta">
-          {t.portfolio.view}
+          <TypeCopy text={t.portfolio.view} caret={false} />
           <span aria-hidden="true"> →</span>
         </span>
         {loading ? (
@@ -277,13 +291,16 @@ const Portfolio = () => {
         <div className="work-archive">
           <CommandLine command={t.portfolio.archiveCommand} />
           <p className="workspace-header__meta">
-            {t.portfolio.archiveMeta.replace("{count}", padCount(archiveVisible.length))}
-            {archiveVisible.some(builtWithoutAi)
-              ? t.portfolio.archiveNoAi.replace(
-                  "{count}",
-                  padCount(archiveVisible.filter(builtWithoutAi).length)
-                )
-              : ""}
+            <TypeCopy
+              text={`${t.portfolio.archiveMeta.replace("{count}", padCount(archiveVisible.length))}${
+                archiveVisible.some(builtWithoutAi)
+                  ? t.portfolio.archiveNoAi.replace(
+                      "{count}",
+                      padCount(archiveVisible.filter(builtWithoutAi).length)
+                    )
+                  : ""
+              }`}
+            />
           </p>
           <RevealGroup className="archive-grid" mode="auto" stagger={48} key={active}>
             {archiveVisible.map(project => (
