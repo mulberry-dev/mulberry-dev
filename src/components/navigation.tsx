@@ -110,20 +110,6 @@ const Navigation = () => {
     return () => window.removeEventListener(HOME_CHROME_REVEALED_EVENT, onReveal)
   }, [pathname])
 
-  useLayoutEffect(() => {
-    const header = headerRef.current
-
-    if (!header) {
-      return
-    }
-
-    if (chromePhase === "wait") {
-      header.setAttribute("inert", "")
-    } else {
-      header.removeAttribute("inert")
-    }
-  }, [chromePhase])
-
   useEffect(() => {
     if (chromePhase !== "nav") {
       return
@@ -506,7 +492,6 @@ const Navigation = () => {
       <header
         ref={headerRef}
         className={`site-nav${chromePhase === "wait" ? " is-chrome-wait" : ""}${chromePhase === "nav" ? " is-chrome-nav" : ""}`}
-        aria-hidden={chromePhase === "wait" || undefined}
       >
         <div
           className={`site-nav__backdrop${menuOpen ? " is-visible" : ""}${menu === "open" ? " is-open" : ""}`}
@@ -520,7 +505,11 @@ const Navigation = () => {
         />
         <div className="site-nav__chrome" aria-hidden="true" />
         <div className="site-nav__inner">
-          <div className="site-nav__brand">
+          <div
+            className="site-nav__brand"
+            aria-hidden={chromePhase === "wait" || undefined}
+            {...(chromePhase === "wait" ? { inert: "" } : {})}
+          >
             <Link href="/" className="site-nav__logo" scroll={false} prefetch={false}>
               <Image
                 className="site-logo"
