@@ -21,6 +21,8 @@
 *.pem
 NUL
 NUL.map
+.tmp*
+.tmp-verify/
 
 # debug
 npm-debug.log*
