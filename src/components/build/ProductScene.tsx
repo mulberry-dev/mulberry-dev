@@ -48,8 +48,11 @@ const ProductScene = () => {
           </header>
 
           <div className="product-scene__metrics">
-            {PRODUCT_METRICS.map((metric) => (
-              <article key={metric.label} className="product-scene__metric">
+            {PRODUCT_METRICS.map((metric, index) => (
+              <article
+                key={metric.label}
+                className={`product-scene__metric product-scene__metric--${index}`}
+              >
                 <span>{metric.label}</span>
                 <strong>{metric.value}</strong>
                 <em>{metric.delta}</em>
@@ -64,6 +67,17 @@ const ProductScene = () => {
                 <span>7 days</span>
               </div>
               <svg viewBox="0 0 308 68" fill="none" role="presentation">
+                <defs>
+                  <linearGradient id="product-chart-line" x1="8" y1="20" x2="300" y2="20">
+                    <stop offset="0%" stopColor="var(--brand-cyan)" />
+                    <stop offset="55%" stopColor="var(--brand-blue)" />
+                    <stop offset="100%" stopColor="var(--brand-purple)" />
+                  </linearGradient>
+                  <linearGradient id="product-chart-fill" x1="154" y1="16" x2="154" y2="68">
+                    <stop offset="0%" stopColor="var(--brand-cyan)" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="var(--brand-purple)" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
                 <path
                   className="product-scene__chart-fill"
                   d={`${CHART} L 300 68 L 8 68 Z`}
@@ -79,8 +93,11 @@ const ProductScene = () => {
             <div className="product-scene__activity">
               <span>Recent activity</span>
               <ul>
-                {PRODUCT_ACTIVITY.map((item) => (
-                  <li key={item.title}>
+                {PRODUCT_ACTIVITY.map((item, index) => (
+                  <li
+                    key={item.title}
+                    className={`product-scene__event product-scene__event--${index}`}
+                  >
                     <strong>{item.title}</strong>
                     <span>{item.meta}</span>
                   </li>
