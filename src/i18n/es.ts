@@ -182,6 +182,8 @@ export const es: Messages = {
     stackTitle: "Stack",
     stackLead: "Las herramientas con las que entrego — evidencia, no el mensaje principal.",
     stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
+    viewMore: "Ver más",
+    viewLess: "Ver menos",
     capabilities: [
       {
         title: "Aplicaciones web a medida",

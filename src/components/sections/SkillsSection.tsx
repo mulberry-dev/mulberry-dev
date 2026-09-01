@@ -128,6 +128,7 @@ const Capability = ({
 
 const Skills = () => {
   const { t } = useI18n()
+  const [open, setOpen] = useState(false)
   const [active, setActive] = useState<string>(BUILD_SECTIONS[0].id)
   const railLabels = [
     t.skills.rail.intro,
@@ -138,6 +139,10 @@ const Skills = () => {
   ]
 
   useEffect(() => {
+    if (!open) {
+      return
+    }
+
     const nodes = BUILD_SECTIONS.map((section) =>
       document.getElementById(section.id)
     ).filter((node): node is HTMLElement => Boolean(node))
@@ -197,6 +202,13 @@ const Skills = () => {
         window.cancelAnimationFrame(frame)
       }
     }
+  }, [open])
+
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "")
+    if (id && BUILD_SECTIONS.some((section) => section.id === id && section.id !== "build-intro")) {
+      setOpen(true)
+    }
   }, [])
 
   const goToBlock = (id: string) => {
@@ -228,32 +240,6 @@ const Skills = () => {
           title={t.workspace.skills}
         />
         <div className="skills-terminal">
-          <nav className="skills-rail" aria-label={t.nav.onThisPage}>
-            {BUILD_SECTIONS.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                className={[
-                  "skills-rail__item",
-                  "accent" in section ? `skills-rail__item--${section.accent}` : "",
-                  active === section.id ? "is-active" : ""
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
-                onClick={() => goToBlock(section.id)}
-                aria-current={active === section.id ? "true" : undefined}
-              >
-                <span className="skills-rail__index">{section.index}</span>
-                <span className="skills-rail__label">
-                  <TypeCopy
-                    text={railLabels[BUILD_SECTIONS.indexOf(section)] ?? section.label}
-                    caret={false}
-                  />
-                </span>
-              </button>
-            ))}
-          </nav>
-
           <header className="skills-chrome">
             <BuildSession />
           </header>
@@ -290,7 +276,55 @@ const Skills = () => {
             ))}
           </RevealGroup>
 
-          <div className="skills-capability-board">
+          <div className={["skills-more", open ? "is-open" : ""].filter(Boolean).join(" ")}>
+            <button
+              type="button"
+              id="skills-more-toggle"
+              className="skills-more__toggle"
+              aria-expanded={open}
+              aria-controls="skills-more-panel"
+              onClick={() => setOpen((current) => !current)}
+            >
+              <span className="skills-more__caret" aria-hidden="true" />
+              {open ? t.skills.viewLess : t.skills.viewMore}
+            </button>
+
+            <section
+              className="skills-more__panel"
+              id="skills-more-panel"
+              aria-labelledby="skills-more-toggle"
+              aria-hidden={!open}
+              inert={!open || undefined}
+            >
+              <div className="skills-more__clip">
+                <div className="skills-more__body">
+            <nav className="skills-rail" aria-label={t.nav.onThisPage}>
+              {BUILD_SECTIONS.map((section) => (
+                <button
+                  key={section.id}
+                  type="button"
+                  className={[
+                    "skills-rail__item",
+                    "accent" in section ? `skills-rail__item--${section.accent}` : "",
+                    active === section.id ? "is-active" : ""
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  onClick={() => goToBlock(section.id)}
+                  aria-current={active === section.id ? "true" : undefined}
+                >
+                  <span className="skills-rail__index">{section.index}</span>
+                  <span className="skills-rail__label">
+                    <TypeCopy
+                      text={railLabels[BUILD_SECTIONS.indexOf(section)] ?? section.label}
+                      caret={false}
+                    />
+                  </span>
+                </button>
+              ))}
+            </nav>
+
+            <div className="skills-capability-board">
             <Capability
               id="build-interfaces"
               accent={BUILD_INTERFACES.accent}
@@ -379,6 +413,10 @@ const Skills = () => {
               <StackTerminal />
             </LazyOnView>
           </footer>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </Container>
     </section>

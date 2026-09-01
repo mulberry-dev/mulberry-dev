@@ -182,6 +182,8 @@ export const en: Messages = {
     stackTitle: "Stack",
     stackLead: "The tools I use to deliver — evidence, not the pitch.",
     stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
+    viewMore: "View more",
+    viewLess: "View less",
     capabilities: [
       {
         title: "Custom web applications",

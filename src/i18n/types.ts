@@ -104,6 +104,8 @@ export type Messages = {
     stackTitle: string
     stackLead: string
     stackEvidence: string
+    viewMore: string
+    viewLess: string
     capabilities: { title: string; text: string }[]
     interfaces: {
       kicker: string
