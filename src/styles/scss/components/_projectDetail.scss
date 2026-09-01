@@ -122,7 +122,7 @@ section:has(.project-page) {
 
 .project-nav__copy {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   flex-direction: row;
   align-items: baseline;
   gap: 0.4em;
@@ -142,8 +142,8 @@ section:has(.project-page) {
 
 .project-nav__name {
   display: block;
+  width: 100%;
   min-width: 0;
-  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -591,6 +591,7 @@ body:not(.dark) .project-preview__screen {
   min-width: 0;
   flex: 1 1 0;
   max-width: 50%;
+  overflow: hidden;
   color: var(--color-text-dim);
   font-size: var(--text-caption);
   font-weight: 500;
