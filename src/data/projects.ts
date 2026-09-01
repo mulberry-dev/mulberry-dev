@@ -226,7 +226,7 @@ export const data = [
   {
     id: "ElectronicBilling",
     name: "Electronic Billing GS",
-    category: "api",
+    category: "web",
     teaser: "Invoice platform for Grupo Salinas, connected to SAT.",
     description:
       "Invoice issuance platform for Grupo Salinas, connected to the SAT API. (2024)",
