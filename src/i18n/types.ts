@@ -159,7 +159,6 @@ export type Messages = {
     year: string
     type: string
     stack: string
-    problem: string
     viewCase: string
     view: string
     loading: string

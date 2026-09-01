@@ -288,7 +288,6 @@ export const en: Messages = {
     year: "Year",
     type: "Type",
     stack: "Stack",
-    problem: "Challenge",
     viewCase: "View case study",
     view: "View",
     loading: "Loading project details…",

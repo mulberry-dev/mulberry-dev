@@ -119,16 +119,7 @@ const FeaturedCard = ({
             </p>
           ) : null}
           <p className="work-card__teaser">
-            {problem ? (
-              <>
-                <span className="work-card__problem-label">
-                  <TypeCopy text={t.portfolio.problem} caret={false} />
-                </span>
-                <TypeCopy text={problem} />
-              </>
-            ) : (
-              <TypeCopy text={project.teaser} />
-            )}
+            <TypeCopy text={problem ?? project.teaser} />
           </p>
           <dl className="work-card__facts">
             {year ? (
@@ -199,10 +190,27 @@ const ArchiveCard = ({ project }: { project: Project }) => {
       onClick={handleClick}
     >
       <article className="archive-card">
-        <header className="archive-card__meta">
-          <ProjectType project={project} />
-          <ProjectFlags project={project} />
-        </header>
+        <div className="archive-card__copy">
+          <header className="archive-card__meta">
+            <ProjectType project={project} />
+            <ProjectFlags project={project} />
+          </header>
+          <h3>{project.name}</h3>
+          <p>
+            <TypeCopy text={project.teaser} />
+          </p>
+          <p className="archive-card__stack">{stack.join(" · ")}</p>
+          <span className="archive-card__cta">
+            <TypeCopy text={t.portfolio.view} caret={false} />
+            <span aria-hidden="true"> →</span>
+          </span>
+          {loading ? (
+            <span className="portfolio-card__loader" role="status">
+              <span className="portfolio-card__spinner" aria-hidden="true" />
+              {t.portfolio.loading}
+            </span>
+          ) : null}
+        </div>
         <div className="archive-card__media">
           <Image
             src={project.thumbnail}
@@ -215,21 +223,6 @@ const ArchiveCard = ({ project }: { project: Project }) => {
             className="archive-card__image"
           />
         </div>
-        <h3>{project.name}</h3>
-        <p>
-          <TypeCopy text={project.teaser} />
-        </p>
-        <p className="archive-card__stack">{stack.join(" · ")}</p>
-        <span className="archive-card__cta">
-          <TypeCopy text={t.portfolio.view} caret={false} />
-          <span aria-hidden="true"> →</span>
-        </span>
-        {loading ? (
-          <span className="portfolio-card__loader" role="status">
-            <span className="portfolio-card__spinner" aria-hidden="true" />
-            {t.portfolio.loading}
-          </span>
-        ) : null}
       </article>
     </Link>
   )

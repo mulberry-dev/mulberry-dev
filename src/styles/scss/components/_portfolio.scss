@@ -61,12 +61,20 @@
   transition: border-color var(--duration) var(--ease-out);
 }
 
-.work-card__copy {
+.work-card__copy,
+.archive-card__copy {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  gap: var(--space-4);
   min-height: 0;
+}
+
+.work-card__copy {
+  gap: var(--space-4);
+}
+
+.archive-card__copy {
+  gap: var(--space-3);
 }
 
 .work-card:hover,
@@ -130,16 +138,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--brand-cyan);
-}
-
-.work-card__problem-label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
 }
 
 .work-card__facts {

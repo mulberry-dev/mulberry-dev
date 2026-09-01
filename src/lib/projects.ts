@@ -81,9 +81,10 @@ export const featuredProjects = FEATURED_PROJECT_IDS.map(id =>
 
 const featuredIdSet = new Set<string>(FEATURED_PROJECT_IDS)
 
-export const archiveProjects = projects.filter(
-  project => !featuredIdSet.has(String(project.id))
-)
+export const archiveProjects = projects
+  .filter(project => !featuredIdSet.has(String(project.id)))
+  .slice()
+  .sort((left, right) => Number(right.category === "api") - Number(left.category === "api"))
 
 export const categoryCounts = projects.reduce<Record<string, number>>(
   (counts, project) => {
