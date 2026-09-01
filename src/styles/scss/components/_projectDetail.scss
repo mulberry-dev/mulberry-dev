@@ -679,7 +679,7 @@ body:not(.dark) .project-preview__screen {
   }
 
   section:has(.project-page) {
-    padding-bottom: var(--space-8);
+    padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
   }
 
   .project-nav-wrap {
@@ -689,7 +689,7 @@ body:not(.dark) .project-preview__screen {
     bottom: auto;
     z-index: auto;
     width: 100%;
-    padding: 0;
+    padding: 0 0 env(safe-area-inset-bottom, 0px);
     pointer-events: auto;
   }
 
