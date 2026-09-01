@@ -122,10 +122,12 @@ section:has(.project-page) {
 
 .project-nav__copy {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: row;
   align-items: baseline;
   gap: 0.4em;
   min-width: 0;
+  max-width: 100%;
   overflow: hidden;
 }
 
@@ -139,7 +141,9 @@ section:has(.project-page) {
 }
 
 .project-nav__name {
+  display: block;
   min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
