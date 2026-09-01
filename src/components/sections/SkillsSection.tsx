@@ -13,7 +13,6 @@ import { CAPABILITIES } from "@/data/whatIDo"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import {
-  BUILD_APPROACH,
   BUILD_CONNECTED,
   BUILD_INTERFACES,
   BUILD_MODERNIZATION,
@@ -42,9 +41,6 @@ const ModernizeScene = dynamic(
   () => import("@/components/build/ModernizeScene"),
   { loading: SceneFallback }
 )
-const ApproachScene = dynamic(() => import("@/components/build/ApproachScene"), {
-  loading: SceneFallback
-})
 const StackTerminal = dynamic(() => import("@/components/build/StackTerminal"), {
   loading: SceneFallback
 })
@@ -138,8 +134,7 @@ const Skills = () => {
     t.skills.rail.frontend,
     t.skills.rail.backend,
     t.skills.rail.connected,
-    t.skills.rail.modernize,
-    t.skills.rail.star
+    t.skills.rail.modernize
   ]
 
   useEffect(() => {
@@ -376,19 +371,10 @@ const Skills = () => {
             </Capability>
           </div>
 
-          <RevealGroup
-            className={`skills-capability skills-capability--${BUILD_APPROACH.accent} skills-capability--star`}
-            mode="scroll"
-            stagger={56}
-          >
-            <Reveal type="image" className="skills-capability__stage">
-              <LazyOnView minHeight="18.25rem">
-                <ApproachScene />
-              </LazyOnView>
-            </Reveal>
-          </RevealGroup>
-
           <footer className="skills-foot">
+            <p className="skills-foot__evidence">
+              <TypeCopy text={t.skills.stackEvidence} />
+            </p>
             <LazyOnView minHeight="12rem">
               <StackTerminal />
             </LazyOnView>

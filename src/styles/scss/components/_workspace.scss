@@ -321,10 +321,22 @@
   }
 }
 
+.capability-card--orange {
+  --capability-tone: var(--brand-orange, #f59e0b);
+}
+
 @media (min-width: 768px) {
-  .capability-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .skills-capabilities.capability-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: var(--space-4);
+  }
+
+  .skills-capabilities.capability-grid > .reveal:nth-child(-n + 3) {
+    grid-column: span 2;
+  }
+
+  .skills-capabilities.capability-grid > .reveal:nth-child(n + 4) {
+    grid-column: span 3;
   }
 }
 

@@ -55,12 +55,23 @@ export const ABOUT_PASSIONS: {
 
 export const ABOUT_FOOTER = {
   question: "have a project in mind?",
-  action: "check what i do",
-  href: "/skills"
+  action: "start a project",
+  href: "/contact"
 } as const
 
+export const ABOUT_WHY: {
+  icon: SiteIconName
+}[] = [
+  { icon: "craft" },
+  { icon: "thinking" },
+  { icon: "user" },
+  { icon: "puzzle" },
+  { icon: "globe" }
+]
+
 export const ABOUT_SECTIONS = [
-  { id: "about-intro", index: "01", label: "INTRO" },
-  { id: "about-identity", index: "02", label: "IDENTITY" },
-  { id: "about-path", index: "03", label: "PATH" }
+  { id: "about-why", index: "01", label: "WHY" },
+  { id: "about-intro", index: "02", label: "INTRO" },
+  { id: "about-identity", index: "03", label: "IDENTITY" },
+  { id: "about-path", index: "04", label: "PATH" }
 ] as const

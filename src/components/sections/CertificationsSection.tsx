@@ -137,6 +137,20 @@ const Certifications = () => {
             title={t.workspace.certifications}
             meta={t.certifications.meta.replace("{count}", String(certificates.length))}
           />
+          <Reveal type="text" className="certs-trust">
+            <p className="certs-trust__kicker">
+              {t.certifications.kicker}
+            </p>
+            <h2 className="certs-trust__headline">{t.certifications.headline}</h2>
+            <ul className="certs-metrics">
+              {t.certifications.metrics.map((metric) => (
+                <li key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
           </Reveal>

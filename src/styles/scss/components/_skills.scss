@@ -264,6 +264,14 @@
   padding-block: clamp(1.65rem, 3.4vw, 2.35rem);
 }
 
+.skills-foot__evidence {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
 .skills-stack__head {
   display: flex;
   flex-direction: column;
@@ -890,17 +898,24 @@
 
 .modern-scene__pane li {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.55rem;
   font-size: 0.78rem;
+  white-space: nowrap;
 }
 
-.modern-scene__pane li span {
+.modern-scene__mark {
   display: grid;
   place-items: center;
   width: 0.95rem;
   flex-shrink: 0;
   font-size: 0.78rem;
+}
+
+.modern-scene__label {
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .modern-scene__pane--legacy {
@@ -909,7 +924,7 @@
 }
 
 .modern-scene__pane--legacy p,
-.modern-scene__pane--legacy li span {
+.modern-scene__pane--legacy .modern-scene__mark {
   color: var(--skills-danger);
 }
 
@@ -919,7 +934,7 @@
 }
 
 .modern-scene__pane--modern p,
-.modern-scene__pane--modern li span {
+.modern-scene__pane--modern .modern-scene__mark {
   color: var(--skills-tone);
 }
 
@@ -1537,7 +1552,7 @@
     line-height: 1.25;
   }
 
-  .modern-scene__pane li span {
+  .modern-scene__mark {
     width: 0.7rem;
     font-size: 0.62rem;
   }

@@ -78,6 +78,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
     index >= 0 && index < projects.length - 1 ? projects[index + 1] : null
   const highlightSource = project ? projectHighlights[String(project.id)] : undefined
   const highlightCopy = project ? t.projects[String(project.id)]?.highlights : undefined
+  const caseCopy = project ? t.projects[String(project.id)] : undefined
   const highlights = highlightSource?.map((item, highlightIndex) => ({
     ...item,
     title: highlightCopy?.[highlightIndex]?.title ?? item.title,
@@ -152,6 +153,46 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   <TypeCopy text={project.description} />
                 </p>
               </Reveal>
+              {caseCopy?.problem ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.challenge} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.problem} />
+                  </p>
+                </Reveal>
+              ) : null}
+              {caseCopy?.solution ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.solution} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.solution} />
+                  </p>
+                </Reveal>
+              ) : null}
+              {caseCopy?.role ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.role} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.role} />
+                  </p>
+                </Reveal>
+              ) : null}
+              {caseCopy?.outcome ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.outcome} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.outcome} />
+                  </p>
+                </Reveal>
+              ) : null}
               {highlights?.length ? (
                 <Reveal type="text" className="project-hero__features">
                   <h2 className="project-hero__label">
@@ -217,6 +258,9 @@ const ProjectDetails = ({ id }: { id: string }) => {
                     <TypeCopy text={t.project.github} />
                   </Button>
                 ) : null}
+                <Button href={href("/contact")} variant="terminal">
+                  <TypeCopy text={t.project.similarAction} />
+                </Button>
               </Reveal>
             </RevealGroup>
 
@@ -242,6 +286,15 @@ const ProjectDetails = ({ id }: { id: string }) => {
               )}
             </Reveal>
           </div>
+        </div>
+
+        <div className="project-convert">
+          <p>
+            <TypeCopy text={t.project.similarQuestion} />
+          </p>
+          <Button href={href("/contact")} variant="terminal">
+            <TypeCopy text={t.project.similarAction} />
+          </Button>
         </div>
 
         <div className="project-stack">

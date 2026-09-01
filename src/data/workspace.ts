@@ -6,30 +6,35 @@ export const WORKSPACE = {
     index: "",
     title: "Home"
   },
-  about: {
-    path: "~/about-me",
-    index: "01",
-    title: "About Me"
-  },
   skills: {
-    path: "~/what-i-do",
-    index: "02",
-    title: "What I Do"
+    path: "~/services",
+    index: "01",
+    title: "Services"
   },
   work: {
     path: "~/work",
+    index: "02",
+    title: "Selected Work"
+  },
+  process: {
+    path: "~/process",
     index: "03",
-    title: "Selected Works"
+    title: "Process"
+  },
+  about: {
+    path: "~/about-me",
+    index: "04",
+    title: "About Me"
   },
   certifications: {
-    path: "~/certifications",
-    index: "04",
-    title: "Certifications"
+    path: "~/credentials",
+    index: "05",
+    title: "Credentials"
   },
   contact: {
     path: "~/contact",
-    index: "05",
-    title: "Let's Connect"
+    index: "06",
+    title: "Start a project"
   }
 } as const
 

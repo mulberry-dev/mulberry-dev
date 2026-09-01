@@ -24,8 +24,10 @@ const ModernizeScene = () => {
         <ul>
           {t.skills.modernization.legacy.map((item, index) => (
             <li key={index}>
-              <span>×</span>
-              <TypeCopy text={item} />
+              <span className="modern-scene__mark" aria-hidden="true">
+                ×
+              </span>
+              <span className="modern-scene__label">{item}</span>
             </li>
           ))}
         </ul>
@@ -54,8 +56,10 @@ const ModernizeScene = () => {
         <ul>
           {t.skills.modernization.modern.map((item, index) => (
             <li key={index}>
-              <span>✓</span>
-              <TypeCopy text={item} />
+              <span className="modern-scene__mark" aria-hidden="true">
+                ✓
+              </span>
+              <span className="modern-scene__label">{item}</span>
             </li>
           ))}
         </ul>

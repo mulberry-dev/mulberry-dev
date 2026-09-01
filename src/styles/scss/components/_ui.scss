@@ -391,6 +391,24 @@ body:not(.dark) .ui-tech-badge {
   }
 }
 
+.site-footer__cta {
+  color: var(--brand-cyan);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.site-footer__cta:hover,
+.site-footer__cta:focus-visible {
+  color: var(--color-text);
+}
+
+.site-footer__cta:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
 .language-switch {
   display: inline-flex;
   align-items: center;

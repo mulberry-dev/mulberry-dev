@@ -2,6 +2,7 @@
 
 import LanguageSwitch from "@/components/LanguageSwitch"
 import TypeCopy from "@/components/terminal/TypeCopy"
+import Button from "@/components/ui/Button"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { useI18n } from "@/i18n/useI18n"
@@ -43,6 +44,10 @@ const isActivePath = (pathname: string, path: string) => {
 
   if (path === "/") {
     return current === "/"
+  }
+
+  if (path === "/about" && current === "/certifications") {
+    return true
   }
 
   return current === path || current.startsWith(`${path}/`)
@@ -599,9 +604,28 @@ const Navigation = () => {
                 <TypeCopy text={navLabel(link.path)} caret={false} />
               </Link>
             )}
+            <Button
+              href={href("/contact")}
+              variant="terminal"
+              className="site-nav__cta site-nav__cta--menu"
+              onClick={() => {
+                if (menu === "open") {
+                  setMenu("closing")
+                }
+              }}
+            >
+              <TypeCopy text={t.nav.cta} caret={false} />
+            </Button>
           </nav>
 
           <div className="site-nav__actions">
+            <Button
+              href={href("/contact")}
+              variant="terminal"
+              className="site-nav__cta site-nav__cta--header"
+            >
+              <TypeCopy text={t.nav.cta} caret={false} />
+            </Button>
             <LanguageSwitch />
             <button
               ref={toggleRef}

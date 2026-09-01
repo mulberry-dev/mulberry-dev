@@ -7,10 +7,12 @@ export const es: Messages = {
   nav: {
     home: "Inicio",
     about: "Sobre mí",
-    skills: "Qué hago",
-    portfolio: "Trabajos",
-    certifications: "Certificaciones",
+    skills: "Servicios",
+    portfolio: "Trabajo",
+    process: "Proceso",
+    certifications: "Credenciales",
     contact: "Contacto",
+    cta: "Iniciar un proyecto",
     primary: "Principal",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
@@ -24,18 +26,20 @@ export const es: Messages = {
   site: {
     title: "Santiago Morera — Ingeniero Full Stack Senior en Ciudad de México",
     description:
-      "Ingeniero Full Stack Senior en Ciudad de México, especializado en React, TypeScript, Next.js y Node.js. Disponible para nuevas oportunidades y modernización de productos.",
+      "Ingeniero Full Stack Senior en Ciudad de México. Aplicaciones web a medida, sitios para negocios, MVPs e integraciones — de la arquitectura al lanzamiento. Disponible para nuevos proyectos.",
     keywords: [
       "Santiago Morera",
       "Ingeniero Full Stack Senior",
-      "Desarrollador web senior",
+      "aplicaciones web a medida",
+      "servicios de desarrollo web",
+      "desarrollo de MVP",
       "Desarrollador React Ciudad de México",
       "TypeScript",
       "Next.js",
       "Node.js",
       "Ciudad de México",
       "CDMX",
-      "disponible para contratar",
+      "contratar desarrollador full stack",
       "mulberry-dev"
     ],
     role: "Ingeniero Full Stack Senior",
@@ -45,54 +49,77 @@ export const es: Messages = {
     "/": {
       title: "Santiago Morera — Ingeniero Full Stack Senior en Ciudad de México",
       description:
-        "Ingeniero Full Stack Senior en Ciudad de México, especializado en React, TypeScript, Next.js y Node.js. Disponible para nuevas oportunidades y modernización de productos."
+        "Ingeniero Full Stack Senior en Ciudad de México. Aplicaciones web a medida, sitios para negocios, MVPs e integraciones — de la arquitectura al lanzamiento."
     },
     "/about": {
       title: "Sobre mí",
       description:
-        "Santiago Morera es Ingeniero Full Stack Senior en Ciudad de México. De diseño a código, bilingüe ES/EN, React, TypeScript, Next.js y Node.js."
+        "Por qué trabajar con Santiago Morera: entrega senior full stack, colaboración directa y trabajo remoto bilingüe desde Ciudad de México."
     },
     "/skills": {
-      title: "Qué hago",
+      title: "Servicios",
       description:
-        "Frontend, backend, datos e integraciones, y modernización de sistemas legacy con React, TypeScript, Next.js, Node.js y GraphQL."
+        "Contrata a Santiago Morera para aplicaciones web a medida, sitios para negocios, MVPs, sistemas e integraciones, y desarrollo full stack."
     },
     "/portfolio": {
-      title: "Trabajos",
+      title: "Trabajo",
       description:
         "Proyectos seleccionados de Santiago Morera: interfaces de producto, APIs, e-commerce y modernización de plataformas en México y más allá."
     },
-    "/certifications": {
-      title: "Certificaciones",
+    "/process": {
+      title: "Proceso",
       description:
-        "Certificados en desarrollo full stack, React, JavaScript, ciberseguridad e inglés."
+        "Cómo trabaja Santiago Morera: descubrimiento, estrategia y arquitectura, desarrollo, lanzamiento y evolución continua."
+    },
+    "/certifications": {
+      title: "Credenciales",
+      description:
+        "Credenciales profesionales: certificados en desarrollo full stack, React, JavaScript, ciberseguridad e inglés."
     },
     "/contact": {
-      title: "Contacto",
+      title: "Iniciar un proyecto",
       description:
-        "Disponible para nuevas oportunidades y briefs de proyecto. Ingeniero Full Stack Senior en Ciudad de México. Suelo responder en 24 horas."
+        "Cuéntale a Santiago sobre tu proyecto. Ingeniero Full Stack Senior en Ciudad de México. Suelo responder en 24 horas."
     }
   },
   workspace: {
     home: "Inicio",
     about: "Sobre mí",
-    skills: "Qué hago",
-    work: "Trabajos seleccionado",
-    certifications: "Certificaciones",
-    contact: "Hablemos"
+    skills: "Servicios",
+    work: "Trabajo seleccionado",
+    process: "Proceso",
+    certifications: "Credenciales",
+    contact: "Iniciar un proyecto"
   },
   home: {
     ariaLabel: "Inicio",
-    greeting: "¡Hola! Soy",
+    greeting: "Hola, soy",
     name: "Santiago Morera",
     roleLead: "Ingeniero Full Stack",
     roleTrail: "Senior",
-    bodyBefore: "Construyo ",
-    bodySolutions: "soluciones digitales",
-    bodyMid: " que ",
-    bodyValue: "generan valor",
-    ctaSr: "Empezar a Explorar",
-    cta: "Empezar a Explorar"
+    headline: "Construyo productos digitales que resuelven problemas reales de negocio.",
+    body: "Aplicaciones web a medida, sitios para negocios, MVPs e integraciones — diseñados, construidos y entregados de punta a punta.",
+    cta: "Iniciar un proyecto",
+    ctaSecondary: "Ver mi trabajo",
+    valueEyebrow: "Qué obtienes",
+    value: [
+      {
+        title: "Soluciones a medida",
+        text: "Desarrollo alrededor del problema y del negocio, no de una plantilla genérica."
+      },
+      {
+        title: "Cobertura full stack",
+        text: "Frontend, backend, datos, APIs e infraestructura en un solo lugar."
+      },
+      {
+        title: "Decisiones orientadas al negocio",
+        text: "Elecciones técnicas ligadas a objetivos que se pueden lanzar, medir y sostener."
+      },
+      {
+        title: "Colaboración de punta a punta",
+        text: "Desde la definición y la arquitectura hasta el desarrollo y el lanzamiento."
+      }
+    ]
   },
   about: {
     ariaLabel: "Sobre mí",
@@ -102,7 +129,7 @@ export const es: Messages = {
     body: [
       "Llegué al software desde el diseño.",
       "Ingeniero Full Stack Senior en Ciudad de México — React, TypeScript, Next.js y Node.js.",
-      "Trabajo en español e inglés. Disponible para nuevas oportunidades."
+      "Trabajo en español e inglés. Disponible para nuevos proyectos, de forma remota e internacional."
     ],
     whoami: "whoami",
     passionsCommand: "passions",
@@ -119,30 +146,62 @@ export const es: Messages = {
       }
     ],
     footerQuestion: "¿tienes un proyecto en mente?",
-    footerAction: "mira qué hago",
-    rail: { intro: "INTRO", identity: "IDENTIDAD", path: "CAMINO" }
+    footerAction: "iniciar un proyecto",
+    whyEyebrow: "POR QUÉ TRABAJAR CONMIGO",
+    hook: "Conoce al desarrollador detrás del código.",
+    hookLead:
+      "Cada commit tiene a alguien detrás. Quédate un momento: así pienso, decido y entrego.",
+    whyHeadline: "Colaboración senior directa, no un handoff a una caja negra.",
+    why: [
+      {
+        title: "Entrega senior",
+        text: "Arquitectura, implementación y criterio de alguien que ha puesto sistemas en producción."
+      },
+      {
+        title: "Técnica y negocio",
+        text: "Conecto las decisiones de stack con el resultado que necesitas, no con una herramienta favorita."
+      },
+      {
+        title: "Colaboración directa",
+        text: "Trabajas conmigo. Comunicación clara en español e inglés."
+      },
+      {
+        title: "A medida, no de plantilla",
+        text: "El alcance y la arquitectura siguen al problema — incluido lo que ya existe."
+      },
+      {
+        title: "Remoto e internacional",
+        text: "Con base en Ciudad de México. Acostumbrado al trabajo asíncrono, husos horarios y entrega remota profesional."
+      }
+    ],
+    rail: { why: "POR QUÉ", intro: "INTRO", identity: "IDENTIDAD", path: "CAMINO" }
   },
   skills: {
-    ariaLabel: "Qué hago",
-    headline: "Como desarrollador full stack, estas son las principales cosas que hago.",
+    ariaLabel: "Servicios",
+    headline: "Qué puedes contratar conmigo.",
     stackTitle: "Stack",
-    stackLead: "Este es el stack en el que más soy experto.",
+    stackLead: "Las herramientas con las que entrego — evidencia, no el mensaje principal.",
+    stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
     capabilities: [
       {
-        title: "Interfaces de producto",
-        text: "Pantallas claras, rápidas y accesibles que la gente sí usa."
+        title: "Aplicaciones web a medida",
+        text: "Productos diseñados alrededor de un flujo, una audiencia y una restricción de negocio concretos."
       },
       {
-        title: "Sistemas backend",
-        text: "APIs y servicios que se mantienen firmes cuando crece el uso."
+        title: "Sitios web para negocios",
+        text: "Sitios rápidos que comunican la oferta, generan confianza y apoyan objetivos comerciales."
       },
       {
-        title: "Datos e integraciones",
-        text: "Bases de datos, auth y servicios de terceros trabajando como un solo sistema."
+        title: "MVP y desarrollo de producto",
+        text: "Convertir una idea en un producto funcional para probarlo con usuarios reales."
       },
       {
-        title: "Modernización",
-        text: "Evolucionar lo que existe sin tirar lo que ya funciona."
+        title: "Sistemas e integraciones",
+        text: "APIs, bases de datos y servicios de terceros conectados en una solución confiable."
+      },
+      {
+        title: "Desarrollo full stack",
+        text: "Frontend, backend e infraestructura de soporte en un solo engagement."
       }
     ],
     interfaces: {
@@ -174,15 +233,6 @@ export const es: Messages = {
         "Escalable y mantenible"
       ]
     },
-    approach: {
-      kicker: "ESTA ES MI METODOLOGÍA DE DESARROLLO",
-      stages: [
-        { title: "SITUACIÓN", text: "El contexto del que parto." },
-        { title: "TAREA", text: "De qué me hago cargo." },
-        { title: "ACCIÓN", text: "Las decisiones que tomo." },
-        { title: "RESULTADO", text: "El impacto que entrego." }
-      ]
-    },
     groups: {
       frontend: "Frontend",
       backend: "Backend",
@@ -192,22 +242,51 @@ export const es: Messages = {
       ai: "IA"
     },
     rail: {
-      intro: "INTRO",
-      frontend: "FRONTEND",
-      backend: "BACKEND",
-      connected: "DATOS E INTEGRACIONES",
-      modernize: "MODERNIZACIÓN",
-      star: "STAR"
+      intro: "SOLUCIONES",
+      frontend: "INTERFACES",
+      backend: "SISTEMAS",
+      connected: "INTEGRACIONES",
+      modernize: "MODERNIZAR"
     }
   },
+  process: {
+    ariaLabel: "Proceso",
+    headline: "Cómo trabajamos juntos.",
+    lead: "Un camino claro desde la primera conversación hasta un producto que se puede usar — y seguir mejorando.",
+    steps: [
+      {
+        title: "Descubrimiento",
+        text: "Entender el negocio, los usuarios y qué significa el éxito antes de escribir código."
+      },
+      {
+        title: "Estrategia y arquitectura",
+        text: "Definir alcance, enfoque técnico y el camino más corto que aún resuelve el problema."
+      },
+      {
+        title: "Desarrollo",
+        text: "Construir, probar e iterar a la vista para que puedas ver el avance y ajustar a tiempo."
+      },
+      {
+        title: "Lanzamiento",
+        text: "Desplegar, endurecer y entregar una solución lista para uso real."
+      },
+      {
+        title: "Evolución",
+        text: "Seguir mejorando el producto a medida que el negocio aprende qué hacer después."
+      }
+    ],
+    ctaQuestion: "¿Listo para empezar?",
+    ctaAction: "Iniciar un proyecto"
+  },
   portfolio: {
-    ariaLabel: "Trabajos seleccionado",
+    ariaLabel: "Trabajo seleccionado",
     command: "ls ./selected-projects --sort=impact",
     archiveCommand: "ls ./archive",
     featured: "Destacado",
     year: "Año",
     type: "Tipo",
     stack: "Stack",
+    problem: "Reto",
     viewCase: "Ver caso de estudio",
     view: "Ver",
     loading: "Cargando detalles del proyecto…",
@@ -223,9 +302,17 @@ export const es: Messages = {
     }
   },
   certifications: {
-    ariaLabel: "Certificaciones",
+    ariaLabel: "Credenciales",
+    kicker: "PRUEBA, NO LA PROPUESTA",
+    headline: "Credenciales detrás del trabajo.",
     meta: "{count} certificados en seguridad, inglés y desarrollo.",
     view: "Ver {title} a pantalla completa",
+    metrics: [
+      { value: "6+", label: "Años lanzando productos" },
+      { value: "17", label: "Proyectos en este portafolio" },
+      { value: "ES / EN", label: "Entrega profesional bilingüe" },
+      { value: "Remoto", label: "Colaboración internacional" }
+    ],
     filters: {
       all: "Todos",
       security: "Seguridad",
@@ -240,9 +327,22 @@ export const es: Messages = {
     statusPrefix: "estado:",
     availability: "Disponible para nuevas oportunidades",
     supporting: "Suelo responder en 24 horas.",
-    startConversation: "empezar una conversación",
-    selectChannel: "Elegir canal",
+    headline: "¿Tienes un proyecto en mente?",
+    startConversation: "iniciar un proyecto",
+    selectChannel: "O escríbeme directo",
     opensTab: "(se abre en una pestaña nueva)",
+    form: {
+      name: "Nombre",
+      email: "Correo",
+      company: "Empresa / negocio",
+      companyOptional: "opcional",
+      project: "Cuéntame sobre tu proyecto",
+      submit: "Enviar",
+      sending: "Enviando…",
+      success: "Mensaje recibido. Te respondo en un plazo de 24 horas.",
+      error: "Algo salió mal. Inténtalo de nuevo o escríbeme por correo.",
+      next: "Después del envío, leo el brief y respondo con los siguientes pasos — normalmente en 24 horas."
+    },
     options: {
       email: {
         title: "Correo",
@@ -281,12 +381,18 @@ export const es: Messages = {
     github: "Ver en GitHub",
     year: "Año",
     type: "Tipo",
-    about: "Sobre el proyecto",
-    features: "Funciones clave",
+    about: "Resumen",
+    challenge: "El reto",
+    solution: "La solución",
+    role: "Mi rol",
+    outcome: "Resultado",
+    features: "Enfoque técnico",
     technologies: "Tecnologías",
     previous: "Anterior",
     next: "Siguiente",
     navLabel: "Proyectos",
+    similarQuestion: "¿Tienes un proyecto similar?",
+    similarAction: "Iniciar un proyecto",
     privateTitle: "Este despliegue es privado",
     privateText: "Si quieres saber más de este proyecto, contáctame.",
     privateConfirm: "Entendido",
@@ -301,7 +407,8 @@ export const es: Messages = {
     previewExit: "Salir de la vista previa"
   },
   footer: {
-    systemOnline: "Sistema en línea"
+    systemOnline: "Sistema en línea",
+    cta: "Iniciar un proyecto"
   },
   notFound: {
     title: "Página no encontrada",
@@ -326,13 +433,21 @@ export const es: Messages = {
   jsonLd: {
     jobTitle: "Ingeniero Full Stack Senior",
     description:
-      "Ingeniero Full Stack Senior en Ciudad de México, especializado en React, TypeScript, Next.js y Node.js. Disponible para contratar."
+      "Ingeniero Full Stack Senior en Ciudad de México. Construye aplicaciones web a medida, sitios para negocios, MVPs e integraciones para equipos que necesitan entrega senior."
   },
   projects: {
     FuenteDeVidaResidencial: {
       teaser: "Sitio residencial bilingüe con reserva de visitas.",
       description:
         "Sitio de marketing para un desarrollo residencial en Comitán de Domínguez, Chiapas. (2026)",
+      industry: "Bienes raíces",
+      problem:
+        "Un desarrollo residencial necesitaba un sitio bilingüe que convirtiera el interés por el paisaje en visitas agendadas.",
+      solution:
+        "Un sitio de marketing con contenido bilingüe, CTAs de reserva de visitas y un masterplan interactivo de lotes.",
+      role: "Diseño y desarrollo full stack.",
+      outcome:
+        "Un sitio inmobiliario bilingüe en vivo, con un camino claro del interés a la cita.",
       highlights: [
         { title: "Marca desde el paisaje", text: "Identidad visual inspirada en el entorno" },
         { title: "Experiencia bilingüe", text: "Contenido en español e inglés" },
@@ -344,6 +459,13 @@ export const es: Messages = {
       teaser: "Sitio de agencia para estrategia, contenido y web a medida.",
       description:
         "Sitio de agencia boutique que une estrategia, creatividad y tecnología. (2026)",
+      industry: "Marketing",
+      problem:
+        "Una agencia boutique necesitaba un solo sitio que explicara servicios y convirtiera consultas.",
+      solution:
+        "Un sitio de marca que une estrategia, contenido y web a medida, con una ruta de contacto pensada para convertir.",
+      role: "Diseño y desarrollo.",
+      outcome: "Un sitio de agencia en vivo que presenta servicios y casos en un solo lugar.",
       highlights: [
         {
           title: "Servicios a fondo",
@@ -375,6 +497,14 @@ export const es: Messages = {
       teaser: "Modernización de una plataforma all-in-one para salones y spas.",
       description:
         "Modernización en curso de la plataforma de gestión de salones y spas de SalonTarget. (2025–2026)",
+      industry: "SaaS / operaciones",
+      problem:
+        "Una plataforma consolidada para salones necesitaba modernizarse sin tirar lo que ya funcionaba.",
+      solution:
+        "Migración en curso de PHP y Node.js a React y GraphQL, con un stack más mantenible y pagos actualizados.",
+      role: "Ingeniero full stack senior en la modernización.",
+      outcome:
+        "La plataforma avanza hacia un stack de React y GraphQL, con un flujo de pagos que soporta terminales bancarias.",
       highlights: [
         { title: "Migración legacy", text: "De PHP y Node.js a React y GraphQL" },
         { title: "Stack mantenible", text: "Apollo GraphQL y TypeORM" },

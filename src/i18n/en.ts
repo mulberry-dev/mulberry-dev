@@ -7,10 +7,12 @@ export const en: Messages = {
   nav: {
     home: "Home",
     about: "About",
-    skills: "What I Do",
-    portfolio: "Works",
-    certifications: "Certifications",
+    skills: "Services",
+    portfolio: "Work",
+    process: "Process",
+    certifications: "Credentials",
     contact: "Contact",
+    cta: "Start a project",
     primary: "Primary",
     openMenu: "Open menu",
     closeMenu: "Close menu",
@@ -24,18 +26,20 @@ export const en: Messages = {
   site: {
     title: "Santiago Morera — Senior Full Stack Engineer in Mexico City",
     description:
-      "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for new opportunities and product modernization.",
+      "Senior Full Stack Engineer in Mexico City. Custom web apps, business sites, MVPs, and integrations — from architecture to launch. Available for new projects.",
     keywords: [
       "Santiago Morera",
       "Senior Full Stack Engineer",
-      "Senior Web Developer",
+      "custom web applications",
+      "web development services",
+      "MVP development",
       "React developer Mexico City",
       "TypeScript",
       "Next.js",
       "Node.js",
       "Mexico City",
       "CDMX",
-      "available for hire",
+      "hire full stack developer",
       "mulberry-dev"
     ],
     role: "Senior Full Stack Engineer",
@@ -45,54 +49,77 @@ export const en: Messages = {
     "/": {
       title: "Santiago Morera — Senior Full Stack Engineer in Mexico City",
       description:
-        "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for new opportunities and product modernization."
+        "Senior Full Stack Engineer in Mexico City. Custom web apps, business sites, MVPs, and integrations — from architecture to launch."
     },
     "/about": {
       title: "About",
       description:
-        "Santiago Morera is a Senior Full Stack Engineer in Mexico City. Design-to-code background, bilingual EN/ES, React, TypeScript, Next.js, and Node.js."
+        "Why work with Santiago Morera: senior full-stack delivery, direct collaboration, and bilingual remote work from Mexico City."
     },
     "/skills": {
-      title: "What I Do",
+      title: "Services",
       description:
-        "Frontend, backend, data and integrations, and legacy modernization with React, TypeScript, Next.js, Node.js, and GraphQL. My development method."
+        "Hire Santiago Morera for custom web applications, business sites, MVPs, systems and integrations, and full-stack delivery."
     },
     "/portfolio": {
-      title: "Works",
+      title: "Work",
       description:
         "Selected work by Santiago Morera: product UIs, APIs, e-commerce, and platform modernization for teams in Mexico and beyond."
     },
-    "/certifications": {
-      title: "Certifications",
+    "/process": {
+      title: "Process",
       description:
-        "Certificates in full stack development, React, JavaScript, cybersecurity, and English."
+        "How Santiago Morera works: discovery, strategy and architecture, development, launch, and ongoing evolution."
+    },
+    "/certifications": {
+      title: "Credentials",
+      description:
+        "Professional credentials: certificates in full stack development, React, JavaScript, cybersecurity, and English."
     },
     "/contact": {
-      title: "Contact",
+      title: "Start a project",
       description:
-        "Available for new opportunities and project briefs. Senior Full Stack Engineer in Mexico City. I usually respond within 24 hours."
+        "Tell Santiago about your project. Senior Full Stack Engineer in Mexico City. Usually responds within 24 hours."
     }
   },
   workspace: {
     home: "Home",
     about: "About Me",
-    skills: "What I Do",
-    work: "Selected Works",
-    certifications: "Certifications",
-    contact: "Let's Connect"
+    skills: "Services",
+    work: "Selected Work",
+    process: "Process",
+    certifications: "Credentials",
+    contact: "Start a project"
   },
   home: {
     ariaLabel: "Home",
-    greeting: "Hi! I am",
+    greeting: "Hi, I am",
     name: "Santiago Morera",
     roleLead: "Senior Full Stack",
     roleTrail: "Engineer",
-    bodyBefore: "I build ",
-    bodySolutions: "digital solutions",
-    bodyMid: " that ",
-    bodyValue: "deliver value",
-    ctaSr: "Start Exploring",
-    cta: "Start Exploring"
+    headline: "I build digital products that solve real business problems.",
+    body: "Custom web apps, business sites, MVPs, and integrations — designed, built, and delivered end to end.",
+    cta: "Start a project",
+    ctaSecondary: "View my work",
+    valueEyebrow: "What you get",
+    value: [
+      {
+        title: "Tailored solutions",
+        text: "Built around the problem and the business, not a generic template."
+      },
+      {
+        title: "Full-stack coverage",
+        text: "Frontend, backend, data, APIs, and infrastructure in one place."
+      },
+      {
+        title: "Business-first decisions",
+        text: "Technical choices tied to goals you can ship, measure, and keep."
+      },
+      {
+        title: "End-to-end collaboration",
+        text: "From definition and architecture through development and launch."
+      }
+    ]
   },
   about: {
     ariaLabel: "About Me",
@@ -102,7 +129,7 @@ export const en: Messages = {
     body: [
       "I came to software through design.",
       "Senior Full Stack Engineer in Mexico City — React, TypeScript, Next.js, and Node.js.",
-      "I work in English and Spanish. Available for new opportunities."
+      "I work in English and Spanish. Available for new projects, remotely and internationally."
     ],
     whoami: "whoami",
     passionsCommand: "passions",
@@ -119,30 +146,62 @@ export const en: Messages = {
       }
     ],
     footerQuestion: "have a project in mind?",
-    footerAction: "check what i do",
-    rail: { intro: "INTRO", identity: "IDENTITY", path: "PATH" }
+    footerAction: "start a project",
+    whyEyebrow: "WHY WORK WITH ME",
+    hook: "Meet the developer behind the code.",
+    hookLead:
+      "Every commit has a person behind it. Stay a moment — this is how I think, decide, and ship.",
+    whyHeadline: "Direct senior collaboration, not a handoff into a black box.",
+    why: [
+      {
+        title: "Senior delivery",
+        text: "Architecture, implementation, and judgment from someone who has shipped production systems."
+      },
+      {
+        title: "Tech and business",
+        text: "I connect stack choices to the outcome you need, not to a preferred tool."
+      },
+      {
+        title: "Direct collaboration",
+        text: "You work with me. Clear communication in English and Spanish."
+      },
+      {
+        title: "Tailored, not templated",
+        text: "Scope and architecture follow the problem — including what already exists."
+      },
+      {
+        title: "Remote, internationally",
+        text: "Based in Mexico City. Used to async work, time zones, and professional remote delivery."
+      }
+    ],
+    rail: { why: "WHY", intro: "INTRO", identity: "IDENTITY", path: "PATH" }
   },
   skills: {
-    ariaLabel: "What I Do",
-    headline: "As a full-stack developer, these are the main things I do.",
+    ariaLabel: "Services",
+    headline: "What you can hire me to build.",
     stackTitle: "Stack",
-    stackLead: "This is the stack I know best.",
+    stackLead: "The tools I use to deliver — evidence, not the pitch.",
+    stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
     capabilities: [
       {
-        title: "Product Interfaces",
-        text: "Clear, fast, accessible screens people actually use."
+        title: "Custom web applications",
+        text: "Products designed around a specific workflow, audience, and business constraint."
       },
       {
-        title: "Backend Systems",
-        text: "APIs and services that stay reliable as usage grows."
+        title: "Business websites",
+        text: "Fast sites that explain the offer, build trust, and support commercial goals."
       },
       {
-        title: "Data & Integrations",
-        text: "Databases, auth, and third-party services working as one system."
+        title: "MVP and product development",
+        text: "Turn an idea into a working product you can put in front of real users."
       },
       {
-        title: "Modernization",
-        text: "Evolve what exists without throwing away what already works."
+        title: "Systems and integrations",
+        text: "APIs, databases, and third-party services connected into one reliable system."
+      },
+      {
+        title: "Full-stack delivery",
+        text: "Frontend, backend, and supporting infrastructure owned as one engagement."
       }
     ],
     interfaces: {
@@ -174,15 +233,6 @@ export const en: Messages = {
         "Scalable & Maintainable"
       ]
     },
-    approach: {
-      kicker: "THIS IS MY DEVELOPMENT METHOD",
-      stages: [
-        { title: "SITUATION", text: "The context I start from." },
-        { title: "TASK", text: "What I take on." },
-        { title: "ACTION", text: "The decisions I make." },
-        { title: "RESULT", text: "The impact I deliver." }
-      ]
-    },
     groups: {
       frontend: "Frontend",
       backend: "Backend",
@@ -192,22 +242,51 @@ export const en: Messages = {
       ai: "AI"
     },
     rail: {
-      intro: "INTRO",
-      frontend: "FRONTEND",
-      backend: "BACKEND",
-      connected: "DATA & INTEGRATIONS",
-      modernize: "MODERNIZATION",
-      star: "STAR"
+      intro: "SOLUTIONS",
+      frontend: "INTERFACES",
+      backend: "SYSTEMS",
+      connected: "INTEGRATIONS",
+      modernize: "MODERNIZE"
     }
   },
+  process: {
+    ariaLabel: "Process",
+    headline: "How we work together.",
+    lead: "A clear path from first conversation to a product you can use — and keep improving.",
+    steps: [
+      {
+        title: "Discovery",
+        text: "Understand the business, the users, and what success looks like before writing code."
+      },
+      {
+        title: "Strategy and architecture",
+        text: "Define scope, technical approach, and the smallest path that still solves the problem."
+      },
+      {
+        title: "Development",
+        text: "Build, test, and iterate in the open so you can see progress and steer early."
+      },
+      {
+        title: "Launch",
+        text: "Deploy, harden, and hand over a solution that is ready for real use."
+      },
+      {
+        title: "Evolution",
+        text: "Keep improving the product as the business learns what to do next."
+      }
+    ],
+    ctaQuestion: "Ready to start?",
+    ctaAction: "Start a project"
+  },
   portfolio: {
-    ariaLabel: "Selected Works",
+    ariaLabel: "Selected Work",
     command: "ls ./selected-projects --sort=impact",
     archiveCommand: "ls ./archive",
     featured: "Featured",
     year: "Year",
     type: "Type",
     stack: "Stack",
+    problem: "Challenge",
     viewCase: "View case study",
     view: "View",
     loading: "Loading project details…",
@@ -223,9 +302,17 @@ export const en: Messages = {
     }
   },
   certifications: {
-    ariaLabel: "Certifications",
+    ariaLabel: "Credentials",
+    kicker: "PROOF, NOT THE PITCH",
+    headline: "Credentials behind the work.",
     meta: "{count} certificates in security, English, and development.",
     view: "View {title} fullscreen",
+    metrics: [
+      { value: "6+", label: "Years shipping products" },
+      { value: "17", label: "Projects in this portfolio" },
+      { value: "EN / ES", label: "Professional bilingual delivery" },
+      { value: "Remote", label: "International collaboration" }
+    ],
     filters: {
       all: "All",
       security: "Security",
@@ -240,9 +327,22 @@ export const en: Messages = {
     statusPrefix: "status:",
     availability: "Available for new opportunities",
     supporting: "I usually respond within 24 hours.",
-    startConversation: "start a conversation",
-    selectChannel: "Select channel",
+    headline: "Have a project in mind?",
+    startConversation: "start a project",
+    selectChannel: "Or reach me directly",
     opensTab: "(opens in a new tab)",
+    form: {
+      name: "Name",
+      email: "Email",
+      company: "Company / business",
+      companyOptional: "optional",
+      project: "Tell me about your project",
+      submit: "Send",
+      sending: "Sending…",
+      success: "Message received. I will get back to you within 24 hours.",
+      error: "Something went wrong. Try again or email me directly.",
+      next: "After you send, I read the brief and reply with next steps — usually within 24 hours."
+    },
     options: {
       email: {
         title: "Email",
@@ -281,12 +381,18 @@ export const en: Messages = {
     github: "View on GitHub",
     year: "Year",
     type: "Type",
-    about: "About the project",
-    features: "Key features",
+    about: "Summary",
+    challenge: "The challenge",
+    solution: "The solution",
+    role: "My role",
+    outcome: "Result",
+    features: "Technical approach",
     technologies: "Technologies",
     previous: "Previous",
     next: "Next",
     navLabel: "Projects",
+    similarQuestion: "Have a similar project?",
+    similarAction: "Start a project",
     privateTitle: "This deployment is private",
     privateText: "If you want to know more about this project, please contact me.",
     privateConfirm: "Great!",
@@ -301,7 +407,8 @@ export const en: Messages = {
     previewExit: "Exit preview"
   },
   footer: {
-    systemOnline: "System online"
+    systemOnline: "System online",
+    cta: "Start a project"
   },
   notFound: {
     title: "Page not found",
@@ -326,13 +433,20 @@ export const en: Messages = {
   jsonLd: {
     jobTitle: "Senior Full Stack Engineer",
     description:
-      "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for hire."
+      "Senior Full Stack Engineer in Mexico City. Builds custom web applications, business sites, MVPs, and integrations for teams that need senior delivery."
   },
   projects: {
     FuenteDeVidaResidencial: {
       teaser: "Residential marketing site with bilingual content and visit booking.",
       description:
         "Marketing website for a residential development in Comitán de Domínguez, Chiapas. (2026)",
+      industry: "Real estate",
+      problem:
+        "A residential development needed a bilingual site that turns landscape interest into scheduled visits.",
+      solution:
+        "A marketing site with bilingual content, visit-booking CTAs, and an interactive masterplan of lots.",
+      role: "Design and full-stack development.",
+      outcome: "A live bilingual property site with a clear path from interest to appointment.",
       highlights: [
         { title: "Nature-first brand", text: "Visual identity inspired by the landscape" },
         { title: "Bilingual experience", text: "Content in Spanish and English" },
@@ -344,6 +458,13 @@ export const en: Messages = {
       teaser: "Agency site for strategy, content, and custom web.",
       description:
         "Boutique agency site that unifies strategy, creativity, and technology. (2026)",
+      industry: "Marketing",
+      problem:
+        "A boutique agency needed one site that could explain services and convert inquiries.",
+      solution:
+        "A brand site that unifies strategy, content, and custom web with a conversion-focused contact path.",
+      role: "Design and development.",
+      outcome: "A live agency site that presents services and cases in one place.",
       highlights: [
         { title: "Service deep-dives", text: "Social, content, ads, UX/UI, web, and e-commerce" },
         { title: "Case studies", text: "Work presented with measurable outcomes" },
@@ -371,6 +492,14 @@ export const en: Messages = {
       teaser: "Modernizing an all-in-one salon and spa platform.",
       description:
         "Ongoing modernization of SalonTarget's salon and spa management platform. (2025–2026)",
+      industry: "SaaS / operations",
+      problem:
+        "An established salon platform needed to modernize without throwing away what already worked.",
+      solution:
+        "Ongoing migration from PHP and Node.js to React and GraphQL, with a more maintainable stack and upgraded payments.",
+      role: "Senior full-stack engineer on the modernization.",
+      outcome:
+        "The platform is moving to a React and GraphQL stack with a payments flow that supports banking terminals.",
       highlights: [
         { title: "Legacy migration", text: "PHP and Node.js moving to React and GraphQL" },
         { title: "Maintainable stack", text: "Apollo GraphQL and TypeORM" },

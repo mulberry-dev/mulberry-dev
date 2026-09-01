@@ -86,6 +86,9 @@ const FeaturedCard = ({
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
   const year = extractYear(project.description)
   const stack = techNames(project.tech).slice(0, 4)
+  const copy = t.projects[String(project.id)]
+  const problem = copy?.problem
+  const industry = copy?.industry
 
   return (
     <Link
@@ -110,8 +113,22 @@ const FeaturedCard = ({
             <ProjectFlags project={project} />
           </header>
           <h3>{project.name}</h3>
+          {industry ? (
+            <p className="work-card__industry">
+              <TypeCopy text={industry} caret={false} />
+            </p>
+          ) : null}
           <p className="work-card__teaser">
-            <TypeCopy text={project.teaser} />
+            {problem ? (
+              <>
+                <span className="work-card__problem-label">
+                  <TypeCopy text={t.portfolio.problem} caret={false} />
+                </span>
+                <TypeCopy text={problem} />
+              </>
+            ) : (
+              <TypeCopy text={project.teaser} />
+            )}
           </p>
           <dl className="work-card__facts">
             {year ? (

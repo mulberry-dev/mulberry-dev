@@ -40,13 +40,16 @@ export const personJsonLd = (locale: Locale) => {
     },
     knowsLanguage: ["en", "es"],
     knowsAbout: [
+      "Custom web applications",
+      "Business websites",
+      "MVP development",
+      "Systems and integrations",
+      "Full stack development",
       "React",
       "TypeScript",
       "Next.js",
       "Node.js",
-      "GraphQL",
-      "Full stack development",
-      "Legacy modernization"
+      "GraphQL"
     ],
     sameAs: [LINKEDIN_URL, GITHUB_URL],
     worksFor: {

@@ -1,11 +1,5 @@
 import type { SiteIconName } from "@/components/ui/SiteIcon"
-import {
-  BUILD_CONNECTED,
-  BUILD_INTERFACES,
-  BUILD_MODERNIZATION,
-  BUILD_SYSTEMS,
-  type BuildAccent
-} from "@/data/whatIBuild"
+import type { BuildAccent } from "@/data/whatIBuild"
 
 export const CAPABILITIES: {
   icon: SiteIconName
@@ -15,26 +9,32 @@ export const CAPABILITIES: {
 }[] = [
   {
     icon: "interface",
-    title: "Product Interfaces",
-    text: "Clear, fast, accessible screens people actually use.",
-    accent: BUILD_INTERFACES.accent
+    title: "Custom web applications",
+    text: "Products designed around a specific workflow, audience, and business constraint.",
+    accent: "cyan"
   },
   {
-    icon: "systems",
-    title: "Backend Systems",
-    text: "APIs and services that stay reliable as usage grows.",
-    accent: BUILD_SYSTEMS.accent
-  },
-  {
-    icon: "database",
-    title: "Data & Integrations",
-    text: "Databases, auth, and third-party services working as one system.",
-    accent: BUILD_CONNECTED.accent
+    icon: "globe",
+    title: "Business websites",
+    text: "Fast sites that explain the offer, build trust, and support commercial goals.",
+    accent: "blue"
   },
   {
     icon: "rocket",
-    title: "Modernization",
-    text: "Evolve what exists without throwing away what already works.",
-    accent: BUILD_MODERNIZATION.accent
+    title: "MVP and product development",
+    text: "Turn an idea into a working product you can put in front of real users.",
+    accent: "indigo"
+  },
+  {
+    icon: "connect",
+    title: "Systems and integrations",
+    text: "APIs, databases, and third-party services connected into one reliable system.",
+    accent: "purple"
+  },
+  {
+    icon: "systems",
+    title: "Full-stack delivery",
+    text: "Frontend, backend, and supporting infrastructure owned as one engagement.",
+    accent: "orange"
   }
 ]

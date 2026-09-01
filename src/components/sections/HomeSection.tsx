@@ -2,6 +2,7 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
+import SiteIcon, { type SiteIconName } from "@/components/ui/SiteIcon"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import TypeCopy from "@/components/terminal/TypeCopy"
 import { useParticles } from "@/components/particles"
@@ -23,6 +24,7 @@ import { useCallback, useEffect, useState } from "react"
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
+const VALUE_ICONS: SiteIconName[] = ["puzzle", "systems", "thinking", "connect"]
 
 const setOrbitRate = (node: HTMLDivElement, rate: number) => {
   node.getAnimations().forEach((animation) => {
@@ -174,14 +176,14 @@ const IndexPage = () => {
               />
               <p className="home-hero__brand-name gradient-text">{SITE_NAME}</p>
             </div>
-            <h1>
+            <p className="home-hero__hello">
               <TypeCopy
                 parts={[
                   { text: `${t.home.greeting} ` },
                   { text: t.home.name, className: "gradient-text home-hero__name" }
                 ]}
               />
-            </h1>
+            </p>
             <p className="home-hero__role">
               <span className="home-hero__bracket">&lt;</span>{" "}
               <TypeCopy
@@ -193,25 +195,21 @@ const IndexPage = () => {
               />{" "}
               <span className="home-hero__bracket">/ &gt;</span>
             </p>
+            <h1 className="home-hero__headline">
+              <TypeCopy text={t.home.headline} />
+            </h1>
             <p className="home-hero__body">
-              <TypeCopy
-                parts={[
-                  { text: t.home.bodyBefore },
-                  { text: t.home.bodySolutions, className: "home-hero__solutions" },
-                  { text: t.home.bodyMid },
-                  { text: t.home.bodyValue, className: "gradient-text" }
-                ]}
-              />
+              <TypeCopy text={t.home.body} />
               <span className="home-hero__caret" aria-hidden="true">
                 _
               </span>
             </p>
             <div className="home-hero__actions">
-              <Button href={href("/about")} variant="terminal">
-                <span className="sr-only">{t.home.ctaSr}</span>
-                <span aria-hidden="true">
-                  <TypeCopy text={t.home.cta} />
-                </span>
+              <Button href={href("/contact")} variant="terminal">
+                <TypeCopy text={t.home.cta} />
+              </Button>
+              <Button href={href("/portfolio")} variant="secondary">
+                <TypeCopy text={t.home.ctaSecondary} />
               </Button>
             </div>
           </div>
@@ -236,6 +234,27 @@ const IndexPage = () => {
               <span className="home-orbit__node home-orbit__node--purple" />
             </div>
           </div>
+        </div>
+
+        <div className="home-value">
+          <p className="home-value__eyebrow">
+            <TypeCopy text={t.home.valueEyebrow} />
+          </p>
+          <ul className="home-value__grid">
+            {t.home.value.map((item, index) => (
+              <li key={item.title} className="home-value__item">
+                <span className="home-value__icon" aria-hidden="true">
+                  <SiteIcon name={VALUE_ICONS[index] ?? "puzzle"} />
+                </span>
+                <h2>
+                  <TypeCopy text={item.title} />
+                </h2>
+                <p>
+                  <TypeCopy text={item.text} />
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>
