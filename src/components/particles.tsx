@@ -1,12 +1,11 @@
 "use client"
 
-import type { ParticlePhase, ParticlesEngine } from "@/lib/particlesEngine"
+import { ParticlesEngine, type ParticlePhase } from "@/lib/particlesEngine"
 import { usePathname } from "next/navigation"
 import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -21,6 +20,7 @@ type ParticlesContextValue = {
   contentReady: boolean
   beginRouteTransition: () => Promise<void>
   completeRouteTransition: () => void
+  boostParticles: () => void
   holdContent: () => void
   releaseContent: () => void
 }
@@ -63,6 +63,14 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
       const reduced = media.matches
       setReducedMotion(reduced)
       engineRef.current?.setReducedMotion(reduced)
+
+      if (reduced) {
+        setPhase("active")
+        setLayerMounted(false)
+        return
+      }
+
+      setLayerMounted(true)
     }
 
     syncMotion()
@@ -70,26 +78,6 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
 
     return () => media.removeEventListener("change", syncMotion)
   }, [])
-
-  useEffect(() => {
-    if (reducedMotion) {
-      setPhase("active")
-      setLayerMounted(false)
-      return
-    }
-
-    const mount = () => setLayerMounted(true)
-    const timeoutId = window.setTimeout(mount, 20000)
-
-    window.addEventListener("pointerdown", mount, { once: true, passive: true })
-    window.addEventListener("keydown", mount, { once: true })
-
-    return () => {
-      window.clearTimeout(timeoutId)
-      window.removeEventListener("pointerdown", mount)
-      window.removeEventListener("keydown", mount)
-    }
-  }, [reducedMotion])
 
   useLayoutEffect(() => {
     if (prevPathRef.current === pathname) {
@@ -111,54 +99,35 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
       return
     }
 
-    let cancelled = false
+    const engine = engineRef.current ?? new ParticlesEngine()
+    engineRef.current = engine
+    engine.setPhaseListener(setPhase)
+    engine.setContentRevealListener(releaseContent)
+    engine.setReducedMotion(reducedMotion)
 
-    const attach = (engine: ParticlesEngine) => {
-      engine.setPhaseListener(setPhase)
-      engine.setContentRevealListener(releaseContent)
-      engine.setReducedMotion(reducedMotion)
-
-      if (!engine.mount(canvas)) {
-        return
-      }
-
-      engine.setEmberMode(true, true)
-
-      const currentPhase = engine.getPhase()
-
-      if (currentPhase === "idle") {
-        engine.startEnter()
-      } else if (
-        currentPhase === "active" ||
-        currentPhase === "transitioning"
-      ) {
-        engine.startActive()
-      } else {
-        engine.armContentReveal()
-      }
+    if (!engine.mount(canvas)) {
+      return
     }
 
-    const existing = engineRef.current
+    engine.setEmberMode(true, true)
 
-    if (existing) {
-      attach(existing)
+    const currentPhase = engine.getPhase()
+
+    if (currentPhase === "idle") {
+      engine.startEnter()
+    } else if (
+      currentPhase === "active" ||
+      currentPhase === "transitioning"
+    ) {
+      engine.startActive()
     } else {
-      void import("@/lib/particlesEngine").then(({ ParticlesEngine }) => {
-        if (cancelled) {
-          return
-        }
-
-        const engine = new ParticlesEngine()
-        engineRef.current = engine
-        attach(engine)
-      })
+      engine.armContentReveal()
     }
 
     return () => {
-      cancelled = true
-      engineRef.current?.setPhaseListener(null)
-      engineRef.current?.setContentRevealListener(null)
-      engineRef.current?.unmount()
+      engine.setPhaseListener(null)
+      engine.setContentRevealListener(null)
+      engine.unmount()
     }
   }, [layerMounted, reducedMotion, releaseContent])
 
@@ -169,6 +138,10 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
 
   const completeRouteTransition = useCallback(() => {
     engineRef.current?.completeRouteTransition()
+  }, [])
+
+  const boostParticles = useCallback(() => {
+    engineRef.current?.boost()
   }, [])
 
   const canTransition =
@@ -183,11 +156,13 @@ export const ParticlesProvider = ({ children }: { children: ReactNode }) => {
       contentReady,
       beginRouteTransition,
       completeRouteTransition,
+      boostParticles,
       holdContent,
       releaseContent
     }),
     [
       beginRouteTransition,
+      boostParticles,
       canTransition,
       completeRouteTransition,
       contentReady,

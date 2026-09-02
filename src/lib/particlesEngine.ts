@@ -208,6 +208,8 @@ export class ParticlesEngine {
   private themeObserver: MutationObserver | null = null
   private resizeObserver: ResizeObserver | null = null
   private colorSyncUntil = 0
+  private boostToken = 0
+  private boostHoldTimer = 0
 
   setPhaseListener(listener: PhaseListener | null) {
     this.phaseListener = listener
@@ -250,6 +252,7 @@ export class ParticlesEngine {
   }
 
   unmount() {
+    this.clearBoostHold()
     this.stopLoop()
     this.unbindChrome()
     this.canvas = null
@@ -274,6 +277,7 @@ export class ParticlesEngine {
     this.enterAge = 0
     this.setPhase("entering")
     this.markContentReveal()
+    this.draw()
   }
 
   armContentReveal() {
@@ -365,18 +369,55 @@ export class ParticlesEngine {
     if (
       this.phase === "idle" ||
       this.phase === "falling" ||
+      this.phase === "entering" ||
       this.reducedMotion ||
       !this.running
     ) {
       return Promise.resolve()
     }
 
+    this.clearBoostHold()
+    this.boostToken += 1
+    this.enterBoost = 1
     this.travelAge = 0
     this.setPhase("transitioning")
     this.tweenSpeed(PEAK_SPEED, ACCEL_DURATION, easeInCubic)
 
     return new Promise<void>((resolve) => {
       this.coverWaiters.push(resolve)
+    })
+  }
+
+  boost() {
+    if (
+      this.phase === "idle" ||
+      this.phase === "falling" ||
+      this.phase === "entering" ||
+      this.reducedMotion ||
+      !this.running
+    ) {
+      return
+    }
+
+    this.clearBoostHold()
+    const token = ++this.boostToken
+    this.enterBoost = 1
+    this.travelAge = 0
+    this.setPhase("transitioning")
+    this.tweenSpeed(PEAK_SPEED, ACCEL_DURATION, easeInCubic, () => {
+      if (token !== this.boostToken) {
+        return
+      }
+
+      this.boostHoldTimer = window.setTimeout(() => {
+        this.boostHoldTimer = 0
+
+        if (token !== this.boostToken || this.phase !== "transitioning") {
+          return
+        }
+
+        this.completeRouteTransition()
+      }, MIN_TRAVEL * 1000)
     })
   }
 
@@ -390,6 +431,15 @@ export class ParticlesEngine {
         this.setPhase("active")
       }
     })
+  }
+
+  private clearBoostHold() {
+    if (!this.boostHoldTimer) {
+      return
+    }
+
+    window.clearTimeout(this.boostHoldTimer)
+    this.boostHoldTimer = 0
   }
 
   private setPhase(phase: ParticlePhase) {
@@ -520,6 +570,7 @@ export class ParticlesEngine {
     }
 
     document.addEventListener("visibilitychange", this.onVisibility)
+    window.addEventListener("resize", this.onWindowResize)
   }
 
   private unbindChrome() {
@@ -528,6 +579,11 @@ export class ParticlesEngine {
     this.resizeObserver?.disconnect()
     this.resizeObserver = null
     document.removeEventListener("visibilitychange", this.onVisibility)
+    window.removeEventListener("resize", this.onWindowResize)
+  }
+
+  private onWindowResize = () => {
+    this.resize()
   }
 
   private onVisibility = () => {
@@ -604,8 +660,16 @@ export class ParticlesEngine {
     }
 
     const bounds = this.canvas.getBoundingClientRect()
-    const width = Math.max(1, Math.round(bounds.width))
-    const height = Math.max(1, Math.round(bounds.height))
+    const width = Math.max(
+      1,
+      Math.round(bounds.width),
+      window.innerWidth || 0
+    )
+    const height = Math.max(
+      1,
+      Math.round(bounds.height),
+      window.innerHeight || 0
+    )
     const dpr = Math.min(
       window.devicePixelRatio || 1,
       width < 768 ? DPR_CAP_MOBILE : DPR_CAP

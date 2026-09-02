@@ -1,5 +1,6 @@
 "use client"
 
+import { useParticles } from "@/components/particles"
 import DeferredSection from "@/components/sections/DeferredSection"
 import HomeSection from "@/components/sections/HomeSection"
 import {
@@ -100,6 +101,7 @@ const readSectionHref = (anchor: Element) => {
 const SiteExperience = () => {
   const pathname = usePathname()
   const router = useRouter()
+  const { boostParticles } = useParticles()
   const locale = getLocale(pathname)
   const toHref = useCallback(
     (path: string) => localizePath(stripLocale(path), locale),
@@ -326,10 +328,12 @@ const SiteExperience = () => {
       announceSection(nextPath)
 
       const fromMenu = document.body.classList.contains("nav-menu-open")
+      const pathChanged = pathnameRef.current !== nextPath
 
-      if (pathnameRef.current !== nextPath) {
+      if (pathChanged) {
         ignorePathRef.current = nextPath
         router.push(nextPath, { scroll: false })
+        boostParticles()
       }
 
       void revealPath(nextPath, fromMenu ? "auto" : "smooth")
@@ -357,7 +361,7 @@ const SiteExperience = () => {
       document.removeEventListener("click", onClick, true)
       document.removeEventListener("pointerover", onPointerOver)
     }
-  }, [revealPath, router])
+  }, [boostParticles, revealPath, router])
 
   return (
     <div className={`site-experience${aligned ? " is-aligned" : ""}`}>
