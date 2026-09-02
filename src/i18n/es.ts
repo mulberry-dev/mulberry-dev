@@ -12,7 +12,6 @@ export const es: Messages = {
     process: "Proceso",
     certifications: "Credenciales",
     contact: "Contacto",
-    cta: "Iniciar un proyecto",
     primary: "Principal",
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",

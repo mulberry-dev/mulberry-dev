@@ -2,13 +2,12 @@
 
 import LanguageSwitch from "@/components/LanguageSwitch"
 import TypeCopy from "@/components/terminal/TypeCopy"
-import Button from "@/components/ui/Button"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { links } from "@/data/navegation"
 import { useI18n } from "@/i18n/useI18n"
 import { isHomePath, stripLocale } from "@/lib/locale"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
-import { prefetchSectionPath, SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
+import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   HOME_CHROME_REVEALED_EVENT,
   isHomeChromeRevealed,
@@ -225,7 +224,6 @@ const Navigation = () => {
     }
 
     document.body.classList.add("nav-menu-open")
-    prefetchSectionPath("/contact")
     lockBodyScroll()
 
     return () => {
@@ -604,28 +602,9 @@ const Navigation = () => {
                 <TypeCopy text={navLabel(link.path)} caret={false} />
               </Link>
             )}
-            <Button
-              href={href("/contact")}
-              variant="terminal"
-              className="site-nav__cta site-nav__cta--menu"
-              onClick={() => {
-                if (menu === "open") {
-                  setMenu("closing")
-                }
-              }}
-            >
-              <TypeCopy text={t.nav.cta} caret={false} />
-            </Button>
           </nav>
 
           <div className="site-nav__actions">
-            <Button
-              href={href("/contact")}
-              variant="terminal"
-              className="site-nav__cta site-nav__cta--header"
-            >
-              <TypeCopy text={t.nav.cta} caret={false} />
-            </Button>
             <LanguageSwitch />
             <button
               ref={toggleRef}

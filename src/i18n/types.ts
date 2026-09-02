@@ -28,7 +28,6 @@ export type Messages = {
     process: string
     certifications: string
     contact: string
-    cta: string
     primary: string
     openMenu: string
     closeMenu: string

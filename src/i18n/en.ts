@@ -12,7 +12,6 @@ export const en: Messages = {
     process: "Process",
     certifications: "Credentials",
     contact: "Contact",
-    cta: "Start a project",
     primary: "Primary",
     openMenu: "Open menu",
     closeMenu: "Close menu",
