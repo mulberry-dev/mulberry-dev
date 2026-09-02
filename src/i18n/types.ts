@@ -277,6 +277,8 @@ export type Messages = {
     github: string
     year: string
     type: string
+    origin: string
+    industry: string
     about: string
     challenge: string
     solution: string
@@ -324,6 +326,10 @@ export type Messages = {
     offline: string
     noAi: string
     noAiTitle: string
+    withAi: string
+    withAiTitle: string
+    handmade: string
+    handmadeTitle: string
   }
   jsonLd: {
     jobTitle: string

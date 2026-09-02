@@ -31,6 +31,12 @@ export const builtWithoutAi = (project: Project) => {
   return year !== undefined && year <= 2023
 }
 
+export const builtWithAi = (project: Project) => {
+  const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  const year = extractStartYear(source.description)
+  return year !== undefined && year > 2023
+}
+
 export const projectSlug = (id: string | number) =>
   String(id)
     .replace(/([a-z\d])([A-Z])/g, "$1-$2")
