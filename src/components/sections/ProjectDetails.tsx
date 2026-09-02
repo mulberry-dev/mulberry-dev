@@ -344,15 +344,6 @@ const ProjectDetails = ({ id }: { id: string }) => {
           </div>
         </div>
 
-        <div className="project-convert">
-          <p>
-            <TypeCopy text={t.project.similarQuestion} />
-          </p>
-          <Button href={href("/contact")} variant="terminal">
-            <TypeCopy text={t.project.similarAction} />
-          </Button>
-        </div>
-
         <div className="project-stack">
           <Reveal type="text" mode="scroll" as="h2" className="project-stack__title">
             <TypeCopy text={t.project.technologies} />
@@ -370,6 +361,15 @@ const ProjectDetails = ({ id }: { id: string }) => {
               )
             )}
           </RevealGroup>
+        </div>
+
+        <div className="project-convert">
+          <p>
+            <TypeCopy text={t.project.similarQuestion} />
+          </p>
+          <Button href={href("/contact")} variant="terminal">
+            <TypeCopy text={t.project.similarAction} />
+          </Button>
         </div>
 
         <div className="project-nav-wrap">
