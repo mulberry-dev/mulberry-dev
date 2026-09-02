@@ -12,11 +12,63 @@ import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import { CONTACT_OPTIONS } from "@/data/contact"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
+import type { Messages } from "@/i18n/types"
 import { contactMailtoHref, sendContactMails } from "@/lib/contactMail"
+import {
+  CONTACT_LIMITS,
+  FIELD_ERROR_TO_FIELD,
+  getContactFieldError,
+  getContactFieldErrors,
+  type ContactField,
+  type ContactFieldErrors
+} from "@/lib/contact/validateContact"
 import { padCount } from "@/lib/projects"
 import { FormEvent, useRef, useState } from "react"
 
-type FormStatus = "idle" | "sending" | "success" | "error" | "rateLimited"
+type FormStatus = "idle" | "sending" | "success" | "partial" | "error" | "rateLimited"
+
+const FIELD_ORDER: ContactField[] = ["name", "email", "company", "project"]
+
+const fieldErrorCopy = (
+  errors: {
+    nameRequired: string
+    nameShort: string
+    nameLong: string
+    emailRequired: string
+    emailInvalid: string
+    emailLong: string
+    companyLong: string
+    projectRequired: string
+    projectShort: string
+    projectLong: string
+  },
+  fallback: string,
+  code: string | undefined
+) => {
+  if (!code) return ""
+  const map: Record<string, string> = {
+    name_required: errors.nameRequired,
+    name_short: errors.nameShort,
+    name_long: errors.nameLong,
+    email_required: errors.emailRequired,
+    email_invalid: errors.emailInvalid,
+    email_long: errors.emailLong,
+    company_long: errors.companyLong,
+    project_required: errors.projectRequired,
+    project_short: errors.projectShort,
+    project_long: errors.projectLong
+  }
+  return map[code] || fallback
+}
+
+const optionCopy = (options: Messages["contact"]["options"], id: string) => {
+  if (id === "email") return options.email
+  if (id === "phone") return options.phone
+  if (id === "linkedin") return options.linkedin
+  if (id === "github") return options.github
+  if (id === "call") return options.call
+  return options.email
+}
 
 const Contact = () => {
   const { t, locale } = useI18n()
@@ -27,16 +79,92 @@ const Contact = () => {
   const [company, setCompany] = useState("")
   const [project, setProject] = useState("")
   const [honeypot, setHoneypot] = useState("")
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({})
   const formOpenedAtRef = useRef(new Date().toISOString())
   const selected =
     CONTACT_OPTIONS.find(option => option.id === active) ?? CONTACT_OPTIONS[0]
-  const optionCopy = (id: string) => {
-    if (id === "email") return t.contact.options.email
-    if (id === "phone") return t.contact.options.phone
-    if (id === "linkedin") return t.contact.options.linkedin
-    if (id === "github") return t.contact.options.github
-    if (id === "call") return t.contact.options.call
-    return t.contact.options.email
+  const fieldMessage = (code: string | undefined) =>
+    fieldErrorCopy(t.contact.form.errors, t.contact.form.error, code)
+
+  const values = { name, email, company, project }
+
+  const setFieldValue = (field: ContactField, value: string) => {
+    if (field === "name") setName(value)
+    if (field === "email") setEmail(value)
+    if (field === "company") setCompany(value)
+    if (field === "project") setProject(value)
+    setFieldErrors(current => {
+      if (!current[field]) return current
+      const next = { ...current }
+      delete next[field]
+      return next
+    })
+    if (status === "error" || status === "partial" || status === "rateLimited") {
+      setStatus("idle")
+    }
+  }
+
+  const showFieldError = (field: ContactField, raw: string) => {
+    const error = getContactFieldError(field, raw)
+    setFieldErrors(current => {
+      if (!error) {
+        if (!current[field]) return current
+        const next = { ...current }
+        delete next[field]
+        return next
+      }
+      return { ...current, [field]: error }
+    })
+  }
+
+  const focusField = (field: ContactField) => {
+    document.getElementById(`contact-${field}`)?.focus()
+  }
+
+  const resetForm = () => {
+    setName("")
+    setEmail("")
+    setCompany("")
+    setProject("")
+    setHoneypot("")
+    formOpenedAtRef.current = new Date().toISOString()
+  }
+
+  const applySendResult = (
+    result: Awaited<ReturnType<typeof sendContactMails>>,
+    payload: Parameters<typeof contactMailtoHref>[0]
+  ) => {
+    if (result === "fallback") {
+      window.location.assign(contactMailtoHref(payload))
+      setStatus("idle")
+      return
+    }
+    if (result === "rate_limited") {
+      setStatus("rateLimited")
+      return
+    }
+    if (typeof result === "object") {
+      const field = FIELD_ERROR_TO_FIELD[result.error]
+      if (field) {
+        setFieldErrors({ [field]: result.error })
+        focusField(field)
+        setStatus("idle")
+        return
+      }
+      setStatus("error")
+      return
+    }
+    if (result === "partial") {
+      setStatus("partial")
+      resetForm()
+      return
+    }
+    if (result === "sent") {
+      setStatus("success")
+      resetForm()
+      return
+    }
+    setStatus("error")
   }
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -52,44 +180,20 @@ const Contact = () => {
       formOpenedAt: formOpenedAtRef.current
     }
 
-    if (
-      !payload.name ||
-      !payload.email ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) ||
-      !payload.project
-    ) {
-      setStatus("error")
+    const errors = getContactFieldErrors(values)
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors)
+      setStatus("idle")
+      const firstInvalid = FIELD_ORDER.find(field => errors[field])
+      if (firstInvalid) focusField(firstInvalid)
       return
     }
 
     setStatus("sending")
+    setFieldErrors({})
 
     try {
-      const result = await sendContactMails(payload)
-
-      if (result === "fallback") {
-        window.location.assign(contactMailtoHref(payload))
-        setStatus("idle")
-        return
-      }
-
-      if (result === "rate_limited") {
-        setStatus("rateLimited")
-        return
-      }
-
-      if (result !== "sent") {
-        setStatus("error")
-        return
-      }
-
-      setStatus("success")
-      setName("")
-      setEmail("")
-      setCompany("")
-      setProject("")
-      setHoneypot("")
-      formOpenedAtRef.current = new Date().toISOString()
+      applySendResult(await sendContactMails(payload), payload)
     } catch {
       setStatus("error")
     }
@@ -118,57 +222,118 @@ const Contact = () => {
               <div className="contact-hp" aria-hidden="true">
                 <input
                   type="text"
-                  name="website"
+                  name="contact_hp"
                   tabIndex={-1}
                   autoComplete="off"
                   value={honeypot}
                   onChange={event => setHoneypot(event.target.value)}
                 />
               </div>
-              <label className="contact-field">
+              <label
+                className={`contact-field${fieldErrors.name ? " is-invalid" : ""}`}
+                htmlFor="contact-name"
+              >
                 <span>{t.contact.form.name}</span>
                 <input
+                  id="contact-name"
                   type="text"
                   name="from_name"
                   autoComplete="name"
                   required
+                  minLength={CONTACT_LIMITS.nameMin}
+                  maxLength={CONTACT_LIMITS.nameMax}
                   value={name}
-                  onChange={event => setName(event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.name)}
+                  aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
+                  onChange={event => setFieldValue("name", event.target.value)}
+                  onBlur={event => showFieldError("name", event.target.value)}
                 />
+                {fieldErrors.name ? (
+                  <span className="contact-field__error" id="contact-name-error" role="alert">
+                    {fieldMessage(fieldErrors.name)}
+                  </span>
+                ) : null}
               </label>
-              <label className="contact-field">
+              <label
+                className={`contact-field${fieldErrors.email ? " is-invalid" : ""}`}
+                htmlFor="contact-email"
+              >
                 <span>{t.contact.form.email}</span>
                 <input
+                  id="contact-email"
                   type="email"
                   name="user_email"
                   autoComplete="email"
+                  inputMode="email"
+                  autoCapitalize="none"
+                  autoCorrect="off"
                   required
+                  maxLength={CONTACT_LIMITS.emailMax}
                   value={email}
-                  onChange={event => setEmail(event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
+                  onChange={event => setFieldValue("email", event.target.value)}
+                  onBlur={event => showFieldError("email", event.target.value)}
                 />
+                {fieldErrors.email ? (
+                  <span className="contact-field__error" id="contact-email-error" role="alert">
+                    {fieldMessage(fieldErrors.email)}
+                  </span>
+                ) : null}
               </label>
-              <label className="contact-field">
+              <label
+                className={`contact-field${fieldErrors.company ? " is-invalid" : ""}`}
+                htmlFor="contact-company"
+              >
                 <span>
                   {t.contact.form.company}{" "}
                   <em>({t.contact.form.companyOptional})</em>
                 </span>
                 <input
+                  id="contact-company"
                   type="text"
                   name="user_company"
                   autoComplete="organization"
+                  maxLength={CONTACT_LIMITS.companyMax}
                   value={company}
-                  onChange={event => setCompany(event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.company)}
+                  aria-describedby={
+                    fieldErrors.company ? "contact-company-error" : undefined
+                  }
+                  onChange={event => setFieldValue("company", event.target.value)}
+                  onBlur={event => showFieldError("company", event.target.value)}
                 />
+                {fieldErrors.company ? (
+                  <span className="contact-field__error" id="contact-company-error" role="alert">
+                    {fieldMessage(fieldErrors.company)}
+                  </span>
+                ) : null}
               </label>
-              <label className="contact-field contact-field--area">
+              <label
+                className={`contact-field contact-field--area${fieldErrors.project ? " is-invalid" : ""}`}
+                htmlFor="contact-project"
+              >
                 <span>{t.contact.form.project}</span>
                 <textarea
+                  id="contact-project"
                   name="message"
                   required
                   rows={5}
+                  minLength={CONTACT_LIMITS.projectMin}
+                  maxLength={CONTACT_LIMITS.projectMax}
                   value={project}
-                  onChange={event => setProject(event.target.value)}
+                  aria-invalid={Boolean(fieldErrors.project)}
+                  aria-describedby={
+                    fieldErrors.project ? "contact-project-error" : undefined
+                  }
+                  onChange={event => setFieldValue("project", event.target.value)}
+                  onBlur={event => showFieldError("project", event.target.value)}
                 />
+                {fieldErrors.project ? (
+                  <span className="contact-field__error" id="contact-project-error" role="alert">
+                    {fieldMessage(fieldErrors.project)}
+                  </span>
+                ) : null}
               </label>
               <p className="contact-form__next">
                 <TypeCopy text={t.contact.form.next} />
@@ -176,6 +341,11 @@ const Contact = () => {
               {status === "success" ? (
                 <output className="contact-form__status is-ok">
                   {t.contact.form.success}
+                </output>
+              ) : null}
+              {status === "partial" ? (
+                <output className="contact-form__status is-warn">
+                  {t.contact.form.partial}
                 </output>
               ) : null}
               {status === "error" ? (
@@ -228,7 +398,7 @@ const Contact = () => {
               </h3>
               <ul>
                 {CONTACT_OPTIONS.map((option, index) => {
-                  const copy = optionCopy(option.id)
+                  const copy = optionCopy(t.contact.options, option.id)
 
                   return (
                   <li key={option.id}>

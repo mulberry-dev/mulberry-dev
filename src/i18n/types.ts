@@ -206,9 +206,22 @@ export type Messages = {
       submit: string
       sending: string
       success: string
+      partial: string
       error: string
       rateLimited: string
       next: string
+      errors: {
+        nameRequired: string
+        nameShort: string
+        nameLong: string
+        emailRequired: string
+        emailInvalid: string
+        emailLong: string
+        companyLong: string
+        projectRequired: string
+        projectShort: string
+        projectLong: string
+      }
     }
     mail: {
       path: string

@@ -55,7 +55,11 @@ export const sendContactEmail = async (lead: ContactLead) => {
     )
   }
 
-  return { ok: true as const, id: ownerResult.id }
+  return {
+    ok: true as const,
+    id: ownerResult.id,
+    confirmationSent: visitorResult.ok
+  }
 }
 
 const postResend = async ({

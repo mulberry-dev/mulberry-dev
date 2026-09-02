@@ -361,9 +361,23 @@ export const es: Messages = {
       submit: "Enviar",
       sending: "Enviando…",
       success: "Mensaje recibido. Te respondo en un plazo de 24 horas.",
-      error: "Algo salió mal. Inténtalo de nuevo o escríbeme por correo.",
+      partial:
+        "Recibí tu mensaje, pero no pude enviar el correo de confirmación. Igual te responderé al correo que escribiste.",
+      error: "Algo salió mal. El mensaje no se envió. Inténtalo de nuevo o escríbeme por correo.",
       rateLimited: "Demasiados mensajes desde esta red. Espera unos minutos e inténtalo de nuevo.",
-      next: "Después del envío, leo el brief y respondo con los siguientes pasos — normalmente en 24 horas."
+      next: "Después del envío, leo el brief y respondo con los siguientes pasos — normalmente en 24 horas.",
+      errors: {
+        nameRequired: "Escribe tu nombre.",
+        nameShort: "Usa al menos 2 caracteres.",
+        nameLong: "Ese nombre es demasiado largo.",
+        emailRequired: "Escribe tu correo.",
+        emailInvalid: "Ese correo no parece válido.",
+        emailLong: "Ese correo es demasiado largo.",
+        companyLong: "Ese nombre de empresa es demasiado largo.",
+        projectRequired: "Cuéntame un poco sobre el proyecto.",
+        projectShort: "Añade un poco más de detalle (al menos 12 caracteres).",
+        projectLong: "Ese mensaje es demasiado largo."
+      }
     },
     mail: {
       path: "~/contact",

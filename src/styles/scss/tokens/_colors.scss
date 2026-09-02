@@ -112,6 +112,7 @@ $glass-blur: 5px;
   --text-secondary: #{$text-secondary};
   --text-muted: #{$text-muted};
   --status-success: #{$signal};
+  --status-danger: #f87171;
   --color-canvas: #{$canvas};
   --color-canvas-deep: #{$canvas-deep};
   --color-surface: #{$surface};
@@ -156,6 +157,7 @@ body:not(.dark) {
   --color-text-secondary: #334155;
   --color-text-muted: #{$light-muted};
   --color-text-dim: #8b9cb3;
+  --status-danger: #dc2626;
   --surface-primary: #{$light-canvas};
   --surface-secondary: #ffffff;
   --surface-elevated: #ffffff;

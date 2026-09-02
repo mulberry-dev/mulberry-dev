@@ -16,10 +16,19 @@ export const processContactSubmission = async (
   body: unknown,
   options: { clientKey?: string } = {}
 ): Promise<ProcessResult> => {
-  if (isHoneypotTriggered(body) || isTooFastSubmission(body)) {
+  // Honeypot stays silent so bots get no signal. Instant submits used to
+  // return a fake 200 (form said success, no email). They now return 429.
+  if (isHoneypotTriggered(body)) {
     return {
       status: 200,
       body: { ok: true }
+    }
+  }
+
+  if (isTooFastSubmission(body)) {
+    return {
+      status: 429,
+      body: { ok: false, error: "rate_limited" }
     }
   }
 
@@ -39,7 +48,7 @@ export const processContactSubmission = async (
   if (!validated.ok) {
     return {
       status: 400,
-      body: { ok: false, error: "validation_failed" }
+      body: { ok: false, error: validated.error }
     }
   }
 
@@ -48,13 +57,13 @@ export const processContactSubmission = async (
     const status = result.error === "email_not_configured" ? 503 : 502
     return {
       status,
-      body: { ok: false, error: "submit_failed" }
+      body: { ok: false, error: result.error }
     }
   }
 
   return {
     status: 200,
-    body: { ok: true }
+    body: { ok: true, confirmationSent: result.confirmationSent }
   }
 }
 

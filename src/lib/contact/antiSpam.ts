@@ -3,7 +3,7 @@
  * Honeypot + minimum fill time — silent "success" for bots so they get no signal.
  */
 
-export const MIN_SUBMIT_MS = 800
+export const MIN_SUBMIT_MS = 300
 
 /**
  * True when a honeypot field was filled (bots often auto-complete hidden inputs).

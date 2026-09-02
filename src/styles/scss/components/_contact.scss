@@ -75,6 +75,24 @@
   outline-offset: 2px;
 }
 
+.contact-field.is-invalid input,
+.contact-field.is-invalid textarea {
+  border-color: var(--status-danger);
+}
+
+.contact-field.is-invalid input:focus-visible,
+.contact-field.is-invalid textarea:focus-visible {
+  outline-color: var(--status-danger);
+}
+
+.contact-field__error {
+  margin: 0;
+  color: var(--status-danger);
+  font-size: var(--text-caption);
+  letter-spacing: 0;
+  line-height: var(--leading-body);
+}
+
 .contact-form__next {
   margin: 0;
   color: var(--color-text-muted);
@@ -91,8 +109,12 @@
   color: var(--status-success);
 }
 
+.contact-form__status.is-warn {
+  color: var(--brand-orange, #ff9900);
+}
+
 .contact-form__status.is-error {
-  color: var(--status-danger, #f87171);
+  color: var(--status-danger);
 }
 
 .contact-aside {

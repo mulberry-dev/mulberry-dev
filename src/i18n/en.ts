@@ -361,9 +361,23 @@ export const en: Messages = {
       submit: "Send",
       sending: "Sending…",
       success: "Message received. I will get back to you within 24 hours.",
-      error: "Something went wrong. Try again or email me directly.",
+      partial:
+        "I received your message, but the confirmation email could not be delivered. I will still reply to the address you entered.",
+      error: "Something went wrong. The message was not sent. Try again or email me directly.",
       rateLimited: "Too many messages from this network. Wait a few minutes and try again.",
-      next: "After you send, I read the brief and reply with next steps — usually within 24 hours."
+      next: "After you send, I read the brief and reply with next steps — usually within 24 hours.",
+      errors: {
+        nameRequired: "Please enter your name.",
+        nameShort: "Use at least 2 characters.",
+        nameLong: "That name is too long.",
+        emailRequired: "Please enter your email.",
+        emailInvalid: "That email does not look valid.",
+        emailLong: "That email is too long.",
+        companyLong: "That company name is too long.",
+        projectRequired: "Please tell me a bit about the project.",
+        projectShort: "Add a little more detail (at least 12 characters).",
+        projectLong: "That message is too long."
+      }
     },
     mail: {
       path: "~/contact",
