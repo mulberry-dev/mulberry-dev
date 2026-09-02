@@ -25,7 +25,7 @@ import { useCallback, useEffect, useState } from "react"
 
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
-const VALUE_ICONS: SiteIconName[] = ["puzzle", "systems", "thinking", "connect"]
+const VALUE_ICONS: SiteIconName[] = ["ruler", "layers", "target", "route"]
 const NEXT_SECTION_PATH = links.find((link) => link.path !== "/")?.path ?? "/skills"
 
 const setOrbitRate = (node: HTMLDivElement, rate: number) => {

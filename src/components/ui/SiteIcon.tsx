@@ -6,6 +6,7 @@ export type SiteIconName =
   | "design"
   | "user"
   | "craft"
+  | "ruler"
   | "clarity"
   | "search"
   | "code"
@@ -16,6 +17,7 @@ export type SiteIconName =
   | "systems"
   | "layers"
   | "connect"
+  | "route"
   | "modernize"
   | "thinking"
   | "performance"
@@ -26,6 +28,7 @@ export type SiteIconName =
   | "swap"
   | "cycle"
   | "gauge"
+  | "target"
   | "puzzle"
   | "cursor"
   | "compass"
@@ -86,6 +89,12 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M4 20 14.5 9.5" />
       <path d="M12.8 7.8c1.6-1.6 4.4-1.4 5.7.4 1.2 1.6.8 4.1-.8 5.6L16 15.5" />
       <path d="M8.5 15.2 4 20" />
+    </svg>
+  ),
+  ruler: (
+    <svg {...iconProps}>
+      <path d="M20.6 14.7a2.1 2.1 0 0 1 0 3l-2.3 2.3a2.1 2.1 0 0 1-3.1 0L3.5 8.5a2.1 2.1 0 0 1 0-3l2.3-2.3a2.1 2.1 0 0 1 3.1 0Z" />
+      <path d="m8.1 6.2 1.9-1.9M11.1 9.2 13 7.3M14.1 12.2 16 10.3M17.1 15.2 19 13.3" />
     </svg>
   ),
   clarity: (
@@ -154,6 +163,13 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M8.1 13.3l5.8 3.4" />
     </svg>
   ),
+  route: (
+    <svg {...iconProps}>
+      <circle cx="5.6" cy="16.8" r="2.15" />
+      <circle cx="18.4" cy="7.2" r="2.15" />
+      <path d="M7.5 15.6c2.4-.4 3.5-2.2 3.5-4.2S12.6 7.8 16.2 7.4" />
+    </svg>
+  ),
   modernize: (
     <svg {...iconProps}>
       <path d="M3.5 16.5 8 11l3.5 3.5 4.5-7 4.5 3" />
@@ -218,6 +234,13 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M5.2 16.2a8 8 0 1 1 13.6 0" />
       <path d="M12 13.5 16.2 8.8" />
       <circle cx="12" cy="13.5" r="1.1" />
+    </svg>
+  ),
+  target: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="12" r="8.2" />
+      <circle cx="12" cy="12" r="4.6" />
+      <circle cx="12" cy="12" r="1.25" />
     </svg>
   ),
   puzzle: (
