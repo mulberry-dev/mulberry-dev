@@ -469,6 +469,10 @@ html.home-nav-wait .site-nav__lens,
     animation-delay: calc((5 - var(--i, 0)) * 28ms);
   }
 
+  .site-nav__toggle {
+    display: flex;
+  }
+
   html.home-nav-wait .site-nav__cta--header,
   .site-nav.is-chrome-wait .site-nav__cta--header {
     opacity: 0;
