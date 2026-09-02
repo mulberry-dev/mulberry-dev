@@ -456,6 +456,8 @@ export const en: Messages = {
     github: "View on GitHub",
     year: "Year",
     type: "Type",
+    origin: "Built",
+    industry: "Industry",
     about: "Summary",
     challenge: "The challenge",
     solution: "The solution",
@@ -502,7 +504,11 @@ export const en: Messages = {
     private: "Private",
     offline: "Offline",
     noAi: "No AI",
-    noAiTitle: "Built without AI"
+    noAiTitle: "Built without AI",
+    withAi: "With AI",
+    withAiTitle: "Built with AI",
+    handmade: "By hand",
+    handmadeTitle: "Built by hand before AI"
   },
   jsonLd: {
     jobTitle: "Senior Full Stack Engineer",

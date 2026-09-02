@@ -91,11 +91,20 @@
   color: var(--brand-orange);
 }
 
+.term-status--pre-ai,
+.term-status--with-ai {
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+}
+
 .term-status--pre-ai {
   color: var(--color-text-secondary);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
-  padding: 0.15rem 0.4rem;
+}
+
+.term-status--with-ai {
+  color: var(--brand-cyan);
+  border: 1px solid color-mix(in srgb, var(--brand-cyan) 32%, var(--border-subtle));
 }
 
 .project-flags {

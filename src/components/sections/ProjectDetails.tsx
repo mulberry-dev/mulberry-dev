@@ -16,7 +16,15 @@ import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import { usePreviewAvailability } from "@/lib/previewAvailability"
-import { extractYear, hasLivePreview, localizeProject, padCount, projectSlug } from "@/lib/projects"
+import {
+  builtWithAi,
+  builtWithoutAi,
+  extractYear,
+  hasLivePreview,
+  localizeProject,
+  padCount,
+  projectSlug
+} from "@/lib/projects"
 import { ConfirmLeaveSite, PrivateDeployment, SiteOffline } from "@/utils/alerts"
 import Image from "next/image"
 import Link from "next/link"
@@ -86,6 +94,8 @@ const ProjectDetails = ({ id }: { id: string }) => {
   }))
   const github = project && "github" in project ? project.github : null
   const year = source ? extractYear(source.description) : undefined
+  const handmade = source ? builtWithoutAi(source) : false
+  const withAi = source ? builtWithAi(source) : false
   const {
     status: availability,
     embeddable,
@@ -140,8 +150,6 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   <span>
                     {padCount(index + 1)} / <TypeCopy text={t.project.kicker} caret={false} />
                   </span>
-                  {year ? <span>{year}</span> : null}
-                  <ProjectType project={project} />
                   <ProjectFlags
                     project={project}
                     availability={project.url ? availability : undefined}
@@ -149,6 +157,50 @@ const ProjectDetails = ({ id }: { id: string }) => {
                 </Reveal>
                 <Reveal type="heading" as="h1" className="project-hero__title">
                   {project.name}
+                </Reveal>
+                {caseCopy?.industry ? (
+                  <Reveal type="text" className="project-hero__industry">
+                    <TypeCopy text={caseCopy.industry} caret={false} />
+                  </Reveal>
+                ) : null}
+                <Reveal type="text" className="project-hero__facts-wrap">
+                  <dl className="project-hero__facts">
+                    {year ? (
+                      <div>
+                        <dt>
+                          <TypeCopy text={t.project.year} caret={false} />
+                        </dt>
+                        <dd>{year}</dd>
+                      </div>
+                    ) : null}
+                    <div>
+                      <dt>
+                        <TypeCopy text={t.project.type} caret={false} />
+                      </dt>
+                      <dd>
+                        <ProjectType project={project} />
+                      </dd>
+                    </div>
+                    {handmade || withAi ? (
+                      <div>
+                        <dt>
+                          <TypeCopy text={t.project.origin} caret={false} />
+                        </dt>
+                        <dd
+                          title={
+                            handmade
+                              ? t.status.handmadeTitle
+                              : t.status.withAiTitle
+                          }
+                        >
+                          <TypeCopy
+                            text={handmade ? t.status.handmade : t.status.withAi}
+                            caret={false}
+                          />
+                        </dd>
+                      </div>
+                    ) : null}
+                  </dl>
                 </Reveal>
               </div>
               <Reveal type="text" className="project-hero__about">

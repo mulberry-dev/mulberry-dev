@@ -87,6 +87,50 @@ section:has(.project-page) {
   width: 100%;
 }
 
+.project-hero__industry {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-cyan);
+}
+
+.project-hero__facts-wrap {
+  width: 100%;
+}
+
+.project-hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  width: 100%;
+  margin: 0.15rem 0 0;
+}
+
+.project-hero__facts dt {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.project-hero__facts dd {
+  margin: 0;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-hero__facts dd:has(.project-type) {
+  overflow: visible;
+  white-space: normal;
+}
+
 .project-hero__about,
 .project-hero__features {
   display: grid;
@@ -768,6 +812,10 @@ body:not(.dark) .project-preview__screen {
 
   .project-hero__copy {
     gap: var(--space-5);
+  }
+
+  .project-hero__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .project-hero__title {
