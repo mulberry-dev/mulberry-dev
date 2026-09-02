@@ -307,6 +307,9 @@ export const en: Messages = {
     headline: "Credentials behind the work.",
     meta: "{count} certificates in security, English, and development.",
     view: "View {title} fullscreen",
+    close: "Close fullscreen certificate",
+    previous: "Previous certificate",
+    next: "Next certificate",
     metrics: [
       { value: "6+", label: "Years shipping products" },
       { value: "17", label: "Projects in this portfolio" },
@@ -318,6 +321,24 @@ export const en: Messages = {
       security: "Security",
       english: "English",
       development: "Development"
+    },
+    categories: {
+      mobile: "Mobile",
+      security: "Security",
+      english: "English",
+      development: "Development"
+    },
+    items: {
+      "9": { title: "Mobile development with React Native" },
+      "0": { title: "Full Stack Development Career" },
+      "1": { title: "Front End Development Career" },
+      "2": { title: "Application Development Career" },
+      "3": { title: "Backend Programming" },
+      "4": { title: "React.js" },
+      "5": { title: "English" },
+      "6": { title: "JavaScript" },
+      "7": { title: "Web Development" },
+      "8": { title: "Cybersecurity" }
     }
   },
   contact: {
@@ -341,11 +362,15 @@ export const en: Messages = {
       sending: "Sending…",
       success: "Message received. I will get back to you within 24 hours.",
       error: "Something went wrong. Try again or email me directly.",
+      rateLimited: "Too many messages from this network. Wait a few minutes and try again.",
       next: "After you send, I read the brief and reply with next steps — usually within 24 hours."
     },
     mail: {
       path: "~/contact",
       localeName: "English",
+      briefLabel: "Contact brief",
+      receivedAt: "Received {when}",
+      timezone: "Time zone: Mexico City (CST/CDT)",
       fields: {
         name: "Name",
         email: "Email",
@@ -363,6 +388,7 @@ export const en: Messages = {
         copyLabel: "A copy of what you sent",
         signoff: "Santiago Morera",
         cta: "Open mulberry-dev.com",
+        band: "This confirmation was sent from the contact form on mulberry-dev.com.",
         footer: "Senior Full Stack Engineer · Mexico City"
       },
       owner: {
@@ -374,6 +400,7 @@ export const en: Messages = {
           "{name} wrote from the site in {locale}. Reply goes directly to {email}.",
         copyLabel: "Brief",
         replyCta: "Reply to {name}",
+        replyHint: "Replying to this email goes directly to {email}.",
         footer: "Submitted via mulberry-dev.com"
       }
     },

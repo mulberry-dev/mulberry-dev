@@ -172,8 +172,18 @@ export type Messages = {
     headline: string
     meta: string
     view: string
+    close: string
+    previous: string
+    next: string
     metrics: { value: string; label: string }[]
     filters: { all: string; security: string; english: string; development: string }
+    categories: {
+      mobile: string
+      security: string
+      english: string
+      development: string
+    }
+    items: Record<string, { title: string }>
   }
   contact: {
     ariaLabel: string
@@ -196,11 +206,15 @@ export type Messages = {
       sending: string
       success: string
       error: string
+      rateLimited: string
       next: string
     }
     mail: {
       path: string
       localeName: string
+      briefLabel: string
+      receivedAt: string
+      timezone: string
       fields: {
         name: string
         email: string
@@ -216,6 +230,7 @@ export type Messages = {
         copyLabel: string
         signoff: string
         cta: string
+        band: string
         footer: string
       }
       owner: {
@@ -226,6 +241,7 @@ export type Messages = {
         intro: string
         copyLabel: string
         replyCta: string
+        replyHint: string
         footer: string
       }
     }

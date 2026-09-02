@@ -14,9 +14,9 @@ import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import { contactMailtoHref, sendContactMails } from "@/lib/contactMail"
 import { padCount } from "@/lib/projects"
-import { FormEvent, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 
-type FormStatus = "idle" | "sending" | "success" | "error"
+type FormStatus = "idle" | "sending" | "success" | "error" | "rateLimited"
 
 const Contact = () => {
   const { t, locale } = useI18n()
@@ -27,6 +27,7 @@ const Contact = () => {
   const [company, setCompany] = useState("")
   const [project, setProject] = useState("")
   const [honeypot, setHoneypot] = useState("")
+  const formOpenedAtRef = useRef(new Date().toISOString())
   const selected =
     CONTACT_OPTIONS.find(option => option.id === active) ?? CONTACT_OPTIONS[0]
   const optionCopy = (id: string) => {
@@ -41,17 +42,14 @@ const Contact = () => {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (honeypot.trim()) {
-      setStatus("success")
-      return
-    }
-
     const payload = {
       name: name.trim(),
       email: email.trim(),
       company: company.trim(),
       project: project.trim(),
-      locale
+      locale,
+      website: honeypot,
+      formOpenedAt: formOpenedAtRef.current
     }
 
     if (
@@ -75,6 +73,11 @@ const Contact = () => {
         return
       }
 
+      if (result === "rate_limited") {
+        setStatus("rateLimited")
+        return
+      }
+
       if (result !== "sent") {
         setStatus("error")
         return
@@ -85,6 +88,8 @@ const Contact = () => {
       setEmail("")
       setCompany("")
       setProject("")
+      setHoneypot("")
+      formOpenedAtRef.current = new Date().toISOString()
     } catch {
       setStatus("error")
     }
@@ -176,6 +181,11 @@ const Contact = () => {
               {status === "error" ? (
                 <p className="contact-form__status is-error" role="alert">
                   {t.contact.form.error}
+                </p>
+              ) : null}
+              {status === "rateLimited" ? (
+                <p className="contact-form__status is-error" role="alert">
+                  {t.contact.form.rateLimited}
                 </p>
               ) : null}
               <Button type="submit" variant="terminal" loading={status === "sending"}>

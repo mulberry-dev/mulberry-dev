@@ -307,6 +307,9 @@ export const es: Messages = {
     headline: "Credenciales detrás del trabajo.",
     meta: "{count} certificados en seguridad, inglés y desarrollo.",
     view: "Ver {title} a pantalla completa",
+    close: "Cerrar certificado a pantalla completa",
+    previous: "Certificado anterior",
+    next: "Certificado siguiente",
     metrics: [
       { value: "6+", label: "Años lanzando productos" },
       { value: "17", label: "Proyectos en este portafolio" },
@@ -318,6 +321,24 @@ export const es: Messages = {
       security: "Seguridad",
       english: "Inglés",
       development: "Desarrollo"
+    },
+    categories: {
+      mobile: "Móvil",
+      security: "Seguridad",
+      english: "Inglés",
+      development: "Desarrollo"
+    },
+    items: {
+      "9": { title: "Desarrollo mobile con React Native" },
+      "0": { title: "Carrera de Desarrollo Full Stack" },
+      "1": { title: "Carrera de Desarrollo Front End" },
+      "2": { title: "Carrera de Desarrollo de Aplicaciones" },
+      "3": { title: "Programación Backend" },
+      "4": { title: "React.js" },
+      "5": { title: "Inglés" },
+      "6": { title: "JavaScript" },
+      "7": { title: "Desarrollo Web" },
+      "8": { title: "Ciberseguridad" }
     }
   },
   contact: {
@@ -341,11 +362,15 @@ export const es: Messages = {
       sending: "Enviando…",
       success: "Mensaje recibido. Te respondo en un plazo de 24 horas.",
       error: "Algo salió mal. Inténtalo de nuevo o escríbeme por correo.",
+      rateLimited: "Demasiados mensajes desde esta red. Espera unos minutos e inténtalo de nuevo.",
       next: "Después del envío, leo el brief y respondo con los siguientes pasos — normalmente en 24 horas."
     },
     mail: {
       path: "~/contact",
       localeName: "Español",
+      briefLabel: "Ficha de contacto",
+      receivedAt: "Recibido el {when}",
+      timezone: "Zona horaria: Ciudad de México (CST/CDT)",
       fields: {
         name: "Nombre",
         email: "Correo",
@@ -363,6 +388,7 @@ export const es: Messages = {
         copyLabel: "Copia de lo que enviaste",
         signoff: "Santiago Morera",
         cta: "Abrir mulberry-dev.com",
+        band: "Esta confirmación se envió desde el formulario de contacto de mulberry-dev.com.",
         footer: "Ingeniero Full Stack Senior · Ciudad de México"
       },
       owner: {
@@ -374,6 +400,7 @@ export const es: Messages = {
           "{name} escribió desde el sitio en {locale}. La respuesta va directo a {email}.",
         copyLabel: "Brief",
         replyCta: "Responder a {name}",
+        replyHint: "Responder a este correo llega directo a {email}.",
         footer: "Enviado desde mulberry-dev.com"
       }
     },
