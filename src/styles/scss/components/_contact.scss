@@ -23,8 +23,17 @@
 }
 
 .contact-form {
+  position: relative;
   display: grid;
   gap: var(--space-4);
+}
+
+.contact-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .contact-field {

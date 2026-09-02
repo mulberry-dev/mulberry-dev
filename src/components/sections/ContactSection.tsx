@@ -10,35 +10,23 @@ import SiteIcon from "@/components/ui/SiteIcon"
 import StatusDot from "@/components/terminal/StatusDot"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import { CONTACT_OPTIONS } from "@/data/contact"
-import { CONTACT_EMAIL } from "@/data/site"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
+import { contactMailtoHref, sendContactMails } from "@/lib/contactMail"
 import { padCount } from "@/lib/projects"
 import { FormEvent, useState } from "react"
 
 type FormStatus = "idle" | "sending" | "success" | "error"
 
-const mailtoHref = (name: string, email: string, company: string, project: string) => {
-  const lines = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    company ? `Company: ${company}` : "",
-    "",
-    project
-  ]
-  const bodyText = lines.filter((line, index, all) => line !== "" || all[index - 1] !== "").join("\n")
-
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Project inquiry from ${name}`)}&body=${encodeURIComponent(bodyText)}`
-}
-
 const Contact = () => {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const [active, setActive] = useState(CONTACT_OPTIONS[0]?.id ?? "")
   const [status, setStatus] = useState<FormStatus>("idle")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [company, setCompany] = useState("")
   const [project, setProject] = useState("")
+  const [honeypot, setHoneypot] = useState("")
   const selected =
     CONTACT_OPTIONS.find(option => option.id === active) ?? CONTACT_OPTIONS[0]
   const optionCopy = (id: string) => {
@@ -52,25 +40,42 @@ const Contact = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if (honeypot.trim()) {
+      setStatus("success")
+      return
+    }
+
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      company: company.trim(),
+      project: project.trim(),
+      locale
+    }
+
+    if (
+      !payload.name ||
+      !payload.email ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) ||
+      !payload.project
+    ) {
+      setStatus("error")
+      return
+    }
+
     setStatus("sending")
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company, project })
-      })
-      const payload = (await response.json().catch(() => null)) as
-        | { ok?: boolean; fallback?: boolean }
-        | null
+      const result = await sendContactMails(payload)
 
-      if (payload?.fallback || response.status === 503) {
-        window.location.assign(mailtoHref(name, email, company, project))
+      if (result === "fallback") {
+        window.location.assign(contactMailtoHref(payload))
         setStatus("idle")
         return
       }
 
-      if (!response.ok || !payload?.ok) {
+      if (result !== "sent") {
         setStatus("error")
         return
       }
@@ -105,11 +110,21 @@ const Contact = () => {
               <TypeCopy text={t.contact.headline} />
             </Reveal>
             <form className="contact-form" onSubmit={onSubmit} noValidate>
+              <div className="contact-hp" aria-hidden="true">
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={event => setHoneypot(event.target.value)}
+                />
+              </div>
               <label className="contact-field">
                 <span>{t.contact.form.name}</span>
                 <input
                   type="text"
-                  name="name"
+                  name="from_name"
                   autoComplete="name"
                   required
                   value={name}
@@ -120,7 +135,7 @@ const Contact = () => {
                 <span>{t.contact.form.email}</span>
                 <input
                   type="email"
-                  name="email"
+                  name="user_email"
                   autoComplete="email"
                   required
                   value={email}
@@ -134,7 +149,7 @@ const Contact = () => {
                 </span>
                 <input
                   type="text"
-                  name="company"
+                  name="user_company"
                   autoComplete="organization"
                   value={company}
                   onChange={event => setCompany(event.target.value)}
@@ -143,7 +158,7 @@ const Contact = () => {
               <label className="contact-field contact-field--area">
                 <span>{t.contact.form.project}</span>
                 <textarea
-                  name="project"
+                  name="message"
                   required
                   rows={5}
                   value={project}

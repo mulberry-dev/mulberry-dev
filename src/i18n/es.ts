@@ -344,6 +344,40 @@ export const es: Messages = {
       error: "Algo salió mal. Inténtalo de nuevo o escríbeme por correo.",
       next: "Después del envío, leo el brief y respondo con los siguientes pasos — normalmente en 24 horas."
     },
+    mail: {
+      path: "~/contact",
+      localeName: "Español",
+      fields: {
+        name: "Nombre",
+        email: "Correo",
+        company: "Empresa / negocio",
+        project: "Brief del proyecto"
+      },
+      visitor: {
+        subject: "Tu mensaje se envió correctamente — mulberry-dev",
+        preheader:
+          "Recibí el brief de tu proyecto y pronto me pondré en contacto.",
+        kicker: "confirmación",
+        headline: "Mensaje enviado",
+        intro:
+          "Gracias, {name}. Tu correo se envió correctamente. Leeré tu brief y me pondré en contacto pronto — normalmente en 24 horas.",
+        copyLabel: "Copia de lo que enviaste",
+        signoff: "Santiago Morera",
+        cta: "Abrir mulberry-dev.com",
+        footer: "Ingeniero Full Stack Senior · Ciudad de México"
+      },
+      owner: {
+        subject: "Nueva consulta de {name}",
+        preheader: "{name} envió un brief desde el sitio.",
+        kicker: "entrada",
+        headline: "Nuevo brief de proyecto",
+        intro:
+          "{name} escribió desde el sitio en {locale}. La respuesta va directo a {email}.",
+        copyLabel: "Brief",
+        replyCta: "Responder a {name}",
+        footer: "Enviado desde mulberry-dev.com"
+      }
+    },
     options: {
       email: {
         title: "Correo",

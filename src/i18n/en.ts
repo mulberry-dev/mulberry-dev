@@ -344,6 +344,40 @@ export const en: Messages = {
       error: "Something went wrong. Try again or email me directly.",
       next: "After you send, I read the brief and reply with next steps — usually within 24 hours."
     },
+    mail: {
+      path: "~/contact",
+      localeName: "English",
+      fields: {
+        name: "Name",
+        email: "Email",
+        company: "Company / business",
+        project: "Project brief"
+      },
+      visitor: {
+        subject: "Your message is on its way — mulberry-dev",
+        preheader:
+          "I received your project brief and will get back to you soon.",
+        kicker: "confirmation",
+        headline: "Message received",
+        intro:
+          "Thanks, {name}. Your message was sent successfully. I will read your brief and get in touch soon — usually within 24 hours.",
+        copyLabel: "A copy of what you sent",
+        signoff: "Santiago Morera",
+        cta: "Open mulberry-dev.com",
+        footer: "Senior Full Stack Engineer · Mexico City"
+      },
+      owner: {
+        subject: "New project inquiry from {name}",
+        preheader: "{name} sent a project brief from the site.",
+        kicker: "inbound",
+        headline: "New project brief",
+        intro:
+          "{name} wrote from the site in {locale}. Reply goes directly to {email}.",
+        copyLabel: "Brief",
+        replyCta: "Reply to {name}",
+        footer: "Submitted via mulberry-dev.com"
+      }
+    },
     options: {
       email: {
         title: "Email",

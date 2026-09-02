@@ -199,6 +199,37 @@ export type Messages = {
       error: string
       next: string
     }
+    mail: {
+      path: string
+      localeName: string
+      fields: {
+        name: string
+        email: string
+        company: string
+        project: string
+      }
+      visitor: {
+        subject: string
+        preheader: string
+        kicker: string
+        headline: string
+        intro: string
+        copyLabel: string
+        signoff: string
+        cta: string
+        footer: string
+      }
+      owner: {
+        subject: string
+        preheader: string
+        kicker: string
+        headline: string
+        intro: string
+        copyLabel: string
+        replyCta: string
+        footer: string
+      }
+    }
     options: {
       email: { title: string; description: string; cta: string }
       phone: { title: string; description: string; cta: string }
