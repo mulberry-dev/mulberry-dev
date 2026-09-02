@@ -79,8 +79,8 @@ export const projectPageMetadata = (
   const copy = messages.projects[id]
   const description = copy?.description ?? project.description
   const canonical = absoluteUrl(`/portfolio/${id}`, locale)
-  const title = project.name
-  const ogTitle = `${project.name} | ${SITE_NAME}`
+  const title = copy?.name ?? project.name
+  const ogTitle = `${title} | ${SITE_NAME}`
   const image = project.img
 
   return {

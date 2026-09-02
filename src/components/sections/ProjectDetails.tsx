@@ -86,8 +86,11 @@ const ProjectDetails = ({ id }: { id: string }) => {
   }))
   const github = project && "github" in project ? project.github : null
   const year = source ? extractYear(source.description) : undefined
-  const { status: availability, resolve: resolveAvailability } =
-    usePreviewAvailability(project?.url ?? null)
+  const {
+    status: availability,
+    embeddable,
+    resolve: resolveAvailability
+  } = usePreviewAvailability(project?.url ?? null)
   const siteOffline = availability === "offline"
 
   useEffect(() => {
@@ -139,7 +142,10 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   </span>
                   {year ? <span>{year}</span> : null}
                   <ProjectType project={project} />
-                  <ProjectFlags project={project} availability={availability} />
+                  <ProjectFlags
+                    project={project}
+                    availability={project.url ? availability : undefined}
+                  />
                 </Reveal>
                 <Reveal type="heading" as="h1" className="project-hero__title">
                   {project.name}
@@ -258,9 +264,6 @@ const ProjectDetails = ({ id }: { id: string }) => {
                     <TypeCopy text={t.project.github} />
                   </Button>
                 ) : null}
-                <Button href={href("/contact")} variant="terminal">
-                  <TypeCopy text={t.project.similarAction} />
-                </Button>
               </Reveal>
             </RevealGroup>
 
@@ -272,6 +275,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   name={project.name}
                   teaser={project.teaser}
                   availability={availability}
+                  embeddable={embeddable}
                 />
               ) : (
                 <Image

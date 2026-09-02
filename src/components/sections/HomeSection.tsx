@@ -6,6 +6,7 @@ import SiteIcon, { type SiteIconName } from "@/components/ui/SiteIcon"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import TypeCopy from "@/components/terminal/TypeCopy"
 import { useParticles } from "@/components/particles"
+import { links } from "@/data/navegation"
 import { SITE_LOGO, SITE_NAME } from "@/data/site"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
@@ -25,6 +26,7 @@ import { useCallback, useEffect, useState } from "react"
 const ORBIT_HOVER_RATE = 0.35
 const INTRO_COMPLETE_MS = 1780
 const VALUE_ICONS: SiteIconName[] = ["puzzle", "systems", "thinking", "connect"]
+const NEXT_SECTION_PATH = links.find((link) => link.path !== "/")?.path ?? "/skills"
 
 const setOrbitRate = (node: HTMLDivElement, rate: number) => {
   node.getAnimations().forEach((animation) => {
@@ -205,7 +207,7 @@ const IndexPage = () => {
               </span>
             </p>
             <div className="home-hero__actions">
-              <Button href={href("/contact")} variant="terminal">
+              <Button href={href(NEXT_SECTION_PATH)} variant="terminal">
                 <TypeCopy text={t.home.cta} />
               </Button>
               <Button href={href("/portfolio")} variant="secondary">

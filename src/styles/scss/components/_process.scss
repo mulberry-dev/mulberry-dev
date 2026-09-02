@@ -52,6 +52,8 @@
 }
 
 .process-step {
+  --process-icon-slot: 2.5rem;
+  --process-icon-size: 1.5rem;
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr);
   gap: var(--space-4);
@@ -89,15 +91,36 @@
   font-size: var(--text-caption);
   letter-spacing: 0.08em;
   color: var(--process-tone);
-  padding-top: 0.2rem;
+  line-height: 1;
+  padding-top: 0.55rem;
 }
 
 .process-step__icon {
+  box-sizing: border-box;
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: var(--process-icon-slot);
+  height: var(--process-icon-slot);
+  min-width: var(--process-icon-slot);
+  min-height: var(--process-icon-slot);
+  flex-shrink: 0;
+  align-self: start;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--process-tone) 24%, transparent);
+  background: color-mix(in srgb, var(--process-tone) 10%, transparent);
   color: var(--process-tone);
+}
+
+.process-step__icon svg {
+  display: block;
+  width: var(--process-icon-size);
+  height: var(--process-icon-size);
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.process-step__copy {
+  min-width: 0;
 }
 
 .process-step__copy h3 {
@@ -135,8 +158,30 @@
   }
 
   .process-step {
-    grid-template-columns: 1fr;
+    --process-icon-slot: 3.25rem;
+    --process-icon-size: 1.875rem;
+    grid-template-columns: auto 1fr;
     min-height: 100%;
+  }
+
+  .process-step__index {
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    grid-row: 1;
+    height: var(--process-icon-slot);
+    padding-top: 0;
+  }
+
+  .process-step__icon {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .process-step__copy {
+    grid-column: 1 / -1;
+    min-width: 0;
   }
 }
 

@@ -5,7 +5,7 @@ import { useI18n } from "@/i18n/useI18n"
 import type { PreviewAvailability } from "@/lib/previewAvailability"
 import { ConfirmLeaveSite, SiteOffline } from "@/utils/alerts"
 import Image from "next/image"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
 
 const FRAME_WIDTH = 1440
 const FRAME_HEIGHT = 900
@@ -66,13 +66,15 @@ const ProjectPreview = ({
   poster,
   name,
   teaser,
-  availability
+  availability,
+  embeddable = false
 }: {
   url: string
   poster: string
   name: string
   teaser: string
   availability: PreviewAvailability
+  embeddable?: boolean
 }) => {
   const { t } = useI18n()
   const rootRef = useRef<HTMLDivElement>(null)
@@ -84,7 +86,9 @@ const ProjectPreview = ({
   const [active, setActive] = useState(false)
   const host = previewHost(url)
   const offline = availability === "offline"
-  const canEmbed = availability === "live" || availability === "unknown"
+  const live = availability === "live"
+  const canEmbed =
+    embeddable && (availability === "live" || availability === "unknown")
   const showFrame = inView && canEmbed && !failed
   const interacting = showFrame && ready && active
   const alt = `${name} — ${teaser}`
@@ -133,14 +137,14 @@ const ProjectPreview = ({
   }, [])
 
   useEffect(() => {
-    if (!offline) {
+    if (canEmbed && !offline) {
       return
     }
 
     setFailed(false)
     setReady(false)
     setActive(false)
-  }, [offline])
+  }, [canEmbed, offline])
 
   useEffect(() => {
     if (!showFrame || ready) {
@@ -192,6 +196,39 @@ const ProjectPreview = ({
     }
   }
 
+  const showLiveBadge = live || ready
+  let previewTone: "warning" | "success" | "muted" = "muted"
+  if (offline) {
+    previewTone = "warning"
+  } else if (showLiveBadge) {
+    previewTone = "success"
+  }
+  let screenVeil: ReactNode = null
+
+  if (offline) {
+    screenVeil = (
+      <div className="project-preview__veil is-static">
+        <span>{t.project.offline}</span>
+      </div>
+    )
+  } else if (!canEmbed && live) {
+    screenVeil = (
+      <button type="button" className="project-preview__veil" onClick={openLive}>
+        <span>{t.project.visit}</span>
+      </button>
+    )
+  } else if (ready && !interacting) {
+    screenVeil = (
+      <button
+        type="button"
+        className="project-preview__veil"
+        onClick={() => setActive(true)}
+      >
+        <span>{t.project.previewInteract}</span>
+      </button>
+    )
+  }
+
   return (
     <div
       ref={rootRef}
@@ -199,10 +236,7 @@ const ProjectPreview = ({
     >
       <div className="project-preview__bar">
         <p className="project-preview__place">
-          <StatusDot
-            tone={offline ? "warning" : ready ? "success" : "muted"}
-            pulse={ready}
-          />
+          <StatusDot tone={previewTone} pulse={showLiveBadge} />
           {t.project.preview}
         </p>
         {offline ? (
@@ -224,7 +258,7 @@ const ProjectPreview = ({
         <div className="project-preview__tools">
           {offline ? (
             <span className="project-preview__live is-offline">{t.status.offline}</span>
-          ) : ready ? (
+          ) : showLiveBadge ? (
             <span className="project-preview__live">{t.status.live}</span>
           ) : null}
           {offline ? null : (
@@ -273,19 +307,7 @@ const ProjectPreview = ({
             }}
           />
         ) : null}
-        {offline ? (
-          <div className="project-preview__veil is-static">
-            <span>{t.project.offline}</span>
-          </div>
-        ) : ready && !interacting ? (
-          <button
-            type="button"
-            className="project-preview__veil"
-            onClick={() => setActive(true)}
-          >
-            <span>{t.project.previewInteract}</span>
-          </button>
-        ) : null}
+        {screenVeil}
         {interacting ? (
           <button
             type="button"

@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation"
 
 const Footer = () => {
   const pathname = usePathname()
-  const { t, href } = useI18n()
+  const { t } = useI18n()
   const year = new Date().getFullYear()
 
   if (!isSectionPath(pathname)) {
@@ -27,9 +27,6 @@ const Footer = () => {
           <p>
             © {year} {COPYRIGHT_NAME}
           </p>
-          <a href={href("/contact")} className="site-footer__cta">
-            <TypeCopy text={t.footer.cta} caret={false} />
-          </a>
           <LanguageSwitch className="language-switch language-switch--footer" />
         </div>
         <p className="site-footer__note">

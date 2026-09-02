@@ -90,7 +90,7 @@ export const projectJsonLd = (id: string, locale: Locale) => {
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: project.name,
+    name: copy?.name ?? project.name,
     description: copy?.description ?? project.description,
     url,
     image: project.img.startsWith("http") ? project.img : `${SITE_URL}${project.img}`,

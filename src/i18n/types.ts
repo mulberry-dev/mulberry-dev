@@ -6,6 +6,7 @@ export type ProjectHighlightCopy = {
 }
 
 export type ProjectCopy = {
+  name?: string
   teaser: string
   description: string
   highlights: ProjectHighlightCopy[]
@@ -290,7 +291,6 @@ export type Messages = {
   }
   footer: {
     systemOnline: string
-    cta: string
   }
   notFound: {
     title: string

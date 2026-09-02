@@ -217,6 +217,8 @@
 }
 
 .capability-card {
+  --capability-icon-slot: 2.5rem;
+  --capability-icon-size: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -229,11 +231,27 @@
 }
 
 .capability-card__icon {
+  box-sizing: border-box;
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: var(--capability-icon-slot);
+  height: var(--capability-icon-slot);
+  min-width: var(--capability-icon-slot);
+  min-height: var(--capability-icon-slot);
+  flex-shrink: 0;
+  align-self: start;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--capability-tone) 24%, transparent);
+  background: color-mix(in srgb, var(--capability-tone) 10%, transparent);
   color: var(--capability-tone);
+}
+
+.capability-card__icon svg {
+  display: block;
+  width: var(--capability-icon-size);
+  height: var(--capability-icon-size);
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .capability-card h3 {
@@ -338,17 +356,17 @@
   .skills-capabilities.capability-grid > .reveal:nth-child(n + 4) {
     grid-column: span 3;
   }
+
+  .capability-card {
+    --capability-icon-slot: 3.25rem;
+    --capability-icon-size: 1.875rem;
+  }
 }
 
 @media (max-width: 767px) {
   .capability-card {
     gap: var(--space-3);
     padding: 1.05rem 0.95rem;
-  }
-
-  .capability-card__icon {
-    width: 28px;
-    height: 28px;
   }
 
   .capability-card h3 {

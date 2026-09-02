@@ -98,7 +98,7 @@ export const en: Messages = {
     roleTrail: "Engineer",
     headline: "I build digital products that solve real business problems.",
     body: "Custom web apps, business sites, MVPs, and integrations — designed, built, and delivered end to end.",
-    cta: "Start a project",
+    cta: "Start exploring",
     ctaSecondary: "View my work",
     valueEyebrow: "What you get",
     value: [
@@ -468,8 +468,7 @@ export const en: Messages = {
     previewExit: "Exit preview"
   },
   footer: {
-    systemOnline: "System online",
-    cta: "Start a project"
+    systemOnline: "System online"
   },
   notFound: {
     title: "Page not found",
@@ -549,10 +548,11 @@ export const en: Messages = {
         { title: "Still live", text: "Previous public version, kept online" }
       ]
     },
-    SalonTarget: {
-      teaser: "Modernizing an all-in-one salon and spa platform.",
+    SaasProject: {
+      name: "SaaS Project",
+      teaser: "Modernizing an all-in-one SaaS platform for salons and spas.",
       description:
-        "Ongoing modernization of SalonTarget's salon and spa management platform. (2025–2026)",
+        "Ongoing modernization of a SaaS platform for salon and spa operations. (2025–2026)",
       industry: "SaaS / operations",
       problem:
         "An established salon platform needed to modernize without throwing away what already worked.",

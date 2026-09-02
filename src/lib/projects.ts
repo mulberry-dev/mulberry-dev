@@ -49,6 +49,7 @@ export const localizeProject = (project: Project, locale: Locale): Project => {
 
   return {
     ...project,
+    name: copy.name ?? project.name,
     teaser: copy.teaser,
     description: copy.description
   }
@@ -58,15 +59,15 @@ export const projectStatus = (project: Project) => {
   const source = projects.find(item => String(item.id) === String(project.id)) ?? project
   const copy = `${source.teaser} ${source.description}`
 
+  if (!project.url) {
+    return { id: "private" as const, label: "Private" }
+  }
+
   if (/ongoing/i.test(copy)) {
     return { id: "ongoing" as const, label: "Ongoing" }
   }
 
-  if (project.url) {
-    return { id: "live" as const, label: "Live" }
-  }
-
-  return { id: "private" as const, label: "Private" }
+  return { id: "live" as const, label: "Live" }
 }
 
 export const hasLivePreview = (

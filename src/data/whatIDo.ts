@@ -8,7 +8,7 @@ export const CAPABILITIES: {
   accent: BuildAccent
 }[] = [
   {
-    icon: "interface",
+    icon: "app",
     title: "Custom web applications",
     text: "Products designed around a specific workflow, audience, and business constraint.",
     accent: "cyan"
@@ -20,7 +20,7 @@ export const CAPABILITIES: {
     accent: "blue"
   },
   {
-    icon: "rocket",
+    icon: "bulb",
     title: "MVP and product development",
     text: "Turn an idea into a working product you can put in front of real users.",
     accent: "indigo"
@@ -32,7 +32,7 @@ export const CAPABILITIES: {
     accent: "purple"
   },
   {
-    icon: "systems",
+    icon: "layers",
     title: "Full-stack delivery",
     text: "Frontend, backend, and supporting infrastructure owned as one engagement.",
     accent: "orange"

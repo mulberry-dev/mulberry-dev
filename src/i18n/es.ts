@@ -98,7 +98,7 @@ export const es: Messages = {
     roleTrail: "Senior",
     headline: "Construyo productos digitales que resuelven problemas reales de negocio.",
     body: "Aplicaciones web a medida, sitios para negocios, MVPs e integraciones — diseñados, construidos y entregados de punta a punta.",
-    cta: "Iniciar un proyecto",
+    cta: "Comenzar a explorar",
     ctaSecondary: "Ver mi trabajo",
     valueEyebrow: "Qué obtienes",
     value: [
@@ -468,8 +468,7 @@ export const es: Messages = {
     previewExit: "Salir de la vista previa"
   },
   footer: {
-    systemOnline: "Sistema en línea",
-    cta: "Iniciar un proyecto"
+    systemOnline: "Sistema en línea"
   },
   notFound: {
     title: "Página no encontrada",
@@ -554,10 +553,11 @@ export const es: Messages = {
         { title: "Sigue en línea", text: "Versión pública anterior, mantenida activa" }
       ]
     },
-    SalonTarget: {
-      teaser: "Modernización de una plataforma all-in-one para salones y spas.",
+    SaasProject: {
+      name: "Proyecto SaaS",
+      teaser: "Modernización de una plataforma SaaS all-in-one para salones y spas.",
       description:
-        "Modernización en curso de la plataforma de gestión de salones y spas de SalonTarget. (2025–2026)",
+        "Modernización en curso de una plataforma SaaS de gestión para salones y spas. (2025–2026)",
       industry: "SaaS / operaciones",
       problem:
         "Una plataforma consolidada para salones necesitaba modernizarse sin tirar lo que ya funcionaba.",

@@ -9,9 +9,9 @@ export const PROCESS_STEPS: {
   icon: SiteIconName
   accent: BuildAccent
 }[] = [
-  { id: "discover", index: "01", icon: "compass", accent: "cyan" },
-  { id: "strategy", index: "02", icon: "cube", accent: "blue" },
-  { id: "build", index: "03", icon: "code", accent: "indigo" },
+  { id: "discover", index: "01", icon: "search", accent: "cyan" },
+  { id: "strategy", index: "02", icon: "layers", accent: "blue" },
+  { id: "build", index: "03", icon: "brackets", accent: "indigo" },
   { id: "launch", index: "04", icon: "rocket", accent: "purple" },
-  { id: "evolve", index: "05", icon: "swap", accent: "orange" }
+  { id: "evolve", index: "05", icon: "cycle", accent: "orange" }
 ]

@@ -41,5 +41,5 @@ export const WORKSPACE = {
 export const FEATURED_PROJECT_IDS = [
   "FuenteDeVidaResidencial",
   "MulberryMarketing",
-  "SalonTarget"
+  "SaasProject"
 ] as const
