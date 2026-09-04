@@ -464,7 +464,7 @@ export const es: Messages = {
     role: "Mi rol",
     outcome: "Resultado",
     features: "Enfoque técnico",
-    technologies: "Tecnologías",
+    technologies: "Tecnologías usadas para construir este proyecto",
     previous: "Anterior",
     next: "Siguiente",
     navLabel: "Proyectos",

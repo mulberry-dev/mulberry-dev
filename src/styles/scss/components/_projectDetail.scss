@@ -592,7 +592,11 @@ body:not(.dark) .project-preview__screen {
 }
 
 .project-page .project-stack__title {
+  max-width: 28rem;
   color: var(--color-text-dim);
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-wrap: balance;
 }
 
 .project-tech {
