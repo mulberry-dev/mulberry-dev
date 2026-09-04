@@ -166,7 +166,7 @@ section:has(.project-page) {
 
 .project-nav__copy {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   flex-direction: row;
   align-items: baseline;
   gap: 0.4em;
@@ -186,8 +186,8 @@ section:has(.project-page) {
 
 .project-nav__name {
   display: block;
+  width: 100%;
   min-width: 0;
-  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -657,6 +657,7 @@ body:not(.dark) .project-preview__screen {
   min-width: 0;
   flex: 1 1 0;
   max-width: 50%;
+  overflow: hidden;
   color: var(--color-text-dim);
   font-size: var(--text-caption);
   font-weight: 500;
@@ -745,7 +746,7 @@ body:not(.dark) .project-preview__screen {
   }
 
   section:has(.project-page) {
-    padding-bottom: var(--space-8);
+    padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
   }
 
   .project-nav-wrap {
@@ -755,7 +756,7 @@ body:not(.dark) .project-preview__screen {
     bottom: auto;
     z-index: auto;
     width: 100%;
-    padding: 0;
+    padding: 0 0 env(safe-area-inset-bottom, 0px);
     pointer-events: auto;
   }
 
