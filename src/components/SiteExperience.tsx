@@ -1,5 +1,6 @@
 "use client"
 
+import { useParticles } from "@/components/particles"
 import DeferredSection from "@/components/sections/DeferredSection"
 import HomeSection from "@/components/sections/HomeSection"
 import {
@@ -39,10 +40,6 @@ const DeferredFallback = ({ id, path }: { id: string; path: string }) => (
   />
 )
 
-const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), {
-  loading: () => <DeferredFallback id="about" path="/about" />
-})
-
 const SkillsSection = dynamic(() => import("@/components/sections/SkillsSection"), {
   loading: () => <DeferredFallback id="skills" path="/skills" />
 })
@@ -51,6 +48,15 @@ const PortfolioSection = dynamic(
   () => import("@/components/sections/PortfolioSection"),
   { loading: () => <DeferredFallback id="portfolio" path="/portfolio" /> }
 )
+
+const ProcessSection = dynamic(
+  () => import("@/components/sections/ProcessSection"),
+  { loading: () => <DeferredFallback id="process" path="/process" /> }
+)
+
+const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), {
+  loading: () => <DeferredFallback id="about" path="/about" />
+})
 
 const CertificationsSection = dynamic(
   () => import("@/components/sections/CertificationsSection"),
@@ -63,9 +69,10 @@ const ContactSection = dynamic(
 )
 
 const LAZY_SECTIONS = [
-  { id: "about", path: "/about", Component: AboutSection },
   { id: "skills", path: "/skills", Component: SkillsSection },
   { id: "portfolio", path: "/portfolio", Component: PortfolioSection },
+  { id: "process", path: "/process", Component: ProcessSection },
+  { id: "about", path: "/about", Component: AboutSection },
   { id: "certifications", path: "/certifications", Component: CertificationsSection },
   { id: "contact", path: "/contact", Component: ContactSection }
 ] as const
@@ -94,6 +101,7 @@ const readSectionHref = (anchor: Element) => {
 const SiteExperience = () => {
   const pathname = usePathname()
   const router = useRouter()
+  const { boostParticles } = useParticles()
   const locale = getLocale(pathname)
   const toHref = useCallback(
     (path: string) => localizePath(stripLocale(path), locale),
@@ -320,10 +328,12 @@ const SiteExperience = () => {
       announceSection(nextPath)
 
       const fromMenu = document.body.classList.contains("nav-menu-open")
+      const pathChanged = pathnameRef.current !== nextPath
 
-      if (pathnameRef.current !== nextPath) {
+      if (pathChanged) {
         ignorePathRef.current = nextPath
         router.push(nextPath, { scroll: false })
+        boostParticles()
       }
 
       void revealPath(nextPath, fromMenu ? "auto" : "smooth")
@@ -351,7 +361,7 @@ const SiteExperience = () => {
       document.removeEventListener("click", onClick, true)
       document.removeEventListener("pointerover", onPointerOver)
     }
-  }, [revealPath, router])
+  }, [boostParticles, revealPath, router])
 
   return (
     <div className={`site-experience${aligned ? " is-aligned" : ""}`}>

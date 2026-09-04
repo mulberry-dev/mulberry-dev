@@ -12,7 +12,7 @@ npm run lint    # next lint (core-web-vitals)
 
 ## Architecture (do not fight this)
 
-Section routes (`/`, `/about`, `/skills`, `/portfolio`, `/certifications`, `/contact`) are **URL + metadata only**. Their `page.tsx` files return `null`. The real UI is a single-page experience:
+Section routes (`/`, `/skills`, `/portfolio`, `/process`, `/about`, `/certifications`, `/contact`) are **URL + metadata only**. Their `page.tsx` files return `null`. The real UI is a single-page experience:
 
 - `SiteShell` hides `children` on section routes and mounts `SiteExperience`.
 - `SiteExperience` renders `HomeSection` plus lazy sections and scrolls to the active one via `src/lib/sectionNav.ts`.
@@ -20,7 +20,7 @@ Section routes (`/`, `/about`, `/skills`, `/portfolio`, `/certifications`, `/con
 
 English is the default locale (no prefix). Spanish lives under `/es` (see `src/lib/locale.ts`). Every section and project page exists twice: `src/app/...` and `src/app/es/...`. Middleware only sets `x-locale`. The selected locale is stored in `localStorage` (`mulberry-locale`) and restored on every visit by `LOCALE_BOOTSTRAP_SCRIPT` in `src/app/layout.tsx`. `LanguageSwitch` writes the preference when the user toggles language.
 
-When adding a section or route, update **both** locale trees, `src/data/navegation.ts`, `src/i18n/types.ts`, `src/i18n/en.ts`, `src/i18n/es.ts`, `src/lib/sectionNav.ts`, `SiteExperience`, and `src/app/sitemap.ts`.
+When adding a section or route, update **both** locale trees, `src/data/navegation.ts` (`sections` for scroll/SEO, `links` for primary nav), `src/i18n/types.ts`, `src/i18n/en.ts`, `src/i18n/es.ts`, `src/lib/sectionNav.ts`, `SiteExperience`, and `src/app/sitemap.ts`. `/certifications` stays a section URL but is not in primary nav.
 
 When asked to correct, change, or fix copy, labels, or UI text, apply the same change in **both** locales (`src/i18n/en.ts` and `src/i18n/es.ts`). Never leave one language stale.
 

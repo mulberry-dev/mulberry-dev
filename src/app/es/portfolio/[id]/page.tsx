@@ -37,7 +37,7 @@ const Page = ({ params }: PageProps) => {
             [
               { name: messages.nav.home, path: "/" },
               { name: messages.nav.portfolio, path: "/portfolio" },
-              { name: project.name, path: `/portfolio/${params.id}` }
+              { name: messages.projects[params.id]?.name ?? project.name, path: `/portfolio/${params.id}` }
             ],
             "es"
           )

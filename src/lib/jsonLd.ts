@@ -40,13 +40,16 @@ export const personJsonLd = (locale: Locale) => {
     },
     knowsLanguage: ["en", "es"],
     knowsAbout: [
+      "Custom web applications",
+      "Business websites",
+      "MVP development",
+      "Systems and integrations",
+      "Full stack development",
       "React",
       "TypeScript",
       "Next.js",
       "Node.js",
-      "GraphQL",
-      "Full stack development",
-      "Legacy modernization"
+      "GraphQL"
     ],
     sameAs: [LINKEDIN_URL, GITHUB_URL],
     worksFor: {
@@ -87,7 +90,7 @@ export const projectJsonLd = (id: string, locale: Locale) => {
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: project.name,
+    name: copy?.name ?? project.name,
     description: copy?.description ?? project.description,
     url,
     image: project.img.startsWith("http") ? project.img : `${SITE_URL}${project.img}`,

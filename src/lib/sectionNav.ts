@@ -1,9 +1,9 @@
 import { getMessages, navLabel } from "@/i18n"
-import { links } from "@/data/navegation"
+import { sections } from "@/data/navegation"
 import { SITE_NAME } from "@/data/site"
 import { getLocale, stripLocale } from "@/lib/locale"
 
-export const SECTION_PATHS = links.map((link) => link.path)
+export const SECTION_PATHS = sections.map((section) => section.path)
 export const SECTION_CHANGE_EVENT = "site:section-change"
 
 export type SiteSection = {
@@ -12,10 +12,10 @@ export type SiteSection = {
   id: string
 }
 
-export const SECTIONS: SiteSection[] = links.map((link) => ({
-  path: link.path,
-  name: link.name,
-  id: link.path === "/" ? "index" : link.path.replace(/^\//, "")
+export const SECTIONS: SiteSection[] = sections.map((section) => ({
+  path: section.path,
+  name: section.name,
+  id: section.path === "/" ? "index" : section.path.replace(/^\//, "")
 }))
 
 export const isSectionPath = (pathname: string) =>

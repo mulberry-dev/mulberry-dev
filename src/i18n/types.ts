@@ -6,9 +6,15 @@ export type ProjectHighlightCopy = {
 }
 
 export type ProjectCopy = {
+  name?: string
   teaser: string
   description: string
   highlights: ProjectHighlightCopy[]
+  industry?: string
+  problem?: string
+  solution?: string
+  role?: string
+  outcome?: string
 }
 
 export type Messages = {
@@ -20,6 +26,7 @@ export type Messages = {
     about: string
     skills: string
     portfolio: string
+    process: string
     certifications: string
     contact: string
     primary: string
@@ -40,7 +47,13 @@ export type Messages = {
     location: string
   }
   sections: Record<
-    "/" | "/about" | "/skills" | "/portfolio" | "/certifications" | "/contact",
+    | "/"
+    | "/about"
+    | "/skills"
+    | "/portfolio"
+    | "/process"
+    | "/certifications"
+    | "/contact",
     { title: string; description: string }
   >
   workspace: {
@@ -48,6 +61,7 @@ export type Messages = {
     about: string
     skills: string
     work: string
+    process: string
     certifications: string
     contact: string
   }
@@ -57,12 +71,12 @@ export type Messages = {
     name: string
     roleLead: string
     roleTrail: string
-    bodyBefore: string
-    bodySolutions: string
-    bodyMid: string
-    bodyValue: string
-    ctaSr: string
+    headline: string
+    body: string
     cta: string
+    ctaSecondary: string
+    valueEyebrow: string
+    value: { title: string; text: string }[]
   }
   about: {
     ariaLabel: string
@@ -75,15 +89,23 @@ export type Messages = {
     passions: string[]
     historyCommand: string
     history: { title: string; text: string }[]
+    whyEyebrow: string
+    hook: string
+    hookLead: string
+    whyHeadline: string
+    why: { title: string; text: string }[]
     footerQuestion: string
     footerAction: string
-    rail: { intro: string; identity: string; path: string }
+    rail: { why: string; intro: string; identity: string; path: string }
   }
   skills: {
     ariaLabel: string
     headline: string
     stackTitle: string
     stackLead: string
+    stackEvidence: string
+    viewMore: string
+    viewLess: string
     capabilities: { title: string; text: string }[]
     interfaces: {
       kicker: string
@@ -105,10 +127,6 @@ export type Messages = {
       legacy: string[]
       modern: string[]
     }
-    approach: {
-      kicker: string
-      stages: { title: string; text: string }[]
-    }
     groups: {
       frontend: string
       backend: string
@@ -123,8 +141,15 @@ export type Messages = {
       backend: string
       connected: string
       modernize: string
-      star: string
     }
+  }
+  process: {
+    ariaLabel: string
+    headline: string
+    lead: string
+    steps: { title: string; text: string }[]
+    ctaQuestion: string
+    ctaAction: string
   }
   portfolio: {
     ariaLabel: string
@@ -144,9 +169,22 @@ export type Messages = {
   }
   certifications: {
     ariaLabel: string
+    kicker: string
+    headline: string
     meta: string
     view: string
+    close: string
+    previous: string
+    next: string
+    metrics: { value: string; label: string }[]
     filters: { all: string; security: string; english: string; development: string }
+    categories: {
+      mobile: string
+      security: string
+      english: string
+      development: string
+    }
+    items: Record<string, { title: string }>
   }
   contact: {
     ariaLabel: string
@@ -155,9 +193,72 @@ export type Messages = {
     statusPrefix: string
     availability: string
     supporting: string
+    headline: string
     startConversation: string
     selectChannel: string
     opensTab: string
+    form: {
+      name: string
+      email: string
+      company: string
+      companyOptional: string
+      project: string
+      submit: string
+      sending: string
+      success: string
+      partial: string
+      error: string
+      rateLimited: string
+      next: string
+      errors: {
+        nameRequired: string
+        nameShort: string
+        nameLong: string
+        emailRequired: string
+        emailInvalid: string
+        emailLong: string
+        companyLong: string
+        projectRequired: string
+        projectShort: string
+        projectLong: string
+      }
+    }
+    mail: {
+      path: string
+      localeName: string
+      briefLabel: string
+      receivedAt: string
+      timezone: string
+      fields: {
+        name: string
+        email: string
+        company: string
+        project: string
+      }
+      visitor: {
+        subject: string
+        preheader: string
+        kicker: string
+        headline: string
+        intro: string
+        copyLabel: string
+        signoff: string
+        cta: string
+        band: string
+        footer: string
+      }
+      owner: {
+        subject: string
+        preheader: string
+        kicker: string
+        headline: string
+        intro: string
+        copyLabel: string
+        replyCta: string
+        replyHint: string
+        footer: string
+      }
+    }
     options: {
       email: { title: string; description: string; cta: string }
       phone: { title: string; description: string; cta: string }
@@ -176,12 +277,20 @@ export type Messages = {
     github: string
     year: string
     type: string
+    origin: string
+    industry: string
     about: string
+    challenge: string
+    solution: string
+    role: string
+    outcome: string
     features: string
     technologies: string
     previous: string
     next: string
     navLabel: string
+    similarQuestion: string
+    similarAction: string
     privateTitle: string
     privateText: string
     privateConfirm: string
@@ -217,6 +326,10 @@ export type Messages = {
     offline: string
     noAi: string
     noAiTitle: string
+    withAi: string
+    withAiTitle: string
+    handmade: string
+    handmadeTitle: string
   }
   jsonLd: {
     jobTitle: string
@@ -227,9 +340,10 @@ export type Messages = {
 
 export const SECTION_PATHS = [
   "/",
-  "/about",
   "/skills",
   "/portfolio",
+  "/process",
+  "/about",
   "/certifications",
   "/contact"
 ] as const

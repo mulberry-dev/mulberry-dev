@@ -396,14 +396,21 @@ body:not(.dark) .ui-tech-badge {
   align-items: center;
   gap: 0.35rem;
   font-family: var(--font-mono);
-  font-size: var(--text-caption);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
   letter-spacing: 0.08em;
+  line-height: 1;
   text-transform: uppercase;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 .language-switch a {
   color: var(--color-text-muted);
   text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .language-switch a[aria-current="page"] {

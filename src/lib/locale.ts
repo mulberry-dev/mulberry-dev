@@ -21,7 +21,12 @@ export const writeStoredLocale = (locale: Locale) => {
   }
 }
 
-export const LOCALE_BOOTSTRAP_SCRIPT = `(function(){var k=${JSON.stringify(LOCALE_STORAGE_KEY)};var p=location.pathname;var isEs=p==="/es"||p.indexOf("/es/")===0;var current=isEs?"es":"en";var stored=null;try{stored=localStorage.getItem(k)}catch(e){}if(stored==="en"||stored==="es"){if(stored!==current){var next=stored==="es"?(p==="/"?"/es":"/es"+p):(p==="/es"||p==="/es/"?"/":p.slice(3)||"/");location.replace(next+location.search+location.hash);return}current=stored}try{localStorage.setItem(k,current)}catch(e){}document.documentElement.lang=current;if(p==="/"||p===""||p==="/es"||p==="/es/")document.documentElement.classList.add("home-nav-wait")})()`
+export const detectBrowserLocale = (language: string | undefined): Locale => {
+  const code = (language ?? "").toLowerCase().replace("_", "-")
+  return code === "es" || code.startsWith("es-") ? "es" : DEFAULT_LOCALE
+}
+
+export const LOCALE_BOOTSTRAP_SCRIPT = `(function(){var k=${JSON.stringify(LOCALE_STORAGE_KEY)};var p=location.pathname;var isEs=p==="/es"||p.indexOf("/es/")===0;var current=isEs?"es":"en";var stored=null;try{stored=localStorage.getItem(k)}catch(e){}function toPath(l){if(l==="es")return p==="/"||p===""?"/es":isEs?p:"/es"+p;if(p==="/es"||p==="/es/")return "/";return isEs?(p.slice(3)||"/"):p}if(stored==="en"||stored==="es"){if(stored!==current){location.replace(toPath(stored)+location.search+location.hash);return}current=stored}else{var bot=/bot|crawl|spider|slurp|bingpreview|facebookexternalhit/i.test(navigator.userAgent||"");if(!bot){var lang=(navigator.languages&&navigator.languages.length?navigator.languages[0]:navigator.language)||"";var code=String(lang).toLowerCase().replace("_","-");current=code==="es"||code.indexOf("es-")===0?"es":"en";if(current!==(isEs?"es":"en")){try{localStorage.setItem(k,current)}catch(e){}location.replace(toPath(current)+location.search+location.hash);return}}}try{localStorage.setItem(k,current)}catch(e){}document.documentElement.lang=current;if(p==="/"||p===""||p==="/es"||p==="/es/")document.documentElement.classList.add("home-nav-wait")})()`
 
 export const getLocale = (pathname: string): Locale => {
   const first = pathname.split("/").filter(Boolean)[0]

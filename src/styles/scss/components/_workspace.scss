@@ -91,11 +91,20 @@
   color: var(--brand-orange);
 }
 
+.term-status--pre-ai,
+.term-status--with-ai {
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+}
+
 .term-status--pre-ai {
   color: var(--color-text-secondary);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
-  padding: 0.15rem 0.4rem;
+}
+
+.term-status--with-ai {
+  color: var(--brand-cyan);
+  border: 1px solid color-mix(in srgb, var(--brand-cyan) 32%, var(--border-subtle));
 }
 
 .project-flags {
@@ -217,6 +226,8 @@
 }
 
 .capability-card {
+  --capability-icon-slot: 2.5rem;
+  --capability-icon-size: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -229,11 +240,27 @@
 }
 
 .capability-card__icon {
+  box-sizing: border-box;
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: var(--capability-icon-slot);
+  height: var(--capability-icon-slot);
+  min-width: var(--capability-icon-slot);
+  min-height: var(--capability-icon-slot);
+  flex-shrink: 0;
+  align-self: start;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--capability-tone) 24%, transparent);
+  background: color-mix(in srgb, var(--capability-tone) 10%, transparent);
   color: var(--capability-tone);
+}
+
+.capability-card__icon svg {
+  display: block;
+  width: var(--capability-icon-size);
+  height: var(--capability-icon-size);
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .capability-card h3 {
@@ -321,10 +348,27 @@
   }
 }
 
+.capability-card--orange {
+  --capability-tone: var(--brand-orange, #f59e0b);
+}
+
 @media (min-width: 768px) {
-  .capability-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .skills-capabilities.capability-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: var(--space-4);
+  }
+
+  .skills-capabilities.capability-grid > .reveal:nth-child(-n + 3) {
+    grid-column: span 2;
+  }
+
+  .skills-capabilities.capability-grid > .reveal:nth-child(n + 4) {
+    grid-column: span 3;
+  }
+
+  .capability-card {
+    --capability-icon-slot: 3.25rem;
+    --capability-icon-size: 1.875rem;
   }
 }
 
@@ -332,11 +376,6 @@
   .capability-card {
     gap: var(--space-3);
     padding: 1.05rem 0.95rem;
-  }
-
-  .capability-card__icon {
-    width: 28px;
-    height: 28px;
   }
 
   .capability-card h3 {

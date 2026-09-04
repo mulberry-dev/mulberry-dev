@@ -6,8 +6,9 @@ import Card from "@/components/ui/Card"
 import Container from "@/components/ui/Container"
 import FilterPills from "@/components/ui/FilterPills"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
+import TypeCopy from "@/components/terminal/TypeCopy"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
-import { certificates } from "@/data/certificates"
+import { certificates, type Certificate } from "@/data/certificates"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import type { LightboxOrigin } from "@/components/ui/Lightbox"
@@ -23,6 +24,10 @@ const categoryOrder = ["mobile", "security", "english", "development"]
 
 const Certifications = () => {
   const { t } = useI18n()
+  const titleOf = (certificate: Certificate) =>
+    t.certifications.items[String(certificate.id)]?.title ?? ""
+  const categoryOf = (certificate: Certificate) =>
+    t.certifications.categories[certificate.category]
   const filters = [
     { id: "all", label: t.certifications.filters.all },
     { id: "security", label: t.certifications.filters.security },
@@ -137,6 +142,20 @@ const Certifications = () => {
             title={t.workspace.certifications}
             meta={t.certifications.meta.replace("{count}", String(certificates.length))}
           />
+          <Reveal type="text" className="certs-trust">
+            <p className="certs-trust__kicker">
+              {t.certifications.kicker}
+            </p>
+            <h2 className="certs-trust__headline">{t.certifications.headline}</h2>
+            <ul className="certs-metrics">
+              {t.certifications.metrics.map((metric) => (
+                <li key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
           <Reveal type="nav">
             <FilterPills options={filters} active={active} onChange={setActive} />
           </Reveal>
@@ -151,7 +170,7 @@ const Certifications = () => {
                 type="button"
                 className="certs-card__open"
                 onClick={event => openViewer(certificate.id, event)}
-                aria-label={t.certifications.view.replace("{title}", certificate.title)}
+                aria-label={t.certifications.view.replace("{title}", titleOf(certificate))}
               >
                 <Image
                   ref={node => {
@@ -162,7 +181,7 @@ const Certifications = () => {
                     }
                   }}
                   src={certificate.url}
-                  alt={certificate.title}
+                  alt={titleOf(certificate)}
                   width={640}
                   height={420}
                   sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
@@ -171,9 +190,11 @@ const Certifications = () => {
                   className="certs-card__image"
                 />
                 <Badge variant={certificate.category}>
-                  {certificate.category}
+                  <TypeCopy text={categoryOf(certificate)} caret={false} />
                 </Badge>
-                <h3>{certificate.title}</h3>
+                <h3>
+                  <TypeCopy text={titleOf(certificate)} caret={false} />
+                </h3>
               </button>
             </Card>
             </Reveal>
@@ -183,7 +204,7 @@ const Certifications = () => {
       {openCertificate && viewer ? (
         <Lightbox
           src={openCertificate.url}
-          alt={openCertificate.title}
+          alt={titleOf(openCertificate)}
           origin={viewer.origin}
           getOrigin={getOrigin}
           aspectRatio={aspectRatio}
@@ -192,6 +213,9 @@ const Certifications = () => {
           onNext={canNavigate ? goNext : undefined}
           hasPrevious={canNavigate}
           hasNext={canNavigate}
+          closeLabel={t.certifications.close}
+          previousLabel={t.certifications.previous}
+          nextLabel={t.certifications.next}
           counter={
             currentIndex >= 0
               ? `${currentIndex + 1} / ${visible.length}`

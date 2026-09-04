@@ -1,62 +1,67 @@
-export const certificates = [
+export const certificateCategories = [
+  "mobile",
+  "security",
+  "english",
+  "development"
+] as const
+
+export type CertificateCategory = (typeof certificateCategories)[number]
+
+export type Certificate = {
+  id: number
+  url: string
+  category: CertificateCategory
+}
+
+export const certificates: Certificate[] = [
   {
     id: 9,
     url: "/images/Certificates/DesarrolloMobileReactNative.webp",
-    title: "Desarrollo mobile con React Native",
     category: "mobile"
   },
   {
     id: 0,
     url: "/images/Certificates/CarreraDesarrolloFullStack.webp",
-    title: "Full Stack Development Career",
     category: "development"
   },
   {
     id: 1,
     url: "/images/Certificates/CarreraDesarrolloFrontEnd.webp",
-    title: "Front End Development Career",
     category: "development"
   },
   {
     id: 2,
     url: "/images/Certificates/CarreraDesarrolloDeAplicaciones.webp",
-    title: "Application Development Career",
     category: "development"
   },
   {
     id: 3,
     url: "/images/Certificates/ProgramacionBackend.webp",
-    title: "Backend Programming",
     category: "development"
   },
   {
     id: 4,
     url: "/images/Certificates/ReactJs.webp",
-    title: "React.js",
     category: "development"
   },
   {
     id: 5,
     url: "/images/Certificates/Ingles.webp",
-    title: "English",
     category: "english"
   },
   {
     id: 6,
     url: "/images/Certificates/JavaScript.webp",
-    title: "JavaScript",
     category: "development"
   },
   {
     id: 7,
     url: "/images/Certificates/DesarrolloWeb.webp",
-    title: "Web Development",
     category: "development"
   },
   {
     id: 8,
     url: "/images/Certificates/Ciberseguridad.webp",
-    title: "Cybersecurity",
     category: "security"
   }
 ]
