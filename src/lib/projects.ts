@@ -19,6 +19,11 @@ export const extractYear = (description: string) => {
   return match?.[1]
 }
 
+export const projectYear = (project: Pick<Project, "id" | "description">) => {
+  const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  return extractYear(source.description)
+}
+
 export const extractStartYear = (description: string) => {
   const year = extractYear(description)
   const start = year?.match(/^\d{4}/)?.[0]

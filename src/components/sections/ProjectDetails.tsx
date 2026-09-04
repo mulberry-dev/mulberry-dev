@@ -19,7 +19,7 @@ import { usePreviewAvailability } from "@/lib/previewAvailability"
 import {
   builtWithAi,
   builtWithoutAi,
-  extractYear,
+  projectYear,
   hasLivePreview,
   localizeProject,
   padCount,
@@ -93,7 +93,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
     text: highlightCopy?.[highlightIndex]?.text ?? item.text
   }))
   const github = project && "github" in project ? project.github : null
-  const year = source ? extractYear(source.description) : undefined
+  const year = source ? projectYear(source) : undefined
   const handmade = source ? builtWithoutAi(source) : false
   const withAi = source ? builtWithAi(source) : false
   const {

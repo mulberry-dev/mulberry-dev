@@ -15,8 +15,8 @@ import {
   archiveProjects,
   builtWithoutAi,
   categoryCounts,
-  extractYear,
   featuredProjects,
+  projectYear,
   localizeProject,
   padCount,
   techNames,
@@ -84,7 +84,7 @@ const FeaturedCard = ({
 }) => {
   const { t } = useI18n()
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
-  const year = extractYear(project.description)
+  const year = projectYear(project)
   const stack = techNames(project.tech).slice(0, 4)
   const copy = t.projects[String(project.id)]
   const problem = copy?.problem
@@ -177,6 +177,7 @@ const FeaturedCard = ({
 const ArchiveCard = ({ project }: { project: Project }) => {
   const { t } = useI18n()
   const { href, loading, prefetchProject, handleClick } = useProjectLink(project)
+  const year = projectYear(project)
   const stack = techNames(project.tech).slice(0, 3)
 
   return (
@@ -192,7 +193,17 @@ const ArchiveCard = ({ project }: { project: Project }) => {
       <article className="archive-card">
         <div className="archive-card__copy">
           <header className="archive-card__meta">
-            <ProjectType project={project} />
+            <div className="archive-card__lead">
+              <ProjectType project={project} />
+              {year ? (
+                <span className="archive-card__year">
+                  <span className="archive-card__year-label">
+                    <TypeCopy text={t.portfolio.year} caret={false} />
+                  </span>
+                  <span>{year}</span>
+                </span>
+              ) : null}
+            </div>
             <ProjectFlags project={project} />
           </header>
           <h3>{project.name}</h3>
