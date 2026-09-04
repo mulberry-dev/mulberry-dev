@@ -642,7 +642,7 @@ export const en: Messages = {
     },
     TecnoShop: {
       teaser: "React computer store with cart and live stock.",
-      description: "React.js computer store with cart and live inventory.",
+      description: "React.js computer store with cart and live inventory. (2022)",
       highlights: [
         { title: "Category browsing", text: "Shop by product type" },
         { title: "Live stock", text: "Inventory decreases after each purchase" },
@@ -659,7 +659,7 @@ export const en: Messages = {
     },
     LiveChatApp: {
       teaser: "Realtime chat rooms built with Node.js.",
-      description: "Node.js chat app where you pick a room and talk in realtime. (2023)",
+      description: "Node.js chat app where you pick a room and talk in realtime. (2022)",
       highlights: [
         { title: "Message timestamps", text: "Every message shows when it was sent" },
         { title: "Easy exit", text: "Leave a room and return to home" },

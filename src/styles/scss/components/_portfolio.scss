@@ -246,6 +246,32 @@
   min-width: 0;
 }
 
+.archive-card__lead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.7rem;
+  min-width: 0;
+}
+
+.archive-card__year {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.archive-card__year-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
 .archive-card h3 {
   font-size: 1.1rem;
   font-weight: 700;
@@ -429,6 +455,10 @@
   .archive-card__meta,
   .work-card__meta {
     gap: 0.35rem;
+  }
+
+  .archive-card__year {
+    font-size: 0.75rem;
   }
 
   .project-flags {

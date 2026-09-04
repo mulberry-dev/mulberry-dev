@@ -648,7 +648,7 @@ export const es: Messages = {
     },
     TecnoShop: {
       teaser: "Tienda de cómputo en React con carrito y stock en vivo.",
-      description: "Tienda de cómputo en React.js con carrito e inventario en vivo.",
+      description: "Tienda de cómputo en React.js con carrito e inventario en vivo. (2022)",
       highlights: [
         { title: "Navegación por categoría", text: "Comprar por tipo de producto" },
         { title: "Stock en vivo", text: "El inventario baja después de cada compra" },
@@ -666,7 +666,7 @@ export const es: Messages = {
     LiveChatApp: {
       teaser: "Salas de chat en tiempo real con Node.js.",
       description:
-        "App de chat en Node.js donde eliges una sala y hablas en tiempo real. (2023)",
+        "App de chat en Node.js donde eliges una sala y hablas en tiempo real. (2022)",
       highlights: [
         { title: "Marca de tiempo", text: "Cada mensaje muestra cuándo se envió" },
         { title: "Salida fácil", text: "Dejar una sala y volver al inicio" },
