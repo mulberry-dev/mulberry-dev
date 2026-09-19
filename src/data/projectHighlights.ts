@@ -75,7 +75,7 @@ export const projectHighlights: Record<string, ProjectHighlight[]> = {
       text: "Previous public version, kept online"
     }
   ],
-  SalonTarget: [
+  SaasProject: [
     {
       icon: "modernize",
       title: "Legacy migration",

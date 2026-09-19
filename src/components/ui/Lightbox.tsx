@@ -23,6 +23,9 @@ type LightboxProps = {
   hasPrevious?: boolean
   hasNext?: boolean
   counter?: string
+  closeLabel?: string
+  previousLabel?: string
+  nextLabel?: string
 }
 
 const OPEN_MS = 540
@@ -87,7 +90,10 @@ const Lightbox = ({
   onNext,
   hasPrevious = false,
   hasNext = false,
-  counter
+  counter,
+  closeLabel = "Close fullscreen certificate",
+  previousLabel = "Previous certificate",
+  nextLabel = "Next certificate"
 }: LightboxProps) => {
   const closeRef = useRef<HTMLButtonElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
@@ -223,14 +229,14 @@ const Lightbox = ({
         type="button"
         className="certs-lightbox__backdrop"
         onClick={playClose}
-        aria-label="Close fullscreen certificate"
+        aria-label={closeLabel}
       />
       <button
         ref={closeRef}
         type="button"
         className="certs-lightbox__close"
         onClick={playClose}
-        aria-label="Close fullscreen certificate"
+        aria-label={closeLabel}
       >
         ×
       </button>
@@ -240,7 +246,7 @@ const Lightbox = ({
           className="certs-lightbox__nav certs-lightbox__nav--prev"
           onClick={onPrevious}
           disabled={!ready}
-          aria-label="Previous certificate"
+          aria-label={previousLabel}
         >
           <NavChevron direction="prev" />
         </button>
@@ -251,7 +257,7 @@ const Lightbox = ({
           className="certs-lightbox__nav certs-lightbox__nav--next"
           onClick={onNext}
           disabled={!ready}
-          aria-label="Next certificate"
+          aria-label={nextLabel}
         >
           <NavChevron direction="next" />
         </button>

@@ -31,6 +31,12 @@ export const builtWithoutAi = (project: Project) => {
   return year !== undefined && year <= 2023
 }
 
+export const builtWithAi = (project: Project) => {
+  const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  const year = extractStartYear(source.description)
+  return year !== undefined && year > 2023
+}
+
 export const projectSlug = (id: string | number) =>
   String(id)
     .replace(/([a-z\d])([A-Z])/g, "$1-$2")
@@ -49,6 +55,7 @@ export const localizeProject = (project: Project, locale: Locale): Project => {
 
   return {
     ...project,
+    name: copy.name ?? project.name,
     teaser: copy.teaser,
     description: copy.description
   }
@@ -58,15 +65,15 @@ export const projectStatus = (project: Project) => {
   const source = projects.find(item => String(item.id) === String(project.id)) ?? project
   const copy = `${source.teaser} ${source.description}`
 
+  if (!project.url) {
+    return { id: "private" as const, label: "Private" }
+  }
+
   if (/ongoing/i.test(copy)) {
     return { id: "ongoing" as const, label: "Ongoing" }
   }
 
-  if (project.url) {
-    return { id: "live" as const, label: "Live" }
-  }
-
-  return { id: "private" as const, label: "Private" }
+  return { id: "live" as const, label: "Live" }
 }
 
 export const hasLivePreview = (
@@ -81,9 +88,10 @@ export const featuredProjects = FEATURED_PROJECT_IDS.map(id =>
 
 const featuredIdSet = new Set<string>(FEATURED_PROJECT_IDS)
 
-export const archiveProjects = projects.filter(
-  project => !featuredIdSet.has(String(project.id))
-)
+export const archiveProjects = projects
+  .filter(project => !featuredIdSet.has(String(project.id)))
+  .slice()
+  .sort((left, right) => Number(right.category === "api") - Number(left.category === "api"))
 
 export const categoryCounts = projects.reduce<Record<string, number>>(
   (counts, project) => {

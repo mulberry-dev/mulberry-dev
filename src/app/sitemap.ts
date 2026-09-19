@@ -1,5 +1,5 @@
 import { data as projects } from "@/data/projects"
-import { links } from "@/data/navegation"
+import { sections } from "@/data/navegation"
 import { languageAlternates, absoluteUrl } from "@/lib/sectionMeta"
 import { LOCALES, type Locale } from "@/lib/locale"
 import type { MetadataRoute } from "next"
@@ -22,9 +22,9 @@ const entry = (
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths: { path: string; priority: number }[] = [
-    ...links.map(link => ({
-      path: link.path,
-      priority: link.path === "/" ? 1 : 0.7
+    ...sections.map(section => ({
+      path: section.path,
+      priority: section.path === "/" ? 1 : 0.7
     })),
     ...projects.map(project => ({
       path: `/portfolio/${project.id}`,

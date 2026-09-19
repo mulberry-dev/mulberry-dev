@@ -16,7 +16,15 @@ import { data as projects } from "@/data/projects"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import { usePreviewAvailability } from "@/lib/previewAvailability"
-import { extractYear, hasLivePreview, localizeProject, padCount, projectSlug } from "@/lib/projects"
+import {
+  builtWithAi,
+  builtWithoutAi,
+  extractYear,
+  hasLivePreview,
+  localizeProject,
+  padCount,
+  projectSlug
+} from "@/lib/projects"
 import { ConfirmLeaveSite, PrivateDeployment, SiteOffline } from "@/utils/alerts"
 import Image from "next/image"
 import Link from "next/link"
@@ -78,6 +86,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
     index >= 0 && index < projects.length - 1 ? projects[index + 1] : null
   const highlightSource = project ? projectHighlights[String(project.id)] : undefined
   const highlightCopy = project ? t.projects[String(project.id)]?.highlights : undefined
+  const caseCopy = project ? t.projects[String(project.id)] : undefined
   const highlights = highlightSource?.map((item, highlightIndex) => ({
     ...item,
     title: highlightCopy?.[highlightIndex]?.title ?? item.title,
@@ -85,8 +94,13 @@ const ProjectDetails = ({ id }: { id: string }) => {
   }))
   const github = project && "github" in project ? project.github : null
   const year = source ? extractYear(source.description) : undefined
-  const { status: availability, resolve: resolveAvailability } =
-    usePreviewAvailability(project?.url ?? null)
+  const handmade = source ? builtWithoutAi(source) : false
+  const withAi = source ? builtWithAi(source) : false
+  const {
+    status: availability,
+    embeddable,
+    resolve: resolveAvailability
+  } = usePreviewAvailability(project?.url ?? null)
   const siteOffline = availability === "offline"
 
   useEffect(() => {
@@ -136,12 +150,57 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   <span>
                     {padCount(index + 1)} / <TypeCopy text={t.project.kicker} caret={false} />
                   </span>
-                  {year ? <span>{year}</span> : null}
-                  <ProjectType project={project} />
-                  <ProjectFlags project={project} availability={availability} />
+                  <ProjectFlags
+                    project={project}
+                    availability={project.url ? availability : undefined}
+                  />
                 </Reveal>
                 <Reveal type="heading" as="h1" className="project-hero__title">
                   {project.name}
+                </Reveal>
+                {caseCopy?.industry ? (
+                  <Reveal type="text" className="project-hero__industry">
+                    <TypeCopy text={caseCopy.industry} caret={false} />
+                  </Reveal>
+                ) : null}
+                <Reveal type="text" className="project-hero__facts-wrap">
+                  <dl className="project-hero__facts">
+                    {year ? (
+                      <div>
+                        <dt>
+                          <TypeCopy text={t.project.year} caret={false} />
+                        </dt>
+                        <dd>{year}</dd>
+                      </div>
+                    ) : null}
+                    <div>
+                      <dt>
+                        <TypeCopy text={t.project.type} caret={false} />
+                      </dt>
+                      <dd>
+                        <ProjectType project={project} />
+                      </dd>
+                    </div>
+                    {handmade || withAi ? (
+                      <div>
+                        <dt>
+                          <TypeCopy text={t.project.origin} caret={false} />
+                        </dt>
+                        <dd
+                          title={
+                            handmade
+                              ? t.status.handmadeTitle
+                              : t.status.withAiTitle
+                          }
+                        >
+                          <TypeCopy
+                            text={handmade ? t.status.handmade : t.status.withAi}
+                            caret={false}
+                          />
+                        </dd>
+                      </div>
+                    ) : null}
+                  </dl>
                 </Reveal>
               </div>
               <Reveal type="text" className="project-hero__about">
@@ -152,6 +211,46 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   <TypeCopy text={project.description} />
                 </p>
               </Reveal>
+              {caseCopy?.problem ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.challenge} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.problem} />
+                  </p>
+                </Reveal>
+              ) : null}
+              {caseCopy?.solution ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.solution} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.solution} />
+                  </p>
+                </Reveal>
+              ) : null}
+              {caseCopy?.role ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.role} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.role} />
+                  </p>
+                </Reveal>
+              ) : null}
+              {caseCopy?.outcome ? (
+                <Reveal type="text" className="project-hero__about">
+                  <h2 className="project-hero__label">
+                    <TypeCopy text={t.project.outcome} />
+                  </h2>
+                  <p>
+                    <TypeCopy text={caseCopy.outcome} />
+                  </p>
+                </Reveal>
+              ) : null}
               {highlights?.length ? (
                 <Reveal type="text" className="project-hero__features">
                   <h2 className="project-hero__label">
@@ -228,6 +327,7 @@ const ProjectDetails = ({ id }: { id: string }) => {
                   name={project.name}
                   teaser={project.teaser}
                   availability={availability}
+                  embeddable={embeddable}
                 />
               ) : (
                 <Image
@@ -261,6 +361,15 @@ const ProjectDetails = ({ id }: { id: string }) => {
               )
             )}
           </RevealGroup>
+        </div>
+
+        <div className="project-convert">
+          <p>
+            <TypeCopy text={t.project.similarQuestion} />
+          </p>
+          <Button href={href("/contact")} variant="terminal">
+            <TypeCopy text={t.project.similarAction} />
+          </Button>
         </div>
 
         <div className="project-nav-wrap">

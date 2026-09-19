@@ -7,7 +7,7 @@ import { links } from "@/data/navegation"
 import { useI18n } from "@/i18n/useI18n"
 import { isHomePath, stripLocale } from "@/lib/locale"
 import { lockBodyScroll, unlockBodyScroll } from "@/lib/scrollLock"
-import { prefetchSectionPath, SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
+import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   HOME_CHROME_REVEALED_EVENT,
   isHomeChromeRevealed,
@@ -43,6 +43,10 @@ const isActivePath = (pathname: string, path: string) => {
 
   if (path === "/") {
     return current === "/"
+  }
+
+  if (path === "/about" && current === "/certifications") {
+    return true
   }
 
   return current === path || current.startsWith(`${path}/`)
@@ -220,7 +224,6 @@ const Navigation = () => {
     }
 
     document.body.classList.add("nav-menu-open")
-    prefetchSectionPath("/contact")
     lockBodyScroll()
 
     return () => {

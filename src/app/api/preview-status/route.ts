@@ -33,6 +33,35 @@ const probe = async (url: string, signal: AbortSignal) => {
   })
 }
 
+const canEmbedFromPortfolio = (response: Response) => {
+  const xfo = response.headers.get("x-frame-options")?.trim().toLowerCase()
+
+  if (xfo === "deny" || xfo === "sameorigin") {
+    return false
+  }
+
+  const csp = [
+    response.headers.get("content-security-policy"),
+    response.headers.get("content-security-policy-report-only")
+  ]
+    .filter(Boolean)
+    .join(",")
+  const ancestors = /frame-ancestors\s+([^;]+)/i.exec(csp)?.[1]?.trim()
+
+  if (!ancestors) {
+    return true
+  }
+
+  if (/^('none'|none)$/i.test(ancestors)) {
+    return false
+  }
+
+  return ancestors.split(/\s+/).some(token => {
+    const value = token.toLowerCase().replace(/['"]/g, "")
+    return value !== "self"
+  })
+}
+
 export async function GET(request: Request) {
   const target = new URL(request.url).searchParams.get("url")
   const normalized = target ? normalize(target) : ""
@@ -51,7 +80,8 @@ export async function GET(request: Request) {
     return NextResponse.json(
       {
         live: response.ok,
-        paused: response.headers.get("x-vercel-error") === "DEPLOYMENT_PAUSED"
+        paused: response.headers.get("x-vercel-error") === "DEPLOYMENT_PAUSED",
+        embeddable: response.ok && canEmbedFromPortfolio(response)
       },
       { headers: { "Cache-Control": "no-store" } }
     )

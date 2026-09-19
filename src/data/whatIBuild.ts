@@ -3,7 +3,7 @@ import type { SiteIconName } from "@/components/ui/SiteIcon"
 export type BuildAccent = "cyan" | "blue" | "indigo" | "purple" | "orange"
 
 export const BUILD_HOST = "santiago@dev"
-export const BUILD_PATH = "~/what-i-do"
+export const BUILD_PATH = "~/services"
 export const BUILD_STACK_PATH = "~/stack"
 
 export const BUILD_INTRO = {
@@ -19,7 +19,7 @@ export const BUILD_INTERFACES = {
     { icon: "interface" as const, label: "UI components" },
     { icon: "cursor" as const, label: "Interactions" },
     { icon: "user" as const, label: "UX & accessibility" },
-    { icon: "performance" as const, label: "Performance" }
+    { icon: "performance" as const, label: "Performance & Testing" }
   ],
   tech: ["React", "Next.js", "TypeScript"]
 } as const
@@ -220,10 +220,9 @@ export const PRODUCT_LAYERS = [
 ] as const
 
 export const BUILD_SECTIONS = [
-  { id: "build-intro", index: "00", label: "INTRO" },
-  { id: "build-interfaces", index: "01", label: "FRONTEND", accent: BUILD_INTERFACES.accent },
-  { id: "build-systems", index: "02", label: "BACKEND", accent: BUILD_SYSTEMS.accent },
-  { id: "build-connected", index: "03", label: "DATA & INTEGRATIONS", accent: BUILD_CONNECTED.accent },
-  { id: "build-modernize", index: "04", label: "MODERNIZATION", accent: BUILD_MODERNIZATION.accent },
-  { id: "build-approach", index: "05", label: "STAR", accent: BUILD_APPROACH.accent }
+  { id: "build-intro", index: "00", label: "SOLUTIONS" },
+  { id: "build-interfaces", index: "01", label: "INTERFACES", accent: BUILD_INTERFACES.accent },
+  { id: "build-systems", index: "02", label: "SYSTEMS", accent: BUILD_SYSTEMS.accent },
+  { id: "build-connected", index: "03", label: "INTEGRATIONS", accent: BUILD_CONNECTED.accent },
+  { id: "build-modernize", index: "04", label: "MODERNIZE", accent: BUILD_MODERNIZATION.accent }
 ] as const

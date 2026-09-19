@@ -124,12 +124,12 @@ export const data = [
     github: null
   },
   {
-    id: "SalonTarget",
-    name: "SalonTarget",
+    id: "SaasProject",
+    name: "SaaS Project",
     category: "web",
-    teaser: "Modernizing an all-in-one salon and spa platform.",
+    teaser: "Modernizing an all-in-one SaaS platform for salons and spas.",
     description:
-      "Ongoing modernization of SalonTarget's salon and spa management platform. (2025–2026)",
+      "Ongoing modernization of a SaaS platform for salon and spa operations. (2025–2026)",
     img: "/images/Webp/salon-target.webp",
     tech: [
       {
@@ -157,7 +157,7 @@ export const data = [
         icon: "/images/Icons/svg/mui.svg"
       }
     ],
-    url: "https://salontarget.com/",
+    url: null,
     thumbnail: "/images/thumbnails/salon-target.webp",
     github: null
   },
@@ -226,7 +226,7 @@ export const data = [
   {
     id: "ElectronicBilling",
     name: "Electronic Billing GS",
-    category: "api",
+    category: "web",
     teaser: "Invoice platform for Grupo Salinas, connected to SAT.",
     description:
       "Invoice issuance platform for Grupo Salinas, connected to the SAT API. (2024)",

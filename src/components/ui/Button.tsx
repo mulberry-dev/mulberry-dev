@@ -1,5 +1,9 @@
 import Link from "next/link"
-import { ButtonHTMLAttributes, ReactNode } from "react"
+import {
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+  ReactNode
+} from "react"
 
 type Variant = "primary" | "secondary" | "terminal"
 
@@ -10,7 +14,8 @@ type ButtonProps = {
   className?: string
   external?: boolean
   loading?: boolean
-} & ButtonHTMLAttributes<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">
 
 const Button = ({
   children,
@@ -21,6 +26,7 @@ const Button = ({
   loading = false,
   disabled,
   type = "button",
+  onClick,
   ...props
 }: ButtonProps) => {
   const classes = [
@@ -40,6 +46,7 @@ const Button = ({
         <a
           className={classes}
           href={href}
+          onClick={onClick}
           {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
         >
           {children}
@@ -48,7 +55,7 @@ const Button = ({
     }
 
     return (
-      <Link className={classes} href={href} scroll={false}>
+      <Link className={classes} href={href} scroll={false} onClick={onClick}>
         {children}
       </Link>
     )
@@ -60,6 +67,7 @@ const Button = ({
       type={type}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
+      onClick={onClick}
       {...props}
     >
       {loading ? <span className="ui-button__spinner" aria-hidden="true" /> : null}

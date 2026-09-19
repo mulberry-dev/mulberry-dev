@@ -37,6 +37,20 @@ const nextConfig = {
       }
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: "/portfolio/SalonTarget",
+        destination: "/portfolio/SaasProject",
+        permanent: true
+      },
+      {
+        source: "/es/portfolio/SalonTarget",
+        destination: "/es/portfolio/SaasProject",
+        permanent: true
+      }
+    ]
+  },
   async headers() {
     return [
       {

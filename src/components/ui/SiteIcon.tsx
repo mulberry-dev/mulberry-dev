@@ -6,12 +6,18 @@ export type SiteIconName =
   | "design"
   | "user"
   | "craft"
+  | "ruler"
   | "clarity"
+  | "search"
   | "code"
+  | "brackets"
   | "bolt"
   | "interface"
+  | "app"
   | "systems"
+  | "layers"
   | "connect"
+  | "route"
   | "modernize"
   | "thinking"
   | "performance"
@@ -20,7 +26,9 @@ export type SiteIconName =
   | "database"
   | "rocket"
   | "swap"
+  | "cycle"
   | "gauge"
+  | "target"
   | "puzzle"
   | "cursor"
   | "compass"
@@ -28,6 +36,7 @@ export type SiteIconName =
   | "calendar"
   | "leaf"
   | "globe"
+  | "bulb"
   | "devices"
   | "lock"
   | "storage"
@@ -82,16 +91,35 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M8.5 15.2 4 20" />
     </svg>
   ),
+  ruler: (
+    <svg {...iconProps}>
+      <path d="M20.6 14.7a2.1 2.1 0 0 1 0 3l-2.3 2.3a2.1 2.1 0 0 1-3.1 0L3.5 8.5a2.1 2.1 0 0 1 0-3l2.3-2.3a2.1 2.1 0 0 1 3.1 0Z" />
+      <path d="m8.1 6.2 1.9-1.9M11.1 9.2 13 7.3M14.1 12.2 16 10.3M17.1 15.2 19 13.3" />
+    </svg>
+  ),
   clarity: (
     <svg {...iconProps}>
       <circle cx="11" cy="11" r="6.5" />
       <path d="M16 16.5 20.2 20.7" />
     </svg>
   ),
+  search: (
+    <svg {...iconProps}>
+      <circle cx="11" cy="11" r="6.25" />
+      <path d="M16 16.2 20.4 20.6" />
+    </svg>
+  ),
   code: (
     <svg {...iconProps}>
       <path d="M8.2 7.2 3.8 12l4.4 4.8" />
       <path d="M15.8 7.2 20.2 12l-4.4 4.8" />
+    </svg>
+  ),
+  brackets: (
+    <svg {...iconProps}>
+      <path d="M8 6.6 3.6 12 8 17.4" />
+      <path d="M16 6.6 20.4 12 16 17.4" />
+      <path d="M13.6 6.5 10.4 17.5" />
     </svg>
   ),
   bolt: (
@@ -105,11 +133,25 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M3 8.5h18" />
     </svg>
   ),
+  app: (
+    <svg {...iconProps}>
+      <rect x="3.5" y="4" width="17" height="16" rx="2" />
+      <path d="M3.5 8.5h17" />
+      <path d="M8.8 8.5v11.5" />
+    </svg>
+  ),
   systems: (
     <svg {...iconProps}>
       <rect x="4" y="3.5" width="16" height="4.5" rx="1" />
       <rect x="4" y="9.75" width="16" height="4.5" rx="1" />
       <rect x="4" y="16" width="16" height="4.5" rx="1" />
+    </svg>
+  ),
+  layers: (
+    <svg {...iconProps}>
+      <path d="M12 3.6 4.6 7.8 12 12l7.4-4.2L12 3.6Z" />
+      <path d="M4.6 12 12 16.2 19.4 12" />
+      <path d="M4.6 16.2 12 20.4 19.4 16.2" />
     </svg>
   ),
   connect: (
@@ -119,6 +161,13 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <circle cx="18" cy="18" r="2.25" />
       <path d="M8.1 10.7l5.8-3.4" />
       <path d="M8.1 13.3l5.8 3.4" />
+    </svg>
+  ),
+  route: (
+    <svg {...iconProps}>
+      <circle cx="5.6" cy="16.8" r="2.15" />
+      <circle cx="18.4" cy="7.2" r="2.15" />
+      <path d="M7.5 15.6c2.4-.4 3.5-2.2 3.5-4.2S12.6 7.8 16.2 7.4" />
     </svg>
   ),
   modernize: (
@@ -160,9 +209,10 @@ const ICONS: Record<SiteIconName, ReactElement> = {
   ),
   rocket: (
     <svg {...iconProps}>
-      <path d="M14.5 9.5 19 5M14.5 9.5c1.8 3.8 1.4 7.2.2 9.8-2.6-1.2-6-1.6-9.8-.2 1.8-3.6 4.4-6.8 9.6-9.6Z" />
-      <path d="M9.2 14.8 5 19" />
-      <circle cx="15.2" cy="8.8" r="1.1" />
+      <path d="M12 3.4c2.6 2.8 4.7 6.8 4.7 10.5 0 1.4-.4 2.5-1.1 3.4H8.4c-.7-.9-1.1-2-1.1-3.4 0-3.7 2.1-7.7 4.7-10.5Z" />
+      <circle cx="12" cy="11.2" r="1.45" />
+      <path d="M8.6 16.4 6 20.4" />
+      <path d="M15.4 16.4 18 20.4" />
     </svg>
   ),
   swap: (
@@ -171,11 +221,26 @@ const ICONS: Record<SiteIconName, ReactElement> = {
       <path d="M17 16H5M8 13l-3 3 3 3" />
     </svg>
   ),
+  cycle: (
+    <svg {...iconProps}>
+      <path d="M20.2 12A8.2 8.2 0 0 0 12 3.8a8.6 8.6 0 0 0-6.1 2.5L4 8.2" />
+      <path d="M4 3.6v5h5" />
+      <path d="M3.8 12A8.2 8.2 0 0 0 12 20.2a8.6 8.6 0 0 0 6.1-2.5L20 15.8" />
+      <path d="M20 20.4v-5h-5" />
+    </svg>
+  ),
   gauge: (
     <svg {...iconProps}>
       <path d="M5.2 16.2a8 8 0 1 1 13.6 0" />
       <path d="M12 13.5 16.2 8.8" />
       <circle cx="12" cy="13.5" r="1.1" />
+    </svg>
+  ),
+  target: (
+    <svg {...iconProps}>
+      <circle cx="12" cy="12" r="8.2" />
+      <circle cx="12" cy="12" r="4.6" />
+      <circle cx="12" cy="12" r="1.25" />
     </svg>
   ),
   puzzle: (
@@ -217,6 +282,12 @@ const ICONS: Record<SiteIconName, ReactElement> = {
     <svg {...iconProps}>
       <circle cx="12" cy="12" r="8.4" />
       <path d="M3.6 12h16.8M12 3.6c-2.4 2.6-3.6 5.4-3.6 8.4s1.2 5.8 3.6 8.4M12 3.6c2.4 2.6 3.6 5.4 3.6 8.4s-1.2 5.8-3.6 8.4" />
+    </svg>
+  ),
+  bulb: (
+    <svg {...iconProps}>
+      <path d="M12 3.4a5.1 5.1 0 0 1 5.1 5.2c0 2.05-1.15 3.5-2.25 4.5-.55.5-.85 1.15-.85 1.9H10c0-.75-.3-1.4-.85-1.9-1.1-1-2.25-2.45-2.25-4.5A5.1 5.1 0 0 1 12 3.4Z" />
+      <path d="M9.2 18.15h5.6M10.25 20.4h3.5" />
     </svg>
   ),
   devices: (

@@ -18,7 +18,8 @@ import {
   ABOUT_PASSIONS,
   ABOUT_PATH,
   ABOUT_HISTORY,
-  ABOUT_SECTIONS
+  ABOUT_SECTIONS,
+  ABOUT_WHY
 } from "@/data/about"
 import { useI18n } from "@/i18n/useI18n"
 import Link from "next/link"
@@ -119,6 +120,22 @@ const About = () => {
     }
   }, [])
 
+  const railCopy = (id: string) => {
+    if (id === "about-why") {
+      return t.about.rail.why
+    }
+
+    if (id === "about-intro") {
+      return t.about.rail.intro
+    }
+
+    if (id === "about-identity") {
+      return t.about.rail.identity
+    }
+
+    return t.about.rail.path
+  }
+
   const goToBlock = (id: string) => {
     const node = document.getElementById(id)
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -164,13 +181,7 @@ const About = () => {
                 <span className="about-rail__index">{section.index}</span>
                 <span className="about-rail__label">
                   <TypeCopy
-                    text={
-                      section.id === "about-intro"
-                        ? t.about.rail.intro
-                        : section.id === "about-identity"
-                          ? t.about.rail.identity
-                          : t.about.rail.path
-                    }
+                    text={railCopy(section.id)}
                     caret={false}
                   />
                 </span>
@@ -185,6 +196,38 @@ const About = () => {
               {ABOUT_LOCATION_SHORT}
             </p>
           </header>
+
+          <RevealGroup className="about-why" mode="auto" stagger={56}>
+            <div id="about-why" data-about-section="why">
+              <Reveal type="eyebrow">
+                <Prompt command={t.about.whyEyebrow} />
+              </Reveal>
+              <Reveal type="heading" as="h2" className="about-why__hook">
+                <TypeCopy text={t.about.hook} />
+              </Reveal>
+              <Reveal type="text" as="p" className="about-why__lead">
+                <TypeCopy text={t.about.hookLead} />
+              </Reveal>
+              <Reveal type="heading" as="h3" className="about-why__headline">
+                <TypeCopy text={t.about.whyHeadline} />
+              </Reveal>
+              <ul className="about-why__list">
+                {ABOUT_WHY.map((item, index) => (
+                  <Reveal key={item.icon} as="li" type="chip">
+                    <span className="about-why__icon" aria-hidden="true">
+                      <SiteIcon name={item.icon} />
+                    </span>
+                    <span>
+                      <strong>
+                        <TypeCopy text={t.about.why[index]?.title ?? ""} />
+                      </strong>
+                      <TypeCopy text={t.about.why[index]?.text ?? ""} />
+                    </span>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
+          </RevealGroup>
 
           <div className="about-identity">
             <RevealGroup className="about-intro" mode="auto" stagger={70}>
