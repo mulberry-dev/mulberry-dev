@@ -150,6 +150,35 @@
   line-height: var(--leading-loose);
 }
 
+.home-hero__pitch {
+  max-width: 40rem;
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+.home-hero__offers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-hero__offer {
+  padding: 0.35em 0.75em;
+  border: 1px solid color-mix(in srgb, var(--color-teal) 28%, transparent);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: 0.02em;
+}
+
 .home-hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -294,6 +323,8 @@
 #index.home-intro.is-reveal-wait {
   .home-hero__prompt,
   .home-hero__body,
+  .home-hero__pitch,
+  .home-hero__offers,
   .home-hero__actions .ui-button,
   .home-hero__visual,
   .home-social {
@@ -309,6 +340,8 @@
   .home-hero__char,
   .home-hero__name,
   .home-hero__body,
+  .home-hero__pitch,
+  .home-hero__offers,
   .home-hero__actions .ui-button,
   .home-hero__visual,
   .home-social {
@@ -325,6 +358,8 @@
   .home-hero__char,
   .home-hero__name,
   .home-hero__body,
+  .home-hero__pitch,
+  .home-hero__offers,
   .home-hero__actions .ui-button,
   .home-hero__visual,
   .home-social {
@@ -355,10 +390,12 @@
     .home-hero__prompt,
     .home-hero__brand,
     .home-hero__char,
-  .home-hero__name,
-  .home-hero__caret,
-  .home-hero__body,
-  .home-hero__actions,
+    .home-hero__name,
+    .home-hero__caret,
+    .home-hero__body,
+    .home-hero__pitch,
+    .home-hero__offers,
+    .home-hero__actions,
     .home-hero__actions .ui-button,
     .home-hero__visual,
     .home-social {
@@ -401,7 +438,7 @@
 
   .home-hero__brand {
     gap: var(--space-2);
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
 
   .home-hero h1 {
@@ -414,6 +451,11 @@
 
   .home-hero__body {
     font-size: var(--text-body);
+  }
+
+  .home-hero__pitch {
+    margin-top: var(--space-3);
+    font-size: var(--text-caption);
   }
 
   .home-hero__actions {

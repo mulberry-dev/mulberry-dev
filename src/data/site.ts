@@ -19,26 +19,29 @@ export const AUTHOR_COUNTRY = "MX"
 
 export const SITE_LOGO = "/images/Icons/logo.png"
 export const SITE_TITLE =
-  "Santiago Morera — Senior Full Stack Engineer in Mexico City"
+  "Santiago Morera | Custom Web Apps & Full-Stack Development"
 export const SITE_DESCRIPTION =
-  "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for new opportunities and product modernization."
+  "I design and build custom web apps, business sites, MVPs, and integrations for companies that need a senior full-stack partner — from architecture to launch."
 export const SITE_OG_IMAGE = {
   url: "/images/og.png",
   width: 1200,
   height: 630,
-  alt: `${AUTHOR_NAME} — ${SITE_NAME}`
+  alt: `${AUTHOR_NAME} — custom web development by ${SITE_NAME}`
 }
 
 export const SITE_KEYWORDS = [
   "Santiago Morera",
-  "Senior Full Stack Engineer",
-  "Senior Web Developer",
-  "React developer Mexico City",
-  "TypeScript",
+  "mulberry-dev",
+  "custom web applications",
+  "business websites",
+  "MVP development",
+  "software integrations",
+  "full stack developer Mexico City",
+  "hire React developer",
   "Next.js",
+  "TypeScript",
   "Node.js",
   "Mexico City",
   "CDMX",
-  "available for hire",
-  "mulberry-dev"
+  "web development for companies"
 ]

@@ -1,10 +1,9 @@
 import DeferredAnalytics from "@/components/DeferredAnalytics"
-import JsonLd from "@/components/JsonLd"
 import Navigation from "@/components/navigation"
 import SiteShell from "@/components/SiteShell"
 import { ParticlesProvider } from "@/components/particles"
 import { getMessages } from "@/i18n"
-import { personJsonLd, websiteJsonLd } from "@/lib/jsonLd"
+import LocaleJsonLd from "@/components/LocaleJsonLd"
 import {
   AUTHOR_NAME,
   COPYRIGHT_NAME,
@@ -111,7 +110,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const messages = getMessages("en")
-  const locale = "en" as const
 
   return (
     <html
@@ -125,7 +123,7 @@ export default function RootLayout({
             __html: LOCALE_BOOTSTRAP_SCRIPT
           }}
         />
-        <JsonLd data={[personJsonLd(locale), websiteJsonLd(locale)]} />
+        <LocaleJsonLd />
         <a className="skip-link" href="#site-main">
           {messages.skipToContent}
         </a>

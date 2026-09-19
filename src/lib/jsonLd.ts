@@ -17,7 +17,14 @@ import { absoluteUrl } from "@/lib/sectionMeta"
 import type { Locale } from "@/lib/locale"
 
 const personId = `${SITE_URL}/#person`
+const organizationId = `${SITE_URL}/#organization`
 const websiteId = `${SITE_URL}/#website`
+
+const postalAddress = {
+  "@type": "PostalAddress",
+  addressLocality: AUTHOR_LOCATION_LOCALITY,
+  addressCountry: AUTHOR_COUNTRY
+}
 
 export const personJsonLd = (locale: Locale) => {
   const messages = getMessages(locale)
@@ -27,17 +34,14 @@ export const personJsonLd = (locale: Locale) => {
     "@type": "Person",
     "@id": personId,
     name: AUTHOR_NAME,
+    alternateName: SITE_NAME,
     url: absoluteUrl("/", locale),
     image: `${SITE_URL}${SITE_OG_IMAGE.url}`,
     jobTitle: messages.jsonLd.jobTitle,
     description: messages.jsonLd.description,
     email: CONTACT_EMAIL,
     telephone: CONTACT_PHONE_TEL,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: AUTHOR_LOCATION_LOCALITY,
-      addressCountry: AUTHOR_COUNTRY
-    },
+    address: postalAddress,
     knowsLanguage: ["en", "es"],
     knowsAbout: [
       "React",
@@ -45,14 +49,63 @@ export const personJsonLd = (locale: Locale) => {
       "Next.js",
       "Node.js",
       "GraphQL",
+      "Custom web applications",
+      "MVP development",
       "Full stack development",
       "Legacy modernization"
     ],
     sameAs: [LINKEDIN_URL, GITHUB_URL],
-    worksFor: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL
+    worksFor: { "@id": organizationId },
+    founderOf: { "@id": organizationId }
+  }
+}
+
+export const organizationJsonLd = (locale: Locale) => {
+  const messages = getMessages(locale)
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": organizationId,
+    name: SITE_NAME,
+    alternateName: AUTHOR_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}${SITE_OG_IMAGE.url}`,
+    image: `${SITE_URL}${SITE_OG_IMAGE.url}`,
+    description: messages.jsonLd.organizationDescription,
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE_TEL,
+    address: postalAddress,
+    areaServed: {
+      "@type": "City",
+      name: messages.jsonLd.areaServed
+    },
+    availableLanguage: ["English", "Spanish"],
+    founder: { "@id": personId },
+    employee: { "@id": personId },
+    sameAs: [LINKEDIN_URL, GITHUB_URL],
+    knowsAbout: [
+      "Custom web applications",
+      "Business websites",
+      "MVP development",
+      "Software integrations",
+      "Legacy modernization"
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: messages.jsonLd.catalogName,
+      itemListElement: messages.jsonLd.services.map((service, index) => ({
+        "@type": "Offer",
+        position: index + 1,
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          description: service.description,
+          provider: { "@id": organizationId },
+          areaServed: messages.jsonLd.areaServed,
+          availableLanguage: ["English", "Spanish"]
+        }
+      }))
     }
   }
 }
@@ -65,10 +118,12 @@ export const websiteJsonLd = (locale: Locale) => {
     "@type": "WebSite",
     "@id": websiteId,
     name: SITE_NAME,
+    alternateName: AUTHOR_NAME,
     url: absoluteUrl("/", locale),
     description: messages.site.description,
     inLanguage: locale === "es" ? ["es", "en"] : ["en", "es"],
-    publisher: { "@id": personId }
+    publisher: { "@id": organizationId },
+    author: { "@id": personId }
   }
 }
 

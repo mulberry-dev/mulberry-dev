@@ -206,12 +206,23 @@ const IndexPage = () => {
                 _
               </span>
             </p>
+            <p className="home-hero__pitch">{t.home.pitch}</p>
+            <ul className="home-hero__offers">
+              {t.home.offers.map((offer) => (
+                <li key={offer} className="home-hero__offer">
+                  {offer}
+                </li>
+              ))}
+            </ul>
             <div className="home-hero__actions">
               <Button href={href("/about")} variant="terminal">
                 <span className="sr-only">{t.home.ctaSr}</span>
                 <span aria-hidden="true">
                   <TypeCopy text={t.home.cta} />
                 </span>
+              </Button>
+              <Button href={href("/contact")} variant="secondary">
+                {t.home.ctaProject}
               </Button>
             </div>
           </div>

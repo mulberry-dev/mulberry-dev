@@ -61,8 +61,12 @@ export type Messages = {
     bodySolutions: string
     bodyMid: string
     bodyValue: string
+    pitch: string
+    offers: string[]
     ctaSr: string
     cta: string
+    ctaProjectSr: string
+    ctaProject: string
   }
   about: {
     ariaLabel: string
@@ -221,6 +225,10 @@ export type Messages = {
   jsonLd: {
     jobTitle: string
     description: string
+    organizationDescription: string
+    catalogName: string
+    areaServed: string
+    services: { name: string; description: string }[]
   }
   projects: Record<string, ProjectCopy>
 }

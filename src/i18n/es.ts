@@ -22,55 +22,58 @@ export const es: Messages = {
     es: "ES"
   },
   site: {
-    title: "Santiago Morera — Ingeniero Full Stack Senior en Ciudad de México",
+    title: "Santiago Morera | Apps web a medida y desarrollo full stack",
     description:
-      "Ingeniero Full Stack Senior en Ciudad de México, especializado en React, TypeScript, Next.js y Node.js. Disponible para nuevas oportunidades y modernización de productos.",
+      "Diseño y construyo apps web a medida, sitios de negocio, MVPs e integraciones para empresas que necesitan un socio full stack senior — de la arquitectura al lanzamiento.",
     keywords: [
       "Santiago Morera",
-      "Ingeniero Full Stack Senior",
-      "Desarrollador web senior",
-      "Desarrollador React Ciudad de México",
-      "TypeScript",
+      "mulberry-dev",
+      "aplicaciones web a medida",
+      "sitios para negocios",
+      "desarrollo de MVP",
+      "integraciones de software",
+      "desarrollador full stack Ciudad de México",
+      "contratar desarrollador React",
       "Next.js",
+      "TypeScript",
       "Node.js",
       "Ciudad de México",
       "CDMX",
-      "disponible para contratar",
-      "mulberry-dev"
+      "desarrollo web para empresas"
     ],
     role: "Ingeniero Full Stack Senior",
     location: "Ciudad de México, México"
   },
   sections: {
     "/": {
-      title: "Santiago Morera — Ingeniero Full Stack Senior en Ciudad de México",
+      title: "Santiago Morera | Apps web a medida y desarrollo full stack",
       description:
-        "Ingeniero Full Stack Senior en Ciudad de México, especializado en React, TypeScript, Next.js y Node.js. Disponible para nuevas oportunidades y modernización de productos."
+        "Diseño y construyo apps web a medida, sitios de negocio, MVPs e integraciones para empresas que necesitan un socio full stack senior — de la arquitectura al lanzamiento."
     },
     "/about": {
-      title: "Sobre mí",
+      title: "Sobre Santiago Morera",
       description:
-        "Santiago Morera es Ingeniero Full Stack Senior en Ciudad de México. De diseño a código, bilingüe ES/EN, React, TypeScript, Next.js y Node.js."
+        "Santiago Morera es el ingeniero full stack senior detrás de mulberry-dev. De diseño a código, bilingüe ES/EN y socio para empresas que lanzan productos en React y Node.js."
     },
     "/skills": {
-      title: "Qué hago",
+      title: "Servicios y método",
       description:
-        "Frontend, backend, datos e integraciones, y modernización de sistemas legacy con React, TypeScript, Next.js, Node.js y GraphQL."
+        "Frontend, backend, datos, integraciones y modernización de sistemas legacy con React, TypeScript, Next.js y Node.js. Un método claro, del descubrimiento al lanzamiento."
     },
     "/portfolio": {
-      title: "Trabajos",
+      title: "Trabajos seleccionados",
       description:
-        "Proyectos seleccionados de Santiago Morera: interfaces de producto, APIs, e-commerce y modernización de plataformas en México y más allá."
+        "Trabajo seleccionado de Santiago Morera: interfaces de producto, APIs, e-commerce y modernización. Así construye mulberry-dev software que las empresas pueden lanzar y hacer crecer."
     },
     "/certifications": {
       title: "Certificaciones",
       description:
-        "Certificados en desarrollo full stack, React, JavaScript, ciberseguridad e inglés."
+        "Formación verificada en desarrollo full stack, React, JavaScript, ciberseguridad e inglés. La base de cada producto que mulberry-dev entrega a sus clientes."
     },
     "/contact": {
-      title: "Contacto",
+      title: "Empezar un proyecto",
       description:
-        "Disponible para nuevas oportunidades y briefs de proyecto. Ingeniero Full Stack Senior en Ciudad de México. Suelo responder en 24 horas."
+        "¿Listo para una app web a medida, un sitio de negocio, un MVP o una integración? Contacta a Santiago Morera en CDMX. La mayoría de briefs reciben respuesta en 24 horas."
     }
   },
   workspace: {
@@ -91,8 +94,13 @@ export const es: Messages = {
     bodySolutions: "soluciones digitales",
     bodyMid: " que ",
     bodyValue: "generan valor",
-    ctaSr: "Empezar a Explorar",
-    cta: "Empezar a Explorar"
+    pitch:
+      "Las empresas contratan mulberry-dev para diseñar y lanzar aplicaciones web a medida, sitios de negocio, MVPs e integraciones. Ingeniería full stack senior en Ciudad de México — de las primeras decisiones de arquitectura al lanzamiento.",
+    offers: ["Apps web a medida", "Sitios de negocio", "MVPs", "Integraciones"],
+    ctaSr: "Empezar a explorar",
+    cta: "Empezar a explorar",
+    ctaProjectSr: "Empezar un proyecto",
+    ctaProject: "Empezar un proyecto"
   },
   about: {
     ariaLabel: "Sobre mí",
@@ -326,7 +334,38 @@ export const es: Messages = {
   jsonLd: {
     jobTitle: "Ingeniero Full Stack Senior",
     description:
-      "Ingeniero Full Stack Senior en Ciudad de México, especializado en React, TypeScript, Next.js y Node.js. Disponible para contratar."
+      "Ingeniero full stack senior en Ciudad de México que diseña y construye apps web a medida, sitios de negocio, MVPs e integraciones para empresas.",
+    organizationDescription:
+      "mulberry-dev es un estudio de software dirigido por Santiago Morera. Aplicaciones web a medida, sitios de negocio, MVPs e integraciones — de la arquitectura al lanzamiento.",
+    catalogName: "Servicios de desarrollo de software",
+    areaServed: "Ciudad de México",
+    services: [
+      {
+        name: "Aplicaciones web a medida",
+        description:
+          "Apps de producto con React, TypeScript, Next.js y Node.js."
+      },
+      {
+        name: "Sitios para negocios",
+        description:
+          "Sitios rápidos, orientados a conversión, que representan a la empresa con claridad."
+      },
+      {
+        name: "MVPs",
+        description:
+          "Productos listos para lanzar y probar el mercado sin perder un año."
+      },
+      {
+        name: "Integraciones",
+        description:
+          "APIs, autenticación, datos y servicios de terceros funcionando como un solo sistema."
+      },
+      {
+        name: "Modernización de legacy",
+        description:
+          "Evolucionar lo que ya existe sin tirar lo que ya funciona."
+      }
+    ]
   },
   projects: {
     FuenteDeVidaResidencial: {

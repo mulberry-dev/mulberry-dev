@@ -22,55 +22,58 @@ export const en: Messages = {
     es: "ES"
   },
   site: {
-    title: "Santiago Morera — Senior Full Stack Engineer in Mexico City",
+    title: "Santiago Morera | Custom Web Apps & Full-Stack Development",
     description:
-      "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for new opportunities and product modernization.",
+      "I design and build custom web apps, business sites, MVPs, and integrations for companies that need a senior full-stack partner — from architecture to launch.",
     keywords: [
       "Santiago Morera",
-      "Senior Full Stack Engineer",
-      "Senior Web Developer",
-      "React developer Mexico City",
-      "TypeScript",
+      "mulberry-dev",
+      "custom web applications",
+      "business websites",
+      "MVP development",
+      "software integrations",
+      "full stack developer Mexico City",
+      "hire React developer",
       "Next.js",
+      "TypeScript",
       "Node.js",
       "Mexico City",
       "CDMX",
-      "available for hire",
-      "mulberry-dev"
+      "web development for companies"
     ],
     role: "Senior Full Stack Engineer",
     location: "Mexico City, Mexico"
   },
   sections: {
     "/": {
-      title: "Santiago Morera — Senior Full Stack Engineer in Mexico City",
+      title: "Santiago Morera | Custom Web Apps & Full-Stack Development",
       description:
-        "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for new opportunities and product modernization."
+        "I design and build custom web apps, business sites, MVPs, and integrations for companies that need a senior full-stack partner — from architecture to launch."
     },
     "/about": {
-      title: "About",
+      title: "About Santiago Morera",
       description:
-        "Santiago Morera is a Senior Full Stack Engineer in Mexico City. Design-to-code background, bilingual EN/ES, React, TypeScript, Next.js, and Node.js."
+        "Santiago Morera is the senior full-stack engineer behind mulberry-dev. Design-to-code, bilingual EN/ES, and a partner for companies shipping React and Node.js products."
     },
     "/skills": {
-      title: "What I Do",
+      title: "Services & Method",
       description:
-        "Frontend, backend, data and integrations, and legacy modernization with React, TypeScript, Next.js, Node.js, and GraphQL. My development method."
+        "Frontend, backend, data, integrations, and legacy modernization with React, TypeScript, Next.js, and Node.js. A clear method from discovery to launch for growing companies."
     },
     "/portfolio": {
-      title: "Works",
+      title: "Selected Work",
       description:
-        "Selected work by Santiago Morera: product UIs, APIs, e-commerce, and platform modernization for teams in Mexico and beyond."
+        "Selected work by Santiago Morera: product UIs, APIs, e-commerce, and platform modernization. See how mulberry-dev builds software companies can launch and grow."
     },
     "/certifications": {
       title: "Certifications",
       description:
-        "Certificates in full stack development, React, JavaScript, cybersecurity, and English."
+        "Verified training in full-stack development, React, JavaScript, cybersecurity, and English. The foundation behind every product mulberry-dev ships for clients."
     },
     "/contact": {
-      title: "Contact",
+      title: "Start a Project",
       description:
-        "Available for new opportunities and project briefs. Senior Full Stack Engineer in Mexico City. I usually respond within 24 hours."
+        "Ready for a custom web app, business site, MVP, or integration? Contact Santiago Morera in Mexico City. Most project briefs get a reply within 24 hours."
     }
   },
   workspace: {
@@ -91,8 +94,13 @@ export const en: Messages = {
     bodySolutions: "digital solutions",
     bodyMid: " that ",
     bodyValue: "deliver value",
+    pitch:
+      "Companies hire mulberry-dev to design and ship custom web applications, business sites, MVPs, and integrations. Senior full-stack engineering in Mexico City — from first architecture decisions through launch.",
+    offers: ["Custom web apps", "Business sites", "MVPs", "Integrations"],
     ctaSr: "Start Exploring",
-    cta: "Start Exploring"
+    cta: "Start Exploring",
+    ctaProjectSr: "Start a project",
+    ctaProject: "Start a project"
   },
   about: {
     ariaLabel: "About Me",
@@ -326,7 +334,38 @@ export const en: Messages = {
   jsonLd: {
     jobTitle: "Senior Full Stack Engineer",
     description:
-      "Senior Full Stack Engineer in Mexico City specializing in React, TypeScript, Next.js, and Node.js. Available for hire."
+      "Senior full-stack engineer in Mexico City who designs and builds custom web apps, business sites, MVPs, and integrations for companies.",
+    organizationDescription:
+      "mulberry-dev is a software studio led by Santiago Morera. Custom web applications, business sites, MVPs, and integrations — from architecture to launch.",
+    catalogName: "Software development services",
+    areaServed: "Mexico City",
+    services: [
+      {
+        name: "Custom web applications",
+        description:
+          "Product-grade web apps built with React, TypeScript, Next.js, and Node.js."
+      },
+      {
+        name: "Business websites",
+        description:
+          "Fast, conversion-focused sites that represent the company with clarity."
+      },
+      {
+        name: "MVPs",
+        description:
+          "Launch-ready products so teams can test the market without wasting a year."
+      },
+      {
+        name: "Integrations",
+        description:
+          "APIs, auth, data, and third-party services working as one system."
+      },
+      {
+        name: "Legacy modernization",
+        description:
+          "Evolve what exists without throwing away what already works."
+      }
+    ]
   },
   projects: {
     FuenteDeVidaResidencial: {
