@@ -414,7 +414,7 @@ export const data = [
     category: "ecommerce",
     teaser: "React computer store with cart and live stock.",
     description:
-      "React.js computer store with cart and live inventory.",
+      "React.js computer store with cart and live inventory. (2022)",
     img: "/images/Webp/TecnoShop.webp",
     tech: [
       {
@@ -502,7 +502,7 @@ export const data = [
     img: "/images/Webp/LiveChatApp.webp",
     teaser: "Realtime chat rooms built with Node.js.",
     description:
-      "Node.js chat app where you pick a room and talk in realtime. (2023)",
+      "Node.js chat app where you pick a room and talk in realtime. (2022)",
     tech: [
       {
         tech: "Node.js",
