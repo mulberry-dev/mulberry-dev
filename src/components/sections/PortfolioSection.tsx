@@ -284,7 +284,6 @@ const Portfolio = () => {
   const toggleArchive = () => {
     setArchiveExpanded(current => {
       const next = !current
-      document.documentElement.dataset.archiveDebug = `${String(current)}->${String(next)}`
 
       if (!next) {
         const node = archiveListRef.current
