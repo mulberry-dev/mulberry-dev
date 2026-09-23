@@ -7,6 +7,7 @@ import ProjectFlags from "@/components/terminal/ProjectFlags"
 import ProjectType from "@/components/terminal/ProjectType"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
+import Button from "@/components/ui/Button"
 import FilterPills from "@/components/ui/FilterPills"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import { WORKSPACE } from "@/data/workspace"
@@ -25,7 +26,9 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useEffect, useMemo, useState, type MouseEvent } from "react"
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from "react"
+
+const ARCHIVE_PREVIEW_COUNT = 3
 
 const preloadedImages = new Set<string>()
 
@@ -241,7 +244,9 @@ const ArchiveCard = ({ project }: { project: Project }) => {
 
 const Portfolio = () => {
   const { t, locale } = useI18n()
+  const archiveListRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState("all")
+  const [archiveExpanded, setArchiveExpanded] = useState(false)
   const filters = [
     { id: "all", label: t.portfolio.filters.all },
     { id: "web", label: t.portfolio.filters.web },
@@ -265,6 +270,37 @@ const Portfolio = () => {
       ),
     [active]
   )
+
+  const archiveShown = archiveExpanded
+    ? archiveVisible
+    : archiveVisible.slice(0, ARCHIVE_PREVIEW_COUNT)
+  const archiveHiddenCount = Math.max(archiveVisible.length - ARCHIVE_PREVIEW_COUNT, 0)
+
+  const handleFilter = (id: string) => {
+    setActive(id)
+    setArchiveExpanded(false)
+  }
+
+  const toggleArchive = () => {
+    setArchiveExpanded(current => {
+      const next = !current
+      document.documentElement.dataset.archiveDebug = `${String(current)}->${String(next)}`
+
+      if (!next) {
+        const node = archiveListRef.current
+
+        if (node && node.getBoundingClientRect().top < 72) {
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          node.scrollIntoView({
+            behavior: reduced ? "auto" : "smooth",
+            block: "start"
+          })
+        }
+      }
+
+      return next
+    })
+  }
 
   const filterOptions = filters.map(filter => ({
     ...filter,
@@ -294,7 +330,7 @@ const Portfolio = () => {
           <FilterPills
             options={filterOptions}
             active={active}
-            onChange={setActive}
+            onChange={handleFilter}
             variant="command"
           />
         </Reveal>
@@ -323,13 +359,29 @@ const Portfolio = () => {
               }`}
             />
           </p>
-          <RevealGroup className="archive-grid" mode="auto" stagger={48} key={active}>
-            {archiveVisible.map(project => (
-              <Reveal key={String(project.id)} type="image">
-                <ArchiveCard project={localizeProject(project, locale)} />
-              </Reveal>
-            ))}
-          </RevealGroup>
+          <div id="portfolio-archive-list" ref={archiveListRef}>
+            <RevealGroup className="archive-grid" mode="auto" stagger={48} key={active}>
+              {archiveShown.map(project => (
+                <Reveal key={String(project.id)} type="image">
+                  <ArchiveCard project={localizeProject(project, locale)} />
+                </Reveal>
+              ))}
+            </RevealGroup>
+          </div>
+          {archiveHiddenCount > 0 ? (
+            <div className="archive-more">
+              <Button
+                variant="terminal"
+                aria-expanded={archiveExpanded}
+                aria-controls="portfolio-archive-list"
+                onClick={toggleArchive}
+              >
+                {archiveExpanded
+                  ? t.portfolio.archiveLess
+                  : t.portfolio.archiveMore.replace("{count}", String(archiveHiddenCount))}
+              </Button>
+            </div>
+          ) : null}
         </div>
       </Container>
     </section>

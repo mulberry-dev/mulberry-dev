@@ -62,11 +62,11 @@ export const ABOUT_FOOTER = {
 export const ABOUT_WHY: {
   icon: SiteIconName
 }[] = [
-  { icon: "craft" },
-  { icon: "thinking" },
-  { icon: "user" },
-  { icon: "puzzle" },
-  { icon: "globe" }
+  { icon: "shipped" },
+  { icon: "outcome" },
+  { icon: "collaborate" },
+  { icon: "tailored" },
+  { icon: "timezone" }
 ]
 
 export const ABOUT_SECTIONS = [

@@ -165,6 +165,8 @@ export type Messages = {
     meta: string
     archiveMeta: string
     archiveNoAi: string
+    archiveMore: string
+    archiveLess: string
     filters: { all: string; web: string; landing: string; api: string; ecommerce: string }
   }
   certifications: {

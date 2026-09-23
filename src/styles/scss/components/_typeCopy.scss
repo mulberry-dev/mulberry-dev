@@ -44,14 +44,20 @@
 }
 
 .type-copy__live {
+  position: relative;
   min-width: 0;
 }
 
+.type-copy__pending {
+  visibility: hidden;
+}
+
 .type-copy__caret {
-  display: inline-block;
+  position: absolute;
+  display: block;
   width: 0.52em;
   height: 0.92em;
-  margin: 0 0 -0.1em 0.1em;
+  margin: 0.08em 0 0 0.1em;
   background: var(--brand-cyan);
   box-shadow: 0 0 10px color-mix(in srgb, var(--brand-cyan) 42%, transparent);
   vertical-align: baseline;

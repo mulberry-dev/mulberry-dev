@@ -9,11 +9,11 @@
 .site-nav,
 .site-nav__lens {
   position: fixed;
-  top: 10px;
-  left: 16px;
-  right: 16px;
-  height: calc(var(--nav-height) - 10px);
-  border-radius: var(--radius-lg);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   transition:
     transform 0.48s ease-out,
     opacity 0.4s ease-out,
@@ -40,7 +40,7 @@
 
 .site-nav {
   z-index: calc(var(--z-nav) + 1);
-  min-height: calc(var(--nav-height) - 10px);
+  min-height: var(--nav-height);
   padding: 0;
   background: #0000007a;
   border: 0;
@@ -64,11 +64,10 @@
       color-mix(in srgb, #000 8%, transparent) 100%
     ),
     color-mix(in srgb, var(--color-canvas) 12%, transparent);
-  border: 1px solid color-mix(in srgb, #ffffff79 50%, transparent);
+  border: 0;
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, #fff 28%, transparent),
-    inset 0 -1px 10px color-mix(in srgb, #000 14%, transparent),
-    inset 0 0 0 1px color-mix(in srgb, #fff 6%, transparent);
+    inset 0 -1px 10px color-mix(in srgb, #000 14%, transparent);
 }
 
 .site-nav__chrome::before {
@@ -274,11 +273,9 @@ body:not(.dark) .site-nav__chrome {
       color-mix(in srgb, var(--color-text) 4%, transparent) 100%
     ),
     color-mix(in srgb, var(--color-canvas) 20%, transparent);
-  border-color: color-mix(in srgb, var(--color-text) 10%, transparent);
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, #fff 70%, transparent),
-    inset 0 -1px 8px color-mix(in srgb, var(--color-text) 6%, transparent),
-    inset 0 0 0 1px color-mix(in srgb, #fff 35%, transparent);
+    inset 0 -1px 8px color-mix(in srgb, var(--color-text) 6%, transparent);
 }
 
 .site-nav__backdrop {
@@ -346,12 +343,6 @@ html.home-nav-wait .site-nav__lens,
   body.nav-menu-open .site-nav {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-  }
-
-  .site-nav,
-  .site-nav__lens {
-    left: 10px;
-    right: 10px;
   }
 
   .site-nav__inner {
@@ -515,18 +506,6 @@ html.home-nav-wait .site-nav__lens,
 }
 
 @media (max-width: 767px) {
-  .site-nav,
-  .site-nav__lens {
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    height: calc(var(--nav-height) - 8px);
-  }
-
-  .site-nav {
-    min-height: calc(var(--nav-height) - 8px);
-  }
-
   .site-nav__lens {
     filter: url("#siteNavRefractSoft");
     -webkit-filter: url("#siteNavRefractSoft");

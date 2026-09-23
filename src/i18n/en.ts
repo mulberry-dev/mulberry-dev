@@ -98,7 +98,7 @@ export const en: Messages = {
     roleLead: "Senior Full Stack",
     roleTrail: "Engineer",
     headline: "I build digital products that solve real business problems.",
-    body: "Custom web apps, business sites, MVPs, and integrations — designed, built, and delivered end to end.",
+    body: "Custom web apps designed, built, and delivered end to end.",
     cta: "Start exploring",
     ctaSecondary: "View my work",
     valueEyebrow: "What you get",
@@ -129,6 +129,7 @@ export const en: Messages = {
     body: [
       "I came to software through design.",
       "Senior Full Stack Engineer in Mexico City — React, TypeScript, Next.js, and Node.js.",
+      "I am pursuing an Engineering degree in Artificial Intelligence and Data Science.",
       "I work in English and Spanish. Available for new projects, remotely and internationally."
     ],
     whoami: "whoami",
@@ -294,6 +295,8 @@ export const en: Messages = {
     meta: "{all} projects found · {featured} featured · {archive} archive",
     archiveMeta: "{count} projects in archive",
     archiveNoAi: " · {count} built without AI",
+    archiveMore: "View {count} more",
+    archiveLess: "View less",
     filters: {
       all: "all",
       web: "web",

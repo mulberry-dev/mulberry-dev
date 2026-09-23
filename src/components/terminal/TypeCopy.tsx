@@ -35,6 +35,26 @@ const sliceParts = (parts: TypePart[], length: number) => {
   return next
 }
 
+const slicePartsAfter = (parts: TypePart[], length: number) => {
+  let skipped = Math.max(0, length)
+  const next: TypePart[] = []
+
+  for (const part of parts) {
+    if (skipped >= part.text.length) {
+      skipped -= part.text.length
+      continue
+    }
+
+    next.push({
+      text: part.text.slice(skipped),
+      className: part.className
+    })
+    skipped = 0
+  }
+
+  return next
+}
+
 const renderParts = (parts: TypePart[]) =>
   parts.map((part, index) =>
     part.className ? (
@@ -71,6 +91,8 @@ const typeStep = (written: number, total: number) => {
 const deleteDelay = (len: number) => (len > 48 ? 9 : 14)
 const typeDelay = (written: number) =>
   (written < 18 ? 21 : 13) + (written % 7 === 0 ? 7 : 0)
+const initialTypeDelay = (written: number) =>
+  31 + (written % 8 === 0 ? 14 : 0)
 
 const resolveParts = (parts?: TypePart[], text?: string) =>
   parts ?? [{ text: text ?? "" }]
@@ -80,13 +102,17 @@ const TypeCopy = ({
   parts,
   className = "",
   caret = true,
-  block = false
+  block = false,
+  typeOnMount = false,
+  initialDelay = 0
 }: {
   text?: string
   parts?: TypePart[]
   className?: string
   caret?: boolean
   block?: boolean
+  typeOnMount?: boolean
+  initialDelay?: number
 }) => {
   const motion = useMotion()
   const reduced = motion?.reducedMotion ?? false
@@ -98,7 +124,7 @@ const TypeCopy = ({
   const targetParts = resolveParts(parts, text)
   const target = joinParts(targetParts)
   const [shownParts, setShownParts] = useState(targetParts)
-  const [length, setLength] = useState(target.length)
+  const [length, setLength] = useState(typeOnMount ? 0 : target.length)
   const [busy, setBusy] = useState(false)
   const [ghosts, setGhosts] = useState<[TypePart[], TypePart[]]>([
     targetParts,
@@ -106,7 +132,7 @@ const TypeCopy = ({
   ])
   const slotRef = useRef<HTMLSpanElement>(null)
   const shownRef = useRef(targetParts)
-  const lengthRef = useRef(target.length)
+  const lengthRef = useRef(typeOnMount ? 0 : target.length)
   const firstRef = useRef(true)
   const runRef = useRef(0)
 
@@ -115,12 +141,54 @@ const TypeCopy = ({
     const next = joinParts(nextParts)
 
     if (firstRef.current) {
-      firstRef.current = false
       shownRef.current = nextParts
-      lengthRef.current = next.length
       setShownParts(nextParts)
-      setLength(next.length)
-      return
+
+      const skipInitialTyping =
+        !typeOnMount ||
+        reduced ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+      if (skipInitialTyping) {
+        firstRef.current = false
+        lengthRef.current = next.length
+        setLength(next.length)
+        return
+      }
+
+      const token = ++runRef.current
+      let cancelled = false
+      let timer = 0
+      let currentLen = 0
+
+      lengthRef.current = 0
+      setLength(0)
+      setBusy(true)
+
+      const step = () => {
+        if (cancelled || token !== runRef.current) {
+          return
+        }
+
+        currentLen = Math.min(next.length, currentLen + 1)
+        lengthRef.current = currentLen
+        setLength(currentLen)
+
+        if (currentLen >= next.length) {
+          firstRef.current = false
+          setBusy(false)
+          return
+        }
+
+        timer = window.setTimeout(step, initialTypeDelay(currentLen))
+      }
+
+      timer = window.setTimeout(step, initialDelay)
+
+      return () => {
+        cancelled = true
+        window.clearTimeout(timer)
+      }
     }
 
     if (joinParts(shownRef.current) === next) {
@@ -233,9 +301,10 @@ const TypeCopy = ({
       window.clearTimeout(timer)
       release()
     }
-  }, [reduced, targetKey])
+  }, [initialDelay, reduced, targetKey, typeOnMount])
 
   const live = sliceParts(shownParts, length)
+  const pending = busy ? slicePartsAfter(shownParts, length) : []
   const classes = [
     "type-copy",
     block ? "type-copy--block" : "",
@@ -254,6 +323,9 @@ const TypeCopy = ({
         <span className="type-copy__live">
           {renderParts(live)}
           {busy && caret ? <span className="type-copy__caret" /> : null}
+          {pending.length > 0 ? (
+            <span className="type-copy__pending">{renderParts(pending)}</span>
+          ) : null}
         </span>
       </span>
     </span>

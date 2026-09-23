@@ -1,7 +1,7 @@
 .reveal {
-  --reveal-y: 10px;
+  --reveal-y: 28px;
   --reveal-scale: 1;
-  --reveal-duration: 0.72s;
+  --reveal-duration: 0.7s;
   --reveal-delay: 0ms;
   --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
@@ -39,18 +39,18 @@
 }
 
 .reveal--hero {
-  --reveal-y: 12px;
+  --reveal-y: 28px;
   --reveal-duration: 0.8s;
 }
 
 .reveal--eyebrow {
-  --reveal-y: 5px;
-  --reveal-duration: 0.56s;
+  --reveal-y: 18px;
+  --reveal-duration: 0.7s;
 }
 
 .reveal--heading {
-  --reveal-y: 14px;
-  --reveal-duration: 0.74s;
+  --reveal-y: 44px;
+  --reveal-duration: 0.85s;
   clip-path: inset(0 0 88% 0);
 }
 
@@ -66,24 +66,24 @@
 }
 
 .reveal--text {
-  --reveal-y: 8px;
-  --reveal-duration: 0.66s;
+  --reveal-y: 28px;
+  --reveal-duration: 0.8s;
 }
 
 .reveal--button {
-  --reveal-y: 6px;
+  --reveal-y: 28px;
   --reveal-scale: 0.985;
-  --reveal-duration: 0.6s;
+  --reveal-duration: 0.7s;
 }
 
 .reveal--card {
-  --reveal-y: 14px;
+  --reveal-y: 28px;
   --reveal-scale: 0.985;
-  --reveal-duration: 0.76s;
+  --reveal-duration: 0.75s;
 }
 
 .reveal--image {
-  --reveal-y: 10px;
+  --reveal-y: 28px;
   --reveal-scale: 0.988;
   --reveal-duration: 0.8s;
 }

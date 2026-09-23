@@ -400,21 +400,25 @@
 @keyframes homeFadeRise {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(28px);
+    pointer-events: none;
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
   }
 }
 
 #index.home-intro.is-reveal-wait {
   .home-hero__prompt,
-  .home-hero__body,
-  .home-hero__headline,
+  .home-hero__brand,
   .home-hero__hello,
-  .home-hero__actions .ui-button,
+  .home-hero__role,
+  .home-hero__headline,
+  .home-hero__body,
+  .home-hero__actions,
   .home-hero__visual,
   .home-social,
   .home-value {
@@ -423,38 +427,112 @@
   }
 }
 
-#index.home-intro.is-return.is-reveal-ready,
 #index.home-intro.is-reveal-ready:not(.is-return) {
   .home-hero__prompt,
   .home-hero__brand,
-  .home-hero__char,
-  .home-hero__name,
   .home-hero__hello,
+  .home-hero__role,
+  .home-hero__body,
+  .home-hero__actions,
+  .home-hero__visual {
+    animation: homeFadeRise 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .home-hero__prompt {
+    animation-delay: 0.04s;
+  }
+
+  .home-hero__visual {
+    animation-delay: 0.08s;
+  }
+
+  .home-hero__brand {
+    animation-delay: 0.18s;
+  }
+
+  .home-hero__hello {
+    animation-delay: 0.48s;
+  }
+
+  .home-hero__role {
+    animation-delay: 0.82s;
+  }
+
+  .home-hero__headline {
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-hero__body {
+    animation-duration: 0.8s;
+    animation-delay: 3.72s;
+  }
+
+  .home-hero__actions {
+    animation-duration: 0.7s;
+    animation-delay: 4.08s;
+  }
+}
+
+#index.home-intro.is-return.is-reveal-ready {
+  .home-hero__prompt,
+  .home-hero__brand,
+  .home-hero__hello,
+  .home-hero__role,
   .home-hero__headline,
   .home-hero__body,
-  .home-hero__actions .ui-button,
-  .home-hero__visual,
-  .home-social,
-  .home-value {
-    animation: none;
-    opacity: 1;
-    clip-path: none;
-    filter: none;
+  .home-hero__actions,
+  .home-hero__visual {
+    animation: homeFadeRise 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  .home-hero__prompt {
+    animation-delay: 0s;
+  }
+
+  .home-hero__brand,
+  .home-hero__visual {
+    animation-delay: 0.14s;
+  }
+
+  .home-hero__hello {
+    animation-delay: 0.3s;
+  }
+
+  .home-hero__role {
+    animation-delay: 0.48s;
+  }
+
+  .home-hero__headline {
+    animation-delay: 0.68s;
+  }
+
+  .home-hero__body {
+    animation-delay: 0.9s;
+  }
+
+  .home-hero__actions {
+    animation-delay: 1.12s;
+  }
+}
+
+#index.home-intro:not(.is-complete) .home-value .reveal {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition: none;
+  animation: none;
 }
 
 #index.home-intro.is-complete {
   .home-hero__prompt,
   .home-hero__brand,
-  .home-hero__char,
-  .home-hero__name,
   .home-hero__hello,
+  .home-hero__role,
   .home-hero__headline,
   .home-hero__body,
-  .home-hero__actions .ui-button,
+  .home-hero__actions,
   .home-hero__visual,
-  .home-social,
-  .home-value {
+  .home-social {
     opacity: 1;
   }
 
@@ -484,6 +562,7 @@
     .home-hero__char,
     .home-hero__name,
     .home-hero__hello,
+    .home-hero__role,
     .home-hero__headline,
     .home-hero__caret,
     .home-hero__body,
@@ -491,10 +570,12 @@
     .home-hero__actions .ui-button,
     .home-hero__visual,
     .home-social,
-    .home-value {
+    .home-value,
+    .home-value .reveal {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
+      transition: none !important;
       filter: none !important;
       clip-path: none !important;
     }

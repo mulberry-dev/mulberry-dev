@@ -46,6 +46,11 @@ export type SiteIconName =
   | "github"
   | "linkedin"
   | "phone"
+  | "shipped"
+  | "outcome"
+  | "collaborate"
+  | "tailored"
+  | "timezone"
 
 const iconProps: SVGProps<SVGSVGElement> = {
   width: 22,
@@ -348,6 +353,51 @@ const ICONS: Record<SiteIconName, ReactElement> = {
   phone: (
     <svg {...iconProps}>
       <path d="M7.2 3.8h3.1l1.2 3.4-2.1 1.2a12.4 12.4 0 0 0 6.2 6.2l1.2-2.1 3.4 1.2v3.1c0 .9-.8 2.4-5.4 2.4C8.4 19.2 4.8 13.8 4.8 8.4c0-4.6 1.5-4.6 2.4-4.6Z" />
+    </svg>
+  ),
+  shipped: (
+    <svg {...iconProps}>
+      <rect x="3.25" y="3.6" width="12.6" height="4.4" rx="1.05" />
+      <rect x="3.25" y="9.8" width="12.6" height="4.4" rx="1.05" />
+      <rect x="3.25" y="16" width="8.1" height="4.4" rx="1.05" />
+      <circle cx="5.9" cy="5.8" r="0.7" fill="currentColor" stroke="none" />
+      <circle cx="5.9" cy="12" r="0.7" fill="currentColor" stroke="none" />
+      <path d="m13.6 18.4 2.15 2.15 4.5-4.7" />
+    </svg>
+  ),
+  outcome: (
+    <svg {...iconProps}>
+      <path d="M6.4 8.7 3.5 12l2.9 3.3" />
+      <path d="M7.8 12h2.2" />
+      <path d="m9.2 10.7 1.6 1.3-1.6 1.3" />
+      <path d="M13 16.8V13" />
+      <path d="M16 16.8V8.8" />
+      <path d="M19 16.8v-4.2" />
+      <path d="M12.1 16.8H20" />
+    </svg>
+  ),
+  collaborate: (
+    <svg {...iconProps}>
+      <circle cx="8" cy="7.3" r="2.2" />
+      <circle cx="16" cy="7.3" r="2.2" />
+      <path d="M4 18.6c.55-2.55 2.1-3.9 3.8-3.9s3.25 1.35 3.8 3.9" />
+      <path d="M12.4 18.6c.55-2.55 2.1-3.9 3.8-3.9s3.25 1.35 3.8 3.9" />
+    </svg>
+  ),
+  tailored: (
+    <svg {...iconProps}>
+      <rect x="3.2" y="11.4" width="7.2" height="7.2" rx="1.2" />
+      <path d="M10.4 15h2" />
+      <path d="M12.4 9.2 20.6 6.4V18.6h-8.2V9.2Z" />
+    </svg>
+  ),
+  timezone: (
+    <svg {...iconProps}>
+      <circle cx="7.8" cy="12" r="5" />
+      <path d="M2.8 12h10" />
+      <path d="M7.8 7c1.4 1.55 2.1 3.25 2.1 5s-.7 3.45-2.1 5c-1.4-1.55-2.1-3.25-2.1-5s.7-3.45 2.1-5" />
+      <circle cx="18.3" cy="12" r="3.55" />
+      <path d="M18.3 9.95v2.25l1.45.9" />
     </svg>
   )
 }

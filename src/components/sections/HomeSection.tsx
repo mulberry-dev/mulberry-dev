@@ -2,6 +2,7 @@
 
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
+import Reveal, { RevealGroup } from "@/components/ui/Reveal"
 import SiteIcon, { type SiteIconName } from "@/components/ui/SiteIcon"
 import TerminalPrompt from "@/components/terminal/TerminalPrompt"
 import TypeCopy from "@/components/terminal/TypeCopy"
@@ -24,7 +25,8 @@ import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 
 const ORBIT_HOVER_RATE = 0.35
-const INTRO_COMPLETE_MS = 1780
+const INTRO_COMPLETE_MS = 4600
+const INTRO_RETURN_MS = 900
 const VALUE_ICONS: SiteIconName[] = ["ruler", "layers", "target", "route"]
 const NEXT_SECTION_PATH = links.find((link) => link.path !== "/")?.path ?? "/skills"
 
@@ -63,7 +65,7 @@ const IndexPage = () => {
 
     const timeoutId = window.setTimeout(() => {
       setIntroComplete(true)
-    }, isFirstHome ? INTRO_COMPLETE_MS : 720)
+    }, isFirstHome ? INTRO_COMPLETE_MS : INTRO_RETURN_MS)
 
     return () => window.clearTimeout(timeoutId)
   }, [contentReady, isFirstHome, reducedMotion])
@@ -82,6 +84,10 @@ const IndexPage = () => {
   }, [revealChrome])
 
   useEffect(() => {
+    if (!isHomePath(pathname) || window.scrollY > 1) {
+      setIntroComplete(true)
+    }
+
     if (!isHomePath(pathname) || shouldRevealHomeChrome() || window.scrollY > 1) {
       revealChrome()
       return
@@ -119,6 +125,8 @@ const IndexPage = () => {
     }
 
     const revealAndDetach = () => {
+      setIntroComplete(true)
+
       if (!revealChrome()) {
         return
       }
@@ -198,7 +206,11 @@ const IndexPage = () => {
               <span className="home-hero__bracket">/ &gt;</span>
             </p>
             <h1 className="home-hero__headline">
-              <TypeCopy text={t.home.headline} />
+              <TypeCopy
+                text={t.home.headline}
+                typeOnMount={isFirstHome}
+                initialDelay={1250}
+              />
             </h1>
             <p className="home-hero__body">
               <TypeCopy text={t.home.body} />
@@ -238,13 +250,13 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <div className="home-value">
-          <p className="home-value__eyebrow">
+        <RevealGroup className="home-value" mode="scroll" stagger={220}>
+          <Reveal type="eyebrow" as="p" className="home-value__eyebrow">
             <TypeCopy text={t.home.valueEyebrow} />
-          </p>
+          </Reveal>
           <ul className="home-value__grid">
             {t.home.value.map((item, index) => (
-              <li key={item.title} className="home-value__item">
+              <Reveal key={item.title} as="li" type="card" className="home-value__item">
                 <span className="home-value__icon" aria-hidden="true">
                   <SiteIcon name={VALUE_ICONS[index] ?? "puzzle"} />
                 </span>
@@ -254,10 +266,10 @@ const IndexPage = () => {
                 <p>
                   <TypeCopy text={item.text} />
                 </p>
-              </li>
+              </Reveal>
             ))}
           </ul>
-        </div>
+        </RevealGroup>
       </Container>
     </section>
   )

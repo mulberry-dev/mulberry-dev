@@ -98,7 +98,7 @@ export const es: Messages = {
     roleLead: "Ingeniero Full Stack",
     roleTrail: "Senior",
     headline: "Construyo productos digitales que resuelven problemas reales de negocio.",
-    body: "Aplicaciones web a medida, sitios para negocios, MVPs e integraciones — diseñados, construidos y entregados de punta a punta.",
+    body: "Aplicaciones web a medida diseñadas, construidas y entregadas de punta a punta.",
     cta: "Comenzar a explorar",
     ctaSecondary: "Ver mi trabajo",
     valueEyebrow: "Qué obtienes",
@@ -129,6 +129,7 @@ export const es: Messages = {
     body: [
       "Llegué al software desde el diseño.",
       "Ingeniero Full Stack Senior en Ciudad de México — React, TypeScript, Next.js y Node.js.",
+      "Tengo una Ingeniería en Inteligencia Artificial y Ciencias de Datos en curso.",
       "Trabajo en español e inglés. Disponible para nuevos proyectos, de forma remota e internacional."
     ],
     whoami: "whoami",
@@ -294,6 +295,8 @@ export const es: Messages = {
     meta: "{all} proyectos encontrados · {featured} destacados · {archive} archivo",
     archiveMeta: "{count} proyectos en archivo",
     archiveNoAi: " · {count} hechos sin IA",
+    archiveMore: "Ver {count} más",
+    archiveLess: "Ver menos",
     filters: {
       all: "todos",
       web: "web",
