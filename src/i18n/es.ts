@@ -255,7 +255,7 @@ export const es: Messages = {
   },
   process: {
     ariaLabel: "Proceso",
-    headline: "Cómo trabajamos juntos.",
+    headline: "¿ Cómo trabajamos juntos ?",
     lead: "Un camino claro desde la primera conversación hasta un producto que se puede usar — y seguir mejorando.",
     steps: [
       {
