@@ -41,7 +41,72 @@ main > section {
 }
 
 .site-experience > section + section {
-  border-top: 1px solid color-mix(in srgb, var(--color-border) 42%, transparent);
+  border-top: 0;
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-border) 34%, transparent) 28%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% clamp(4.5rem, 10vh, 7rem);
+}
+
+.site-experience > #contact {
+  min-height: calc(100dvh - var(--nav-height));
+}
+
+.section-progress {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .section-progress {
+    position: fixed;
+    top: 50%;
+    right: 0.85rem;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    transform: translateY(-50%);
+  }
+
+  .section-progress__link {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.35rem;
+    color: transparent;
+  }
+
+  .section-progress__link::before {
+    content: "";
+    width: 2px;
+    height: 0.7rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-text) 28%, transparent);
+    transition:
+      height var(--duration) var(--ease-out),
+      background var(--duration) var(--ease-out);
+  }
+
+  .section-progress__link.is-active::before {
+    height: 1.35rem;
+    background: var(--brand-cyan);
+    box-shadow: var(--glow-teal);
+  }
+
+  .section-progress__link:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  html.home-nav-wait .section-progress {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .site-experience > #index {

@@ -130,7 +130,7 @@ export const data = [
     teaser: "Modernizing an all-in-one SaaS platform for salons and spas.",
     description:
       "Ongoing modernization of a SaaS platform for salon and spa operations. (2025–2026)",
-    img: "/images/Webp/salon-target.webp",
+    img: "/images/thumbnails/salon-target-dark.jpg",
     tech: [
       {
         tech: "React.js",
@@ -158,7 +158,9 @@ export const data = [
       }
     ],
     url: null,
-    thumbnail: "/images/thumbnails/salon-target.webp",
+    thumbnail: "/images/thumbnails/salon-target-dark.jpg",
+    width: 1024,
+    height: 640,
     github: null
   },
   {
@@ -167,8 +169,8 @@ export const data = [
     category: "api",
     teaser: "Custom SAML SSO API integrated with Okta.",
     description:
-      "Authentication and SAML SSO API built with Node.js and TypeScript. (2023)",
-    img: "/images/thumbnails/sso-saml-okta.png",
+      "Authentication system for companies. SAML SSO API built with Node.js and TypeScript. (2023)",
+    img: "/images/thumbnails/sso-saml-okta-dark.jpg",
     tech: [
       {
         tech: "Node.js",
@@ -203,7 +205,7 @@ export const data = [
     teaser: "Public gateway to eight private AWS microservices.",
     description:
       "API that exposes eight private AWS microservices without a VPN. (2023)",
-    img: "/images/thumbnails/proxy-manager-aws.png",
+    img: "/images/thumbnails/proxy-manager-dark.jpg",
     tech: [
       {
         tech: "Node.js",
@@ -219,7 +221,7 @@ export const data = [
       }
     ],
     url: null,
-    thumbnail: "/images/thumbnails/proxy-manager-api.png",
+    thumbnail: "/images/thumbnails/proxy-manager-dark.jpg",
     width: 1024,
     height: 682
   },

@@ -13,6 +13,7 @@ import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import { isHomePath } from "@/lib/locale"
 import Image from "next/image"
+import Link from "next/link"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
   didLeaveHome,
@@ -248,6 +249,13 @@ const IndexPage = () => {
               <span className="home-orbit__node home-orbit__node--purple" />
             </div>
           </div>
+          <Link
+            href={href(NEXT_SECTION_PATH)}
+            scroll={false}
+            className={introComplete ? "home-scroll is-ready" : "home-scroll"}
+          >
+            <span>{t.home.scrollCue}</span>
+          </Link>
         </div>
 
         <RevealGroup className="home-value" mode="scroll" stagger={220}>

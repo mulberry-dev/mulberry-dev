@@ -306,6 +306,7 @@
 }
 
 .ui-filter-pills--command .ui-filter-pill {
+  gap: 0;
   border-radius: 4px;
   background: transparent;
   box-shadow: none;
@@ -313,6 +314,11 @@
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: lowercase;
+}
+
+.ui-filter-pills--command .ui-filter-pill svg {
+  width: 13px;
+  height: 13px;
 }
 
 .ui-filter-pills--command .ui-filter-pill.is-active {

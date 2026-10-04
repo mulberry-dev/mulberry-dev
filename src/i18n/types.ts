@@ -75,6 +75,7 @@ export type Messages = {
     body: string
     cta: string
     ctaSecondary: string
+    scrollCue: string
     valueEyebrow: string
     value: { title: string; text: string }[]
   }

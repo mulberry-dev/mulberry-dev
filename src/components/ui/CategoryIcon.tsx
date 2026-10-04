@@ -75,17 +75,18 @@ export const CategoryIcon = ({ variant }: { variant?: string }) => {
     return (
       <svg viewBox="0 0 16 16" aria-hidden="true">
         <rect
-          x="2.3"
-          y="2.4"
-          width="11.4"
-          height="11.2"
+          x="2.2"
+          y="2.2"
+          width="11.6"
+          height="11.6"
           rx="1.5"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.4"
         />
+        <path d="M2.2 6.3h11.6" fill="none" stroke="currentColor" strokeWidth="1.4" />
         <path
-          d="M4.4 5.2h7.2M4.4 7.6h4.6M4.4 10h7.2"
+          d="M4.3 8.5h7.4M4.3 10.8h4.8"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.35"
@@ -98,14 +99,19 @@ export const CategoryIcon = ({ variant }: { variant?: string }) => {
   if (variant === "web") {
     return (
       <svg viewBox="0 0 16 16" aria-hidden="true">
-        <path
-          d="M6.2 4.2 2.4 8l3.8 3.8M9.8 4.2 13.6 8l-3.8 3.8"
+        <rect
+          x="1.8"
+          y="2.4"
+          width="12.4"
+          height="11.2"
+          rx="1.5"
           fill="none"
           stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          strokeWidth="1.4"
         />
+        <path d="M1.8 5.6h12.4" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="3.9" cy="4" r="0.55" fill="currentColor" />
+        <circle cx="5.7" cy="4" r="0.55" fill="currentColor" />
       </svg>
     )
   }
@@ -113,9 +119,12 @@ export const CategoryIcon = ({ variant }: { variant?: string }) => {
   if (variant === "api") {
     return (
       <svg viewBox="0 0 16 16" aria-hidden="true">
-        <rect x="2.4" y="2.6" width="11.2" height="3.4" rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="2.4" y="7.3" width="11.2" height="3.4" rx="1" fill="none" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="2.4" y="12" width="11.2" height="1.6" rx="0.7" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <rect x="2.3" y="2.2" width="11.4" height="3.2" rx="0.8" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="4.5" cy="3.8" r="0.5" fill="currentColor" />
+        <rect x="2.3" y="6.4" width="11.4" height="3.2" rx="0.8" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="4.5" cy="8" r="0.5" fill="currentColor" />
+        <rect x="2.3" y="10.6" width="11.4" height="3.2" rx="0.8" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="4.5" cy="12.2" r="0.5" fill="currentColor" />
       </svg>
     )
   }

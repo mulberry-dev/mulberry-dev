@@ -2,14 +2,13 @@
 
 import "@/styles/scss/sections/skills.scss"
 import LazyOnView from "@/components/LazyOnView"
-import { BuildSession } from "@/components/build/BuildChrome"
 import TypeCopy from "@/components/terminal/TypeCopy"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
+import ScrollScene from "@/components/ui/ScrollScene"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
 import dynamic from "next/dynamic"
-import { CAPABILITIES } from "@/data/whatIDo"
 import { WORKSPACE } from "@/data/workspace"
 import { useI18n } from "@/i18n/useI18n"
 import {
@@ -20,11 +19,86 @@ import {
   BUILD_SYSTEMS,
   type BuildAccent
 } from "@/data/whatIBuild"
-import { useEffect, useState, type ReactNode } from "react"
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
+
+const PROOF_ICONS: SiteIconName[] = ["app", "globe", "rocket", "connect", "layers"]
 
 const SceneFallback = () => (
   <div className="skills-scene-fallback" aria-hidden="true" />
 )
+
+const TITLE_MAX = 88
+const TITLE_MIN = 16
+
+const ProofTitle = ({ text }: { text: string }) => {
+  const ref = useRef<HTMLHeadingElement>(null)
+
+  useLayoutEffect(() => {
+    const node = ref.current
+
+    if (!node) {
+      return
+    }
+
+    const fit = () => {
+      const available = node.clientWidth
+
+      if (available < 8) {
+        return
+      }
+
+      node.style.whiteSpace = "nowrap"
+      node.style.textWrap = "nowrap"
+
+      const fits = (size: number) => {
+        node.style.fontSize = `${size}px`
+        return node.scrollWidth <= node.clientWidth + 1
+      }
+
+      if (fits(TITLE_MAX)) {
+        return
+      }
+
+      let low = TITLE_MIN
+      let high = TITLE_MAX
+      let best = TITLE_MIN
+
+      while (low <= high) {
+        const mid = (low + high) >> 1
+
+        if (fits(mid)) {
+          best = mid
+          low = mid + 1
+        } else {
+          high = mid - 1
+        }
+      }
+
+      node.style.fontSize = `${best}px`
+
+      if (node.scrollWidth > node.clientWidth + 1) {
+        node.style.whiteSpace = "normal"
+        node.style.textWrap = "wrap"
+      }
+    }
+
+    fit()
+
+    const parent = node.parentElement
+    const observer = new ResizeObserver(fit)
+    if (parent) {
+      observer.observe(parent)
+    }
+
+    return () => observer.disconnect()
+  }, [text])
+
+  return (
+    <h3 ref={ref} className="proof-scene__value gradient-text">
+      {text}
+    </h3>
+  )
+}
 
 const ProductScene = dynamic(() => import("@/components/build/ProductScene"), {
   loading: SceneFallback
@@ -206,7 +280,11 @@ const Skills = () => {
 
   useEffect(() => {
     const id = window.location.hash.replace("#", "")
-    if (id && BUILD_SECTIONS.some((section) => section.id === id && section.id !== "build-intro")) {
+
+    if (
+      id &&
+      BUILD_SECTIONS.some((section) => section.id === id && section.id !== "build-intro")
+    ) {
       setOpen(true)
     }
   }, [])
@@ -240,10 +318,6 @@ const Skills = () => {
           title={t.workspace.skills}
         />
         <div className="skills-terminal">
-          <header className="skills-chrome">
-            <BuildSession />
-          </header>
-
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
               <Reveal type="heading" as="h3" className="skills-headline">
@@ -257,24 +331,51 @@ const Skills = () => {
             </div>
           </RevealGroup>
 
-          <RevealGroup className="capability-grid skills-capabilities" mode="scroll" stagger={48}>
-            {CAPABILITIES.map((item, index) => (
-              <Reveal key={item.icon} type="card">
-                <article className={`capability-card capability-card--${item.accent}`}>
-                  <span className="capability-card__icon" aria-hidden="true">
-                    <SiteIcon name={item.icon} />
-                  </span>
-                  <h3>
-                    <TypeCopy text={t.skills.capabilities[index]?.title ?? item.title} />
-                  </h3>
-                  <p>
-                    <TypeCopy text={t.skills.capabilities[index]?.text ?? item.text} />
-                  </p>
-                  <span className="capability-card__rule" aria-hidden="true" />
-                </article>
-              </Reveal>
-            ))}
-          </RevealGroup>
+          <ScrollScene
+            frames={t.skills.capabilities.length}
+            holdFrom={0}
+            className="proof-scene"
+          >
+            {(activeFrame, _progress, held) => (
+              <div className="proof-scene__panel">
+                <div className="proof-scene__stage">
+                  <svg className="proof-scene__defs" aria-hidden="true" focusable="false">
+                    <defs>
+                      <linearGradient
+                        id="proof-icon-gradient"
+                        gradientUnits="userSpaceOnUse"
+                        x1="0"
+                        y1="0"
+                        x2="24"
+                        y2="24"
+                      >
+                        <stop offset="0%" stopColor="var(--brand-cyan)" />
+                        <stop offset="52%" stopColor="var(--brand-blue)" />
+                        <stop offset="100%" stopColor="var(--brand-purple)" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  {t.skills.capabilities.map((item, index) => (
+                    <div
+                      key={item.title}
+                      className={
+                        !held || index === activeFrame
+                          ? "proof-scene__frame is-on"
+                          : "proof-scene__frame"
+                      }
+                      aria-hidden={held && index !== activeFrame ? true : undefined}
+                    >
+                      <ProofTitle text={item.title} />
+                      <span className="proof-scene__icon" aria-hidden="true">
+                        <SiteIcon name={PROOF_ICONS[index] ?? "puzzle"} />
+                      </span>
+                      <p className="proof-scene__label">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </ScrollScene>
 
           <div className={["skills-more", open ? "is-open" : ""].filter(Boolean).join(" ")}>
             <button
@@ -288,7 +389,6 @@ const Skills = () => {
               <span className="skills-more__caret" aria-hidden="true" />
               {open ? t.skills.viewLess : t.skills.viewMore}
             </button>
-
             <section
               className="skills-more__panel"
               id="skills-more-panel"

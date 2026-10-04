@@ -169,6 +169,51 @@
   margin-top: var(--space-6);
 }
 
+.home-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  pointer-events: none;
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.home-scroll.is-ready {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.home-scroll::before {
+  content: "";
+  width: 1px;
+  height: 1.35rem;
+  background: color-mix(in srgb, var(--brand-cyan) 70%, transparent);
+}
+
+.home-scroll:hover,
+.home-scroll:focus-visible {
+  color: var(--color-text);
+}
+
+.home-scroll:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
 .home-value {
   width: min(100%, 56rem);
   margin: 0 auto;

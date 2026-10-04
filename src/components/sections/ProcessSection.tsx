@@ -7,6 +7,7 @@ import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Button from "@/components/ui/Button"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
+import ScrollScene from "@/components/ui/ScrollScene"
 import SiteIcon from "@/components/ui/SiteIcon"
 import { PROCESS_PATH, PROCESS_STEPS } from "@/data/process"
 import { WORKSPACE } from "@/data/workspace"
@@ -35,35 +36,50 @@ const Process = () => {
 
           <RevealGroup className="process-intro" mode="auto" stagger={70}>
             <Reveal type="heading" as="h2" className="process-headline">
-              <TypeCopy text={t.process.headline} />
+              <TypeCopy text={t.process.headline} block />
             </Reveal>
             <Reveal type="text" as="p" className="process-lead">
-              <TypeCopy text={t.process.lead} />
+              <TypeCopy text={t.process.lead} block />
             </Reveal>
           </RevealGroup>
 
-          <RevealGroup as="ol" className="process-steps" mode="scroll" stagger={48}>
-            {PROCESS_STEPS.map((step, index) => {
-              const copy = t.process.steps[index]
+          <ScrollScene frames={PROCESS_STEPS.length} className="process-scene">
+            {(active, _progress, held) => (
+              <ol className="process-steps">
+                {PROCESS_STEPS.map((step, index) => {
+                  const copy = t.process.steps[index]
 
-              return (
-                <Reveal key={step.id} as="li" type="card" className={`process-step process-step--${step.accent}`}>
-                  <span className="process-step__index">{step.index}</span>
-                  <span className="process-step__icon" aria-hidden="true">
-                    <SiteIcon name={step.icon} />
-                  </span>
-                  <div className="process-step__copy">
-                    <h3>
-                      <TypeCopy text={copy?.title ?? step.id} />
-                    </h3>
-                    <p>
-                      <TypeCopy text={copy?.text ?? ""} />
-                    </p>
-                  </div>
-                </Reveal>
-              )
-            })}
-          </RevealGroup>
+                  return (
+                    <li
+                      key={step.id}
+                      className={[
+                        "process-step",
+                        `process-step--${step.accent}`,
+                        held && index === active ? "is-active" : "",
+                        held && index < active ? "is-past" : ""
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                      aria-current={held && index === active ? "step" : undefined}
+                    >
+                      <span className="process-step__index">{step.index}</span>
+                      <span className="process-step__icon" aria-hidden="true">
+                        <SiteIcon name={step.icon} />
+                      </span>
+                      <div className="process-step__copy">
+                        <h3>
+                          <TypeCopy text={copy?.title ?? step.id} />
+                        </h3>
+                        <p>
+                          <TypeCopy text={copy?.text ?? ""} />
+                        </p>
+                      </div>
+                    </li>
+                  )
+                })}
+              </ol>
+            )}
+          </ScrollScene>
 
           <footer className="process-foot">
             <p>

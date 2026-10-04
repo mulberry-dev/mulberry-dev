@@ -291,9 +291,8 @@ const About = () => {
                 </ul>
               </div>
             </RevealGroup>
-          </div>
 
-          <RevealGroup className="about-path" mode="scroll" stagger={48}>
+            <RevealGroup className="about-path" mode="scroll" stagger={48}>
             <div id="about-path" data-about-section="path">
               <Reveal type="eyebrow">
                 <Prompt command={t.about.historyCommand} />
@@ -313,6 +312,7 @@ const About = () => {
               </ol>
             </div>
           </RevealGroup>
+          </div>
 
           <footer className="about-foot">
             <span className="about-foot__mark">{ABOUT_INITIALS}</span>

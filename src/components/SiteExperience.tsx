@@ -1,6 +1,7 @@
 "use client"
 
 import { useParticles } from "@/components/particles"
+import SectionProgress from "@/components/SectionProgress"
 import DeferredSection from "@/components/sections/DeferredSection"
 import HomeSection from "@/components/sections/HomeSection"
 import {
@@ -365,6 +366,7 @@ const SiteExperience = () => {
 
   return (
     <div className={`site-experience${aligned ? " is-aligned" : ""}`}>
+      <SectionProgress />
       <HomeSection />
       {LAZY_SECTIONS.map(({ id, path, Component }) => (
         <DeferredSection

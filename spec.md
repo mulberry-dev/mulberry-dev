@@ -83,8 +83,8 @@ Ordered narrative, not a logo wall:
 
 ### Work
 
-- Featured IDs are explicit (`FuenteDeVidaResidencial`, `MulberryMarketing`, `SalonTarget`)
-- Archive is everything else
+- Featured IDs are explicit (`SsoSamlOkta`, `ManagerProxy`, `SaasProject`)
+- Archive leads with `FuenteDeVidaResidencial`, `MulberryMarketing`, `ElectronicBilling`, `ThisIsSantiOriginal`, `eCommerce`, `CeciliaRodriguez`, then the rest in data order
 - Filters: all, web, landing, api, ecommerce
 - Card shows name, year, type, stack, status (live / ongoing / private)
 - Projects started in 2023 or earlier may show a “built without AI” flag

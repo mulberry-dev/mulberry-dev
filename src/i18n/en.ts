@@ -101,6 +101,7 @@ export const en: Messages = {
     body: "Custom web apps designed, built, and delivered end to end.",
     cta: "Start exploring",
     ctaSecondary: "View my work",
+    scrollCue: "Scroll",
     valueEyebrow: "What you get",
     value: [
       {
@@ -624,7 +625,9 @@ export const en: Messages = {
     },
     SsoSamlOkta: {
       teaser: "Custom SAML SSO API integrated with Okta.",
-      description: "Authentication and SAML SSO API built with Node.js and TypeScript. (2023)",
+      description:
+        "Authentication system for companies. SAML SSO API built with Node.js and TypeScript. (2023)",
+      industry: "Authentication system for companies",
       highlights: [
         { title: "Okta integration", text: "Identity through a leading platform" },
         { title: "Unified access", text: "One sign-on across multiple applications" },

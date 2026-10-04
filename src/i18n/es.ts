@@ -101,6 +101,7 @@ export const es: Messages = {
     body: "Aplicaciones web a medida diseñadas, construidas y entregadas de punta a punta.",
     cta: "Comenzar a explorar",
     ctaSecondary: "Ver mi trabajo",
+    scrollCue: "Desplázate",
     valueEyebrow: "Qué obtienes",
     value: [
       {
@@ -629,7 +630,9 @@ export const es: Messages = {
     },
     SsoSamlOkta: {
       teaser: "API SSO SAML a medida integrada con Okta.",
-      description: "API de autenticación y SSO SAML con Node.js y TypeScript. (2023)",
+      description:
+        "Sistema de autenticación para empresas. API de SSO SAML con Node.js y TypeScript. (2023)",
+      industry: "Sistema de autenticación para empresas",
       highlights: [
         { title: "Integración Okta", text: "Identidad a través de una plataforma líder" },
         { title: "Acceso unificado", text: "Un solo inicio de sesión en varias aplicaciones" },

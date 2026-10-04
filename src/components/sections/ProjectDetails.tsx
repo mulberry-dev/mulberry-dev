@@ -137,10 +137,10 @@ const ProjectDetails = ({ id }: { id: string }) => {
       <Container className="project-page">
         <div className="project-overview">
           <Reveal type="nav" mode="fold" className="project-context">
-            <TerminalPrompt path={`${WORKSPACE.work.path}/${projectSlug(project.id)}`} />
             <Link href={href("/portfolio")} className="project-back">
               ← <TypeCopy text={t.project.back} />
             </Link>
+            <TerminalPrompt path={`${WORKSPACE.work.path}/${projectSlug(project.id)}`} />
           </Reveal>
 
           <div className="project-hero">

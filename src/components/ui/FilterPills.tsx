@@ -42,16 +42,26 @@ const FilterPills = ({
         onClick={() => onChange(option.id)}
       >
         {variant === "pills" ? <CategoryIcon variant={option.id} /> : null}
-        <span>
-          {variant === "command" ? "[ " : null}
-          <TypeCopy text={option.label} caret={false} />
-          {option.count !== undefined ? (
-            <span className="ui-filter-count">
-              {" "}
-              {String(option.count).padStart(2, "0")}
+        <span className="ui-filter-pill__label">
+          {variant === "command" ? (
+            <span className="ui-filter-pill__mark" aria-hidden="true">
+              [
             </span>
           ) : null}
-          {variant === "command" ? " ]" : null}
+          <span className="ui-filter-pill__body">
+            {variant === "command" ? <CategoryIcon variant={option.id} /> : null}
+            <TypeCopy text={option.label} caret={false} />
+            {option.count !== undefined ? (
+              <span className="ui-filter-count">
+                {String(option.count).padStart(2, "0")}
+              </span>
+            ) : null}
+          </span>
+          {variant === "command" ? (
+            <span className="ui-filter-pill__mark" aria-hidden="true">
+              ]
+            </span>
+          ) : null}
         </span>
       </button>
     )}

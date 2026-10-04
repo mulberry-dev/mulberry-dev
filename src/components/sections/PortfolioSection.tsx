@@ -163,9 +163,8 @@ const FeaturedCard = ({
           <Image
             src={project.img}
             alt={`${project.name} — ${project.teaser}`}
-            width={project.width || 1280}
-            height={project.height || 800}
-            sizes="(max-width: 1023px) 50vw, 33vw"
+            fill
+            sizes="(max-width: 767px) 100vw, (max-width: 1200px) 46vw, 560px"
             className="work-card__image"
             priority={index === 0}
             loading={index === 0 ? undefined : "lazy"}

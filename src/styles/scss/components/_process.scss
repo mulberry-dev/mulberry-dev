@@ -25,20 +25,47 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
+.process-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .process-headline {
-  margin: 0 0 var(--space-4);
+  margin: 0 auto var(--space-4);
+  width: min(16em, 100%);
   font-family: var(--font-display);
-  font-size: var(--text-h2);
+  font-size: clamp(1.85rem, 1.15rem + 2.8vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.15;
   letter-spacing: var(--tracking-tight);
+  text-align: center;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .process-lead {
-  margin: 0;
-  max-width: 40rem;
+  margin: 0 auto;
+  width: min(40rem, 100%);
   color: var(--color-text-muted);
-  font-size: var(--text-lead);
+  font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.35rem);
   line-height: var(--leading-loose);
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.process-intro .type-copy__slot {
+  justify-items: center;
+  width: 100%;
+}
+
+.process-intro .type-copy__ghost,
+.process-intro .type-copy__live {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
 }
 
 .process-steps {
@@ -192,5 +219,63 @@
 
   .process-steps > .reveal:last-child {
     grid-column: 1 / -1;
+  }
+}
+
+.process-scene {
+  width: 100%;
+}
+
+.process-scene.is-held .process-steps {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 46rem);
+  margin-inline: auto;
+  gap: 0.7rem;
+}
+
+.process-scene.is-held .process-step {
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  min-height: 0;
+  opacity: 0.38;
+  padding: 0.85rem 1.1rem;
+  transition:
+    opacity 0.45s var(--ease-out),
+    padding 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+}
+
+.process-scene.is-held .process-step__index,
+.process-scene.is-held .process-step__icon,
+.process-scene.is-held .process-step__copy {
+  grid-column: auto;
+  grid-row: auto;
+  height: auto;
+  justify-self: start;
+}
+
+.process-scene.is-held .process-step:not(.is-active) .process-step__copy p {
+  display: none;
+}
+
+.process-scene.is-held .process-step:not(.is-active) .process-step__copy h3 {
+  margin: 0;
+}
+
+.process-scene.is-held .process-step.is-active {
+  opacity: 1;
+  padding: 1.35rem 1.35rem;
+  border-color: color-mix(in srgb, var(--process-tone) 46%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-scene.is-held .process-step {
+    opacity: 1;
+    transition: none;
+  }
+
+  .process-scene.is-held .process-step:not(.is-active) .process-step__copy p {
+    display: block;
   }
 }

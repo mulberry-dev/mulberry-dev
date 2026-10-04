@@ -277,6 +277,21 @@ body:not(.dark) .ui-tech-badge {
   flex-shrink: 0;
 }
 
+.ui-filter-pill__label,
+.ui-filter-pill__body {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.ui-filter-pill__label {
+  gap: 0.4rem;
+}
+
+.ui-filter-pill__body {
+  gap: 0.35rem;
+}
+
 .ui-filter-pill--all {
   --pill-tone: var(--color-teal);
 }

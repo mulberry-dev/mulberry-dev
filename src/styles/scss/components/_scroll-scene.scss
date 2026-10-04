@@ -1,0 +1,28 @@
+.scroll-scene.is-held {
+  height: calc(100dvh + (var(--scene-frames) - 1) * 46vh);
+}
+
+.scroll-scene__sticky {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.scroll-scene.is-held .scroll-scene__sticky {
+  position: sticky;
+  top: var(--nav-height);
+  height: calc(100dvh - var(--nav-height));
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-scene.is-held {
+    height: auto;
+  }
+
+  .scroll-scene.is-held .scroll-scene__sticky {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+}

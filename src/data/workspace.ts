@@ -39,7 +39,17 @@ export const WORKSPACE = {
 } as const
 
 export const FEATURED_PROJECT_IDS = [
+  "SsoSamlOkta",
+  "ManagerProxy",
+  "SaasProject"
+] as const
+
+/** Pinned to the front of the archive. Remaining projects keep data order. */
+export const ARCHIVE_LEAD_IDS = [
   "FuenteDeVidaResidencial",
   "MulberryMarketing",
-  "SaasProject"
+  "ElectronicBilling",
+  "ThisIsSantiOriginal",
+  "eCommerce",
+  "CeciliaRodriguez"
 ] as const

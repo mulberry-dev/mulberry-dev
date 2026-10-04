@@ -1,5 +1,5 @@
 import { getMessages } from "@/i18n"
-import { FEATURED_PROJECT_IDS } from "@/data/workspace"
+import { ARCHIVE_LEAD_IDS, FEATURED_PROJECT_IDS } from "@/data/workspace"
 import { data as projects } from "@/data/projects"
 import type { Locale } from "@/lib/locale"
 
@@ -93,10 +93,17 @@ export const featuredProjects = FEATURED_PROJECT_IDS.map(id =>
 
 const featuredIdSet = new Set<string>(FEATURED_PROJECT_IDS)
 
+const archiveLeadRank = new Map<string, number>(
+  ARCHIVE_LEAD_IDS.map((id, index) => [id, index])
+)
+
+const archiveRank = (id: string | number) =>
+  archiveLeadRank.get(String(id)) ?? ARCHIVE_LEAD_IDS.length
+
 export const archiveProjects = projects
   .filter(project => !featuredIdSet.has(String(project.id)))
   .slice()
-  .sort((left, right) => Number(right.category === "api") - Number(left.category === "api"))
+  .sort((left, right) => archiveRank(left.id) - archiveRank(right.id))
 
 export const categoryCounts = projects.reduce<Record<string, number>>(
   (counts, project) => {

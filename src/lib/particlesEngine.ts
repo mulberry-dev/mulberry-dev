@@ -46,18 +46,30 @@ type MixTween = {
 }
 
 const PEAK_SPEED = 24
+const SCROLL_PEAK_SPEED = PEAK_SPEED * 0.75
 const COVER_SPEED = PEAK_SPEED * 0.58
 const ACCEL_DURATION = 0.52
 const DECEL_DURATION = 0.68
 const MIN_TRAVEL = 0.54
 const MAX_TRAVEL_WAIT = 2.4
+const SCROLL_IDLE_MS = 240
 const ENTER_DURATION = 2.35
 const ENTER_REVEAL_AT = 0.48
+const VISIBILITY_MUL = 1.15
 const DPR_CAP = 1.5
 const DPR_CAP_MOBILE = 1.25
 const EMBER_DURATION = 1.08
 const EMBER_LAG = 0.22
 const EMBER_SPRITE_SIZE = 64
+const SCROLL_KEYS = new Set([
+  "ArrowUp",
+  "ArrowDown",
+  "PageUp",
+  "PageDown",
+  "Home",
+  "End",
+  " "
+])
 
 type EmberStop = {
   core: string
@@ -210,9 +222,12 @@ export class ParticlesEngine {
   private colorSyncUntil = 0
   private boostToken = 0
   private boostHoldTimer = 0
+  private boostMode: "nav" | "scroll" | null = null
+  private scrollIdleTimer = 0
 
   setPhaseListener(listener: PhaseListener | null) {
     this.phaseListener = listener
+    listener?.(this.phase)
   }
 
   setContentRevealListener(listener: (() => void) | null) {
@@ -253,6 +268,8 @@ export class ParticlesEngine {
 
   unmount() {
     this.clearBoostHold()
+    this.clearScrollIdle()
+    this.boostMode = null
     this.stopLoop()
     this.unbindChrome()
     this.canvas = null
@@ -275,6 +292,7 @@ export class ParticlesEngine {
     this.speedMul = 1
     this.enterBoost = 10
     this.enterAge = 0
+    this.boostMode = null
     this.setPhase("entering")
     this.markContentReveal()
     this.draw()
@@ -318,16 +336,20 @@ export class ParticlesEngine {
 
     this.speedMul = this.reducedMotion ? 0.22 : 1
     this.enterBoost = 1
+    this.boostMode = null
     this.setPhase("active")
     this.markContentReveal()
   }
 
   startFall(onComplete: () => void) {
     this.flushCoverWaiters()
+    this.clearBoostHold()
+    this.clearScrollIdle()
     this.tween = null
     this.fallDone = onComplete
     this.speedMul = 1
     this.enterBoost = 1
+    this.boostMode = null
 
     if (this.reducedMotion) {
       this.particles = []
@@ -377,6 +399,8 @@ export class ParticlesEngine {
     }
 
     this.clearBoostHold()
+    this.clearScrollIdle()
+    this.boostMode = "nav"
     this.boostToken += 1
     this.enterBoost = 1
     this.travelAge = 0
@@ -389,17 +413,21 @@ export class ParticlesEngine {
   }
 
   boost() {
+    this.startLoop()
+    this.settleEnterIfNeeded()
+
     if (
       this.phase === "idle" ||
       this.phase === "falling" ||
       this.phase === "entering" ||
-      this.reducedMotion ||
-      !this.running
+      this.reducedMotion
     ) {
       return
     }
 
     this.clearBoostHold()
+    this.clearScrollIdle()
+    this.boostMode = "nav"
     const token = ++this.boostToken
     this.enterBoost = 1
     this.travelAge = 0
@@ -426,11 +454,77 @@ export class ParticlesEngine {
       return
     }
 
+    this.boostMode = null
     this.tweenSpeed(1, DECEL_DURATION, easeOutCubic, () => {
       if (this.phase === "transitioning") {
         this.setPhase("active")
       }
     })
+  }
+
+  private settleEnterIfNeeded() {
+    if (this.phase !== "entering") {
+      return
+    }
+
+    this.enterBoost = 1
+    this.enterAge = ENTER_DURATION
+    this.setPhase("active")
+    this.markContentReveal()
+  }
+
+  private nudgeFromScroll() {
+    this.startLoop()
+    this.settleEnterIfNeeded()
+
+    if (
+      this.phase === "idle" ||
+      this.phase === "falling" ||
+      this.phase === "entering" ||
+      this.reducedMotion ||
+      this.boostMode === "nav"
+    ) {
+      return
+    }
+
+    this.clearBoostHold()
+    this.scheduleScrollIdle()
+
+    const headingDown = this.tween?.to === 1
+    const belowPeak = this.speedMul < SCROLL_PEAK_SPEED * 0.98
+
+    if (this.boostMode === "scroll") {
+      if (headingDown || (belowPeak && !this.tween)) {
+        this.setPhase("transitioning")
+        this.tweenSpeed(SCROLL_PEAK_SPEED, ACCEL_DURATION, easeInCubic)
+      }
+
+      return
+    }
+
+    this.boostMode = "scroll"
+    this.boostToken += 1
+    this.enterBoost = 1
+    this.travelAge = 0
+    this.setPhase("transitioning")
+    this.tweenSpeed(SCROLL_PEAK_SPEED, ACCEL_DURATION, easeInCubic)
+  }
+
+  private releaseScrollBoost() {
+    this.scrollIdleTimer = 0
+
+    if (this.boostMode !== "scroll" || this.phase !== "transitioning") {
+      return
+    }
+
+    this.completeRouteTransition()
+  }
+
+  private scheduleScrollIdle() {
+    this.clearScrollIdle()
+    this.scrollIdleTimer = window.setTimeout(() => {
+      this.releaseScrollBoost()
+    }, SCROLL_IDLE_MS)
   }
 
   private clearBoostHold() {
@@ -440,6 +534,40 @@ export class ParticlesEngine {
 
     window.clearTimeout(this.boostHoldTimer)
     this.boostHoldTimer = 0
+  }
+
+  private clearScrollIdle() {
+    if (!this.scrollIdleTimer) {
+      return
+    }
+
+    window.clearTimeout(this.scrollIdleTimer)
+    this.scrollIdleTimer = 0
+  }
+
+  private onUserScroll = () => {
+    this.nudgeFromScroll()
+  }
+
+  private onScrollKey = (event: KeyboardEvent) => {
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) {
+      return
+    }
+
+    if (!SCROLL_KEYS.has(event.key)) {
+      return
+    }
+
+    const target = event.target
+    if (
+      target instanceof HTMLElement &&
+      (target.isContentEditable ||
+        target.closest("input, textarea, select, [contenteditable='true']"))
+    ) {
+      return
+    }
+
+    this.nudgeFromScroll()
   }
 
   private setPhase(phase: ParticlePhase) {
@@ -571,6 +699,9 @@ export class ParticlesEngine {
 
     document.addEventListener("visibilitychange", this.onVisibility)
     window.addEventListener("resize", this.onWindowResize)
+    window.addEventListener("wheel", this.onUserScroll, { passive: true })
+    window.addEventListener("touchmove", this.onUserScroll, { passive: true })
+    window.addEventListener("keydown", this.onScrollKey)
   }
 
   private unbindChrome() {
@@ -580,6 +711,9 @@ export class ParticlesEngine {
     this.resizeObserver = null
     document.removeEventListener("visibilitychange", this.onVisibility)
     window.removeEventListener("resize", this.onWindowResize)
+    window.removeEventListener("wheel", this.onUserScroll)
+    window.removeEventListener("touchmove", this.onUserScroll)
+    window.removeEventListener("keydown", this.onScrollKey)
   }
 
   private onWindowResize = () => {
@@ -945,7 +1079,12 @@ export class ParticlesEngine {
       }
 
       const fade = 1 - this.emberAmount(particle)
-      const alpha = particle.alpha * this.color.a * (1 + coverage * 0.2) * fade
+      const alpha =
+        particle.alpha *
+        this.color.a *
+        (1 + coverage * 0.2) *
+        fade *
+        VISIBILITY_MUL
 
       if (alpha <= 0.01) {
         continue
@@ -1011,7 +1150,8 @@ export class ParticlesEngine {
         (0.62 + heat * 0.7) *
         mix *
         pulse *
-        (1 + coverage * 0.1)
+        (1 + coverage * 0.1) *
+        VISIBILITY_MUL
 
       if (alpha <= 0.01) {
         continue
