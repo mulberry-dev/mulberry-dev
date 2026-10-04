@@ -108,6 +108,7 @@ const ScrollScene = ({
   return (
     <div
       ref={trackRef}
+      data-scene-frame={active}
       className={["scroll-scene", held ? "is-held" : "is-flat", className]
         .filter(Boolean)
         .join(" ")}

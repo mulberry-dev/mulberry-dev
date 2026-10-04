@@ -113,13 +113,21 @@
 }
 
 .skills-headline {
+  width: 100%;
   margin: 0;
-  max-width: 22em;
   font-family: var(--font-display);
   font-size: clamp(1.65rem, 1.1rem + 2.2vw, 2.75rem);
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: var(--tracking-tight);
+  text-wrap: wrap;
+  overflow-wrap: break-word;
+}
+
+.skills-headline .type-copy__ghost,
+.skills-headline .type-copy__live {
+  width: 100%;
+  max-width: 100%;
 }
 
 .skills-capabilities {
@@ -2043,7 +2051,10 @@
     transition: none;
   }
 
-  .proof-scene__frame {
+  .proof-scene__frame,
+  .proof-scene__value,
+  .proof-scene__icon,
+  .proof-scene__label {
     opacity: 1;
     transform: none;
     transition: none;
@@ -2110,8 +2121,8 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: clamp(4.225rem, 7.8vw, 5.85rem);
-  height: clamp(4.225rem, 7.8vw, 5.85rem);
+  width: clamp(4.225rem, 10.14vw, 7.605rem);
+  height: clamp(4.225rem, 10.14vw, 7.605rem);
 }
 
 .proof-scene__icon svg {
@@ -2131,7 +2142,28 @@
 }
 
 .proof-scene.is-held .proof-scene__frame.is-on {
-  animation: proofFadeIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.proof-scene.is-held .proof-scene__value,
+.proof-scene.is-held .proof-scene__icon,
+.proof-scene.is-held .proof-scene__label {
+  opacity: 0;
+}
+
+.proof-scene.is-held .proof-scene__frame.is-on .proof-scene__value,
+.proof-scene.is-held .proof-scene__frame.is-on .proof-scene__icon,
+.proof-scene.is-held .proof-scene__frame.is-on .proof-scene__label {
+  animation: proofFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.proof-scene.is-held .proof-scene__frame.is-on .proof-scene__icon {
+  animation-delay: 0.16s;
+}
+
+.proof-scene.is-held .proof-scene__frame.is-on .proof-scene__label {
+  animation-delay: 0.32s;
 }
 
 @keyframes proofFadeIn {
@@ -2160,9 +2192,12 @@
 }
 
 .proof-scene__label {
-  max-width: 40rem;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   color: var(--color-text-muted);
-  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
-  line-height: var(--leading-loose);
+  font-size: clamp(0.875rem, 1.8vw, 1.5rem);
+  line-height: 1.45;
+  white-space: nowrap;
+  text-wrap: nowrap;
 }

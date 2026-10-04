@@ -7,6 +7,8 @@
   padding: calc(var(--nav-height) + var(--space-4)) 0 var(--space-8);
   overflow-x: clip;
   max-width: 100%;
+  container-type: inline-size;
+  container-name: home;
 }
 
 .home-page {
@@ -83,14 +85,29 @@
 
 .home-hero h1,
 .home-hero__headline {
-  margin: 0 0 var(--space-4);
+  box-sizing: border-box;
+  width: 100cqi;
+  max-width: 100cqi;
+  margin: 0 calc(50% - 50cqi) var(--space-4);
   overflow: visible;
   font-family: var(--font-display);
   font-size: clamp(1.85rem, 3.6vw + 0.7rem, 3.15rem);
   font-weight: 800;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-display);
-  text-wrap: balance;
+  text-align: center;
+  text-wrap: wrap;
+  white-space: normal;
+
+  .type-copy__slot {
+    justify-items: stretch;
+    text-align: center;
+  }
+
+  .type-copy__ghost,
+  .type-copy__live {
+    text-align: center;
+  }
 }
 
 .home-hero__hello {

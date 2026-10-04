@@ -19,8 +19,8 @@ export const en: Messages = {
   },
   language: {
     label: "Language",
-    en: "EN",
-    es: "ES"
+    en: "English",
+    es: "Español"
   },
   site: {
     title: "Santiago Morera | Custom Web Apps & Full-Stack Development",
@@ -97,7 +97,7 @@ export const en: Messages = {
     name: "Santiago Morera",
     roleLead: "Senior Full Stack",
     roleTrail: "Engineer",
-    headline: "I build digital products that solve real business problems.",
+    headline: "I build digital products that solve.",
     body: "Custom web apps designed, built, and delivered end to end.",
     cta: "Start exploring",
     ctaSecondary: "View my work",
@@ -188,23 +188,23 @@ export const en: Messages = {
     viewLess: "View less",
     capabilities: [
       {
-        title: "Custom web applications",
+        title: "Custom Web Applications",
         text: "Products designed around a specific workflow, audience, and business constraint."
       },
       {
-        title: "Business websites",
+        title: "Business Websites",
         text: "Fast sites that explain the offer, build trust, and support commercial goals."
       },
       {
-        title: "MVP and product development",
+        title: "MVP and Product Development",
         text: "Turn an idea into a working product you can put in front of real users."
       },
       {
-        title: "Systems and integrations",
+        title: "Systems and Integrations",
         text: "APIs, databases, and third-party services connected into one reliable system."
       },
       {
-        title: "Full-stack delivery",
+        title: "Full-Stack Delivery",
         text: "Frontend, backend, and supporting infrastructure owned as one engagement."
       }
     ],
@@ -318,7 +318,7 @@ export const en: Messages = {
     metrics: [
       { value: "6+", label: "Years shipping products" },
       { value: "17", label: "Projects in this portfolio" },
-      { value: "EN / ES", label: "Professional bilingual delivery" },
+      { value: "Bilingual", label: "Professional bilingual delivery" },
       { value: "Remote", label: "International collaboration" }
     ],
     filters: {
@@ -431,7 +431,7 @@ export const en: Messages = {
       },
       phone: {
         title: "Phone",
-        description: "+52 55-12-30-88-11",
+        description: "+52 55-15-61-46-45",
         cta: "Call"
       },
       linkedin: {

@@ -209,6 +209,7 @@ const IndexPage = () => {
             <h1 className="home-hero__headline">
               <TypeCopy
                 text={t.home.headline}
+                block
                 typeOnMount={isFirstHome}
                 initialDelay={1250}
               />

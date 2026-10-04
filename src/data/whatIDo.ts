@@ -9,31 +9,31 @@ export const CAPABILITIES: {
 }[] = [
   {
     icon: "app",
-    title: "Custom web applications",
+    title: "Custom Web Applications",
     text: "Products designed around a specific workflow, audience, and business constraint.",
     accent: "cyan"
   },
   {
     icon: "globe",
-    title: "Business websites",
+    title: "Business Websites",
     text: "Fast sites that explain the offer, build trust, and support commercial goals.",
     accent: "blue"
   },
   {
     icon: "bulb",
-    title: "MVP and product development",
+    title: "MVP and Product Development",
     text: "Turn an idea into a working product you can put in front of real users.",
     accent: "indigo"
   },
   {
     icon: "connect",
-    title: "Systems and integrations",
+    title: "Systems and Integrations",
     text: "APIs, databases, and third-party services connected into one reliable system.",
     accent: "purple"
   },
   {
     icon: "layers",
-    title: "Full-stack delivery",
+    title: "Full-Stack Delivery",
     text: "Frontend, backend, and supporting infrastructure owned as one engagement.",
     accent: "orange"
   }

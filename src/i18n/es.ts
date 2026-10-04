@@ -19,8 +19,8 @@ export const es: Messages = {
   },
   language: {
     label: "Idioma",
-    en: "EN",
-    es: "ES"
+    en: "English",
+    es: "Español"
   },
   site: {
     title: "Santiago Morera | Apps web a medida y desarrollo full stack",
@@ -97,7 +97,7 @@ export const es: Messages = {
     name: "Santiago Morera",
     roleLead: "Ingeniero Full Stack",
     roleTrail: "Senior",
-    headline: "Construyo productos digitales que resuelven problemas reales de negocio.",
+    headline: "Construyo productos digitales que resuelven.",
     body: "Aplicaciones web a medida diseñadas, construidas y entregadas de punta a punta.",
     cta: "Comenzar a explorar",
     ctaSecondary: "Ver mi trabajo",
@@ -188,23 +188,23 @@ export const es: Messages = {
     viewLess: "Ver menos",
     capabilities: [
       {
-        title: "Aplicaciones web a medida",
+        title: "Aplicaciones Web a Medida",
         text: "Productos diseñados alrededor de un flujo, una audiencia y una restricción de negocio concretos."
       },
       {
-        title: "Sitios web para negocios",
+        title: "Sitios Web Para Negocios",
         text: "Sitios rápidos que comunican la oferta, generan confianza y apoyan objetivos comerciales."
       },
       {
-        title: "MVP y desarrollo de producto",
+        title: "MVP y Desarrollo De Producto",
         text: "Convertir una idea en un producto funcional para probarlo con usuarios reales."
       },
       {
-        title: "Sistemas e integraciones",
+        title: "Sistemas e Integraciones",
         text: "APIs, bases de datos y servicios de terceros conectados en una solución confiable."
       },
       {
-        title: "Desarrollo full stack",
+        title: "Desarrollo Full Stack",
         text: "Frontend, backend e infraestructura de soporte en un solo engagement."
       }
     ],
@@ -316,9 +316,9 @@ export const es: Messages = {
     previous: "Certificado anterior",
     next: "Certificado siguiente",
     metrics: [
-      { value: "6+", label: "Años lanzando productos" },
+      { value: "5+", label: "Años lanzando productos" },
       { value: "17", label: "Proyectos en este portafolio" },
-      { value: "ES / EN", label: "Entrega profesional bilingüe" },
+      { value: "Bilingüe", label: "Entrega profesional bilingüe" },
       { value: "Remoto", label: "Colaboración internacional" }
     ],
     filters: {
@@ -348,7 +348,7 @@ export const es: Messages = {
   },
   contact: {
     ariaLabel: "Contacto",
-    command: "./start-conversation",
+    command: "Start conversation",
     checking: "comprobando disponibilidad...",
     statusPrefix: "estado:",
     availability: "Disponible para nuevas oportunidades",
@@ -431,7 +431,7 @@ export const es: Messages = {
       },
       phone: {
         title: "Teléfono",
-        description: "+52 55-12-30-88-11",
+        description: "+52 55-15-61-46-45",
         cta: "Llamar"
       },
       linkedin: {

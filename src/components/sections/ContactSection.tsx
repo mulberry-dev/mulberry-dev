@@ -2,7 +2,6 @@
 
 import "@/styles/scss/sections/contact.scss"
 import Button from "@/components/ui/Button"
-import CommandLine from "@/components/terminal/CommandLine"
 import TypeCopy from "@/components/terminal/TypeCopy"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
@@ -372,24 +371,28 @@ const Contact = () => {
           </RevealGroup>
 
           <div className="contact-aside">
-            <RevealGroup className="contact-log" mode="auto" stagger={48}>
-              <CommandLine command={t.contact.command} />
-              <p>
-                <span className="contact-log__prefix">&gt;</span>{" "}
+            <RevealGroup as="ol" className="contact-log" mode="auto" stagger={48}>
+              <li>
+                <span className="contact-log__prefix">1.-</span>{" "}
+                <span className="term-command__cash">$</span>{" "}
+                <TypeCopy text={t.contact.command} />
+              </li>
+              <li>
+                <span className="contact-log__prefix">2.-</span>{" "}
                 <TypeCopy text={t.contact.checking} />
-              </p>
-              <p>
-                <span className="contact-log__prefix">&gt;</span>{" "}
+              </li>
+              <li>
+                <span className="contact-log__prefix">3.-</span>{" "}
                 <TypeCopy text={t.contact.statusPrefix} />{" "}
                 <span className="contact-log__ok">
                   <StatusDot pulse />
                   <TypeCopy text={t.contact.availability} />
                 </span>
-              </p>
-              <p>
-                <span className="contact-log__prefix">&gt;</span>{" "}
+              </li>
+              <li>
+                <span className="contact-log__prefix">4.-</span>{" "}
                 <TypeCopy text={t.contact.supporting} />
-              </p>
+              </li>
             </RevealGroup>
 
             <div className="contact-channels">

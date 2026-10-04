@@ -29,9 +29,11 @@ const SceneFallback = () => (
 
 const TITLE_MAX = 88
 const TITLE_MIN = 16
+const LABEL_MAX = 24
+const LABEL_MIN = 14
 
-const ProofTitle = ({ text }: { text: string }) => {
-  const ref = useRef<HTMLHeadingElement>(null)
+const useFitLine = <T extends HTMLElement>(text: string, max: number, min: number) => {
+  const ref = useRef<T>(null)
 
   useLayoutEffect(() => {
     const node = ref.current
@@ -41,62 +43,86 @@ const ProofTitle = ({ text }: { text: string }) => {
     }
 
     const fit = () => {
-      const available = node.clientWidth
+      const frame = node.parentElement
 
-      if (available < 8) {
+      if (!frame || frame.clientWidth < 8) {
         return
       }
+
+      const available = frame.clientWidth
 
       node.style.whiteSpace = "nowrap"
       node.style.textWrap = "nowrap"
+      node.style.width = "max-content"
+      node.style.fontSize = `${max}px`
 
-      const fits = (size: number) => {
+      const textWidth = node.scrollWidth
+      let size = max
+
+      if (textWidth > available) {
+        size = Math.max(min, Math.floor((max * available) / textWidth))
+      }
+
+      node.style.fontSize = `${size}px`
+
+      while (size > min && node.scrollWidth > available) {
+        size -= 1
         node.style.fontSize = `${size}px`
-        return node.scrollWidth <= node.clientWidth + 1
       }
 
-      if (fits(TITLE_MAX)) {
-        return
-      }
+      node.style.width = "100%"
 
-      let low = TITLE_MIN
-      let high = TITLE_MAX
-      let best = TITLE_MIN
-
-      while (low <= high) {
-        const mid = (low + high) >> 1
-
-        if (fits(mid)) {
-          best = mid
-          low = mid + 1
-        } else {
-          high = mid - 1
-        }
-      }
-
-      node.style.fontSize = `${best}px`
-
-      if (node.scrollWidth > node.clientWidth + 1) {
+      if (size <= min && node.scrollWidth > node.clientWidth + 1) {
         node.style.whiteSpace = "normal"
         node.style.textWrap = "wrap"
+      }
+    }
+
+    let alive = true
+    const refit = () => {
+      if (alive) {
+        fit()
       }
     }
 
     fit()
 
     const parent = node.parentElement
-    const observer = new ResizeObserver(fit)
+    const observer = new ResizeObserver(refit)
     if (parent) {
       observer.observe(parent)
     }
 
-    return () => observer.disconnect()
-  }, [text])
+    document.fonts?.ready.then(refit)
+    document.fonts?.addEventListener("loadingdone", refit)
+
+    return () => {
+      alive = false
+      observer.disconnect()
+      document.fonts?.removeEventListener("loadingdone", refit)
+    }
+  }, [text, max, min])
+
+  return ref
+}
+
+const ProofTitle = ({ text }: { text: string }) => {
+  const ref = useFitLine<HTMLHeadingElement>(text, TITLE_MAX, TITLE_MIN)
 
   return (
     <h3 ref={ref} className="proof-scene__value gradient-text">
       {text}
     </h3>
+  )
+}
+
+const ProofLabel = ({ text }: { text: string }) => {
+  const ref = useFitLine<HTMLParagraphElement>(text, LABEL_MAX, LABEL_MIN)
+
+  return (
+    <p ref={ref} className="proof-scene__label">
+      {text}
+    </p>
   )
 }
 
@@ -321,7 +347,7 @@ const Skills = () => {
           <RevealGroup className="skills-intro" mode="auto" stagger={70}>
             <div id="build-intro">
               <Reveal type="heading" as="h3" className="skills-headline">
-                <TypeCopy text={t.skills.headline} />
+                <TypeCopy text={t.skills.headline} block />
               </Reveal>
               <Reveal
                 type="decorative"
@@ -369,7 +395,7 @@ const Skills = () => {
                       <span className="proof-scene__icon" aria-hidden="true">
                         <SiteIcon name={PROOF_ICONS[index] ?? "puzzle"} />
                       </span>
-                      <p className="proof-scene__label">{item.text}</p>
+                      <ProofLabel text={item.text} />
                     </div>
                   ))}
                 </div>

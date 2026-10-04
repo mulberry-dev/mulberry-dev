@@ -128,7 +128,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1.05rem;
+  margin: 0;
   padding: var(--space-6);
+  list-style: none;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--color-canvas-deep) 42%, transparent);
@@ -137,7 +139,7 @@
   color: var(--color-text-muted);
 }
 
-.contact-log p {
+.contact-log li {
   margin: 0;
   line-height: var(--leading-body);
 }
