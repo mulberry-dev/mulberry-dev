@@ -11,6 +11,18 @@ import {
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)"
 
+const canHoldScene = (frames: number, holdFrom: number) => {
+  if (typeof window === "undefined") {
+    return false
+  }
+
+  return (
+    frames > 1 &&
+    window.matchMedia(`(min-width: ${holdFrom}px)`).matches &&
+    !window.matchMedia(MOTION_QUERY).matches
+  )
+}
+
 const ScrollScene = ({
   frames,
   className = "",
@@ -24,9 +36,9 @@ const ScrollScene = ({
 }) => {
   const trackRef = useRef<HTMLDivElement>(null)
   const activeRef = useRef(0)
-  const heldRef = useRef(false)
+  const [held, setHeld] = useState(() => canHoldScene(frames, holdFrom))
+  const heldRef = useRef(held)
   const [active, setActive] = useState(0)
-  const [held, setHeld] = useState(false)
 
   const measure = useCallback(() => {
     const track = trackRef.current
@@ -35,10 +47,7 @@ const ScrollScene = ({
       return
     }
 
-    const canHold =
-      frames > 1 &&
-      window.matchMedia(`(min-width: ${holdFrom}px)`).matches &&
-      !window.matchMedia(MOTION_QUERY).matches
+    const canHold = canHoldScene(frames, holdFrom)
 
     if (heldRef.current !== canHold) {
       heldRef.current = canHold
