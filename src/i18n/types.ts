@@ -76,6 +76,11 @@ export type Messages = {
     cta: string
     ctaSecondary: string
     scrollCue: string
+    scrollContinue: string
+    beatProgress: string
+    beatBrand: string
+    beatIdentity: string
+    beatOffer: string
     valueEyebrow: string
     value: { title: string; text: string }[]
   }

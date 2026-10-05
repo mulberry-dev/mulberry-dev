@@ -102,6 +102,11 @@ export const en: Messages = {
     cta: "Start exploring",
     ctaSecondary: "View my work",
     scrollCue: "Scroll",
+    scrollContinue: "Continue",
+    beatProgress: "Welcome steps",
+    beatBrand: "Brand",
+    beatIdentity: "Name and role",
+    beatOffer: "What I build",
     valueEyebrow: "What you get",
     value: [
       {
