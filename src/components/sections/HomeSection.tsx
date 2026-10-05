@@ -247,6 +247,7 @@ const IndexPage = () => {
   const [sequenceMode, setSequenceMode] = useState<"wait" | "scene" | "static">("wait")
   const [introComplete, setIntroComplete] = useState(false)
   const chromeRevealedRef = useRef(false)
+  const seenHeldRef = useRef(false)
 
   const revealChrome = useCallback(() => {
     if (isHomeChromeRevealed()) {
@@ -262,19 +263,27 @@ const IndexPage = () => {
 
   const onFrame = useCallback(
     (active: number, held: boolean) => {
-      if (!held) {
-        setIntroComplete(true)
-        revealChrome()
+      // ScrollScene mounts with held=false until the first measure; ignore that flash.
+      if (held) {
+        seenHeldRef.current = true
+
+        if (active >= 1 && !chromeRevealedRef.current) {
+          revealChrome()
+        }
+
+        if (active >= BEAT_COUNT - 1) {
+          setIntroComplete(true)
+        }
+
         return
       }
 
-      if (active >= 1 && !chromeRevealedRef.current) {
-        revealChrome()
+      if (!seenHeldRef.current) {
+        return
       }
 
-      if (active >= BEAT_COUNT - 1) {
-        setIntroComplete(true)
-      }
+      setIntroComplete(true)
+      revealChrome()
     },
     [revealChrome]
   )

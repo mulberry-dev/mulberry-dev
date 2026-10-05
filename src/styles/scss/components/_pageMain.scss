@@ -100,29 +100,42 @@
 .home-intro.is-reveal-wait .home-beat {
   position: absolute;
   inset: 0;
+  z-index: 1;
   justify-content: center;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translate3d(0, 28px, 0) scale(0.985);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.65s;
 }
 
 .home-intro-scene.is-held .home-beat.is-on {
+  z-index: 3;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: translate3d(0, 0, 0) scale(1);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
 }
 
 .home-intro-scene.is-held .home-beat.is-past {
+  z-index: 2;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translate3d(0, -24px, 0) scale(0.985);
 }
 
 .home-intro-scene.is-held .home-beat.is-next {
+  z-index: 1;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translate3d(0, 28px, 0) scale(0.985);
 }
