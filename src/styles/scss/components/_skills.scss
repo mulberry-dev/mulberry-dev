@@ -2188,6 +2188,7 @@
 }
 
 .proof-scene.is-flat .proof-scene__frame {
+  scroll-margin-top: calc(var(--nav-height) + 5.5rem);
   padding-block: 0.35rem 0.85rem;
   border-bottom: 1px solid var(--skills-line);
 }

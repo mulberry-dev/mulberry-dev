@@ -146,10 +146,18 @@ const scrollToProofFrame = (index: number, count: number, held: boolean) => {
   markProgrammaticSectionScroll(reduced ? 240 : 1100)
 
   if (!held) {
-    scene.querySelectorAll<HTMLElement>(".proof-scene__frame")[next]?.scrollIntoView({
-      behavior,
-      block: "center"
-    })
+    const target = scene.querySelectorAll<HTMLElement>(".proof-scene__frame")[next]
+
+    if (!target) {
+      return
+    }
+
+    const top =
+      window.scrollY +
+      target.getBoundingClientRect().top -
+      Math.round(window.innerHeight * 0.22)
+    const scroller = document.scrollingElement || document.documentElement
+    scroller.scrollTo({ top: Math.max(0, top), behavior })
     return
   }
 
@@ -265,12 +273,14 @@ const ProofPager = ({
   items,
   active,
   held,
-  label
+  label,
+  onSelect
 }: {
   items: readonly { title: string }[]
   active: number
   held: boolean
   label: string
+  onSelect: (index: number) => void
 }) => {
   const current = items[active] ?? items[0]
 
@@ -293,7 +303,10 @@ const ProofPager = ({
               className={on ? "proof-scene__pager-dot is-active" : "proof-scene__pager-dot"}
               aria-label={item.title}
               aria-current={on ? "true" : undefined}
-              onClick={() => scrollToProofFrame(index, items.length, held)}
+              onClick={() => {
+                onSelect(index)
+                scrollToProofFrame(index, items.length, held)
+              }}
             />
           )
         })}
@@ -389,26 +402,29 @@ const Skills = () => {
   }, [])
 
   useEffect(() => {
-    const scene = document.querySelector<HTMLElement>(".proof-scene")
+    let scene: HTMLElement | null = null
+    let frameObserver: IntersectionObserver | null = null
+    let attrObserver: MutationObserver | null = null
+    let waitObserver: MutationObserver | null = null
+    let frame = 0
 
-    if (!scene || scene.classList.contains("is-held")) {
-      return
+    const clearFrameObserver = () => {
+      frameObserver?.disconnect()
+      frameObserver = null
     }
 
-    const frames = Array.from(
-      scene.querySelectorAll<HTMLElement>(".proof-scene__frame")
-    )
-
-    if (!frames.length) {
-      return
-    }
-
-    const update = () => {
-      if (scene.classList.contains("is-held")) {
+    const readFlatIndex = () => {
+      if (!scene || scene.classList.contains("is-held")) {
         return
       }
 
-      const marker = Math.min(window.innerHeight * 0.42, 280)
+      const frames = scene.querySelectorAll<HTMLElement>(".proof-scene__frame")
+
+      if (!frames.length) {
+        return
+      }
+
+      const marker = Math.min(window.innerHeight * 0.4, 260)
       let next = 0
 
       for (let index = 0; index < frames.length; index += 1) {
@@ -420,7 +436,6 @@ const Skills = () => {
       setFlatActive((previous) => (previous === next ? previous : next))
     }
 
-    let frame = 0
     const schedule = () => {
       if (frame) {
         return
@@ -428,19 +443,66 @@ const Skills = () => {
 
       frame = window.requestAnimationFrame(() => {
         frame = 0
-        update()
+        readFlatIndex()
       })
     }
 
-    update()
+    const watchFlat = () => {
+      clearFrameObserver()
+
+      if (!scene || scene.classList.contains("is-held")) {
+        return
+      }
+
+      const frames = scene.querySelectorAll<HTMLElement>(".proof-scene__frame")
+
+      if (!frames.length) {
+        return
+      }
+
+      frameObserver = new IntersectionObserver(schedule, {
+        root: null,
+        rootMargin: "-28% 0px -48% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      })
+      frames.forEach((node) => frameObserver?.observe(node))
+      readFlatIndex()
+    }
+
+    const attach = () => {
+      const next = document.querySelector<HTMLElement>(".proof-scene")
+
+      if (!next) {
+        return
+      }
+
+      if (next !== scene) {
+        attrObserver?.disconnect()
+        scene = next
+        attrObserver = new MutationObserver(() => {
+          watchFlat()
+          schedule()
+        })
+        attrObserver.observe(scene, {
+          attributes: true,
+          attributeFilter: ["class"]
+        })
+      }
+
+      watchFlat()
+    }
+
+    attach()
+    const root = document.querySelector(".site-experience") ?? document.body
+    waitObserver = new MutationObserver(attach)
+    waitObserver.observe(root, { childList: true, subtree: true })
     window.addEventListener("scroll", schedule, { passive: true })
     window.addEventListener("resize", schedule)
 
-    const observer = new MutationObserver(schedule)
-    observer.observe(scene, { attributes: true, attributeFilter: ["class"] })
-
     return () => {
-      observer.disconnect()
+      clearFrameObserver()
+      attrObserver?.disconnect()
+      waitObserver?.disconnect()
       window.removeEventListener("scroll", schedule)
       window.removeEventListener("resize", schedule)
 
@@ -448,7 +510,7 @@ const Skills = () => {
         window.cancelAnimationFrame(frame)
       }
     }
-  }, [t.skills.capabilities.length])
+  }, [])
 
   const goToBlock = (id: string) => {
     const node = document.getElementById(id)
@@ -549,6 +611,7 @@ const Skills = () => {
                     active={pagerActive}
                     held={held}
                     label={t.skills.proofProgress}
+                    onSelect={setFlatActive}
                   />
                 </div>
               )
