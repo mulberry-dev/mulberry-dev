@@ -50,6 +50,18 @@ export const sceneViewport = (track: HTMLElement) => {
   return top + sticky.getBoundingClientRect().height
 }
 
+const canHoldScene = (frames: number, query: string) => {
+  if (typeof window === "undefined") {
+    return false
+  }
+
+  return (
+    frames > 1 &&
+    window.matchMedia(query).matches &&
+    !window.matchMedia(MOTION_QUERY).matches
+  )
+}
+
 const ScrollScene = ({
   frames,
   className = "",
@@ -67,9 +79,9 @@ const ScrollScene = ({
   const query = holdQuery ?? `(min-width: ${holdFrom}px)`
   const trackRef = useRef<HTMLDivElement>(null)
   const activeRef = useRef(0)
-  const heldRef = useRef(false)
+  const [held, setHeld] = useState(() => canHoldScene(frames, query))
+  const heldRef = useRef(held)
   const [active, setActive] = useState(0)
-  const [held, setHeld] = useState(false)
 
   const measure = useCallback(() => {
     const track = trackRef.current
@@ -78,10 +90,7 @@ const ScrollScene = ({
       return
     }
 
-    const canHold =
-      frames > 1 &&
-      window.matchMedia(query).matches &&
-      !window.matchMedia(MOTION_QUERY).matches
+    const canHold = canHoldScene(frames, query)
 
     if (heldRef.current !== canHold) {
       heldRef.current = canHold
