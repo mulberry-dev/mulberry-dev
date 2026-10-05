@@ -12,6 +12,11 @@ main > section {
   width: 100%;
 }
 
+.site-experience[aria-busy="true"] {
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
 .site-experience:not(.is-aligned) {
   opacity: 0;
   pointer-events: none;

@@ -6,7 +6,7 @@ import TypeCopy from "@/components/terminal/TypeCopy"
 import WorkspaceHeader from "@/components/terminal/WorkspaceHeader"
 import Container from "@/components/ui/Container"
 import Reveal, { RevealGroup } from "@/components/ui/Reveal"
-import ScrollScene from "@/components/ui/ScrollScene"
+import ScrollScene, { sceneViewport } from "@/components/ui/ScrollScene"
 import SiteIcon, { SiteIconName } from "@/components/ui/SiteIcon"
 import dynamic from "next/dynamic"
 import { WORKSPACE } from "@/data/workspace"
@@ -23,7 +23,8 @@ import { markProgrammaticSectionScroll } from "@/lib/sectionNav"
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
 
 const PROOF_ICONS: SiteIconName[] = ["app", "globe", "rocket", "connect", "layers"]
-const HOLD_FROM = 1024
+// Landscape phones are too short to pin the scene without clipping it.
+const HOLD_QUERY = "(min-width: 1024px), (min-height: 500px)"
 
 const SceneFallback = () => (
   <div className="skills-scene-fallback" aria-hidden="true" />
@@ -232,7 +233,7 @@ const scrollToProofFrame = (index: number, count: number, held: boolean) => {
   }
 
   const rect = scene.getBoundingClientRect()
-  const travel = Math.max(rect.height - window.innerHeight, 1)
+  const travel = Math.max(rect.height - sceneViewport(scene), 1)
   const docTop = window.scrollY + rect.top
   const top = Math.max(0, Math.round(docTop + ((next + 0.5) / count) * travel))
   const scroller = document.scrollingElement || document.documentElement
@@ -637,7 +638,7 @@ const Skills = () => {
 
           <ScrollScene
             frames={t.skills.capabilities.length}
-            holdFrom={HOLD_FROM}
+            holdQuery={HOLD_QUERY}
             className={armed ? "proof-scene is-armed" : "proof-scene"}
           >
             {(activeFrame, _progress, held) => {

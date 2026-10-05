@@ -66,14 +66,15 @@ const Navigation = () => {
   const lastFocusRef = useRef<HTMLElement | null>(null)
   const menuWasOpenRef = useRef(false)
 
-  if (!isHomePath(pathname)) {
+  // Session flags are module state; never touch them on the server, where they leak across requests.
+  if (typeof window !== "undefined" && !isHomePath(pathname)) {
     markLeftHome()
   }
 
   const [playNavIntro, setPlayNavIntro] = useState(false)
   const [playToggleIntro, setPlayToggleIntro] = useState(false)
   const [chromePhase, setChromePhase] = useState<ChromePhase>(() =>
-    isHomePath(pathname) && !shouldRevealHomeChrome() ? "wait" : "shown"
+    isHomePath(pathname) ? "wait" : "shown"
   )
   const [isCompact, setIsCompact] = useState(false)
   const [activePath, setActivePath] = useState(pathname)

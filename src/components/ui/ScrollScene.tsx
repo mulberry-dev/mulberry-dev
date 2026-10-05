@@ -38,17 +38,33 @@ const resolveHeldIndex = (raw: number, frames: number, previous: number) => {
   return next
 }
 
+/** Visible height of a held scene: sticky offset plus the pinned frame height. */
+export const sceneViewport = (track: HTMLElement) => {
+  const sticky = track.firstElementChild as HTMLElement | null
+
+  if (!sticky) {
+    return window.innerHeight
+  }
+
+  const top = parseFloat(window.getComputedStyle(sticky).top) || 0
+  return top + sticky.getBoundingClientRect().height
+}
+
 const ScrollScene = ({
   frames,
   className = "",
   holdFrom = 1024,
+  holdQuery,
   children
 }: {
   frames: number
   className?: string
   holdFrom?: number
+  /** Media query that enables holding; overrides `holdFrom`. */
+  holdQuery?: string
   children: (active: number, progress: number, held: boolean) => ReactNode
 }) => {
+  const query = holdQuery ?? `(min-width: ${holdFrom}px)`
   const trackRef = useRef<HTMLDivElement>(null)
   const activeRef = useRef(0)
   const heldRef = useRef(false)
@@ -64,7 +80,7 @@ const ScrollScene = ({
 
     const canHold =
       frames > 1 &&
-      window.matchMedia(`(min-width: ${holdFrom}px)`).matches &&
+      window.matchMedia(query).matches &&
       !window.matchMedia(MOTION_QUERY).matches
 
     if (heldRef.current !== canHold) {
@@ -78,7 +94,7 @@ const ScrollScene = ({
     }
 
     const rect = track.getBoundingClientRect()
-    const travel = Math.max(rect.height - window.innerHeight, 1)
+    const travel = Math.max(rect.height - sceneViewport(track), 1)
     const scrolled = Math.min(Math.max(-rect.top, 0), travel)
     const next = scrolled / travel
     const index = resolveHeldIndex(next * frames, frames, activeRef.current)
@@ -89,7 +105,7 @@ const ScrollScene = ({
       activeRef.current = index
       setActive(index)
     }
-  }, [frames, holdFrom])
+  }, [frames, query])
 
   useLayoutEffect(() => {
     measure()
@@ -106,25 +122,25 @@ const ScrollScene = ({
       })
     }
 
-    const desktop = window.matchMedia(`(min-width: ${holdFrom}px)`)
+    const hold = window.matchMedia(query)
     const motion = window.matchMedia(MOTION_QUERY)
 
     window.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("resize", onScroll)
-    desktop.addEventListener("change", measure)
+    hold.addEventListener("change", measure)
     motion.addEventListener("change", measure)
 
     return () => {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onScroll)
-      desktop.removeEventListener("change", measure)
+      hold.removeEventListener("change", measure)
       motion.removeEventListener("change", measure)
 
       if (frame) {
         window.cancelAnimationFrame(frame)
       }
     }
-  }, [measure, holdFrom])
+  }, [measure, query])
 
   return (
     <div

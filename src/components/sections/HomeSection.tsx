@@ -22,7 +22,7 @@ import {
   shouldRevealHomeChrome
 } from "@/lib/siteSession"
 import { usePathname } from "next/navigation"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react"
 
 const ORBIT_HOVER_RATE = 0.35
 const BEAT_COUNT = 3
@@ -31,7 +31,9 @@ const NEXT_SECTION_PATH = links.find((link) => link.path !== "/")?.path ?? "/ski
 
 const setOrbitRate = (node: HTMLDivElement, rate: number) => {
   node.getAnimations().forEach((animation) => {
-    animation.playbackRate = rate
+    if ((animation as CSSAnimation).animationName === "orbitSpin") {
+      animation.playbackRate = rate
+    }
   })
 }
 
@@ -134,6 +136,14 @@ const HomeBeats = ({
               quality={80}
               priority
             />
+            <p
+              className="home-hero__wordmark"
+              aria-hidden="true"
+              style={{ "--wordmark-chars": SITE_NAME.length } as CSSProperties}
+            >
+              <span className="home-hero__wordmark-text">{SITE_NAME}</span>
+              <span className="home-hero__wordmark-caret" />
+            </p>
           </div>
         </div>
 
@@ -246,6 +256,7 @@ const IndexPage = () => {
   const { contentReady, reducedMotion } = useParticles()
   const [sequenceMode, setSequenceMode] = useState<"wait" | "scene" | "static">("wait")
   const [introComplete, setIntroComplete] = useState(false)
+  const [introPlay, setIntroPlay] = useState(false)
   const chromeRevealedRef = useRef(false)
   const seenHeldRef = useRef(false)
 
@@ -305,6 +316,23 @@ const IndexPage = () => {
     }
   }, [reducedMotion, revealChrome])
 
+  // Wait two frames so the held scene settles while hidden before the intro plays.
+  useEffect(() => {
+    if (sequenceMode !== "scene") {
+      return
+    }
+
+    let inner = 0
+    const outer = window.requestAnimationFrame(() => {
+      inner = window.requestAnimationFrame(() => setIntroPlay(true))
+    })
+
+    return () => {
+      window.cancelAnimationFrame(outer)
+      window.cancelAnimationFrame(inner)
+    }
+  }, [sequenceMode])
+
   useEffect(() => {
     const onSectionChange = (event: Event) => {
       const path = (event as CustomEvent<{ path?: string }>).detail?.path
@@ -333,9 +361,14 @@ const IndexPage = () => {
     t.home.beatOffer
   ]
 
+  const revealReady =
+    contentReady &&
+    (sequenceMode === "static" || (sequenceMode === "scene" && introPlay))
+
   const introClass = [
     "home-intro",
-    contentReady && sequenceMode !== "wait" ? "is-reveal-ready" : "is-reveal-wait",
+    revealReady ? "is-reveal-ready" : "is-reveal-wait",
+    revealReady && sequenceMode === "scene" ? "is-intro-play" : "",
     introComplete ? "is-complete" : "",
     sequenceMode === "static" ? "is-static" : ""
   ]

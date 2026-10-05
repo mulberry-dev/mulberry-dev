@@ -2457,3 +2457,50 @@
   white-space: nowrap;
   text-wrap: nowrap;
 }
+
+// svh keeps the pinned frame steady while mobile browser toolbars show and hide.
+@media (max-width: 1023px) {
+  .proof-scene.scroll-scene.is-held {
+    height: calc(100vh + (var(--scene-frames) - 1) * 55vh);
+    height: calc(100svh + (var(--scene-frames) - 1) * 55svh);
+  }
+
+  .proof-scene.is-held .scroll-scene__sticky {
+    height: calc(100vh - var(--nav-height));
+    height: calc(100svh - var(--nav-height));
+  }
+
+  .proof-scene.is-held .proof-scene__panel {
+    padding-block: clamp(1.25rem, 3svh, 2.5rem);
+  }
+
+  .proof-scene.is-held .proof-scene__stage {
+    min-height: min(50vh, 30rem);
+    min-height: min(50svh, 30rem);
+  }
+
+  .proof-scene.is-held .proof-scene__pager-nav {
+    gap: 0;
+  }
+
+  .proof-scene.is-held .proof-scene__pager-dot {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .proof-scene.is-held .proof-scene__pager {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+  }
+
+  .proof-scene.is-held .proof-scene__pager-status {
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 100%;
+    text-align: center;
+  }
+}
