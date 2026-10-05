@@ -189,10 +189,11 @@ export const es: Messages = {
     stackTitle: "Stack",
     stackLead: "Las herramientas con las que entrego — evidencia, no el mensaje principal.",
     stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
-    deliveryLead:
-      "Cómo entrego esos encargos — frontend, backend, integraciones y modernización.",
-    viewMore: "Cómo lo entrego",
-    viewLess: "Ocultar detalles de entrega",
+    deliveryKicker: "BAJO EL CAPÓ",
+    deliveryLead: "Cuatro capas que construyo en cada proyecto. Elige una para ver cómo funciona.",
+    deliveryChapters: "Capas de entrega",
+    viewMore: "Explorar las {count} capas",
+    viewLess: "Ocultar las capas",
     proofProgress: "Progreso de servicios",
     capabilities: [
       {

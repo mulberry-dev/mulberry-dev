@@ -189,9 +189,11 @@ export const en: Messages = {
     stackTitle: "Stack",
     stackLead: "The tools I use to deliver — evidence, not the pitch.",
     stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
-    deliveryLead: "How I deliver those engagements — frontend, backend, integrations, and modernization.",
-    viewMore: "See how I deliver",
-    viewLess: "Hide delivery details",
+    deliveryKicker: "UNDER THE HOOD",
+    deliveryLead: "Four layers I build into every engagement. Pick one to see how it works.",
+    deliveryChapters: "Delivery layers",
+    viewMore: "Explore all {count} layers",
+    viewLess: "Hide the layers",
     proofProgress: "Services progress",
     capabilities: [
       {

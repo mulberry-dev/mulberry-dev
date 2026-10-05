@@ -221,6 +221,88 @@ const HomeBeats = ({
   )
 }
 
+const VALUE_VISIBLE_RATIO = 0.3
+const VALUE_FAILSAFE_MS = 1800
+
+const HomeValueGrid = ({
+  items,
+  ready,
+  reducedMotion
+}: {
+  items: { title: string; text: string }[]
+  ready: boolean
+  reducedMotion: boolean
+}) => {
+  const ref = useRef<HTMLUListElement | null>(null)
+  const [inView, setInView] = useState(false)
+  const [played, setPlayed] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+
+    if (played || !node) {
+      return
+    }
+
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true)
+      return
+    }
+
+    // A tall grid on short screens may never reach 30% of its own height, so also accept 30% of the viewport.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible =
+          entry.isIntersecting &&
+          (entry.intersectionRatio >= VALUE_VISIBLE_RATIO ||
+            entry.intersectionRect.height >= window.innerHeight * VALUE_VISIBLE_RATIO)
+        setInView(visible)
+      },
+      { threshold: [0, 0.1, 0.2, VALUE_VISIBLE_RATIO, 0.5] }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [played])
+
+  useEffect(() => {
+    if (played) {
+      return
+    }
+
+    if (reducedMotion || (inView && ready)) {
+      setPlayed(true)
+      return
+    }
+
+    if (!inView) {
+      return
+    }
+
+    // The grid is on screen but the intro gate never opened; never leave the cards hidden.
+    const failsafe = window.setTimeout(() => setPlayed(true), VALUE_FAILSAFE_MS)
+    return () => window.clearTimeout(failsafe)
+  }, [inView, played, ready, reducedMotion])
+
+  return (
+    <ul ref={ref} className={played ? "home-value__grid is-played" : "home-value__grid"}>
+      {items.map((item, index) => (
+        <li key={item.title} className="home-value__item">
+          <span className="home-value__icon" aria-hidden="true">
+            <SiteIcon name={VALUE_ICONS[index] ?? "puzzle"} />
+          </span>
+          <h2>
+            <TypeCopy text={item.title} />
+          </h2>
+          <p>
+            <TypeCopy text={item.text} />
+          </p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 const HomeSceneFrame = ({
   active,
   held,
@@ -407,25 +489,15 @@ const IndexPage = () => {
       )}
 
       <Container className="home-page home-page--value">
-        <RevealGroup className="home-value" mode="scroll" stagger={220}>
+        <RevealGroup className="home-value" mode="scroll">
           <Reveal type="eyebrow" as="p" className="home-value__eyebrow">
             <TypeCopy text={t.home.valueEyebrow} />
           </Reveal>
-          <ul className="home-value__grid">
-            {t.home.value.map((item, index) => (
-              <Reveal key={item.title} as="li" type="card" className="home-value__item">
-                <span className="home-value__icon" aria-hidden="true">
-                  <SiteIcon name={VALUE_ICONS[index] ?? "puzzle"} />
-                </span>
-                <h2>
-                  <TypeCopy text={item.title} />
-                </h2>
-                <p>
-                  <TypeCopy text={item.text} />
-                </p>
-              </Reveal>
-            ))}
-          </ul>
+          <HomeValueGrid
+            items={t.home.value}
+            ready={revealReady && introComplete}
+            reducedMotion={reducedMotion}
+          />
         </RevealGroup>
       </Container>
     </section>

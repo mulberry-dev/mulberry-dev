@@ -110,7 +110,9 @@ export type Messages = {
     stackTitle: string
     stackLead: string
     stackEvidence: string
+    deliveryKicker: string
     deliveryLead: string
+    deliveryChapters: string
     viewMore: string
     viewLess: string
     proofProgress: string

@@ -460,6 +460,43 @@
   background: color-mix(in srgb, var(--color-surface) 55%, transparent);
 }
 
+// Cards wait hidden until the grid is on screen, then fade in one by one, 0.2s apart.
+.home-value__grid .home-value__item {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.home-value__grid.is-played .home-value__item {
+  animation: homeValueIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@for $i from 1 through 4 {
+  .home-value__grid.is-played .home-value__item:nth-child(#{$i}) {
+    animation-delay: #{$i * 0.2}s;
+  }
+}
+
+@keyframes homeValueIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-value__grid .home-value__item,
+  .home-value__grid.is-played .home-value__item {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 .home-value__icon {
   box-sizing: border-box;
   display: grid;

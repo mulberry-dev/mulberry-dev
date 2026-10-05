@@ -15,9 +15,11 @@ export async function fetchPreviewAvailability(
   url: string
 ): Promise<ProbeResult> {
   try {
-    const response = await fetch(
-      `/api/preview-status?url=${encodeURIComponent(url)}`
-    )
+    const params = new URLSearchParams({
+      url,
+      origin: window.location.origin
+    })
+    const response = await fetch(`/api/preview-status?${params}`)
     const data = await response.json()
     const embeddable = data.embeddable === true
 

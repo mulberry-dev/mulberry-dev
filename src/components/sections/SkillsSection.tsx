@@ -20,7 +20,15 @@ import {
   type BuildAccent
 } from "@/data/whatIBuild"
 import { markProgrammaticSectionScroll } from "@/lib/sectionNav"
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react"
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode
+} from "react"
 
 const PROOF_ICONS: SiteIconName[] = ["app", "globe", "rocket", "connect", "layers"]
 // Landscape phones are too short to pin the scene without clipping it.
@@ -397,6 +405,12 @@ const Skills = () => {
   const [active, setActive] = useState<string>(BUILD_SECTIONS[0].id)
   const [flatActive, setFlatActive] = useState(0)
   const [armed, setArmed] = useState(false)
+  const [moreSeen, setMoreSeen] = useState(false)
+  const [pendingBlock, setPendingBlock] = useState<string | null>(null)
+  const moreRef = useRef<HTMLDivElement>(null)
+  const teaserRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLElement>(null)
+  const settleRef = useRef(0)
   const { stageRef, inView, seen } = useProofReveal(t.skills.capabilities.length)
   const railLabels = [
     t.skills.rail.frontend,
@@ -404,6 +418,127 @@ const Skills = () => {
     t.skills.rail.connected,
     t.skills.rail.modernize
   ]
+  const chapterKickers = [
+    t.skills.interfaces.kicker,
+    t.skills.systems.kicker,
+    t.skills.connected.kicker,
+    t.skills.modernization.kicker
+  ]
+
+  const goToBlock = useCallback((id: string, focus = false) => {
+    const node = document.getElementById(id)
+    setActive(id)
+
+    if (!node) {
+      return
+    }
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const behavior: ScrollBehavior = reduced ? "auto" : "smooth"
+    markProgrammaticSectionScroll(reduced ? 400 : 1600)
+
+    if (focus) {
+      if (!node.hasAttribute("tabindex")) {
+        node.setAttribute("tabindex", "-1")
+      }
+      node.focus({ preventScroll: true })
+    }
+
+    node.scrollIntoView({ behavior, block: "start" })
+    node.classList.remove("is-targeted")
+    void node.offsetWidth
+    node.classList.add("is-targeted")
+
+    // Lazy scenes above the target can grow mid-scroll and push it down.
+    window.clearTimeout(settleRef.current)
+    settleRef.current = window.setTimeout(() => {
+      const margin = Number.parseFloat(getComputedStyle(node).scrollMarginTop) || 0
+
+      if (Math.abs(node.getBoundingClientRect().top - margin) > 40) {
+        markProgrammaticSectionScroll(reduced ? 400 : 1100)
+        node.scrollIntoView({ behavior, block: "start" })
+      }
+    }, reduced ? 160 : 1100)
+  }, [])
+
+  useEffect(() => () => window.clearTimeout(settleRef.current), [])
+
+  const openToBlock = (id: string) => {
+    if (open) {
+      goToBlock(id, true)
+      return
+    }
+
+    setPendingBlock(id)
+    setOpen(true)
+  }
+
+  // React 18 drops a boolean `inert` prop, so set the attribute directly.
+  useEffect(() => {
+    panelRef.current?.toggleAttribute("inert", !open)
+    teaserRef.current?.toggleAttribute("inert", open)
+  }, [open])
+
+  // Scroll only after the panel has expanded, otherwise the target offset is stale.
+  useEffect(() => {
+    if (!open || !pendingBlock) {
+      return
+    }
+
+    const panel = document.getElementById("skills-more-panel")
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    let done = false
+
+    const run = () => {
+      if (done) {
+        return
+      }
+
+      done = true
+      goToBlock(pendingBlock, true)
+      setPendingBlock(null)
+    }
+
+    if (reduced || !panel) {
+      run()
+      return
+    }
+
+    const onEnd = (event: TransitionEvent) => {
+      if (event.target === panel && event.propertyName === "grid-template-rows") {
+        run()
+      }
+    }
+
+    panel.addEventListener("transitionend", onEnd)
+    const timer = window.setTimeout(run, 900)
+
+    return () => {
+      panel.removeEventListener("transitionend", onEnd)
+      window.clearTimeout(timer)
+    }
+  }, [open, pendingBlock, goToBlock])
+
+  useEffect(() => {
+    const node = moreRef.current
+
+    if (!node) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMoreSeen(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.35 }
+    )
+    observer.observe(node)
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!open) {
@@ -594,21 +729,6 @@ const Skills = () => {
     }
   }, [])
 
-  const goToBlock = (id: string) => {
-    const node = document.getElementById(id)
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    node?.scrollIntoView({
-      behavior: reduced ? "auto" : "smooth",
-      block: "start"
-    })
-    if (node) {
-      node.classList.remove("is-targeted")
-      void node.offsetWidth
-      node.classList.add("is-targeted")
-    }
-    setActive(id)
-  }
-
   return (
     <section
       id="skills"
@@ -701,27 +821,86 @@ const Skills = () => {
             }}
           </ScrollScene>
 
-          <div className={["skills-more", open ? "is-open" : ""].filter(Boolean).join(" ")}>
-            <p className="skills-more__lead">
-              <TypeCopy text={t.skills.deliveryLead} />
-            </p>
-            <button
-              type="button"
-              id="skills-more-toggle"
-              className="skills-more__toggle"
-              aria-expanded={open}
-              aria-controls="skills-more-panel"
-              onClick={() => setOpen((current) => !current)}
+          <div
+            ref={moreRef}
+            className={[
+              "skills-more",
+              open ? "is-open" : "",
+              armed ? "is-armed" : "",
+              moreSeen ? "is-seen" : ""
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            <div className="skills-more__intro">
+              <p className="skills-more__kicker">
+                <span aria-hidden="true">{"// "}</span>
+                {t.skills.deliveryKicker}
+              </p>
+              <p className="skills-more__lead">
+                <TypeCopy text={t.skills.deliveryLead} />
+              </p>
+            </div>
+            <div
+              ref={teaserRef}
+              className="skills-more__teaser"
+              aria-hidden={open || undefined}
             >
-              <span className="skills-more__caret" aria-hidden="true" />
-              {open ? t.skills.viewLess : t.skills.viewMore}
-            </button>
+              <div className="skills-more__teaser-clip">
+                <nav
+                  className="skills-more__chapters"
+                  aria-label={t.skills.deliveryChapters}
+                >
+                  {BUILD_SECTIONS.map((section, sectionIndex) => (
+                    <button
+                      key={`chapter-${section.id}`}
+                      type="button"
+                      className={`skills-more__chapter skills-more__chapter--${section.accent}`}
+                      style={{ "--chapter-i": sectionIndex } as CSSProperties}
+                      aria-controls="skills-more-panel"
+                      aria-expanded={open}
+                      onClick={() => openToBlock(section.id)}
+                    >
+                      <span className="skills-more__chapter-head">
+                        <span className="skills-more__chapter-index" aria-hidden="true">
+                          {section.index}
+                        </span>
+                        <span className="skills-more__chapter-go" aria-hidden="true" />
+                      </span>
+                      <span className="skills-more__chapter-label">
+                        {railLabels[sectionIndex] ?? section.label}
+                      </span>
+                      <span className="skills-more__chapter-kicker">
+                        {chapterKickers[sectionIndex]}
+                      </span>
+                    </button>
+                  ))}
+                </nav>
+              </div>
+            </div>
+            <div className="skills-more__bar">
+              <button
+                type="button"
+                id="skills-more-toggle"
+                className="skills-more__toggle"
+                aria-expanded={open}
+                aria-controls="skills-more-panel"
+                onClick={() => setOpen((current) => !current)}
+              >
+                <span className="skills-more__toggle-label">
+                  {open
+                    ? t.skills.viewLess
+                    : t.skills.viewMore.replace("{count}", String(BUILD_SECTIONS.length))}
+                </span>
+                <span className="skills-more__caret" aria-hidden="true" />
+              </button>
+            </div>
             <section
+              ref={panelRef}
               className="skills-more__panel"
               id="skills-more-panel"
               aria-labelledby="skills-more-toggle"
               aria-hidden={!open}
-              inert={!open || undefined}
             >
               <div className="skills-more__clip">
                 <div className="skills-more__body">
