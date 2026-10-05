@@ -105,8 +105,10 @@ export type Messages = {
     stackTitle: string
     stackLead: string
     stackEvidence: string
+    deliveryLead: string
     viewMore: string
     viewLess: string
+    proofProgress: string
     capabilities: { title: string; text: string }[]
     interfaces: {
       kicker: string
@@ -137,7 +139,6 @@ export type Messages = {
       ai: string
     }
     rail: {
-      intro: string
       frontend: string
       backend: string
       connected: string

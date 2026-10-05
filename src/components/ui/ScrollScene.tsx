@@ -10,6 +10,33 @@ import {
 } from "react"
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)"
+/** Fraction of a frame bucket that must clear before the active index changes. */
+const FRAME_SLACK = 0.18
+
+const resolveHeldIndex = (raw: number, frames: number, previous: number) => {
+  const capped = Math.min(Math.max(raw, 0), frames - Number.EPSILON)
+  const next = Math.min(frames - 1, Math.floor(capped))
+
+  if (next === previous) {
+    return previous
+  }
+
+  if (next > previous) {
+    const entered = capped - next
+
+    if (entered < FRAME_SLACK) {
+      return previous
+    }
+  } else {
+    const passed = previous - capped
+
+    if (passed < FRAME_SLACK) {
+      return previous
+    }
+  }
+
+  return next
+}
 
 const ScrollScene = ({
   frames,
@@ -47,12 +74,6 @@ const ScrollScene = ({
 
     if (!canHold) {
       track.style.setProperty("--scene-progress", "1")
-
-      if (activeRef.current !== 0) {
-        activeRef.current = 0
-        setActive(0)
-      }
-
       return
     }
 
@@ -60,7 +81,7 @@ const ScrollScene = ({
     const travel = Math.max(rect.height - window.innerHeight, 1)
     const scrolled = Math.min(Math.max(-rect.top, 0), travel)
     const next = scrolled / travel
-    const index = Math.min(frames - 1, Math.floor(next * frames))
+    const index = resolveHeldIndex(next * frames, frames, activeRef.current)
 
     track.style.setProperty("--scene-progress", next.toFixed(4))
 
@@ -103,7 +124,7 @@ const ScrollScene = ({
         window.cancelAnimationFrame(frame)
       }
     }
-  }, [measure])
+  }, [measure, holdFrom])
 
   return (
     <div
