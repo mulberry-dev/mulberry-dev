@@ -107,7 +107,7 @@ export const en: Messages = {
     beatBrand: "Brand",
     beatIdentity: "Name and role",
     beatOffer: "What I build",
-    valueEyebrow: "What you get",
+    valueEyebrow: "Working principles",
     value: [
       {
         title: "Tailored solutions",
@@ -192,7 +192,7 @@ export const en: Messages = {
     deliveryLead: "How I deliver those engagements — frontend, backend, integrations, and modernization.",
     viewMore: "See how I deliver",
     viewLess: "Hide delivery details",
-    proofProgress: "Service offers",
+    proofProgress: "Services progress",
     capabilities: [
       {
         title: "Custom Web Applications",

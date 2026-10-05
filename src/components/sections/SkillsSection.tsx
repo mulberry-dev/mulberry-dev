@@ -133,6 +133,76 @@ const ProofLabel = ({ text }: { text: string }) => {
   )
 }
 
+const padIndex = (value: number) => String(value).padStart(2, "0")
+
+const useProofReveal = (count: number) => {
+  const stageRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  const [seen, setSeen] = useState<boolean[]>(() => Array(count).fill(false))
+
+  useEffect(() => {
+    const stage = stageRef.current
+
+    if (!stage) {
+      return
+    }
+
+    let visible = false
+    // Hysteresis keeps the held frame from flickering at the viewport edge.
+    const stageObserver = new IntersectionObserver(
+      ([entry]) => {
+        const ratio = entry.isIntersecting ? entry.intersectionRatio : 0
+        const next = visible ? ratio > 0.12 : ratio >= 0.32
+
+        if (next !== visible) {
+          visible = next
+          setInView(next)
+        }
+      },
+      { threshold: [0, 0.12, 0.32, 0.6, 1] }
+    )
+    stageObserver.observe(stage)
+
+    const frames = Array.from(
+      stage.querySelectorAll<HTMLElement>(".proof-scene__frame")
+    )
+    const frameObserver = new IntersectionObserver(
+      (entries) => {
+        const hits = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => frames.indexOf(entry.target as HTMLElement))
+          .filter((index) => index >= 0)
+
+        if (!hits.length) {
+          return
+        }
+
+        hits.forEach((index) => frameObserver.unobserve(frames[index]))
+        setSeen((previous) => {
+          if (hits.every((index) => previous[index])) {
+            return previous
+          }
+
+          const next = [...previous]
+          hits.forEach((index) => {
+            next[index] = true
+          })
+          return next
+        })
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.2 }
+    )
+    frames.forEach((node) => frameObserver.observe(node))
+
+    return () => {
+      stageObserver.disconnect()
+      frameObserver.disconnect()
+    }
+  }, [count])
+
+  return { stageRef, inView, seen }
+}
+
 const scrollToProofFrame = (index: number, count: number, held: boolean) => {
   const scene = document.querySelector<HTMLElement>(".proof-scene")
 
@@ -288,19 +358,24 @@ const ProofPager = ({
     <div className="proof-scene__pager">
       <p className="proof-scene__pager-status" aria-live="polite">
         <span className="proof-scene__pager-count">
-          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+          <span className="proof-scene__pager-index">{padIndex(active + 1)}</span>
+          {" / "}
+          {padIndex(items.length)}
         </span>
-        <span className="proof-scene__pager-current">{current?.title}</span>
+        <span key={active} className="proof-scene__pager-current">
+          {current?.title}
+        </span>
       </p>
       <nav className="proof-scene__pager-nav" aria-label={label}>
         {items.map((item, index) => {
           const on = index === active
+          const state = on ? " is-active" : index < active ? " is-done" : ""
 
           return (
             <button
-              key={item.title}
+              key={index}
               type="button"
-              className={on ? "proof-scene__pager-dot is-active" : "proof-scene__pager-dot"}
+              className={`proof-scene__pager-dot${state}`}
               aria-label={item.title}
               aria-current={on ? "true" : undefined}
               onClick={() => {
@@ -320,6 +395,8 @@ const Skills = () => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState<string>(BUILD_SECTIONS[0].id)
   const [flatActive, setFlatActive] = useState(0)
+  const [armed, setArmed] = useState(false)
+  const { stageRef, inView, seen } = useProofReveal(t.skills.capabilities.length)
   const railLabels = [
     t.skills.rail.frontend,
     t.skills.rail.backend,
@@ -392,6 +469,10 @@ const Skills = () => {
       }
     }
   }, [open])
+
+  useEffect(() => {
+    setArmed(true)
+  }, [])
 
   useEffect(() => {
     const id = window.location.hash.replace("#", "")
@@ -557,14 +638,14 @@ const Skills = () => {
           <ScrollScene
             frames={t.skills.capabilities.length}
             holdFrom={HOLD_FROM}
-            className="proof-scene"
+            className={armed ? "proof-scene is-armed" : "proof-scene"}
           >
             {(activeFrame, _progress, held) => {
               const pagerActive = held ? activeFrame : flatActive
 
               return (
                 <div className="proof-scene__panel">
-                  <div className="proof-scene__stage">
+                  <div ref={stageRef} className="proof-scene__stage">
                     <svg
                       className="proof-scene__defs"
                       aria-hidden="true"
@@ -585,26 +666,27 @@ const Skills = () => {
                         </linearGradient>
                       </defs>
                     </svg>
-                    {t.skills.capabilities.map((item, index) => (
-                      <div
-                        key={item.title}
-                        className={
-                          !held || index === activeFrame
-                            ? "proof-scene__frame is-on"
-                            : "proof-scene__frame"
-                        }
-                        aria-hidden={held && index !== activeFrame ? true : undefined}
-                      >
-                        <span className="proof-scene__step" aria-hidden="true">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <ProofTitle text={item.title} />
-                        <span className="proof-scene__icon" aria-hidden="true">
-                          <SiteIcon name={PROOF_ICONS[index] ?? "puzzle"} />
-                        </span>
-                        <ProofLabel text={item.text} />
-                      </div>
-                    ))}
+                    {t.skills.capabilities.map((item, index) => {
+                      const current = index === activeFrame
+                      const on = held ? current && inView : (seen[index] ?? true)
+
+                      return (
+                        <div
+                          key={index}
+                          className={on ? "proof-scene__frame is-on" : "proof-scene__frame"}
+                          aria-hidden={held && !current ? true : undefined}
+                        >
+                          <span className="proof-scene__step" aria-hidden="true">
+                            {padIndex(index + 1)}
+                          </span>
+                          <ProofTitle text={item.title} />
+                          <span className="proof-scene__icon" aria-hidden="true">
+                            <SiteIcon name={PROOF_ICONS[index] ?? "puzzle"} />
+                          </span>
+                          <ProofLabel text={item.text} />
+                        </div>
+                      )
+                    })}
                   </div>
                   <ProofPager
                     items={t.skills.capabilities}

@@ -2144,8 +2144,19 @@
 }
 
 .proof-scene {
+  --proof-leave: 240ms;
+  --proof-enter: 560ms;
+  --proof-enter-at: 0ms;
+  --proof-shift: 1.25rem;
+  --proof-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --proof-ease-leave: cubic-bezier(0.37, 0, 0.63, 1);
   width: 100%;
   border-top: 1px solid var(--skills-line);
+}
+
+.proof-scene.scroll-scene.is-held {
+  --proof-enter-at: var(--proof-leave);
+  height: calc(100dvh + (var(--scene-frames) - 1) * 60vh);
 }
 
 .proof-scene__panel {
@@ -2221,23 +2232,80 @@
   stroke-width: 1.65;
 }
 
+.proof-scene.is-held .proof-scene__step {
+  display: none;
+}
+
 .proof-scene.is-held .proof-scene__frame {
   position: absolute;
   inset: 0;
   justify-content: center;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transform: translateY(8px);
+  transform: translate3d(0, calc(var(--proof-shift) * -1), 0);
   transition:
-    opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity var(--proof-leave) var(--proof-ease-leave),
+    transform var(--proof-leave) var(--proof-ease-leave),
+    visibility 0s linear var(--proof-leave);
 }
 
+// The next frame only becomes visible once the previous one has fully left.
 .proof-scene.is-held .proof-scene__frame.is-on {
   z-index: 1;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: none;
+  transition:
+    opacity 0s linear var(--proof-leave),
+    transform 0s linear var(--proof-leave),
+    visibility 0s linear var(--proof-leave);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .proof-scene.is-armed .proof-scene__frame > * {
+    opacity: 0;
+    transform: translate3d(0, calc(var(--proof-shift) * -0.75), 0);
+    transition:
+      opacity 0s linear var(--proof-leave),
+      transform 0s linear var(--proof-leave);
+  }
+
+  .proof-scene.is-armed .proof-scene__frame.is-on > * {
+    --proof-delay: 0ms;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--proof-enter) var(--proof-ease-enter)
+        calc(var(--proof-enter-at) + var(--proof-delay)),
+      transform var(--proof-enter) var(--proof-ease-enter)
+        calc(var(--proof-enter-at) + var(--proof-delay));
+  }
+
+  .proof-scene.is-armed .proof-scene__frame.is-on > .proof-scene__icon {
+    --proof-delay: 200ms;
+  }
+
+  .proof-scene.is-armed .proof-scene__frame.is-on > .proof-scene__label {
+    --proof-delay: 300ms;
+  }
+
+  .proof-scene__pager-current {
+    animation: proofPagerSwap 0.36s var(--proof-ease-enter) both;
+  }
+}
+
+@keyframes proofPagerSwap {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -0.35rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .proof-scene__pager {
@@ -2246,6 +2314,29 @@
   align-items: center;
   gap: 0.7rem;
   width: min(100%, 28rem);
+}
+
+.proof-scene.is-held .proof-scene__pager {
+  flex-direction: row;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  width: min(100%, 46rem);
+  padding-top: 1rem;
+  border-top: 1px solid var(--skills-line);
+}
+
+.proof-scene.is-held .proof-scene__pager-status {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.9rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.proof-scene.is-held .proof-scene__pager-current {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .proof-scene.is-flat .proof-scene__pager {
@@ -2270,13 +2361,21 @@
 }
 
 .proof-scene__pager-count {
-  color: var(--brand-cyan);
+  flex-shrink: 0;
+  color: var(--skills-dim);
   font-family: var(--font-mono);
   font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.proof-scene__pager-index {
+  color: var(--brand-cyan);
 }
 
 .proof-scene__pager-current {
+  min-width: 0;
   color: var(--color-text-muted);
   font-size: 0.875rem;
   line-height: 1.35;
@@ -2284,9 +2383,10 @@
 
 .proof-scene__pager-nav {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0.35rem;
 }
 
 .proof-scene__pager-dot {
@@ -2303,32 +2403,35 @@
 
 .proof-scene__pager-dot::before {
   content: "";
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border: 1px solid color-mix(in srgb, var(--color-text) 34%, transparent);
-  border-radius: 50%;
+  border-radius: 999px;
   background: transparent;
   transition:
-    background 0.25s var(--ease-out),
-    border-color 0.25s var(--ease-out),
-    transform 0.25s var(--ease-out);
+    width 0.36s var(--proof-ease-enter),
+    background-color 0.25s var(--proof-ease-enter),
+    border-color 0.25s var(--proof-ease-enter);
+}
+
+.proof-scene__pager-dot.is-done::before {
+  border-color: color-mix(in srgb, var(--brand-cyan) 50%, transparent);
+  background: color-mix(in srgb, var(--brand-cyan) 50%, transparent);
 }
 
 .proof-scene__pager-dot.is-active::before {
-  background: var(--brand-cyan);
+  width: 1.4rem;
   border-color: var(--brand-cyan);
-  transform: scale(1.15);
+  background: var(--brand-cyan);
+}
+
+.proof-scene__pager-dot:not(.is-active):hover::before {
+  border-color: var(--brand-cyan);
 }
 
 .proof-scene__pager-dot:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
-}
-
-@media (min-width: 1100px) {
-  .proof-scene.is-held .proof-scene__pager {
-    display: none;
-  }
 }
 
 .proof-scene__value {
