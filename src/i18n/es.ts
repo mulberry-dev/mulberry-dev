@@ -102,6 +102,11 @@ export const es: Messages = {
     cta: "Comenzar a explorar",
     ctaSecondary: "Ver mi trabajo",
     scrollCue: "Desplázate",
+    scrollContinue: "Continuar",
+    beatProgress: "Pasos de bienvenida",
+    beatBrand: "Marca",
+    beatIdentity: "Nombre y rol",
+    beatOffer: "Lo que construyo",
     valueEyebrow: "Qué obtienes",
     value: [
       {
