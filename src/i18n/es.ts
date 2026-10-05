@@ -521,7 +521,7 @@ export const es: Messages = {
     withAi: "Con IA",
     withAiTitle: "Hecho con IA",
     handmade: "A mano",
-    handmadeTitle: "Hecho a mano antes de la IA"
+    handmadeTitle: "Hecho a mano, sin IA"
   },
   jsonLd: {
     jobTitle: "Ingeniero Full Stack Senior",

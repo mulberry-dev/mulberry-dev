@@ -121,7 +121,8 @@ export const data = [
     ],
     url: "https://thisissantidev.vercel.app/",
     thumbnail: "/images/thumbnails/thisissanti-original.webp",
-    github: null
+    github: null,
+    handmade: true
   },
   {
     id: "SaasProject",
@@ -161,7 +162,8 @@ export const data = [
     thumbnail: "/images/thumbnails/salon-target-dark.jpg",
     width: 1024,
     height: 640,
-    github: null
+    github: null,
+    handmade: true
   },
   {
     id: "SsoSamlOkta",
@@ -273,7 +275,8 @@ export const data = [
     ],
     thumbnail: "/images/thumbnails/Thumbnail-PIFE.webp",
     url: null,
-    github: null
+    github: null,
+    handmade: true
   },
   {
     id: "MiBlog",

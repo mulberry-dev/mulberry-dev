@@ -30,14 +30,19 @@ export const extractStartYear = (description: string) => {
   return start ? Number(start) : undefined
 }
 
+const isMarkedHandmade = (project: Project) =>
+  (project as { handmade?: boolean }).handmade === true
+
 export const builtWithoutAi = (project: Project) => {
   const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  if (isMarkedHandmade(source)) return true
   const year = extractStartYear(source.description)
   return year !== undefined && year <= 2023
 }
 
 export const builtWithAi = (project: Project) => {
   const source = projects.find(item => String(item.id) === String(project.id)) ?? project
+  if (isMarkedHandmade(source)) return false
   const year = extractStartYear(source.description)
   return year !== undefined && year > 2023
 }
