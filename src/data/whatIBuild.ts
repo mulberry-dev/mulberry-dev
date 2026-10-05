@@ -220,9 +220,28 @@ export const PRODUCT_LAYERS = [
 ] as const
 
 export const BUILD_SECTIONS = [
-  { id: "build-intro", index: "00", label: "SOLUTIONS" },
-  { id: "build-interfaces", index: "01", label: "INTERFACES", accent: BUILD_INTERFACES.accent },
-  { id: "build-systems", index: "02", label: "SYSTEMS", accent: BUILD_SYSTEMS.accent },
-  { id: "build-connected", index: "03", label: "INTEGRATIONS", accent: BUILD_CONNECTED.accent },
-  { id: "build-modernize", index: "04", label: "MODERNIZE", accent: BUILD_MODERNIZATION.accent }
+  {
+    id: "build-interfaces",
+    index: "01",
+    label: "FRONTEND",
+    accent: BUILD_INTERFACES.accent
+  },
+  {
+    id: "build-systems",
+    index: "02",
+    label: "BACKEND",
+    accent: BUILD_SYSTEMS.accent
+  },
+  {
+    id: "build-connected",
+    index: "03",
+    label: "DATA & INTEGRATIONS",
+    accent: BUILD_CONNECTED.accent
+  },
+  {
+    id: "build-modernize",
+    index: "04",
+    label: "MODERNIZATION",
+    accent: BUILD_MODERNIZATION.accent
+  }
 ] as const

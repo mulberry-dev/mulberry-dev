@@ -184,8 +184,11 @@ export const es: Messages = {
     stackTitle: "Stack",
     stackLead: "Las herramientas con las que entrego — evidencia, no el mensaje principal.",
     stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
-    viewMore: "Ver más",
-    viewLess: "Ver menos",
+    deliveryLead:
+      "Cómo entrego esos encargos — frontend, backend, integraciones y modernización.",
+    viewMore: "Cómo lo entrego",
+    viewLess: "Ocultar detalles de entrega",
+    proofProgress: "Servicios que puedes contratar",
     capabilities: [
       {
         title: "Aplicaciones Web a Medida",
@@ -246,11 +249,10 @@ export const es: Messages = {
       ai: "IA"
     },
     rail: {
-      intro: "SOLUCIONES",
-      frontend: "INTERFACES",
-      backend: "SISTEMAS",
-      connected: "INTEGRACIONES",
-      modernize: "MODERNIZAR"
+      frontend: "FRONTEND",
+      backend: "BACKEND",
+      connected: "DATOS E INTEGRACIONES",
+      modernize: "MODERNIZACIÓN"
     }
   },
   process: {

@@ -184,8 +184,10 @@ export const en: Messages = {
     stackTitle: "Stack",
     stackLead: "The tools I use to deliver — evidence, not the pitch.",
     stackEvidence: "React · Next.js · Node.js · TypeScript · PostgreSQL · AWS",
-    viewMore: "View more",
-    viewLess: "View less",
+    deliveryLead: "How I deliver those engagements — frontend, backend, integrations, and modernization.",
+    viewMore: "See how I deliver",
+    viewLess: "Hide delivery details",
+    proofProgress: "Service offers",
     capabilities: [
       {
         title: "Custom Web Applications",
@@ -246,11 +248,10 @@ export const en: Messages = {
       ai: "AI"
     },
     rail: {
-      intro: "SOLUTIONS",
-      frontend: "INTERFACES",
-      backend: "SYSTEMS",
-      connected: "INTEGRATIONS",
-      modernize: "MODERNIZE"
+      frontend: "FRONTEND",
+      backend: "BACKEND",
+      connected: "DATA & INTEGRATIONS",
+      modernize: "MODERNIZATION"
     }
   },
   process: {

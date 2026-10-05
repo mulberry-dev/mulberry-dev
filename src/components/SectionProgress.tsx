@@ -136,10 +136,12 @@ const SectionProgress = () => {
       items: t.process.steps.map((item) => item.title)
     }
   }
-  const activePath =
+  const pathHasGroup =
     current in groups && groups[current as keyof typeof groups].items.length > 0
       ? current
       : ""
+  const [sceneInView, setSceneInView] = useState(Boolean(pathHasGroup))
+  const activePath = pathHasGroup && sceneInView ? pathHasGroup : ""
   const activeGroup = activePath ? groups[activePath as keyof typeof groups] : null
   const [shownPath, setShownPath] = useState(activePath)
   const [open, setOpen] = useState(Boolean(activePath))
@@ -150,16 +152,63 @@ const SectionProgress = () => {
   const syncRef = useRef<() => void>(() => {})
   const countRef = useRef(activeGroup?.items.length ?? 0)
   const sceneRef = useRef<SceneGroup | null>(
-    activePath ? SCENE_GROUPS[activePath] : null
+    pathHasGroup ? SCENE_GROUPS[pathHasGroup] : null
   )
 
   openRef.current = open
   countRef.current = activeGroup?.items.length ?? 0
-  sceneRef.current = activePath ? SCENE_GROUPS[activePath] : null
+  sceneRef.current = pathHasGroup ? SCENE_GROUPS[pathHasGroup] : null
 
   if (activePath && shownPath !== activePath) {
     setShownPath(activePath)
   }
+
+  useEffect(() => {
+    if (!pathHasGroup) {
+      setSceneInView(false)
+      return
+    }
+
+    const target = SCENE_GROUPS[pathHasGroup]
+    let scene: HTMLElement | null = null
+    let viewObserver: IntersectionObserver | null = null
+    let waitObserver: MutationObserver | null = null
+
+    const watch = (node: HTMLElement) => {
+      viewObserver?.disconnect()
+      scene = node
+      viewObserver = new IntersectionObserver(
+        ([entry]) => {
+          setSceneInView(Boolean(entry?.isIntersecting))
+        },
+        { root: null, threshold: [0, 0.08, 0.2], rootMargin: "-12% 0px -18% 0px" }
+      )
+      viewObserver.observe(node)
+    }
+
+    const attach = () => {
+      const next = document.querySelector<HTMLElement>(target.scene)
+
+      if (!next) {
+        setSceneInView(false)
+        return
+      }
+
+      if (next !== scene) {
+        watch(next)
+      }
+    }
+
+    attach()
+    const root = document.querySelector(".site-experience") ?? document.body
+    waitObserver = new MutationObserver(attach)
+    waitObserver.observe(root, { childList: true, subtree: true })
+
+    return () => {
+      viewObserver?.disconnect()
+      waitObserver?.disconnect()
+    }
+  }, [pathHasGroup])
 
   useEffect(() => {
     if (activePath) {
