@@ -15,11 +15,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { SECTION_CHANGE_EVENT } from "@/lib/sectionNav"
 import {
-  didLeaveHome,
   HOME_CHROME_REVEALED_EVENT,
   isHomeChromeRevealed,
-  markHomeChromeRevealed,
-  shouldRevealHomeChrome
+  markHomeChromeRevealed
 } from "@/lib/siteSession"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react"
@@ -28,6 +26,7 @@ const ORBIT_HOVER_RATE = 0.35
 const BEAT_COUNT = 3
 const VALUE_ICONS: SiteIconName[] = ["ruler", "layers", "target", "route"]
 const NEXT_SECTION_PATH = links.find((link) => link.path !== "/")?.path ?? "/skills"
+const MOTION_QUERY = "(prefers-reduced-motion: reduce)"
 
 const setOrbitRate = (node: HTMLDivElement, rate: number) => {
   node.getAnimations().forEach((animation) => {
@@ -37,8 +36,8 @@ const setOrbitRate = (node: HTMLDivElement, rate: number) => {
   })
 }
 
-const beatClass = (index: number, active: number, held: boolean) => {
-  if (!held) {
+const beatClass = (index: number, active: number, layered: boolean) => {
+  if (!layered) {
     return "home-beat is-flat"
   }
 
@@ -74,15 +73,15 @@ const HomeOrbit = () => (
 
 const HomeProgress = ({
   active,
-  held,
+  visible,
   labels
 }: {
   active: number
-  held: boolean
+  visible: boolean
   labels: string[]
 }) => (
   <div
-    className={held ? "home-progress is-held" : "home-progress"}
+    className={visible ? "home-progress is-held" : "home-progress"}
     role="group"
     aria-label={labels[0]}
   >
@@ -105,12 +104,14 @@ const HomeProgress = ({
 
 const HomeBeats = ({
   active,
-  held,
+  layered,
+  showProgress,
   introComplete,
   beatLabels
 }: {
   active: number
-  held: boolean
+  layered: boolean
+  showProgress: boolean
   introComplete: boolean
   beatLabels: string[]
 }) => {
@@ -122,8 +123,8 @@ const HomeBeats = ({
 
       <div className="home-hero__stage">
         <div
-          className={beatClass(0, active, held)}
-          aria-hidden={held && active !== 0 ? true : undefined}
+          className={beatClass(0, active, layered)}
+          aria-hidden={layered && active !== 0 ? true : undefined}
         >
           <div className="home-beat__inner home-beat__inner--brand">
             <Image
@@ -148,8 +149,8 @@ const HomeBeats = ({
         </div>
 
         <div
-          className={beatClass(1, active, held)}
-          aria-hidden={held && active !== 1 ? true : undefined}
+          className={beatClass(1, active, layered)}
+          aria-hidden={layered && active !== 1 ? true : undefined}
         >
           <div className="home-beat__inner home-beat__inner--identity">
             <p className="home-hero__hello">
@@ -175,8 +176,8 @@ const HomeBeats = ({
         </div>
 
         <div
-          className={beatClass(2, active, held)}
-          aria-hidden={held && active !== 2 ? true : undefined}
+          className={beatClass(2, active, layered)}
+          aria-hidden={layered && active !== 2 ? true : undefined}
         >
           <div className="home-beat__inner home-beat__inner--offer">
             <h1 className="home-hero__headline">
@@ -200,21 +201,21 @@ const HomeBeats = ({
         </div>
       </div>
 
-      <HomeProgress active={active} held={held} labels={beatLabels} />
+      <HomeProgress active={active} visible={showProgress} labels={beatLabels} />
 
       <Link
         href={href(NEXT_SECTION_PATH)}
         scroll={false}
         className={
-          introComplete || (held && active >= BEAT_COUNT - 1)
+          introComplete || (layered && active >= BEAT_COUNT - 1)
             ? "home-scroll is-ready"
-            : held
+            : layered
               ? "home-scroll is-ready is-continue"
-              : "home-scroll"
+              : "home-scroll is-ready"
         }
       >
         <span>
-          {held && active < BEAT_COUNT - 1 ? t.home.scrollContinue : t.home.scrollCue}
+          {layered && active < BEAT_COUNT - 1 ? t.home.scrollContinue : t.home.scrollCue}
         </span>
       </Link>
     </div>
@@ -305,26 +306,25 @@ const HomeValueGrid = ({
 
 const HomeSceneFrame = ({
   active,
-  held,
   introComplete,
   beatLabels,
   onFrame
 }: {
   active: number
-  held: boolean
   introComplete: boolean
   beatLabels: string[]
-  onFrame: (active: number, held: boolean) => void
+  onFrame: (active: number) => void
 }) => {
   useEffect(() => {
-    onFrame(active, held)
-  }, [active, held, onFrame])
+    onFrame(active)
+  }, [active, onFrame])
 
   return (
     <Container className="home-page">
       <HomeBeats
         active={active}
-        held={held}
+        layered
+        showProgress
         introComplete={introComplete}
         beatLabels={beatLabels}
       />
@@ -340,7 +340,6 @@ const IndexPage = () => {
   const [introComplete, setIntroComplete] = useState(false)
   const [introPlay, setIntroPlay] = useState(false)
   const chromeRevealedRef = useRef(false)
-  const seenHeldRef = useRef(false)
 
   const revealChrome = useCallback(() => {
     if (isHomeChromeRevealed()) {
@@ -355,44 +354,28 @@ const IndexPage = () => {
   }, [])
 
   const onFrame = useCallback(
-    (active: number, held: boolean) => {
-      // ScrollScene mounts with held=false until the first measure; ignore that flash.
-      if (held) {
-        seenHeldRef.current = true
-
-        if (active >= 1 && !chromeRevealedRef.current) {
-          revealChrome()
-        }
-
-        if (active >= BEAT_COUNT - 1) {
-          setIntroComplete(true)
-        }
-
-        return
+    (active: number) => {
+      if (active >= 1 && !chromeRevealedRef.current) {
+        revealChrome()
       }
 
-      if (!seenHeldRef.current) {
-        return
+      if (active >= BEAT_COUNT - 1) {
+        setIntroComplete(true)
       }
-
-      setIntroComplete(true)
-      revealChrome()
     },
     [revealChrome]
   )
 
   useEffect(() => {
-    const skip =
-      didLeaveHome() ||
-      shouldRevealHomeChrome() ||
-      isHomeChromeRevealed() ||
-      window.scrollY > 1 ||
-      reducedMotion ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const prefersReduced =
+      reducedMotion || window.matchMedia(MOTION_QUERY).matches
 
-    setSequenceMode(skip ? "static" : "scene")
+    // Keep the scroll-held beat scene for every motion visit — including
+    // return trips and scroll-back — so reverse scroll never collapses into
+    // a stacked dump of all beats.
+    setSequenceMode(prefersReduced ? "static" : "scene")
 
-    if (skip) {
+    if (prefersReduced) {
       setIntroComplete(true)
       revealChrome()
     }
@@ -452,7 +435,7 @@ const IndexPage = () => {
     revealReady ? "is-reveal-ready" : "is-reveal-wait",
     revealReady && sequenceMode === "scene" ? "is-intro-play" : "",
     introComplete ? "is-complete" : "",
-    sequenceMode === "static" ? "is-static" : ""
+    sequenceMode === "static" ? "is-static" : "is-sequenced"
   ]
     .filter(Boolean)
     .join(" ")
@@ -467,10 +450,9 @@ const IndexPage = () => {
     >
       {sequenceMode === "scene" ? (
         <ScrollScene frames={BEAT_COUNT} holdFrom={0} className="home-intro-scene">
-          {(active, _progress, held) => (
+          {(active) => (
             <HomeSceneFrame
               active={active}
-              held={held}
               introComplete={introComplete}
               beatLabels={beatLabels}
               onFrame={onFrame}
@@ -481,7 +463,8 @@ const IndexPage = () => {
         <Container className="home-page">
           <HomeBeats
             active={sequenceMode === "static" ? BEAT_COUNT - 1 : 0}
-            held={sequenceMode === "wait"}
+            layered
+            showProgress={false}
             introComplete={introComplete}
             beatLabels={beatLabels}
           />
